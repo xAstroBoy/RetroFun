@@ -89,7 +89,7 @@
             this.DiceGroup.Controls.Add(this.DiceSelect2);
             this.DiceGroup.Controls.Add(this.DiceID1);
             this.DiceGroup.Controls.Add(this.DiceSelect1);
-            this.DiceGroup.Location = new System.Drawing.Point(12, 11);
+            this.DiceGroup.Location = new System.Drawing.Point(55, 11);
             this.DiceGroup.Name = "DiceGroup";
             this.DiceGroup.Size = new System.Drawing.Size(351, 170);
             this.DiceGroup.TabIndex = 0;
@@ -353,7 +353,7 @@
             // 
             // SelectAllButton
             // 
-            this.SelectAllButton.Location = new System.Drawing.Point(381, 158);
+            this.SelectAllButton.Location = new System.Drawing.Point(209, 197);
             this.SelectAllButton.Name = "SelectAllButton";
             this.SelectAllButton.Size = new System.Drawing.Size(61, 20);
             this.SelectAllButton.TabIndex = 8;
@@ -362,7 +362,7 @@
             // 
             // UnSelectAllButton
             // 
-            this.UnSelectAllButton.Location = new System.Drawing.Point(381, 132);
+            this.UnSelectAllButton.Location = new System.Drawing.Point(122, 197);
             this.UnSelectAllButton.Name = "UnSelectAllButton";
             this.UnSelectAllButton.Size = new System.Drawing.Size(61, 20);
             this.UnSelectAllButton.TabIndex = 9;
@@ -371,7 +371,7 @@
             // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(381, 63);
+            this.ClearButton.Location = new System.Drawing.Point(27, 197);
             this.ClearButton.Name = "ClearButton";
             this.ClearButton.Size = new System.Drawing.Size(61, 20);
             this.ClearButton.TabIndex = 10;
