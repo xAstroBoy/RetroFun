@@ -339,23 +339,13 @@ namespace BobbaFun.Pages
 
         private void UnSelectAllButton_Click(object sender, EventArgs e)
         {
-            CheckBoxToggler(DiceSelect1, false);
-            CheckBoxToggler(DiceSelect2, false);
-            CheckBoxToggler(DiceSelect3, false);
-            CheckBoxToggler(DiceSelect4, false);
-            CheckBoxToggler(DiceSelect5, false);
-            CheckBoxToggler(DiceSelect6, false);
+            CheckStatus(false);
 
         }
 
         private void SelectAllButton_Click(object sender, EventArgs e)
         {
-            CheckBoxToggler(DiceSelect1, true);
-            CheckBoxToggler(DiceSelect2, true);
-            CheckBoxToggler(DiceSelect3, true);
-            CheckBoxToggler(DiceSelect4, true);
-            CheckBoxToggler(DiceSelect5, true);
-            CheckBoxToggler(DiceSelect6, true);
+            CheckStatus(true);
         }
 
         private void ClearButton_Click(object sender, EventArgs e)
@@ -366,7 +356,19 @@ namespace BobbaFun.Pages
             WriteIDToBox(DiceID4, "");
             WriteIDToBox(DiceID5, "");
             WriteIDToBox(DiceID6, "");
+            CheckStatus(false);
 
+        }
+
+
+        public void CheckStatus(bool status)
+        {
+            CheckBoxToggler(DiceSelect1, status);
+            CheckBoxToggler(DiceSelect2, status);
+            CheckBoxToggler(DiceSelect3, status);
+            CheckBoxToggler(DiceSelect4, status);
+            CheckBoxToggler(DiceSelect5, status);
+            CheckBoxToggler(DiceSelect6, status);
         }
 
         private void RollDice (int DiceID)
