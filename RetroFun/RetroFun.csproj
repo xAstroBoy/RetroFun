@@ -62,6 +62,7 @@
     <Compile Include="Controls\ImageComboBox.cs" />
     <Compile Include="Controls\ObservableExtensionForm.cs" />
     <Compile Include="Controls\ObservablePage.cs" />
+    <Compile Include="Converter\IntToStringConverter.cs" />
     <Compile Include="Helpers\CustomBinding.cs" />
     <Compile Include="Helpers\IValueConverter.cs" />
     <Compile Include="MainFrm.cs">
@@ -69,6 +70,12 @@
     </Compile>
     <Compile Include="MainFrm.Designer.cs">
       <DependentUpon>MainFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AutoHoloDicePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\AutoHoloDicePage.Designer.cs">
+      <DependentUpon>AutoHoloDicePage.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\MakesayPage.cs">
       <SubType>UserControl</SubType>
@@ -110,6 +117,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\AutoHoloDicePage.resx">
+      <DependentUpon>AutoHoloDicePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\MakesayPage.resx">
       <DependentUpon>MakesayPage.cs</DependentUpon>

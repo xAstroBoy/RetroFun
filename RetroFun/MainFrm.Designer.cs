@@ -38,16 +38,19 @@
             this.MakeSayTab = new System.Windows.Forms.TabPage();
             this.makeSayPage1 = new RetroFun.Pages.MakeSayPage();
             this.DicePage = new System.Windows.Forms.TabPage();
+            this.dicePage1 = new RetroFun.Pages.DicePage();
+            this.HoloTab = new System.Windows.Forms.TabPage();
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.MiscellaneousPg = new RetroFun.Pages.MiscellaneousPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
-            this.dicePage1 = new RetroFun.Pages.DicePage();
+            this.autoHoloDicePage1 = new RetroFun.Pages.AutoHoloDicePage();
             this.RetroFunTabs.SuspendLayout();
             this.FurnitureTab.SuspendLayout();
             this.ChatTab.SuspendLayout();
             this.StalkingTab.SuspendLayout();
             this.MakeSayTab.SuspendLayout();
             this.DicePage.SuspendLayout();
+            this.HoloTab.SuspendLayout();
             this.MiscellaneousTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,6 +61,7 @@
             this.RetroFunTabs.Controls.Add(this.StalkingTab);
             this.RetroFunTabs.Controls.Add(this.MakeSayTab);
             this.RetroFunTabs.Controls.Add(this.DicePage);
+            this.RetroFunTabs.Controls.Add(this.HoloTab);
             this.RetroFunTabs.Controls.Add(this.MiscellaneousTab);
             this.RetroFunTabs.DisplayBoundary = true;
             this.RetroFunTabs.Dock = System.Windows.Forms.DockStyle.Top;
@@ -168,6 +172,28 @@
             this.DicePage.Text = "Dice ";
             this.DicePage.UseVisualStyleBackColor = true;
             // 
+            // dicePage1
+            // 
+            this.dicePage1.BackColor = System.Drawing.Color.White;
+            this.dicePage1.IsRegistrationMode = false;
+            this.dicePage1.IsUserFreezed = false;
+            this.dicePage1.Location = new System.Drawing.Point(0, 0);
+            this.dicePage1.Name = "dicePage1";
+            this.dicePage1.Size = new System.Drawing.Size(471, 269);
+            this.dicePage1.TabIndex = 0;
+            this.dicePage1.TabStop = false;
+            // 
+            // HoloTab
+            // 
+            this.HoloTab.Controls.Add(this.autoHoloDicePage1);
+            this.HoloTab.Location = new System.Drawing.Point(4, 28);
+            this.HoloTab.Name = "HoloTab";
+            this.HoloTab.Padding = new System.Windows.Forms.Padding(3);
+            this.HoloTab.Size = new System.Drawing.Size(471, 269);
+            this.HoloTab.TabIndex = 6;
+            this.HoloTab.Text = "AutomaticHolo";
+            this.HoloTab.UseVisualStyleBackColor = true;
+            // 
             // MiscellaneousTab
             // 
             this.MiscellaneousTab.Controls.Add(this.MiscellaneousPg);
@@ -200,15 +226,16 @@
             this.AlwaysOnTopChbx.Text = "Always On Top";
             this.AlwaysOnTopChbx.UseVisualStyleBackColor = true;
             // 
-            // dicePage1
+            // autoHoloDicePage1
             // 
-            this.dicePage1.BackColor = System.Drawing.Color.White;
-            this.dicePage1.IsRegistrationMode = false;
-            this.dicePage1.Location = new System.Drawing.Point(0, 0);
-            this.dicePage1.Name = "dicePage1";
-            this.dicePage1.Size = new System.Drawing.Size(471, 269);
-            this.dicePage1.TabIndex = 0;
-            this.dicePage1.TabStop = false;
+            this.autoHoloDicePage1.BackColor = System.Drawing.Color.White;
+            this.autoHoloDicePage1.ISHolodiceCheat = false;
+            this.autoHoloDicePage1.IsUserFreezed = false;
+            this.autoHoloDicePage1.Location = new System.Drawing.Point(3, 0);
+            this.autoHoloDicePage1.Name = "autoHoloDicePage1";
+            this.autoHoloDicePage1.Size = new System.Drawing.Size(465, 263);
+            this.autoHoloDicePage1.TabIndex = 0;
+            this.autoHoloDicePage1.TabStop = false;
             // 
             // MainFrm
             // 
@@ -229,6 +256,7 @@
             this.StalkingTab.ResumeLayout(false);
             this.MakeSayTab.ResumeLayout(false);
             this.DicePage.ResumeLayout(false);
+            this.HoloTab.ResumeLayout(false);
             this.MiscellaneousTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -251,5 +279,7 @@
         private Pages.MakeSayPage makeSayPage1;
         private System.Windows.Forms.TabPage DicePage;
         private Pages.DicePage dicePage1;
+        private System.Windows.Forms.TabPage HoloTab;
+        private Pages.AutoHoloDicePage autoHoloDicePage1;
     }
 }

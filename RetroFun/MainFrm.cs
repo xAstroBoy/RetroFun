@@ -29,6 +29,8 @@ namespace RetroFun
 
             InitializeComponent();
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));
+
+            IsAlwaysOnTop = true;
         }
     }
 }

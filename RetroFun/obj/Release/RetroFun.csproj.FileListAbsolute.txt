@@ -38,3 +38,4 @@ C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.csproj.Co
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.csproj.CopyComplete
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.exe
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.pdb
+C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.Pages.AutoHoloDicePage.resources
