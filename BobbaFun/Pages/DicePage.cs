@@ -46,6 +46,7 @@ namespace BobbaFun.Pages
             if (Program.Master != null)
             {
                 Triggers.OutAttach(Out.TriggerDice, DiceManager);
+                Triggers.OutAttach(Out.CloseDice, DiceManager);
                 Triggers.OutAttach(Out.RoomUserWalk, FreezeUser);
             }
 
@@ -77,13 +78,16 @@ namespace BobbaFun.Pages
                 DiceRegistered4 = false;
                 DiceRegistered5 = false;
                 DiceRegistered6 = false;
-
-                    RegisterDiceSpeak("Registration has been activated.");
-                    RegisterDiceAsk(1);
+                RegistrationCompleted = false;
+                RegisterDiceSpeak("Registration has been activated.");
+                RegisterDiceAsk(1);
             }
             else
             {
-                RegisterDiceSpeak("Registration completed.");
+                if (!RegistrationCompleted)
+                {
+                    RegisterDiceSpeak("Registration completed.");
+                }
             }
         }
 
@@ -131,8 +135,13 @@ namespace BobbaFun.Pages
             {
                 DiceRegistered6 = true;
                 WriteIDToBox(DiceID6, NewDice.ToString());
+                RegistrationCompleted = true;
+                if (RegistrationCompleted)
+                {
+                    RegisterDiceSpeak("Registration completed.");
+
+                }
                 CheckBoxToggler(DiceRegisterModeCheck, false);
-                RegisterDiceSpeak("Registration completed.");
                 return;
             }
         }
@@ -406,7 +415,7 @@ namespace BobbaFun.Pages
         private bool DiceRegistered4;
         private bool DiceRegistered5;
         private bool DiceRegistered6;
-
+        private bool RegistrationCompleted;
  
     }
 
