@@ -70,12 +70,6 @@
     <Compile Include="MainFrm.Designer.cs">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\DicePage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\DicePage.Designer.cs">
-      <DependentUpon>DicePage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Pages\MakesayPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -100,6 +94,12 @@
     <Compile Include="Pages\MiscellaneousPage.Designer.cs">
       <DependentUpon>MiscellaneousPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\DicePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\DicePage.Designer.cs">
+      <DependentUpon>DicePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\StalkingPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -110,9 +110,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\DicePage.resx">
-      <DependentUpon>DicePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\MakesayPage.resx">
       <DependentUpon>MakesayPage.cs</DependentUpon>
@@ -126,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\MiscellaneousPage.resx">
       <DependentUpon>MiscellaneousPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\DicePage.resx">
+      <DependentUpon>DicePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\StalkingPage.resx">
       <DependentUpon>StalkingPage.cs</DependentUpon>

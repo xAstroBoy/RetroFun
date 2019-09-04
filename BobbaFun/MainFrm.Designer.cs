@@ -36,15 +36,18 @@
             this.StalkingTab = new System.Windows.Forms.TabPage();
             this.StalkingPg = new BobbaFun.Pages.StalkingPage();
             this.MakeSayTab = new System.Windows.Forms.TabPage();
+            this.makeSayPage1 = new BobbaFun.Pages.MakeSayPage();
+            this.DicePage = new System.Windows.Forms.TabPage();
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.MiscellaneousPg = new BobbaFun.Pages.MiscellaneousPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
-            this.makeSayPage1 = new BobbaFun.Pages.MakeSayPage();
+            this.dicePage1 = new BobbaFun.Pages.DicePage();
             this.BobbaFunTabs.SuspendLayout();
             this.FurnitureTab.SuspendLayout();
             this.ChatTab.SuspendLayout();
             this.StalkingTab.SuspendLayout();
             this.MakeSayTab.SuspendLayout();
+            this.DicePage.SuspendLayout();
             this.MiscellaneousTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +57,7 @@
             this.BobbaFunTabs.Controls.Add(this.ChatTab);
             this.BobbaFunTabs.Controls.Add(this.StalkingTab);
             this.BobbaFunTabs.Controls.Add(this.MakeSayTab);
+            this.BobbaFunTabs.Controls.Add(this.DicePage);
             this.BobbaFunTabs.Controls.Add(this.MiscellaneousTab);
             this.BobbaFunTabs.DisplayBoundary = true;
             this.BobbaFunTabs.Dock = System.Windows.Forms.DockStyle.Top;
@@ -145,6 +149,25 @@
             this.MakeSayTab.Text = "MakeSay";
             this.MakeSayTab.UseVisualStyleBackColor = true;
             // 
+            // makeSayPage1
+            // 
+            this.makeSayPage1.BackColor = System.Drawing.Color.White;
+            this.makeSayPage1.Location = new System.Drawing.Point(0, 0);
+            this.makeSayPage1.Name = "makeSayPage1";
+            this.makeSayPage1.Size = new System.Drawing.Size(475, 273);
+            this.makeSayPage1.TabIndex = 0;
+            this.makeSayPage1.TabStop = false;
+            // 
+            // DicePage
+            // 
+            this.DicePage.Controls.Add(this.dicePage1);
+            this.DicePage.Location = new System.Drawing.Point(4, 28);
+            this.DicePage.Name = "DicePage";
+            this.DicePage.Size = new System.Drawing.Size(471, 269);
+            this.DicePage.TabIndex = 5;
+            this.DicePage.Text = "Dice ";
+            this.DicePage.UseVisualStyleBackColor = true;
+            // 
             // MiscellaneousTab
             // 
             this.MiscellaneousTab.Controls.Add(this.MiscellaneousPg);
@@ -160,6 +183,7 @@
             // 
             this.MiscellaneousPg.BackColor = System.Drawing.Color.White;
             this.MiscellaneousPg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MiscellaneousPg.FreezeUserMovement = false;
             this.MiscellaneousPg.Location = new System.Drawing.Point(3, 3);
             this.MiscellaneousPg.Name = "MiscellaneousPg";
             this.MiscellaneousPg.Size = new System.Drawing.Size(465, 263);
@@ -176,14 +200,15 @@
             this.AlwaysOnTopChbx.Text = "Always On Top";
             this.AlwaysOnTopChbx.UseVisualStyleBackColor = true;
             // 
-            // makeSayPage1
+            // dicePage1
             // 
-            this.makeSayPage1.BackColor = System.Drawing.Color.White;
-            this.makeSayPage1.Location = new System.Drawing.Point(0, 0);
-            this.makeSayPage1.Name = "makeSayPage1";
-            this.makeSayPage1.Size = new System.Drawing.Size(475, 273);
-            this.makeSayPage1.TabIndex = 0;
-            this.makeSayPage1.TabStop = false;
+            this.dicePage1.BackColor = System.Drawing.Color.White;
+            this.dicePage1.IsRegistrationMode = false;
+            this.dicePage1.Location = new System.Drawing.Point(0, 0);
+            this.dicePage1.Name = "dicePage1";
+            this.dicePage1.Size = new System.Drawing.Size(471, 269);
+            this.dicePage1.TabIndex = 0;
+            this.dicePage1.TabStop = false;
             // 
             // MainFrm
             // 
@@ -203,6 +228,7 @@
             this.ChatTab.ResumeLayout(false);
             this.StalkingTab.ResumeLayout(false);
             this.MakeSayTab.ResumeLayout(false);
+            this.DicePage.ResumeLayout(false);
             this.MiscellaneousTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -223,5 +249,7 @@
         private Pages.MiscellaneousPage MiscellaneousPg;
         private System.Windows.Forms.TabPage MakeSayTab;
         private Pages.MakeSayPage makeSayPage1;
+        private System.Windows.Forms.TabPage DicePage;
+        private Pages.DicePage dicePage1;
     }
 }

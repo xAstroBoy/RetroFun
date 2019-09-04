@@ -16,4 +16,4 @@ C:\Users\marco\Desktop\BobbaFun\BobbaFun\obj\Debug\BobbaFun.csproj.CopyComplete
 C:\Users\marco\Desktop\BobbaFun\BobbaFun\obj\Debug\BobbaFun.exe
 C:\Users\marco\Desktop\BobbaFun\BobbaFun\obj\Debug\BobbaFun.pdb
 C:\Users\marco\Desktop\BobbaFun\BobbaFun\obj\Debug\BobbaFun.Pages.MakeSayPage.resources
-C:\Users\marco\Desktop\BobbaFun\BobbaFun\obj\Debug\BobbaFun.csprojAssemblyReference.cache
+C:\Users\marco\Desktop\BobbaFun\BobbaFun\obj\Debug\BobbaFun.Pages.DicePage.resources

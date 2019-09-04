@@ -17,3 +17,4 @@ C:\Users\marco\Desktop\BobbaFun\BobbaFun\obj\Release\BobbaFun.csproj.CoreCompile
 C:\Users\marco\Desktop\BobbaFun\BobbaFun\obj\Release\BobbaFun.csproj.CopyComplete
 C:\Users\marco\Desktop\BobbaFun\BobbaFun\obj\Release\BobbaFun.exe
 C:\Users\marco\Desktop\BobbaFun\BobbaFun\obj\Release\BobbaFun.pdb
+C:\Users\marco\Desktop\BobbaFun\BobbaFun\obj\Release\BobbaFun.Pages.DicePage.resources

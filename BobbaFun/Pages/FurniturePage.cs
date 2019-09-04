@@ -50,8 +50,8 @@ namespace BobbaFun.Pages
             if (Program.Master != null)
             {
                 Triggers.OutAttach(Out.RoomPickupItem, RoomPickupItem);
-                Triggers.OutAttach(Out.ToggleWallItem, ToggleWallItem);
-                Triggers.OutAttach(Out.ToggleFloorItem, ToggleFloorItem);
+                //Triggers.OutAttach(Out.ToggleWallItem, ToggleWallItem);
+                //Triggers.OutAttach(Out.ToggleFloorItem, ToggleFloorItem);
             }
         }
 
