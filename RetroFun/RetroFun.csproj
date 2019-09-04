@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{34E90AD8-D7BB-4A3B-A622-9CA46CD2BD03}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>BobbaFun</RootNamespace>
-    <AssemblyName>BobbaFun</AssemblyName>
+    <RootNamespace>RetroFun</RootNamespace>
+    <AssemblyName>RetroFun</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
