@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel;
 
-using BobbaFun.Controls;
+using RetroFun.Controls;
 
 using Sulakore.Modules;
 
-namespace BobbaFun
+namespace RetroFun
 {
     [DesignerCategory("Form")]
-    [Module("BobbaFun", "Miscellaneous stuff for retroservers")]
+    [Module("RetroFun", "Miscellaneous stuff for retroservers")]
     public partial class MainFrm : ObservableExtensionForm
     {
         public override bool IsRemoteModule => true;

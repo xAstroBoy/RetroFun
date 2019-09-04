@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.ComponentModel;
 
-namespace BobbaFun.Controls
+namespace RetroFun.Controls
 {
     [DesignerCategory("Code")]
     public class BindableToolStripMenuItem : ToolStripMenuItem, IBindableComponent

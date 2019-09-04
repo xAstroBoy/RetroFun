@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using BobbaFun.Controls;
+using RetroFun.Controls;
 using Sulakore.Communication;
 
-namespace BobbaFun.Pages
+namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]

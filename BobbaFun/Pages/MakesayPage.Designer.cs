@@ -1,4 +1,4 @@
-﻿namespace BobbaFun.Pages
+﻿namespace RetroFun.Pages
 {
     partial class MakeSayPage
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BubblesCmbx1 = new BobbaFun.Controls.ImageComboBox();
+            this.BubblesCmbx1 = new RetroFun.Controls.ImageComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.RadioWhisper = new System.Windows.Forms.RadioButton();
             this.RadioShout = new System.Windows.Forms.RadioButton();

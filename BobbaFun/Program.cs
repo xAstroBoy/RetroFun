@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using BobbaFun.Controls;
+using RetroFun.Controls;
 
-namespace BobbaFun
+namespace RetroFun
 {
     public static class Program
     {

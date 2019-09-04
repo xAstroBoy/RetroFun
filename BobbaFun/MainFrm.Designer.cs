@@ -1,4 +1,4 @@
-﻿namespace BobbaFun
+﻿namespace RetroFun
 {
     partial class MainFrm
     {
@@ -28,21 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BobbaFunTabs = new Sulakore.Components.SKoreTabControl();
+            this.RetroFunTabs = new Sulakore.Components.SKoreTabControl();
             this.FurnitureTab = new System.Windows.Forms.TabPage();
-            this.FurniturePg = new BobbaFun.Pages.FurniturePage();
+            this.FurniturePg = new RetroFun.Pages.FurniturePage();
             this.ChatTab = new System.Windows.Forms.TabPage();
-            this.ChatPg = new BobbaFun.Pages.ChatPage();
+            this.ChatPg = new RetroFun.Pages.ChatPage();
             this.StalkingTab = new System.Windows.Forms.TabPage();
-            this.StalkingPg = new BobbaFun.Pages.StalkingPage();
+            this.StalkingPg = new RetroFun.Pages.StalkingPage();
             this.MakeSayTab = new System.Windows.Forms.TabPage();
-            this.makeSayPage1 = new BobbaFun.Pages.MakeSayPage();
+            this.makeSayPage1 = new RetroFun.Pages.MakeSayPage();
             this.DicePage = new System.Windows.Forms.TabPage();
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
-            this.MiscellaneousPg = new BobbaFun.Pages.MiscellaneousPage();
+            this.MiscellaneousPg = new RetroFun.Pages.MiscellaneousPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
-            this.dicePage1 = new BobbaFun.Pages.DicePage();
-            this.BobbaFunTabs.SuspendLayout();
+            this.dicePage1 = new RetroFun.Pages.DicePage();
+            this.RetroFunTabs.SuspendLayout();
             this.FurnitureTab.SuspendLayout();
             this.ChatTab.SuspendLayout();
             this.StalkingTab.SuspendLayout();
@@ -51,24 +51,24 @@
             this.MiscellaneousTab.SuspendLayout();
             this.SuspendLayout();
             // 
-            // BobbaFunTabs
+            // RetroFunTabs
             // 
-            this.BobbaFunTabs.Controls.Add(this.FurnitureTab);
-            this.BobbaFunTabs.Controls.Add(this.ChatTab);
-            this.BobbaFunTabs.Controls.Add(this.StalkingTab);
-            this.BobbaFunTabs.Controls.Add(this.MakeSayTab);
-            this.BobbaFunTabs.Controls.Add(this.DicePage);
-            this.BobbaFunTabs.Controls.Add(this.MiscellaneousTab);
-            this.BobbaFunTabs.DisplayBoundary = true;
-            this.BobbaFunTabs.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BobbaFunTabs.IsDisplayingBorder = true;
-            this.BobbaFunTabs.ItemSize = new System.Drawing.Size(95, 24);
-            this.BobbaFunTabs.Location = new System.Drawing.Point(0, 0);
-            this.BobbaFunTabs.Name = "BobbaFunTabs";
-            this.BobbaFunTabs.SelectedIndex = 0;
-            this.BobbaFunTabs.Size = new System.Drawing.Size(479, 301);
-            this.BobbaFunTabs.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.BobbaFunTabs.TabIndex = 0;
+            this.RetroFunTabs.Controls.Add(this.FurnitureTab);
+            this.RetroFunTabs.Controls.Add(this.ChatTab);
+            this.RetroFunTabs.Controls.Add(this.StalkingTab);
+            this.RetroFunTabs.Controls.Add(this.MakeSayTab);
+            this.RetroFunTabs.Controls.Add(this.DicePage);
+            this.RetroFunTabs.Controls.Add(this.MiscellaneousTab);
+            this.RetroFunTabs.DisplayBoundary = true;
+            this.RetroFunTabs.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RetroFunTabs.IsDisplayingBorder = true;
+            this.RetroFunTabs.ItemSize = new System.Drawing.Size(95, 24);
+            this.RetroFunTabs.Location = new System.Drawing.Point(0, 0);
+            this.RetroFunTabs.Name = "RetroFunTabs";
+            this.RetroFunTabs.SelectedIndex = 0;
+            this.RetroFunTabs.Size = new System.Drawing.Size(479, 301);
+            this.RetroFunTabs.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.RetroFunTabs.TabIndex = 0;
             // 
             // FurnitureTab
             // 
@@ -217,13 +217,13 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(479, 336);
             this.Controls.Add(this.AlwaysOnTopChbx);
-            this.Controls.Add(this.BobbaFunTabs);
+            this.Controls.Add(this.RetroFunTabs);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BobbaFun";
-            this.BobbaFunTabs.ResumeLayout(false);
+            this.Text = "RetroFun";
+            this.RetroFunTabs.ResumeLayout(false);
             this.FurnitureTab.ResumeLayout(false);
             this.ChatTab.ResumeLayout(false);
             this.StalkingTab.ResumeLayout(false);
@@ -237,7 +237,7 @@
 
         #endregion
 
-        private Sulakore.Components.SKoreTabControl BobbaFunTabs;
+        private Sulakore.Components.SKoreTabControl RetroFunTabs;
         private System.Windows.Forms.TabPage FurnitureTab;
         private System.Windows.Forms.TabPage ChatTab;
         private System.Windows.Forms.TabPage StalkingTab;

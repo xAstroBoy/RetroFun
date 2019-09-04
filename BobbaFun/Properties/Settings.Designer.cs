@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BobbaFun.Properties
+namespace RetroFun.Properties
 {
 
 

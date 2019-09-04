@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-using BobbaFun.Helpers;
+using RetroFun.Helpers;
 
 using Tangine;
 
@@ -13,7 +13,7 @@ using Sulakore.Habbo.Web;
 using Sulakore.Communication;
 using Sulakore.Habbo.Messages;
 
-namespace BobbaFun.Controls
+namespace RetroFun.Controls
 {
     [ToolboxItem(false)]
     [DesignerCategory("Code")]

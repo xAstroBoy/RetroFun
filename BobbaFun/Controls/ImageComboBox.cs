@@ -6,7 +6,7 @@ using System.Drawing.Drawing2D;
 using System;
 using System.Text.RegularExpressions;
 
-namespace BobbaFun.Controls
+namespace RetroFun.Controls
 {
     [DesignerCategory("Code")]
     public class ImageComboBox : ComboBox

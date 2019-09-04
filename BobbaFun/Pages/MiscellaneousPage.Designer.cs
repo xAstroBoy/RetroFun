@@ -1,4 +1,4 @@
-﻿namespace BobbaFun.Pages
+﻿namespace RetroFun.Pages
 {
     partial class MiscellaneousPage
     {

@@ -6,8 +6,8 @@ using System.Collections;
 using System.Globalization;
 using System.ComponentModel;
 
-using BobbaFun.Controls;
-using BobbaFun.Properties;
+using RetroFun.Controls;
+using RetroFun.Properties;
 
 using Sulakore.Protocol;
 using Sulakore.Communication;
@@ -16,7 +16,7 @@ using Sulakore.Habbo;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BobbaFun.Pages
+namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]

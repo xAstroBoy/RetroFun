@@ -1,4 +1,4 @@
-﻿namespace BobbaFun.Pages
+﻿namespace RetroFun.Pages
 {
     partial class ChatPage
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BubblesCmbx = new BobbaFun.Controls.ImageComboBox();
+            this.BubblesCmbx = new RetroFun.Controls.ImageComboBox();
             this.UseSelectedBubbleChbx = new System.Windows.Forms.CheckBox();
             this.HideSpeakingBubbleChbx = new System.Windows.Forms.CheckBox();
             this.AntiBobbaFilterChbx = new System.Windows.Forms.CheckBox();

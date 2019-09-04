@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Forms;
 
-namespace BobbaFun.Helpers
+namespace RetroFun.Helpers
 {
     public class CustomBinding : Binding
     {
