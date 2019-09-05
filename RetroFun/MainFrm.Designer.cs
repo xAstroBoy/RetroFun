@@ -30,20 +30,15 @@
         {
             this.RetroFunTabs = new Sulakore.Components.SKoreTabControl();
             this.FurnitureTab = new System.Windows.Forms.TabPage();
-            this.FurniturePg = new RetroFun.Pages.FurniturePage();
+
             this.ChatTab = new System.Windows.Forms.TabPage();
-            this.ChatPg = new RetroFun.Pages.ChatPage();
             this.StalkingTab = new System.Windows.Forms.TabPage();
-            this.StalkingPg = new RetroFun.Pages.StalkingPage();
             this.MakeSayTab = new System.Windows.Forms.TabPage();
-            this.makeSayPage1 = new RetroFun.Pages.MakeSayPage();
             this.DicePage = new System.Windows.Forms.TabPage();
-            this.dicePage1 = new RetroFun.Pages.DicePage();
             this.HoloTab = new System.Windows.Forms.TabPage();
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
-            this.MiscellaneousPg = new RetroFun.Pages.MiscellaneousPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
-            this.autoHoloDicePage1 = new RetroFun.Pages.AutoHoloDicePage();
+
             this.RetroFunTabs.SuspendLayout();
             this.FurnitureTab.SuspendLayout();
             this.ChatTab.SuspendLayout();
@@ -144,7 +139,7 @@
             // 
             // MakeSayTab
             // 
-            this.MakeSayTab.Controls.Add(this.makeSayPage1);
+            this.MakeSayTab.Controls.Add(this.MakeSayPg);
             this.MakeSayTab.Location = new System.Drawing.Point(4, 28);
             this.MakeSayTab.Name = "MakeSayTab";
             this.MakeSayTab.Padding = new System.Windows.Forms.Padding(3);
@@ -155,16 +150,16 @@
             // 
             // makeSayPage1
             // 
-            this.makeSayPage1.BackColor = System.Drawing.Color.White;
-            this.makeSayPage1.Location = new System.Drawing.Point(0, 0);
-            this.makeSayPage1.Name = "makeSayPage1";
-            this.makeSayPage1.Size = new System.Drawing.Size(475, 273);
-            this.makeSayPage1.TabIndex = 0;
-            this.makeSayPage1.TabStop = false;
+            this.MakeSayPg.BackColor = System.Drawing.Color.White;
+            this.MakeSayPg.Location = new System.Drawing.Point(0, 0);
+            this.MakeSayPg.Name = "makeSayPage1";
+            this.MakeSayPg.Size = new System.Drawing.Size(475, 273);
+            this.MakeSayPg.TabIndex = 0;
+            this.MakeSayPg.TabStop = false;
             // 
             // DicePage
             // 
-            this.DicePage.Controls.Add(this.dicePage1);
+            this.DicePage.Controls.Add(this.DicePg);
             this.DicePage.Location = new System.Drawing.Point(4, 28);
             this.DicePage.Name = "DicePage";
             this.DicePage.Size = new System.Drawing.Size(471, 269);
@@ -174,18 +169,18 @@
             // 
             // dicePage1
             // 
-            this.dicePage1.BackColor = System.Drawing.Color.White;
-            this.dicePage1.IsRegistrationMode = false;
-            this.dicePage1.IsUserFreezed = false;
-            this.dicePage1.Location = new System.Drawing.Point(0, 0);
-            this.dicePage1.Name = "dicePage1";
-            this.dicePage1.Size = new System.Drawing.Size(471, 269);
-            this.dicePage1.TabIndex = 0;
-            this.dicePage1.TabStop = false;
+            this.DicePg.BackColor = System.Drawing.Color.White;
+            this.DicePg.IsRegistrationMode = false;
+            this.DicePg.IsUserFreezed = false;
+            this.DicePg.Location = new System.Drawing.Point(0, 0);
+            this.DicePg.Name = "dicePage1";
+            this.DicePg.Size = new System.Drawing.Size(471, 269);
+            this.DicePg.TabIndex = 0;
+            this.DicePg.TabStop = false;
             // 
             // HoloTab
             // 
-            this.HoloTab.Controls.Add(this.autoHoloDicePage1);
+            this.HoloTab.Controls.Add(this.AutoHoloDicePg);
             this.HoloTab.Location = new System.Drawing.Point(4, 28);
             this.HoloTab.Name = "HoloTab";
             this.HoloTab.Padding = new System.Windows.Forms.Padding(3);
@@ -228,14 +223,14 @@
             // 
             // autoHoloDicePage1
             // 
-            this.autoHoloDicePage1.BackColor = System.Drawing.Color.White;
-            this.autoHoloDicePage1.ISHolodiceCheat = false;
-            this.autoHoloDicePage1.IsUserFreezed = false;
-            this.autoHoloDicePage1.Location = new System.Drawing.Point(3, 0);
-            this.autoHoloDicePage1.Name = "autoHoloDicePage1";
-            this.autoHoloDicePage1.Size = new System.Drawing.Size(465, 263);
-            this.autoHoloDicePage1.TabIndex = 0;
-            this.autoHoloDicePage1.TabStop = false;
+            this.AutoHoloDicePg.BackColor = System.Drawing.Color.White;
+            this.AutoHoloDicePg.ISHolodiceCheat = false;
+            this.AutoHoloDicePg.IsUserFreezed = false;
+            this.AutoHoloDicePg.Location = new System.Drawing.Point(3, 0);
+            this.AutoHoloDicePg.Name = "autoHoloDicePage1";
+            this.AutoHoloDicePg.Size = new System.Drawing.Size(465, 263);
+            this.AutoHoloDicePg.TabIndex = 0;
+            this.AutoHoloDicePg.TabStop = false;
             // 
             // MainFrm
             // 
@@ -265,7 +260,7 @@
 
         #endregion
 
-        private Sulakore.Components.SKoreTabControl RetroFunTabs;
+        public Sulakore.Components.SKoreTabControl RetroFunTabs;
         private System.Windows.Forms.TabPage FurnitureTab;
         private System.Windows.Forms.TabPage ChatTab;
         private System.Windows.Forms.TabPage StalkingTab;
@@ -276,10 +271,10 @@
         private Pages.StalkingPage StalkingPg;
         private Pages.MiscellaneousPage MiscellaneousPg;
         private System.Windows.Forms.TabPage MakeSayTab;
-        private Pages.MakeSayPage makeSayPage1;
+        private Pages.MakeSayPage MakeSayPg;
         private System.Windows.Forms.TabPage DicePage;
-        private Pages.DicePage dicePage1;
+        private Pages.DicePage DicePg;
         private System.Windows.Forms.TabPage HoloTab;
-        private Pages.AutoHoloDicePage autoHoloDicePage1;
+        private Pages.AutoHoloDicePage AutoHoloDicePg;
     }
 }

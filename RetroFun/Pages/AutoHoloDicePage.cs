@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Linq;
+using System.Diagnostics;
 using System.Windows.Forms;
 using System.ComponentModel;
 using System.Collections.Generic;
+
 using RetroFun.Controls;
-using Sulakore.Communication;
+using RetroFun.Converter;
+using RetroFun.Subscribers;
+
 using Sulakore.Modules;
 using Sulakore.Components;
-using RetroFun.Converter;
+using Sulakore.Communication;
 
 namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class AutoHoloDicePage : ObservablePage
+    public partial class AutoHoloDicePage : ObservablePage, ISubscriber
     {
         public bool ShouldRollFirst => MatchFirstChk.Checked && DiceHostResult != DiceOneResult;
         public bool ShouldRollSecond => MatchSecondChk.Checked && DiceHostResult != DiceTwoResult;
         public bool ShouldRollThird => MatchThirdChk.Checked && DiceHostResult != DiceThreeResult;
-        
-        private bool HasHostRolledDice;
-        private bool RegistrationCompleted;
-        private bool isCoroutineEnabled = true;
 
         private int _currentDiceTargetIndex = -1;
 
@@ -96,6 +96,8 @@ namespace RetroFun.Pages
             }
         }
 
+        public bool IsReceiving => true;
+
         private List<SKoreButton> _registrationButtons;
 
         public AutoHoloDicePage()
@@ -122,13 +124,8 @@ namespace RetroFun.Pages
             if (Program.Master != null)
             {
                 Triggers.InAttach(In.ItemExtraData, HandleDiceUpdate);
-
-                Triggers.OutAttach(Out.RoomUserWalk, FreezeUser);
-                Triggers.OutAttach(Out.TriggerDice, HandleDiceAction);
-                Triggers.OutAttach(Out.CloseDice, HandleDiceAction);
             }
         }
-
         private void HandleRegisterClick(object sender, EventArgs e)
         {
             var registrationButton = (SKoreButton)sender;
@@ -138,7 +135,7 @@ namespace RetroFun.Pages
             _registrationButtons.ForEach(b => b.Enabled = false);
         }
 
-        private void HandleDiceAction(DataInterceptedEventArgs e)
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {
             if (_currentDiceTargetIndex < 0) return;
 
@@ -215,11 +212,6 @@ namespace RetroFun.Pages
                     RollDice(_diceThreeId);
             }
         }
-
-        private void FreezeUser(DataInterceptedEventArgs e)
-        {
-            e.IsBlocked = IsUserFreezed;
-        }
   
         private void ClearButton_Click(object sender, EventArgs e)
         {
@@ -238,6 +230,12 @@ namespace RetroFun.Pages
         private void Broadcast(string text)
         {
             Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[HoloCheat]: " + text, 0, 34, 0, -1);
+        }
+
+        public void OnOutUserWalk(DataInterceptedEventArgs e)
+        {
+            if (IsUserFreezed)
+                e.IsBlocked = true;
         }
     }
 }

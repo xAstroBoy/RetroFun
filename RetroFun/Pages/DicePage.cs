@@ -1,16 +1,18 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows.Forms;
 using RetroFun.Controls;
+using RetroFun.Subscribers;
 using Sulakore.Communication;
+using Sulakore.Modules;
 
 namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class DicePage : ObservablePage
+    public partial class DicePage : ObservablePage, ISubscriber
     {
-
         private bool _IsRegistrationMode;
         public bool IsRegistrationMode
         {
@@ -34,7 +36,7 @@ namespace RetroFun.Pages
             }
         }
 
-
+        public bool IsReceiving => true;
 
         public DicePage()
         {
@@ -42,30 +44,21 @@ namespace RetroFun.Pages
 
             Bind(DiceRegisterModeCheck, "Checked", nameof(IsRegistrationMode));
             Bind(isUserFreezedCheck, "Checked", nameof(IsUserFreezed));
-
-            if (Program.Master != null)
-            {
-                Triggers.OutAttach(Out.TriggerDice, DiceManager);
-                Triggers.OutAttach(Out.CloseDice, DiceManager);
-                Triggers.OutAttach(Out.RoomUserWalk, FreezeUser);
-            }
-
         }
 
-        private void DiceManager (DataInterceptedEventArgs obj)
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {
-            if(IsRegistrationMode)
+            if (IsRegistrationMode)
             {
-
-                RegisterDice(obj.Packet.ReadInteger());
-                obj.IsBlocked = true;
+                RegisterDice(e.Packet.ReadInteger());
+                e.IsBlocked = true;
             }
-
         }
 
-        private void FreezeUser(DataInterceptedEventArgs obj)
+        public void OnOutUserWalk(DataInterceptedEventArgs e)
         {
-            obj.IsBlocked = IsUserFreezed;
+            if (_IsUserFreezed)
+                e.IsBlocked = true;
         }
 
         private void DiceRegisterMode_CheckedChanged(object sender, EventArgs e)
@@ -409,7 +402,6 @@ namespace RetroFun.Pages
                 box.Checked = value;
             });
         }
-
 
         private bool DiceRegistered1;
         private bool DiceRegistered2;

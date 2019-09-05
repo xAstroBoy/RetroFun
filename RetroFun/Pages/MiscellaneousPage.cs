@@ -2,27 +2,21 @@
 using System.ComponentModel;
 
 using RetroFun.Controls;
+using RetroFun.Subscribers;
 using Sulakore.Communication;
 
 namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class MiscellaneousPage : ObservablePage
+    public partial class MiscellaneousPage : ObservablePage, ISubscriber
     {
         public MiscellaneousPage()
         {
             InitializeComponent();
 
             Bind(FreezeMovementCheck, "Checked", nameof(FreezeUserMovement));
-
-            if (Program.Master != null)
-            {
-                Triggers.OutAttach(Out.RoomUserWalk, FreezeUser);
-
-            }
         }
-
 
         private bool _FreezeUserMovement;
         public bool FreezeUserMovement
@@ -35,17 +29,19 @@ namespace RetroFun.Pages
             }
         }
 
-
-        private void FreezeUser(DataInterceptedEventArgs obj)
-        {
-            obj.IsBlocked = FreezeUserMovement;
-        }
+        public bool IsReceiving => true;
 
         private void AcquireMODPermissionsBtn_Click(object sender, EventArgs e)
         {
             Connection.SendToClientAsync(In.UserPermissions, 999, 999, true);
         }
 
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e){ }
 
+        public void OnOutUserWalk(DataInterceptedEventArgs e)
+        {
+            if (FreezeUserMovement)
+                e.IsBlocked = true;
+        }
     }
 }

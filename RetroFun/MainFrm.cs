@@ -1,8 +1,11 @@
 ﻿using System.ComponentModel;
 
+using RetroFun.Pages;
 using RetroFun.Controls;
-
+using Sulakore.Communication;
 using Sulakore.Modules;
+using System.Collections.Generic;
+using RetroFun.Subscribers;
 
 namespace RetroFun
 {
@@ -22,15 +25,49 @@ namespace RetroFun
             }
         }
 
+        private List<ISubscriber> _subscribers = new List<ISubscriber>();
+
         public MainFrm()
         {
             // Must be set before initializing components.
             Program.Master = this;
 
+            MiscellaneousPg = new MiscellaneousPage();
+            AutoHoloDicePg = new AutoHoloDicePage();
+            FurniturePg = new FurniturePage();
+            StalkingPg = new StalkingPage();
+            MakeSayPg = new MakeSayPage();
+            DicePg = new DicePage();
+            ChatPg = new ChatPage();
+
+            //Pages sharing events
+            _subscribers = new List<ISubscriber>
+            {
+                MiscellaneousPg,
+                AutoHoloDicePg,
+                DicePg,
+            };
+
             InitializeComponent();
+
+
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));
 
             IsAlwaysOnTop = true;
+        }
+
+        public override void HandleOutgoing(DataInterceptedEventArgs e)
+        {
+            int id = e.Packet.Header;
+            foreach (var sub in _subscribers)
+            {
+                if (!sub.IsReceiving) continue;
+
+                if (Out.TriggerDice == id || Out.CloseDice == id)
+                    sub.OnOutDiceTrigger(e);
+                else if (Out.RoomUserWalk == id)
+                    sub.OnOutUserWalk(e);
+            }
         }
     }
 }
