@@ -77,6 +77,12 @@
     <Compile Include="Pages\AutoHoloDicePage.Designer.cs">
       <DependentUpon>AutoHoloDicePage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CustomMotto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\CustomMotto.Designer.cs">
+      <DependentUpon>CustomMotto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MakesayPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -95,17 +101,17 @@
     <Compile Include="Pages\FurniturePage.Designer.cs">
       <DependentUpon>FurniturePage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MiscellaneousPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\MiscellaneousPage.Designer.cs">
-      <DependentUpon>MiscellaneousPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Pages\DicePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pages\DicePage.Designer.cs">
       <DependentUpon>DicePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MiscPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\MiscPage.Designer.cs">
+      <DependentUpon>MiscPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\StalkingPage.cs">
       <SubType>UserControl</SubType>
@@ -122,6 +128,9 @@
     <EmbeddedResource Include="Pages\AutoHoloDicePage.resx">
       <DependentUpon>AutoHoloDicePage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\CustomMotto.resx">
+      <DependentUpon>CustomMotto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\MakesayPage.resx">
       <DependentUpon>MakesayPage.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -132,11 +141,11 @@
     <EmbeddedResource Include="Pages\FurniturePage.resx">
       <DependentUpon>FurniturePage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\MiscellaneousPage.resx">
-      <DependentUpon>MiscellaneousPage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\DicePage.resx">
       <DependentUpon>DicePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MiscPage.resx">
+      <DependentUpon>MiscPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\StalkingPage.resx">
       <DependentUpon>StalkingPage.cs</DependentUpon>
