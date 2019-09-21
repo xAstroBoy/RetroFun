@@ -24,7 +24,6 @@ C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\bin\Release\RetroFun.pdb
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\bin\Release\Flazzy.dll
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\bin\Release\Sulakore.dll
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\bin\Release\Tangine.dll
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.csprojAssemblyReference.cache
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.MainFrm.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.Pages.MakeSayPage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.Pages.ChatPage.resources
@@ -39,3 +38,5 @@ C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.csproj.Co
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.exe
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.pdb
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.Pages.AutoHoloDicePage.resources
+C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.csprojAssemblyReference.cache
+C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.Pages.GiftEditor.resources

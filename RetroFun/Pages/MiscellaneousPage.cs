@@ -16,7 +16,23 @@ namespace RetroFun.Pages
             InitializeComponent();
 
             Bind(FreezeMovementCheck, "Checked", nameof(FreezeUserMovement));
+            if (Program.Master != null)
+            {
+                Triggers.OutAttach(Out.RemoveFriend, BlockFriendRemoval);
+            }
         }
+		
+		       private bool _AntiFriendRemove;	
+        public bool AntiFriendRemove	
+        {	
+            get => _AntiFriendRemove;	
+            set	
+            {	
+                _AntiFriendRemove = value;	
+                RaiseOnPropertyChanged();	
+            }	
+        }
+		
 
         private bool _FreezeUserMovement;
         public bool FreezeUserMovement
@@ -31,10 +47,6 @@ namespace RetroFun.Pages
 
         public bool IsReceiving => true;
 
-        private void AcquireMODPermissionsBtn_Click(object sender, EventArgs e)
-        {
-            Connection.SendToClientAsync(In.UserPermissions, 999, 999, true);
-        }
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e){ }
 
@@ -42,6 +54,17 @@ namespace RetroFun.Pages
         {
             if (FreezeUserMovement)
                 e.IsBlocked = true;
+        }
+		
+        public void BlockFriendRemoval(DataInterceptedEventArgs e)	
+        {	
+            if (AntiFriendRemove)	
+                e.IsBlocked = true;	
+        }
+
+        private void AcquireMODPermissionsBtn_Click_1(object sender, EventArgs e)
+        {
+            Connection.SendToClientAsync(In.UserPermissions, int.MaxValue, int.MaxValue, true);
         }
     }
 }
