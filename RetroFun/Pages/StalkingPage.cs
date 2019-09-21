@@ -13,11 +13,8 @@ namespace RetroFun.Pages
         private readonly Victim[] _victims = new[]
         {
             new Victim("Bot-giochi", 1442790),
-            new Victim("gar0u", 1615824),
             new Victim("I.P.S", 1361879),
-            new Victim(":Heidi:", 1569371),
-            new Victim(":HEIDI:: (i.p.s)", 1608565),
-            new Victim("Servedio (i.p.s)", 1224246)
+            new Victim(":Heidi:", 1569371)
         };
 
         public StalkingPage()

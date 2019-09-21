@@ -30,30 +30,22 @@
         {
             this.RetroFunTabs = new Sulakore.Components.SKoreTabControl();
             this.FurnitureTab = new System.Windows.Forms.TabPage();
-            this.furniturePage1 = new RetroFun.Pages.FurniturePage();
+
             this.ChatTab = new System.Windows.Forms.TabPage();
-            this.chatPage1 = new RetroFun.Pages.ChatPage();
             this.StalkingTab = new System.Windows.Forms.TabPage();
-            this.stalkingPage1 = new RetroFun.Pages.StalkingPage();
             this.MakeSayTab = new System.Windows.Forms.TabPage();
-            this.makeSayPage1 = new RetroFun.Pages.MakeSayPage();
-            this.DiceTab = new System.Windows.Forms.TabPage();
-            this.dicePage1 = new RetroFun.Pages.DicePage();
+            this.DicePage = new System.Windows.Forms.TabPage();
             this.HoloTab = new System.Windows.Forms.TabPage();
-            this.autoHoloDicePage1 = new RetroFun.Pages.AutoHoloDicePage();
-            this.MottoTab = new System.Windows.Forms.TabPage();
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
-            this.miscPage = new RetroFun.Pages.MiscPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
-            this.customMotto1 = new RetroFun.Pages.CustomMotto();
+
             this.RetroFunTabs.SuspendLayout();
             this.FurnitureTab.SuspendLayout();
             this.ChatTab.SuspendLayout();
             this.StalkingTab.SuspendLayout();
             this.MakeSayTab.SuspendLayout();
-            this.DiceTab.SuspendLayout();
+            this.DicePage.SuspendLayout();
             this.HoloTab.SuspendLayout();
-            this.MottoTab.SuspendLayout();
             this.MiscellaneousTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,9 +55,8 @@
             this.RetroFunTabs.Controls.Add(this.ChatTab);
             this.RetroFunTabs.Controls.Add(this.StalkingTab);
             this.RetroFunTabs.Controls.Add(this.MakeSayTab);
-            this.RetroFunTabs.Controls.Add(this.DiceTab);
+            this.RetroFunTabs.Controls.Add(this.DicePage);
             this.RetroFunTabs.Controls.Add(this.HoloTab);
-            this.RetroFunTabs.Controls.Add(this.MottoTab);
             this.RetroFunTabs.Controls.Add(this.MiscellaneousTab);
             this.RetroFunTabs.DisplayBoundary = true;
             this.RetroFunTabs.Dock = System.Windows.Forms.DockStyle.Top;
@@ -80,7 +71,7 @@
             // 
             // FurnitureTab
             // 
-            this.FurnitureTab.Controls.Add(this.furniturePage1);
+            this.FurnitureTab.Controls.Add(this.FurniturePg);
             this.FurnitureTab.Location = new System.Drawing.Point(4, 28);
             this.FurnitureTab.Name = "FurnitureTab";
             this.FurnitureTab.Padding = new System.Windows.Forms.Padding(3);
@@ -89,21 +80,21 @@
             this.FurnitureTab.Text = "Furniture";
             this.FurnitureTab.UseVisualStyleBackColor = true;
             // 
-            // furniturePage1
+            // FurniturePg
             // 
-            this.furniturePage1.BackColor = System.Drawing.Color.White;
-            this.furniturePage1.ButtonRotateMoveItem = false;
-            this.furniturePage1.DoubleClickFurnitureRemoval = false;
-            this.furniturePage1.FurnitureIdText = null;
-            this.furniturePage1.Location = new System.Drawing.Point(0, 0);
-            this.furniturePage1.Name = "furniturePage1";
-            this.furniturePage1.Size = new System.Drawing.Size(471, 269);
-            this.furniturePage1.TabIndex = 0;
-            this.furniturePage1.TabStop = false;
+            this.FurniturePg.BackColor = System.Drawing.Color.White;
+            this.FurniturePg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FurniturePg.DoubleClickFurnitureRemoval = false;
+            this.FurniturePg.FurnitureIdText = null;
+            this.FurniturePg.Location = new System.Drawing.Point(3, 3);
+            this.FurniturePg.Name = "FurniturePg";
+            this.FurniturePg.Size = new System.Drawing.Size(465, 263);
+            this.FurniturePg.TabIndex = 0;
+            this.FurniturePg.TabStop = false;
             // 
             // ChatTab
             // 
-            this.ChatTab.Controls.Add(this.chatPage1);
+            this.ChatTab.Controls.Add(this.ChatPg);
             this.ChatTab.Location = new System.Drawing.Point(4, 28);
             this.ChatTab.Name = "ChatTab";
             this.ChatTab.Padding = new System.Windows.Forms.Padding(3);
@@ -112,21 +103,22 @@
             this.ChatTab.Text = "Chat";
             this.ChatTab.UseVisualStyleBackColor = true;
             // 
-            // chatPage1
+            // ChatPg
             // 
-            this.chatPage1.AntiBobbaFilter = false;
-            this.chatPage1.BackColor = System.Drawing.Color.White;
-            this.chatPage1.HideSpeakingBubble = false;
-            this.chatPage1.Location = new System.Drawing.Point(0, 0);
-            this.chatPage1.Name = "chatPage1";
-            this.chatPage1.Size = new System.Drawing.Size(465, 263);
-            this.chatPage1.TabIndex = 0;
-            this.chatPage1.TabStop = false;
-            this.chatPage1.UseSelectedBubble = false;
+            this.ChatPg.AntiBobbaFilter = false;
+            this.ChatPg.BackColor = System.Drawing.Color.White;
+            this.ChatPg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ChatPg.HideSpeakingBubble = false;
+            this.ChatPg.Location = new System.Drawing.Point(3, 3);
+            this.ChatPg.Name = "ChatPg";
+            this.ChatPg.Size = new System.Drawing.Size(465, 263);
+            this.ChatPg.TabIndex = 0;
+            this.ChatPg.TabStop = false;
+            this.ChatPg.UseSelectedBubble = false;
             // 
             // StalkingTab
             // 
-            this.StalkingTab.Controls.Add(this.stalkingPage1);
+            this.StalkingTab.Controls.Add(this.StalkingPg);
             this.StalkingTab.Location = new System.Drawing.Point(4, 28);
             this.StalkingTab.Name = "StalkingTab";
             this.StalkingTab.Padding = new System.Windows.Forms.Padding(3);
@@ -135,18 +127,19 @@
             this.StalkingTab.Text = "Stalking";
             this.StalkingTab.UseVisualStyleBackColor = true;
             // 
-            // stalkingPage1
+            // StalkingPg
             // 
-            this.stalkingPage1.BackColor = System.Drawing.Color.White;
-            this.stalkingPage1.Location = new System.Drawing.Point(3, 0);
-            this.stalkingPage1.Name = "stalkingPage1";
-            this.stalkingPage1.Size = new System.Drawing.Size(465, 263);
-            this.stalkingPage1.TabIndex = 0;
-            this.stalkingPage1.TabStop = false;
+            this.StalkingPg.BackColor = System.Drawing.Color.White;
+            this.StalkingPg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StalkingPg.Location = new System.Drawing.Point(3, 3);
+            this.StalkingPg.Name = "StalkingPg";
+            this.StalkingPg.Size = new System.Drawing.Size(465, 263);
+            this.StalkingPg.TabIndex = 0;
+            this.StalkingPg.TabStop = false;
             // 
             // MakeSayTab
             // 
-            this.MakeSayTab.Controls.Add(this.makeSayPage1);
+            this.MakeSayTab.Controls.Add(this.MakeSayPg);
             this.MakeSayTab.Location = new System.Drawing.Point(4, 28);
             this.MakeSayTab.Name = "MakeSayTab";
             this.MakeSayTab.Padding = new System.Windows.Forms.Padding(3);
@@ -157,37 +150,37 @@
             // 
             // makeSayPage1
             // 
-            this.makeSayPage1.BackColor = System.Drawing.Color.White;
-            this.makeSayPage1.Location = new System.Drawing.Point(3, 0);
-            this.makeSayPage1.Name = "makeSayPage1";
-            this.makeSayPage1.Size = new System.Drawing.Size(465, 263);
-            this.makeSayPage1.TabIndex = 0;
-            this.makeSayPage1.TabStop = false;
+            this.MakeSayPg.BackColor = System.Drawing.Color.White;
+            this.MakeSayPg.Location = new System.Drawing.Point(0, 0);
+            this.MakeSayPg.Name = "makeSayPage1";
+            this.MakeSayPg.Size = new System.Drawing.Size(475, 273);
+            this.MakeSayPg.TabIndex = 0;
+            this.MakeSayPg.TabStop = false;
             // 
-            // DiceTab
+            // DicePage
             // 
-            this.DiceTab.Controls.Add(this.dicePage1);
-            this.DiceTab.Location = new System.Drawing.Point(4, 28);
-            this.DiceTab.Name = "DiceTab";
-            this.DiceTab.Size = new System.Drawing.Size(471, 269);
-            this.DiceTab.TabIndex = 5;
-            this.DiceTab.Text = "Dice ";
-            this.DiceTab.UseVisualStyleBackColor = true;
+            this.DicePage.Controls.Add(this.DicePg);
+            this.DicePage.Location = new System.Drawing.Point(4, 28);
+            this.DicePage.Name = "DicePage";
+            this.DicePage.Size = new System.Drawing.Size(471, 269);
+            this.DicePage.TabIndex = 5;
+            this.DicePage.Text = "Dice ";
+            this.DicePage.UseVisualStyleBackColor = true;
             // 
             // dicePage1
             // 
-            this.dicePage1.BackColor = System.Drawing.Color.White;
-            this.dicePage1.IsRegistrationMode = false;
-            this.dicePage1.IsUserFreezed = false;
-            this.dicePage1.Location = new System.Drawing.Point(3, 0);
-            this.dicePage1.Name = "dicePage1";
-            this.dicePage1.Size = new System.Drawing.Size(465, 263);
-            this.dicePage1.TabIndex = 0;
-            this.dicePage1.TabStop = false;
+            this.DicePg.BackColor = System.Drawing.Color.White;
+            this.DicePg.IsRegistrationMode = false;
+            this.DicePg.IsUserFreezed = false;
+            this.DicePg.Location = new System.Drawing.Point(0, 0);
+            this.DicePg.Name = "dicePage1";
+            this.DicePg.Size = new System.Drawing.Size(471, 269);
+            this.DicePg.TabIndex = 0;
+            this.DicePg.TabStop = false;
             // 
             // HoloTab
             // 
-            this.HoloTab.Controls.Add(this.autoHoloDicePage1);
+            this.HoloTab.Controls.Add(this.AutoHoloDicePg);
             this.HoloTab.Location = new System.Drawing.Point(4, 28);
             this.HoloTab.Name = "HoloTab";
             this.HoloTab.Padding = new System.Windows.Forms.Padding(3);
@@ -196,35 +189,9 @@
             this.HoloTab.Text = "AutomaticHolo";
             this.HoloTab.UseVisualStyleBackColor = true;
             // 
-            // autoHoloDicePage1
-            // 
-            this.autoHoloDicePage1.BackColor = System.Drawing.Color.White;
-            this.autoHoloDicePage1.DiceHostResult = 0;
-            this.autoHoloDicePage1.DiceOneResult = 0;
-            this.autoHoloDicePage1.DiceThreeResult = 0;
-            this.autoHoloDicePage1.DiceTwoResult = 0;
-            this.autoHoloDicePage1.ISHolodiceCheat = false;
-            this.autoHoloDicePage1.IsUserFreezed = false;
-            this.autoHoloDicePage1.Location = new System.Drawing.Point(3, 0);
-            this.autoHoloDicePage1.Name = "autoHoloDicePage1";
-            this.autoHoloDicePage1.Size = new System.Drawing.Size(465, 263);
-            this.autoHoloDicePage1.TabIndex = 0;
-            this.autoHoloDicePage1.TabStop = false;
-            // 
-            // MottoTab
-            // 
-            this.MottoTab.Controls.Add(this.customMotto1);
-            this.MottoTab.Location = new System.Drawing.Point(4, 28);
-            this.MottoTab.Name = "MottoTab";
-            this.MottoTab.Padding = new System.Windows.Forms.Padding(3);
-            this.MottoTab.Size = new System.Drawing.Size(471, 269);
-            this.MottoTab.TabIndex = 7;
-            this.MottoTab.Text = "Motto";
-            this.MottoTab.UseVisualStyleBackColor = true;
-            // 
             // MiscellaneousTab
             // 
-            this.MiscellaneousTab.Controls.Add(this.miscPage);
+            this.MiscellaneousTab.Controls.Add(this.MiscellaneousPg);
             this.MiscellaneousTab.Location = new System.Drawing.Point(4, 28);
             this.MiscellaneousTab.Name = "MiscellaneousTab";
             this.MiscellaneousTab.Padding = new System.Windows.Forms.Padding(3);
@@ -233,16 +200,16 @@
             this.MiscellaneousTab.Text = "Miscellaneous";
             this.MiscellaneousTab.UseVisualStyleBackColor = true;
             // 
-            // miscPage
+            // MiscellaneousPg
             // 
-            this.miscPage.AntiFriendRemove = true;
-            this.miscPage.BackColor = System.Drawing.Color.White;
-            this.miscPage.FreezeUserMovement = false;
-            this.miscPage.Location = new System.Drawing.Point(0, 0);
-            this.miscPage.Name = "miscPage";
-            this.miscPage.Size = new System.Drawing.Size(471, 269);
-            this.miscPage.TabIndex = 0;
-            this.miscPage.TabStop = false;
+            this.MiscellaneousPg.BackColor = System.Drawing.Color.White;
+            this.MiscellaneousPg.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MiscellaneousPg.FreezeUserMovement = false;
+            this.MiscellaneousPg.Location = new System.Drawing.Point(3, 3);
+            this.MiscellaneousPg.Name = "MiscellaneousPg";
+            this.MiscellaneousPg.Size = new System.Drawing.Size(465, 263);
+            this.MiscellaneousPg.TabIndex = 0;
+            this.MiscellaneousPg.TabStop = false;
             // 
             // AlwaysOnTopChbx
             // 
@@ -254,16 +221,16 @@
             this.AlwaysOnTopChbx.Text = "Always On Top";
             this.AlwaysOnTopChbx.UseVisualStyleBackColor = true;
             // 
-            // customMotto1
+            // autoHoloDicePage1
             // 
-            this.customMotto1.animatedMottoChecked = false;
-            this.customMotto1.BackColor = System.Drawing.Color.White;
-            this.customMotto1.Location = new System.Drawing.Point(3, 0);
-            this.customMotto1.Name = "customMotto1";
-            this.customMotto1.ShowPreview = false;
-            this.customMotto1.Size = new System.Drawing.Size(468, 265);
-            this.customMotto1.TabIndex = 0;
-            this.customMotto1.TabStop = false;
+            this.AutoHoloDicePg.BackColor = System.Drawing.Color.White;
+            this.AutoHoloDicePg.ISHolodiceCheat = false;
+            this.AutoHoloDicePg.IsUserFreezed = false;
+            this.AutoHoloDicePg.Location = new System.Drawing.Point(3, 0);
+            this.AutoHoloDicePg.Name = "autoHoloDicePage1";
+            this.AutoHoloDicePg.Size = new System.Drawing.Size(465, 263);
+            this.AutoHoloDicePg.TabIndex = 0;
+            this.AutoHoloDicePg.TabStop = false;
             // 
             // MainFrm
             // 
@@ -283,9 +250,8 @@
             this.ChatTab.ResumeLayout(false);
             this.StalkingTab.ResumeLayout(false);
             this.MakeSayTab.ResumeLayout(false);
-            this.DiceTab.ResumeLayout(false);
+            this.DicePage.ResumeLayout(false);
             this.HoloTab.ResumeLayout(false);
-            this.MottoTab.ResumeLayout(false);
             this.MiscellaneousTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -303,21 +269,12 @@
         private Pages.FurniturePage FurniturePg;
         private Pages.ChatPage ChatPg;
         private Pages.StalkingPage StalkingPg;
+        private Pages.MiscellaneousPage MiscellaneousPg;
         private System.Windows.Forms.TabPage MakeSayTab;
-        private Pages.MiscPage miscPg;
         private Pages.MakeSayPage MakeSayPg;
-        private System.Windows.Forms.TabPage DiceTab;
+        private System.Windows.Forms.TabPage DicePage;
         private Pages.DicePage DicePg;
         private System.Windows.Forms.TabPage HoloTab;
         private Pages.AutoHoloDicePage AutoHoloDicePg;
-        private System.Windows.Forms.TabPage MottoTab;
-        private Pages.FurniturePage furniturePage1;
-        private Pages.ChatPage chatPage1;
-        private Pages.StalkingPage stalkingPage1;
-        private Pages.MakeSayPage makeSayPage1;
-        private Pages.DicePage dicePage1;
-        private Pages.AutoHoloDicePage autoHoloDicePage1;
-        private Pages.MiscPage miscPage;
-        private Pages.CustomMotto customMotto1;
     }
 }

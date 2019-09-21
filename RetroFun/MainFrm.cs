@@ -32,7 +32,7 @@ namespace RetroFun
             // Must be set before initializing components.
             Program.Master = this;
 
-            miscPg = new MiscPage();
+            MiscellaneousPg = new MiscellaneousPage();
             AutoHoloDicePg = new AutoHoloDicePage();
             FurniturePg = new FurniturePage();
             StalkingPg = new StalkingPage();
@@ -43,12 +43,13 @@ namespace RetroFun
             //Pages sharing events
             _subscribers = new List<ISubscriber>
             {
-                miscPg,
+                MiscellaneousPg,
                 AutoHoloDicePg,
                 DicePg,
             };
 
             InitializeComponent();
+
 
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));
 
