@@ -73,9 +73,7 @@ namespace RetroFun
 
                 if (Out.TriggerDice == id || Out.CloseDice == id)
                     sub.OnOutDiceTrigger(e);
-                 if (Out.RoomUserWalk == id)
-                    sub.OnOutUserWalk(e);
-                if (Out.RoomUserWalk == id)
+                 else if (Out.RoomUserWalk == id)
                     sub.OnOutUserWalk(e);
             }
         }

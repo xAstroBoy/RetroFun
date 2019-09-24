@@ -40,6 +40,7 @@
             this.CataloguePageIDBox = new System.Windows.Forms.NumericUpDown();
             this.CatalogueFurniIDBox = new System.Windows.Forms.NumericUpDown();
             this.CatalogueSButtonLoopToggle = new Sulakore.Components.SKoreButton();
+            this.isValidPurchcheck = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseLoopCoolDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CataloguePageIDBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CatalogueFurniIDBox)).BeginInit();
@@ -130,7 +131,7 @@
             // 
             // CatalogueBruteForceBtn
             // 
-            this.CatalogueBruteForceBtn.Location = new System.Drawing.Point(98, 54);
+            this.CatalogueBruteForceBtn.Location = new System.Drawing.Point(152, 54);
             this.CatalogueBruteForceBtn.Name = "CatalogueBruteForceBtn";
             this.CatalogueBruteForceBtn.Size = new System.Drawing.Size(129, 20);
             this.CatalogueBruteForceBtn.TabIndex = 42;
@@ -180,10 +181,22 @@
             this.CatalogueSButtonLoopToggle.Text = "Buy On loop : Disabled";
             this.CatalogueSButtonLoopToggle.Click += new System.EventHandler(this.CatalogueSButtonLoopToggle_Click);
             // 
+            // isValidPurchcheck
+            // 
+            this.isValidPurchcheck.AutoSize = true;
+            this.isValidPurchcheck.Enabled = true;
+            this.isValidPurchcheck.Location = new System.Drawing.Point(357, 141);
+            this.isValidPurchcheck.Name = "isValidPurchcheck";
+            this.isValidPurchcheck.Size = new System.Drawing.Size(96, 17);
+            this.isValidPurchcheck.TabIndex = 45;
+            this.isValidPurchcheck.Text = "Packet is Valid";
+            this.isValidPurchcheck.UseVisualStyleBackColor = true;
+            // 
             // BuyFurniBruteforcer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.isValidPurchcheck);
             this.Controls.Add(this.CatalogueFurniIDBox);
             this.Controls.Add(this.CataloguePageIDBox);
             this.Controls.Add(this.CatalogueBruteForceBtn);
@@ -220,5 +233,6 @@
         private System.Windows.Forms.NumericUpDown CataloguePageIDBox;
         private System.Windows.Forms.NumericUpDown CatalogueFurniIDBox;
         private Sulakore.Components.SKoreButton CatalogueSButtonLoopToggle;
+        private System.Windows.Forms.CheckBox isValidPurchcheck;
     }
 }
