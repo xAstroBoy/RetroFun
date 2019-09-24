@@ -255,12 +255,11 @@ namespace RetroFun.Pages
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                if (EnableLoop)
+                do 
                 {
                     SendPacket(PageIDInt1, FurniIDint1);
                     Thread.Sleep(SpeedTimer1);
-                    StartLoop();
-                }
+                } while (EnableLoop);
             }).Start();
         }
 
@@ -367,7 +366,6 @@ namespace RetroFun.Pages
                     {
                         Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + FurniIDint1, 0, 34, 0, -1);
                     }
-                    GlobalBruteForcer();
                 } while (GlobalBruteforcerEnabled1);
             }).Start();
         }
