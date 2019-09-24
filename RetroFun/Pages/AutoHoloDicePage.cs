@@ -218,6 +218,11 @@ namespace RetroFun.Pages
             _diceOneId = _diceTwoId = _diceThreeId = _diceHostId = -1;
         }
 
+
+        public void InPurchaseOk(DataInterceptedEventArgs e) { }
+
+
+
         private void RollDice(int diceID)
         {
             Connection.SendToServerAsync(Out.TriggerDice, diceID);

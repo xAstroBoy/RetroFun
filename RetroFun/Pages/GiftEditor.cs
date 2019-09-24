@@ -10,12 +10,15 @@ using System.Windows.Forms;
 using RetroFun.Controls;
 using System.Threading;
 using Sulakore.Components;
+using Sulakore.Modules;
+using Sulakore.Communication;
+using RetroFun.Subscribers;
 
 namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class GiftEditor : ObservablePage
+    public partial class GiftEditor : ObservablePage , ISubscriber
     {
         private bool _isAnonymous;
         public bool isAnonymous
@@ -39,6 +42,38 @@ namespace RetroFun.Pages
             }
         }
 
+        private bool _PageIDBruteForcerEnabled;
+        public bool PageIDBruteForcerEnabled
+        {
+            get => _PageIDBruteForcerEnabled;
+            set
+            {
+                _PageIDBruteForcerEnabled = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _FurnIIDBruteforcerEnabled;
+        public bool FurnIIDBruteforcerEnabled
+        {
+            get => _FurnIIDBruteforcerEnabled;
+            set
+            {
+                _FurnIIDBruteforcerEnabled = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _GlobalBruteforcerEnabled;
+        public bool GlobalBruteforcerEnabled
+        {
+            get => _GlobalBruteforcerEnabled;
+            set
+            {
+                _GlobalBruteforcerEnabled = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         private int _SpeedTimer;
         public int SpeedTimer
@@ -51,29 +86,52 @@ namespace RetroFun.Pages
             }
         }
 
+        private int _PageIDInt;
+        public int PageIDInt
+        {
+            get => _PageIDInt;
+            set
+            {
+                _PageIDInt = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _FurniIDint;
+        public int FurniIDint
+        {
+            get => _FurniIDint;
+            set
+            {
+                _FurniIDint = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        private bool _Purchased;
+        public bool Purchased
+        {
+            get => _Purchased;
+            set
+            {
+                _Purchased = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         public GiftEditor()
         {
             InitializeComponent();
             Bind(AnonymousChbx, "Checked", nameof(isAnonymous));
             Bind(LoopCoolDown, "Value", nameof(SpeedTimer));
+            Bind(PageIDBox, "Value", nameof(PageIDInt));
+            Bind(FurniIDBox, "Value", nameof(FurniIDint));
+
             SpeedTimer = 6000;
-        }
-
-        private void PageIdBox_TextChanged_1(object sender, EventArgs e)
-        {
-            if (System.Text.RegularExpressions.Regex.IsMatch(PageIdBox.Text, "[^0-9]"))
-            {
-                PageIdBox.Text = PageIdBox.Text.Remove(PageIdBox.Text.Length - 1);
-            }
-        }
-
-        private void FurniIDBox_TextChanged_1(object sender, EventArgs e)
-        {
-            if (System.Text.RegularExpressions.Regex.IsMatch(FurniIDBox.Text, "[^0-9]"))
-            {
-                FurniIDBox.Text = FurniIDBox.Text.Remove(FurniIDBox.Text.Length - 1);
-            }
+            PageIDInt = 0;
+            FurniIDint = 0;
+            //Triggers.InAttach(In.PurchaseOK, CooldownEnabler);
         }
 
         private void SendGiftBtn_Click_1(object sender, EventArgs e)
@@ -84,6 +142,22 @@ namespace RetroFun.Pages
         private void SButtonLoopToggle_Click(object sender, EventArgs e)
         {
             CheckLoopStatus();
+        }
+
+        private void PageIdBruteforcerbtx_Click(object sender, EventArgs e)
+        {
+            CheckPageIDBruteforcer();
+        }
+
+        private void FurnIDBruteForcerbtx_Click(object sender, EventArgs e)
+        {
+            CheckFurniIDBruteforcer();
+        }
+
+
+        private void BruteForceBtn_Click(object sender, EventArgs e)
+        {
+            CheckBruteForcer();
         }
 
         private void CheckLoopStatus()
@@ -102,6 +176,75 @@ namespace RetroFun.Pages
         }
 
 
+        private void CheckFurniIDBruteforcer()
+        {
+            if (FurnIIDBruteforcerEnabled)
+            {
+                FurnIIDBruteforcerEnabled = false;
+                EnableButton(BruteForceBtn, true);
+                EnableButton(PageIdBruteforcerbtx, true);
+                EnableNButton(PageIDBox, true);
+                EnableNButton(FurniIDBox, true);
+                WriteToButton(FurnIDBruteForcerbtx, "FurniID Bruteforcer : Disabled");
+            }
+            else
+            {
+                FurnIIDBruteforcerEnabled = true;
+                EnableButton(BruteForceBtn, false);
+                EnableButton(PageIdBruteforcerbtx, false);
+                EnableNButton(PageIDBox, false);
+                EnableNButton(FurniIDBox, false);
+                WriteToButton(FurnIDBruteForcerbtx, "FurniID Bruteforcer : Enabled");
+                BruteForceFurniID();
+            }
+        }
+
+        private void CheckPageIDBruteforcer()
+        {
+            if (PageIDBruteForcerEnabled)
+            {
+                PageIDBruteForcerEnabled = false;
+                EnableButton(BruteForceBtn, true);
+                EnableButton(FurnIDBruteForcerbtx, true);
+                EnableNButton(PageIDBox, true);
+                EnableNButton(FurniIDBox, true);
+                WriteToButton(PageIdBruteforcerbtx, "PageID Bruteforcer : Disabled");
+            }
+            else
+            {
+                PageIDBruteForcerEnabled = true;
+                EnableButton(BruteForceBtn, false);
+                EnableButton(FurnIDBruteForcerbtx, false);
+                EnableNButton(PageIDBox, false);
+                EnableNButton(FurniIDBox, false);
+                WriteToButton(PageIdBruteforcerbtx, "PageID Bruteforcer : Enabled");
+                BruteForcePageID();
+            }
+        }
+
+        private void CheckBruteForcer()
+        {
+            if (GlobalBruteforcerEnabled)
+            {
+                GlobalBruteforcerEnabled = false;
+                EnableButton(PageIdBruteforcerbtx, true);
+                EnableButton(FurnIDBruteForcerbtx, true);
+                EnableNButton(PageIDBox, true);
+                EnableNButton(FurniIDBox, true);
+                WriteToButton(BruteForceBtn, "BruteForcer : Disabled");
+            }
+            else
+            {
+                GlobalBruteforcerEnabled = true;
+                EnableButton(PageIdBruteforcerbtx, false);
+                EnableButton(FurnIDBruteForcerbtx, false);
+                EnableNButton(PageIDBox, false);
+                EnableNButton(FurniIDBox, false);
+                WriteToButton(BruteForceBtn, "BruteForcer : Enabled");
+                GlobalBruteForcer();
+            }
+        }
+
         private void WriteToButton(SKoreButton button, string text)
         {
             Invoke((MethodInvoker)delegate
@@ -111,29 +254,76 @@ namespace RetroFun.Pages
         }
 
 
+        private void EnableNButton(NumericUpDown button, bool enabled)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                button.Enabled = enabled;
+            });
+        }
+
+        private void EnableButton(SKoreButton button, bool enabled)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                button.Enabled = enabled;
+            });
+        }
+        public bool IsReceiving => true;
+
+
+        public void InPurchaseOk(DataInterceptedEventArgs e)
+        {
+            Purchased = true;
+        }
+
+
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
+        public void OnOutUserWalk(DataInterceptedEventArgs e) { }
+
+
         private void SendPacket()
         {
 
-            if (String.IsNullOrEmpty(PageIdBox.Text) || String.IsNullOrEmpty(FurniIDBox.Text) || String.IsNullOrEmpty(UsernameTextBox.Text))
+            if (String.IsNullOrEmpty(UsernameTextBox.Text))
             {
                 return;
             }
-   Connection.SendToServerAsync(
-   Out.CatalogBuyItemAsGift, //{l}{u:451}
-   int.Parse(PageIdBox.Text), //{i:PAGEID}
-   int.Parse(FurniIDBox.Text), //{i:FURNID}
-   furnITextBox.Text, //{s:wtfisthisshit}
-   UsernameTextBox.Text, // {s:Nickname}
-   GiftTextBox.Text, // {s:MORE DIAMONDS BOI}
-   3376, // {i:3376}
-   5, // {i:5}
-   0, // {i:0}
-   isAnonymous //  {b:False}
-   );
+
+            Connection.SendToServerAsync(
+            Out.CatalogBuyItemAsGift,
+            PageIDInt,
+            FurniIDint,
+            furnITextBox.Text,
+            UsernameTextBox.Text,
+            GiftTextBox.Text,
+            3376,
+            5,
+            0,
+            isAnonymous
+            );
 
         }
 
-       
+        private void SendTestPacket(string GiftBoxTest)
+        {
+
+
+
+            Connection.SendToServerAsync(
+            Out.CatalogBuyItemAsGift,
+            PageIDInt,
+            FurniIDint,
+            furnITextBox.Text,
+            UsernameTextBox.Text,
+            GiftBoxTest,
+            3376,
+            5,
+            0,
+            isAnonymous
+            );
+
+        }
 
         private void StartLoop()
         {
@@ -145,7 +335,6 @@ namespace RetroFun.Pages
 
                 Thread.CurrentThread.Name = "GiftThread";
                 Thread.CurrentThread.IsBackground = true;
-                bool Paused = false;
                 if (EnableLoop)
                 {
                     SendPacket();
@@ -157,12 +346,178 @@ namespace RetroFun.Pages
         }
 
 
+        private void BruteForcePageID()
+        {
+            new Thread(() =>
+            {
 
 
+                Thread.CurrentThread.Name = "PageIDBRuteforcer";
+                Thread.CurrentThread.IsBackground = true;
+
+                if (String.IsNullOrEmpty(UsernameTextBox.Text))
+                {
+                    PageIDBruteForcerEnabled = false;
+                    EnableButton(BruteForceBtn, true);
+                    EnableButton(FurnIDBruteForcerbtx, true);
+                    EnableNButton(PageIDBox, true);
+                    EnableNButton(FurniIDBox, true);
+                    WriteToButton(PageIdBruteforcerbtx, "PageID Bruteforcer : Disabled");
+                    Thread.CurrentThread.Abort();
+                    return;
+                }
+
+                if (PageIDBruteForcerEnabled)
+                {
+                    if (Purchased)
+                    {
+                        Thread.Sleep(SpeedTimer);
+                        Purchased = false;
+                    }
+
+                    if (PageIDInt == int.MaxValue)
+                    {
+                        PageIDBruteForcerEnabled = false;
+                        EnableButton(BruteForceBtn, true);
+                        EnableButton(FurnIDBruteForcerbtx, true);
+                        EnableNButton(PageIDBox, true);
+                        EnableNButton(FurniIDBox, true);
+                        WriteToButton(PageIdBruteforcerbtx, "PageID Bruteforcer : Disabled");
+                        Thread.CurrentThread.Abort();
+                        return;
+                    }
+                    else
+                    
 
 
+                    SendTestPacket("VALID PAGEID : " + PageIDInt + " For FurniID : " + FurniIDint);
+
+                    PageIDInt = PageIDInt + 1;
+
+                    BruteForcePageID();
+                }
+
+            }).Start();
+        }
+
+        private void BruteForceFurniID()
+        {
+            new Thread(() =>
+            {
 
 
+                Thread.CurrentThread.Name = "FurniIDBRuteforcer";
+                Thread.CurrentThread.IsBackground = true;
+
+                if (String.IsNullOrEmpty(UsernameTextBox.Text))
+                {
+                    FurnIIDBruteforcerEnabled = false;
+                    EnableButton(BruteForceBtn, true);
+                    EnableButton(PageIdBruteforcerbtx, true);
+                    EnableNButton(PageIDBox, true);
+                    EnableNButton(FurniIDBox, true);
+                    WriteToButton(FurnIDBruteForcerbtx, "FurniID Bruteforcer : Disabled");
+                    Thread.CurrentThread.Abort();
+                }
+
+                if (FurnIIDBruteforcerEnabled)
+                {
+                    if (Purchased)
+                    {
+                        Thread.Sleep(SpeedTimer);
+                        Purchased = false;
+                    }
+
+                    if (FurniIDint == int.MaxValue)
+                    {
+                        FurnIIDBruteforcerEnabled = false;
+                        EnableButton(BruteForceBtn, true);
+                        EnableButton(PageIdBruteforcerbtx, true);
+                        EnableNButton(PageIDBox, true);
+                        EnableNButton(FurniIDBox, true);
+                        WriteToButton(FurnIDBruteForcerbtx, "FurniID Bruteforcer : Disabled");
+                        Thread.CurrentThread.Abort();
+                        return;
+                    }
+                        SendTestPacket("VALID PAGEID : " + PageIDInt + " For FurniID : " + FurniIDint);
+                        FurniIDint = FurniIDint + 1;
+                    BruteForceFurniID();
+
+                }
+
+            }).Start();
+        }
+
+        private void GlobalBruteForcer()
+        {
+            new Thread(() =>
+            {
+
+
+                Thread.CurrentThread.Name = "GlobalBruteForcer";
+                Thread.CurrentThread.IsBackground = true;
+
+                if (String.IsNullOrEmpty(UsernameTextBox.Text))
+                {
+                    GlobalBruteforcerEnabled = false;
+                    EnableButton(PageIdBruteforcerbtx, true);
+                    EnableButton(FurnIDBruteForcerbtx, true);
+                    EnableNButton(PageIDBox, true);
+                    EnableNButton(FurniIDBox, true);
+                    WriteToButton(BruteForceBtn, "BruteForcer : Disabled");
+                    Thread.CurrentThread.Abort();
+                    return;
+                }
+
+                
+
+
+                if (FurnIIDBruteforcerEnabled)
+                {
+                    if (Purchased)
+                    {
+                        Thread.Sleep(SpeedTimer);
+                        Purchased = false;
+                    }
+
+                    if (FurniIDint == int.MaxValue)
+                    {
+                        FurniIDint = 0;
+                     
+
+                        if (PageIDInt == int.MaxValue)
+                        {
+                            if (FurniIDint == int.MaxValue)
+                            {
+
+                                GlobalBruteforcerEnabled = false;
+                                EnableButton(PageIdBruteforcerbtx, true);
+                                EnableButton(FurnIDBruteForcerbtx, true);
+                                EnableNButton(PageIDBox, true);
+                                EnableNButton(FurniIDBox, true);
+                                WriteToButton(BruteForceBtn, "BruteForcer : Disabled");
+                                Thread.CurrentThread.Abort();
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            PageIDInt = PageIDInt + 1;
+                        }
+                    }
+                    else
+                    {
+                        FurniIDint = FurniIDint + 1;
+                    }
+
+
+                    SendTestPacket("VALID PAGEID : " + PageIDInt + " For FurniID : " + FurniIDint);
+
+                    GlobalBruteForcer();
+                }
+
+            }).Start();
+        }
 
 
     }

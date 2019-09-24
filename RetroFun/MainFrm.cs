@@ -11,6 +11,7 @@ namespace RetroFun
 {
     [DesignerCategory("Form")]
     [Module("RetroFun", "Miscellaneous stuff for retroservers")]
+    [Author("marcocorriero")]
     public partial class MainFrm : ObservableExtensionForm
     {
         public override bool IsRemoteModule => true;
@@ -31,6 +32,8 @@ namespace RetroFun
         {
             // Must be set before initializing components.
             Program.Master = this;
+            System.Windows.Forms.Form.CheckForIllegalCrossThreadCalls = false;
+
 
             MiscellaneousPg = new MiscellaneousPage();
             AutoHoloDicePg = new AutoHoloDicePage();
@@ -39,6 +42,8 @@ namespace RetroFun
             MakeSayPg = new MakeSayPage();
             DicePg = new DicePage();
             ChatPg = new ChatPage();
+            catalogBruteForcerPg = new BuyFurniBruteforcer();
+            gifteditorpg = new GiftEditor();
 
             //Pages sharing events
             _subscribers = new List<ISubscriber>
@@ -46,6 +51,9 @@ namespace RetroFun
                 MiscellaneousPg,
                 AutoHoloDicePg,
                 DicePg,
+                catalogBruteForcerPg,
+                gifteditorpg,
+
             };
 
             InitializeComponent();
@@ -65,8 +73,22 @@ namespace RetroFun
 
                 if (Out.TriggerDice == id || Out.CloseDice == id)
                     sub.OnOutDiceTrigger(e);
-                else if (Out.RoomUserWalk == id)
+                 if (Out.RoomUserWalk == id)
                     sub.OnOutUserWalk(e);
+                if (Out.RoomUserWalk == id)
+                    sub.OnOutUserWalk(e);
+            }
+        }
+
+        public override void HandleIncoming(DataInterceptedEventArgs e)
+        {
+            int id = e.Packet.Header;
+            foreach (var sub in _subscribers)
+            {
+                if (!sub.IsReceiving) continue;
+
+                if (In.PurchaseOK == id)
+                    sub.InPurchaseOk(e);
             }
         }
     }

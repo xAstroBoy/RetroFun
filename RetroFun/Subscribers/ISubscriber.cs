@@ -10,7 +10,11 @@ namespace RetroFun.Subscribers
         void OnOutDiceTrigger(DataInterceptedEventArgs e);
         void OnOutUserWalk(DataInterceptedEventArgs e);
 
+
         //Incoming events shared by multiple pages
+        void InPurchaseOk(DataInterceptedEventArgs e);
+
+
 
     }
 }

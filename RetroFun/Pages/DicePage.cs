@@ -61,6 +61,9 @@ namespace RetroFun.Pages
                 e.IsBlocked = true;
         }
 
+        public void InPurchaseOk(DataInterceptedEventArgs e) { }
+
+
         private void DiceRegisterMode_CheckedChanged(object sender, EventArgs e)
         {
             if (DiceRegisterModeCheck.Checked)

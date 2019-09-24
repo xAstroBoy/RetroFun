@@ -4,6 +4,7 @@ using System.ComponentModel;
 using RetroFun.Controls;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
+using Sulakore.Modules;
 
 namespace RetroFun.Pages
 {
@@ -16,10 +17,10 @@ namespace RetroFun.Pages
             InitializeComponent();
 
             Bind(FreezeMovementCheck, "Checked", nameof(FreezeUserMovement));
-            if (Program.Master != null)
-            {
-                Triggers.OutAttach(Out.RemoveFriend, BlockFriendRemoval);
-            }
+
+                //Triggers.OutAttach(Out.RemoveFriend, BlockFriendRemoval);
+            //Triggers.InAttach(In.CatalogPage, );
+            
         }
 		
 		       private bool _AntiFriendRemove;	
@@ -49,6 +50,8 @@ namespace RetroFun.Pages
 
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e){ }
+        public void InPurchaseOk(DataInterceptedEventArgs e) { }
+
 
         public void OnOutUserWalk(DataInterceptedEventArgs e)
         {
@@ -56,6 +59,8 @@ namespace RetroFun.Pages
                 e.IsBlocked = true;
         }
 		
+
+        [OutDataCapture("RemoveFriend")]
         public void BlockFriendRemoval(DataInterceptedEventArgs e)	
         {	
             if (AntiFriendRemove)	

@@ -77,6 +77,12 @@
     <Compile Include="Pages\AutoHoloDicePage.Designer.cs">
       <DependentUpon>AutoHoloDicePage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\BuyFurniBruteforcer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\BuyFurniBruteforcer.Designer.cs">
+      <DependentUpon>BuyFurniBruteforcer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\GiftEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\AutoHoloDicePage.resx">
       <DependentUpon>AutoHoloDicePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\BuyFurniBruteforcer.resx">
+      <DependentUpon>BuyFurniBruteforcer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\GiftEditor.resx">
       <DependentUpon>GiftEditor.cs</DependentUpon>
