@@ -292,12 +292,9 @@ namespace RetroFun
             // 
             this.buyFurniBruteforcer1.BackColor = System.Drawing.Color.White;
             this.buyFurniBruteforcer1.EnableLoop = false;
-            this.buyFurniBruteforcer1.FurnIIDBruteforcerEnabled1 = false;
             this.buyFurniBruteforcer1.FurniIDint1 = 0;
-            this.buyFurniBruteforcer1.GlobalBruteforcerEnabled1 = false;
             this.buyFurniBruteforcer1.Location = new System.Drawing.Point(0, 0);
             this.buyFurniBruteforcer1.Name = "buyFurniBruteforcer1";
-            this.buyFurniBruteforcer1.PageIDBruteForcerEnabled1 = false;
             this.buyFurniBruteforcer1.PageIDInt1 = 0;
             this.buyFurniBruteforcer1.Size = new System.Drawing.Size(475, 269);
             this.buyFurniBruteforcer1.SpeedTimer1 = 6000;

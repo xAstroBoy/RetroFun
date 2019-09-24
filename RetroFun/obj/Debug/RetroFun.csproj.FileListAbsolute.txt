@@ -20,3 +20,4 @@ C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.Core
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.CopyComplete
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.exe
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.pdb
+C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache
