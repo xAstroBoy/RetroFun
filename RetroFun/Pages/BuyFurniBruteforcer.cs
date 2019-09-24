@@ -33,9 +33,10 @@ namespace RetroFun.Pages
             }
         }
 
-        public bool PageIDBruteForcerEnabled1;
-        public bool FurnIIDBruteforcerEnabled1;
-        public bool GlobalBruteforcerEnabled1;
+        private bool PageIDBruteForcerEnabled1;
+        private bool FurnIIDBruteforcerEnabled1;
+        private bool GlobalBruteforcerEnabled1;
+        private bool PacketHasBeenSent = false;
 
         private int _SpeedTimer1;
         public int SpeedTimer1
@@ -81,10 +82,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void InPurchaseOk(DataInterceptedEventArgs e)
-        {
-            ToggleCheck(isValidPurchcheck, true);
-        }
+
 
         private void SendPurchaseBtn_Click(object sender, EventArgs e)
         {
@@ -234,6 +232,13 @@ namespace RetroFun.Pages
 
         public void OnOutUserWalk(DataInterceptedEventArgs e) { }
 
+
+        public void InPurchaseOk(DataInterceptedEventArgs e)
+        {
+            PurchaseSuccess = true;
+        }
+
+
         private void SendPacket(int PageID, int FurniID)
         {
             Connection.SendToServerAsync(
@@ -242,6 +247,7 @@ namespace RetroFun.Pages
             FurniID,
             furnITextBox.Text
             );
+            PacketHasBeenSent = true;
         }
 
         private void StartLoop()
@@ -249,12 +255,11 @@ namespace RetroFun.Pages
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                if (EnableLoop)
+                do 
                 {
                     SendPacket(PageIDInt1, FurniIDint1);
                     Thread.Sleep(SpeedTimer1);
-                    StartLoop();
-                }
+                } while (EnableLoop);
             }).Start();
         }
 
@@ -263,7 +268,7 @@ namespace RetroFun.Pages
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                if (PageIDBruteForcerEnabled1)
+                do
                 {
                     if (PageIDInt1 == int.MaxValue)
                     {
@@ -278,13 +283,20 @@ namespace RetroFun.Pages
                         return;
                     }
                     SendPacket(PageIDInt1, FurniIDint1);
-                if (PurchaseSuccess == true)
+                    PacketHasBeenSent = true;
+                    
+                    if (PacketHasBeenSent == true)
                     {
-                        Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + FurniIDint1, 0, 34, 0, -1);
+
+                        if (PurchaseSuccess == true)
+                        {
+                            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + FurniIDint1, 0, 34, 0, -1);
+                        }
+                        PacketHasBeenSent = false;
                     }
                     PageIDInt1++;
-                    BruteForcePageID();
-                }
+                } while (PageIDBruteForcerEnabled1);
+
             }).Start();
         }
 
@@ -295,7 +307,8 @@ namespace RetroFun.Pages
 
                 Thread.CurrentThread.IsBackground = true;
 
-                if (FurnIIDBruteforcerEnabled1)
+
+                do
                 {
 
                     if (FurniIDint1 == int.MaxValue)
@@ -316,8 +329,8 @@ namespace RetroFun.Pages
                         Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + FurniIDint1, 0, 34, 0, -1);
                     }
                     FurniIDint1++;
-                    BruteForceFurniID();
-                }
+                } while (FurnIIDBruteforcerEnabled1);
+
             }).Start();
         }
 
@@ -326,7 +339,7 @@ namespace RetroFun.Pages
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                if (GlobalBruteforcerEnabled1)
+                do
                 {
                     if (FurniIDint1 == int.MaxValue)
                     {
@@ -353,8 +366,7 @@ namespace RetroFun.Pages
                     {
                         Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + FurniIDint1, 0, 34, 0, -1);
                     }
-                    GlobalBruteForcer();
-                }
+                } while (GlobalBruteforcerEnabled1);
             }).Start();
         }
     }
