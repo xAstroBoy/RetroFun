@@ -32,29 +32,34 @@ namespace RetroFun
         {
             // Must be set before initializing components.
             Program.Master = this;
-            System.Windows.Forms.Form.CheckForIllegalCrossThreadCalls = false;
 
 
-            MiscellaneousPg = new MiscellaneousPage();
+
+
+
             AutoHoloDicePg = new AutoHoloDicePage();
-            FurniturePg = new FurniturePage();
-            StalkingPg = new StalkingPage();
-            MakeSayPg = new MakeSayPage();
-            DicePg = new DicePage();
+            BuyBruteForcerPg = new BuyFurniBruteforcer();
             ChatPg = new ChatPage();
-            catalogBruteForcerPg = new BuyFurniBruteforcer();
-            gifteditorpg = new GiftEditor();
+            DicePg = new DicePage();
+            FurniPg = new FurniturePage();
+            GiftPg = new GiftEditor();
+            MakeSaypg = new MakeSayPage();
+            MiscPg = new MiscellaneousPage();
+            MoonLightpg = new MoonLightFun();
+            Speechzpg = new Speechz();
+            Stalkpg = new StalkingPage();
+
 
             //Pages sharing events
             _subscribers = new List<ISubscriber>
             {
-                MiscellaneousPg,
-                AutoHoloDicePg,
-                DicePg,
-                catalogBruteForcerPg,
-                gifteditorpg,
+            AutoHoloDicePg,
+            BuyBruteForcerPg,
+            GiftPg,
+            MiscPg,
 
             };
+        
 
             InitializeComponent();
 

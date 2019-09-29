@@ -393,7 +393,6 @@ namespace RetroFun.Pages
 
                     PageIDInt = PageIDInt + 1;
 
-                    BruteForcePageID();
                 } while (PageIDBruteForcerEnabled);
 
             }).Start();
@@ -440,7 +439,6 @@ namespace RetroFun.Pages
                     }
                         SendTestPacket("VALID PAGEID : " + PageIDInt + " For FurniID : " + FurniIDint);
                         FurniIDint = FurniIDint + 1;
-                    BruteForceFurniID();
 
                 } while (FurnIIDBruteforcerEnabled);
 
@@ -456,11 +454,6 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.Name = "GlobalBruteForcer";
                 Thread.CurrentThread.IsBackground = true;
 
-
-
-
-
-
                 do
                 {
                     if (String.IsNullOrEmpty(UsernameTextBox.Text))
@@ -474,6 +467,7 @@ namespace RetroFun.Pages
                         Thread.CurrentThread.Abort();
                         return;
                     }
+
                     if (Purchased)
                     {
                         Thread.Sleep(SpeedTimer);

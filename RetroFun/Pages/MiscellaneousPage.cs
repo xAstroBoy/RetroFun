@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
-
+using System.Threading;
+using System.Windows.Forms;
 using RetroFun.Controls;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
+using Sulakore.Components;
 using Sulakore.Modules;
 
 namespace RetroFun.Pages
@@ -17,13 +19,19 @@ namespace RetroFun.Pages
             InitializeComponent();
 
             Bind(FreezeMovementCheck, "Checked", nameof(FreezeUserMovement));
+            Bind(NoFriendRemove, "Checked", nameof(AntiFriendRemove));
 
-                //Triggers.OutAttach(Out.RemoveFriend, BlockFriendRemoval);
+             //Triggers.OutAttach(Out.RemoveFriend, BlockFriendRemoval);
             //Triggers.InAttach(In.CatalogPage, );
-            
+            if (Program.Master != null)
+            {
+                Triggers.OutAttach(Out.RemoveFriend, BlockFriendRemoval);
+
+            }
+
         }
-		
-		       private bool _AntiFriendRemove;	
+
+        private bool _AntiFriendRemove;	
         public bool AntiFriendRemove	
         {	
             get => _AntiFriendRemove;	
@@ -33,7 +41,17 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();	
             }	
         }
-		
+
+        private int _TrollSpeedChat;
+        public int TrollSpeedChat
+        {
+            get => _TrollSpeedChat;
+            set
+            {
+                _TrollSpeedChat = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         private bool _FreezeUserMovement;
         public bool FreezeUserMovement
@@ -45,6 +63,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         public bool IsReceiving => true;
 
@@ -67,9 +86,20 @@ namespace RetroFun.Pages
                 e.IsBlocked = true;	
         }
 
+        private void WriteToButton(SKoreButton button, string text)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                button.Text = text;
+            });
+        }
+
+
+
         private void AcquireMODPermissionsBtn_Click_1(object sender, EventArgs e)
         {
             Connection.SendToClientAsync(In.UserPermissions, int.MaxValue, int.MaxValue, true);
         }
+
     }
 }

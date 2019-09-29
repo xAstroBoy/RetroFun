@@ -119,6 +119,18 @@
     <Compile Include="Pages\DicePage.Designer.cs">
       <DependentUpon>DicePage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MoonLightFun.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\MoonLightFun.Designer.cs">
+      <DependentUpon>MoonLightFun.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Speechz.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\Speechz.Designer.cs">
+      <DependentUpon>Speechz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\StalkingPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,6 +167,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\DicePage.resx">
       <DependentUpon>DicePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\MoonLightFun.resx">
+      <DependentUpon>MoonLightFun.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Speechz.resx">
+      <DependentUpon>Speechz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\StalkingPage.resx">
       <DependentUpon>StalkingPage.cs</DependentUpon>

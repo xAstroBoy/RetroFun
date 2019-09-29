@@ -32,7 +32,7 @@
             this.NoFriendRemove.AutoSize = true;
             this.NoFriendRemove.Checked = true;
             this.NoFriendRemove.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.NoFriendRemove.Location = new System.Drawing.Point(276, 88);
+            this.NoFriendRemove.Location = new System.Drawing.Point(83, 74);
             this.NoFriendRemove.Name = "NoFriendRemove";
             this.NoFriendRemove.Size = new System.Drawing.Size(167, 17);
             this.NoFriendRemove.TabIndex = 5;
@@ -42,7 +42,7 @@
             // FreezeMovementCheck
             // 
             this.FreezeMovementCheck.AutoSize = true;
-            this.FreezeMovementCheck.Location = new System.Drawing.Point(276, 46);
+            this.FreezeMovementCheck.Location = new System.Drawing.Point(83, 32);
             this.FreezeMovementCheck.Name = "FreezeMovementCheck";
             this.FreezeMovementCheck.Size = new System.Drawing.Size(111, 17);
             this.FreezeMovementCheck.TabIndex = 4;
@@ -51,7 +51,7 @@
             // 
             // AcquireMODPermissionsBtn
             // 
-            this.AcquireMODPermissionsBtn.Location = new System.Drawing.Point(45, 46);
+            this.AcquireMODPermissionsBtn.Location = new System.Drawing.Point(65, 189);
             this.AcquireMODPermissionsBtn.Name = "AcquireMODPermissionsBtn";
             this.AcquireMODPermissionsBtn.Size = new System.Drawing.Size(185, 20);
             this.AcquireMODPermissionsBtn.TabIndex = 3;
@@ -66,7 +66,7 @@
             this.Controls.Add(this.FreezeMovementCheck);
             this.Controls.Add(this.AcquireMODPermissionsBtn);
             this.Name = "MiscellaneousPage";
-            this.Size = new System.Drawing.Size(482, 240);
+            this.Size = new System.Drawing.Size(322, 245);
             this.ResumeLayout(false);
             this.PerformLayout();
 
