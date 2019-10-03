@@ -39,7 +39,6 @@ C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.csproj.Co
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.csproj.CopyComplete
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.exe
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.pdb
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.csprojAssemblyReference.cache
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.Pages.RoomBackFun.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.Pages.BuyFurniBruteforcerPage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.Pages.MoonLightFunPage.resources
