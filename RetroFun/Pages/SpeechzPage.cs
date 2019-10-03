@@ -14,7 +14,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class Speechz : ObservablePage
+    public partial class SpeechzPage : ObservablePage
     {
         private string speechtext_with_id = "";
         private HMessage packet;
@@ -24,7 +24,7 @@ namespace RetroFun.Pages
         private int max_increased = 0;
 
 
-        public Speechz()
+        public SpeechzPage()
         {
             InitializeComponent();
         }

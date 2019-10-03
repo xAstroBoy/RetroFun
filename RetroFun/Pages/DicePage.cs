@@ -40,6 +40,8 @@ namespace RetroFun.Pages
 
         public DicePage()
         {
+            Console.WriteLine("INIT DICEPAGE, SHOULD HAPPEN ONLY ONCE");
+
             InitializeComponent();
 
             Bind(DiceRegisterModeCheck, "Checked", nameof(IsRegistrationMode));
@@ -48,7 +50,8 @@ namespace RetroFun.Pages
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {
-            if (IsRegistrationMode)
+            Console.WriteLine("OnOutDiceTrigger: " + IsRegistrationMode);
+            if (_IsRegistrationMode)
             {
                 RegisterDice(e.Packet.ReadInteger());
                 e.IsBlocked = true;
@@ -91,7 +94,6 @@ namespace RetroFun.Pages
 
         public void RegisterDice (int NewDice)
         {
-            
             if (!DiceRegistered1)
             {
                 DiceRegistered1 = true;

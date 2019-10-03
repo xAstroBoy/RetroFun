@@ -1,6 +1,6 @@
 ﻿namespace RetroFun.Pages
 {
-    partial class Speechz
+    partial class SpeechzPage
     {
         /// <summary> 
         /// Required designer variable.

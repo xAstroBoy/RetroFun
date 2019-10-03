@@ -1,6 +1,6 @@
 ﻿namespace RetroFun.Pages
 {
-    partial class MoonLightFun
+    partial class MoonLightFunPage
     {
         /// <summary> 
         /// Required designer variable.
@@ -272,6 +272,7 @@
             this.Controls.Add(this.OnlyWallChbx);
             this.Controls.Add(this.SMoonDiscoBtn);
             this.Name = "MoonLightFun";
+
             this.Size = new System.Drawing.Size(398, 275);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

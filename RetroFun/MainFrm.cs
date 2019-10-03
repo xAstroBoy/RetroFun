@@ -32,37 +32,17 @@ namespace RetroFun
         {
             // Must be set before initializing components.
             Program.Master = this;
-
-
-
-
-
-            AutoHoloDicePg = new AutoHoloDicePage();
-            BuyBruteForcerPg = new BuyFurniBruteforcer();
-            ChatPg = new ChatPage();
-            DicePg = new DicePage();
-            FurniPg = new FurniturePage();
-            GiftPg = new GiftEditor();
-            MakeSaypg = new MakeSayPage();
-            MiscPg = new MiscellaneousPage();
-            MoonLightpg = new MoonLightFun();
-            Speechzpg = new Speechz();
-            Stalkpg = new StalkingPage();
-
+            InitializeComponent();
 
             //Pages sharing events
             _subscribers = new List<ISubscriber>
             {
-            AutoHoloDicePg,
-            BuyBruteForcerPg,
-            GiftPg,
-            MiscPg,
-
+                DicePg,
+                AutoHoloDicePg,
+                BuyFurniBruteforcerPg,
+                GiftEditorPg,
+                MiscellaneousPg,
             };
-        
-
-            InitializeComponent();
-
 
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));
 

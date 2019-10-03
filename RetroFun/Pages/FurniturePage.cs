@@ -63,7 +63,7 @@ namespace RetroFun.Pages
             if (Program.Master != null)
             {
                 Triggers.OutAttach(Out.RoomPickupItem, RoomPickupItem);
-                Triggers.OutAttach(Out.RotateMoveItem, RotateMoveItems);
+                //Triggers.OutAttach(Out.RotateMoveItem, RotateMoveItems);
                 //Triggers.InAttach(In.FloorItemUpdate, temporary);
             }
         }

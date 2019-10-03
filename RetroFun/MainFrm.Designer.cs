@@ -30,29 +30,30 @@ namespace RetroFun
         /// </summary>
         private void InitializeComponent()
         {
+            this.ChatPg = new RetroFun.Pages.ChatPage();
+            this.DicePg = new RetroFun.Pages.DicePage();
+            this.FurniPg = new RetroFun.Pages.FurniturePage();
+            this.MakeSayPg = new RetroFun.Pages.MakeSayPage();
+            this.SpeechzPg = new RetroFun.Pages.SpeechzPage();
+            this.StalkingPg = new RetroFun.Pages.StalkingPage();
+            this.GiftEditorPg = new RetroFun.Pages.GiftEditor();
+            this.AutoHoloDicePg = new RetroFun.Pages.AutoHoloDicePage();
+            this.MoonLightFunPg = new RetroFun.Pages.MoonLightFunPage();
+            this.MiscellaneousPg = new RetroFun.Pages.MiscellaneousPage();
+            this.BuyFurniBruteforcerPg = new RetroFun.Pages.BuyFurniBruteforcerPage();
+
             this.RetroFunTabs = new Sulakore.Components.SKoreTabControl();
             this.FurnitureTab = new System.Windows.Forms.TabPage();
-            this.furniturePage1 = new RetroFun.Pages.FurniturePage();
             this.ChatTab = new System.Windows.Forms.TabPage();
-            this.chatPage1 = new RetroFun.Pages.ChatPage();
             this.StalkingTab = new System.Windows.Forms.TabPage();
-            this.stalkingPage1 = new RetroFun.Pages.StalkingPage();
             this.MakeSayTab = new System.Windows.Forms.TabPage();
-            this.makeSayPage1 = new RetroFun.Pages.MakeSayPage();
             this.DicePage = new System.Windows.Forms.TabPage();
-            this.dicePage1 = new RetroFun.Pages.DicePage();
             this.HoloTab = new System.Windows.Forms.TabPage();
-            this.autoHoloDicePage1 = new RetroFun.Pages.AutoHoloDicePage();
             this.DiscoFunTab = new System.Windows.Forms.TabPage();
-            this.moonLightFun1 = new RetroFun.Pages.MoonLightFun();
             this.CatalogBuyEditor = new System.Windows.Forms.TabPage();
-            this.buyFurniBruteforcer1 = new RetroFun.Pages.BuyFurniBruteforcer();
             this.GiftPageTab = new System.Windows.Forms.TabPage();
-            this.giftEditor1 = new RetroFun.Pages.GiftEditor();
             this.SpeechzTab = new System.Windows.Forms.TabPage();
-            this.speechz1 = new RetroFun.Pages.Speechz();
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
-            this.miscellaneousPage2 = new RetroFun.Pages.MiscellaneousPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
             this.RetroFunTabs.SuspendLayout();
             this.FurnitureTab.SuspendLayout();
@@ -94,7 +95,7 @@ namespace RetroFun
             // 
             // FurnitureTab
             // 
-            this.FurnitureTab.Controls.Add(this.furniturePage1);
+            this.FurnitureTab.Controls.Add(this.FurniPg);
             this.FurnitureTab.Location = new System.Drawing.Point(4, 28);
             this.FurnitureTab.Name = "FurnitureTab";
             this.FurnitureTab.Padding = new System.Windows.Forms.Padding(3);
@@ -105,19 +106,19 @@ namespace RetroFun
             // 
             // furniturePage1
             // 
-            this.furniturePage1.BackColor = System.Drawing.Color.White;
-            this.furniturePage1.ButtonRotateMoveItem = false;
-            this.furniturePage1.DoubleClickFurnitureRemoval = false;
-            this.furniturePage1.FurnitureIdText = null;
-            this.furniturePage1.Location = new System.Drawing.Point(178, 50);
-            this.furniturePage1.Name = "furniturePage1";
-            this.furniturePage1.Size = new System.Drawing.Size(275, 199);
-            this.furniturePage1.TabIndex = 0;
-            this.furniturePage1.TabStop = false;
+            this.FurniPg.BackColor = System.Drawing.Color.White;
+            this.FurniPg.ButtonRotateMoveItem = false;
+            this.FurniPg.DoubleClickFurnitureRemoval = false;
+            this.FurniPg.FurnitureIdText = null;
+            this.FurniPg.Location = new System.Drawing.Point(178, 50);
+            this.FurniPg.Name = "furniturePage1";
+            this.FurniPg.Size = new System.Drawing.Size(275, 199);
+            this.FurniPg.TabIndex = 0;
+            this.FurniPg.TabStop = false;
             // 
             // ChatTab
             // 
-            this.ChatTab.Controls.Add(this.chatPage1);
+            this.ChatTab.Controls.Add(this.ChatPg);
             this.ChatTab.Location = new System.Drawing.Point(4, 28);
             this.ChatTab.Name = "ChatTab";
             this.ChatTab.Padding = new System.Windows.Forms.Padding(3);
@@ -128,19 +129,19 @@ namespace RetroFun
             // 
             // chatPage1
             // 
-            this.chatPage1.AntiBobbaFilter = false;
-            this.chatPage1.BackColor = System.Drawing.Color.White;
-            this.chatPage1.HideSpeakingBubble = false;
-            this.chatPage1.Location = new System.Drawing.Point(57, 6);
-            this.chatPage1.Name = "chatPage1";
-            this.chatPage1.Size = new System.Drawing.Size(465, 263);
-            this.chatPage1.TabIndex = 0;
-            this.chatPage1.TabStop = false;
-            this.chatPage1.UseSelectedBubble = false;
+            this.ChatPg.AntiBobbaFilter = false;
+            this.ChatPg.BackColor = System.Drawing.Color.White;
+            this.ChatPg.HideSpeakingBubble = false;
+            this.ChatPg.Location = new System.Drawing.Point(57, 6);
+            this.ChatPg.Name = "chatPage1";
+            this.ChatPg.Size = new System.Drawing.Size(465, 263);
+            this.ChatPg.TabIndex = 0;
+            this.ChatPg.TabStop = false;
+            this.ChatPg.UseSelectedBubble = false;
             // 
             // StalkingTab
             // 
-            this.StalkingTab.Controls.Add(this.stalkingPage1);
+            this.StalkingTab.Controls.Add(this.StalkingPg);
             this.StalkingTab.Location = new System.Drawing.Point(4, 28);
             this.StalkingTab.Name = "StalkingTab";
             this.StalkingTab.Padding = new System.Windows.Forms.Padding(3);
@@ -151,16 +152,16 @@ namespace RetroFun
             // 
             // stalkingPage1
             // 
-            this.stalkingPage1.BackColor = System.Drawing.Color.White;
-            this.stalkingPage1.Location = new System.Drawing.Point(69, 30);
-            this.stalkingPage1.Name = "stalkingPage1";
-            this.stalkingPage1.Size = new System.Drawing.Size(465, 263);
-            this.stalkingPage1.TabIndex = 0;
-            this.stalkingPage1.TabStop = false;
+            this.StalkingPg.BackColor = System.Drawing.Color.White;
+            this.StalkingPg.Location = new System.Drawing.Point(69, 30);
+            this.StalkingPg.Name = "stalkingPage1";
+            this.StalkingPg.Size = new System.Drawing.Size(465, 263);
+            this.StalkingPg.TabIndex = 0;
+            this.StalkingPg.TabStop = false;
             // 
             // MakeSayTab
             // 
-            this.MakeSayTab.Controls.Add(this.makeSayPage1);
+            this.MakeSayTab.Controls.Add(this.MakeSayPg);
             this.MakeSayTab.Location = new System.Drawing.Point(4, 28);
             this.MakeSayTab.Name = "MakeSayTab";
             this.MakeSayTab.Padding = new System.Windows.Forms.Padding(3);
@@ -171,16 +172,16 @@ namespace RetroFun
             // 
             // makeSayPage1
             // 
-            this.makeSayPage1.BackColor = System.Drawing.Color.White;
-            this.makeSayPage1.Location = new System.Drawing.Point(72, 24);
-            this.makeSayPage1.Name = "makeSayPage1";
-            this.makeSayPage1.Size = new System.Drawing.Size(465, 263);
-            this.makeSayPage1.TabIndex = 0;
-            this.makeSayPage1.TabStop = false;
+            this.MakeSayPg.BackColor = System.Drawing.Color.White;
+            this.MakeSayPg.Location = new System.Drawing.Point(72, 24);
+            this.MakeSayPg.Name = "makeSayPage1";
+            this.MakeSayPg.Size = new System.Drawing.Size(465, 263);
+            this.MakeSayPg.TabIndex = 0;
+            this.MakeSayPg.TabStop = false;
             // 
             // DicePage
             // 
-            this.DicePage.Controls.Add(this.dicePage1);
+            this.DicePage.Controls.Add(this.DicePg);
             this.DicePage.Location = new System.Drawing.Point(4, 28);
             this.DicePage.Name = "DicePage";
             this.DicePage.Size = new System.Drawing.Size(620, 315);
@@ -190,18 +191,18 @@ namespace RetroFun
             // 
             // dicePage1
             // 
-            this.dicePage1.BackColor = System.Drawing.Color.White;
-            this.dicePage1.IsRegistrationMode = false;
-            this.dicePage1.IsUserFreezed = false;
-            this.dicePage1.Location = new System.Drawing.Point(79, 16);
-            this.dicePage1.Name = "dicePage1";
-            this.dicePage1.Size = new System.Drawing.Size(465, 263);
-            this.dicePage1.TabIndex = 0;
-            this.dicePage1.TabStop = false;
+            this.DicePg.BackColor = System.Drawing.Color.White;
+            this.DicePg.IsRegistrationMode = false;
+            this.DicePg.IsUserFreezed = false;
+            this.DicePg.Location = new System.Drawing.Point(79, 16);
+            this.DicePg.Name = "dicePage1";
+            this.DicePg.Size = new System.Drawing.Size(465, 263);
+            this.DicePg.TabIndex = 0;
+            this.DicePg.TabStop = false;
             // 
             // HoloTab
             // 
-            this.HoloTab.Controls.Add(this.autoHoloDicePage1);
+            this.HoloTab.Controls.Add(this.AutoHoloDicePg);
             this.HoloTab.Location = new System.Drawing.Point(4, 28);
             this.HoloTab.Name = "HoloTab";
             this.HoloTab.Padding = new System.Windows.Forms.Padding(3);
@@ -212,22 +213,22 @@ namespace RetroFun
             // 
             // autoHoloDicePage1
             // 
-            this.autoHoloDicePage1.BackColor = System.Drawing.Color.White;
-            this.autoHoloDicePage1.DiceHostResult = 0;
-            this.autoHoloDicePage1.DiceOneResult = 0;
-            this.autoHoloDicePage1.DiceThreeResult = 0;
-            this.autoHoloDicePage1.DiceTwoResult = 0;
-            this.autoHoloDicePage1.ISHolodiceCheat = false;
-            this.autoHoloDicePage1.IsUserFreezed = false;
-            this.autoHoloDicePage1.Location = new System.Drawing.Point(74, 17);
-            this.autoHoloDicePage1.Name = "autoHoloDicePage1";
-            this.autoHoloDicePage1.Size = new System.Drawing.Size(465, 263);
-            this.autoHoloDicePage1.TabIndex = 0;
-            this.autoHoloDicePage1.TabStop = false;
+            this.AutoHoloDicePg.BackColor = System.Drawing.Color.White;
+            this.AutoHoloDicePg.DiceHostResult = 0;
+            this.AutoHoloDicePg.DiceOneResult = 0;
+            this.AutoHoloDicePg.DiceThreeResult = 0;
+            this.AutoHoloDicePg.DiceTwoResult = 0;
+            this.AutoHoloDicePg.ISHolodiceCheat = false;
+            this.AutoHoloDicePg.IsUserFreezed = false;
+            this.AutoHoloDicePg.Location = new System.Drawing.Point(74, 17);
+            this.AutoHoloDicePg.Name = "autoHoloDicePage1";
+            this.AutoHoloDicePg.Size = new System.Drawing.Size(465, 263);
+            this.AutoHoloDicePg.TabIndex = 0;
+            this.AutoHoloDicePg.TabStop = false;
             // 
             // DiscoFunTab
             // 
-            this.DiscoFunTab.Controls.Add(this.moonLightFun1);
+            this.DiscoFunTab.Controls.Add(this.MoonLightFunPg);
             this.DiscoFunTab.Location = new System.Drawing.Point(4, 28);
             this.DiscoFunTab.Name = "DiscoFunTab";
             this.DiscoFunTab.Size = new System.Drawing.Size(620, 315);
@@ -237,22 +238,22 @@ namespace RetroFun
             // 
             // moonLightFun1
             // 
-            this.moonLightFun1.BackColor = System.Drawing.Color.White;
-            this.moonLightFun1.CustomColor = null;
-            this.moonLightFun1.Density = 0;
-            this.moonLightFun1.DiscoCooldown = 500;
-            this.moonLightFun1.JustWallpapers = false;
-            this.moonLightFun1.LiveEditCooldown = 500;
-            this.moonLightFun1.Location = new System.Drawing.Point(83, 3);
-            this.moonLightFun1.Name = "moonLightFun1";
-            this.moonLightFun1.SelectedCustom = false;
-            this.moonLightFun1.Size = new System.Drawing.Size(405, 298);
-            this.moonLightFun1.TabIndex = 0;
-            this.moonLightFun1.TabStop = false;
+            this.MoonLightFunPg.BackColor = System.Drawing.Color.White;
+            this.MoonLightFunPg.CustomColor = null;
+            this.MoonLightFunPg.Density = 0;
+            this.MoonLightFunPg.DiscoCooldown = 500;
+            this.MoonLightFunPg.JustWallpapers = false;
+            this.MoonLightFunPg.LiveEditCooldown = 500;
+            this.MoonLightFunPg.Location = new System.Drawing.Point(83, 3);
+            this.MoonLightFunPg.Name = "moonLightFun1";
+            this.MoonLightFunPg.SelectedCustom = false;
+            this.MoonLightFunPg.Size = new System.Drawing.Size(405, 298);
+            this.MoonLightFunPg.TabIndex = 0;
+            this.MoonLightFunPg.TabStop = false;
             // 
             // CatalogBuyEditor
             // 
-            this.CatalogBuyEditor.Controls.Add(this.buyFurniBruteforcer1);
+            this.CatalogBuyEditor.Controls.Add(this.BuyFurniBruteforcerPg);
             this.CatalogBuyEditor.Location = new System.Drawing.Point(4, 28);
             this.CatalogBuyEditor.Name = "CatalogBuyEditor";
             this.CatalogBuyEditor.Size = new System.Drawing.Size(620, 315);
@@ -262,21 +263,21 @@ namespace RetroFun
             // 
             // buyFurniBruteforcer1
             // 
-            this.buyFurniBruteforcer1.BackColor = System.Drawing.Color.White;
-            this.buyFurniBruteforcer1.EnableLoop = false;
-            this.buyFurniBruteforcer1.FurniIDint1 = 0;
-            this.buyFurniBruteforcer1.Location = new System.Drawing.Point(72, 26);
-            this.buyFurniBruteforcer1.Name = "buyFurniBruteforcer1";
-            this.buyFurniBruteforcer1.PageIDInt1 = 0;
-            this.buyFurniBruteforcer1.PurchaseSuccess = false;
-            this.buyFurniBruteforcer1.Size = new System.Drawing.Size(475, 269);
-            this.buyFurniBruteforcer1.SpeedTimer1 = 6000;
-            this.buyFurniBruteforcer1.TabIndex = 0;
-            this.buyFurniBruteforcer1.TabStop = false;
+            this.BuyFurniBruteforcerPg.BackColor = System.Drawing.Color.White;
+            this.BuyFurniBruteforcerPg.EnableLoop = false;
+            this.BuyFurniBruteforcerPg.FurniIDint1 = 0;
+            this.BuyFurniBruteforcerPg.Location = new System.Drawing.Point(72, 26);
+            this.BuyFurniBruteforcerPg.Name = "buyFurniBruteforcer1";
+            this.BuyFurniBruteforcerPg.PageIDInt1 = 0;
+            this.BuyFurniBruteforcerPg.PurchaseSuccess = false;
+            this.BuyFurniBruteforcerPg.Size = new System.Drawing.Size(475, 269);
+            this.BuyFurniBruteforcerPg.SpeedTimer1 = 6000;
+            this.BuyFurniBruteforcerPg.TabIndex = 0;
+            this.BuyFurniBruteforcerPg.TabStop = false;
             // 
             // GiftPageTab
             // 
-            this.GiftPageTab.Controls.Add(this.giftEditor1);
+            this.GiftPageTab.Controls.Add(this.GiftEditorPg);
             this.GiftPageTab.Location = new System.Drawing.Point(4, 28);
             this.GiftPageTab.Name = "GiftPageTab";
             this.GiftPageTab.Padding = new System.Windows.Forms.Padding(3);
@@ -287,25 +288,25 @@ namespace RetroFun
             // 
             // giftEditor1
             // 
-            this.giftEditor1.BackColor = System.Drawing.Color.White;
-            this.giftEditor1.EnableLoop = false;
-            this.giftEditor1.FurnIIDBruteforcerEnabled = false;
-            this.giftEditor1.FurniIDint = 0;
-            this.giftEditor1.GlobalBruteforcerEnabled = false;
-            this.giftEditor1.isAnonymous = false;
-            this.giftEditor1.Location = new System.Drawing.Point(60, 18);
-            this.giftEditor1.Name = "giftEditor1";
-            this.giftEditor1.PageIDBruteForcerEnabled = false;
-            this.giftEditor1.PageIDInt = 0;
-            this.giftEditor1.Purchased = false;
-            this.giftEditor1.Size = new System.Drawing.Size(477, 273);
-            this.giftEditor1.SpeedTimer = 6000;
-            this.giftEditor1.TabIndex = 0;
-            this.giftEditor1.TabStop = false;
+            this.GiftEditorPg.BackColor = System.Drawing.Color.White;
+            this.GiftEditorPg.EnableLoop = false;
+            this.GiftEditorPg.FurnIIDBruteforcerEnabled = false;
+            this.GiftEditorPg.FurniIDint = 0;
+            this.GiftEditorPg.GlobalBruteforcerEnabled = false;
+            this.GiftEditorPg.isAnonymous = false;
+            this.GiftEditorPg.Location = new System.Drawing.Point(60, 18);
+            this.GiftEditorPg.Name = "giftEditor1";
+            this.GiftEditorPg.PageIDBruteForcerEnabled = false;
+            this.GiftEditorPg.PageIDInt = 0;
+            this.GiftEditorPg.Purchased = false;
+            this.GiftEditorPg.Size = new System.Drawing.Size(477, 273);
+            this.GiftEditorPg.SpeedTimer = 6000;
+            this.GiftEditorPg.TabIndex = 0;
+            this.GiftEditorPg.TabStop = false;
             // 
             // SpeechzTab
             // 
-            this.SpeechzTab.Controls.Add(this.speechz1);
+            this.SpeechzTab.Controls.Add(this.SpeechzPg);
             this.SpeechzTab.Location = new System.Drawing.Point(4, 28);
             this.SpeechzTab.Name = "SpeechzTab";
             this.SpeechzTab.Padding = new System.Windows.Forms.Padding(3);
@@ -316,16 +317,16 @@ namespace RetroFun
             // 
             // speechz1
             // 
-            this.speechz1.BackColor = System.Drawing.Color.White;
-            this.speechz1.Location = new System.Drawing.Point(66, 19);
-            this.speechz1.Name = "speechz1";
-            this.speechz1.Size = new System.Drawing.Size(472, 276);
-            this.speechz1.TabIndex = 0;
-            this.speechz1.TabStop = false;
+            this.SpeechzPg.BackColor = System.Drawing.Color.White;
+            this.SpeechzPg.Location = new System.Drawing.Point(66, 19);
+            this.SpeechzPg.Name = "speechz1";
+            this.SpeechzPg.Size = new System.Drawing.Size(472, 276);
+            this.SpeechzPg.TabIndex = 0;
+            this.SpeechzPg.TabStop = false;
             // 
             // MiscellaneousTab
             // 
-            this.MiscellaneousTab.Controls.Add(this.miscellaneousPage2);
+            this.MiscellaneousTab.Controls.Add(this.MiscellaneousPg);
             this.MiscellaneousTab.Location = new System.Drawing.Point(4, 28);
             this.MiscellaneousTab.Name = "MiscellaneousTab";
             this.MiscellaneousTab.Padding = new System.Windows.Forms.Padding(3);
@@ -336,15 +337,15 @@ namespace RetroFun
             // 
             // miscellaneousPage2
             // 
-            this.miscellaneousPage2.AntiFriendRemove = false;
-            this.miscellaneousPage2.BackColor = System.Drawing.Color.White;
-            this.miscellaneousPage2.FreezeUserMovement = false;
-            this.miscellaneousPage2.Location = new System.Drawing.Point(8, 21);
-            this.miscellaneousPage2.Name = "miscellaneousPage2";
-            this.miscellaneousPage2.Size = new System.Drawing.Size(425, 263);
-            this.miscellaneousPage2.TabIndex = 0;
-            this.miscellaneousPage2.TabStop = false;
-            this.miscellaneousPage2.TrollSpeedChat = 6000;
+            this.MiscellaneousPg.AntiFriendRemove = false;
+            this.MiscellaneousPg.BackColor = System.Drawing.Color.White;
+            this.MiscellaneousPg.FreezeUserMovement = false;
+            this.MiscellaneousPg.Location = new System.Drawing.Point(8, 21);
+            this.MiscellaneousPg.Name = "miscellaneousPage2";
+            this.MiscellaneousPg.Size = new System.Drawing.Size(425, 263);
+            this.MiscellaneousPg.TabIndex = 0;
+            this.MiscellaneousPg.TabStop = false;
+            this.MiscellaneousPg.TrollSpeedChat = 6000;
             // 
             // AlwaysOnTopChbx
             // 
@@ -394,41 +395,26 @@ namespace RetroFun
         private System.Windows.Forms.TabPage StalkingTab;
         private System.Windows.Forms.TabPage MiscellaneousTab;
         private System.Windows.Forms.CheckBox AlwaysOnTopChbx;
-        private BuyFurniBruteforcer buyFurniBruteforcer1;
         private System.Windows.Forms.TabPage MakeSayTab;
         private System.Windows.Forms.TabPage DicePage;
         private System.Windows.Forms.TabPage HoloTab;
-        private Pages.FurniturePage furniturePage1;
-        private Pages.ChatPage chatPage1;
-        private Pages.StalkingPage stalkingPage1;
-        private Pages.MakeSayPage makeSayPage1;
-        private Pages.DicePage dicePage1;
-        private Pages.AutoHoloDicePage autoHoloDicePage1;
         private System.Windows.Forms.TabPage GiftPageTab;
-        private Pages.GiftEditor giftEditor1;
         private System.Windows.Forms.TabPage CatalogBuyEditor;
-        private Pages.MiscellaneousPage miscellaneousPage2;
         private System.Windows.Forms.TabPage SpeechzTab;
-        private Speechz speechz1;
         private System.Windows.Forms.TabPage DiscoFunTab;
-        private MoonLightFun moonLightFun1;
 
+        //REGISTER PAGES HERE
 
-        // REGISTER PAGES HERE
-
-        private Pages.AutoHoloDicePage AutoHoloDicePg;
-        private Pages.BuyFurniBruteforcer BuyBruteForcerPg;
         private Pages.ChatPage ChatPg;
         private Pages.DicePage DicePg;
         private Pages.FurniturePage FurniPg;
-        private Pages.GiftEditor GiftPg;
-        private Pages.MakeSayPage MakeSaypg;
-        private Pages.MiscellaneousPage MiscPg;
-        private Pages.MoonLightFun MoonLightpg;
-        private Pages.Speechz Speechzpg;
-        private Pages.StalkingPage Stalkpg;
-
-
-
+        private Pages.MakeSayPage MakeSayPg;
+        private Pages.SpeechzPage SpeechzPg;
+        private Pages.GiftEditor GiftEditorPg;
+        private Pages.StalkingPage StalkingPg;
+        private Pages.AutoHoloDicePage AutoHoloDicePg;
+        private Pages.MoonLightFunPage MoonLightFunPg;
+        private Pages.MiscellaneousPage MiscellaneousPg;
+        private Pages.BuyFurniBruteforcerPage BuyFurniBruteforcerPg;
     }
 }

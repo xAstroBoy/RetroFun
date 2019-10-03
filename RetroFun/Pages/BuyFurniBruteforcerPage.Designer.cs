@@ -1,6 +1,6 @@
 ﻿namespace RetroFun.Pages
 {
-    partial class BuyFurniBruteforcer
+    partial class BuyFurniBruteforcerPage
     {
         /// <summary> 
         /// Required designer variable.
@@ -97,11 +97,6 @@
             0,
             0,
             0});
-            this.PurchaseLoopCoolDown.Minimum = new decimal(new int[] {
-            150,
-            0,
-            0,
-            0});
             this.PurchaseLoopCoolDown.Name = "PurchaseLoopCoolDown";
             this.PurchaseLoopCoolDown.Size = new System.Drawing.Size(81, 20);
             this.PurchaseLoopCoolDown.TabIndex = 39;
@@ -184,7 +179,6 @@
             // isValidPurchcheck
             // 
             this.isValidPurchcheck.AutoSize = true;
-            this.isValidPurchcheck.Enabled = true;
             this.isValidPurchcheck.Location = new System.Drawing.Point(357, 141);
             this.isValidPurchcheck.Name = "isValidPurchcheck";
             this.isValidPurchcheck.Size = new System.Drawing.Size(96, 17);
@@ -192,7 +186,7 @@
             this.isValidPurchcheck.Text = "Packet is Valid";
             this.isValidPurchcheck.UseVisualStyleBackColor = true;
             // 
-            // BuyFurniBruteforcer
+            // BuyFurniBruteforcerPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -209,7 +203,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.SendPurchaseBtn);
-            this.Name = "BuyFurniBruteforcer";
+            this.Name = "BuyFurniBruteforcerPage";
             this.Size = new System.Drawing.Size(477, 257);
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseLoopCoolDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CataloguePageIDBox)).EndInit();

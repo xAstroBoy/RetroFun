@@ -15,7 +15,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class MoonLightFun : ObservablePage
+    public partial class MoonLightFunPage : ObservablePage
     {
         #region Ints and stuff
 
@@ -104,7 +104,7 @@ namespace RetroFun.Pages
         #endregion
 
 
-        public MoonLightFun()
+        public MoonLightFunPage()
         {
             InitializeComponent();
             Bind(DiscoNumericcool, "Value", nameof(DiscoCooldown));
@@ -120,9 +120,7 @@ namespace RetroFun.Pages
             //Bind(GreenBtx, "checked", nameof(SelectedGreen));
             Bind(CustomBtx, "checked", nameof(SelectedCustom));
 
-            DiscoCooldown = 500;
-            Density = 79;
-            LiveEditCooldown = 500;
+
         }
 
 

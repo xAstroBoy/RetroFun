@@ -12,15 +12,17 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class BuyFurniBruteforcer : ObservablePage, ISubscriber
+    public partial class BuyFurniBruteforcerPage : ObservablePage, ISubscriber
     {
-        public BuyFurniBruteforcer()
+        public BuyFurniBruteforcerPage()
         {
             InitializeComponent();
             Bind(PurchaseLoopCoolDown, "Value", nameof(SpeedTimer1));
             Bind(CataloguePageIDBox, "Value", nameof(PageIDInt1));
             Bind(CatalogueFurniIDBox, "Value", nameof(FurniIDint1));
             Bind(isValidPurchcheck, "Checked", nameof(PurchaseSuccess));
+            Bind(furnITextBox, "Text", nameof(TextBox));
+
         }
 
         private bool _EnableLoop;
@@ -70,6 +72,19 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+
+        private string _TextBox;
+        public string TextBox
+        {
+            get => _TextBox;
+            set
+            {
+                _TextBox = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
         private bool _PurchaseSuccess;
         public bool PurchaseSuccess
@@ -234,7 +249,7 @@ namespace RetroFun.Pages
 
         public void InPurchaseOk(DataInterceptedEventArgs e)
         {
-            ToggleCheck(isValidPurchcheck, true);
+            PurchaseSuccess = true;
         }
 
 
@@ -244,7 +259,7 @@ namespace RetroFun.Pages
             Out.CatalogBuyItem,
             PageID,
             FurniID,
-            furnITextBox.Text
+            TextBox
             );
         }
 
@@ -281,12 +296,13 @@ namespace RetroFun.Pages
                         return;
                     }
                     SendPacket(PageIDInt1, FurniIDint1);
-                    if (isValidPurchcheck.Checked)
+                    if (PurchaseSuccess)
                     {
                         Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + FurniIDint1, 0, 34, 0, -1);
-                        ToggleCheck(isValidPurchcheck, false);
+                        PurchaseSuccess = false;
                     }
                     PageIDInt1++;
+                    Thread.Sleep(SpeedTimer1);
                 } while (PageIDBruteForcerEnabled1);
 
             }).Start();
@@ -315,12 +331,14 @@ namespace RetroFun.Pages
                         return;
                     }
                     SendPacket(PageIDInt1, FurniIDint1);
-                    if (isValidPurchcheck.Checked)
+                    if (PurchaseSuccess)
                     {
                         Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + FurniIDint1, 0, 34, 0, -1);
-                        ToggleCheck(isValidPurchcheck, false);
+                        PurchaseSuccess = false;
                     }
                     FurniIDint1++;
+                    Thread.Sleep(SpeedTimer1);
+
                 } while (FurnIIDBruteforcerEnabled1);
 
             }).Start();
@@ -354,11 +372,13 @@ namespace RetroFun.Pages
                     }
                     FurniIDint1++;
                     SendPacket(PageIDInt1, FurniIDint1);
-                    if (isValidPurchcheck.Checked)
+                    if (PurchaseSuccess)
                     {
                         Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + FurniIDint1, 0, 34, 0, -1);
-                        ToggleCheck(isValidPurchcheck, false);
-                    }
+                        PurchaseSuccess = false;
+                      }
+                    Thread.Sleep(SpeedTimer1);
+
                 } while (GlobalBruteforcerEnabled1);
             }).Start();
         }
