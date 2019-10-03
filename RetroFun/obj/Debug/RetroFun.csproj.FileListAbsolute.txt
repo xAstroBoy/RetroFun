@@ -23,3 +23,4 @@ C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.RoomB
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.BuyFurniBruteforcerPage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.MoonLightFunPage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.SpeechzPage.resources
+C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache
