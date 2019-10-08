@@ -302,7 +302,7 @@ namespace RetroFun.Pages
                 do
                 {
                     SendFullPacket(FurniID, Tonality, Saturation, Luminosity);
-                    Thread.Sleep(GlobalSpeed);
+                    Thread.Sleep(LiveEditSpeed);
                 } while (isLiveEditing);
 
             }).Start();

@@ -30,6 +30,7 @@
         {
             this.OnlyWallChbx = new System.Windows.Forms.CheckBox();
             this.ColorBox = new System.Windows.Forms.GroupBox();
+            this.BlackRadioBtn = new System.Windows.Forms.RadioButton();
             this.ColorHTMLtxb = new System.Windows.Forms.TextBox();
             this.CustomBtx = new System.Windows.Forms.RadioButton();
             this.GreenBtx = new System.Windows.Forms.RadioButton();
@@ -60,6 +61,7 @@
             // 
             // ColorBox
             // 
+            this.ColorBox.Controls.Add(this.BlackRadioBtn);
             this.ColorBox.Controls.Add(this.ColorHTMLtxb);
             this.ColorBox.Controls.Add(this.CustomBtx);
             this.ColorBox.Controls.Add(this.GreenBtx);
@@ -75,10 +77,21 @@
             this.ColorBox.TabStop = false;
             this.ColorBox.Text = "Colors";
             // 
+            // BlackRadioBtn
+            // 
+            this.BlackRadioBtn.AutoSize = true;
+            this.BlackRadioBtn.Location = new System.Drawing.Point(143, 19);
+            this.BlackRadioBtn.Name = "BlackRadioBtn";
+            this.BlackRadioBtn.Size = new System.Drawing.Size(52, 17);
+            this.BlackRadioBtn.TabIndex = 46;
+            this.BlackRadioBtn.Text = "Black";
+            this.BlackRadioBtn.UseVisualStyleBackColor = true;
+            this.BlackRadioBtn.CheckedChanged += new System.EventHandler(this.BlackRadioBtn_CheckedChanged);
+            // 
             // ColorHTMLtxb
             // 
             this.ColorHTMLtxb.Enabled = false;
-            this.ColorHTMLtxb.Location = new System.Drawing.Point(145, 42);
+            this.ColorHTMLtxb.Location = new System.Drawing.Point(143, 62);
             this.ColorHTMLtxb.MaxLength = 6;
             this.ColorHTMLtxb.Name = "ColorHTMLtxb";
             this.ColorHTMLtxb.Size = new System.Drawing.Size(100, 20);
@@ -87,7 +100,7 @@
             // CustomBtx
             // 
             this.CustomBtx.AutoSize = true;
-            this.CustomBtx.Location = new System.Drawing.Point(145, 19);
+            this.CustomBtx.Location = new System.Drawing.Point(143, 42);
             this.CustomBtx.Name = "CustomBtx";
             this.CustomBtx.Size = new System.Drawing.Size(60, 17);
             this.CustomBtx.TabIndex = 6;
@@ -153,10 +166,12 @@
             // LightBluebtx
             // 
             this.LightBluebtx.AutoSize = true;
+            this.LightBluebtx.Checked = true;
             this.LightBluebtx.Location = new System.Drawing.Point(6, 19);
             this.LightBluebtx.Name = "LightBluebtx";
             this.LightBluebtx.Size = new System.Drawing.Size(71, 17);
             this.LightBluebtx.TabIndex = 0;
+            this.LightBluebtx.TabStop = true;
             this.LightBluebtx.Text = "Light blue";
             this.LightBluebtx.UseVisualStyleBackColor = true;
             this.LightBluebtx.CheckedChanged += new System.EventHandler(this.LightBluebtx_CheckedChanged);
@@ -265,5 +280,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown LiveEditCoolNb;
         private Sulakore.Components.SKoreButton LiveEditBtn;
+        private System.Windows.Forms.RadioButton BlackRadioBtn;
     }
 }

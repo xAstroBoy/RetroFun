@@ -245,7 +245,6 @@ namespace RetroFun.Pages
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
 
-        public void OnOutUserWalk(DataInterceptedEventArgs e) { }
 
         public void InPurchaseOk(DataInterceptedEventArgs e)
         {

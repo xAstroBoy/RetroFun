@@ -56,7 +56,6 @@
             this.RollCheckedDices = new Sulakore.Components.SKoreButton();
             this.CloseCheckedDices = new Sulakore.Components.SKoreButton();
             this.DiceRegisterModeCheck = new System.Windows.Forms.CheckBox();
-            this.isUserFreezedCheck = new System.Windows.Forms.CheckBox();
             this.SelectAllButton = new Sulakore.Components.SKoreButton();
             this.UnSelectAllButton = new Sulakore.Components.SKoreButton();
             this.ClearButton = new Sulakore.Components.SKoreButton();
@@ -333,23 +332,13 @@
             // DiceRegisterModeCheck
             // 
             this.DiceRegisterModeCheck.AutoSize = true;
-            this.DiceRegisterModeCheck.Location = new System.Drawing.Point(315, 203);
+            this.DiceRegisterModeCheck.Location = new System.Drawing.Point(314, 223);
             this.DiceRegisterModeCheck.Name = "DiceRegisterModeCheck";
             this.DiceRegisterModeCheck.Size = new System.Drawing.Size(137, 17);
             this.DiceRegisterModeCheck.TabIndex = 6;
             this.DiceRegisterModeCheck.Text = "Dice Registration Mode";
             this.DiceRegisterModeCheck.UseVisualStyleBackColor = true;
             this.DiceRegisterModeCheck.CheckedChanged += new System.EventHandler(this.DiceRegisterMode_CheckedChanged);
-            // 
-            // isUserFreezedCheck
-            // 
-            this.isUserFreezedCheck.AutoSize = true;
-            this.isUserFreezedCheck.Location = new System.Drawing.Point(315, 226);
-            this.isUserFreezedCheck.Name = "isUserFreezedCheck";
-            this.isUserFreezedCheck.Size = new System.Drawing.Size(141, 17);
-            this.isUserFreezedCheck.TabIndex = 7;
-            this.isUserFreezedCheck.Text = "Freeze User Movements";
-            this.isUserFreezedCheck.UseVisualStyleBackColor = true;
             // 
             // SelectAllButton
             // 
@@ -385,7 +374,6 @@
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.UnSelectAllButton);
             this.Controls.Add(this.SelectAllButton);
-            this.Controls.Add(this.isUserFreezedCheck);
             this.Controls.Add(this.DiceRegisterModeCheck);
             this.Controls.Add(this.CloseCheckedDices);
             this.Controls.Add(this.RollCheckedDices);
@@ -428,7 +416,6 @@
         private Sulakore.Components.SKoreButton RollCheckedDices;
         private Sulakore.Components.SKoreButton CloseCheckedDices;
         private System.Windows.Forms.CheckBox DiceRegisterModeCheck;
-        private System.Windows.Forms.CheckBox isUserFreezedCheck;
         private Sulakore.Components.SKoreButton SelectAllButton;
         private Sulakore.Components.SKoreButton UnSelectAllButton;
         private Sulakore.Components.SKoreButton ClearButton;

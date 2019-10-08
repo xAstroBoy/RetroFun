@@ -42,7 +42,6 @@
             this.DiceThirdResTB = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ClearButton = new Sulakore.Components.SKoreButton();
-            this.isUserFreezedCheck = new System.Windows.Forms.CheckBox();
             this.AutoHolochbx = new System.Windows.Forms.CheckBox();
             this.holoDiceShoutPhrase = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -186,20 +185,10 @@
             this.ClearButton.Text = "Clear ";
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
-            // isUserFreezedCheck
-            // 
-            this.isUserFreezedCheck.AutoSize = true;
-            this.isUserFreezedCheck.Location = new System.Drawing.Point(226, 230);
-            this.isUserFreezedCheck.Name = "isUserFreezedCheck";
-            this.isUserFreezedCheck.Size = new System.Drawing.Size(141, 17);
-            this.isUserFreezedCheck.TabIndex = 7;
-            this.isUserFreezedCheck.Text = "Freeze User Movements";
-            this.isUserFreezedCheck.UseVisualStyleBackColor = true;
-            // 
             // AutoHolochbx
             // 
             this.AutoHolochbx.AutoSize = true;
-            this.AutoHolochbx.Location = new System.Drawing.Point(226, 204);
+            this.AutoHolochbx.Location = new System.Drawing.Point(255, 224);
             this.AutoHolochbx.Name = "AutoHolochbx";
             this.AutoHolochbx.Size = new System.Drawing.Size(118, 17);
             this.AutoHolochbx.TabIndex = 11;
@@ -230,7 +219,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.holoDiceShoutPhrase);
             this.Controls.Add(this.AutoHolochbx);
-            this.Controls.Add(this.isUserFreezedCheck);
             this.Controls.Add(this.DiceGroup);
             this.Name = "AutoHoloDicePage";
             this.DiceGroup.ResumeLayout(false);
@@ -243,7 +231,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox DiceGroup;
-        private System.Windows.Forms.CheckBox isUserFreezedCheck;
         private Sulakore.Components.SKoreButton ClearButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox AutoHolochbx;

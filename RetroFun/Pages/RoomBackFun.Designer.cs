@@ -186,6 +186,7 @@
             // 
             // GlobalSpeedNbx
             // 
+            this.GlobalSpeedNbx.Enabled = false;
             this.GlobalSpeedNbx.Location = new System.Drawing.Point(411, 231);
             this.GlobalSpeedNbx.Maximum = new decimal(new int[] {
             2147483647,
@@ -195,6 +196,11 @@
             this.GlobalSpeedNbx.Name = "GlobalSpeedNbx";
             this.GlobalSpeedNbx.Size = new System.Drawing.Size(120, 20);
             this.GlobalSpeedNbx.TabIndex = 13;
+            this.GlobalSpeedNbx.Value = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
             // 
             // label5
             // 
@@ -243,6 +249,11 @@
             this.TonSpeednbx.Name = "TonSpeednbx";
             this.TonSpeednbx.Size = new System.Drawing.Size(120, 20);
             this.TonSpeednbx.TabIndex = 17;
+            this.TonSpeednbx.Value = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
             // 
             // label7
             // 
@@ -264,6 +275,11 @@
             this.SatSpeednbx.Name = "SatSpeednbx";
             this.SatSpeednbx.Size = new System.Drawing.Size(120, 20);
             this.SatSpeednbx.TabIndex = 19;
+            this.SatSpeednbx.Value = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
             // 
             // label8
             // 
@@ -285,6 +301,11 @@
             this.LumSpeedNbx.Name = "LumSpeedNbx";
             this.LumSpeedNbx.Size = new System.Drawing.Size(120, 20);
             this.LumSpeedNbx.TabIndex = 21;
+            this.LumSpeedNbx.Value = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
             // 
             // LiveEditSpeedNBx
             // 
@@ -297,6 +318,11 @@
             this.LiveEditSpeedNBx.Name = "LiveEditSpeedNBx";
             this.LiveEditSpeedNBx.Size = new System.Drawing.Size(120, 20);
             this.LiveEditSpeedNBx.TabIndex = 23;
+            this.LiveEditSpeedNBx.Value = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
             // 
             // GlobalSpeedChbx
             // 

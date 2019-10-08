@@ -26,6 +26,17 @@ namespace RetroFun
             }
         }
 
+        private bool _FreezeUserMovement;
+        public bool FreezeUserMovement
+        {
+            get => _FreezeUserMovement;
+            set
+            {
+                _FreezeUserMovement = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
         private List<ISubscriber> _subscribers = new List<ISubscriber>();
 
         public MainFrm()
@@ -41,11 +52,22 @@ namespace RetroFun
                 AutoHoloDicePg,
                 BuyFurniBruteforcerPg,
                 GiftEditorPg,
-                MiscellaneousPg,
             };
 
+
+            Bind(FreezeMovementCheck, "Checked", nameof(FreezeUserMovement));
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));
         }
+
+
+
+        public void OnOutUserWalk(DataInterceptedEventArgs e)
+        {
+            if (FreezeUserMovement)
+                e.IsBlocked = true;
+        }
+
+
 
         public override void HandleOutgoing(DataInterceptedEventArgs e)
         {
@@ -56,8 +78,6 @@ namespace RetroFun
 
                 if (Out.TriggerDice == id || Out.CloseDice == id)
                     sub.OnOutDiceTrigger(e);
-                 else if (Out.RoomUserWalk == id)
-                    sub.OnOutUserWalk(e);
             }
         }
 

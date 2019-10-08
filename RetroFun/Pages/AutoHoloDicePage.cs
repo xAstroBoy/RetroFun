@@ -85,16 +85,6 @@ namespace RetroFun.Pages
             }
         }
 
-        private bool _IsUserFreezed;
-        public bool IsUserFreezed
-        {
-            get => _IsUserFreezed;
-            set
-            {
-                _IsUserFreezed = value;
-                RaiseOnPropertyChanged();
-            }
-        }
 
         public bool IsReceiving => true;
 
@@ -119,7 +109,6 @@ namespace RetroFun.Pages
             Bind(DiceHostResTB, "Text", nameof(DiceHostResult), new IntToStringConverter());
 
             Bind(AutoHolochbx, "Checked", nameof(ISHolodiceCheat));
-            Bind(isUserFreezedCheck, "Checked", nameof(IsUserFreezed));
 
             if (Program.Master != null)
             {
@@ -235,12 +224,6 @@ namespace RetroFun.Pages
         private void Broadcast(string text)
         {
             Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[HoloCheat]: " + text, 0, 34, 0, -1);
-        }
-
-        public void OnOutUserWalk(DataInterceptedEventArgs e)
-        {
-            if (IsUserFreezed)
-                e.IsBlocked = true;
         }
     }
 }

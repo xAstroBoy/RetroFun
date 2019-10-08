@@ -25,16 +25,6 @@ namespace RetroFun.Pages
         }
 
 
-        private bool _IsUserFreezed;
-        public bool IsUserFreezed
-        {
-            get => _IsUserFreezed;
-            set
-            {
-                _IsUserFreezed = value;
-                RaiseOnPropertyChanged();
-            }
-        }
 
         public bool IsReceiving => true;
 
@@ -45,7 +35,6 @@ namespace RetroFun.Pages
             InitializeComponent();
 
             Bind(DiceRegisterModeCheck, "Checked", nameof(IsRegistrationMode));
-            Bind(isUserFreezedCheck, "Checked", nameof(IsUserFreezed));
         }
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
@@ -58,11 +47,6 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnOutUserWalk(DataInterceptedEventArgs e)
-        {
-            if (_IsUserFreezed)
-                e.IsBlocked = true;
-        }
 
         public void InPurchaseOk(DataInterceptedEventArgs e) { }
 

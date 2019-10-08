@@ -279,7 +279,6 @@ namespace RetroFun.Pages
 
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
-        public void OnOutUserWalk(DataInterceptedEventArgs e) { }
 
 
         private void SendPacket()
@@ -495,8 +494,6 @@ namespace RetroFun.Pages
                 } while (GlobalBruteforcerEnabled);
             }).Start();
         }
-
-
     }
 }
 

@@ -251,6 +251,16 @@ namespace RetroFun.Pages
             CustomColor = Green;
         }
 
+
+        private void BlackRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ColorHTMLtxb.Enabled == true)
+            {
+                EnableTexButton(ColorHTMLtxb, false);
+            }
+            CustomColor = Black;
+        }
+
         private void CustomBtx_CheckedChanged(object sender, EventArgs e)
         {
                 EnableTexButton(ColorHTMLtxb, true);
@@ -292,5 +302,6 @@ namespace RetroFun.Pages
                 Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
             }
         }
+
     }
 }

@@ -22,32 +22,9 @@
 
         private void InitializeComponent()
         {
-            this.NoFriendRemove = new System.Windows.Forms.CheckBox();
-            this.FreezeMovementCheck = new System.Windows.Forms.CheckBox();
             this.AcquireMODPermissionsBtn = new Sulakore.Components.SKoreButton();
+            this.NoRemoveFriendOnReport = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
-            // NoFriendRemove
-            // 
-            this.NoFriendRemove.AutoSize = true;
-            this.NoFriendRemove.Checked = true;
-            this.NoFriendRemove.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.NoFriendRemove.Location = new System.Drawing.Point(83, 74);
-            this.NoFriendRemove.Name = "NoFriendRemove";
-            this.NoFriendRemove.Size = new System.Drawing.Size(167, 17);
-            this.NoFriendRemove.TabIndex = 5;
-            this.NoFriendRemove.Text = "Block Friend Removal Packet";
-            this.NoFriendRemove.UseVisualStyleBackColor = true;
-            // 
-            // FreezeMovementCheck
-            // 
-            this.FreezeMovementCheck.AutoSize = true;
-            this.FreezeMovementCheck.Location = new System.Drawing.Point(83, 32);
-            this.FreezeMovementCheck.Name = "FreezeMovementCheck";
-            this.FreezeMovementCheck.Size = new System.Drawing.Size(111, 17);
-            this.FreezeMovementCheck.TabIndex = 4;
-            this.FreezeMovementCheck.Text = "Freeze Movement";
-            this.FreezeMovementCheck.UseVisualStyleBackColor = true;
             // 
             // AcquireMODPermissionsBtn
             // 
@@ -58,12 +35,23 @@
             this.AcquireMODPermissionsBtn.Text = "Acquire MOD Permissions (CS)";
             this.AcquireMODPermissionsBtn.Click += new System.EventHandler(this.AcquireMODPermissionsBtn_Click_1);
             // 
+            // NoRemoveFriendOnReport
+            // 
+            this.NoRemoveFriendOnReport.AutoSize = true;
+            this.NoRemoveFriendOnReport.Checked = true;
+            this.NoRemoveFriendOnReport.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.NoRemoveFriendOnReport.Location = new System.Drawing.Point(65, 80);
+            this.NoRemoveFriendOnReport.Name = "NoRemoveFriendOnReport";
+            this.NoRemoveFriendOnReport.Size = new System.Drawing.Size(195, 17);
+            this.NoRemoveFriendOnReport.TabIndex = 4;
+            this.NoRemoveFriendOnReport.Text = "Anti-Friend Removal when reported.";
+            this.NoRemoveFriendOnReport.UseVisualStyleBackColor = true;
+            // 
             // MiscellaneousPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.NoFriendRemove);
-            this.Controls.Add(this.FreezeMovementCheck);
+            this.Controls.Add(this.NoRemoveFriendOnReport);
             this.Controls.Add(this.AcquireMODPermissionsBtn);
             this.Name = "MiscellaneousPage";
             this.Size = new System.Drawing.Size(322, 245);
@@ -72,9 +60,7 @@
 
         }
 
-
-        private System.Windows.Forms.CheckBox NoFriendRemove;
-        private System.Windows.Forms.CheckBox FreezeMovementCheck;
         private Sulakore.Components.SKoreButton AcquireMODPermissionsBtn;
+        private System.Windows.Forms.CheckBox NoRemoveFriendOnReport;
     }
 }
