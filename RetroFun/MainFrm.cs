@@ -60,7 +60,7 @@ namespace RetroFun
         }
 
 
-
+        [OutDataCapture("RoomUserWalk")]
         public void OnOutUserWalk(DataInterceptedEventArgs e)
         {
             if (FreezeUserMovement)
