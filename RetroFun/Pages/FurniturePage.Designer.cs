@@ -66,7 +66,7 @@
             this.groupBox1.Controls.Add(this.RotationDown);
             this.groupBox1.Controls.Add(this.RotationUp);
             this.groupBox1.Location = new System.Drawing.Point(143, 67);
-            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Name = "FlashableColors";
             this.groupBox1.Size = new System.Drawing.Size(109, 94);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;

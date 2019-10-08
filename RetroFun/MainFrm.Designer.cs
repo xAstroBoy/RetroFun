@@ -38,7 +38,6 @@ namespace RetroFun
             this.StalkingPg = new RetroFun.Pages.StalkingPage();
             this.GiftEditorPg = new RetroFun.Pages.GiftEditor();
             this.AutoHoloDicePg = new RetroFun.Pages.AutoHoloDicePage();
-            this.MoonLightFunPg = new RetroFun.Pages.MoonLightFunPage();
             this.MiscellaneousPg = new RetroFun.Pages.MiscellaneousPage();
             this.BuyFurniBruteforcerPg = new RetroFun.Pages.BuyFurniBruteforcerPage();
             this.RoomBackFunPg = new RetroFun.Pages.RoomBackFun();
@@ -50,12 +49,17 @@ namespace RetroFun
             this.DicePage = new System.Windows.Forms.TabPage();
             this.HoloTab = new System.Windows.Forms.TabPage();
             this.DiscoFunTab = new System.Windows.Forms.TabPage();
+            this.MoonlightPages = new Sulakore.Components.SKoreTabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.RoomBGTab = new System.Windows.Forms.TabPage();
             this.CatalogBuyEditor = new System.Windows.Forms.TabPage();
             this.GiftPageTab = new System.Windows.Forms.TabPage();
             this.SpeechzTab = new System.Windows.Forms.TabPage();
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
+            this.discoRoomLight1 = new RetroFun.Pages.DiscoRoomLight();
+            this.moonLightFunPage1 = new RetroFun.Pages.MoonLightFunPage();
             this.RetroFunTabs.SuspendLayout();
             this.FurnitureTab.SuspendLayout();
             this.ChatTab.SuspendLayout();
@@ -64,6 +68,9 @@ namespace RetroFun
             this.DicePage.SuspendLayout();
             this.HoloTab.SuspendLayout();
             this.DiscoFunTab.SuspendLayout();
+            this.MoonlightPages.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.RoomBGTab.SuspendLayout();
             this.CatalogBuyEditor.SuspendLayout();
             this.GiftPageTab.SuspendLayout();
@@ -166,21 +173,6 @@ namespace RetroFun
             this.AutoHoloDicePg.TabIndex = 0;
             this.AutoHoloDicePg.TabStop = false;
             // 
-            // MoonLightFunPg
-            // 
-            this.MoonLightFunPg.BackColor = System.Drawing.Color.White;
-            this.MoonLightFunPg.CustomColor = null;
-            this.MoonLightFunPg.Density = 0;
-            this.MoonLightFunPg.DiscoCooldown = 500;
-            this.MoonLightFunPg.JustWallpapers = false;
-            this.MoonLightFunPg.LiveEditCooldown = 500;
-            this.MoonLightFunPg.Location = new System.Drawing.Point(83, 3);
-            this.MoonLightFunPg.Name = "MoonLightFunPg";
-            this.MoonLightFunPg.SelectedCustom = false;
-            this.MoonLightFunPg.Size = new System.Drawing.Size(405, 298);
-            this.MoonLightFunPg.TabIndex = 0;
-            this.MoonLightFunPg.TabStop = false;
-            // 
             // MiscellaneousPg
             // 
             this.MiscellaneousPg.AntiFriendRemove = false;
@@ -191,7 +183,6 @@ namespace RetroFun
             this.MiscellaneousPg.Size = new System.Drawing.Size(425, 263);
             this.MiscellaneousPg.TabIndex = 0;
             this.MiscellaneousPg.TabStop = false;
-            this.MiscellaneousPg.TrollSpeedChat = 6000;
             // 
             // BuyFurniBruteforcerPg
             // 
@@ -213,12 +204,17 @@ namespace RetroFun
             this.RoomBackFunPg.BackColor = System.Drawing.Color.White;
             this.RoomBackFunPg.CaptureMode = false;
             this.RoomBackFunPg.FurniID = 0;
+            this.RoomBackFunPg.GlobalSpeed = 0;
+            this.RoomBackFunPg.GlobalSpeedSwitch = false;
+            this.RoomBackFunPg.LiveEditSpeed = 0;
             this.RoomBackFunPg.Location = new System.Drawing.Point(18, 6);
             this.RoomBackFunPg.Luminosity = 0;
             this.RoomBackFunPg.Name = "RoomBackFunPg";
             this.RoomBackFunPg.Saturation = 0;
             this.RoomBackFunPg.Size = new System.Drawing.Size(578, 270);
-            this.RoomBackFunPg.Speed = 0;
+            this.RoomBackFunPg.SpeedLuminosity = 0;
+            this.RoomBackFunPg.SpeedSaturation = 0;
+            this.RoomBackFunPg.SpeedTonality = 0;
             this.RoomBackFunPg.TabIndex = 2;
             this.RoomBackFunPg.TabStop = false;
             this.RoomBackFunPg.Tonality = 0;
@@ -244,7 +240,7 @@ namespace RetroFun
             this.RetroFunTabs.Location = new System.Drawing.Point(0, 0);
             this.RetroFunTabs.Name = "RetroFunTabs";
             this.RetroFunTabs.SelectedIndex = 0;
-            this.RetroFunTabs.Size = new System.Drawing.Size(628, 347);
+            this.RetroFunTabs.Size = new System.Drawing.Size(801, 433);
             this.RetroFunTabs.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.RetroFunTabs.TabIndex = 0;
             // 
@@ -254,7 +250,7 @@ namespace RetroFun
             this.FurnitureTab.Location = new System.Drawing.Point(4, 28);
             this.FurnitureTab.Name = "FurnitureTab";
             this.FurnitureTab.Padding = new System.Windows.Forms.Padding(3);
-            this.FurnitureTab.Size = new System.Drawing.Size(620, 315);
+            this.FurnitureTab.Size = new System.Drawing.Size(793, 315);
             this.FurnitureTab.TabIndex = 0;
             this.FurnitureTab.Text = "Furniture";
             this.FurnitureTab.UseVisualStyleBackColor = true;
@@ -265,7 +261,7 @@ namespace RetroFun
             this.ChatTab.Location = new System.Drawing.Point(4, 28);
             this.ChatTab.Name = "ChatTab";
             this.ChatTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ChatTab.Size = new System.Drawing.Size(620, 315);
+            this.ChatTab.Size = new System.Drawing.Size(793, 315);
             this.ChatTab.TabIndex = 1;
             this.ChatTab.Text = "Chat";
             this.ChatTab.UseVisualStyleBackColor = true;
@@ -276,7 +272,7 @@ namespace RetroFun
             this.StalkingTab.Location = new System.Drawing.Point(4, 28);
             this.StalkingTab.Name = "StalkingTab";
             this.StalkingTab.Padding = new System.Windows.Forms.Padding(3);
-            this.StalkingTab.Size = new System.Drawing.Size(620, 315);
+            this.StalkingTab.Size = new System.Drawing.Size(793, 315);
             this.StalkingTab.TabIndex = 2;
             this.StalkingTab.Text = "Stalking";
             this.StalkingTab.UseVisualStyleBackColor = true;
@@ -287,7 +283,7 @@ namespace RetroFun
             this.MakeSayTab.Location = new System.Drawing.Point(4, 28);
             this.MakeSayTab.Name = "MakeSayTab";
             this.MakeSayTab.Padding = new System.Windows.Forms.Padding(3);
-            this.MakeSayTab.Size = new System.Drawing.Size(620, 315);
+            this.MakeSayTab.Size = new System.Drawing.Size(793, 315);
             this.MakeSayTab.TabIndex = 4;
             this.MakeSayTab.Text = "MakeSay";
             this.MakeSayTab.UseVisualStyleBackColor = true;
@@ -297,7 +293,7 @@ namespace RetroFun
             this.DicePage.Controls.Add(this.DicePg);
             this.DicePage.Location = new System.Drawing.Point(4, 28);
             this.DicePage.Name = "DicePage";
-            this.DicePage.Size = new System.Drawing.Size(620, 315);
+            this.DicePage.Size = new System.Drawing.Size(793, 315);
             this.DicePage.TabIndex = 5;
             this.DicePage.Text = "Dice ";
             this.DicePage.UseVisualStyleBackColor = true;
@@ -308,20 +304,56 @@ namespace RetroFun
             this.HoloTab.Location = new System.Drawing.Point(4, 28);
             this.HoloTab.Name = "HoloTab";
             this.HoloTab.Padding = new System.Windows.Forms.Padding(3);
-            this.HoloTab.Size = new System.Drawing.Size(620, 315);
+            this.HoloTab.Size = new System.Drawing.Size(793, 315);
             this.HoloTab.TabIndex = 6;
             this.HoloTab.Text = "AutomaticHolo";
             this.HoloTab.UseVisualStyleBackColor = true;
             // 
             // DiscoFunTab
             // 
-            this.DiscoFunTab.Controls.Add(this.MoonLightFunPg);
+            this.DiscoFunTab.Controls.Add(this.MoonlightPages);
             this.DiscoFunTab.Location = new System.Drawing.Point(4, 28);
             this.DiscoFunTab.Name = "DiscoFunTab";
-            this.DiscoFunTab.Size = new System.Drawing.Size(620, 315);
+            this.DiscoFunTab.Size = new System.Drawing.Size(793, 401);
             this.DiscoFunTab.TabIndex = 10;
             this.DiscoFunTab.Text = "Disco Fun";
             this.DiscoFunTab.UseVisualStyleBackColor = true;
+            // 
+            // MoonlightPages
+            // 
+            this.MoonlightPages.Controls.Add(this.tabPage2);
+            this.MoonlightPages.Controls.Add(this.tabPage1);
+            this.MoonlightPages.DisplayBoundary = false;
+            this.MoonlightPages.ItemSize = new System.Drawing.Size(95, 24);
+            this.MoonlightPages.Location = new System.Drawing.Point(-4, 3);
+            this.MoonlightPages.Multiline = true;
+            this.MoonlightPages.Name = "MoonlightPages";
+            this.MoonlightPages.SelectedIndex = 0;
+            this.MoonlightPages.Size = new System.Drawing.Size(797, 398);
+            this.MoonlightPages.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.MoonlightPages.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.discoRoomLight1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(789, 366);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Disco";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.moonLightFunPage1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(789, 366);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "MoonLight";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // RoomBGTab
             // 
@@ -329,7 +361,7 @@ namespace RetroFun
             this.RoomBGTab.Location = new System.Drawing.Point(4, 28);
             this.RoomBGTab.Name = "RoomBGTab";
             this.RoomBGTab.Padding = new System.Windows.Forms.Padding(3);
-            this.RoomBGTab.Size = new System.Drawing.Size(620, 315);
+            this.RoomBGTab.Size = new System.Drawing.Size(793, 401);
             this.RoomBGTab.TabIndex = 11;
             this.RoomBGTab.Text = "Room Background";
             this.RoomBGTab.UseVisualStyleBackColor = true;
@@ -339,7 +371,7 @@ namespace RetroFun
             this.CatalogBuyEditor.Controls.Add(this.BuyFurniBruteforcerPg);
             this.CatalogBuyEditor.Location = new System.Drawing.Point(4, 28);
             this.CatalogBuyEditor.Name = "CatalogBuyEditor";
-            this.CatalogBuyEditor.Size = new System.Drawing.Size(620, 315);
+            this.CatalogBuyEditor.Size = new System.Drawing.Size(793, 401);
             this.CatalogBuyEditor.TabIndex = 8;
             this.CatalogBuyEditor.Text = "Catalog Buy Hack";
             this.CatalogBuyEditor.UseVisualStyleBackColor = true;
@@ -350,7 +382,7 @@ namespace RetroFun
             this.GiftPageTab.Location = new System.Drawing.Point(4, 28);
             this.GiftPageTab.Name = "GiftPageTab";
             this.GiftPageTab.Padding = new System.Windows.Forms.Padding(3);
-            this.GiftPageTab.Size = new System.Drawing.Size(620, 315);
+            this.GiftPageTab.Size = new System.Drawing.Size(793, 401);
             this.GiftPageTab.TabIndex = 7;
             this.GiftPageTab.Text = "Gifts ";
             this.GiftPageTab.UseVisualStyleBackColor = true;
@@ -361,7 +393,7 @@ namespace RetroFun
             this.SpeechzTab.Location = new System.Drawing.Point(4, 28);
             this.SpeechzTab.Name = "SpeechzTab";
             this.SpeechzTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SpeechzTab.Size = new System.Drawing.Size(620, 315);
+            this.SpeechzTab.Size = new System.Drawing.Size(793, 401);
             this.SpeechzTab.TabIndex = 9;
             this.SpeechzTab.Text = "Speechz";
             this.SpeechzTab.UseVisualStyleBackColor = true;
@@ -372,7 +404,7 @@ namespace RetroFun
             this.MiscellaneousTab.Location = new System.Drawing.Point(4, 28);
             this.MiscellaneousTab.Name = "MiscellaneousTab";
             this.MiscellaneousTab.Padding = new System.Windows.Forms.Padding(3);
-            this.MiscellaneousTab.Size = new System.Drawing.Size(620, 315);
+            this.MiscellaneousTab.Size = new System.Drawing.Size(793, 401);
             this.MiscellaneousTab.TabIndex = 3;
             this.MiscellaneousTab.Text = "Miscellaneous";
             this.MiscellaneousTab.UseVisualStyleBackColor = true;
@@ -380,19 +412,53 @@ namespace RetroFun
             // AlwaysOnTopChbx
             // 
             this.AlwaysOnTopChbx.AutoSize = true;
-            this.AlwaysOnTopChbx.Location = new System.Drawing.Point(518, 353);
+            this.AlwaysOnTopChbx.Location = new System.Drawing.Point(4, 439);
             this.AlwaysOnTopChbx.Name = "AlwaysOnTopChbx";
             this.AlwaysOnTopChbx.Size = new System.Drawing.Size(98, 17);
             this.AlwaysOnTopChbx.TabIndex = 0;
             this.AlwaysOnTopChbx.Text = "Always On Top";
             this.AlwaysOnTopChbx.UseVisualStyleBackColor = true;
             // 
+            // discoRoomLight1
+            // 
+            this.discoRoomLight1.BackColor = System.Drawing.Color.White;
+            this.discoRoomLight1.Density = 79;
+            this.discoRoomLight1.DiscoCooldown = 150;
+            this.discoRoomLight1.FlashDensity = 79;
+            this.discoRoomLight1.JustWallpapers = false;
+            this.discoRoomLight1.Location = new System.Drawing.Point(3, 3);
+            this.discoRoomLight1.Name = "discoRoomLight1";
+            this.discoRoomLight1.SelectedBlack = false;
+            this.discoRoomLight1.SelectedDarkBlue = false;
+            this.discoRoomLight1.SelectedGreen = false;
+            this.discoRoomLight1.SelectedLightblue = false;
+            this.discoRoomLight1.SelectedPurple = false;
+            this.discoRoomLight1.SelectedRed = false;
+            this.discoRoomLight1.SelectedYellow = false;
+            this.discoRoomLight1.Size = new System.Drawing.Size(665, 338);
+            this.discoRoomLight1.TabIndex = 0;
+            this.discoRoomLight1.TabStop = false;
+            // 
+            // moonLightFunPage1
+            // 
+            this.moonLightFunPage1.BackColor = System.Drawing.Color.White;
+            this.moonLightFunPage1.CustomColor = null;
+            this.moonLightFunPage1.Density = 79;
+            this.moonLightFunPage1.JustWallpapers = false;
+            this.moonLightFunPage1.LiveEditCooldown = 150;
+            this.moonLightFunPage1.Location = new System.Drawing.Point(154, 44);
+            this.moonLightFunPage1.Name = "moonLightFunPage1";
+            this.moonLightFunPage1.SelectedCustom = false;
+            this.moonLightFunPage1.Size = new System.Drawing.Size(458, 254);
+            this.moonLightFunPage1.TabIndex = 0;
+            this.moonLightFunPage1.TabStop = false;
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(628, 384);
+            this.ClientSize = new System.Drawing.Size(801, 457);
             this.Controls.Add(this.AlwaysOnTopChbx);
             this.Controls.Add(this.RetroFunTabs);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -408,6 +474,9 @@ namespace RetroFun
             this.DicePage.ResumeLayout(false);
             this.HoloTab.ResumeLayout(false);
             this.DiscoFunTab.ResumeLayout(false);
+            this.MoonlightPages.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.RoomBGTab.ResumeLayout(false);
             this.CatalogBuyEditor.ResumeLayout(false);
             this.GiftPageTab.ResumeLayout(false);
@@ -445,9 +514,13 @@ namespace RetroFun
         private Pages.GiftEditor GiftEditorPg;
         private Pages.StalkingPage StalkingPg;
         private Pages.AutoHoloDicePage AutoHoloDicePg;
-        private Pages.MoonLightFunPage MoonLightFunPg;
         private Pages.MiscellaneousPage MiscellaneousPg;
         private Pages.BuyFurniBruteforcerPage BuyFurniBruteforcerPg;
         private Pages.RoomBackFun RoomBackFunPg;
+        private Sulakore.Components.SKoreTabControl MoonlightPages;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private MoonLightFunPage moonLightFunPage1;
+        private DiscoRoomLight discoRoomLight1;
     }
 }

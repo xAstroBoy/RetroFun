@@ -28,9 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SMoonDiscoBtn = new Sulakore.Components.SKoreButton();
             this.OnlyWallChbx = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ColorBox = new System.Windows.Forms.GroupBox();
             this.ColorHTMLtxb = new System.Windows.Forms.TextBox();
             this.CustomBtx = new System.Windows.Forms.RadioButton();
             this.GreenBtx = new System.Windows.Forms.RadioButton();
@@ -42,50 +41,39 @@
             this.SetMoonBtx = new Sulakore.Components.SKoreButton();
             this.DensityNm = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.DiscoNumericcool = new System.Windows.Forms.NumericUpDown();
             this.LiveEditCoolNb = new System.Windows.Forms.NumericUpDown();
             this.LiveEditBtn = new Sulakore.Components.SKoreButton();
-            this.groupBox1.SuspendLayout();
+            this.ColorBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DensityNm)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DiscoNumericcool)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.LiveEditCoolNb)).BeginInit();
             this.SuspendLayout();
-            // 
-            // SMoonDiscoBtn
-            // 
-            this.SMoonDiscoBtn.Location = new System.Drawing.Point(15, 33);
-            this.SMoonDiscoBtn.Name = "SMoonDiscoBtn";
-            this.SMoonDiscoBtn.Size = new System.Drawing.Size(185, 20);
-            this.SMoonDiscoBtn.TabIndex = 42;
-            this.SMoonDiscoBtn.Text = "MoonLight Disco : Deactivated";
-            this.SMoonDiscoBtn.Click += new System.EventHandler(this.SMoonDiscoBtn_Click);
             // 
             // OnlyWallChbx
             // 
             this.OnlyWallChbx.AutoSize = true;
-            this.OnlyWallChbx.Location = new System.Drawing.Point(278, 170);
+            this.OnlyWallChbx.Location = new System.Drawing.Point(288, 85);
             this.OnlyWallChbx.Name = "OnlyWallChbx";
             this.OnlyWallChbx.Size = new System.Drawing.Size(98, 17);
             this.OnlyWallChbx.TabIndex = 43;
             this.OnlyWallChbx.Text = "Only Wallpaper";
             this.OnlyWallChbx.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // ColorBox
             // 
-            this.groupBox1.Controls.Add(this.ColorHTMLtxb);
-            this.groupBox1.Controls.Add(this.CustomBtx);
-            this.groupBox1.Controls.Add(this.GreenBtx);
-            this.groupBox1.Controls.Add(this.YellowBtx);
-            this.groupBox1.Controls.Add(this.RedBtx);
-            this.groupBox1.Controls.Add(this.PurpleBtx);
-            this.groupBox1.Controls.Add(this.DarkBluebtx);
-            this.groupBox1.Controls.Add(this.LightBluebtx);
-            this.groupBox1.Location = new System.Drawing.Point(15, 87);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(253, 100);
-            this.groupBox1.TabIndex = 44;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Colors";
+            this.ColorBox.Controls.Add(this.ColorHTMLtxb);
+            this.ColorBox.Controls.Add(this.CustomBtx);
+            this.ColorBox.Controls.Add(this.GreenBtx);
+            this.ColorBox.Controls.Add(this.YellowBtx);
+            this.ColorBox.Controls.Add(this.RedBtx);
+            this.ColorBox.Controls.Add(this.PurpleBtx);
+            this.ColorBox.Controls.Add(this.DarkBluebtx);
+            this.ColorBox.Controls.Add(this.LightBluebtx);
+            this.ColorBox.Location = new System.Drawing.Point(16, 8);
+            this.ColorBox.Name = "ColorBox";
+            this.ColorBox.Size = new System.Drawing.Size(253, 100);
+            this.ColorBox.TabIndex = 44;
+            this.ColorBox.TabStop = false;
+            this.ColorBox.Text = "Colors";
             // 
             // ColorHTMLtxb
             // 
@@ -132,12 +120,10 @@
             // RedBtx
             // 
             this.RedBtx.AutoSize = true;
-            this.RedBtx.Checked = true;
             this.RedBtx.Location = new System.Drawing.Point(83, 19);
             this.RedBtx.Name = "RedBtx";
             this.RedBtx.Size = new System.Drawing.Size(45, 17);
             this.RedBtx.TabIndex = 3;
-            this.RedBtx.TabStop = true;
             this.RedBtx.Text = "Red";
             this.RedBtx.UseVisualStyleBackColor = true;
             this.RedBtx.CheckedChanged += new System.EventHandler(this.RedBtx_CheckedChanged);
@@ -177,7 +163,7 @@
             // 
             // SetMoonBtx
             // 
-            this.SetMoonBtx.Location = new System.Drawing.Point(15, 252);
+            this.SetMoonBtx.Location = new System.Drawing.Point(16, 173);
             this.SetMoonBtx.Name = "SetMoonBtx";
             this.SetMoonBtx.Size = new System.Drawing.Size(185, 20);
             this.SetMoonBtx.TabIndex = 45;
@@ -186,7 +172,7 @@
             // 
             // DensityNm
             // 
-            this.DensityNm.Location = new System.Drawing.Point(277, 126);
+            this.DensityNm.Location = new System.Drawing.Point(287, 41);
             this.DensityNm.Maximum = new decimal(new int[] {
             255,
             0,
@@ -209,32 +195,15 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(275, 106);
+            this.label1.Location = new System.Drawing.Point(285, 21);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 13);
             this.label1.TabIndex = 47;
             this.label1.Text = "Density";
             // 
-            // DiscoNumericcool
-            // 
-            this.DiscoNumericcool.Location = new System.Drawing.Point(220, 33);
-            this.DiscoNumericcool.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.DiscoNumericcool.Name = "DiscoNumericcool";
-            this.DiscoNumericcool.Size = new System.Drawing.Size(88, 20);
-            this.DiscoNumericcool.TabIndex = 48;
-            this.DiscoNumericcool.Value = new decimal(new int[] {
-            79,
-            0,
-            0,
-            0});
-            // 
             // LiveEditCoolNb
             // 
-            this.LiveEditCoolNb.Location = new System.Drawing.Point(220, 210);
+            this.LiveEditCoolNb.Location = new System.Drawing.Point(221, 131);
             this.LiveEditCoolNb.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -251,33 +220,29 @@
             // 
             // LiveEditBtn
             // 
-            this.LiveEditBtn.Location = new System.Drawing.Point(15, 210);
+            this.LiveEditBtn.Location = new System.Drawing.Point(16, 131);
             this.LiveEditBtn.Name = "LiveEditBtn";
             this.LiveEditBtn.Size = new System.Drawing.Size(185, 20);
             this.LiveEditBtn.TabIndex = 50;
             this.LiveEditBtn.Text = "Live editing: Deactivated";
             this.LiveEditBtn.Click += new System.EventHandler(this.LiveEditBtn_Click);
             // 
-            // MoonLightFun
+            // MoonLightFunPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LiveEditBtn);
             this.Controls.Add(this.LiveEditCoolNb);
-            this.Controls.Add(this.DiscoNumericcool);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DensityNm);
             this.Controls.Add(this.SetMoonBtx);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.ColorBox);
             this.Controls.Add(this.OnlyWallChbx);
-            this.Controls.Add(this.SMoonDiscoBtn);
-            this.Name = "MoonLightFun";
-
-            this.Size = new System.Drawing.Size(398, 275);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Name = "MoonLightFunPage";
+            this.Size = new System.Drawing.Size(421, 275);
+            this.ColorBox.ResumeLayout(false);
+            this.ColorBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DensityNm)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DiscoNumericcool)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.LiveEditCoolNb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -285,10 +250,8 @@
         }
 
         #endregion
-
-        private Sulakore.Components.SKoreButton SMoonDiscoBtn;
         private System.Windows.Forms.CheckBox OnlyWallChbx;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox ColorBox;
         private System.Windows.Forms.RadioButton CustomBtx;
         private System.Windows.Forms.RadioButton GreenBtx;
         private System.Windows.Forms.RadioButton YellowBtx;
@@ -300,7 +263,6 @@
         private Sulakore.Components.SKoreButton SetMoonBtx;
         private System.Windows.Forms.NumericUpDown DensityNm;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown DiscoNumericcool;
         private System.Windows.Forms.NumericUpDown LiveEditCoolNb;
         private Sulakore.Components.SKoreButton LiveEditBtn;
     }

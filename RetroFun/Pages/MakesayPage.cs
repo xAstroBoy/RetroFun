@@ -70,11 +70,14 @@ namespace RetroFun.Pages
         private void RoomUserEnterRoom(DataInterceptedEventArgs obj)
         {
             HEntity[] array = HEntity.Parse(obj.Packet);
-            foreach (HEntity hentity in array)
+            if (array.Length != 0)
             {
-                if (!users.ContainsKey(hentity.Id))
+                foreach (HEntity hentity in array)
                 {
-                    users.Add(hentity.Id, hentity);
+                    if (!users.ContainsKey(hentity.Id))
+                    {
+                        users.Add(hentity.Id, hentity);
+                    }
                 }
             }
             WriteRegistrationUsers(users.Count);
@@ -102,10 +105,10 @@ namespace RetroFun.Pages
         private void RoomUserLeft(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
-            var ohgodohfuckohnoEntity = users.Values.FirstOrDefault(ent => ent.Index == index);
-            if (ohgodohfuckohnoEntity == null) return;
+            var UserLeaveEntity = users.Values.FirstOrDefault(ent => ent.Index == index);
+            if (UserLeaveEntity == null) return;
 
-            users.Remove(ohgodohfuckohnoEntity.Id);
+            users.Remove(UserLeaveEntity.Id);
             WriteRegistrationUsers(users.Count);
         }
 
@@ -115,14 +118,6 @@ namespace RetroFun.Pages
             Invoke((MethodInvoker)delegate
             {
                 TotUserRegistered.Text = count.ToString();
-            });
-        }
-
-        private void WriteSelectedUser(string text)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                SelectUserLabel.Text = text;
             });
         }
 

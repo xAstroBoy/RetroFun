@@ -21,8 +21,6 @@ namespace RetroFun.Pages
             Bind(FreezeMovementCheck, "Checked", nameof(FreezeUserMovement));
             Bind(NoFriendRemove, "Checked", nameof(AntiFriendRemove));
 
-             //Triggers.OutAttach(Out.RemoveFriend, BlockFriendRemoval);
-            //Triggers.InAttach(In.CatalogPage, );
             if (Program.Master != null)
             {
                 Triggers.OutAttach(Out.RemoveFriend, BlockFriendRemoval);
@@ -42,16 +40,6 @@ namespace RetroFun.Pages
             }	
         }
 
-        private int _TrollSpeedChat;
-        public int TrollSpeedChat
-        {
-            get => _TrollSpeedChat;
-            set
-            {
-                _TrollSpeedChat = value;
-                RaiseOnPropertyChanged();
-            }
-        }
 
         private bool _FreezeUserMovement;
         public bool FreezeUserMovement

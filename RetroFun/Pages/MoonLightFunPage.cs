@@ -29,22 +29,13 @@ namespace RetroFun.Pages
         private readonly string Red = "EA4532";
         private readonly string Yellow = "F2F851";
         private readonly string Green = "82F349";
+        private readonly string Black = "000000";
 
-        private bool DiscoLight;
         private bool LiveEditing;
 
-        private int _DiscoCooldown;
-        public int DiscoCooldown
-        {
-            get => _DiscoCooldown;
-            set
-            {
-                _DiscoCooldown = value;
-                RaiseOnPropertyChanged();
-            }
-        }
 
-        private int _LiveEditCooldown;
+
+        private int _LiveEditCooldown = 150;
         public int LiveEditCooldown
         {
             get => _LiveEditCooldown;
@@ -55,7 +46,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private int _Density;
+        private int _Density = 79;
         public int Density
         {
             get => _Density;
@@ -107,17 +98,11 @@ namespace RetroFun.Pages
         public MoonLightFunPage()
         {
             InitializeComponent();
-            Bind(DiscoNumericcool, "Value", nameof(DiscoCooldown));
             Bind(DensityNm, "Value", nameof(Density));
             Bind(OnlyWallChbx, "checked", nameof(JustWallpapers));
             Bind(LiveEditCoolNb, "Value", nameof(LiveEditCooldown));
             Bind(ColorHTMLtxb, "Text", nameof(CustomColor));
-            //Bind(LightBluebtx, "checked", nameof(SelectedLightblue));
-            //Bind(DarkBluebtx, "checked", nameof(SelectedDarkBlue));
-            //Bind(PurpleBtx, "checked", nameof(SelectedPurple));
-            //Bind(RedBtx, "checked", nameof(SelectedRed));
-            //Bind(YellowBtx, "checked", nameof(SelectedYellow));
-            //Bind(GreenBtx, "checked", nameof(SelectedGreen));
+
             Bind(CustomBtx, "checked", nameof(SelectedCustom));
 
 
@@ -134,6 +119,19 @@ namespace RetroFun.Pages
         //{i:76} ( Density , use numberupanddown)
         //{b:True} ???
 
+
+        public void DeactivateAll()
+        {
+            LiveEditing = false;
+            EnableGroup(ColorBox, false);
+            EnableButton(SetMoonBtx, false);
+        }
+
+        public void EnableAll()
+        {
+            EnableGroup(ColorBox, true);
+            EnableButton(SetMoonBtx, true);
+        }
 
         private void SetMoonBtx_Click(object sender, EventArgs e)
         {
@@ -152,35 +150,27 @@ namespace RetroFun.Pages
             });
         }
 
-
-        private void SMoonDiscoBtn_Click(object sender, EventArgs e)
-        {
-            CheckDisco();
-        }
-
-
-        private void CheckDisco()
-        {
-            if (DiscoLight)
-            {
-                DiscoLight = false;
-                EnableButton(LiveEditBtn, true);
-                WriteToButton(SMoonDiscoBtn, "MoonLight Disco : Deactivated");
-            }
-            else
-            {
-                DiscoLight = true;
-                EnableButton(LiveEditBtn, false);
-                WriteToButton(SMoonDiscoBtn, "MoonLight Disco : Activated");
-                StartDisco();
-            }
-        }
-
         private void EnableButton(SKoreButton button, bool enabled)
         {
             Invoke((MethodInvoker)delegate
             {
                 button.Enabled = enabled;
+            });
+        }
+
+        private void RadioCheck(RadioButton button, bool enabled)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                button.Enabled = enabled;
+            });
+        }
+
+        private void EnableGroup(GroupBox group, bool enabled)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                group.Enabled = enabled;
             });
         }
 
@@ -197,13 +187,11 @@ namespace RetroFun.Pages
             if (LiveEditing)
             {
                 LiveEditing = false;
-                EnableButton(SMoonDiscoBtn, true);
                 WriteToButton(LiveEditBtn, "Live editing: Deactivated");
             }
             else
             {
                 LiveEditing = true;
-                EnableButton(SMoonDiscoBtn, false);
                 WriteToButton(LiveEditBtn, "Live editing: Activated");
                 LiveEdit();
             }
@@ -274,29 +262,7 @@ namespace RetroFun.Pages
             CheckLiveEdit();
         }
 
-        private void StartDisco()
-        {
-            new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                do
-                {
-                    SendMoodLightPacket(3, LightBlue, Density);
-                    Thread.Sleep(DiscoCooldown);
-                    SendMoodLightPacket(3, DarkBlue, Density);
-                    Thread.Sleep(DiscoCooldown);
-                    SendMoodLightPacket(3, Purple, Density);
-                    Thread.Sleep(DiscoCooldown);
-                    SendMoodLightPacket(3, Red, Density);
-                    Thread.Sleep(DiscoCooldown);
-                    SendMoodLightPacket(3, Yellow, Density);
-                    Thread.Sleep(DiscoCooldown);
-                    SendMoodLightPacket(3, Green, Density);
-                    Thread.Sleep(DiscoCooldown);
-                } while (DiscoLight);
 
-            }).Start();
-        }
 
 
         private void LiveEdit()
@@ -306,6 +272,7 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
+                
                  SendMoodLightPacket(2, CustomColor, Density);
                  Thread.Sleep(LiveEditCooldown);
                 } while (LiveEditing);

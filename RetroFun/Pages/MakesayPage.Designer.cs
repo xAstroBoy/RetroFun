@@ -64,7 +64,7 @@
             this.groupBox1.Controls.Add(this.RadioShout);
             this.groupBox1.Controls.Add(this.radioNormal);
             this.groupBox1.Location = new System.Drawing.Point(3, 75);
-            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Name = "FlashableColors";
             this.groupBox1.Size = new System.Drawing.Size(133, 100);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
@@ -77,7 +77,6 @@
             this.RadioWhisper.Name = "RadioWhisper";
             this.RadioWhisper.Size = new System.Drawing.Size(64, 17);
             this.RadioWhisper.TabIndex = 2;
-            this.RadioWhisper.TabStop = true;
             this.RadioWhisper.Text = "Whisper";
             this.RadioWhisper.UseVisualStyleBackColor = true;
             // 
@@ -88,13 +87,13 @@
             this.RadioShout.Name = "RadioShout";
             this.RadioShout.Size = new System.Drawing.Size(53, 17);
             this.RadioShout.TabIndex = 1;
-            this.RadioShout.TabStop = true;
             this.RadioShout.Text = "Shout";
             this.RadioShout.UseVisualStyleBackColor = true;
             // 
             // radioNormal
             // 
             this.radioNormal.AutoSize = true;
+            this.radioNormal.Checked = true;
             this.radioNormal.Location = new System.Drawing.Point(6, 25);
             this.radioNormal.Name = "radioNormal";
             this.radioNormal.Size = new System.Drawing.Size(58, 17);

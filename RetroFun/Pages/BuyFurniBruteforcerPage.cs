@@ -74,7 +74,7 @@ namespace RetroFun.Pages
         }
 
 
-        private string _TextBox;
+        private string _TextBox = "";
         public string TextBox
         {
             get => _TextBox;

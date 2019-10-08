@@ -45,8 +45,6 @@ namespace RetroFun
             };
 
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));
-
-            IsAlwaysOnTop = true;
         }
 
         public override void HandleOutgoing(DataInterceptedEventArgs e)
@@ -74,5 +72,6 @@ namespace RetroFun
                     sub.InPurchaseOk(e);
             }
         }
+
     }
 }

@@ -75,7 +75,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private int _SpeedTimer;
+        private int _SpeedTimer = 100;
         public int SpeedTimer
         {
             get => _SpeedTimer;
@@ -86,7 +86,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private int _PageIDInt;
+        private int _PageIDInt = 0;
         public int PageIDInt
         {
             get => _PageIDInt;
@@ -97,7 +97,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private int _FurniIDint;
+        private int _FurniIDint = 0;
         public int FurniIDint
         {
             get => _FurniIDint;
@@ -307,9 +307,6 @@ namespace RetroFun.Pages
 
         private void SendTestPacket(string GiftBoxTest)
         {
-
-
-
             Connection.SendToServerAsync(
             Out.CatalogBuyItemAsGift,
             PageIDInt,

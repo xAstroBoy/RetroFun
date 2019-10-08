@@ -83,6 +83,12 @@
     <Compile Include="Pages\BuyFurniBruteforcerPage.Designer.cs">
       <DependentUpon>BuyFurniBruteforcerPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\DiscoRoomLight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\DiscoRoomLight.Designer.cs">
+      <DependentUpon>DiscoRoomLight.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\GiftEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\BuyFurniBruteforcerPage.resx">
       <DependentUpon>BuyFurniBruteforcerPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\DiscoRoomLight.resx">
+      <DependentUpon>DiscoRoomLight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\GiftEditor.resx">
       <DependentUpon>GiftEditor.cs</DependentUpon>

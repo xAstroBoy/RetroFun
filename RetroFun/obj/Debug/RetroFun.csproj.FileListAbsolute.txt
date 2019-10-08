@@ -6,12 +6,16 @@ C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\bin\Debug\Sulakore.dll
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\bin\Debug\Tangine.dll
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.MainFrm.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.AutoHoloDicePage.resources
+C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.BuyFurniBruteforcerPage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.GiftEditor.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.MakeSayPage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.ChatPage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.FurniturePage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.MiscellaneousPage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.DicePage.resources
+C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.MoonLightFunPage.resources
+C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.RoomBackFun.resources
+C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.SpeechzPage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.StalkingPage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Properties.Resources.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.GenerateResource.cache
@@ -19,8 +23,4 @@ C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.Core
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.CopyComplete
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.exe
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.pdb
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.RoomBackFun.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.BuyFurniBruteforcerPage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.MoonLightFunPage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.SpeechzPage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache
+C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.DiscoRoomLight.resources
