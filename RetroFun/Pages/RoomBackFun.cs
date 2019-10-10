@@ -269,11 +269,11 @@ namespace RetroFun.Pages
             if (isLiveEditing)
             {
                 isLiveEditing = false;
-                WriteToButton(LiveEditBtn, "Live Edit Mode : Disabled");
+                WriteToButton(LiveEditBtn, "Live Edit Mode : Off");
             }
             else
             {
-                WriteToButton(LiveEditBtn, "Live Edit Mode : Enabled");
+                WriteToButton(LiveEditBtn, "Live Edit Mode : On");
                 isLiveEditing = true;
                 StartLiveEditMode();
             }

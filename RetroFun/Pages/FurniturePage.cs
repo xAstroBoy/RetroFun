@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using RetroFun.Controls;
 using Sulakore.Communication;
+using Sulakore.Protocol;
 
 namespace RetroFun.Pages
 {
@@ -10,6 +11,9 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class FurniturePage : ObservablePage
     {
+
+        private HMessage FurniDataStored;
+
         private bool _doubleClickFurnitureRemoval;
         public bool DoubleClickFurnitureRemoval
         {
@@ -63,10 +67,22 @@ namespace RetroFun.Pages
             if (Program.Master != null)
             {
                 Triggers.OutAttach(Out.RoomPickupItem, RoomPickupItem);
+                Triggers.InAttach(In.RoomFloorItems, StoreRoomFurniData);
+
                 //Triggers.OutAttach(Out.RotateMoveItem, RotateMoveItems);
                 //Triggers.InAttach(In.FloorItemUpdate, temporary);
             }
         }
+
+
+        private void StoreRoomFurniData(DataInterceptedEventArgs obj)
+        {
+            FurniDataStored = obj.Packet;
+            obj.Continue();
+        }
+        
+
+
 
         private void RemoveWallItemBtn_Click(object sender, EventArgs e)
         {
@@ -89,22 +105,22 @@ namespace RetroFun.Pages
                 RemoveFloorItem(furnitureIdString);
             }
         }
-        private void ToggleWallItem(DataInterceptedEventArgs obj)
-        {
-            if (DoubleClickFurnitureRemoval)
-            {
-                obj.IsBlocked = true;
-                RemoveWallItem(obj.Packet.ReadInteger().ToString());
-            }
-        }
-        private void ToggleFloorItem(DataInterceptedEventArgs obj)
-        {
-            if (DoubleClickFurnitureRemoval)
-            {
-                obj.IsBlocked = true;
-                RemoveFloorItem(obj.Packet.ReadInteger().ToString());
-            }
-        }
+        //private void ToggleWallItem(DataInterceptedEventArgs obj)
+        //{
+        //    if (DoubleClickFurnitureRemoval)
+        //    {
+        //        obj.IsBlocked = true;
+        //        RemoveWallItem(obj.Packet.ReadInteger().ToString());
+        //    }
+        //}
+        //private void ToggleFloorItem(DataInterceptedEventArgs obj)
+        //{
+        //    if (DoubleClickFurnitureRemoval)
+        //    {
+        //        obj.IsBlocked = true;
+        //        RemoveFloorItem(obj.Packet.ReadInteger().ToString());
+        //    }
+        //}
         //private void temporary(DataInterceptedEventArgs obj)
         //{
         //    int one = obj.Packet.ReadInteger();
@@ -189,6 +205,16 @@ namespace RetroFun.Pages
             {
                 button.Checked = value;
             });
+        }
+
+        private void AcquireMODPermissionsBtn_Click(object sender, EventArgs e)
+        {
+            Connection.SendToClientAsync(In.UserPermissions, int.MaxValue, int.MaxValue, true);
+        }
+
+        private void RestoreFurnisBtn_Click(object sender, EventArgs e)
+        {
+            Connection.SendToClientAsync(FurniDataStored);
         }
     }
 }

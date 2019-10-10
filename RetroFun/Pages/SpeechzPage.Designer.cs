@@ -285,7 +285,7 @@
             this.btn_pause.Visible = false;
             this.btn_pause.Click += new System.EventHandler(this.btn_pause_Click);
             // 
-            // Speechz
+            // SpeechzPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -306,7 +306,7 @@
             this.Controls.Add(this.lbl_speechtext_title);
             this.Controls.Add(this.txt_speechtext);
             this.Controls.Add(this.grp_counting_direction);
-            this.Name = "Speechz";
+            this.Name = "SpeechzPage";
             this.Size = new System.Drawing.Size(497, 276);
             ((System.ComponentModel.ISupportInitialize)(this.nmr_bubbletype)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmr_interval)).EndInit();
@@ -320,7 +320,7 @@
         }
 
         #endregion
-
+        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.TextBox txt_speechtext;
         private System.Windows.Forms.Label lbl_speechtext_title;
         private System.Windows.Forms.Label lbl_speechtext_desc;
@@ -335,7 +335,6 @@
         private System.Windows.Forms.RadioButton rdo_server;
         private System.Windows.Forms.Label lbl_sendto_title;
         private System.Windows.Forms.Label lbl_sendto_desc;
-        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.GroupBox grp_bubble_type_counting;
         private System.Windows.Forms.RadioButton rdo_manual_value;
         private System.Windows.Forms.RadioButton rdo_live_counting;

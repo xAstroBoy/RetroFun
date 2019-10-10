@@ -64,7 +64,7 @@
             this.groupBox1.Controls.Add(this.RadioShout);
             this.groupBox1.Controls.Add(this.radioNormal);
             this.groupBox1.Location = new System.Drawing.Point(3, 75);
-            this.groupBox1.Name = "FlashableColors";
+            this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(133, 100);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;

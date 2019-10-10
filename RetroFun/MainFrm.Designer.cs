@@ -83,10 +83,14 @@ namespace RetroFun
             // 
             this.ChatPg.AntiBobbaFilter = false;
             this.ChatPg.BackColor = System.Drawing.Color.White;
+            this.ChatPg.ForceChatSpeak = false;
+            this.ChatPg.ForceNormalSpeak = true;
+            this.ChatPg.ForceShoutChat = false;
+            this.ChatPg.ForceWhisperChat = false;
             this.ChatPg.HideSpeakingBubble = false;
-            this.ChatPg.Location = new System.Drawing.Point(57, 6);
+            this.ChatPg.Location = new System.Drawing.Point(6, 0);
             this.ChatPg.Name = "ChatPg";
-            this.ChatPg.Size = new System.Drawing.Size(465, 263);
+            this.ChatPg.Size = new System.Drawing.Size(787, 398);
             this.ChatPg.TabIndex = 0;
             this.ChatPg.TabStop = false;
             this.ChatPg.UseSelectedBubble = false;
@@ -95,46 +99,48 @@ namespace RetroFun
             // 
             this.DicePg.BackColor = System.Drawing.Color.White;
             this.DicePg.IsRegistrationMode = false;
-            this.DicePg.Location = new System.Drawing.Point(79, 16);
+            this.DicePg.Location = new System.Drawing.Point(3, 3);
             this.DicePg.Name = "DicePg";
-            this.DicePg.Size = new System.Drawing.Size(465, 263);
+            this.DicePg.Size = new System.Drawing.Size(790, 395);
             this.DicePg.TabIndex = 0;
             this.DicePg.TabStop = false;
             // 
             // FurniPg
             // 
             this.FurniPg.BackColor = System.Drawing.Color.White;
+            this.FurniPg.ButtonRotateMoveItem = false;
+            this.FurniPg.DoubleClickFurnitureRemoval = false;
             this.FurniPg.FurnitureIdText = "";
-            this.FurniPg.Location = new System.Drawing.Point(178, 50);
+            this.FurniPg.Location = new System.Drawing.Point(6, 3);
             this.FurniPg.Name = "FurniPg";
-            this.FurniPg.Size = new System.Drawing.Size(275, 199);
+            this.FurniPg.Size = new System.Drawing.Size(787, 395);
             this.FurniPg.TabIndex = 0;
             this.FurniPg.TabStop = false;
             // 
             // MakeSayPg
             // 
             this.MakeSayPg.BackColor = System.Drawing.Color.White;
-            this.MakeSayPg.Location = new System.Drawing.Point(72, 24);
+            this.MakeSayPg.Location = new System.Drawing.Point(3, 0);
             this.MakeSayPg.Name = "MakeSayPg";
-            this.MakeSayPg.Size = new System.Drawing.Size(465, 263);
+            this.MakeSayPg.Size = new System.Drawing.Size(787, 395);
             this.MakeSayPg.TabIndex = 0;
             this.MakeSayPg.TabStop = false;
             // 
             // SpeechzPg
             // 
             this.SpeechzPg.BackColor = System.Drawing.Color.White;
-            this.SpeechzPg.Location = new System.Drawing.Point(66, 19);
+            this.SpeechzPg.Location = new System.Drawing.Point(0, 0);
             this.SpeechzPg.Name = "SpeechzPg";
-            this.SpeechzPg.Size = new System.Drawing.Size(472, 276);
+            this.SpeechzPg.Size = new System.Drawing.Size(793, 401);
             this.SpeechzPg.TabIndex = 0;
             this.SpeechzPg.TabStop = false;
             // 
             // StalkingPg
             // 
             this.StalkingPg.BackColor = System.Drawing.Color.White;
-            this.StalkingPg.Location = new System.Drawing.Point(69, 30);
+            this.StalkingPg.Location = new System.Drawing.Point(3, 0);
             this.StalkingPg.Name = "StalkingPg";
-            this.StalkingPg.Size = new System.Drawing.Size(465, 263);
+            this.StalkingPg.Size = new System.Drawing.Size(787, 401);
             this.StalkingPg.TabIndex = 0;
             this.StalkingPg.TabStop = false;
             // 
@@ -145,12 +151,13 @@ namespace RetroFun
             this.GiftEditorPg.FurnIIDBruteforcerEnabled = false;
             this.GiftEditorPg.FurniIDint = 0;
             this.GiftEditorPg.GlobalBruteforcerEnabled = false;
-            this.GiftEditorPg.Location = new System.Drawing.Point(60, 18);
+            this.GiftEditorPg.isAnonymous = false;
+            this.GiftEditorPg.Location = new System.Drawing.Point(0, 0);
             this.GiftEditorPg.Name = "GiftEditorPg";
             this.GiftEditorPg.PageIDBruteForcerEnabled = false;
             this.GiftEditorPg.PageIDInt = 0;
             this.GiftEditorPg.Purchased = false;
-            this.GiftEditorPg.Size = new System.Drawing.Size(477, 273);
+            this.GiftEditorPg.Size = new System.Drawing.Size(793, 405);
             this.GiftEditorPg.SpeedTimer = 6000;
             this.GiftEditorPg.TabIndex = 0;
             this.GiftEditorPg.TabStop = false;
@@ -171,30 +178,51 @@ namespace RetroFun
             // 
             // MiscellaneousPg
             // 
+            this.MiscellaneousPg.AntiFriendRemove = true;
+            this.MiscellaneousPg.SignCounterCoolDown = 500;
+            this.MiscellaneousPg.ActionsCooldown = 150;
+            this.MiscellaneousPg.SitsCooldown = 50;
             this.MiscellaneousPg.BackColor = System.Drawing.Color.White;
-            this.MiscellaneousPg.Location = new System.Drawing.Point(8, 21);
+            this.MiscellaneousPg.Location = new System.Drawing.Point(0, 0);
             this.MiscellaneousPg.Name = "MiscellaneousPg";
-            this.MiscellaneousPg.Size = new System.Drawing.Size(425, 263);
+            this.MiscellaneousPg.Size = new System.Drawing.Size(793, 401);
             this.MiscellaneousPg.TabIndex = 0;
             this.MiscellaneousPg.TabStop = false;
             // 
             // BuyFurniBruteforcerPg
             // 
             this.BuyFurniBruteforcerPg.BackColor = System.Drawing.Color.White;
-            this.BuyFurniBruteforcerPg.Location = new System.Drawing.Point(72, 26);
+            this.BuyFurniBruteforcerPg.EnableLoop = false;
+            this.BuyFurniBruteforcerPg.FurniIDint1 = 0;
+            this.BuyFurniBruteforcerPg.Location = new System.Drawing.Point(3, 3);
             this.BuyFurniBruteforcerPg.Name = "BuyFurniBruteforcerPg";
-            this.BuyFurniBruteforcerPg.Size = new System.Drawing.Size(475, 269);
+            this.BuyFurniBruteforcerPg.PageIDInt1 = 0;
+            this.BuyFurniBruteforcerPg.PurchaseSuccess = false;
+            this.BuyFurniBruteforcerPg.Size = new System.Drawing.Size(790, 395);
+            this.BuyFurniBruteforcerPg.SpeedTimer1 = 0;
             this.BuyFurniBruteforcerPg.TabIndex = 0;
             this.BuyFurniBruteforcerPg.TabStop = false;
+            this.BuyFurniBruteforcerPg.TextBox = "";
             // 
             // RoomBackFunPg
             // 
             this.RoomBackFunPg.BackColor = System.Drawing.Color.White;
-            this.RoomBackFunPg.Location = new System.Drawing.Point(18, 6);
+            this.RoomBackFunPg.CaptureMode = false;
+            this.RoomBackFunPg.FurniID = 0;
+            this.RoomBackFunPg.GlobalSpeed = 150;
+            this.RoomBackFunPg.GlobalSpeedSwitch = false;
+            this.RoomBackFunPg.LiveEditSpeed = 150;
+            this.RoomBackFunPg.Location = new System.Drawing.Point(0, 0);
+            this.RoomBackFunPg.Luminosity = 0;
             this.RoomBackFunPg.Name = "RoomBackFunPg";
-            this.RoomBackFunPg.Size = new System.Drawing.Size(578, 270);
+            this.RoomBackFunPg.Saturation = 0;
+            this.RoomBackFunPg.Size = new System.Drawing.Size(793, 401);
+            this.RoomBackFunPg.SpeedLuminosity = 150;
+            this.RoomBackFunPg.SpeedSaturation = 150;
+            this.RoomBackFunPg.SpeedTonality = 150;
             this.RoomBackFunPg.TabIndex = 2;
             this.RoomBackFunPg.TabStop = false;
+            this.RoomBackFunPg.Tonality = 0;
             // 
             // RetroFunTabs
             // 
@@ -310,7 +338,7 @@ namespace RetroFun
             this.MoonlightPages.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.MoonlightPages.TabIndex = 1;
             // 
-            // tabPage2
+            // MoonLightTab
             // 
             this.MoonLightTab.Controls.Add(this.MoonLightFunPg);
             this.MoonLightTab.Location = new System.Drawing.Point(4, 28);
@@ -321,17 +349,17 @@ namespace RetroFun
             this.MoonLightTab.Text = "MoonLight";
             this.MoonLightTab.UseVisualStyleBackColor = true;
             // 
-            // moonLightFunPage1
+            // MoonLightFunPg
             // 
             this.MoonLightFunPg.BackColor = System.Drawing.Color.White;
             this.MoonLightFunPg.CustomColor = null;
             this.MoonLightFunPg.Density = 79;
             this.MoonLightFunPg.JustWallpapers = false;
             this.MoonLightFunPg.LiveEditCooldown = 150;
-            this.MoonLightFunPg.Location = new System.Drawing.Point(154, 44);
-            this.MoonLightFunPg.Name = "moonLightFunPage1";
+            this.MoonLightFunPg.Location = new System.Drawing.Point(8, 3);
+            this.MoonLightFunPg.Name = "MoonLightFunPg";
             this.MoonLightFunPg.SelectedCustom = false;
-            this.MoonLightFunPg.Size = new System.Drawing.Size(458, 254);
+            this.MoonLightFunPg.Size = new System.Drawing.Size(778, 363);
             this.MoonLightFunPg.TabIndex = 0;
             this.MoonLightFunPg.TabStop = false;
             // 
@@ -346,13 +374,23 @@ namespace RetroFun
             this.tabPage1.Text = "Disco";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // discoRoomLight1
+            // DiscoRoomFunPg
             // 
             this.DiscoRoomFunPg.BackColor = System.Drawing.Color.White;
+            this.DiscoRoomFunPg.Density = 79;
+            this.DiscoRoomFunPg.DiscoCooldown = 150;
+            this.DiscoRoomFunPg.FlashDensity = 79;
             this.DiscoRoomFunPg.JustWallpapers = false;
             this.DiscoRoomFunPg.Location = new System.Drawing.Point(3, 3);
-            this.DiscoRoomFunPg.Name = "discoRoomLight1";
-            this.DiscoRoomFunPg.Size = new System.Drawing.Size(665, 338);
+            this.DiscoRoomFunPg.Name = "DiscoRoomFunPg";
+            this.DiscoRoomFunPg.SelectedBlack = false;
+            this.DiscoRoomFunPg.SelectedDarkBlue = false;
+            this.DiscoRoomFunPg.SelectedGreen = false;
+            this.DiscoRoomFunPg.SelectedLightblue = false;
+            this.DiscoRoomFunPg.SelectedPurple = false;
+            this.DiscoRoomFunPg.SelectedRed = false;
+            this.DiscoRoomFunPg.SelectedYellow = false;
+            this.DiscoRoomFunPg.Size = new System.Drawing.Size(786, 364);
             this.DiscoRoomFunPg.TabIndex = 0;
             this.DiscoRoomFunPg.TabStop = false;
             // 

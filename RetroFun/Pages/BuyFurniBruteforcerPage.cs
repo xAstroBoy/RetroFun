@@ -129,12 +129,12 @@ namespace RetroFun.Pages
             if (EnableLoop)
             {
                 EnableLoop = false;
-                WriteToButton(CatalogueSButtonLoopToggle, "Buy On loop : Disabled");
+                WriteToButton(CatalogueSButtonLoopToggle, "Buy On loop : Off");
             }
             else
             {
                 EnableLoop = true;
-                WriteToButton(CatalogueSButtonLoopToggle, "Buy On loop : Enabled");
+                WriteToButton(CatalogueSButtonLoopToggle, "Buy On loop : On");
                 StartLoop();
             }
         }
@@ -149,7 +149,7 @@ namespace RetroFun.Pages
                 EnableButton(CataloguePageIdBruteforcerbtx, true);
                 EnableNButton(CataloguePageIDBox, true);
                 EnableNButton(CatalogueFurniIDBox, true);
-                WriteToButton(CatalogueFurnIDBruteForcerbtx, "FurniID Bruteforcer : Disabled");
+                WriteToButton(CatalogueFurnIDBruteForcerbtx, "FurniID Bruteforcer : Off");
             }
             else
             {
@@ -158,7 +158,7 @@ namespace RetroFun.Pages
                 EnableButton(CataloguePageIdBruteforcerbtx, false);
                 EnableNButton(CataloguePageIDBox, false);
                 EnableNButton(CatalogueFurniIDBox, false);
-                WriteToButton(CatalogueFurnIDBruteForcerbtx, "FurniID Bruteforcer : Enabled");
+                WriteToButton(CatalogueFurnIDBruteForcerbtx, "FurniID Bruteforcer : On");
                 BruteForceFurniID();
             }
         }
@@ -172,7 +172,7 @@ namespace RetroFun.Pages
                 EnableButton(CatalogueFurnIDBruteForcerbtx, true);
                 EnableNButton(CataloguePageIDBox, true);
                 EnableNButton(CatalogueFurniIDBox, true);
-                WriteToButton(CataloguePageIdBruteforcerbtx, "PageID Bruteforcer : Disabled");
+                WriteToButton(CataloguePageIdBruteforcerbtx, "PageID Bruteforcer : Off");
             }
             else
             {
@@ -181,7 +181,7 @@ namespace RetroFun.Pages
                 EnableButton(CatalogueFurnIDBruteForcerbtx, false);
                 EnableNButton(CataloguePageIDBox, false);
                 EnableNButton(CatalogueFurniIDBox, false);
-                WriteToButton(CataloguePageIdBruteforcerbtx, "PageID Bruteforcer : Enabled");
+                WriteToButton(CataloguePageIdBruteforcerbtx, "PageID Bruteforcer : On");
                 BruteForcePageID();
             }
         }
@@ -195,7 +195,7 @@ namespace RetroFun.Pages
                 EnableButton(CatalogueFurnIDBruteForcerbtx, true);
                 EnableNButton(CataloguePageIDBox, true);
                 EnableNButton(CatalogueFurniIDBox, true);
-                WriteToButton(CatalogueBruteForceBtn, "BruteForcer : Disabled");
+                WriteToButton(CatalogueBruteForceBtn, "BruteForcer : Off");
             }
             else
             {
@@ -204,7 +204,7 @@ namespace RetroFun.Pages
                 EnableButton(CatalogueFurnIDBruteForcerbtx, false);
                 EnableNButton(CataloguePageIDBox, false);
                 EnableNButton(CatalogueFurniIDBox, false);
-                WriteToButton(CatalogueBruteForceBtn, "BruteForcer : Enabled");
+                WriteToButton(CatalogueBruteForceBtn, "BruteForcer : On");
                 GlobalBruteForcer();
             }
         }
@@ -290,7 +290,7 @@ namespace RetroFun.Pages
                         EnableButton(CatalogueFurnIDBruteForcerbtx, true);
                         EnableNButton(CataloguePageIDBox, true);
                         EnableNButton(CatalogueFurniIDBox, true);
-                        WriteToButton(CataloguePageIdBruteforcerbtx, "PageID Bruteforcer : Disabled");
+                        WriteToButton(CataloguePageIdBruteforcerbtx, "PageID Bruteforcer : Off");
                         Thread.CurrentThread.Abort();
                         return;
                     }
@@ -325,7 +325,7 @@ namespace RetroFun.Pages
                         EnableButton(CataloguePageIdBruteforcerbtx, true);
                         EnableNButton(CataloguePageIDBox, true);
                         EnableNButton(CatalogueFurniIDBox, true);
-                        WriteToButton(CatalogueFurnIDBruteForcerbtx, "FurniID Bruteforcer : Disabled");
+                        WriteToButton(CatalogueFurnIDBruteForcerbtx, "FurniID Bruteforcer : Off");
                         Thread.CurrentThread.Abort();
                         return;
                     }
@@ -364,7 +364,7 @@ namespace RetroFun.Pages
                             EnableButton(CatalogueFurnIDBruteForcerbtx, true);
                             EnableNButton(CataloguePageIDBox, true);
                             EnableNButton(CatalogueFurniIDBox, true);
-                            WriteToButton(CatalogueBruteForceBtn, "BruteForcer : Disabled");
+                            WriteToButton(CatalogueBruteForceBtn, "BruteForcer : Off");
                             Thread.CurrentThread.Abort();
                             return;
                         }

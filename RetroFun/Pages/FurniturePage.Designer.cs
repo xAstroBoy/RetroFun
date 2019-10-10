@@ -39,6 +39,8 @@
             this.FurnitureIDTxt = new Sulakore.Components.SKoreLabelBox();
             this.RemoveWallItemBtn = new Sulakore.Components.SKoreButton();
             this.RemoveFloorItemBtn = new Sulakore.Components.SKoreButton();
+            this.AcquireMODPermissionsBtn = new Sulakore.Components.SKoreButton();
+            this.RestoreFurnisBtn = new Sulakore.Components.SKoreButton();
             this.RemoverGrbx.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -66,11 +68,12 @@
             this.groupBox1.Controls.Add(this.RotationDown);
             this.groupBox1.Controls.Add(this.RotationUp);
             this.groupBox1.Location = new System.Drawing.Point(143, 67);
-            this.groupBox1.Name = "FlashableColors";
+            this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(109, 94);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rotation";
+            this.groupBox1.Visible = false;
             // 
             // RotationRight
             // 
@@ -119,6 +122,7 @@
             this.ToggleFurniRotCS.TabIndex = 5;
             this.ToggleFurniRotCS.Text = "Enable Rotate Furni CS";
             this.ToggleFurniRotCS.UseVisualStyleBackColor = true;
+            this.ToggleFurniRotCS.Visible = false;
             // 
             // DoubleClickFurnitureRemovalChbx
             // 
@@ -161,10 +165,30 @@
             this.RemoveFloorItemBtn.Text = "Remove Floor Item";
             this.RemoveFloorItemBtn.Click += new System.EventHandler(this.RemoveFloorItemBtn_Click);
             // 
+            // AcquireMODPermissionsBtn
+            // 
+            this.AcquireMODPermissionsBtn.Location = new System.Drawing.Point(12, 180);
+            this.AcquireMODPermissionsBtn.Name = "AcquireMODPermissionsBtn";
+            this.AcquireMODPermissionsBtn.Size = new System.Drawing.Size(185, 22);
+            this.AcquireMODPermissionsBtn.TabIndex = 4;
+            this.AcquireMODPermissionsBtn.Text = "Acquire MOD Permissions (CS)";
+            this.AcquireMODPermissionsBtn.Click += new System.EventHandler(this.AcquireMODPermissionsBtn_Click);
+            // 
+            // RestoreFurnisBtn
+            // 
+            this.RestoreFurnisBtn.Location = new System.Drawing.Point(12, 208);
+            this.RestoreFurnisBtn.Name = "RestoreFurnisBtn";
+            this.RestoreFurnisBtn.Size = new System.Drawing.Size(185, 22);
+            this.RestoreFurnisBtn.TabIndex = 5;
+            this.RestoreFurnisBtn.Text = "Revert All Edits.";
+            this.RestoreFurnisBtn.Click += new System.EventHandler(this.RestoreFurnisBtn_Click);
+            // 
             // FurniturePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.RestoreFurnisBtn);
+            this.Controls.Add(this.AcquireMODPermissionsBtn);
             this.Controls.Add(this.RemoverGrbx);
             this.Name = "FurniturePage";
             this.RemoverGrbx.ResumeLayout(false);
@@ -188,5 +212,7 @@
         private System.Windows.Forms.RadioButton rotationLeft;
         private System.Windows.Forms.RadioButton RotationDown;
         private System.Windows.Forms.RadioButton RotationUp;
+        private Sulakore.Components.SKoreButton AcquireMODPermissionsBtn;
+        private Sulakore.Components.SKoreButton RestoreFurnisBtn;
     }
 }

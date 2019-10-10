@@ -217,7 +217,7 @@
             this.LiveEditBtn.Name = "LiveEditBtn";
             this.LiveEditBtn.Size = new System.Drawing.Size(141, 20);
             this.LiveEditBtn.TabIndex = 15;
-            this.LiveEditBtn.Text = "Live Edit Mode : Disabled";
+            this.LiveEditBtn.Text = "Live Edit Mode : Off";
             this.LiveEditBtn.Click += new System.EventHandler(this.LiveEditBtn_Click);
             // 
             // RestoreSettingsBtn

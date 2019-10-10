@@ -141,7 +141,7 @@
             this.SButtonLoopToggle.Name = "SButtonLoopToggle";
             this.SButtonLoopToggle.Size = new System.Drawing.Size(169, 20);
             this.SButtonLoopToggle.TabIndex = 38;
-            this.SButtonLoopToggle.Text = "Send The Gift On loop : Disabled";
+            this.SButtonLoopToggle.Text = "Send The Gift On loop : Off";
             this.SButtonLoopToggle.Click += new System.EventHandler(this.SButtonLoopToggle_Click);
             // 
             // LoopCoolDown
@@ -172,7 +172,7 @@
             this.PageIdBruteforcerbtx.Name = "PageIdBruteforcerbtx";
             this.PageIdBruteforcerbtx.Size = new System.Drawing.Size(169, 20);
             this.PageIdBruteforcerbtx.TabIndex = 40;
-            this.PageIdBruteforcerbtx.Text = "PageID Bruteforcer : Disabled";
+            this.PageIdBruteforcerbtx.Text = "PageID Bruteforcer : Off";
             this.PageIdBruteforcerbtx.Click += new System.EventHandler(this.PageIdBruteforcerbtx_Click);
             // 
             // FurnIDBruteForcerbtx
@@ -181,7 +181,7 @@
             this.FurnIDBruteForcerbtx.Name = "FurnIDBruteForcerbtx";
             this.FurnIDBruteForcerbtx.Size = new System.Drawing.Size(169, 20);
             this.FurnIDBruteForcerbtx.TabIndex = 41;
-            this.FurnIDBruteForcerbtx.Text = "FurniID Bruteforcer : Disabled";
+            this.FurnIDBruteForcerbtx.Text = "FurniID Bruteforcer : Off";
             this.FurnIDBruteForcerbtx.Click += new System.EventHandler(this.FurnIDBruteForcerbtx_Click);
             // 
             // BruteForceBtn
@@ -190,7 +190,7 @@
             this.BruteForceBtn.Name = "BruteForceBtn";
             this.BruteForceBtn.Size = new System.Drawing.Size(129, 20);
             this.BruteForceBtn.TabIndex = 42;
-            this.BruteForceBtn.Text = "BruteForcer : Disabled";
+            this.BruteForceBtn.Text = "BruteForcer : Off";
             this.BruteForceBtn.Click += new System.EventHandler(this.BruteForceBtn_Click);
             // 
             // PageIDBox

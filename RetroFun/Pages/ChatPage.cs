@@ -13,7 +13,7 @@ using Sulakore.Communication;
 using System.Collections.Generic;
 using System.Resources;
 using System.Linq;
-
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -22,7 +22,7 @@ namespace RetroFun.Pages
     public partial class ChatPage : ObservablePage
     {
 
-
+        private HMessage replacement;
 
         private bool _antiBobbaFilter;
         public bool AntiBobbaFilter
@@ -57,6 +57,50 @@ namespace RetroFun.Pages
             }
         }
 
+        private bool _ForceChatSpeak;
+        public bool ForceChatSpeak
+        {
+            get => _ForceChatSpeak;
+            set
+            {
+                _ForceChatSpeak = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _ForceNormalSpeak = true;
+        public bool ForceNormalSpeak
+        {
+            get => _ForceNormalSpeak;
+            set
+            {
+                _ForceNormalSpeak = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _ForceShoutChat;
+        public bool ForceShoutChat
+        {
+            get => _ForceShoutChat;
+            set
+            {
+                _ForceShoutChat = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _ForceWhisperChat;
+        public bool ForceWhisperChat
+        {
+            get => _ForceWhisperChat;
+            set
+            {
+                _ForceWhisperChat = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
         public int SelectedBubbleId { get; private set; }
 
         public ChatPage()
@@ -66,6 +110,11 @@ namespace RetroFun.Pages
             Bind(AntiBobbaFilterChbx, "Checked", nameof(AntiBobbaFilter));
             Bind(UseSelectedBubbleChbx, "Checked", nameof(UseSelectedBubble));
             Bind(HideSpeakingBubbleChbx, "Checked", nameof(HideSpeakingBubble));
+            Bind(ForceDefSpeakBox, "Checked", nameof(ForceChatSpeak));
+            Bind(NormalTalkBox, "Checked", nameof(ForceNormalSpeak));
+            Bind(ShoutTalkBox, "Checked", nameof(ForceShoutChat));
+            Bind(WhisperChatBox, "Checked", nameof(ForceWhisperChat));
+
 
             var imageType = typeof(Image);
 
@@ -108,6 +157,31 @@ namespace RetroFun.Pages
 
 
 
+        private void ForceDefSpeakBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ToggleChatDefault();
+        }
+
+        private void ToggleChatDefault()
+        {
+            if(ForceChatSpeak)
+            {
+                ToggleGroupbox(GroupChatDefault, false);
+            }
+            else
+            {
+                ToggleGroupbox(GroupChatDefault, true);
+            }
+        }
+
+        private void ToggleGroupbox(GroupBox Group, bool Actived)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                Group.Enabled = Actived;
+            });
+        }
+
 
         private void BubblesCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -148,7 +222,25 @@ namespace RetroFun.Pages
             }
 
             obj.IsBlocked = true;
-            var replacement = new HMessage(obj.Packet.Header, message, bubbleId);
+            if (!ForceChatSpeak)
+            {
+                     replacement = new HMessage(obj.Packet.Header, message, bubbleId); 
+            }
+            else
+            {
+                if (ForceNormalSpeak)
+                {
+                     replacement = new HMessage(Out.RoomUserTalk, message, bubbleId);
+                }
+                else if (ForceShoutChat)
+                {
+                     replacement = new HMessage(Out.RoomUserShout, message, bubbleId);
+                }
+                else if (ForceWhisperChat)
+                {
+                     replacement = new HMessage(Out.RoomUserWhisper, message, bubbleId);
+                }
+            }
             if (obj.Packet.Readable > 0)
             {
                 replacement.WriteInteger(0);

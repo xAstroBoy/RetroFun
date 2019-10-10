@@ -112,7 +112,7 @@
             this.CataloguePageIdBruteforcerbtx.Name = "CataloguePageIdBruteforcerbtx";
             this.CataloguePageIdBruteforcerbtx.Size = new System.Drawing.Size(169, 20);
             this.CataloguePageIdBruteforcerbtx.TabIndex = 40;
-            this.CataloguePageIdBruteforcerbtx.Text = "PageID Bruteforcer : Disabled";
+            this.CataloguePageIdBruteforcerbtx.Text = "PageID Bruteforcer : Off";
             this.CataloguePageIdBruteforcerbtx.Click += new System.EventHandler(this.CataloguePageIdBruteforcerbtx_Click);
             // 
             // CatalogueFurnIDBruteForcerbtx
@@ -121,7 +121,7 @@
             this.CatalogueFurnIDBruteForcerbtx.Name = "CatalogueFurnIDBruteForcerbtx";
             this.CatalogueFurnIDBruteForcerbtx.Size = new System.Drawing.Size(169, 20);
             this.CatalogueFurnIDBruteForcerbtx.TabIndex = 41;
-            this.CatalogueFurnIDBruteForcerbtx.Text = "FurniID Bruteforcer : Disabled";
+            this.CatalogueFurnIDBruteForcerbtx.Text = "FurniID Bruteforcer : Off";
             this.CatalogueFurnIDBruteForcerbtx.Click += new System.EventHandler(this.CatalogueFurnIDBruteForcerbtx_Click);
             // 
             // CatalogueBruteForceBtn
@@ -130,7 +130,7 @@
             this.CatalogueBruteForceBtn.Name = "CatalogueBruteForceBtn";
             this.CatalogueBruteForceBtn.Size = new System.Drawing.Size(129, 20);
             this.CatalogueBruteForceBtn.TabIndex = 42;
-            this.CatalogueBruteForceBtn.Text = "BruteForcer : Disabled";
+            this.CatalogueBruteForceBtn.Text = "BruteForcer : Off";
             this.CatalogueBruteForceBtn.Click += new System.EventHandler(this.CatalogueBruteForceBtn_Click);
             // 
             // CataloguePageIDBox
@@ -173,7 +173,7 @@
             this.CatalogueSButtonLoopToggle.Name = "CatalogueSButtonLoopToggle";
             this.CatalogueSButtonLoopToggle.Size = new System.Drawing.Size(169, 20);
             this.CatalogueSButtonLoopToggle.TabIndex = 38;
-            this.CatalogueSButtonLoopToggle.Text = "Buy On loop : Disabled";
+            this.CatalogueSButtonLoopToggle.Text = "Buy On loop : Off";
             this.CatalogueSButtonLoopToggle.Click += new System.EventHandler(this.CatalogueSButtonLoopToggle_Click);
             // 
             // isValidPurchcheck
