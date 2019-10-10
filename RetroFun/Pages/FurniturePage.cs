@@ -36,6 +36,19 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+        private bool _FurniPickedOutput;
+        public bool FurniPickedOutput
+        {
+            get => _FurniPickedOutput;
+            set
+            {
+                _FurniPickedOutput = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
         private string _furnitureIdText;
         public string FurnitureIdText
         {
@@ -62,7 +75,7 @@ namespace RetroFun.Pages
             Bind(FurnitureIDTxt, "Text", nameof(FurnitureIdText));
             Bind(DoubleClickFurnitureRemovalChbx, "Checked", nameof(DoubleClickFurnitureRemoval));
             Bind(ToggleFurniRotCS, "Checked", nameof(ButtonRotateMoveItem));
-
+            Bind(FurniPickChbx, "Checked", nameof(FurniPickedOutput));
 
             if (Program.Master != null)
             {
@@ -103,7 +116,18 @@ namespace RetroFun.Pages
                 string furnitureIdString = furnitureId.ToString();
                 RemoveWallItem(furnitureIdString);
                 RemoveFloorItem(furnitureIdString);
+                if (FurniPickedOutput)
+                {
+                    NoticePickup(furnitureIdString);
+                }
+                obj.IsBlocked = true;
+
             }
+        }
+
+        private void NoticePickup(string FurniID)
+        {
+            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "You are picking a furni ClientSide with ID : " + FurniID , 0, 1, 0, -1);
         }
         //private void ToggleWallItem(DataInterceptedEventArgs obj)
         //{
@@ -216,5 +240,7 @@ namespace RetroFun.Pages
         {
             Connection.SendToClientAsync(FurniDataStored);
         }
+
+
     }
 }

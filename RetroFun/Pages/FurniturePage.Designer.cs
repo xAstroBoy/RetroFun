@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.RemoverGrbx = new System.Windows.Forms.GroupBox();
+            this.FurniPickChbx = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.RotationRight = new System.Windows.Forms.RadioButton();
             this.rotationLeft = new System.Windows.Forms.RadioButton();
@@ -47,6 +48,7 @@
             // 
             // RemoverGrbx
             // 
+            this.RemoverGrbx.Controls.Add(this.FurniPickChbx);
             this.RemoverGrbx.Controls.Add(this.groupBox1);
             this.RemoverGrbx.Controls.Add(this.ToggleFurniRotCS);
             this.RemoverGrbx.Controls.Add(this.DoubleClickFurnitureRemovalChbx);
@@ -60,6 +62,16 @@
             this.RemoverGrbx.TabIndex = 0;
             this.RemoverGrbx.TabStop = false;
             this.RemoverGrbx.Text = "Remover";
+            // 
+            // FurniPickChbx
+            // 
+            this.FurniPickChbx.AutoSize = true;
+            this.FurniPickChbx.Location = new System.Drawing.Point(9, 109);
+            this.FurniPickChbx.Name = "FurniPickChbx";
+            this.FurniPickChbx.Size = new System.Drawing.Size(119, 17);
+            this.FurniPickChbx.TabIndex = 6;
+            this.FurniPickChbx.Text = "Tell FurniID Picked.";
+            this.FurniPickChbx.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -116,7 +128,7 @@
             // ToggleFurniRotCS
             // 
             this.ToggleFurniRotCS.AutoSize = true;
-            this.ToggleFurniRotCS.Location = new System.Drawing.Point(9, 113);
+            this.ToggleFurniRotCS.Location = new System.Drawing.Point(9, 132);
             this.ToggleFurniRotCS.Name = "ToggleFurniRotCS";
             this.ToggleFurniRotCS.Size = new System.Drawing.Size(137, 17);
             this.ToggleFurniRotCS.TabIndex = 5;
@@ -214,5 +226,6 @@
         private System.Windows.Forms.RadioButton RotationUp;
         private Sulakore.Components.SKoreButton AcquireMODPermissionsBtn;
         private Sulakore.Components.SKoreButton RestoreFurnisBtn;
+        private System.Windows.Forms.CheckBox FurniPickChbx;
     }
 }
