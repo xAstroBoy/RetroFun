@@ -117,4 +117,1368 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="NoRemoveFriendOnReport.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="NoRemoveFriendOnReport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 19</value>
+  </data>
+  <data name="NoRemoveFriendOnReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 17</value>
+  </data>
+  <data name="NoRemoveFriendOnReport.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="NoRemoveFriendOnReport.Text" xml:space="preserve">
+    <value>Anti-Friend Removal when reported.</value>
+  </data>
+  <data name="&gt;&gt;NoRemoveFriendOnReport.Name" xml:space="preserve">
+    <value>NoRemoveFriendOnReport</value>
+  </data>
+  <data name="&gt;&gt;NoRemoveFriendOnReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NoRemoveFriendOnReport.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;NoRemoveFriendOnReport.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="YellowCardChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="YellowCardChbx.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 15pt</value>
+  </data>
+  <data name="YellowCardChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>177, 97</value>
+  </data>
+  <data name="YellowCardChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 26</value>
+  </data>
+  <data name="YellowCardChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>64</value>
+  </data>
+  <data name="YellowCardChbx.Text" xml:space="preserve">
+    <value>Card</value>
+  </data>
+  <data name="&gt;&gt;YellowCardChbx.Name" xml:space="preserve">
+    <value>YellowCardChbx</value>
+  </data>
+  <data name="&gt;&gt;YellowCardChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;YellowCardChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;YellowCardChbx.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RedCardChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RedCardChbx.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 15pt</value>
+  </data>
+  <data name="RedCardChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>218, 65</value>
+  </data>
+  <data name="RedCardChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 26</value>
+  </data>
+  <data name="RedCardChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>63</value>
+  </data>
+  <data name="RedCardChbx.Text" xml:space="preserve">
+    <value>Card</value>
+  </data>
+  <data name="&gt;&gt;RedCardChbx.Name" xml:space="preserve">
+    <value>RedCardChbx</value>
+  </data>
+  <data name="&gt;&gt;RedCardChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RedCardChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;RedCardChbx.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SmilingFaceChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SmilingFaceChbx.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="SmilingFaceChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>177, 65</value>
+  </data>
+  <data name="SmilingFaceChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 25</value>
+  </data>
+  <data name="SmilingFaceChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="SmilingFaceChbx.Text" xml:space="preserve">
+    <value>☺️</value>
+  </data>
+  <data name="&gt;&gt;SmilingFaceChbx.Name" xml:space="preserve">
+    <value>SmilingFaceChbx</value>
+  </data>
+  <data name="&gt;&gt;SmilingFaceChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SmilingFaceChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;SmilingFaceChbx.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="SoccerBallChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SoccerBallChbx.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="SoccerBallChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 42</value>
+  </data>
+  <data name="SoccerBallChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 25</value>
+  </data>
+  <data name="SoccerBallChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>61</value>
+  </data>
+  <data name="SoccerBallChbx.Text" xml:space="preserve">
+    <value>⚽</value>
+  </data>
+  <data name="&gt;&gt;SoccerBallChbx.Name" xml:space="preserve">
+    <value>SoccerBallChbx</value>
+  </data>
+  <data name="&gt;&gt;SoccerBallChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SoccerBallChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;SoccerBallChbx.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ExclamationChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ExclamationChbx.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="ExclamationChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>177, 42</value>
+  </data>
+  <data name="ExclamationChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 25</value>
+  </data>
+  <data name="ExclamationChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="ExclamationChbx.Text" xml:space="preserve">
+    <value>!</value>
+  </data>
+  <data name="&gt;&gt;ExclamationChbx.Name" xml:space="preserve">
+    <value>ExclamationChbx</value>
+  </data>
+  <data name="&gt;&gt;ExclamationChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ExclamationChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;ExclamationChbx.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="SkullChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SkullChbx.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="SkullChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>221, 15</value>
+  </data>
+  <data name="SkullChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 25</value>
+  </data>
+  <data name="SkullChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="SkullChbx.Text" xml:space="preserve">
+    <value>💀</value>
+  </data>
+  <data name="&gt;&gt;SkullChbx.Name" xml:space="preserve">
+    <value>SkullChbx</value>
+  </data>
+  <data name="&gt;&gt;SkullChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SkullChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;SkullChbx.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="HearthChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="HearthChbx.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 14.25pt</value>
+  </data>
+  <data name="HearthChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>177, 15</value>
+  </data>
+  <data name="HearthChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 25</value>
+  </data>
+  <data name="HearthChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="HearthChbx.Text" xml:space="preserve">
+    <value>♥</value>
+  </data>
+  <data name="HearthChbx.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;HearthChbx.Name" xml:space="preserve">
+    <value>HearthChbx</value>
+  </data>
+  <data name="&gt;&gt;HearthChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;HearthChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;HearthChbx.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="InvisibleSignChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="InvisibleSignChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 135</value>
+  </data>
+  <data name="InvisibleSignChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 17</value>
+  </data>
+  <data name="InvisibleSignChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="InvisibleSignChbx.Text" xml:space="preserve">
+    <value>Invisible</value>
+  </data>
+  <data name="&gt;&gt;InvisibleSignChbx.Name" xml:space="preserve">
+    <value>InvisibleSignChbx</value>
+  </data>
+  <data name="&gt;&gt;InvisibleSignChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;InvisibleSignChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;InvisibleSignChbx.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="FiveChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="FiveChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 42</value>
+  </data>
+  <data name="FiveChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 17</value>
+  </data>
+  <data name="FiveChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="FiveChbx.Text" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;FiveChbx.Name" xml:space="preserve">
+    <value>FiveChbx</value>
+  </data>
+  <data name="&gt;&gt;FiveChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FiveChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;FiveChbx.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="ZeroChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ZeroChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 19</value>
+  </data>
+  <data name="ZeroChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 17</value>
+  </data>
+  <data name="ZeroChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="ZeroChbx.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ZeroChbx.Name" xml:space="preserve">
+    <value>ZeroChbx</value>
+  </data>
+  <data name="&gt;&gt;ZeroChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ZeroChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;ZeroChbx.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="TenChBx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="TenChBx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 65</value>
+  </data>
+  <data name="TenChBx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 17</value>
+  </data>
+  <data name="TenChBx.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="TenChBx.Text" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;TenChBx.Name" xml:space="preserve">
+    <value>TenChBx</value>
+  </data>
+  <data name="&gt;&gt;TenChBx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TenChBx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;TenChBx.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="SixChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SixChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 65</value>
+  </data>
+  <data name="SixChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 17</value>
+  </data>
+  <data name="SixChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="SixChbx.Text" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;SixChbx.Name" xml:space="preserve">
+    <value>SixChbx</value>
+  </data>
+  <data name="&gt;&gt;SixChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SixChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;SixChbx.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="SevenChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SevenChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 88</value>
+  </data>
+  <data name="SevenChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 17</value>
+  </data>
+  <data name="SevenChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="SevenChbx.Text" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;SevenChbx.Name" xml:space="preserve">
+    <value>SevenChbx</value>
+  </data>
+  <data name="&gt;&gt;SevenChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SevenChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;SevenChbx.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="EightChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="EightChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 19</value>
+  </data>
+  <data name="EightChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 17</value>
+  </data>
+  <data name="EightChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="EightChbx.Text" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;EightChbx.Name" xml:space="preserve">
+    <value>EightChbx</value>
+  </data>
+  <data name="&gt;&gt;EightChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;EightChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;EightChbx.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="NineChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="NineChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 42</value>
+  </data>
+  <data name="NineChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 17</value>
+  </data>
+  <data name="NineChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="NineChbx.Text" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;NineChbx.Name" xml:space="preserve">
+    <value>NineChbx</value>
+  </data>
+  <data name="&gt;&gt;NineChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;NineChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;NineChbx.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="ThreeChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ThreeChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 88</value>
+  </data>
+  <data name="ThreeChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 17</value>
+  </data>
+  <data name="ThreeChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="ThreeChbx.Text" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;ThreeChbx.Name" xml:space="preserve">
+    <value>ThreeChbx</value>
+  </data>
+  <data name="&gt;&gt;ThreeChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ThreeChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;ThreeChbx.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="FourChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="FourChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 19</value>
+  </data>
+  <data name="FourChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 17</value>
+  </data>
+  <data name="FourChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="FourChbx.Text" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;FourChbx.Name" xml:space="preserve">
+    <value>FourChbx</value>
+  </data>
+  <data name="&gt;&gt;FourChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FourChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;FourChbx.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="TwoChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="TwoChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 65</value>
+  </data>
+  <data name="TwoChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 17</value>
+  </data>
+  <data name="TwoChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="TwoChbx.Text" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;TwoChbx.Name" xml:space="preserve">
+    <value>TwoChbx</value>
+  </data>
+  <data name="&gt;&gt;TwoChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TwoChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;TwoChbx.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="OneChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="OneChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 42</value>
+  </data>
+  <data name="OneChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 17</value>
+  </data>
+  <data name="OneChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="OneChbx.Text" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;OneChbx.Name" xml:space="preserve">
+    <value>OneChbx</value>
+  </data>
+  <data name="&gt;&gt;OneChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OneChbx.Parent" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;OneChbx.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="SignCountGroup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 48</value>
+  </data>
+  <data name="SignCountGroup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>292, 160</value>
+  </data>
+  <data name="SignCountGroup.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="SignCountGroup.Text" xml:space="preserve">
+    <value>Sign Counter</value>
+  </data>
+  <data name="&gt;&gt;SignCountGroup.Name" xml:space="preserve">
+    <value>SignCountGroup</value>
+  </data>
+  <data name="&gt;&gt;SignCountGroup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SignCountGroup.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SignCountGroup.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="CountingBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>134, 253</value>
+  </data>
+  <data name="CountingBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 20</value>
+  </data>
+  <data name="CountingBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="CountingBtn.Text" xml:space="preserve">
+    <value>0→10</value>
+  </data>
+  <data name="&gt;&gt;CountingBtn.Name" xml:space="preserve">
+    <value>CountingBtn</value>
+  </data>
+  <data name="&gt;&gt;CountingBtn.Type" xml:space="preserve">
+    <value>Sulakore.Components.SKoreButton, Sulakore, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;CountingBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;CountingBtn.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="SignCountBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 253</value>
+  </data>
+  <data name="SignCountBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="SignCountBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="SignCountBtn.Text" xml:space="preserve">
+    <value>Sign Count : Off</value>
+  </data>
+  <data name="&gt;&gt;SignCountBtn.Name" xml:space="preserve">
+    <value>SignCountBtn</value>
+  </data>
+  <data name="&gt;&gt;SignCountBtn.Type" xml:space="preserve">
+    <value>Sulakore.Components.SKoreButton, Sulakore, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SignCountBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SignCountBtn.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="SignCountCoolDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 227</value>
+  </data>
+  <data name="SignCountCoolDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 20</value>
+  </data>
+  <data name="SignCountCoolDown.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="&gt;&gt;SignCountCoolDown.Name" xml:space="preserve">
+    <value>SignCountCoolDown</value>
+  </data>
+  <data name="&gt;&gt;SignCountCoolDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SignCountCoolDown.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SignCountCoolDown.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="Label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>27, 211</value>
+  </data>
+  <data name="Label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 13</value>
+  </data>
+  <data name="Label2.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="Label2.Text" xml:space="preserve">
+    <value>Sign Counter Cooldown</value>
+  </data>
+  <data name="&gt;&gt;Label2.Name" xml:space="preserve">
+    <value>Label2</value>
+  </data>
+  <data name="&gt;&gt;Label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="Gesture_NoneChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Gesture_NoneChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 156</value>
+  </data>
+  <data name="Gesture_NoneChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 17</value>
+  </data>
+  <data name="Gesture_NoneChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="Gesture_NoneChbx.Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;Gesture_NoneChbx.Name" xml:space="preserve">
+    <value>Gesture_NoneChbx</value>
+  </data>
+  <data name="&gt;&gt;Gesture_NoneChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Gesture_NoneChbx.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;Gesture_NoneChbx.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Gesture_PogoHopChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Gesture_PogoHopChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 136</value>
+  </data>
+  <data name="Gesture_PogoHopChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 17</value>
+  </data>
+  <data name="Gesture_PogoHopChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="Gesture_PogoHopChbx.Text" xml:space="preserve">
+    <value>PogoHop</value>
+  </data>
+  <data name="&gt;&gt;Gesture_PogoHopChbx.Name" xml:space="preserve">
+    <value>Gesture_PogoHopChbx</value>
+  </data>
+  <data name="&gt;&gt;Gesture_PogoHopChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Gesture_PogoHopChbx.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;Gesture_PogoHopChbx.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Gesture_KissChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Gesture_KissChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 113</value>
+  </data>
+  <data name="Gesture_KissChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 17</value>
+  </data>
+  <data name="Gesture_KissChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="Gesture_KissChbx.Text" xml:space="preserve">
+    <value>Kiss</value>
+  </data>
+  <data name="&gt;&gt;Gesture_KissChbx.Name" xml:space="preserve">
+    <value>Gesture_KissChbx</value>
+  </data>
+  <data name="&gt;&gt;Gesture_KissChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Gesture_KissChbx.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;Gesture_KissChbx.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Gesture_laughChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Gesture_laughChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 90</value>
+  </data>
+  <data name="Gesture_laughChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 17</value>
+  </data>
+  <data name="Gesture_laughChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="Gesture_laughChbx.Text" xml:space="preserve">
+    <value>Laugh</value>
+  </data>
+  <data name="&gt;&gt;Gesture_laughChbx.Name" xml:space="preserve">
+    <value>Gesture_laughChbx</value>
+  </data>
+  <data name="&gt;&gt;Gesture_laughChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Gesture_laughChbx.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;Gesture_laughChbx.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="Gesture_sleepChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Gesture_sleepChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 67</value>
+  </data>
+  <data name="Gesture_sleepChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 17</value>
+  </data>
+  <data name="Gesture_sleepChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="Gesture_sleepChbx.Text" xml:space="preserve">
+    <value>Idle</value>
+  </data>
+  <data name="Gesture_sleepChbx.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;Gesture_sleepChbx.Name" xml:space="preserve">
+    <value>Gesture_sleepChbx</value>
+  </data>
+  <data name="&gt;&gt;Gesture_sleepChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Gesture_sleepChbx.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;Gesture_sleepChbx.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="Gesture_WaveChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Gesture_WaveChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 45</value>
+  </data>
+  <data name="Gesture_WaveChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 17</value>
+  </data>
+  <data name="Gesture_WaveChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="Gesture_WaveChbx.Text" xml:space="preserve">
+    <value>Wave</value>
+  </data>
+  <data name="&gt;&gt;Gesture_WaveChbx.Name" xml:space="preserve">
+    <value>Gesture_WaveChbx</value>
+  </data>
+  <data name="&gt;&gt;Gesture_WaveChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Gesture_WaveChbx.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;Gesture_WaveChbx.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="Gesture_ThumbsUpChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Gesture_ThumbsUpChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 22</value>
+  </data>
+  <data name="Gesture_ThumbsUpChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 17</value>
+  </data>
+  <data name="Gesture_ThumbsUpChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="Gesture_ThumbsUpChbx.Text" xml:space="preserve">
+    <value>ThumbsUp</value>
+  </data>
+  <data name="&gt;&gt;Gesture_ThumbsUpChbx.Name" xml:space="preserve">
+    <value>Gesture_ThumbsUpChbx</value>
+  </data>
+  <data name="&gt;&gt;Gesture_ThumbsUpChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Gesture_ThumbsUpChbx.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;Gesture_ThumbsUpChbx.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>322, 37</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 187</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Gestures On Loop</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="GestureCooldownNbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>318, 242</value>
+  </data>
+  <data name="GestureCooldownNbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 20</value>
+  </data>
+  <data name="GestureCooldownNbx.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="&gt;&gt;GestureCooldownNbx.Name" xml:space="preserve">
+    <value>GestureCooldownNbx</value>
+  </data>
+  <data name="&gt;&gt;GestureCooldownNbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GestureCooldownNbx.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GestureCooldownNbx.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>315, 227</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 13</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Gesture Cooldown</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="GestureOnLoopBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>318, 271</value>
+  </data>
+  <data name="GestureOnLoopBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 20</value>
+  </data>
+  <data name="GestureOnLoopBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="GestureOnLoopBtn.Text" xml:space="preserve">
+    <value>Gestures On Loop : Off</value>
+  </data>
+  <data name="&gt;&gt;GestureOnLoopBtn.Name" xml:space="preserve">
+    <value>GestureOnLoopBtn</value>
+  </data>
+  <data name="&gt;&gt;GestureOnLoopBtn.Type" xml:space="preserve">
+    <value>Sulakore.Components.SKoreButton, Sulakore, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;GestureOnLoopBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GestureOnLoopBtn.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="UserSitBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>595, 204</value>
+  </data>
+  <data name="UserSitBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 20</value>
+  </data>
+  <data name="UserSitBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="UserSitBtn.Text" xml:space="preserve">
+    <value>Make user Sit</value>
+  </data>
+  <data name="&gt;&gt;UserSitBtn.Name" xml:space="preserve">
+    <value>UserSitBtn</value>
+  </data>
+  <data name="&gt;&gt;UserSitBtn.Type" xml:space="preserve">
+    <value>Sulakore.Components.SKoreButton, Sulakore, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;UserSitBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;UserSitBtn.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="SitOnLoopBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>595, 230</value>
+  </data>
+  <data name="SitOnLoopBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 20</value>
+  </data>
+  <data name="SitOnLoopBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>61</value>
+  </data>
+  <data name="SitOnLoopBtn.Text" xml:space="preserve">
+    <value>Sit Loop : Off</value>
+  </data>
+  <data name="&gt;&gt;SitOnLoopBtn.Name" xml:space="preserve">
+    <value>SitOnLoopBtn</value>
+  </data>
+  <data name="&gt;&gt;SitOnLoopBtn.Type" xml:space="preserve">
+    <value>Sulakore.Components.SKoreButton, Sulakore, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SitOnLoopBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SitOnLoopBtn.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>592, 261</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 13</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>63</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Sit Cooldown</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="SitCoolDownNbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>595, 276</value>
+  </data>
+  <data name="SitCoolDownNbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 20</value>
+  </data>
+  <data name="SitCoolDownNbx.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="&gt;&gt;SitCoolDownNbx.Name" xml:space="preserve">
+    <value>SitCoolDownNbx</value>
+  </data>
+  <data name="&gt;&gt;SitCoolDownNbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SitCoolDownNbx.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;SitCoolDownNbx.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="GenMaleLookBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>201, 270</value>
+  </data>
+  <data name="GenMaleLookBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 20</value>
+  </data>
+  <data name="GenMaleLookBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>64</value>
+  </data>
+  <data name="GenMaleLookBtn.Text" xml:space="preserve">
+    <value>Look Generator (Male)</value>
+  </data>
+  <data name="&gt;&gt;GenMaleLookBtn.Name" xml:space="preserve">
+    <value>GenMaleLookBtn</value>
+  </data>
+  <data name="&gt;&gt;GenMaleLookBtn.Type" xml:space="preserve">
+    <value>Sulakore.Components.SKoreButton, Sulakore, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;GenMaleLookBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GenMaleLookBtn.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="GenFemaleLookBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>201, 244</value>
+  </data>
+  <data name="GenFemaleLookBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 20</value>
+  </data>
+  <data name="GenFemaleLookBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>66</value>
+  </data>
+  <data name="GenFemaleLookBtn.Text" xml:space="preserve">
+    <value>Look Generator (Female)</value>
+  </data>
+  <data name="&gt;&gt;GenFemaleLookBtn.Name" xml:space="preserve">
+    <value>GenFemaleLookBtn</value>
+  </data>
+  <data name="&gt;&gt;GenFemaleLookBtn.Type" xml:space="preserve">
+    <value>Sulakore.Components.SKoreButton, Sulakore, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;GenFemaleLookBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;GenFemaleLookBtn.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="Dance_TheRollieChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Dance_TheRollieChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 121</value>
+  </data>
+  <data name="Dance_TheRollieChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 17</value>
+  </data>
+  <data name="Dance_TheRollieChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="Dance_TheRollieChbx.Text" xml:space="preserve">
+    <value>TheRollie</value>
+  </data>
+  <data name="&gt;&gt;Dance_TheRollieChbx.Name" xml:space="preserve">
+    <value>Dance_TheRollieChbx</value>
+  </data>
+  <data name="&gt;&gt;Dance_TheRollieChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Dance_TheRollieChbx.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;Dance_TheRollieChbx.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Dance_DuckFunkChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Dance_DuckFunkChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 96</value>
+  </data>
+  <data name="Dance_DuckFunkChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 17</value>
+  </data>
+  <data name="Dance_DuckFunkChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="Dance_DuckFunkChbx.Text" xml:space="preserve">
+    <value>DuckFunk</value>
+  </data>
+  <data name="&gt;&gt;Dance_DuckFunkChbx.Name" xml:space="preserve">
+    <value>Dance_DuckFunkChbx</value>
+  </data>
+  <data name="&gt;&gt;Dance_DuckFunkChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Dance_DuckFunkChbx.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;Dance_DuckFunkChbx.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Dance_PogoMogoChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Dance_PogoMogoChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 72</value>
+  </data>
+  <data name="Dance_PogoMogoChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 17</value>
+  </data>
+  <data name="Dance_PogoMogoChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="Dance_PogoMogoChbx.Text" xml:space="preserve">
+    <value>PogoMogo</value>
+  </data>
+  <data name="&gt;&gt;Dance_PogoMogoChbx.Name" xml:space="preserve">
+    <value>Dance_PogoMogoChbx</value>
+  </data>
+  <data name="&gt;&gt;Dance_PogoMogoChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Dance_PogoMogoChbx.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;Dance_PogoMogoChbx.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Dance_NormalChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Dance_NormalChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 48</value>
+  </data>
+  <data name="Dance_NormalChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 17</value>
+  </data>
+  <data name="Dance_NormalChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="Dance_NormalChbx.Text" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="&gt;&gt;Dance_NormalChbx.Name" xml:space="preserve">
+    <value>Dance_NormalChbx</value>
+  </data>
+  <data name="&gt;&gt;Dance_NormalChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Dance_NormalChbx.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;Dance_NormalChbx.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="Dance_NoneChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Dance_NoneChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 25</value>
+  </data>
+  <data name="Dance_NoneChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 17</value>
+  </data>
+  <data name="Dance_NoneChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="Dance_NoneChbx.Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="&gt;&gt;Dance_NoneChbx.Name" xml:space="preserve">
+    <value>Dance_NoneChbx</value>
+  </data>
+  <data name="&gt;&gt;Dance_NoneChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Dance_NoneChbx.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;Dance_NoneChbx.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 46</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 144</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="groupBox2.Text" xml:space="preserve">
+    <value>Dances</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>440, 195</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 13</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>72</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Dance Cooldown</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="DancesCooldownNBx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 210</value>
+  </data>
+  <data name="DancesCooldownNBx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>88, 20</value>
+  </data>
+  <data name="DancesCooldownNBx.TabIndex" type="System.Int32, mscorlib">
+    <value>71</value>
+  </data>
+  <data name="&gt;&gt;DancesCooldownNBx.Name" xml:space="preserve">
+    <value>DancesCooldownNBx</value>
+  </data>
+  <data name="&gt;&gt;DancesCooldownNBx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DancesCooldownNBx.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;DancesCooldownNBx.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="DanceLoopBtn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>443, 240</value>
+  </data>
+  <data name="DanceLoopBtn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 20</value>
+  </data>
+  <data name="DanceLoopBtn.TabIndex" type="System.Int32, mscorlib">
+    <value>73</value>
+  </data>
+  <data name="DanceLoopBtn.Text" xml:space="preserve">
+    <value>Dance Loop : Off</value>
+  </data>
+  <data name="&gt;&gt;DanceLoopBtn.Name" xml:space="preserve">
+    <value>DanceLoopBtn</value>
+  </data>
+  <data name="&gt;&gt;DanceLoopBtn.Type" xml:space="preserve">
+    <value>Sulakore.Components.SKoreButton, Sulakore, Version=1.4.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DanceLoopBtn.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;DanceLoopBtn.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>736, 305</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MiscellaneousPage</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>RetroFun.Controls.ObservablePage, RetroFun, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
 </root>

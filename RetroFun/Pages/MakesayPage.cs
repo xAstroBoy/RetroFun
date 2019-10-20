@@ -15,12 +15,13 @@ using System.Resources;
 using Sulakore.Habbo;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using RetroFun.Subscribers;
 
 namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class MakeSayPage : ObservablePage
+    public partial class MakeSayPage : ObservablePage, ISubscriber
     {
         public int SelectedBubbleId { get; private set; }
 
@@ -55,7 +56,6 @@ namespace RetroFun.Pages
             if (Program.Master != null)
             {
                 Triggers.InAttach(In.RoomUsers, RoomUserEnterRoom);
-                Triggers.OutAttach(Out.RequestWearingBadges, UserIDGrabber);
                 Triggers.InAttach(In.RoomUserRemove, RoomUserLeft);
                 Triggers.OutAttach(Out.RequestRoomLoad, UserLeaveRoom);
             }
@@ -83,9 +83,18 @@ namespace RetroFun.Pages
             WriteRegistrationUsers(users.Count);
         }
 
-        private void UserIDGrabber(DataInterceptedEventArgs obj)
+
+        public bool IsReceiving => true;
+
+
+        public void InPurchaseOk(DataInterceptedEventArgs e) { }
+
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
+
+
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
-            int userId = obj.Packet.ReadInteger();
+            int userId = e.Packet.ReadInteger();
             if (users.TryGetValue(userId, out var entity))
             {
                 selectedIndex = entity.Index;
@@ -95,6 +104,8 @@ namespace RetroFun.Pages
                 });
             }
         }
+
+
 
         private void UserLeaveRoom(DataInterceptedEventArgs obj)
         {

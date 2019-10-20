@@ -8,7 +8,7 @@ namespace RetroFun.Subscribers
 
         //Outgoing events shared by multiple pages
         void OnOutDiceTrigger(DataInterceptedEventArgs e);
-
+        void OnOutUserRequestBadge(DataInterceptedEventArgs e);
 
         //Incoming events shared by multiple pages
         void InPurchaseOk(DataInterceptedEventArgs e);

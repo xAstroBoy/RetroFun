@@ -22,9 +22,17 @@
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MiscellaneousPage));
             this.NoRemoveFriendOnReport = new System.Windows.Forms.CheckBox();
             this.SignCountGroup = new System.Windows.Forms.GroupBox();
-            this.CountingBtn = new Sulakore.Components.SKoreButton();
+            this.YellowCardChbx = new System.Windows.Forms.CheckBox();
+            this.RedCardChbx = new System.Windows.Forms.CheckBox();
+            this.SmilingFaceChbx = new System.Windows.Forms.CheckBox();
+            this.SoccerBallChbx = new System.Windows.Forms.CheckBox();
+            this.ExclamationChbx = new System.Windows.Forms.CheckBox();
+            this.SkullChbx = new System.Windows.Forms.CheckBox();
+            this.HearthChbx = new System.Windows.Forms.CheckBox();
+            this.InvisibleSignChbx = new System.Windows.Forms.CheckBox();
             this.FiveChbx = new System.Windows.Forms.CheckBox();
             this.ZeroChbx = new System.Windows.Forms.CheckBox();
             this.TenChBx = new System.Windows.Forms.CheckBox();
@@ -36,47 +44,63 @@
             this.FourChbx = new System.Windows.Forms.CheckBox();
             this.TwoChbx = new System.Windows.Forms.CheckBox();
             this.OneChbx = new System.Windows.Forms.CheckBox();
+            this.CountingBtn = new Sulakore.Components.SKoreButton();
             this.SignCountBtn = new Sulakore.Components.SKoreButton();
             this.SignCountCoolDown = new System.Windows.Forms.NumericUpDown();
             this.Label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Action_Kiss = new System.Windows.Forms.RadioButton();
-            this.Action_laugh = new System.Windows.Forms.RadioButton();
-            this.Action_sleep = new System.Windows.Forms.RadioButton();
-            this.Action_handwave = new System.Windows.Forms.RadioButton();
-            this.Action_respect = new System.Windows.Forms.RadioButton();
-            this.ActionsCooldownnbx = new System.Windows.Forms.NumericUpDown();
+            this.Gesture_NoneChbx = new System.Windows.Forms.CheckBox();
+            this.Gesture_PogoHopChbx = new System.Windows.Forms.CheckBox();
+            this.Gesture_KissChbx = new System.Windows.Forms.CheckBox();
+            this.Gesture_laughChbx = new System.Windows.Forms.CheckBox();
+            this.Gesture_sleepChbx = new System.Windows.Forms.CheckBox();
+            this.Gesture_WaveChbx = new System.Windows.Forms.CheckBox();
+            this.Gesture_ThumbsUpChbx = new System.Windows.Forms.CheckBox();
+            this.GestureCooldownNbx = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.ActionOnLoopBtn = new Sulakore.Components.SKoreButton();
+            this.GestureOnLoopBtn = new Sulakore.Components.SKoreButton();
             this.UserSitBtn = new Sulakore.Components.SKoreButton();
             this.SitOnLoopBtn = new Sulakore.Components.SKoreButton();
             this.label3 = new System.Windows.Forms.Label();
             this.SitCoolDownNbx = new System.Windows.Forms.NumericUpDown();
             this.GenMaleLookBtn = new Sulakore.Components.SKoreButton();
-            this.GenLookGenThreadBtn = new Sulakore.Components.SKoreButton();
             this.GenFemaleLookBtn = new Sulakore.Components.SKoreButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Dance_TheRollieChbx = new System.Windows.Forms.CheckBox();
+            this.Dance_DuckFunkChbx = new System.Windows.Forms.CheckBox();
+            this.Dance_PogoMogoChbx = new System.Windows.Forms.CheckBox();
+            this.Dance_NormalChbx = new System.Windows.Forms.CheckBox();
+            this.Dance_NoneChbx = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.DancesCooldownNBx = new System.Windows.Forms.NumericUpDown();
+            this.DanceLoopBtn = new Sulakore.Components.SKoreButton();
             this.SignCountGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SignCountCoolDown)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ActionsCooldownnbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GestureCooldownNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SitCoolDownNbx)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DancesCooldownNBx)).BeginInit();
             this.SuspendLayout();
             // 
             // NoRemoveFriendOnReport
             // 
-            this.NoRemoveFriendOnReport.AutoSize = true;
+            resources.ApplyResources(this.NoRemoveFriendOnReport, "NoRemoveFriendOnReport");
             this.NoRemoveFriendOnReport.Checked = true;
             this.NoRemoveFriendOnReport.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.NoRemoveFriendOnReport.Location = new System.Drawing.Point(24, 28);
             this.NoRemoveFriendOnReport.Name = "NoRemoveFriendOnReport";
-            this.NoRemoveFriendOnReport.Size = new System.Drawing.Size(195, 17);
-            this.NoRemoveFriendOnReport.TabIndex = 4;
-            this.NoRemoveFriendOnReport.Text = "Anti-Friend Removal when reported.";
             this.NoRemoveFriendOnReport.UseVisualStyleBackColor = true;
             // 
             // SignCountGroup
             // 
-            this.SignCountGroup.Controls.Add(this.CountingBtn);
+            this.SignCountGroup.Controls.Add(this.YellowCardChbx);
+            this.SignCountGroup.Controls.Add(this.RedCardChbx);
+            this.SignCountGroup.Controls.Add(this.SmilingFaceChbx);
+            this.SignCountGroup.Controls.Add(this.SoccerBallChbx);
+            this.SignCountGroup.Controls.Add(this.ExclamationChbx);
+            this.SignCountGroup.Controls.Add(this.SkullChbx);
+            this.SignCountGroup.Controls.Add(this.HearthChbx);
+            this.SignCountGroup.Controls.Add(this.InvisibleSignChbx);
             this.SignCountGroup.Controls.Add(this.FiveChbx);
             this.SignCountGroup.Controls.Add(this.ZeroChbx);
             this.SignCountGroup.Controls.Add(this.TenChBx);
@@ -88,144 +112,141 @@
             this.SignCountGroup.Controls.Add(this.FourChbx);
             this.SignCountGroup.Controls.Add(this.TwoChbx);
             this.SignCountGroup.Controls.Add(this.OneChbx);
-            this.SignCountGroup.Location = new System.Drawing.Point(24, 100);
+            resources.ApplyResources(this.SignCountGroup, "SignCountGroup");
             this.SignCountGroup.Name = "SignCountGroup";
-            this.SignCountGroup.Size = new System.Drawing.Size(121, 111);
-            this.SignCountGroup.TabIndex = 5;
             this.SignCountGroup.TabStop = false;
-            this.SignCountGroup.Text = "Sign Counter";
             // 
-            // CountingBtn
+            // YellowCardChbx
             // 
-            this.CountingBtn.Location = new System.Drawing.Point(76, 85);
-            this.CountingBtn.Name = "CountingBtn";
-            this.CountingBtn.Size = new System.Drawing.Size(45, 20);
-            this.CountingBtn.TabIndex = 56;
-            this.CountingBtn.Text = "0→10";
-            this.CountingBtn.Click += new System.EventHandler(this.CountingBtn_Click);
+            resources.ApplyResources(this.YellowCardChbx, "YellowCardChbx");
+            this.YellowCardChbx.ForeColor = System.Drawing.Color.Gold;
+            this.YellowCardChbx.Name = "YellowCardChbx";
+            this.YellowCardChbx.UseVisualStyleBackColor = true;
+            // 
+            // RedCardChbx
+            // 
+            resources.ApplyResources(this.RedCardChbx, "RedCardChbx");
+            this.RedCardChbx.ForeColor = System.Drawing.Color.Red;
+            this.RedCardChbx.Name = "RedCardChbx";
+            this.RedCardChbx.UseVisualStyleBackColor = true;
+            // 
+            // SmilingFaceChbx
+            // 
+            resources.ApplyResources(this.SmilingFaceChbx, "SmilingFaceChbx");
+            this.SmilingFaceChbx.Name = "SmilingFaceChbx";
+            this.SmilingFaceChbx.UseVisualStyleBackColor = true;
+            // 
+            // SoccerBallChbx
+            // 
+            resources.ApplyResources(this.SoccerBallChbx, "SoccerBallChbx");
+            this.SoccerBallChbx.Name = "SoccerBallChbx";
+            this.SoccerBallChbx.UseVisualStyleBackColor = true;
+            // 
+            // ExclamationChbx
+            // 
+            resources.ApplyResources(this.ExclamationChbx, "ExclamationChbx");
+            this.ExclamationChbx.Name = "ExclamationChbx";
+            this.ExclamationChbx.UseVisualStyleBackColor = true;
+            // 
+            // SkullChbx
+            // 
+            resources.ApplyResources(this.SkullChbx, "SkullChbx");
+            this.SkullChbx.Name = "SkullChbx";
+            this.SkullChbx.UseVisualStyleBackColor = true;
+            // 
+            // HearthChbx
+            // 
+            resources.ApplyResources(this.HearthChbx, "HearthChbx");
+            this.HearthChbx.Name = "HearthChbx";
+            this.HearthChbx.UseVisualStyleBackColor = true;
+            // 
+            // InvisibleSignChbx
+            // 
+            resources.ApplyResources(this.InvisibleSignChbx, "InvisibleSignChbx");
+            this.InvisibleSignChbx.Name = "InvisibleSignChbx";
+            this.InvisibleSignChbx.UseVisualStyleBackColor = true;
             // 
             // FiveChbx
             // 
-            this.FiveChbx.AutoSize = true;
-            this.FiveChbx.Location = new System.Drawing.Point(44, 42);
+            resources.ApplyResources(this.FiveChbx, "FiveChbx");
             this.FiveChbx.Name = "FiveChbx";
-            this.FiveChbx.Size = new System.Drawing.Size(32, 17);
-            this.FiveChbx.TabIndex = 10;
-            this.FiveChbx.Text = "5";
             this.FiveChbx.UseVisualStyleBackColor = true;
             // 
             // ZeroChbx
             // 
-            this.ZeroChbx.AutoSize = true;
-            this.ZeroChbx.Location = new System.Drawing.Point(6, 19);
+            resources.ApplyResources(this.ZeroChbx, "ZeroChbx");
             this.ZeroChbx.Name = "ZeroChbx";
-            this.ZeroChbx.Size = new System.Drawing.Size(32, 17);
-            this.ZeroChbx.TabIndex = 9;
-            this.ZeroChbx.Text = "0";
             this.ZeroChbx.UseVisualStyleBackColor = true;
             // 
             // TenChBx
             // 
-            this.TenChBx.AutoSize = true;
-            this.TenChBx.Location = new System.Drawing.Point(82, 65);
+            resources.ApplyResources(this.TenChBx, "TenChBx");
             this.TenChBx.Name = "TenChBx";
-            this.TenChBx.Size = new System.Drawing.Size(38, 17);
-            this.TenChBx.TabIndex = 8;
-            this.TenChBx.Text = "10";
             this.TenChBx.UseVisualStyleBackColor = true;
             // 
             // SixChbx
             // 
-            this.SixChbx.AutoSize = true;
-            this.SixChbx.Location = new System.Drawing.Point(44, 65);
+            resources.ApplyResources(this.SixChbx, "SixChbx");
             this.SixChbx.Name = "SixChbx";
-            this.SixChbx.Size = new System.Drawing.Size(32, 17);
-            this.SixChbx.TabIndex = 7;
-            this.SixChbx.Text = "6";
             this.SixChbx.UseVisualStyleBackColor = true;
             // 
             // SevenChbx
             // 
-            this.SevenChbx.AutoSize = true;
-            this.SevenChbx.Location = new System.Drawing.Point(44, 88);
+            resources.ApplyResources(this.SevenChbx, "SevenChbx");
             this.SevenChbx.Name = "SevenChbx";
-            this.SevenChbx.Size = new System.Drawing.Size(32, 17);
-            this.SevenChbx.TabIndex = 6;
-            this.SevenChbx.Text = "7";
             this.SevenChbx.UseVisualStyleBackColor = true;
             // 
             // EightChbx
             // 
-            this.EightChbx.AutoSize = true;
-            this.EightChbx.Location = new System.Drawing.Point(82, 19);
+            resources.ApplyResources(this.EightChbx, "EightChbx");
             this.EightChbx.Name = "EightChbx";
-            this.EightChbx.Size = new System.Drawing.Size(32, 17);
-            this.EightChbx.TabIndex = 5;
-            this.EightChbx.Text = "8";
             this.EightChbx.UseVisualStyleBackColor = true;
             // 
             // NineChbx
             // 
-            this.NineChbx.AutoSize = true;
-            this.NineChbx.Location = new System.Drawing.Point(82, 42);
+            resources.ApplyResources(this.NineChbx, "NineChbx");
             this.NineChbx.Name = "NineChbx";
-            this.NineChbx.Size = new System.Drawing.Size(32, 17);
-            this.NineChbx.TabIndex = 4;
-            this.NineChbx.Text = "9";
             this.NineChbx.UseVisualStyleBackColor = true;
             // 
             // ThreeChbx
             // 
-            this.ThreeChbx.AutoSize = true;
-            this.ThreeChbx.Location = new System.Drawing.Point(6, 88);
+            resources.ApplyResources(this.ThreeChbx, "ThreeChbx");
             this.ThreeChbx.Name = "ThreeChbx";
-            this.ThreeChbx.Size = new System.Drawing.Size(32, 17);
-            this.ThreeChbx.TabIndex = 3;
-            this.ThreeChbx.Text = "3";
             this.ThreeChbx.UseVisualStyleBackColor = true;
             // 
             // FourChbx
             // 
-            this.FourChbx.AutoSize = true;
-            this.FourChbx.Location = new System.Drawing.Point(44, 19);
+            resources.ApplyResources(this.FourChbx, "FourChbx");
             this.FourChbx.Name = "FourChbx";
-            this.FourChbx.Size = new System.Drawing.Size(32, 17);
-            this.FourChbx.TabIndex = 2;
-            this.FourChbx.Text = "4";
             this.FourChbx.UseVisualStyleBackColor = true;
             // 
             // TwoChbx
             // 
-            this.TwoChbx.AutoSize = true;
-            this.TwoChbx.Location = new System.Drawing.Point(6, 65);
+            resources.ApplyResources(this.TwoChbx, "TwoChbx");
             this.TwoChbx.Name = "TwoChbx";
-            this.TwoChbx.Size = new System.Drawing.Size(32, 17);
-            this.TwoChbx.TabIndex = 1;
-            this.TwoChbx.Text = "2";
             this.TwoChbx.UseVisualStyleBackColor = true;
             // 
             // OneChbx
             // 
-            this.OneChbx.AutoSize = true;
-            this.OneChbx.Location = new System.Drawing.Point(6, 42);
+            resources.ApplyResources(this.OneChbx, "OneChbx");
             this.OneChbx.Name = "OneChbx";
-            this.OneChbx.Size = new System.Drawing.Size(32, 17);
-            this.OneChbx.TabIndex = 0;
-            this.OneChbx.Text = "1";
             this.OneChbx.UseVisualStyleBackColor = true;
+            // 
+            // CountingBtn
+            // 
+            resources.ApplyResources(this.CountingBtn, "CountingBtn");
+            this.CountingBtn.Name = "CountingBtn";
+            this.CountingBtn.Click += new System.EventHandler(this.CountingBtn_Click);
             // 
             // SignCountBtn
             // 
-            this.SignCountBtn.Location = new System.Drawing.Point(24, 256);
+            resources.ApplyResources(this.SignCountBtn, "SignCountBtn");
             this.SignCountBtn.Name = "SignCountBtn";
-            this.SignCountBtn.Size = new System.Drawing.Size(100, 20);
-            this.SignCountBtn.TabIndex = 6;
-            this.SignCountBtn.Text = "Sign Count : Off";
             this.SignCountBtn.Click += new System.EventHandler(this.SignCountBtn_Click);
             // 
             // SignCountCoolDown
             // 
-            this.SignCountCoolDown.Location = new System.Drawing.Point(30, 230);
+            resources.ApplyResources(this.SignCountCoolDown, "SignCountCoolDown");
             this.SignCountCoolDown.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -237,8 +258,6 @@
             0,
             0});
             this.SignCountCoolDown.Name = "SignCountCoolDown";
-            this.SignCountCoolDown.Size = new System.Drawing.Size(88, 20);
-            this.SignCountCoolDown.TabIndex = 54;
             this.SignCountCoolDown.Value = new decimal(new int[] {
             500,
             0,
@@ -247,96 +266,79 @@
             // 
             // Label2
             // 
-            this.Label2.AutoSize = true;
-            this.Label2.Location = new System.Drawing.Point(27, 214);
+            resources.ApplyResources(this.Label2, "Label2");
             this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(118, 13);
-            this.Label2.TabIndex = 55;
-            this.Label2.Text = "Sign Counter Cooldown";
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.Action_Kiss);
-            this.groupBox1.Controls.Add(this.Action_laugh);
-            this.groupBox1.Controls.Add(this.Action_sleep);
-            this.groupBox1.Controls.Add(this.Action_handwave);
-            this.groupBox1.Controls.Add(this.Action_respect);
-            this.groupBox1.Location = new System.Drawing.Point(188, 80);
+            this.groupBox1.Controls.Add(this.Gesture_NoneChbx);
+            this.groupBox1.Controls.Add(this.Gesture_PogoHopChbx);
+            this.groupBox1.Controls.Add(this.Gesture_KissChbx);
+            this.groupBox1.Controls.Add(this.Gesture_laughChbx);
+            this.groupBox1.Controls.Add(this.Gesture_sleepChbx);
+            this.groupBox1.Controls.Add(this.Gesture_WaveChbx);
+            this.groupBox1.Controls.Add(this.Gesture_ThumbsUpChbx);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(95, 131);
-            this.groupBox1.TabIndex = 56;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Actions On Loop";
             // 
-            // Action_Kiss
+            // Gesture_NoneChbx
             // 
-            this.Action_Kiss.AutoSize = true;
-            this.Action_Kiss.Location = new System.Drawing.Point(6, 108);
-            this.Action_Kiss.Name = "Action_Kiss";
-            this.Action_Kiss.Size = new System.Drawing.Size(44, 17);
-            this.Action_Kiss.TabIndex = 4;
-            this.Action_Kiss.Text = "Kiss";
-            this.Action_Kiss.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.Gesture_NoneChbx, "Gesture_NoneChbx");
+            this.Gesture_NoneChbx.Name = "Gesture_NoneChbx";
+            this.Gesture_NoneChbx.UseVisualStyleBackColor = true;
             // 
-            // Action_laugh
+            // Gesture_PogoHopChbx
             // 
-            this.Action_laugh.AutoSize = true;
-            this.Action_laugh.Location = new System.Drawing.Point(6, 85);
-            this.Action_laugh.Name = "Action_laugh";
-            this.Action_laugh.Size = new System.Drawing.Size(55, 17);
-            this.Action_laugh.TabIndex = 3;
-            this.Action_laugh.Text = "Laugh";
-            this.Action_laugh.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.Gesture_PogoHopChbx, "Gesture_PogoHopChbx");
+            this.Gesture_PogoHopChbx.Name = "Gesture_PogoHopChbx";
+            this.Gesture_PogoHopChbx.UseVisualStyleBackColor = true;
             // 
-            // Action_sleep
+            // Gesture_KissChbx
             // 
-            this.Action_sleep.AutoSize = true;
-            this.Action_sleep.Location = new System.Drawing.Point(6, 62);
-            this.Action_sleep.Name = "Action_sleep";
-            this.Action_sleep.Size = new System.Drawing.Size(52, 17);
-            this.Action_sleep.TabIndex = 2;
-            this.Action_sleep.Text = "Sleep";
-            this.Action_sleep.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.Gesture_KissChbx, "Gesture_KissChbx");
+            this.Gesture_KissChbx.Name = "Gesture_KissChbx";
+            this.Gesture_KissChbx.UseVisualStyleBackColor = true;
             // 
-            // Action_handwave
+            // Gesture_laughChbx
             // 
-            this.Action_handwave.AutoSize = true;
-            this.Action_handwave.Location = new System.Drawing.Point(5, 39);
-            this.Action_handwave.Name = "Action_handwave";
-            this.Action_handwave.Size = new System.Drawing.Size(75, 17);
-            this.Action_handwave.TabIndex = 1;
-            this.Action_handwave.Text = "handwave";
-            this.Action_handwave.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.Gesture_laughChbx, "Gesture_laughChbx");
+            this.Gesture_laughChbx.Name = "Gesture_laughChbx";
+            this.Gesture_laughChbx.UseVisualStyleBackColor = true;
             // 
-            // Action_respect
+            // Gesture_sleepChbx
             // 
-            this.Action_respect.AutoSize = true;
-            this.Action_respect.Checked = true;
-            this.Action_respect.Location = new System.Drawing.Point(6, 18);
-            this.Action_respect.Name = "Action_respect";
-            this.Action_respect.Size = new System.Drawing.Size(65, 17);
-            this.Action_respect.TabIndex = 0;
-            this.Action_respect.TabStop = true;
-            this.Action_respect.Text = "Respect";
-            this.Action_respect.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.Gesture_sleepChbx, "Gesture_sleepChbx");
+            this.Gesture_sleepChbx.Name = "Gesture_sleepChbx";
+            this.Gesture_sleepChbx.UseVisualStyleBackColor = true;
             // 
-            // ActionsCooldownnbx
+            // Gesture_WaveChbx
             // 
-            this.ActionsCooldownnbx.Location = new System.Drawing.Point(188, 237);
-            this.ActionsCooldownnbx.Maximum = new decimal(new int[] {
+            resources.ApplyResources(this.Gesture_WaveChbx, "Gesture_WaveChbx");
+            this.Gesture_WaveChbx.Name = "Gesture_WaveChbx";
+            this.Gesture_WaveChbx.UseVisualStyleBackColor = true;
+            // 
+            // Gesture_ThumbsUpChbx
+            // 
+            resources.ApplyResources(this.Gesture_ThumbsUpChbx, "Gesture_ThumbsUpChbx");
+            this.Gesture_ThumbsUpChbx.Name = "Gesture_ThumbsUpChbx";
+            this.Gesture_ThumbsUpChbx.UseVisualStyleBackColor = true;
+            // 
+            // GestureCooldownNbx
+            // 
+            resources.ApplyResources(this.GestureCooldownNbx, "GestureCooldownNbx");
+            this.GestureCooldownNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
-            this.ActionsCooldownnbx.Minimum = new decimal(new int[] {
+            this.GestureCooldownNbx.Minimum = new decimal(new int[] {
             150,
             0,
             0,
             0});
-            this.ActionsCooldownnbx.Name = "ActionsCooldownnbx";
-            this.ActionsCooldownnbx.Size = new System.Drawing.Size(88, 20);
-            this.ActionsCooldownnbx.TabIndex = 57;
-            this.ActionsCooldownnbx.Value = new decimal(new int[] {
+            this.GestureCooldownNbx.Name = "GestureCooldownNbx";
+            this.GestureCooldownNbx.Value = new decimal(new int[] {
             250,
             0,
             0,
@@ -344,52 +346,35 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(185, 222);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
-            this.label1.TabIndex = 58;
-            this.label1.Text = "Action Cooldown";
             // 
-            // ActionOnLoopBtn
+            // GestureOnLoopBtn
             // 
-            this.ActionOnLoopBtn.Location = new System.Drawing.Point(188, 266);
-            this.ActionOnLoopBtn.Name = "ActionOnLoopBtn";
-            this.ActionOnLoopBtn.Size = new System.Drawing.Size(119, 20);
-            this.ActionOnLoopBtn.TabIndex = 59;
-            this.ActionOnLoopBtn.Text = "Actions On Loop : Off";
-            this.ActionOnLoopBtn.Click += new System.EventHandler(this.ActionOnLoopBtn_Click);
+            resources.ApplyResources(this.GestureOnLoopBtn, "GestureOnLoopBtn");
+            this.GestureOnLoopBtn.Name = "GestureOnLoopBtn";
+            this.GestureOnLoopBtn.Click += new System.EventHandler(this.GestureOnLoopBtn_Click);
             // 
             // UserSitBtn
             // 
-            this.UserSitBtn.Location = new System.Drawing.Point(335, 142);
+            resources.ApplyResources(this.UserSitBtn, "UserSitBtn");
             this.UserSitBtn.Name = "UserSitBtn";
-            this.UserSitBtn.Size = new System.Drawing.Size(119, 20);
-            this.UserSitBtn.TabIndex = 60;
-            this.UserSitBtn.Text = "Make user Sit";
             this.UserSitBtn.Click += new System.EventHandler(this.UserSitBtn_Click);
             // 
             // SitOnLoopBtn
             // 
-            this.SitOnLoopBtn.Location = new System.Drawing.Point(335, 191);
+            resources.ApplyResources(this.SitOnLoopBtn, "SitOnLoopBtn");
             this.SitOnLoopBtn.Name = "SitOnLoopBtn";
-            this.SitOnLoopBtn.Size = new System.Drawing.Size(119, 20);
-            this.SitOnLoopBtn.TabIndex = 61;
-            this.SitOnLoopBtn.Text = "Sit Loop : Off";
             this.SitOnLoopBtn.Click += new System.EventHandler(this.SitOnLoopBtn_Click);
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(332, 222);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 13);
-            this.label3.TabIndex = 63;
-            this.label3.Text = "Sit Cooldown";
             // 
             // SitCoolDownNbx
             // 
-            this.SitCoolDownNbx.Location = new System.Drawing.Point(335, 237);
+            resources.ApplyResources(this.SitCoolDownNbx, "SitCoolDownNbx");
             this.SitCoolDownNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -401,8 +386,6 @@
             0,
             0});
             this.SitCoolDownNbx.Name = "SitCoolDownNbx";
-            this.SitCoolDownNbx.Size = new System.Drawing.Size(88, 20);
-            this.SitCoolDownNbx.TabIndex = 62;
             this.SitCoolDownNbx.Value = new decimal(new int[] {
             250,
             0,
@@ -411,45 +394,106 @@
             // 
             // GenMaleLookBtn
             // 
-            this.GenMaleLookBtn.Location = new System.Drawing.Point(335, 100);
+            resources.ApplyResources(this.GenMaleLookBtn, "GenMaleLookBtn");
             this.GenMaleLookBtn.Name = "GenMaleLookBtn";
-            this.GenMaleLookBtn.Size = new System.Drawing.Size(119, 20);
-            this.GenMaleLookBtn.TabIndex = 64;
-            this.GenMaleLookBtn.Text = "Look Generator (Male)";
             this.GenMaleLookBtn.Click += new System.EventHandler(this.GenMaleLookBtn_Click);
-            // 
-            // GenLookGenThreadBtn
-            // 
-            this.GenLookGenThreadBtn.Location = new System.Drawing.Point(573, 222);
-            this.GenLookGenThreadBtn.Name = "GenLookGenThreadBtn";
-            this.GenLookGenThreadBtn.Size = new System.Drawing.Size(100, 20);
-            this.GenLookGenThreadBtn.TabIndex = 65;
-            this.GenLookGenThreadBtn.Text = "Look Generator : Off";
-            this.GenLookGenThreadBtn.Click += new System.EventHandler(this.GenLookGenThreadBtn_Click);
             // 
             // GenFemaleLookBtn
             // 
-            this.GenFemaleLookBtn.Location = new System.Drawing.Point(335, 74);
+            resources.ApplyResources(this.GenFemaleLookBtn, "GenFemaleLookBtn");
             this.GenFemaleLookBtn.Name = "GenFemaleLookBtn";
-            this.GenFemaleLookBtn.Size = new System.Drawing.Size(119, 20);
-            this.GenFemaleLookBtn.TabIndex = 66;
-            this.GenFemaleLookBtn.Text = "Look Generator (Female)";
             this.GenFemaleLookBtn.Click += new System.EventHandler(this.GenFemaleLookBtn_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.Dance_TheRollieChbx);
+            this.groupBox2.Controls.Add(this.Dance_DuckFunkChbx);
+            this.groupBox2.Controls.Add(this.Dance_PogoMogoChbx);
+            this.groupBox2.Controls.Add(this.Dance_NormalChbx);
+            this.groupBox2.Controls.Add(this.Dance_NoneChbx);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // Dance_TheRollieChbx
+            // 
+            resources.ApplyResources(this.Dance_TheRollieChbx, "Dance_TheRollieChbx");
+            this.Dance_TheRollieChbx.Name = "Dance_TheRollieChbx";
+            this.Dance_TheRollieChbx.UseVisualStyleBackColor = true;
+            // 
+            // Dance_DuckFunkChbx
+            // 
+            resources.ApplyResources(this.Dance_DuckFunkChbx, "Dance_DuckFunkChbx");
+            this.Dance_DuckFunkChbx.Name = "Dance_DuckFunkChbx";
+            this.Dance_DuckFunkChbx.UseVisualStyleBackColor = true;
+            // 
+            // Dance_PogoMogoChbx
+            // 
+            resources.ApplyResources(this.Dance_PogoMogoChbx, "Dance_PogoMogoChbx");
+            this.Dance_PogoMogoChbx.Name = "Dance_PogoMogoChbx";
+            this.Dance_PogoMogoChbx.UseVisualStyleBackColor = true;
+            // 
+            // Dance_NormalChbx
+            // 
+            resources.ApplyResources(this.Dance_NormalChbx, "Dance_NormalChbx");
+            this.Dance_NormalChbx.Name = "Dance_NormalChbx";
+            this.Dance_NormalChbx.UseVisualStyleBackColor = true;
+            // 
+            // Dance_NoneChbx
+            // 
+            resources.ApplyResources(this.Dance_NoneChbx, "Dance_NoneChbx");
+            this.Dance_NoneChbx.Name = "Dance_NoneChbx";
+            this.Dance_NoneChbx.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // DancesCooldownNBx
+            // 
+            resources.ApplyResources(this.DancesCooldownNBx, "DancesCooldownNBx");
+            this.DancesCooldownNBx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.DancesCooldownNBx.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.DancesCooldownNBx.Name = "DancesCooldownNBx";
+            this.DancesCooldownNBx.Value = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+            // 
+            // DanceLoopBtn
+            // 
+            resources.ApplyResources(this.DanceLoopBtn, "DanceLoopBtn");
+            this.DanceLoopBtn.Name = "DanceLoopBtn";
+            this.DanceLoopBtn.Click += new System.EventHandler(this.DanceLoopBtn_Click);
             // 
             // MiscellaneousPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.DanceLoopBtn);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.DancesCooldownNBx);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GenFemaleLookBtn);
-            this.Controls.Add(this.GenLookGenThreadBtn);
+            this.Controls.Add(this.CountingBtn);
             this.Controls.Add(this.GenMaleLookBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.SitCoolDownNbx);
             this.Controls.Add(this.SitOnLoopBtn);
             this.Controls.Add(this.UserSitBtn);
-            this.Controls.Add(this.ActionOnLoopBtn);
+            this.Controls.Add(this.GestureOnLoopBtn);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.ActionsCooldownnbx);
+            this.Controls.Add(this.GestureCooldownNbx);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Label2);
             this.Controls.Add(this.SignCountCoolDown);
@@ -457,14 +501,16 @@
             this.Controls.Add(this.SignCountGroup);
             this.Controls.Add(this.NoRemoveFriendOnReport);
             this.Name = "MiscellaneousPage";
-            this.Size = new System.Drawing.Size(736, 305);
             this.SignCountGroup.ResumeLayout(false);
             this.SignCountGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SignCountCoolDown)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ActionsCooldownnbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GestureCooldownNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SitCoolDownNbx)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DancesCooldownNBx)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -487,20 +533,38 @@
         private System.Windows.Forms.Label Label2;
         private Sulakore.Components.SKoreButton CountingBtn;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton Action_Kiss;
-        private System.Windows.Forms.RadioButton Action_laugh;
-        private System.Windows.Forms.RadioButton Action_sleep;
-        private System.Windows.Forms.RadioButton Action_handwave;
-        private System.Windows.Forms.RadioButton Action_respect;
-        private System.Windows.Forms.NumericUpDown ActionsCooldownnbx;
+        private System.Windows.Forms.CheckBox Gesture_KissChbx;
+        private System.Windows.Forms.CheckBox Gesture_laughChbx;
+        private System.Windows.Forms.CheckBox Gesture_sleepChbx;
+        private System.Windows.Forms.CheckBox Gesture_WaveChbx;
+        private System.Windows.Forms.CheckBox Gesture_ThumbsUpChbx;
+        private System.Windows.Forms.NumericUpDown GestureCooldownNbx;
         private System.Windows.Forms.Label label1;
-        private Sulakore.Components.SKoreButton ActionOnLoopBtn;
+        private Sulakore.Components.SKoreButton GestureOnLoopBtn;
         private Sulakore.Components.SKoreButton UserSitBtn;
         private Sulakore.Components.SKoreButton SitOnLoopBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown SitCoolDownNbx;
         private Sulakore.Components.SKoreButton GenMaleLookBtn;
-        private Sulakore.Components.SKoreButton GenLookGenThreadBtn;
         private Sulakore.Components.SKoreButton GenFemaleLookBtn;
+        private System.Windows.Forms.CheckBox InvisibleSignChbx;
+        private System.Windows.Forms.CheckBox YellowCardChbx;
+        private System.Windows.Forms.CheckBox RedCardChbx;
+        private System.Windows.Forms.CheckBox SmilingFaceChbx;
+        private System.Windows.Forms.CheckBox SoccerBallChbx;
+        private System.Windows.Forms.CheckBox ExclamationChbx;
+        private System.Windows.Forms.CheckBox SkullChbx;
+        private System.Windows.Forms.CheckBox HearthChbx;
+        private System.Windows.Forms.CheckBox Gesture_NoneChbx;
+        private System.Windows.Forms.CheckBox Gesture_PogoHopChbx;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown DancesCooldownNBx;
+        private Sulakore.Components.SKoreButton DanceLoopBtn;
+        private System.Windows.Forms.CheckBox Dance_TheRollieChbx;
+        private System.Windows.Forms.CheckBox Dance_DuckFunkChbx;
+        private System.Windows.Forms.CheckBox Dance_PogoMogoChbx;
+        private System.Windows.Forms.CheckBox Dance_NormalChbx;
+        private System.Windows.Forms.CheckBox Dance_NoneChbx;
     }
 }

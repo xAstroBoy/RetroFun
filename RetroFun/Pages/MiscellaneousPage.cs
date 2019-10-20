@@ -6,6 +6,7 @@ using RetroFun.Controls;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Components;
+using Sulakore.Habbo;
 using Sulakore.Modules;
 
 namespace RetroFun.Pages
@@ -15,34 +16,125 @@ namespace RetroFun.Pages
     public partial class MiscellaneousPage : ObservablePage
     {
         Random Randomizer = new Random();
-        private int OldRandom = 100;
-        private int OldRandom1 = 100;
-        private int OldRandom2 = 100;
-        private int OldRandom3 = 100;
+
 
         private string OldLook = "";
+
         #region SignCountBools
 
         private bool SignCountEnabled;
         private bool DecreasingMode;
         private bool IncreasingMode = true;
-        private bool ActionLoopEnabled;
-        private readonly int Respect = 7;
-        private readonly int Wave = 1;
-        private readonly int Sleep = 5;
-        private readonly int Laugh = 3;
-        private readonly int Kiss = 2;
+        private bool GestureLoopEnabled;
         private bool SitModeEnabled;
+        private bool DanceLoopEnabled;
 
-        #region ActionsBools
+        #region DanceBools
 
-        private bool _RespectSelected;
-        public bool RespectSelected
+        private bool _Dance_NoneSelected;
+        public bool Dance_NoneSelected
         {
-            get => _RespectSelected;
+            get => _Dance_NoneSelected;
             set
             {
-                _RespectSelected = value;
+                _Dance_NoneSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        private bool _Dance_NormalSelected;
+        public bool Dance_NormalSelected
+        {
+            get => _Dance_NormalSelected;
+            set
+            {
+                _Dance_NormalSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        private bool _Dance_PogoMogoSelected;
+        public bool Dance_PogoMogoSelected
+        {
+            get => _Dance_PogoMogoSelected;
+            set
+            {
+                _Dance_PogoMogoSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _Dance_DuckFunkSelected;
+        public bool Dance_DuckFunkSelected
+        {
+            get => _Dance_DuckFunkSelected;
+            set
+            {
+                _Dance_DuckFunkSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        private bool _Dance_TheRollieSelected;
+        public bool Dance_TheRollieSelected
+        {
+            get => _Dance_TheRollieSelected;
+            set
+            {
+                _Dance_TheRollieSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _Dance_Cooldown = 500;
+        public int Dance_Cooldown
+        {
+            get => _Dance_Cooldown;
+            set
+            {
+                _Dance_Cooldown = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+
+
+
+
+        #endregion
+
+
+        #region GesturesBools
+
+
+        private bool _PogoHopSelected;
+        public bool PogoHopSelected
+        {
+            get => _PogoHopSelected;
+            set
+            {
+                _PogoHopSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        private bool _NoneGestureSelected;
+        public bool NoneGestureSelected
+        {
+            get => _NoneGestureSelected;
+            set
+            {
+                _NoneGestureSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _ThumbsUpSelected;
+        public bool ThumbsUpSelected
+        {
+            get => _ThumbsUpSelected;
+            set
+            {
+                _ThumbsUpSelected = value;
                 RaiseOnPropertyChanged();
             }
         }
@@ -105,6 +197,98 @@ namespace RetroFun.Pages
         //private bool NineUsed;
         //private bool TenUsed;
 
+
+        #region SignBools
+
+        private bool _YellowcardSelected;
+        public bool YellowcardSelected
+        {
+            get => _YellowcardSelected;
+            set
+            {
+                _YellowcardSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _RedcardSelected;
+        public bool RedcardSelected
+        {
+            get => _RedcardSelected;
+            set
+            {
+                _RedcardSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _SmileySelected;
+        public bool SmileySelected
+        {
+            get => _SmileySelected;
+            set
+            {
+                _SmileySelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _SoccerballSelected;
+        public bool SoccerballSelected
+        {
+            get => _SoccerballSelected;
+            set
+            {
+                _SoccerballSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _ExclamationSelected;
+        public bool ExclamationSelected
+        {
+            get => _ExclamationSelected;
+            set
+            {
+                _ExclamationSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _SkullSelected;
+        public bool SkullSelected
+        {
+            get => _SkullSelected;
+            set
+            {
+                _SkullSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        private bool _HeartSelected;
+        public bool HeartSelected
+        {
+            get => _HeartSelected;
+            set
+            {
+                _HeartSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        private bool _InvisibleSignSelected;
+        public bool InvisibleSignSelected
+        {
+            get => _InvisibleSignSelected;
+            set
+            {
+                _InvisibleSignSelected = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         private bool _ZeroSelected;
         public bool ZeroSelected
@@ -244,7 +428,7 @@ namespace RetroFun.Pages
 
 
         private int _ActionsCooldown = 250;
-        public int ActionsCooldown
+        public int GestureCooldown
         {
             get => _ActionsCooldown;
             set
@@ -265,8 +449,8 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
         #endregion
+
 
         #region miscvars
         private bool _AntiFriendRemove = true;
@@ -281,6 +465,7 @@ namespace RetroFun.Pages
         }
         #endregion
 
+        #endregion
 
 
         public MiscellaneousPage()
@@ -299,14 +484,37 @@ namespace RetroFun.Pages
             Bind(EightChbx, "Checked", nameof(EightSelected));
             Bind(NineChbx, "Checked", nameof(NineSelected));
             Bind(TenChBx, "Checked", nameof(TenSelected));
-            Bind(Action_respect, "Checked", nameof(RespectSelected));
-            Bind(Action_handwave, "Checked", nameof(WaveSelected));
-            Bind(Action_sleep, "Checked", nameof(SleepSelected));
-            Bind(Action_laugh, "Checked", nameof(LaughSelected));
-            Bind(Action_Kiss, "Checked", nameof(KissSelected));
+
+            Bind(HearthChbx, "Checked", nameof(HeartSelected));
+            Bind(SkullChbx, "Checked", nameof(SkullSelected));
+            Bind(ExclamationChbx, "Checked", nameof(ExclamationSelected));
+            Bind(SoccerBallChbx, "Checked", nameof(SoccerballSelected));
+            Bind(SmilingFaceChbx, "Checked", nameof(SmileySelected));
+            Bind(RedCardChbx, "Checked", nameof(RedcardSelected));
+            Bind(YellowCardChbx, "Checked", nameof(YellowcardSelected));
+
+            Bind(InvisibleSignChbx, "Checked", nameof(InvisibleSignSelected));
+
+            Bind(Gesture_ThumbsUpChbx, "Checked", nameof(ThumbsUpSelected));
+            Bind(Gesture_WaveChbx, "Checked", nameof(WaveSelected));
+            Bind(Gesture_sleepChbx, "Checked", nameof(SleepSelected));
+            Bind(Gesture_laughChbx, "Checked", nameof(LaughSelected));
+            Bind(Gesture_KissChbx, "Checked", nameof(KissSelected));
+            Bind(Gesture_NoneChbx, "Checked", nameof(NoneGestureSelected));
+            Bind(Gesture_PogoHopChbx, "Checked", nameof(PogoHopSelected));
+
+
+
+            Bind(Dance_NoneChbx, "Checked", nameof(Dance_NoneSelected));
+            Bind(Dance_NormalChbx, "Checked", nameof(Dance_NormalSelected));
+            Bind(Dance_PogoMogoChbx, "Checked", nameof(Dance_PogoMogoSelected));
+            Bind(Dance_DuckFunkChbx, "Checked", nameof(Dance_DuckFunkSelected));
+            Bind(Dance_TheRollieChbx, "Checked", nameof(Dance_TheRollieSelected));
+            Bind(DancesCooldownNBx, "Value", nameof(Dance_Cooldown));
+
 
             Bind(SignCountCoolDown, "Value", nameof(SignCounterCoolDown));
-            Bind(ActionsCooldownnbx, "Value", nameof(ActionsCooldown));
+            Bind(GestureCooldownNbx, "Value", nameof(GestureCooldown));
             Bind(SitCoolDownNbx, "Value", nameof(SitsCooldown));
 
             if (Program.Master != null)
@@ -315,8 +523,6 @@ namespace RetroFun.Pages
             }
 
         }
-
-
 
 
 
@@ -337,30 +543,28 @@ namespace RetroFun.Pages
             {
                 SignCountEnabled = true;
                 WriteToButton(SignCountBtn, "Sign Count : On");
- 
                 SignCountThread();
-
             }
         }
 
-        private void ActionOnLoopBtn_Click(object sender, EventArgs e)
+        private void GestureOnLoopBtn_Click(object sender, EventArgs e)
         {
-            ActionLooper();
+            GestureLoopManager();
         }
 
 
-        private void ActionLooper()
+        private void GestureLoopManager()
         {
-            if (ActionLoopEnabled)
+            if (GestureLoopEnabled)
             {
-                ActionLoopEnabled = false;
-                WriteToButton(ActionOnLoopBtn, "Actions On Loop : Off");
+                GestureLoopEnabled = false;
+                WriteToButton(GestureOnLoopBtn, "Gesture Loop : Off");
             }
             else
             {
-                WriteToButton(ActionOnLoopBtn, "Actions On Loop : On");
-                ActionLoopEnabled = true;
-                ActionOnLoop();
+                WriteToButton(GestureOnLoopBtn, "Gesture Loop : On");
+                GestureLoopEnabled = true;
+                GestureLoop();
             }
         }
 
@@ -380,46 +584,70 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-        private void ActionOnLoop()
+        private void GestureLoop()
         {
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
-                    if(RespectSelected)
+                    if (GestureLoopEnabled)
                     {
-                        SendActionPacket(Respect);
-                        Thread.Sleep(ActionsCooldown);
+                        if (ThumbsUpSelected)
+                        {
+                            SendGesturePacket(HGesture.ThumbsUp);
+                            Thread.Sleep(GestureCooldown);
+                        }
+                        if (WaveSelected)
+                        {
+                            SendGesturePacket(HGesture.Wave);
+                            Thread.Sleep(GestureCooldown);
+                        }
+                        if (SleepSelected)
+                        {
+                            SendGesturePacket(HGesture.Idle);
+                            Thread.Sleep(GestureCooldown);
+                        }
+                        if (LaughSelected)
+                        {
+                            SendGesturePacket(HGesture.Laugh);
+                            Thread.Sleep(GestureCooldown);
+                        }
+                        if (KissSelected)
+                        {
+                            SendGesturePacket(HGesture.BlowKiss);
+                            Thread.Sleep(GestureCooldown);
+                        }
+                        if (PogoHopSelected)
+                        {
+                            SendGesturePacket(HGesture.PogoHop);
+                            Thread.Sleep(GestureCooldown);
+                        }
+                        if (NoneGestureSelected)
+                        {
+                            SendGesturePacket(HGesture.None);
+                            Thread.Sleep(GestureCooldown);
+                        }
                     }
-                    else if(WaveSelected)
-                    {
-                        SendActionPacket(Wave);
-                        Thread.Sleep(ActionsCooldown);
-                    }
-                    else if (SleepSelected)
-                    {
-                        SendActionPacket(Sleep);
-                        Thread.Sleep(ActionsCooldown);
-                    }
-                    else if (LaughSelected)
-                    {
-                        SendActionPacket(Laugh);
-                        Thread.Sleep(ActionsCooldown);
-                    }
-                    else if (KissSelected)
-                    {
-                        SendActionPacket(Kiss);
-                        Thread.Sleep(ActionsCooldown);
-                    }
-                } while (ActionLoopEnabled);
+                } while (GestureLoopEnabled);
 
             }).Start();
         }
 
-        private void SendActionPacket(int Action)
+
+
+
+
+
+
+        private void SendGesturePacket(HGesture Gesture)
         {
-            Connection.SendToServerAsync(Out.RoomUserAction, Action);
+            Connection.SendToServerAsync(Out.RoomUserAction, Gesture);
+        }
+
+        private void SendDancePacket(HDance Dance)
+        {
+            Connection.SendToServerAsync(Out.RoomUserDance, Dance);
         }
 
 
@@ -432,127 +660,218 @@ namespace RetroFun.Pages
                 {
                     if (IncreasingMode)
                     {
-                        if (ZeroSelected)
+                        if (!DecreasingMode)
                         {
-                            SendRoomSign(0);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (OneSelected)
-                        {
-                            SendRoomSign(1);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (TwoSelected)
-                        {
-                            SendRoomSign(2);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (ThreeSelected)
-                        {
-                            SendRoomSign(3);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (FourSelected)
-                        {
-                            SendRoomSign(4);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (FiveSelected)
-                        {
-                            SendRoomSign(5);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (SixSelected)
-                        {
-                            SendRoomSign(6);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (SevenSelected)
-                        {
-                            SendRoomSign(7);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (EightSelected)
-                        {
-                            SendRoomSign(8);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (NineSelected)
-                        {
-                            SendRoomSign(9);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (TenSelected)
-                        {
-                            SendRoomSign(10);
-                            Thread.Sleep(SignCounterCoolDown);
+                            if (ZeroSelected)
+                            {
+                                SendRoomSign(HSign.Zero);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (OneSelected)
+                            {
+                                SendRoomSign(HSign.One);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (TwoSelected)
+                            {
+                                SendRoomSign(HSign.Two);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (ThreeSelected)
+                            {
+                                SendRoomSign(HSign.Three);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (FourSelected)
+                            {
+                                SendRoomSign(HSign.Four);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (FiveSelected)
+                            {
+                                SendRoomSign(HSign.Five);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (SixSelected)
+                            {
+                                SendRoomSign(HSign.Six);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (SevenSelected)
+                            {
+                                SendRoomSign(HSign.Seven);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (EightSelected)
+                            {
+                                SendRoomSign(HSign.Eight);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (NineSelected)
+                            {
+                                SendRoomSign(HSign.Nine);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (TenSelected)
+                            {
+                                SendRoomSign(HSign.Ten);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+
+                            if (InvisibleSignSelected)
+                            {
+                                SendRoomSign(HSign.Invisible);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+
+                            if (HeartSelected)
+                            {
+                                SendRoomSign(HSign.Heart);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (SkullSelected)
+                            {
+                                SendRoomSign(HSign.Skull);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (ExclamationSelected)
+                            {
+                                SendRoomSign(HSign.Exclamation);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (SoccerballSelected)
+                            {
+                                SendRoomSign(HSign.Soccerball);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (SmileySelected)
+                            {
+                                SendRoomSign(HSign.Smiley);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+
+                            if (RedcardSelected)
+                            {
+                                SendRoomSign(HSign.Redcard);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (YellowcardSelected)
+                            {
+                                SendRoomSign(HSign.Yellowcard);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
                         }
                     }
 
-                    if(DecreasingMode)
+                    if (DecreasingMode)
                     {
-                        if (TenSelected)
+                        if (!IncreasingMode)
                         {
-                            SendRoomSign(10);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (NineSelected)
-                        {
-                            SendRoomSign(9);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (EightSelected)
-                        {
-                            SendRoomSign(8);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (SevenSelected)
-                        {
-                            SendRoomSign(7);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (SixSelected)
-                        {
-                            SendRoomSign(6);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (FiveSelected)
-                        {
-                            SendRoomSign(5);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (FourSelected)
-                        {
-                            SendRoomSign(4);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (ThreeSelected)
-                        {
-                            SendRoomSign(3);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (TwoSelected)
-                        {
-                            SendRoomSign(2);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (OneSelected)
-                        {
-                            SendRoomSign(1);
-                            Thread.Sleep(SignCounterCoolDown);
-                        }
-                        if (ZeroSelected)
-                        {
-                            SendRoomSign(0);
-                            Thread.Sleep(SignCounterCoolDown);
+                            if (YellowcardSelected)
+                            {
+                                SendRoomSign(HSign.Yellowcard);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (RedcardSelected)
+                            {
+                                SendRoomSign(HSign.Redcard);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+
+                            if (SmileySelected)
+                            {
+                                SendRoomSign(HSign.Smiley);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (SoccerballSelected)
+                            {
+                                SendRoomSign(HSign.Soccerball);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (ExclamationSelected)
+                            {
+                                SendRoomSign(HSign.Exclamation);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (SkullSelected)
+                            {
+                                SendRoomSign(HSign.Skull);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (HeartSelected)
+                            {
+                                SendRoomSign(HSign.Heart);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (InvisibleSignSelected)
+                            {
+                                SendRoomSign(HSign.Invisible);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (TenSelected)
+                            {
+                                SendRoomSign(HSign.Ten);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (NineSelected)
+                            {
+                                SendRoomSign(HSign.Nine);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (EightSelected)
+                            {
+                                SendRoomSign(HSign.Eight);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (SevenSelected)
+                            {
+                                SendRoomSign(HSign.Seven);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (SixSelected)
+                            {
+                                SendRoomSign(HSign.Six);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (FiveSelected)
+                            {
+                                SendRoomSign(HSign.Five);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (FourSelected)
+                            {
+                                SendRoomSign(HSign.Four);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (ThreeSelected)
+                            {
+                                SendRoomSign(HSign.Three);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (TwoSelected)
+                            {
+                                SendRoomSign(HSign.Two);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (OneSelected)
+                            {
+                                SendRoomSign(HSign.One);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
+                            if (ZeroSelected)
+                            {
+                                SendRoomSign(HSign.Zero);
+                                Thread.Sleep(SignCounterCoolDown);
+                            }
                         }
                     }
+
                 } while (SignCountEnabled);
 
             }).Start();
         }
 
-        private void SendRoomSign(int Sign)
+        private void SendRoomSign(HSign Sign)
         {
             Connection.SendToServerAsync(Out.RoomUserSign, Sign);
         }
@@ -665,15 +984,15 @@ namespace RetroFun.Pages
         }
 
 
-        private void GenLookGenThreadBtn_Click(object sender, EventArgs e)
-        {
+        //private void GenLookGenThreadBtn_Click(object sender, EventArgs e)
+        //{
 
-        }
+        //}
 
-        private void ToggleLookGen()
-        {
+        //private void ToggleLookGen()
+        //{
 
-        }
+        //}
 
         private void GenFemaleLookBtn_Click(object sender, EventArgs e)
         {
@@ -683,6 +1002,78 @@ namespace RetroFun.Pages
         private void GenMaleLookBtn_Click(object sender, EventArgs e)
         {
             GenerateMaleLook();
+        }
+
+        private void DanceLoopBtn_Click(object sender, EventArgs e)
+        {
+            DanceLoopManager();
+        }
+
+        private void DanceLoopManager()
+        {
+            if (DanceLoopEnabled)
+            {
+                DanceLoopEnabled = false;
+                WriteToButton(DanceLoopBtn, "Dance Loop : Off");
+
+            }
+            else
+            {
+                DanceLoopEnabled = true;
+                WriteToButton(DanceLoopBtn, "Dance Loop : On");
+                DanceLoop();
+            }
+
+        }
+        private void DanceLoop()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    if (DanceLoopEnabled)
+                    {
+                        if (Dance_NoneSelected)
+                        {
+                            SendDancePacket(HDance.None);
+                Console.WriteLine("Dance set To None");
+
+                            Thread.Sleep(Dance_Cooldown);
+                        }
+                        if (Dance_NormalSelected)
+                        {
+                            SendDancePacket(HDance.Normal);
+                Console.WriteLine("Dance set To Normal");
+                            Thread.Sleep(Dance_Cooldown);
+                        }
+                         if (Dance_PogoMogoSelected)
+                        {
+                            SendDancePacket(HDance.PogoMogo);
+                Console.WriteLine("Dance set To PogoMogo");
+                            Thread.Sleep(Dance_Cooldown);
+                        }
+                         if(Dance_DuckFunkSelected)
+                        {
+                            SendDancePacket(HDance.DuckFunk);
+                Console.WriteLine("Dance set To DuckFunk");
+                            Thread.Sleep(Dance_Cooldown);
+                        }
+                         if(Dance_TheRollieSelected)
+                        {
+                            SendDancePacket(HDance.TheRollie);
+                Console.WriteLine("Dance set To TheRollie");
+                            Thread.Sleep(Dance_Cooldown);
+                        }
+                    }
+                } while (DanceLoopEnabled);
+
+            }).Start();
+        }
+
+        private void EffectLoopBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

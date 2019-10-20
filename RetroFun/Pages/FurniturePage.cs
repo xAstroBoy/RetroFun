@@ -81,9 +81,6 @@ namespace RetroFun.Pages
             {
                 Triggers.OutAttach(Out.RoomPickupItem, RoomPickupItem);
                 Triggers.InAttach(In.RoomFloorItems, StoreRoomFurniData);
-
-                //Triggers.OutAttach(Out.RotateMoveItem, RotateMoveItems);
-                //Triggers.InAttach(In.FloorItemUpdate, temporary);
             }
         }
 
@@ -127,47 +124,10 @@ namespace RetroFun.Pages
 
         private void NoticePickup(string FurniID)
         {
-            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "You are picking a furni ClientSide with ID : " + FurniID , 0, 1, 0, -1);
+            Speak("You are picking a furni ClientSide with ID : " + FurniID);
         }
-        //private void ToggleWallItem(DataInterceptedEventArgs obj)
-        //{
-        //    if (DoubleClickFurnitureRemoval)
-        //    {
-        //        obj.IsBlocked = true;
-        //        RemoveWallItem(obj.Packet.ReadInteger().ToString());
-        //    }
-        //}
-        //private void ToggleFloorItem(DataInterceptedEventArgs obj)
-        //{
-        //    if (DoubleClickFurnitureRemoval)
-        //    {
-        //        obj.IsBlocked = true;
-        //        RemoveFloorItem(obj.Packet.ReadInteger().ToString());
-        //    }
-        //}
-        //private void temporary(DataInterceptedEventArgs obj)
-        //{
-        //    int one = obj.Packet.ReadInteger();
-        //    int two = obj.Packet.ReadInteger();
-        //    int three = obj.Packet.ReadInteger();
-        //    int four = obj.Packet.ReadInteger();
-        //    int six = obj.Packet.ReadInteger();
-        //    int seven = obj.Packet.ReadInteger();
-        //    int eight = obj.Packet.ReadInteger();
-        //    int nine = obj.Packet.ReadInteger();
-        //    int ten = obj.Packet.ReadInteger();
-        //    int undici = obj.Packet.ReadInteger();
-        //    int dodici = obj.Packet.ReadInteger();
-        //    int tredici = obj.Packet.ReadInteger();
 
 
-        //    if (ButtonRotateMoveItem)
-        //    {
-
-        //        obj.IsBlocked = false;
-
-        //    }
-        //}
 
         private void RotateMoveItems(DataInterceptedEventArgs obj)
         {
@@ -214,6 +174,8 @@ namespace RetroFun.Pages
             Connection.SendToClientAsync(In.FloorItemUpdate, furnitureId, 0, two, three, 0, Rotation, 0, 0, 0, 0, 0, 0, 0);
         }
 
+
+
         private void RemoveWallItem(string furnitureId)
         {
             Connection.SendToClientAsync(In.RemoveWallItem, furnitureId, 0);
@@ -238,9 +200,23 @@ namespace RetroFun.Pages
 
         private void RestoreFurnisBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToClientAsync(FurniDataStored);
+            if (FurniDataStored != null)
+            {
+                Connection.SendToClientAsync(FurniDataStored);
+            }
+            else
+            {
+                Speak("Stored Furnidata is empty! Try refreshing the room!");
+
+            }
         }
 
+
+        private void Speak(string text)
+        {
+            Connection.SendToClientAsync(In.RoomUserWhisper, 0, text , 0, 1, 0, -1);
+
+        }
 
     }
 }

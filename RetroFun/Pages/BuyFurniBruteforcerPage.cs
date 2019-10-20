@@ -119,6 +119,9 @@ namespace RetroFun.Pages
             CheckFurniIDBruteforcer();
         }
 
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e) { }
+
+
         private void CatalogueBruteForceBtn_Click(object sender, EventArgs e)
         {
             CheckBruteForcer();

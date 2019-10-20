@@ -52,6 +52,8 @@ namespace RetroFun
                 AutoHoloDicePg,
                 BuyFurniBruteforcerPg,
                 GiftEditorPg,
+                MakeSayPg,
+                StalkingPg
             };
 
 
@@ -78,6 +80,10 @@ namespace RetroFun
 
                 if (Out.TriggerDice == id || Out.CloseDice == id)
                     sub.OnOutDiceTrigger(e);
+                else if(Out.RequestWearingBadges == id)
+                {
+                    sub.OnOutUserRequestBadge(e);
+                }
             }
         }
 

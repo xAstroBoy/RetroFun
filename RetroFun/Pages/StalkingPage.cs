@@ -2,13 +2,14 @@
 using System.ComponentModel;
 
 using RetroFun.Controls;
+using RetroFun.Subscribers;
 using Sulakore.Communication;
 
 namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class StalkingPage : ObservablePage
+    public partial class StalkingPage : ObservablePage, ISubscriber
     {
         private readonly Victim[] _victims = new[]
         {
@@ -20,12 +21,38 @@ namespace RetroFun.Pages
             new Victim("Servedio (i.p.s)", 1224246)
         };
 
+
+        private int _UserIDCapture;
+        public int UserIDCapture
+        {
+            get => _UserIDCapture;
+            set
+            {
+                _UserIDCapture = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _ShouldCaptureIDMode;
+        public bool ShouldCaptureIDMode
+        {
+            get => _ShouldCaptureIDMode;
+            set
+            {
+                _ShouldCaptureIDMode = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
         public StalkingPage()
         {
             InitializeComponent();
 
             VictimsCmbx.Items.AddRange(_victims);
             VictimsCmbx.SelectedIndex = 0;
+            Bind(InterceptVictimIDChbx, "Checked", nameof(ShouldCaptureIDMode));
+            Bind(IdOfVictimNbx, "Value", nameof(UserIDCapture));
 
             if (Program.Master != null)
             {
@@ -34,6 +61,26 @@ namespace RetroFun.Pages
             }
 
         }
+
+
+        public bool IsReceiving => true;
+
+
+        public void InPurchaseOk(DataInterceptedEventArgs e) { }
+
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
+
+
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        {
+            if (ShouldCaptureIDMode)
+            {
+                int UserID = e.Packet.ReadInteger();
+                UserIDCapture = UserID;
+                ShouldCaptureIDMode = false;
+            }
+        }
+
 
         private void CheckifIsBotGiochi (DataInterceptedEventArgs obj)
         {
@@ -52,6 +99,7 @@ namespace RetroFun.Pages
             Connection.SendToServerAsync(Out.StalkFriend, ((Victim)VictimsCmbx.SelectedItem).ID);
         }
 
+
         private class Victim
         {
             public int ID { get; }
@@ -64,6 +112,11 @@ namespace RetroFun.Pages
             }
 
             public override string ToString() => $"{Name} [#{ID}]";
+        }
+
+        private void StalkVictimID_Click(object sender, EventArgs e)
+        {
+            Connection.SendToServerAsync(Out.StalkFriend, UserIDCapture);
         }
     }
 }

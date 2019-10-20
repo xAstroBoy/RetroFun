@@ -180,7 +180,7 @@ namespace RetroFun
             // 
             this.MiscellaneousPg.AntiFriendRemove = true;
             this.MiscellaneousPg.SignCounterCoolDown = 500;
-            this.MiscellaneousPg.ActionsCooldown = 150;
+            this.MiscellaneousPg.GestureCooldown = 150;
             this.MiscellaneousPg.SitsCooldown = 50;
             this.MiscellaneousPg.BackColor = System.Drawing.Color.White;
             this.MiscellaneousPg.Location = new System.Drawing.Point(0, 0);
