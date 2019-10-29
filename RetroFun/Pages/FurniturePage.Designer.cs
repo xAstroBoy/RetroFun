@@ -42,8 +42,19 @@
             this.RemoveFloorItemBtn = new Sulakore.Components.SKoreButton();
             this.AcquireMODPermissionsBtn = new Sulakore.Components.SKoreButton();
             this.RestoreFurnisBtn = new Sulakore.Components.SKoreButton();
+            this.ExchangeCreditChbx = new System.Windows.Forms.CheckBox();
+            this.ExchangeMPChbx = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.MultiplierNbx = new System.Windows.Forms.NumericUpDown();
+            this.CreditsIDNbx = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.RedeemCreditsBtn = new Sulakore.Components.SKoreButton();
             this.RemoverGrbx.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MultiplierNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CreditsIDNbx)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // RemoverGrbx
@@ -195,10 +206,98 @@
             this.RestoreFurnisBtn.Text = "Revert All Edits.";
             this.RestoreFurnisBtn.Click += new System.EventHandler(this.RestoreFurnisBtn_Click);
             // 
+            // ExchangeCreditChbx
+            // 
+            this.ExchangeCreditChbx.AutoSize = true;
+            this.ExchangeCreditChbx.Location = new System.Drawing.Point(23, 37);
+            this.ExchangeCreditChbx.Name = "ExchangeCreditChbx";
+            this.ExchangeCreditChbx.Size = new System.Drawing.Size(157, 17);
+            this.ExchangeCreditChbx.TabIndex = 6;
+            this.ExchangeCreditChbx.Text = "Automatic Credit Exchanger";
+            this.ExchangeCreditChbx.UseVisualStyleBackColor = true;
+            // 
+            // ExchangeMPChbx
+            // 
+            this.ExchangeMPChbx.AutoSize = true;
+            this.ExchangeMPChbx.Location = new System.Drawing.Point(23, 120);
+            this.ExchangeMPChbx.Name = "ExchangeMPChbx";
+            this.ExchangeMPChbx.Size = new System.Drawing.Size(148, 17);
+            this.ExchangeMPChbx.TabIndex = 7;
+            this.ExchangeMPChbx.Text = "Exchange Credit Multiplier";
+            this.ExchangeMPChbx.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 140);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Multiplier";
+            // 
+            // MultiplierNbx
+            // 
+            this.MultiplierNbx.Location = new System.Drawing.Point(23, 157);
+            this.MultiplierNbx.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.MultiplierNbx.Name = "MultiplierNbx";
+            this.MultiplierNbx.Size = new System.Drawing.Size(148, 20);
+            this.MultiplierNbx.TabIndex = 9;
+            // 
+            // CreditsIDNbx
+            // 
+            this.CreditsIDNbx.Location = new System.Drawing.Point(23, 85);
+            this.CreditsIDNbx.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.CreditsIDNbx.Name = "CreditsIDNbx";
+            this.CreditsIDNbx.Size = new System.Drawing.Size(148, 20);
+            this.CreditsIDNbx.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 66);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Credit ID";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.RedeemCreditsBtn);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.CreditsIDNbx);
+            this.groupBox2.Controls.Add(this.MultiplierNbx);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.ExchangeMPChbx);
+            this.groupBox2.Controls.Add(this.ExchangeCreditChbx);
+            this.groupBox2.Location = new System.Drawing.Point(265, 7);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(188, 236);
+            this.groupBox2.TabIndex = 12;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Credits Reedemer";
+            // 
+            // RedeemCreditsBtn
+            // 
+            this.RedeemCreditsBtn.Location = new System.Drawing.Point(23, 201);
+            this.RedeemCreditsBtn.Name = "RedeemCreditsBtn";
+            this.RedeemCreditsBtn.Size = new System.Drawing.Size(130, 20);
+            this.RedeemCreditsBtn.TabIndex = 12;
+            this.RedeemCreditsBtn.Text = "Redeem Credit.";
+            this.RedeemCreditsBtn.Click += new System.EventHandler(this.RedeemCreditsBtn_Click);
+            // 
             // FurniturePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.RestoreFurnisBtn);
             this.Controls.Add(this.AcquireMODPermissionsBtn);
             this.Controls.Add(this.RemoverGrbx);
@@ -207,6 +306,10 @@
             this.RemoverGrbx.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MultiplierNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CreditsIDNbx)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -227,5 +330,13 @@
         private Sulakore.Components.SKoreButton AcquireMODPermissionsBtn;
         private Sulakore.Components.SKoreButton RestoreFurnisBtn;
         private System.Windows.Forms.CheckBox FurniPickChbx;
+        private System.Windows.Forms.CheckBox ExchangeCreditChbx;
+        private System.Windows.Forms.CheckBox ExchangeMPChbx;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown MultiplierNbx;
+        private System.Windows.Forms.NumericUpDown CreditsIDNbx;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private Sulakore.Components.SKoreButton RedeemCreditsBtn;
     }
 }

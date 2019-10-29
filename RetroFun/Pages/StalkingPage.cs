@@ -70,6 +70,7 @@ namespace RetroFun.Pages
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
 
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e) { }
 
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {

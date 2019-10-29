@@ -24,4 +24,6 @@ C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.Copy
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.exe
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.pdb
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.DiscoRoomLight.resources
+C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.FakeMessagePage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache
+C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.LookGeneratorPage.resources

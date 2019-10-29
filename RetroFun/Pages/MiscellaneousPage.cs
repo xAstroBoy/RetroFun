@@ -13,7 +13,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class MiscellaneousPage : ObservablePage
+    public partial class MiscellaneousPage : ObservablePage, ISubscriber
     {
         Random Randomizer = new Random();
 
@@ -28,7 +28,14 @@ namespace RetroFun.Pages
         private bool GestureLoopEnabled;
         private bool SitModeEnabled;
         private bool DanceLoopEnabled;
+        private bool TrollLookMode;
 
+        readonly string TrollLook1 = "hr-155-42.ea-1333-33.ha-3786-62.ch-201410-89.sh-3333-3333.ca-3333-33-33.lg-44689-82.wa-3333-333.hd-209-1";
+        readonly string TrollLook2 = "hr-893-42.ea-1333-33.ha-3786-62.sh-6298462-82.wa-3333-333.ca-3333-33-33.lg-5772038-82-62.ch-987462876-89.hd-209-1";
+        readonly string TrollLook3 = "hr-893-42.cc-156282-77.ea-1333-33.ha-3786-62.ch-9784419-82.sh-3035-82.ca-3333-33-33.lg-6050208-78.wa-3333-333.hd-209-1";
+
+
+        readonly string OriginalLook = "hr-893-42.cc-156282-77.ea-1333-33.ch-9784419-82.sh-3035-82.ca-3333-33-33.lg-6050208-78.wa-3333-333.hd-209-1";
         #region DanceBools
 
         private bool _Dance_NoneSelected;
@@ -463,6 +470,19 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+        private int _TrollLookCooldown = 500;
+        public int TrollLookCooldown
+        {
+            get => _TrollLookCooldown;
+            set
+            {
+                _TrollLookCooldown = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
         #endregion
 
         #endregion
@@ -516,11 +536,7 @@ namespace RetroFun.Pages
             Bind(SignCountCoolDown, "Value", nameof(SignCounterCoolDown));
             Bind(GestureCooldownNbx, "Value", nameof(GestureCooldown));
             Bind(SitCoolDownNbx, "Value", nameof(SitsCooldown));
-
-            if (Program.Master != null)
-            {
-                Triggers.OutAttach(Out.RemoveFriend, BlockFriendRemoval);
-            }
+            Bind(TrollLookNbx, "Value", nameof(TrollLookCooldown));
 
         }
 
@@ -533,7 +549,7 @@ namespace RetroFun.Pages
 
         private void SignCountCheck()
         {
-            if(SignCountEnabled)
+            if (SignCountEnabled)
             {
                 SignCountEnabled = false;
                 WriteToButton(SignCountBtn, "Sign Count : Off");
@@ -881,11 +897,17 @@ namespace RetroFun.Pages
             Connection.SendToServerAsync(Out.RoomUserSit);
         }
 
-        [OutDataCapture("RemoveFriend")]
-        public void BlockFriendRemoval(DataInterceptedEventArgs e)	
-        {	
-            if (AntiFriendRemove)	
-                e.IsBlocked = true;	
+
+
+        public bool IsReceiving => true;
+
+        public void InPurchaseOk(DataInterceptedEventArgs e) { }
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e) { }
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e) { } 
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        {
+            if (AntiFriendRemove)
+                e.IsBlocked = true;
         }
 
         private void WriteToButton(SKoreButton button, string text)
@@ -904,13 +926,13 @@ namespace RetroFun.Pages
 
         private void ChangeCounting()
         {
-            if(IncreasingMode)
+            if (IncreasingMode)
             {
                 IncreasingMode = false;
                 DecreasingMode = true;
                 WriteToButton(CountingBtn, "10→0");
             }
-            else if(DecreasingMode)
+            else if (DecreasingMode)
             {
                 IncreasingMode = true;
                 DecreasingMode = false;
@@ -951,11 +973,11 @@ namespace RetroFun.Pages
         public string GenInt()
         {
             int Random = Randomizer.Next(0, 9);
-            
+
             //if(!(OldRandom == Random))
             //{
             //    OldRandom = Random;
-                return Random.ToString();
+            return Random.ToString();
             //}
             //return GenInt();
         }
@@ -965,10 +987,10 @@ namespace RetroFun.Pages
         private void GenerateMaleLook()
         {
             string Look = "ca-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ch-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".lg-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".sh-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + GenInt() + ".wa-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + ".hd-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + ".hr-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ha-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ea-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "";
-            if(Look != OldLook)
+            if (Look != OldLook)
             {
                 OldLook = Look;
-                Console.WriteLine("USer Look set to : " + Look) ;
+                Console.WriteLine("USer Look set to : " + Look);
                 Connection.SendToServerAsync(Out.UserSaveLook, "M", Look);
             }
             else
@@ -1037,43 +1059,94 @@ namespace RetroFun.Pages
                         if (Dance_NoneSelected)
                         {
                             SendDancePacket(HDance.None);
-                Console.WriteLine("Dance set To None");
-
                             Thread.Sleep(Dance_Cooldown);
                         }
                         if (Dance_NormalSelected)
                         {
                             SendDancePacket(HDance.Normal);
-                Console.WriteLine("Dance set To Normal");
                             Thread.Sleep(Dance_Cooldown);
                         }
-                         if (Dance_PogoMogoSelected)
+                        if (Dance_PogoMogoSelected)
                         {
                             SendDancePacket(HDance.PogoMogo);
-                Console.WriteLine("Dance set To PogoMogo");
                             Thread.Sleep(Dance_Cooldown);
                         }
-                         if(Dance_DuckFunkSelected)
+                        if (Dance_DuckFunkSelected)
                         {
                             SendDancePacket(HDance.DuckFunk);
-                Console.WriteLine("Dance set To DuckFunk");
                             Thread.Sleep(Dance_Cooldown);
                         }
-                         if(Dance_TheRollieSelected)
+                        if (Dance_TheRollieSelected)
                         {
                             SendDancePacket(HDance.TheRollie);
-                Console.WriteLine("Dance set To TheRollie");
                             Thread.Sleep(Dance_Cooldown);
                         }
                     }
-                } while (DanceLoopEnabled);
 
+                } while (DanceLoopEnabled);
+                if (!DanceLoopEnabled)
+                {
+                    SendDancePacket(HDance.None);
+                }
             }).Start();
         }
+
+        private void SendLookPacket(string look)
+        {
+            Connection.SendToServerAsync(Out.UserSaveLook, "M", look);
+        }
+
 
         private void EffectLoopBtn_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void TrollLookBtn_Click(object sender, EventArgs e)
+        {
+            CheckLookTroll();
+        }
+
+        private void CheckLookTroll()
+        {
+            if (TrollLookMode)
+            {
+                TrollLookMode = false;
+                WriteToButton(TrollLookBtn, "Troll look : off");
+
+            }
+            else
+            {
+                TrollLookMode = true;
+                WriteToButton(TrollLookBtn, "Troll look : On");
+                TrollLookLoop();
+            }
+        }
+
+        private void TrollLookLoop()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    if(TrollLookMode)
+                    {
+                        SendLookPacket(TrollLook1);
+                        Thread.Sleep(TrollLookCooldown);
+                        SendLookPacket(TrollLook2);
+                        Thread.Sleep(TrollLookCooldown);
+                        SendLookPacket(TrollLook3);
+                        Thread.Sleep(TrollLookCooldown);
+                    }
+
+                } while (TrollLookMode);
+                if(!TrollLookMode)
+                {
+                    SendLookPacket(OriginalLook);
+                }
+            }).Start();
+        }
+
     }
 }

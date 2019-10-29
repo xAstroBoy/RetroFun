@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using RetroFun.Controls;
 using Sulakore.Communication;
@@ -13,6 +15,7 @@ namespace RetroFun.Pages
     {
 
         private HMessage FurniDataStored;
+        private int OldCreditiID = 0;
 
         private bool _doubleClickFurnitureRemoval;
         public bool DoubleClickFurnitureRemoval
@@ -47,7 +50,48 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+        private bool _CreditMultiplierEnabled;
+        public bool CreditMultiplierEnabled
+        {
+            get => _CreditMultiplierEnabled;
+            set
+            {
+                _CreditMultiplierEnabled = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
+        private int _CreditIDInt = 1;
+        public int CreditIDInt
+        {
+            get => _CreditIDInt;
+            set
+            {
+                _CreditIDInt = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _CreditMultiplierAmount = 1;
+        public int CreditMultiplierAmount
+        {
+            get => _CreditMultiplierAmount;
+            set
+            {
+                _CreditMultiplierAmount = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        private bool _CreditExchangeMode;
+        public bool CreditExchangeMode
+        {
+            get => _CreditExchangeMode;
+            set
+            {
+                _CreditExchangeMode = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         private string _furnitureIdText;
         public string FurnitureIdText
@@ -74,13 +118,20 @@ namespace RetroFun.Pages
 
             Bind(FurnitureIDTxt, "Text", nameof(FurnitureIdText));
             Bind(DoubleClickFurnitureRemovalChbx, "Checked", nameof(DoubleClickFurnitureRemoval));
-            Bind(ToggleFurniRotCS, "Checked", nameof(ButtonRotateMoveItem));
+            //Bind(ToggleFurniRotCS, "Checked", nameof(ButtonRotateMoveItem));
             Bind(FurniPickChbx, "Checked", nameof(FurniPickedOutput));
+            Bind(ExchangeCreditChbx, "Checked", nameof(CreditExchangeMode));
+            Bind(ExchangeMPChbx, "Checked", nameof(CreditMultiplierEnabled));
+            Bind(MultiplierNbx, "Value", nameof(CreditMultiplierAmount));
+            Bind(CreditsIDNbx, "Value", nameof(CreditIDInt));
+
 
             if (Program.Master != null)
             {
                 Triggers.OutAttach(Out.RoomPickupItem, RoomPickupItem);
                 Triggers.InAttach(In.RoomFloorItems, StoreRoomFurniData);
+                Triggers.OutAttach(Out.RoomPlaceItem, GetPlacedCredits);
+
             }
         }
 
@@ -90,7 +141,56 @@ namespace RetroFun.Pages
             FurniDataStored = obj.Packet;
             obj.Continue();
         }
+
+
         
+        
+
+        private void GetPlacedCredits(DataInterceptedEventArgs e)
+        {
+            if (CreditExchangeMode)
+            {
+                CreditIDInt = int.Parse(e.Packet.ReadString().Split(' ')[0]);
+                HandleExchangers(CreditIDInt);
+            }
+        }
+
+
+        private void HandleExchangers(int furniid)
+        {
+
+            
+            
+                if (!CreditMultiplierEnabled)
+                {
+                    SendExchangePacket(furniid);
+                }
+                if (CreditMultiplierEnabled)
+                {
+                    ExchangeMultiplier(furniid);
+                }
+            
+        }
+
+
+        private async void ExchangeMultiplier(int furniid)
+        {
+
+            for (int i = 0; i < CreditMultiplierAmount; i++)
+            {
+                await Task.Delay(50);
+                await Connection.SendToServerAsync(Out.RedeemItem, furniid);
+            }
+
+        }
+
+
+        private async void SendExchangePacket(int furniid)
+        {
+            await Task.Delay(350);
+            await Connection.SendToServerAsync(Out.RedeemItem, furniid);
+            await Task.Delay(50);
+        }
 
 
 
@@ -218,5 +318,9 @@ namespace RetroFun.Pages
 
         }
 
+        private void RedeemCreditsBtn_Click(object sender, EventArgs e)
+        {
+            HandleExchangers(CreditIDInt);
+        }
     }
 }

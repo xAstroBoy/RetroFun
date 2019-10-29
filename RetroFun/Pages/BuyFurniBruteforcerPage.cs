@@ -248,6 +248,7 @@ namespace RetroFun.Pages
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
 
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e) { }
 
         public void InPurchaseOk(DataInterceptedEventArgs e)
         {

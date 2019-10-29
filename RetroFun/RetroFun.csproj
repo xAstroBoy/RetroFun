@@ -89,11 +89,23 @@
     <Compile Include="Pages\DiscoRoomLight.Designer.cs">
       <DependentUpon>DiscoRoomLight.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\FakeMessagePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\FakeMessagePage.Designer.cs">
+      <DependentUpon>FakeMessagePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\GiftEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pages\GiftEditor.Designer.cs">
       <DependentUpon>GiftEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LookGeneratorPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\LookGeneratorPage.Designer.cs">
+      <DependentUpon>LookGeneratorPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\MakesayPage.cs">
       <SubType>UserControl</SubType>
@@ -164,8 +176,14 @@
     <EmbeddedResource Include="Pages\DiscoRoomLight.resx">
       <DependentUpon>DiscoRoomLight.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\FakeMessagePage.resx">
+      <DependentUpon>FakeMessagePage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\GiftEditor.resx">
       <DependentUpon>GiftEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\LookGeneratorPage.resx">
+      <DependentUpon>LookGeneratorPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\MakesayPage.resx">
       <DependentUpon>MakesayPage.cs</DependentUpon>

@@ -53,7 +53,9 @@ namespace RetroFun
                 BuyFurniBruteforcerPg,
                 GiftEditorPg,
                 MakeSayPg,
-                StalkingPg
+                StalkingPg,
+                FakeMessagePg,
+                MiscellaneousPg,
             };
 
 
@@ -77,13 +79,21 @@ namespace RetroFun
             foreach (var sub in _subscribers)
             {
                 if (!sub.IsReceiving) continue;
+                e.Packet.Position = 0;
 
                 if (Out.TriggerDice == id || Out.CloseDice == id)
+                {
                     sub.OnOutDiceTrigger(e);
-                else if(Out.RequestWearingBadges == id)
+                }
+                else if (Out.RequestWearingBadges == id)
                 {
                     sub.OnOutUserRequestBadge(e);
                 }
+                else if (Out.RemoveFriend == id)
+                {
+                    sub.OnUserFriendRemoval(e);
+                }
+
             }
         }
 
@@ -93,6 +103,7 @@ namespace RetroFun
             foreach (var sub in _subscribers)
             {
                 if (!sub.IsReceiving) continue;
+                e.Packet.Position = 0;
 
                 if (In.PurchaseOK == id)
                     sub.InPurchaseOk(e);

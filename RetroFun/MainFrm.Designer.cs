@@ -46,6 +46,7 @@ namespace RetroFun
             this.ChatTab = new System.Windows.Forms.TabPage();
             this.StalkingTab = new System.Windows.Forms.TabPage();
             this.MakeSayTab = new System.Windows.Forms.TabPage();
+            this.FakeMsgTab = new System.Windows.Forms.TabPage();
             this.DicePage = new System.Windows.Forms.TabPage();
             this.HoloTab = new System.Windows.Forms.TabPage();
             this.DiscoFunTab = new System.Windows.Forms.TabPage();
@@ -61,11 +62,13 @@ namespace RetroFun
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
             this.FreezeMovementCheck = new System.Windows.Forms.CheckBox();
+            this.FakeMessagePg = new RetroFun.Pages.FakeMessagePage();
             this.RetroFunTabs.SuspendLayout();
             this.FurnitureTab.SuspendLayout();
             this.ChatTab.SuspendLayout();
             this.StalkingTab.SuspendLayout();
             this.MakeSayTab.SuspendLayout();
+            this.FakeMsgTab.SuspendLayout();
             this.DicePage.SuspendLayout();
             this.HoloTab.SuspendLayout();
             this.DiscoFunTab.SuspendLayout();
@@ -110,6 +113,7 @@ namespace RetroFun
             this.FurniPg.BackColor = System.Drawing.Color.White;
             this.FurniPg.ButtonRotateMoveItem = false;
             this.FurniPg.DoubleClickFurnitureRemoval = false;
+            this.FurniPg.FurniPickedOutput = false;
             this.FurniPg.FurnitureIdText = "";
             this.FurniPg.Location = new System.Drawing.Point(6, 3);
             this.FurniPg.Name = "FurniPg";
@@ -140,9 +144,11 @@ namespace RetroFun
             this.StalkingPg.BackColor = System.Drawing.Color.White;
             this.StalkingPg.Location = new System.Drawing.Point(3, 0);
             this.StalkingPg.Name = "StalkingPg";
+            this.StalkingPg.ShouldCaptureIDMode = false;
             this.StalkingPg.Size = new System.Drawing.Size(787, 401);
             this.StalkingPg.TabIndex = 0;
             this.StalkingPg.TabStop = false;
+            this.StalkingPg.UserIDCapture = 0;
             // 
             // GiftEditorPg
             // 
@@ -179,15 +185,48 @@ namespace RetroFun
             // MiscellaneousPg
             // 
             this.MiscellaneousPg.AntiFriendRemove = true;
-            this.MiscellaneousPg.SignCounterCoolDown = 500;
-            this.MiscellaneousPg.GestureCooldown = 150;
-            this.MiscellaneousPg.SitsCooldown = 50;
             this.MiscellaneousPg.BackColor = System.Drawing.Color.White;
+            this.MiscellaneousPg.Dance_Cooldown = 500;
+            this.MiscellaneousPg.Dance_DuckFunkSelected = false;
+            this.MiscellaneousPg.Dance_NoneSelected = false;
+            this.MiscellaneousPg.Dance_NormalSelected = false;
+            this.MiscellaneousPg.Dance_PogoMogoSelected = false;
+            this.MiscellaneousPg.Dance_TheRollieSelected = false;
+            this.MiscellaneousPg.EightSelected = false;
+            this.MiscellaneousPg.ExclamationSelected = false;
+            this.MiscellaneousPg.FiveSelected = false;
+            this.MiscellaneousPg.FourSelected = false;
+            this.MiscellaneousPg.GestureCooldown = 150;
+            this.MiscellaneousPg.HeartSelected = false;
+            this.MiscellaneousPg.InvisibleSignSelected = false;
+            this.MiscellaneousPg.KissSelected = false;
+            this.MiscellaneousPg.LaughSelected = false;
             this.MiscellaneousPg.Location = new System.Drawing.Point(0, 0);
             this.MiscellaneousPg.Name = "MiscellaneousPg";
+            this.MiscellaneousPg.NineSelected = false;
+            this.MiscellaneousPg.NoneGestureSelected = false;
+            this.MiscellaneousPg.OneSelected = false;
+            this.MiscellaneousPg.PogoHopSelected = false;
+            this.MiscellaneousPg.RedcardSelected = false;
+            this.MiscellaneousPg.SevenSelected = false;
+            this.MiscellaneousPg.SignCounterCoolDown = 500;
+            this.MiscellaneousPg.SitsCooldown = 50;
+            this.MiscellaneousPg.SixSelected = false;
             this.MiscellaneousPg.Size = new System.Drawing.Size(793, 401);
+            this.MiscellaneousPg.SkullSelected = false;
+            this.MiscellaneousPg.SleepSelected = false;
+            this.MiscellaneousPg.SmileySelected = false;
+            this.MiscellaneousPg.SoccerballSelected = false;
             this.MiscellaneousPg.TabIndex = 0;
             this.MiscellaneousPg.TabStop = false;
+            this.MiscellaneousPg.TenSelected = false;
+            this.MiscellaneousPg.ThreeSelected = false;
+            this.MiscellaneousPg.ThumbsUpSelected = false;
+            this.MiscellaneousPg.TrollLookCooldown = 500;
+            this.MiscellaneousPg.TwoSelected = false;
+            this.MiscellaneousPg.WaveSelected = false;
+            this.MiscellaneousPg.YellowcardSelected = false;
+            this.MiscellaneousPg.ZeroSelected = false;
             // 
             // BuyFurniBruteforcerPg
             // 
@@ -230,6 +269,7 @@ namespace RetroFun
             this.RetroFunTabs.Controls.Add(this.ChatTab);
             this.RetroFunTabs.Controls.Add(this.StalkingTab);
             this.RetroFunTabs.Controls.Add(this.MakeSayTab);
+            this.RetroFunTabs.Controls.Add(this.FakeMsgTab);
             this.RetroFunTabs.Controls.Add(this.DicePage);
             this.RetroFunTabs.Controls.Add(this.HoloTab);
             this.RetroFunTabs.Controls.Add(this.DiscoFunTab);
@@ -292,6 +332,17 @@ namespace RetroFun
             this.MakeSayTab.TabIndex = 4;
             this.MakeSayTab.Text = "MakeSay";
             this.MakeSayTab.UseVisualStyleBackColor = true;
+            // 
+            // FakeMsgTab
+            // 
+            this.FakeMsgTab.Controls.Add(this.FakeMessagePg);
+            this.FakeMsgTab.Location = new System.Drawing.Point(4, 28);
+            this.FakeMsgTab.Name = "FakeMsgTab";
+            this.FakeMsgTab.Padding = new System.Windows.Forms.Padding(3);
+            this.FakeMsgTab.Size = new System.Drawing.Size(793, 401);
+            this.FakeMsgTab.TabIndex = 12;
+            this.FakeMsgTab.Text = "PrivateMsg";
+            this.FakeMsgTab.UseVisualStyleBackColor = true;
             // 
             // DicePage
             // 
@@ -468,6 +519,18 @@ namespace RetroFun
             this.FreezeMovementCheck.Text = "Freeze User Movements";
             this.FreezeMovementCheck.UseVisualStyleBackColor = true;
             // 
+            // fakeMessagePage1
+            // 
+            this.FakeMessagePg.BackColor = System.Drawing.Color.White;
+            this.FakeMessagePg.Location = new System.Drawing.Point(130, 45);
+            this.FakeMessagePg.Name = "fakeMessagePage1";
+            this.FakeMessagePg.ShouldCaptureIDMode = false;
+            this.FakeMessagePg.Size = new System.Drawing.Size(484, 299);
+            this.FakeMessagePg.TabIndex = 0;
+            this.FakeMessagePg.TabStop = false;
+            this.FakeMessagePg.UserIDCapture = 0;
+            this.FakeMessagePg.UserMessage = "";
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -487,6 +550,7 @@ namespace RetroFun
             this.ChatTab.ResumeLayout(false);
             this.StalkingTab.ResumeLayout(false);
             this.MakeSayTab.ResumeLayout(false);
+            this.FakeMsgTab.ResumeLayout(false);
             this.DicePage.ResumeLayout(false);
             this.HoloTab.ResumeLayout(false);
             this.DiscoFunTab.ResumeLayout(false);
@@ -532,6 +596,8 @@ namespace RetroFun
         private Pages.AutoHoloDicePage AutoHoloDicePg;
         private Pages.MiscellaneousPage MiscellaneousPg;
         private Pages.BuyFurniBruteforcerPage BuyFurniBruteforcerPg;
+        private Pages.FakeMessagePage FakeMessagePg;
+
         private Pages.RoomBackFun RoomBackFunPg;
         private Sulakore.Components.SKoreTabControl MoonlightPages;
         private System.Windows.Forms.TabPage tabPage1;
@@ -539,5 +605,6 @@ namespace RetroFun
         private MoonLightFunPage MoonLightFunPg;
         private DiscoRoomLight DiscoRoomFunPg;
         private System.Windows.Forms.CheckBox FreezeMovementCheck;
+        private System.Windows.Forms.TabPage FakeMsgTab;
     }
 }

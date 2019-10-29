@@ -74,6 +74,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.DancesCooldownNBx = new System.Windows.Forms.NumericUpDown();
             this.DanceLoopBtn = new Sulakore.Components.SKoreButton();
+            this.TrollLookBtn = new Sulakore.Components.SKoreButton();
+            this.TrollLookNbx = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.SignCountGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SignCountCoolDown)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -81,6 +84,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.SitCoolDownNbx)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DancesCooldownNBx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrollLookNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // NoRemoveFriendOnReport
@@ -476,10 +480,44 @@
             this.DanceLoopBtn.Name = "DanceLoopBtn";
             this.DanceLoopBtn.Click += new System.EventHandler(this.DanceLoopBtn_Click);
             // 
+            // TrollLookBtn
+            // 
+            resources.ApplyResources(this.TrollLookBtn, "TrollLookBtn");
+            this.TrollLookBtn.Name = "TrollLookBtn";
+            this.TrollLookBtn.Click += new System.EventHandler(this.TrollLookBtn_Click);
+            // 
+            // TrollLookNbx
+            // 
+            resources.ApplyResources(this.TrollLookNbx, "TrollLookNbx");
+            this.TrollLookNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.TrollLookNbx.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.TrollLookNbx.Name = "TrollLookNbx";
+            this.TrollLookNbx.Value = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
             // MiscellaneousPage
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.TrollLookNbx);
+            this.Controls.Add(this.TrollLookBtn);
             this.Controls.Add(this.DanceLoopBtn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.DancesCooldownNBx);
@@ -511,6 +549,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DancesCooldownNBx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TrollLookNbx)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -566,5 +605,8 @@
         private System.Windows.Forms.CheckBox Dance_PogoMogoChbx;
         private System.Windows.Forms.CheckBox Dance_NormalChbx;
         private System.Windows.Forms.CheckBox Dance_NoneChbx;
+        private Sulakore.Components.SKoreButton TrollLookBtn;
+        private System.Windows.Forms.NumericUpDown TrollLookNbx;
+        private System.Windows.Forms.Label label4;
     }
 }
