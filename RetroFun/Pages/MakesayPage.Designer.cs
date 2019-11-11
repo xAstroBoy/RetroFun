@@ -112,7 +112,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.SelectUserLabel);
-            this.groupBox2.Location = new System.Drawing.Point(183, 115);
+            this.groupBox2.Location = new System.Drawing.Point(156, 115);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(245, 60);
             this.groupBox2.TabIndex = 3;
@@ -148,7 +148,7 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.TotUserRegistered);
-            this.groupBox3.Location = new System.Drawing.Point(183, 41);
+            this.groupBox3.Location = new System.Drawing.Point(156, 41);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(102, 68);
             this.groupBox3.TabIndex = 4;

@@ -149,6 +149,11 @@ namespace RetroFun.Pages
             Broadcast("Dice registered!");
         }
 
+        public void OnUserLeaveRoom(DataInterceptedEventArgs e) { }
+        public void InRoomUserLeft(DataInterceptedEventArgs e) { }
+        public void InUserEnterRoom(DataInterceptedEventArgs e) { }
+        public void inUserProfile(DataInterceptedEventArgs e) { }
+
         private void HandleDiceUpdate(DataInterceptedEventArgs e)
         {
             if (!ISHolodiceCheat) return;

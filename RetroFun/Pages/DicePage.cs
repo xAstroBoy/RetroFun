@@ -52,6 +52,11 @@ namespace RetroFun.Pages
         public void InPurchaseOk(DataInterceptedEventArgs e) { }
         public void OnUserFriendRemoval(DataInterceptedEventArgs e) { }
 
+        public void OnUserLeaveRoom(DataInterceptedEventArgs e) { }
+        public void InRoomUserLeft(DataInterceptedEventArgs e) { }
+        public void InUserEnterRoom(DataInterceptedEventArgs e) { }
+        public void inUserProfile(DataInterceptedEventArgs e) { }
+
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e) { }
 
         private void DiceRegisterMode_CheckedChanged(object sender, EventArgs e)

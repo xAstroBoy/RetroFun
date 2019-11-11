@@ -119,7 +119,11 @@ namespace RetroFun.Pages
             CheckFurniIDBruteforcer();
         }
 
+        public void OnUserLeaveRoom(DataInterceptedEventArgs e) { }
+        public void InRoomUserLeft(DataInterceptedEventArgs e) { }
+        public void InUserEnterRoom(DataInterceptedEventArgs e) { }
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e) { }
+        public void inUserProfile(DataInterceptedEventArgs e) { }
 
 
         private void CatalogueBruteForceBtn_Click(object sender, EventArgs e)
@@ -262,7 +266,8 @@ namespace RetroFun.Pages
             Out.CatalogBuyItem,
             PageID,
             FurniID,
-            TextBox
+            TextBox,
+            1
             );
         }
 

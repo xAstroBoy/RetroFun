@@ -37,9 +37,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Flazzy.dll</HintPath>
     </Reference>
-    <Reference Include="Sulakore, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\Sulakore.dll</HintPath>
+    <Reference Include="Sulakore">
+      <HintPath>..\..\..\..\Desktop\Tanji\Bobba\Sulakore.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -239,7 +238,6 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Libraries\Flazzy.dll" />
-    <Content Include="Libraries\Sulakore.dll" />
     <Content Include="Libraries\Tangine.dll" />
     <None Include="Resources\_1.png" />
     <None Include="Resources\_2.png" />

@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Windows.Forms;
 using RetroFun.Controls;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
+using Sulakore.Habbo;
+using Sulakore.Modules;
 
 namespace RetroFun.Pages
 {
@@ -10,28 +15,24 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class FakeMessagePage : ObservablePage, ISubscriber
     {
+        public readonly string blockhash = "ef5f3ca3b9e2ee58f030527d85bd4da7";
+        private ushort Blockme;
+        private int SelectedUserID;
+        private string SelectedUsername;
+        private string SelectedLook;
 
-        private bool _ShouldCaptureIDMode = false;
-        public bool ShouldCaptureIDMode
+        private bool _ShouldBlockReminders = true;
+        public bool ShouldBlockReminders
         {
-            get => _ShouldCaptureIDMode;
+            get => _ShouldBlockReminders;
             set
             {
-                _ShouldCaptureIDMode = value;
+                _ShouldBlockReminders = value;
                 RaiseOnPropertyChanged();
             }
         }
 
-        private int _UserIDCapture = 0;
-        public int UserIDCapture
-        {
-            get => _UserIDCapture;
-            set
-            {
-                _UserIDCapture = value;
-                RaiseOnPropertyChanged();
-            }
-        }
+
 
         private string _UserMessage = "";
         public string UserMessage
@@ -49,12 +50,21 @@ namespace RetroFun.Pages
         public FakeMessagePage()
         {
             InitializeComponent();
-            Bind(UserIdNbx, "Value", nameof(UserIDCapture));
-            Bind(CaptUserIDChbx, "Checked", nameof(ShouldCaptureIDMode));
             Bind(StringMessageTbx, "Text", nameof(UserMessage));
+            Bind(NoClientMessageBlockerChbx, "Checked", nameof(ShouldBlockReminders));
+            if (Program.Master != null)
+            {
+                Triggers.InAttach(In.PrivateMessageAlert, BlockThis);
+            }
         }
 
+
         public bool IsReceiving => true;
+
+        private void BlockThis(DataInterceptedEventArgs e)
+        {
+           e.IsBlocked = ShouldBlockReminders;
+        }
 
         public void InPurchaseOk(DataInterceptedEventArgs e) { }
 
@@ -64,14 +74,28 @@ namespace RetroFun.Pages
 
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
-            if (ShouldCaptureIDMode)
-            {
-                int UserID = e.Packet.ReadInteger();
-                UserIDCapture = UserID;
-                ShouldCaptureIDMode = false;
-            }
+            SelectedUserID = e.Packet.ReadInteger();
         }
 
+        public void InUserEnterRoom(DataInterceptedEventArgs obj)
+        { }
+
+        public void OnUserLeaveRoom(DataInterceptedEventArgs obj)
+        { }
+
+        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        { }
+
+        public void inUserProfile(DataInterceptedEventArgs e)
+        {
+            e.Packet.ReadInteger();
+            SelectedUsername = e.Packet.ReadString();
+            SelectedLook = e.Packet.ReadString();
+            SelectUserLabel.Invoke((MethodInvoker)delegate
+            {
+                SelectUserLabel.Text = SelectedUsername;
+            });
+        }
 
         private void SendMessagePacket(int userid, string message)
         {
@@ -80,7 +104,29 @@ namespace RetroFun.Pages
 
         private void SendMessageBtn_Click(object sender, EventArgs e)
         {
-            SendMessagePacket(UserIDCapture, UserMessage);
+            SendMessagePacket(SelectedUserID, UserMessage);
+        }
+
+        private void AddFriend(int userid, string username, string look)
+        {
+            Connection.SendToClientAsync(In.UpdateFriend, 0, 1, 1, userid, username, 1, true, true, look, 0, username, 0, 0, false, false);
+        }
+
+
+        private void RemoveFriend(int userid)
+        {
+            Connection.SendToClientAsync(In.UpdateFriend, 0, 1, -1, userid);
+        }
+
+
+        private void CSFriendAddBtn_Click(object sender, EventArgs e)
+        {
+            AddFriend(SelectedUserID, SelectedUsername, SelectedLook);
+        }
+
+        private void RemoveFriendBtn_Click(object sender, EventArgs e)
+        {
+            RemoveFriend(SelectedUserID);
         }
     }
 }

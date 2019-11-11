@@ -52,13 +52,6 @@ namespace RetroFun.Pages
             }
 
             BubblesCmbx1.SelectedIndex = 17;
-
-            if (Program.Master != null)
-            {
-                Triggers.InAttach(In.RoomUsers, RoomUserEnterRoom);
-                Triggers.InAttach(In.RoomUserRemove, RoomUserLeft);
-                Triggers.OutAttach(Out.RequestRoomLoad, UserLeaveRoom);
-            }
         }
 
         private void BubblesCmbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,13 +60,14 @@ namespace RetroFun.Pages
             SelectedBubbleId = (int)BubblesCmbx1.SelectedTag;
         }
 
-        private void RoomUserEnterRoom(DataInterceptedEventArgs obj)
+        public void InUserEnterRoom(DataInterceptedEventArgs obj)
         {
             HEntity[] array = HEntity.Parse(obj.Packet);
             if (array.Length != 0)
             {
                 foreach (HEntity hentity in array)
                 {
+                    hentity.Motto = String.Empty;
                     if (!users.ContainsKey(hentity.Id))
                     {
                         users.Add(hentity.Id, hentity);
@@ -91,6 +85,7 @@ namespace RetroFun.Pages
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
         public void OnUserFriendRemoval(DataInterceptedEventArgs e) { }
+        public void inUserProfile(DataInterceptedEventArgs e) { }
 
 
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
@@ -108,13 +103,13 @@ namespace RetroFun.Pages
 
 
 
-        private void UserLeaveRoom(DataInterceptedEventArgs obj)
+        public void OnUserLeaveRoom(DataInterceptedEventArgs obj)
         {
             users.Clear();
             WriteRegistrationUsers(users.Count);
         }
 
-        private void RoomUserLeft(DataInterceptedEventArgs e)
+        public void InRoomUserLeft(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
             var UserLeaveEntity = users.Values.FirstOrDefault(ent => ent.Index == index);

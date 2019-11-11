@@ -93,7 +93,10 @@ namespace RetroFun
                 {
                     sub.OnUserFriendRemoval(e);
                 }
-
+                else if (Out.RequestRoomLoad == id)
+                {
+                    sub.OnUserLeaveRoom(e);
+                }
             }
         }
 
@@ -106,8 +109,23 @@ namespace RetroFun
                 e.Packet.Position = 0;
 
                 if (In.PurchaseOK == id)
+                {
                     sub.InPurchaseOk(e);
+                }
+                else if (In.RoomUsers == id)
+                {
+                    sub.InUserEnterRoom(e);
+                }
+                else if (In.RoomUserRemove == id)
+                {
+                    sub.InRoomUserLeft(e);
+                }
+                else if (In.UserProfile == id)
+                {
+                    sub.inUserProfile(e);
+                }
             }
+
         }
 
     }

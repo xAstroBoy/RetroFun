@@ -285,9 +285,12 @@ namespace RetroFun.Pages
             Purchased = true;
         }
 
-
+        public void OnUserLeaveRoom(DataInterceptedEventArgs e) { }
+        public void InRoomUserLeft(DataInterceptedEventArgs e) { }
+        public void InUserEnterRoom(DataInterceptedEventArgs e) { }
         public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
         public void OnUserFriendRemoval(DataInterceptedEventArgs e) { }
+        public void inUserProfile(DataInterceptedEventArgs e) { }
 
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e) { }
 

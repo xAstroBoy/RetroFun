@@ -655,6 +655,7 @@ namespace RetroFun.Pages
 
 
 
+        public void inUserProfile(DataInterceptedEventArgs e) { }
 
         private void SendGesturePacket(HGesture Gesture)
         {
@@ -900,7 +901,9 @@ namespace RetroFun.Pages
 
 
         public bool IsReceiving => true;
-
+        public void OnUserLeaveRoom(DataInterceptedEventArgs e) { }
+        public void InRoomUserLeft(DataInterceptedEventArgs e) { }
+        public void InUserEnterRoom(DataInterceptedEventArgs e) { }
         public void InPurchaseOk(DataInterceptedEventArgs e) { }
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e) { }
         public void OnOutDiceTrigger(DataInterceptedEventArgs e) { } 

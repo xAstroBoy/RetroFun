@@ -524,11 +524,10 @@ namespace RetroFun
             this.FakeMessagePg.BackColor = System.Drawing.Color.White;
             this.FakeMessagePg.Location = new System.Drawing.Point(130, 45);
             this.FakeMessagePg.Name = "fakeMessagePage1";
-            this.FakeMessagePg.ShouldCaptureIDMode = false;
+            this.FakeMessagePg.ShouldBlockReminders = true;
             this.FakeMessagePg.Size = new System.Drawing.Size(484, 299);
             this.FakeMessagePg.TabIndex = 0;
             this.FakeMessagePg.TabStop = false;
-            this.FakeMessagePg.UserIDCapture = 0;
             this.FakeMessagePg.UserMessage = "";
             // 
             // MainFrm
