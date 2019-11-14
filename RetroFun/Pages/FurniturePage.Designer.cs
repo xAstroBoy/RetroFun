@@ -50,11 +50,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.RedeemCreditsBtn = new Sulakore.Components.SKoreButton();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ReedemGiftBtn = new Sulakore.Components.SKoreButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.GiftExchangerIDNBx = new System.Windows.Forms.NumericUpDown();
+            this.AutoGiftExchangerBtn = new System.Windows.Forms.CheckBox();
             this.RemoverGrbx.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MultiplierNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsIDNbx)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GiftExchangerIDNBx)).BeginInit();
             this.SuspendLayout();
             // 
             // RemoverGrbx
@@ -293,15 +300,70 @@
             this.RedeemCreditsBtn.Text = "Redeem Credit.";
             this.RedeemCreditsBtn.Click += new System.EventHandler(this.RedeemCreditsBtn_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.ReedemGiftBtn);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.GiftExchangerIDNBx);
+            this.groupBox3.Controls.Add(this.AutoGiftExchangerBtn);
+            this.groupBox3.Location = new System.Drawing.Point(483, 7);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(188, 157);
+            this.groupBox3.TabIndex = 13;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Gift Exchanger";
+            // 
+            // ReedemGiftBtn
+            // 
+            this.ReedemGiftBtn.Location = new System.Drawing.Point(23, 120);
+            this.ReedemGiftBtn.Name = "ReedemGiftBtn";
+            this.ReedemGiftBtn.Size = new System.Drawing.Size(130, 20);
+            this.ReedemGiftBtn.TabIndex = 12;
+            this.ReedemGiftBtn.Text = "Redeem Gift.";
+            this.ReedemGiftBtn.Click += new System.EventHandler(this.ReedemGiftBtn_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(20, 66);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Gift ID";
+            // 
+            // GiftExchangerIDNBx
+            // 
+            this.GiftExchangerIDNBx.Location = new System.Drawing.Point(23, 85);
+            this.GiftExchangerIDNBx.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.GiftExchangerIDNBx.Name = "GiftExchangerIDNBx";
+            this.GiftExchangerIDNBx.Size = new System.Drawing.Size(148, 20);
+            this.GiftExchangerIDNBx.TabIndex = 10;
+            // 
+            // AutoGiftExchangerBtn
+            // 
+            this.AutoGiftExchangerBtn.AutoSize = true;
+            this.AutoGiftExchangerBtn.Location = new System.Drawing.Point(23, 37);
+            this.AutoGiftExchangerBtn.Name = "AutoGiftExchangerBtn";
+            this.AutoGiftExchangerBtn.Size = new System.Drawing.Size(146, 17);
+            this.AutoGiftExchangerBtn.TabIndex = 6;
+            this.AutoGiftExchangerBtn.Text = "Automatic Gift Exchanger";
+            this.AutoGiftExchangerBtn.UseVisualStyleBackColor = true;
+            // 
             // FurniturePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.RestoreFurnisBtn);
             this.Controls.Add(this.AcquireMODPermissionsBtn);
             this.Controls.Add(this.RemoverGrbx);
             this.Name = "FurniturePage";
+            this.Size = new System.Drawing.Size(726, 274);
             this.RemoverGrbx.ResumeLayout(false);
             this.RemoverGrbx.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -310,6 +372,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.CreditsIDNbx)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GiftExchangerIDNBx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -338,5 +403,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         private Sulakore.Components.SKoreButton RedeemCreditsBtn;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private Sulakore.Components.SKoreButton ReedemGiftBtn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown GiftExchangerIDNBx;
+        private System.Windows.Forms.CheckBox AutoGiftExchangerBtn;
     }
 }

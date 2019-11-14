@@ -238,7 +238,8 @@ namespace RetroFun
             this.BuyFurniBruteforcerPg.PageIDInt1 = 0;
             this.BuyFurniBruteforcerPg.PurchaseSuccess = false;
             this.BuyFurniBruteforcerPg.Size = new System.Drawing.Size(790, 395);
-            this.BuyFurniBruteforcerPg.SpeedTimer1 = 0;
+            this.BuyFurniBruteforcerPg.SpeedTimer1 = 15;
+            this.BuyFurniBruteforcerPg.GlobalSleeper = 50;
             this.BuyFurniBruteforcerPg.TabIndex = 0;
             this.BuyFurniBruteforcerPg.TabStop = false;
             this.BuyFurniBruteforcerPg.TextBox = "";

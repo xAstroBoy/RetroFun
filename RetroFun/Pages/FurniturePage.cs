@@ -15,7 +15,6 @@ namespace RetroFun.Pages
     {
 
         private HMessage FurniDataStored;
-        private int OldCreditiID = 0;
 
         private bool _doubleClickFurnitureRemoval;
         public bool DoubleClickFurnitureRemoval
@@ -93,6 +92,31 @@ namespace RetroFun.Pages
             }
         }
 
+
+        private bool _GiftExchangeMode;
+        public bool GiftExchangeMode
+        {
+            get => _GiftExchangeMode;
+            set
+            {
+                _GiftExchangeMode = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        private int _GiftInt = 1;
+        public int GiftInt
+        {
+            get => _GiftInt;
+            set
+            {
+                _GiftInt = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
         private string _furnitureIdText;
         public string FurnitureIdText
         {
@@ -124,13 +148,15 @@ namespace RetroFun.Pages
             Bind(ExchangeMPChbx, "Checked", nameof(CreditMultiplierEnabled));
             Bind(MultiplierNbx, "Value", nameof(CreditMultiplierAmount));
             Bind(CreditsIDNbx, "Value", nameof(CreditIDInt));
+            Bind(GiftExchangerIDNBx, "Value", nameof(GiftInt));
+            Bind(AutoGiftExchangerBtn, "Checked", nameof(GiftExchangeMode));
 
 
             if (Program.Master != null)
             {
                 Triggers.OutAttach(Out.RoomPickupItem, RoomPickupItem);
                 Triggers.InAttach(In.RoomFloorItems, StoreRoomFurniData);
-                Triggers.OutAttach(Out.RoomPlaceItem, GetPlacedCredits);
+                Triggers.OutAttach(Out.RoomPlaceItem, RoomPlaceItemsHandler);
 
             }
         }
@@ -143,20 +169,31 @@ namespace RetroFun.Pages
         }
 
 
-        
-        
 
-        private void GetPlacedCredits(DataInterceptedEventArgs e)
+
+        private void RoomPlaceItemsHandler(DataInterceptedEventArgs e)
         {
             if (CreditExchangeMode)
             {
                 CreditIDInt = int.Parse(e.Packet.ReadString().Split(' ')[0]);
-                HandleExchangers(CreditIDInt);
+                HandleCreditsExchanger(CreditIDInt);
+            }
+            if (GiftExchangeMode)
+            {
+                GiftInt = int.Parse(e.Packet.ReadString().Split(' ')[0]);
+                HandleGiftExchanger(GiftInt);
             }
         }
 
 
-        private void HandleExchangers(int furniid)
+        private void HandleGiftExchanger(int furniid)
+        {
+            SendOpenGiftPacket(furniid);
+        }
+
+
+
+        private void HandleCreditsExchanger(int furniid)
         {
 
             
@@ -189,6 +226,13 @@ namespace RetroFun.Pages
         {
             await Task.Delay(350);
             await Connection.SendToServerAsync(Out.RedeemItem, furniid);
+            await Task.Delay(50);
+        }
+
+        private async void SendOpenGiftPacket(int furniid)
+        {
+            await Task.Delay(350);
+            await Connection.SendToServerAsync(Out.OpenRecycleBox, furniid);
             await Task.Delay(50);
         }
 
@@ -320,7 +364,12 @@ namespace RetroFun.Pages
 
         private void RedeemCreditsBtn_Click(object sender, EventArgs e)
         {
-            HandleExchangers(CreditIDInt);
+            HandleCreditsExchanger(CreditIDInt);
+        }
+
+        private void ReedemGiftBtn_Click(object sender, EventArgs e)
+        {
+            HandleGiftExchanger(GiftInt);
         }
     }
 }
