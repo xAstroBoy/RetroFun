@@ -1,11 +1,10 @@
-﻿using System;
-using System.ComponentModel;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using RetroFun.Controls;
+﻿using RetroFun.Controls;
 using Sulakore.Communication;
 using Sulakore.Protocol;
+using System;
+using System.ComponentModel;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -13,10 +12,10 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class FurniturePage : ObservablePage
     {
-
         private HMessage FurniDataStored;
 
         private bool _doubleClickFurnitureRemoval;
+
         public bool DoubleClickFurnitureRemoval
         {
             get => _doubleClickFurnitureRemoval;
@@ -27,8 +26,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _ButtonRotateMoveItem;
+
         public bool ButtonRotateMoveItem
         {
             get => _ButtonRotateMoveItem;
@@ -40,6 +39,7 @@ namespace RetroFun.Pages
         }
 
         private bool _FurniPickedOutput;
+
         public bool FurniPickedOutput
         {
             get => _FurniPickedOutput;
@@ -49,7 +49,9 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
         private bool _CreditMultiplierEnabled;
+
         public bool CreditMultiplierEnabled
         {
             get => _CreditMultiplierEnabled;
@@ -61,6 +63,7 @@ namespace RetroFun.Pages
         }
 
         private int _CreditIDInt = 1;
+
         public int CreditIDInt
         {
             get => _CreditIDInt;
@@ -72,6 +75,7 @@ namespace RetroFun.Pages
         }
 
         private int _CreditMultiplierAmount = 1;
+
         public int CreditMultiplierAmount
         {
             get => _CreditMultiplierAmount;
@@ -81,7 +85,9 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
         private bool _CreditExchangeMode;
+
         public bool CreditExchangeMode
         {
             get => _CreditExchangeMode;
@@ -92,8 +98,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _GiftExchangeMode;
+
         public bool GiftExchangeMode
         {
             get => _GiftExchangeMode;
@@ -104,8 +110,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private int _GiftInt = 1;
+
         public int GiftInt
         {
             get => _GiftInt;
@@ -116,8 +122,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private string _furnitureIdText;
+
         public string FurnitureIdText
         {
             get => _furnitureIdText;
@@ -151,25 +157,19 @@ namespace RetroFun.Pages
             Bind(GiftExchangerIDNBx, "Value", nameof(GiftInt));
             Bind(AutoGiftExchangerBtn, "Checked", nameof(GiftExchangeMode));
 
-
             if (Program.Master != null)
             {
                 Triggers.OutAttach(Out.RoomPickupItem, RoomPickupItem);
                 Triggers.InAttach(In.RoomFloorItems, StoreRoomFurniData);
                 Triggers.OutAttach(Out.RoomPlaceItem, RoomPlaceItemsHandler);
-
             }
         }
-
 
         private void StoreRoomFurniData(DataInterceptedEventArgs obj)
         {
             FurniDataStored = obj.Packet;
             obj.Continue();
         }
-
-
-
 
         private void RoomPlaceItemsHandler(DataInterceptedEventArgs e)
         {
@@ -185,64 +185,61 @@ namespace RetroFun.Pages
             }
         }
 
-
         private void HandleGiftExchanger(int furniid)
         {
             SendOpenGiftPacket(furniid);
         }
 
-
-
         private void HandleCreditsExchanger(int furniid)
         {
-
-            
-            
-                if (!CreditMultiplierEnabled)
-                {
-                    SendExchangePacket(furniid);
-                }
-                if (CreditMultiplierEnabled)
-                {
-                    ExchangeMultiplier(furniid);
-                }
-            
+            if (!CreditMultiplierEnabled)
+            {
+                SendExchangePacket(furniid);
+            }
+            if (CreditMultiplierEnabled)
+            {
+                ExchangeMultiplier(furniid);
+            }
         }
-
 
         private async void ExchangeMultiplier(int furniid)
         {
-
             for (int i = 0; i < CreditMultiplierAmount; i++)
             {
                 await Task.Delay(50);
-                await Connection.SendToServerAsync(Out.RedeemItem, furniid);
+                if (Connection.Remote.IsConnected)
+                {
+                    await Connection.SendToServerAsync(Out.RedeemItem, furniid);
+                }
             }
-
         }
-
 
         private async void SendExchangePacket(int furniid)
         {
             await Task.Delay(350);
-            await Connection.SendToServerAsync(Out.RedeemItem, furniid);
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(Out.RedeemItem, furniid);
+            }
             await Task.Delay(50);
         }
 
         private async void SendOpenGiftPacket(int furniid)
         {
             await Task.Delay(350);
-            await Connection.SendToServerAsync(Out.OpenRecycleBox, furniid);
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(Out.OpenRecycleBox, furniid);
+            }
             await Task.Delay(50);
         }
-
-
 
         private void RemoveWallItemBtn_Click(object sender, EventArgs e)
         {
             if (FurnitureId == 0) return;
             RemoveWallItem(FurnitureIdText);
         }
+
         private void RemoveFloorItemBtn_Click(object sender, EventArgs e)
         {
             if (FurnitureId == 0) return;
@@ -262,7 +259,6 @@ namespace RetroFun.Pages
                     NoticePickup(furnitureIdString);
                 }
                 obj.IsBlocked = true;
-
             }
         }
 
@@ -270,8 +266,6 @@ namespace RetroFun.Pages
         {
             Speak("You are picking a furni ClientSide with ID : " + FurniID);
         }
-
-
 
         private void RotateMoveItems(DataInterceptedEventArgs obj)
         {
@@ -282,7 +276,6 @@ namespace RetroFun.Pages
 
             if (ButtonRotateMoveItem)
             {
-
                 if (RotationUp.Checked)
                 {
                     Rotation = 6;
@@ -314,19 +307,26 @@ namespace RetroFun.Pages
 
         private void RotateItem(int furnitureId, int two, int three, int Rotation)
         {
-
-            Connection.SendToClientAsync(In.FloorItemUpdate, furnitureId, 0, two, three, 0, Rotation, 0, 0, 0, 0, 0, 0, 0);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.FloorItemUpdate, furnitureId, 0, two, three, 0, Rotation, 0, 0, 0, 0, 0, 0, 0);
+            }
         }
-
-
 
         private void RemoveWallItem(string furnitureId)
         {
-            Connection.SendToClientAsync(In.RemoveWallItem, furnitureId, 0);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RemoveWallItem, furnitureId, 0);
+            }
         }
+
         private void RemoveFloorItem(string furnitureId)
         {
-            Connection.SendToClientAsync(In.RemoveFloorItem, furnitureId, false, 0, 0);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RemoveFloorItem, furnitureId, false, 0, 0);
+            }
         }
 
         private void RadioButtonCheck(RadioButton button, bool value)
@@ -339,27 +339,33 @@ namespace RetroFun.Pages
 
         private void AcquireMODPermissionsBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToClientAsync(In.UserPermissions, int.MaxValue, int.MaxValue, true);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.UserPermissions, int.MaxValue, int.MaxValue, true);
+            }
         }
 
         private void RestoreFurnisBtn_Click(object sender, EventArgs e)
         {
             if (FurniDataStored != null)
             {
-                Connection.SendToClientAsync(FurniDataStored);
+                if (Connection.Remote.IsConnected)
+                {
+                    Connection.SendToClientAsync(FurniDataStored);
+                }
             }
             else
             {
                 Speak("Stored Furnidata is empty! Try refreshing the room!");
-
             }
         }
 
-
         private void Speak(string text)
         {
-            Connection.SendToClientAsync(In.RoomUserWhisper, 0, text , 0, 1, 0, -1);
-
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, text, 0, 1, 0, -1);
+            }
         }
 
         private void RedeemCreditsBtn_Click(object sender, EventArgs e)
@@ -370,6 +376,11 @@ namespace RetroFun.Pages
         private void ReedemGiftBtn_Click(object sender, EventArgs e)
         {
             HandleGiftExchanger(GiftInt);
+        }
+
+        private void DoubleClickFurnitureRemovalChbx_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

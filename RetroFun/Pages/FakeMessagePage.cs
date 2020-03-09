@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Windows.Forms;
-using RetroFun.Controls;
+﻿using RetroFun.Controls;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
-using Sulakore.Habbo;
-using Sulakore.Modules;
+using System;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -21,6 +17,7 @@ namespace RetroFun.Pages
         private string SelectedLook;
 
         private bool _ShouldBlockReminders = true;
+
         public bool ShouldBlockReminders
         {
             get => _ShouldBlockReminders;
@@ -31,9 +28,8 @@ namespace RetroFun.Pages
             }
         }
 
-
-
         private string _UserMessage = "";
+
         public string UserMessage
         {
             get => _UserMessage;
@@ -43,8 +39,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
-
 
         public FakeMessagePage()
         {
@@ -57,19 +51,24 @@ namespace RetroFun.Pages
             }
         }
 
-
         public bool IsReceiving => true;
 
         private void BlockThis(DataInterceptedEventArgs e)
         {
-           e.IsBlocked = ShouldBlockReminders;
+            e.IsBlocked = ShouldBlockReminders;
         }
 
-        public void InPurchaseOk(DataInterceptedEventArgs e) { }
+        public void InPurchaseOk(DataInterceptedEventArgs e)
+        {
+        }
 
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
+        {
+        }
 
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e) { }
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        {
+        }
 
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
@@ -98,7 +97,10 @@ namespace RetroFun.Pages
 
         private void SendMessagePacket(int userid, string message)
         {
-            Connection.SendToClientAsync(In.ReceivePrivateMessage, userid, message, 0);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.ReceivePrivateMessage, userid, message, 0);
+            }
         }
 
         private void SendMessageBtn_Click(object sender, EventArgs e)
@@ -108,15 +110,19 @@ namespace RetroFun.Pages
 
         private void AddFriend(int userid, string username, string look)
         {
-            Connection.SendToClientAsync(In.UpdateFriend, 0, 1, 1, userid, username, 1, true, true, look, 0, username, 0, 0, false, false);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.UpdateFriend, 0, 1, 1, userid, username, 1, true, true, look, 0, username, 0, 0, false, false);
+            }
         }
-
 
         private void RemoveFriend(int userid)
         {
-            Connection.SendToClientAsync(In.UpdateFriend, 0, 1, -1, userid);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.UpdateFriend, 0, 1, -1, userid);
+            }
         }
-
 
         private void CSFriendAddBtn_Click(object sender, EventArgs e)
         {

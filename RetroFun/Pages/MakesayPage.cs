@@ -1,21 +1,17 @@
-﻿using System;
-using System.Text;
-using System.Linq;
-using System.Drawing;
-using System.Collections;
-using System.Globalization;
-using System.ComponentModel;
-
-using RetroFun.Controls;
+﻿using RetroFun.Controls;
 using RetroFun.Properties;
-
-using Sulakore.Protocol;
-using Sulakore.Communication;
-using System.Resources;
-using Sulakore.Habbo;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using RetroFun.Subscribers;
+using Sulakore.Communication;
+using Sulakore.Habbo;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Globalization;
+using System.Linq;
+using System.Resources;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -77,16 +73,23 @@ namespace RetroFun.Pages
             WriteRegistrationUsers(users.Count);
         }
 
-
         public bool IsReceiving => true;
 
+        public void InPurchaseOk(DataInterceptedEventArgs e)
+        {
+        }
 
-        public void InPurchaseOk(DataInterceptedEventArgs e) { }
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
+        {
+        }
 
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e) { }
-        public void inUserProfile(DataInterceptedEventArgs e) { }
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        {
+        }
 
+        public void inUserProfile(DataInterceptedEventArgs e)
+        {
+        }
 
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
@@ -100,8 +103,6 @@ namespace RetroFun.Pages
                 });
             }
         }
-
-
 
         public void OnUserLeaveRoom(DataInterceptedEventArgs obj)
         {
@@ -118,7 +119,6 @@ namespace RetroFun.Pages
             users.Remove(UserLeaveEntity.Id);
             WriteRegistrationUsers(users.Count);
         }
-
 
         private void WriteRegistrationUsers(int count)
         {
@@ -144,7 +144,10 @@ namespace RetroFun.Pages
                 id = In.RoomUserWhisper;
             }
             int bubble = int.Parse(this.BubblesCmbx1.GetItemText(this.BubblesCmbx1.SelectedItem));
-            Connection.SendToClientAsync(id, selectedIndex, MakeTextBox.Text, 0, bubble, 0, -1);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(id, selectedIndex, MakeTextBox.Text, 0, bubble, 0, -1);
+            }
         }
     }
 }

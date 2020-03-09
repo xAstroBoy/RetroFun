@@ -1,18 +1,15 @@
-﻿using System;
-using System.Text;
-using System.Drawing;
-using System.Collections;
-using System.Globalization;
-using System.ComponentModel;
-
-using RetroFun.Controls;
+﻿using RetroFun.Controls;
 using RetroFun.Properties;
-
-using Sulakore.Protocol;
 using Sulakore.Communication;
-using System.Collections.Generic;
-using System.Resources;
+using Sulakore.Protocol;
+using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
+using System.Text;
 using System.Windows.Forms;
 
 namespace RetroFun.Pages
@@ -21,10 +18,10 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class ChatPage : ObservablePage
     {
-
         private HMessage replacement;
 
         private bool _antiBobbaFilter;
+
         public bool AntiBobbaFilter
         {
             get => _antiBobbaFilter;
@@ -36,6 +33,7 @@ namespace RetroFun.Pages
         }
 
         private bool _useSelectedBubble;
+
         public bool UseSelectedBubble
         {
             get => _useSelectedBubble;
@@ -47,6 +45,7 @@ namespace RetroFun.Pages
         }
 
         private bool _hideSpeakingBubble;
+
         public bool HideSpeakingBubble
         {
             get => _hideSpeakingBubble;
@@ -58,6 +57,7 @@ namespace RetroFun.Pages
         }
 
         private bool _ForceChatSpeak;
+
         public bool ForceChatSpeak
         {
             get => _ForceChatSpeak;
@@ -69,6 +69,7 @@ namespace RetroFun.Pages
         }
 
         private bool _ForceNormalSpeak = true;
+
         public bool ForceNormalSpeak
         {
             get => _ForceNormalSpeak;
@@ -80,6 +81,7 @@ namespace RetroFun.Pages
         }
 
         private bool _ForceShoutChat;
+
         public bool ForceShoutChat
         {
             get => _ForceShoutChat;
@@ -91,6 +93,7 @@ namespace RetroFun.Pages
         }
 
         private bool _ForceWhisperChat;
+
         public bool ForceWhisperChat
         {
             get => _ForceWhisperChat;
@@ -115,19 +118,14 @@ namespace RetroFun.Pages
             Bind(ShoutTalkBox, "Checked", nameof(ForceShoutChat));
             Bind(WhisperChatBox, "Checked", nameof(ForceWhisperChat));
 
-
             var imageType = typeof(Image);
 
             ResourceSet res = Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
             IOrderedEnumerable<DictionaryEntry> reorder = res.Cast<DictionaryEntry>().OrderBy(i => int.Parse(i.Key.ToString().Substring(1)));
 
-
-
             foreach (DictionaryEntry entry in reorder)
             {
-
                 string name = entry.Key.ToString();
-
 
                 if (string.IsNullOrWhiteSpace(name) || name[0] != '_') continue;
 
@@ -136,13 +134,7 @@ namespace RetroFun.Pages
 
                 if (entry.Value.GetType() != imageType && !entry.Value.GetType().IsSubclassOf(imageType)) continue;
                 BubblesCmbx.AddImageItem((Image)entry.Value, name, bubbleId);
-
             }
-
-
-
-
-
 
             BubblesCmbx.SelectedIndex = 17;
 
@@ -155,8 +147,6 @@ namespace RetroFun.Pages
             }
         }
 
-
-
         private void ForceDefSpeakBox_CheckedChanged(object sender, EventArgs e)
         {
             ToggleChatDefault();
@@ -164,7 +154,7 @@ namespace RetroFun.Pages
 
         private void ToggleChatDefault()
         {
-            if(ForceChatSpeak)
+            if (ForceChatSpeak)
             {
                 ToggleGroupbox(GroupChatDefault, false);
             }
@@ -181,7 +171,6 @@ namespace RetroFun.Pages
                 Group.Enabled = Actived;
             });
         }
-
 
         private void BubblesCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -224,36 +213,32 @@ namespace RetroFun.Pages
             obj.IsBlocked = true;
             if (!ForceChatSpeak)
             {
-                     replacement = new HMessage(obj.Packet.Header, message, bubbleId); 
+                replacement = new HMessage(obj.Packet.Header, message, bubbleId);
             }
             else
             {
                 if (ForceNormalSpeak)
                 {
-                     replacement = new HMessage(Out.RoomUserTalk, message, bubbleId);
+                    replacement = new HMessage(Out.RoomUserTalk, message, bubbleId);
                 }
                 else if (ForceShoutChat)
                 {
-                     replacement = new HMessage(Out.RoomUserShout, message, bubbleId);
+                    replacement = new HMessage(Out.RoomUserShout, message, bubbleId);
                 }
                 else if (ForceWhisperChat)
                 {
-                     replacement = new HMessage(Out.RoomUserWhisper, message, bubbleId);
+                    replacement = new HMessage(Out.RoomUserWhisper, message, bubbleId);
                 }
             }
             if (obj.Packet.Readable > 0)
             {
                 replacement.WriteInteger(0);
             }
-            Connection.SendToServerAsync(replacement);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(replacement);
+            }
         }
-
-
-
-
-
-
-
 
         private string BypassFilter(string message)
         {
@@ -264,7 +249,5 @@ namespace RetroFun.Pages
             }
             return builder.ToString();
         }
-
-
     }
 }

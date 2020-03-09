@@ -1,5 +1,5 @@
-﻿using System.Threading;
-using System.Globalization;
+﻿using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace RetroFun.Helpers
@@ -13,6 +13,7 @@ namespace RetroFun.Helpers
         public CustomBinding(string propertyName, object dataSource, string dataMember, IValueConverter valueConverter, object converterParameter = null)
             : this(propertyName, dataSource, dataMember, valueConverter, Thread.CurrentThread.CurrentUICulture, converterParameter)
         { }
+
         public CustomBinding(string propertyName, object dataSource, string dataMember, IValueConverter valueConverter, CultureInfo culture, object converterParameter = null)
             : base(propertyName, dataSource, dataMember, true)
         {
@@ -30,6 +31,7 @@ namespace RetroFun.Helpers
             }
             else base.OnParse(cevent);
         }
+
         protected override void OnFormat(ConvertEventArgs cevent)
         {
             if (_converter != null)

@@ -1,33 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using RetroFun.Controls;
-using System.Threading;
-using Sulakore.Components;
-using Sulakore.Modules;
-using Sulakore.Communication;
+﻿using RetroFun.Controls;
 using RetroFun.Subscribers;
+using Sulakore.Communication;
+using Sulakore.Components;
+using System;
+using System.ComponentModel;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class GiftEditor : ObservablePage , ISubscriber
+    public partial class GiftEditor : ObservablePage, ISubscriber
     {
-
-
-
-
-
         #region miscvars
 
         private bool _isAnonymous;
+
         public bool isAnonymous
         {
             get => _isAnonymous;
@@ -39,6 +28,7 @@ namespace RetroFun.Pages
         }
 
         private bool _EnableLoop;
+
         public bool EnableLoop
         {
             get => _EnableLoop;
@@ -50,6 +40,7 @@ namespace RetroFun.Pages
         }
 
         private bool _PageIDBruteForcerEnabled;
+
         public bool PageIDBruteForcerEnabled
         {
             get => _PageIDBruteForcerEnabled;
@@ -61,6 +52,7 @@ namespace RetroFun.Pages
         }
 
         private bool _FurnIIDBruteforcerEnabled;
+
         public bool FurnIIDBruteforcerEnabled
         {
             get => _FurnIIDBruteforcerEnabled;
@@ -72,6 +64,7 @@ namespace RetroFun.Pages
         }
 
         private bool _GlobalBruteforcerEnabled;
+
         public bool GlobalBruteforcerEnabled
         {
             get => _GlobalBruteforcerEnabled;
@@ -83,6 +76,7 @@ namespace RetroFun.Pages
         }
 
         private int _SpeedTimer = 100;
+
         public int SpeedTimer
         {
             get => _SpeedTimer;
@@ -94,6 +88,7 @@ namespace RetroFun.Pages
         }
 
         private int _PageIDInt = 0;
+
         public int PageIDInt
         {
             get => _PageIDInt;
@@ -105,6 +100,7 @@ namespace RetroFun.Pages
         }
 
         private int _FurniIDint = 0;
+
         public int FurniIDint
         {
             get => _FurniIDint;
@@ -115,8 +111,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _Purchased;
+
         public bool Purchased
         {
             get => _Purchased;
@@ -126,8 +122,9 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-        #endregion
-        
+
+        #endregion miscvars
+
         public GiftEditor()
         {
             InitializeComponent();
@@ -162,7 +159,6 @@ namespace RetroFun.Pages
             CheckFurniIDBruteforcer();
         }
 
-
         private void BruteForceBtn_Click(object sender, EventArgs e)
         {
             CheckBruteForcer();
@@ -182,7 +178,6 @@ namespace RetroFun.Pages
                 StartLoop();
             }
         }
-
 
         private void CheckFurniIDBruteforcer()
         {
@@ -261,7 +256,6 @@ namespace RetroFun.Pages
             });
         }
 
-
         private void EnableNButton(NumericUpDown button, bool enabled)
         {
             Invoke((MethodInvoker)delegate
@@ -277,32 +271,51 @@ namespace RetroFun.Pages
                 button.Enabled = enabled;
             });
         }
-        public bool IsReceiving => true;
 
+        public bool IsReceiving => true;
 
         public void InPurchaseOk(DataInterceptedEventArgs e)
         {
             Purchased = true;
         }
 
-        public void OnUserLeaveRoom(DataInterceptedEventArgs e) { }
-        public void InRoomUserLeft(DataInterceptedEventArgs e) { }
-        public void InUserEnterRoom(DataInterceptedEventArgs e) { }
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e) { }
-        public void inUserProfile(DataInterceptedEventArgs e) { }
+        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
+        {
+        }
 
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e) { }
+        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InUserEnterRoom(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void inUserProfile(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        {
+        }
 
         private void SendPacket()
         {
-
             if (String.IsNullOrEmpty(UsernameTextBox.Text))
             {
                 return;
             }
-
-            Connection.SendToServerAsync(
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(
             Out.CatalogBuyItemAsGift,
             PageIDInt,
             FurniIDint,
@@ -314,12 +327,14 @@ namespace RetroFun.Pages
             0,
             isAnonymous
             );
-
+            }
         }
 
         private void SendTestPacket(string GiftBoxTest)
         {
-            Connection.SendToServerAsync(
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(
             Out.CatalogBuyItemAsGift,
             PageIDInt,
             FurniIDint,
@@ -331,17 +346,13 @@ namespace RetroFun.Pages
             0,
             isAnonymous
             );
-
+            }
         }
 
         private void StartLoop()
         {
-
-
             new Thread(() =>
             {
-
-
                 Thread.CurrentThread.Name = "GiftThread";
                 Thread.CurrentThread.IsBackground = true;
                 do
@@ -349,17 +360,13 @@ namespace RetroFun.Pages
                     SendPacket();
                     Thread.Sleep(SpeedTimer);
                 } while (EnableLoop);
-
             }).Start();
         }
-
 
         private void BruteForcePageID()
         {
             new Thread(() =>
             {
-
-
                 Thread.CurrentThread.Name = "PageIDBRuteforcer";
                 Thread.CurrentThread.IsBackground = true;
 
@@ -396,14 +403,10 @@ namespace RetroFun.Pages
                     }
                     else
 
-
-
                         SendTestPacket("VALID PAGEID : " + PageIDInt + " For FurniID : " + FurniIDint);
 
                     PageIDInt = PageIDInt + 1;
-
                 } while (PageIDBruteForcerEnabled);
-
             }).Start();
         }
 
@@ -411,8 +414,6 @@ namespace RetroFun.Pages
         {
             new Thread(() =>
             {
-
-
                 Thread.CurrentThread.Name = "FurniIDBRuteforcer";
                 Thread.CurrentThread.IsBackground = true;
 
@@ -427,7 +428,7 @@ namespace RetroFun.Pages
                     Thread.CurrentThread.Abort();
                 }
 
-                do 
+                do
                 {
                     if (Purchased)
                     {
@@ -446,11 +447,9 @@ namespace RetroFun.Pages
                         Thread.CurrentThread.Abort();
                         return;
                     }
-                        SendTestPacket("VALID PAGEID : " + PageIDInt + " For FurniID : " + FurniIDint);
-                        FurniIDint = FurniIDint + 1;
-
+                    SendTestPacket("VALID PAGEID : " + PageIDInt + " For FurniID : " + FurniIDint);
+                    FurniIDint = FurniIDint + 1;
                 } while (FurnIIDBruteforcerEnabled);
-
             }).Start();
         }
 
@@ -458,8 +457,6 @@ namespace RetroFun.Pages
         {
             new Thread(() =>
             {
-
-
                 Thread.CurrentThread.Name = "GlobalBruteForcer";
                 Thread.CurrentThread.IsBackground = true;
 
@@ -509,4 +506,3 @@ namespace RetroFun.Pages
         }
     }
 }
-

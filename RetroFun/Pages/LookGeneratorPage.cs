@@ -1,12 +1,6 @@
-﻿using System;
+﻿using RetroFun.Controls;
+using System;
 using System.ComponentModel;
-using System.Windows.Forms;
-using RetroFun.Controls;
-using System.Threading;
-using Sulakore.Components;
-using Sulakore.Communication;
-using RetroFun.Subscribers;
-using Sulakore.Modules;
 using System.Xml;
 
 namespace RetroFun.Pages
@@ -15,9 +9,8 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class LookGeneratorPage : ObservablePage
     {
-
-
         private int _SpeedTimer1;
+
         public int SpeedTimer1
         {
             get => _SpeedTimer1;
@@ -29,6 +22,7 @@ namespace RetroFun.Pages
         }
 
         private string _UrlBoxText = "http://www.bobbaitalia.it/gamedata/figuredata.xml";
+
         public string UrlBoxText
         {
             get => _UrlBoxText;
@@ -39,8 +33,6 @@ namespace RetroFun.Pages
             }
         }
 
-
-
         public LookGeneratorPage()
         {
             InitializeComponent();
@@ -48,21 +40,19 @@ namespace RetroFun.Pages
 
         private void XmlParserBtn_Click(object sender, EventArgs e)
         {
-            if(UrlBoxText != "")
+            if (UrlBoxText != "")
             {
                 ReadAllData(UrlBoxText);
             }
         }
+
         private void ReadAllData(string url)
         {
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(url);
-            foreach(XmlNode node in xmlDoc.DocumentElement)
+            foreach (XmlNode node in xmlDoc.DocumentElement)
             {
-
             }
-
-
         }
     }
 }

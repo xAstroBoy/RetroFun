@@ -1,13 +1,12 @@
-﻿using System;
-using System.ComponentModel;
-using System.Threading;
-using System.Windows.Forms;
-using RetroFun.Controls;
+﻿using RetroFun.Controls;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Components;
 using Sulakore.Habbo;
-using Sulakore.Modules;
+using System;
+using System.ComponentModel;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -15,8 +14,7 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class MiscellaneousPage : ObservablePage, ISubscriber
     {
-        Random Randomizer = new Random();
-
+        private Random Randomizer = new Random();
 
         private string OldLook = "";
 
@@ -30,15 +28,16 @@ namespace RetroFun.Pages
         private bool DanceLoopEnabled;
         private bool TrollLookMode;
 
-        readonly string TrollLook1 = "hr-155-42.ea-1333-33.ha-3786-62.ch-201410-89.sh-3333-3333.ca-3333-33-33.lg-44689-82.wa-3333-333.hd-209-1";
-        readonly string TrollLook2 = "hr-893-42.ea-1333-33.ha-3786-62.sh-6298462-82.wa-3333-333.ca-3333-33-33.lg-5772038-82-62.ch-987462876-89.hd-209-1";
-        readonly string TrollLook3 = "hr-893-42.cc-156282-77.ea-1333-33.ha-3786-62.ch-9784419-82.sh-3035-82.ca-3333-33-33.lg-6050208-78.wa-3333-333.hd-209-1";
+        private readonly string TrollLook1 = "hr-155-42.ea-1333-33.ha-3786-62.ch-201410-89.sh-3333-3333.ca-3333-33-33.lg-44689-82.wa-3333-333.hd-209-1";
+        private readonly string TrollLook2 = "hr-893-42.ea-1333-33.ha-3786-62.sh-6298462-82.wa-3333-333.ca-3333-33-33.lg-5772038-82-62.ch-987462876-89.hd-209-1";
+        private readonly string TrollLook3 = "hr-893-42.cc-156282-77.ea-1333-33.ha-3786-62.ch-9784419-82.sh-3035-82.ca-3333-33-33.lg-6050208-78.wa-3333-333.hd-209-1";
 
+        private readonly string OriginalLook = "hr-893-42.cc-156282-77.ea-1333-33.ch-9784419-82.sh-3035-82.ca-3333-33-33.lg-6050208-78.wa-3333-333.hd-209-1";
 
-        readonly string OriginalLook = "hr-893-42.cc-156282-77.ea-1333-33.ch-9784419-82.sh-3035-82.ca-3333-33-33.lg-6050208-78.wa-3333-333.hd-209-1";
         #region DanceBools
 
         private bool _Dance_NoneSelected;
+
         public bool Dance_NoneSelected
         {
             get => _Dance_NoneSelected;
@@ -48,7 +47,9 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
         private bool _Dance_NormalSelected;
+
         public bool Dance_NormalSelected
         {
             get => _Dance_NormalSelected;
@@ -58,7 +59,9 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
         private bool _Dance_PogoMogoSelected;
+
         public bool Dance_PogoMogoSelected
         {
             get => _Dance_PogoMogoSelected;
@@ -70,6 +73,7 @@ namespace RetroFun.Pages
         }
 
         private bool _Dance_DuckFunkSelected;
+
         public bool Dance_DuckFunkSelected
         {
             get => _Dance_DuckFunkSelected;
@@ -79,7 +83,9 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
         private bool _Dance_TheRollieSelected;
+
         public bool Dance_TheRollieSelected
         {
             get => _Dance_TheRollieSelected;
@@ -91,6 +97,7 @@ namespace RetroFun.Pages
         }
 
         private int _Dance_Cooldown = 500;
+
         public int Dance_Cooldown
         {
             get => _Dance_Cooldown;
@@ -101,18 +108,12 @@ namespace RetroFun.Pages
             }
         }
 
-
-
-
-
-
-        #endregion
-
+        #endregion DanceBools
 
         #region GesturesBools
 
-
         private bool _PogoHopSelected;
+
         public bool PogoHopSelected
         {
             get => _PogoHopSelected;
@@ -123,8 +124,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _NoneGestureSelected;
+
         public bool NoneGestureSelected
         {
             get => _NoneGestureSelected;
@@ -136,6 +137,7 @@ namespace RetroFun.Pages
         }
 
         private bool _ThumbsUpSelected;
+
         public bool ThumbsUpSelected
         {
             get => _ThumbsUpSelected;
@@ -147,6 +149,7 @@ namespace RetroFun.Pages
         }
 
         private bool _WaveSelected;
+
         public bool WaveSelected
         {
             get => _WaveSelected;
@@ -158,6 +161,7 @@ namespace RetroFun.Pages
         }
 
         private bool _SleepSelected;
+
         public bool SleepSelected
         {
             get => _SleepSelected;
@@ -169,6 +173,7 @@ namespace RetroFun.Pages
         }
 
         private bool _LaughSelected;
+
         public bool LaughSelected
         {
             get => _LaughSelected;
@@ -180,6 +185,7 @@ namespace RetroFun.Pages
         }
 
         private bool _KissSelected;
+
         public bool KissSelected
         {
             get => _KissSelected;
@@ -190,7 +196,7 @@ namespace RetroFun.Pages
             }
         }
 
-        #endregion
+        #endregion GesturesBools
 
         //private bool ZeroUsed;
         //private bool OneUsed;
@@ -204,10 +210,10 @@ namespace RetroFun.Pages
         //private bool NineUsed;
         //private bool TenUsed;
 
-
         #region SignBools
 
         private bool _YellowcardSelected;
+
         public bool YellowcardSelected
         {
             get => _YellowcardSelected;
@@ -219,6 +225,7 @@ namespace RetroFun.Pages
         }
 
         private bool _RedcardSelected;
+
         public bool RedcardSelected
         {
             get => _RedcardSelected;
@@ -230,6 +237,7 @@ namespace RetroFun.Pages
         }
 
         private bool _SmileySelected;
+
         public bool SmileySelected
         {
             get => _SmileySelected;
@@ -241,6 +249,7 @@ namespace RetroFun.Pages
         }
 
         private bool _SoccerballSelected;
+
         public bool SoccerballSelected
         {
             get => _SoccerballSelected;
@@ -252,6 +261,7 @@ namespace RetroFun.Pages
         }
 
         private bool _ExclamationSelected;
+
         public bool ExclamationSelected
         {
             get => _ExclamationSelected;
@@ -263,6 +273,7 @@ namespace RetroFun.Pages
         }
 
         private bool _SkullSelected;
+
         public bool SkullSelected
         {
             get => _SkullSelected;
@@ -273,8 +284,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _HeartSelected;
+
         public bool HeartSelected
         {
             get => _HeartSelected;
@@ -285,8 +296,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _InvisibleSignSelected;
+
         public bool InvisibleSignSelected
         {
             get => _InvisibleSignSelected;
@@ -298,6 +309,7 @@ namespace RetroFun.Pages
         }
 
         private bool _ZeroSelected;
+
         public bool ZeroSelected
         {
             get => _ZeroSelected;
@@ -309,6 +321,7 @@ namespace RetroFun.Pages
         }
 
         private bool _OneSelected;
+
         public bool OneSelected
         {
             get => _OneSelected;
@@ -320,6 +333,7 @@ namespace RetroFun.Pages
         }
 
         private bool _TwoSelected;
+
         public bool TwoSelected
         {
             get => _TwoSelected;
@@ -331,6 +345,7 @@ namespace RetroFun.Pages
         }
 
         private bool _ThreeSelected;
+
         public bool ThreeSelected
         {
             get => _ThreeSelected;
@@ -342,6 +357,7 @@ namespace RetroFun.Pages
         }
 
         private bool _FourSelected;
+
         public bool FourSelected
         {
             get => _FourSelected;
@@ -353,6 +369,7 @@ namespace RetroFun.Pages
         }
 
         private bool _FiveSelected;
+
         public bool FiveSelected
         {
             get => _FiveSelected;
@@ -363,8 +380,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _SixSelected;
+
         public bool SixSelected
         {
             get => _SixSelected;
@@ -375,8 +392,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _SevenSelected;
+
         public bool SevenSelected
         {
             get => _SevenSelected;
@@ -387,8 +404,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _EightSelected;
+
         public bool EightSelected
         {
             get => _EightSelected;
@@ -400,6 +417,7 @@ namespace RetroFun.Pages
         }
 
         private bool _NineSelected;
+
         public bool NineSelected
         {
             get => _NineSelected;
@@ -411,6 +429,7 @@ namespace RetroFun.Pages
         }
 
         private bool _TenSelected;
+
         public bool TenSelected
         {
             get => _TenSelected;
@@ -421,8 +440,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private int _SignCounterCoolDown;
+
         public int SignCounterCoolDown
         {
             get => _SignCounterCoolDown;
@@ -433,8 +452,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private int _ActionsCooldown = 250;
+
         public int GestureCooldown
         {
             get => _ActionsCooldown;
@@ -445,8 +464,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private int _SitsCooldown = 250;
+
         public int SitsCooldown
         {
             get => _SitsCooldown;
@@ -456,11 +475,13 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-        #endregion
 
+        #endregion SignBools
 
         #region miscvars
+
         private bool _AntiFriendRemove = true;
+
         public bool AntiFriendRemove
         {
             get => _AntiFriendRemove;
@@ -472,6 +493,7 @@ namespace RetroFun.Pages
         }
 
         private int _TrollLookCooldown = 500;
+
         public int TrollLookCooldown
         {
             get => _TrollLookCooldown;
@@ -482,11 +504,9 @@ namespace RetroFun.Pages
             }
         }
 
+        #endregion miscvars
 
-        #endregion
-
-        #endregion
-
+        #endregion SignCountBools
 
         public MiscellaneousPage()
         {
@@ -523,8 +543,6 @@ namespace RetroFun.Pages
             Bind(Gesture_NoneChbx, "Checked", nameof(NoneGestureSelected));
             Bind(Gesture_PogoHopChbx, "Checked", nameof(PogoHopSelected));
 
-
-
             Bind(Dance_NoneChbx, "Checked", nameof(Dance_NoneSelected));
             Bind(Dance_NormalChbx, "Checked", nameof(Dance_NormalSelected));
             Bind(Dance_PogoMogoChbx, "Checked", nameof(Dance_PogoMogoSelected));
@@ -532,15 +550,11 @@ namespace RetroFun.Pages
             Bind(Dance_TheRollieChbx, "Checked", nameof(Dance_TheRollieSelected));
             Bind(DancesCooldownNBx, "Value", nameof(Dance_Cooldown));
 
-
             Bind(SignCountCoolDown, "Value", nameof(SignCounterCoolDown));
             Bind(GestureCooldownNbx, "Value", nameof(GestureCooldown));
             Bind(SitCoolDownNbx, "Value", nameof(SitsCooldown));
             Bind(TrollLookNbx, "Value", nameof(TrollLookCooldown));
-
         }
-
-
 
         private void SignCountBtn_Click(object sender, EventArgs e)
         {
@@ -553,7 +567,6 @@ namespace RetroFun.Pages
             {
                 SignCountEnabled = false;
                 WriteToButton(SignCountBtn, "Sign Count : Off");
-
             }
             else
             {
@@ -567,7 +580,6 @@ namespace RetroFun.Pages
         {
             GestureLoopManager();
         }
-
 
         private void GestureLoopManager()
         {
@@ -584,8 +596,6 @@ namespace RetroFun.Pages
             }
         }
 
-
-
         private void SitLoop()
         {
             new Thread(() =>
@@ -596,7 +606,6 @@ namespace RetroFun.Pages
                     UserSit();
                     Thread.Sleep(SitsCooldown);
                 } while (SitModeEnabled);
-
             }).Start();
         }
 
@@ -646,27 +655,28 @@ namespace RetroFun.Pages
                         }
                     }
                 } while (GestureLoopEnabled);
-
             }).Start();
         }
 
-
-
-
-
-
-        public void inUserProfile(DataInterceptedEventArgs e) { }
+        public void inUserProfile(DataInterceptedEventArgs e)
+        {
+        }
 
         private void SendGesturePacket(HGesture Gesture)
         {
-            Connection.SendToServerAsync(Out.RoomUserAction, Gesture);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(Out.RoomUserAction, Gesture);
+            }
         }
 
         private void SendDancePacket(HDance Dance)
         {
-            Connection.SendToServerAsync(Out.RoomUserDance, Dance);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(Out.RoomUserDance, Dance);
+            }
         }
-
 
         private void SignCountThread()
         {
@@ -882,31 +892,52 @@ namespace RetroFun.Pages
                             }
                         }
                     }
-
                 } while (SignCountEnabled);
-
             }).Start();
         }
 
         private void SendRoomSign(HSign Sign)
         {
-            Connection.SendToServerAsync(Out.RoomUserSign, Sign);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(Out.RoomUserSign, Sign);
+            }
         }
 
         private void UserSit()
         {
-            Connection.SendToServerAsync(Out.RoomUserSit);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(Out.RoomUserSit);
+            }
         }
 
-
-
         public bool IsReceiving => true;
-        public void OnUserLeaveRoom(DataInterceptedEventArgs e) { }
-        public void InRoomUserLeft(DataInterceptedEventArgs e) { }
-        public void InUserEnterRoom(DataInterceptedEventArgs e) { }
-        public void InPurchaseOk(DataInterceptedEventArgs e) { }
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e) { }
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e) { } 
+
+        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InUserEnterRoom(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InPurchaseOk(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
+        {
+        }
+
         public void OnUserFriendRemoval(DataInterceptedEventArgs e)
         {
             if (AntiFriendRemove)
@@ -920,7 +951,6 @@ namespace RetroFun.Pages
                 button.Text = text;
             });
         }
-
 
         private void CountingBtn_Click(object sender, EventArgs e)
         {
@@ -943,18 +973,13 @@ namespace RetroFun.Pages
             }
         }
 
-
-
-
         private void UserSitBtn_Click(object sender, EventArgs e)
         {
             UserSit();
         }
 
-
         private void SitCheck()
         {
-
             if (SitModeEnabled)
             {
                 SitModeEnabled = false;
@@ -985,8 +1010,6 @@ namespace RetroFun.Pages
             //return GenInt();
         }
 
-
-
         private void GenerateMaleLook()
         {
             string Look = "ca-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ch-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".lg-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".sh-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + GenInt() + ".wa-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + ".hd-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + ".hr-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ha-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ea-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "";
@@ -994,7 +1017,10 @@ namespace RetroFun.Pages
             {
                 OldLook = Look;
                 Console.WriteLine("USer Look set to : " + Look);
-                Connection.SendToServerAsync(Out.UserSaveLook, "M", Look);
+                if (Connection.Remote.IsConnected)
+                {
+                    Connection.SendToServerAsync(Out.UserSaveLook, "M", Look);
+                }
             }
             else
             {
@@ -1005,18 +1031,18 @@ namespace RetroFun.Pages
 
         private void GenerateFemaleLook()
         {
-            Connection.SendToServerAsync(Out.UserSaveLook, "F", "ca-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ch-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".lg-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".sh-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + GenInt() + ".wa-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + ".hd-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + ".hr-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ha-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ea-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "");
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(Out.UserSaveLook, "F", "ca-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ch-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".lg-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".sh-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + GenInt() + ".wa-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + ".hd-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + ".hr-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ha-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ea-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "");
+            }
         }
-
 
         //private void GenLookGenThreadBtn_Click(object sender, EventArgs e)
         //{
-
         //}
 
         //private void ToggleLookGen()
         //{
-
         //}
 
         private void GenFemaleLookBtn_Click(object sender, EventArgs e)
@@ -1040,7 +1066,6 @@ namespace RetroFun.Pages
             {
                 DanceLoopEnabled = false;
                 WriteToButton(DanceLoopBtn, "Dance Loop : Off");
-
             }
             else
             {
@@ -1048,8 +1073,8 @@ namespace RetroFun.Pages
                 WriteToButton(DanceLoopBtn, "Dance Loop : On");
                 DanceLoop();
             }
-
         }
+
         private void DanceLoop()
         {
             new Thread(() =>
@@ -1085,7 +1110,6 @@ namespace RetroFun.Pages
                             Thread.Sleep(Dance_Cooldown);
                         }
                     }
-
                 } while (DanceLoopEnabled);
                 if (!DanceLoopEnabled)
                 {
@@ -1096,13 +1120,14 @@ namespace RetroFun.Pages
 
         private void SendLookPacket(string look)
         {
-            Connection.SendToServerAsync(Out.UserSaveLook, "M", look);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(Out.UserSaveLook, "M", look);
+            }
         }
-
 
         private void EffectLoopBtn_Click(object sender, EventArgs e)
         {
-
         }
 
         private void TrollLookBtn_Click(object sender, EventArgs e)
@@ -1116,7 +1141,6 @@ namespace RetroFun.Pages
             {
                 TrollLookMode = false;
                 WriteToButton(TrollLookBtn, "Troll look : off");
-
             }
             else
             {
@@ -1133,7 +1157,7 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
-                    if(TrollLookMode)
+                    if (TrollLookMode)
                     {
                         SendLookPacket(TrollLook1);
                         Thread.Sleep(TrollLookCooldown);
@@ -1142,14 +1166,12 @@ namespace RetroFun.Pages
                         SendLookPacket(TrollLook3);
                         Thread.Sleep(TrollLookCooldown);
                     }
-
                 } while (TrollLookMode);
-                if(!TrollLookMode)
+                if (!TrollLookMode)
                 {
                     SendLookPacket(OriginalLook);
                 }
             }).Start();
         }
-
     }
 }

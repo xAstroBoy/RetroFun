@@ -1,17 +1,13 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
-using RetroFun.Helpers;
-
-using Tangine;
-
-using Sulakore.Habbo;
-using Sulakore.Habbo.Web;
+﻿using RetroFun.Helpers;
 using Sulakore.Communication;
+using Sulakore.Habbo;
 using Sulakore.Habbo.Messages;
+using Sulakore.Habbo.Web;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
 
 namespace RetroFun.Controls
 {
@@ -63,7 +59,9 @@ namespace RetroFun.Controls
         }
 
         #region INotifyPropertyChanged Implementation
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -76,10 +74,12 @@ namespace RetroFun.Controls
                 _bindings[e.PropertyName].ReadValue();
             }
         }
+
         protected void RaiseOnPropertyChanged([CallerMemberName]string propertyName = "")
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
+
+        #endregion INotifyPropertyChanged Implementation
     }
 }

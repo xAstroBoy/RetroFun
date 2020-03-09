@@ -1,11 +1,9 @@
-﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Windows.Forms;
-using RetroFun.Controls;
+﻿using RetroFun.Controls;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
-using Sulakore.Modules;
+using System;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -14,6 +12,7 @@ namespace RetroFun.Pages
     public partial class DicePage : ObservablePage, ISubscriber
     {
         private bool _IsRegistrationMode;
+
         public bool IsRegistrationMode
         {
             get => _IsRegistrationMode;
@@ -23,8 +22,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
-
 
         public bool IsReceiving => true;
 
@@ -47,17 +44,33 @@ namespace RetroFun.Pages
             }
         }
 
+        public void InPurchaseOk(DataInterceptedEventArgs e)
+        {
+        }
 
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        {
+        }
 
-        public void InPurchaseOk(DataInterceptedEventArgs e) { }
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e) { }
+        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
+        {
+        }
 
-        public void OnUserLeaveRoom(DataInterceptedEventArgs e) { }
-        public void InRoomUserLeft(DataInterceptedEventArgs e) { }
-        public void InUserEnterRoom(DataInterceptedEventArgs e) { }
-        public void inUserProfile(DataInterceptedEventArgs e) { }
+        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        {
+        }
 
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e) { }
+        public void InUserEnterRoom(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void inUserProfile(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        {
+        }
 
         private void DiceRegisterMode_CheckedChanged(object sender, EventArgs e)
         {
@@ -82,9 +95,7 @@ namespace RetroFun.Pages
             }
         }
 
-
-
-        public void RegisterDice (int NewDice)
+        public void RegisterDice(int NewDice)
         {
             if (!DiceRegistered1)
             {
@@ -129,13 +140,11 @@ namespace RetroFun.Pages
                 if (RegistrationCompleted)
                 {
                     RegisterDiceSpeak("Registration completed.");
-
                 }
                 CheckBoxToggler(DiceRegisterModeCheck, false);
                 return;
             }
         }
-
 
         private void RollCheckedDices_Click(object sender, EventArgs e)
         {
@@ -181,7 +190,6 @@ namespace RetroFun.Pages
                     RollDice(result);
                 }
             }
-
         }
 
         private void CloseCheckedDices_Click(object sender, EventArgs e)
@@ -326,11 +334,9 @@ namespace RetroFun.Pages
             }
         }
 
-
         private void UnSelectAllButton_Click(object sender, EventArgs e)
         {
             CheckStatus(false);
-
         }
 
         private void SelectAllButton_Click(object sender, EventArgs e)
@@ -347,9 +353,7 @@ namespace RetroFun.Pages
             WriteIDToBox(DiceID5, "");
             WriteIDToBox(DiceID6, "");
             CheckStatus(false);
-
         }
-
 
         public void CheckStatus(bool status)
         {
@@ -361,30 +365,39 @@ namespace RetroFun.Pages
             CheckBoxToggler(DiceSelect6, status);
         }
 
-        private void RollDice (int DiceID)
+        private void RollDice(int DiceID)
         {
-            Connection.SendToServerAsync(Out.TriggerDice,  DiceID);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(Out.TriggerDice, DiceID);
+            }
         }
-
 
         private void CloseDice(int DiceID)
         {
-            Connection.SendToServerAsync(Out.CloseDice, DiceID);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(Out.CloseDice, DiceID);
+            }
         }
 
         private void RegisterDiceAsk(int DiceNumber)
         {
-            base.Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Registration Dice]: Please Select the dice nr " + DiceNumber.ToString()  +".", 0, 34, 0, -1);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Registration Dice]: Please Select the dice nr " + DiceNumber.ToString() + ".", 0, 34, 0, -1);
+            }
         }
 
-
-        private void RegisterDiceSpeak(string  text)
+        private void RegisterDiceSpeak(string text)
         {
-            base.Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Registration Dice]: " + text , 0, 34, 0, -1);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Registration Dice]: " + text, 0, 34, 0, -1);
+            }
         }
 
-
-        private void WriteIDToBox(TextBox DiceBox , string text)
+        private void WriteIDToBox(TextBox DiceBox, string text)
         {
             Invoke((MethodInvoker)delegate
             {
@@ -407,8 +420,5 @@ namespace RetroFun.Pages
         private bool DiceRegistered5;
         private bool DiceRegistered6;
         private bool RegistrationCompleted;
- 
     }
-
-
 }

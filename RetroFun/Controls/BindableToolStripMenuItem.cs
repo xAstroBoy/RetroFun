@@ -1,7 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using System.ComponentModel;
 
 namespace RetroFun.Controls
 {
@@ -9,6 +9,7 @@ namespace RetroFun.Controls
     public class BindableToolStripMenuItem : ToolStripMenuItem, IBindableComponent
     {
         private BindingContext _context;
+
         [Browsable(false)]
         public BindingContext BindingContext
         {
@@ -17,29 +18,37 @@ namespace RetroFun.Controls
         }
 
         private ControlBindingsCollection _bindings;
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public ControlBindingsCollection DataBindings => _bindings ?? (_bindings = new ControlBindingsCollection(this));
 
         public BindableToolStripMenuItem()
         { }
+
         public BindableToolStripMenuItem(string text)
             : base(text)
         { }
+
         public BindableToolStripMenuItem(Image image)
             : base(image)
         { }
+
         public BindableToolStripMenuItem(string text, Image image)
             : base(text, image)
         { }
+
         public BindableToolStripMenuItem(string text, Image image, EventHandler onClick)
             : base(text, image, onClick)
         { }
+
         public BindableToolStripMenuItem(string text, Image image, EventHandler onClick, string name)
             : base(text, image, onClick, name)
         { }
+
         public BindableToolStripMenuItem(string text, Image image, params ToolStripItem[] dropDownItems)
             : base(text, image, dropDownItems)
         { }
+
         public BindableToolStripMenuItem(string text, Image image, EventHandler onClick, Keys shortcutKeys)
             : base(text, image, onClick, shortcutKeys)
         { }

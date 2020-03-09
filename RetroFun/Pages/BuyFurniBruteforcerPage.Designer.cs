@@ -52,12 +52,20 @@
             this.label7 = new System.Windows.Forms.Label();
             this.GlobalSleepExtraNbx = new System.Windows.Forms.NumericUpDown();
             this.FurniNameShowChbx = new System.Windows.Forms.CheckBox();
+            this.FileNameTextBox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.CheckLockFileNameChbx = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.FurniIDOptionChbx = new System.Windows.Forms.RadioButton();
+            this.PageIDOptionChbx = new System.Windows.Forms.RadioButton();
+            this.CaptureModeChbx = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseLoopCoolDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CataloguePageIDBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CatalogueFurniIDBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FurniIDRangeNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PageIDRangeNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GlobalSleepExtraNbx)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // furnITextBox
@@ -96,7 +104,7 @@
             // 
             // SendPurchaseBtn
             // 
-            this.SendPurchaseBtn.Location = new System.Drawing.Point(214, 218);
+            this.SendPurchaseBtn.Location = new System.Drawing.Point(223, 279);
             this.SendPurchaseBtn.Name = "SendPurchaseBtn";
             this.SendPurchaseBtn.Size = new System.Drawing.Size(224, 20);
             this.SendPurchaseBtn.TabIndex = 26;
@@ -140,7 +148,7 @@
             // 
             // CatalogueBruteForceBtn
             // 
-            this.CatalogueBruteForceBtn.Location = new System.Drawing.Point(487, 218);
+            this.CatalogueBruteForceBtn.Location = new System.Drawing.Point(494, 267);
             this.CatalogueBruteForceBtn.Name = "CatalogueBruteForceBtn";
             this.CatalogueBruteForceBtn.Size = new System.Drawing.Size(129, 20);
             this.CatalogueBruteForceBtn.TabIndex = 42;
@@ -183,7 +191,7 @@
             // 
             // CatalogueSButtonLoopToggle
             // 
-            this.CatalogueSButtonLoopToggle.Location = new System.Drawing.Point(12, 218);
+            this.CatalogueSButtonLoopToggle.Location = new System.Drawing.Point(21, 279);
             this.CatalogueSButtonLoopToggle.Name = "CatalogueSButtonLoopToggle";
             this.CatalogueSButtonLoopToggle.Size = new System.Drawing.Size(169, 20);
             this.CatalogueSButtonLoopToggle.TabIndex = 38;
@@ -288,7 +296,7 @@
             // PurchaseConfirmedChbx
             // 
             this.PurchaseConfirmedChbx.AutoSize = true;
-            this.PurchaseConfirmedChbx.Location = new System.Drawing.Point(178, 144);
+            this.PurchaseConfirmedChbx.Location = new System.Drawing.Point(173, 128);
             this.PurchaseConfirmedChbx.Name = "PurchaseConfirmedChbx";
             this.PurchaseConfirmedChbx.Size = new System.Drawing.Size(146, 17);
             this.PurchaseConfirmedChbx.TabIndex = 53;
@@ -324,17 +332,92 @@
             // FurniNameShowChbx
             // 
             this.FurniNameShowChbx.AutoSize = true;
-            this.FurniNameShowChbx.Location = new System.Drawing.Point(178, 167);
+            this.FurniNameShowChbx.Location = new System.Drawing.Point(173, 151);
             this.FurniNameShowChbx.Name = "FurniNameShowChbx";
             this.FurniNameShowChbx.Size = new System.Drawing.Size(110, 17);
             this.FurniNameShowChbx.TabIndex = 56;
             this.FurniNameShowChbx.Text = "Show Furni Name";
             this.FurniNameShowChbx.UseVisualStyleBackColor = true;
             // 
+            // FileNameTextBox
+            // 
+            this.FileNameTextBox.Enabled = false;
+            this.FileNameTextBox.Location = new System.Drawing.Point(21, 217);
+            this.FileNameTextBox.MaxLength = 1073741823;
+            this.FileNameTextBox.Name = "FileNameTextBox";
+            this.FileNameTextBox.Size = new System.Drawing.Size(292, 20);
+            this.FileNameTextBox.TabIndex = 57;
+            this.FileNameTextBox.Text = "bobbaitalia.it";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(18, 201);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(180, 13);
+            this.label8.TabIndex = 58;
+            this.label8.Text = "Name Of the Bruteforcer OutPut File.";
+            // 
+            // CheckLockFileNameChbx
+            // 
+            this.CheckLockFileNameChbx.AutoSize = true;
+            this.CheckLockFileNameChbx.Location = new System.Drawing.Point(319, 220);
+            this.CheckLockFileNameChbx.Name = "CheckLockFileNameChbx";
+            this.CheckLockFileNameChbx.Size = new System.Drawing.Size(15, 14);
+            this.CheckLockFileNameChbx.TabIndex = 59;
+            this.CheckLockFileNameChbx.UseVisualStyleBackColor = true;
+            this.CheckLockFileNameChbx.CheckedChanged += new System.EventHandler(this.CheckLockFileNameChbx_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.FurniIDOptionChbx);
+            this.groupBox1.Controls.Add(this.PageIDOptionChbx);
+            this.groupBox1.Location = new System.Drawing.Point(494, 187);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(131, 74);
+            this.groupBox1.TabIndex = 60;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "BruteForcer options";
+            // 
+            // FurniIDOptionChbx
+            // 
+            this.FurniIDOptionChbx.AutoSize = true;
+            this.FurniIDOptionChbx.Location = new System.Drawing.Point(24, 42);
+            this.FurniIDOptionChbx.Name = "FurniIDOptionChbx";
+            this.FurniIDOptionChbx.Size = new System.Drawing.Size(62, 17);
+            this.FurniIDOptionChbx.TabIndex = 1;
+            this.FurniIDOptionChbx.Text = "FurniID ";
+            this.FurniIDOptionChbx.UseVisualStyleBackColor = true;
+            // 
+            // PageIDOptionChbx
+            // 
+            this.PageIDOptionChbx.AutoSize = true;
+            this.PageIDOptionChbx.Location = new System.Drawing.Point(24, 19);
+            this.PageIDOptionChbx.Name = "PageIDOptionChbx";
+            this.PageIDOptionChbx.Size = new System.Drawing.Size(61, 17);
+            this.PageIDOptionChbx.TabIndex = 0;
+            this.PageIDOptionChbx.Text = "PageID";
+            this.PageIDOptionChbx.UseVisualStyleBackColor = true;
+            // 
+            // CaptureModeChbx
+            // 
+            this.CaptureModeChbx.AutoSize = true;
+            this.CaptureModeChbx.Location = new System.Drawing.Point(173, 174);
+            this.CaptureModeChbx.Name = "CaptureModeChbx";
+            this.CaptureModeChbx.Size = new System.Drawing.Size(160, 17);
+            this.CaptureModeChbx.TabIndex = 61;
+            this.CaptureModeChbx.Text = "Capture PageID and FurniID";
+            this.CaptureModeChbx.UseVisualStyleBackColor = true;
+            // 
             // BuyFurniBruteforcerPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CaptureModeChbx);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.CheckLockFileNameChbx);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.FileNameTextBox);
             this.Controls.Add(this.FurniNameShowChbx);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.GlobalSleepExtraNbx);
@@ -360,13 +443,15 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.SendPurchaseBtn);
             this.Name = "BuyFurniBruteforcerPage";
-            this.Size = new System.Drawing.Size(643, 257);
+            this.Size = new System.Drawing.Size(684, 322);
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseLoopCoolDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CataloguePageIDBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CatalogueFurniIDBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.FurniIDRangeNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PageIDRangeNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GlobalSleepExtraNbx)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -398,5 +483,12 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown GlobalSleepExtraNbx;
         private System.Windows.Forms.CheckBox FurniNameShowChbx;
+        private System.Windows.Forms.TextBox FileNameTextBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox CheckLockFileNameChbx;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton FurniIDOptionChbx;
+        private System.Windows.Forms.RadioButton PageIDOptionChbx;
+        private System.Windows.Forms.CheckBox CaptureModeChbx;
     }
 }

@@ -1,10 +1,10 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
+﻿using System;
 using System.ComponentModel;
-using System.Drawing.Imaging;
+using System.Drawing;
 using System.Drawing.Drawing2D;
-using System;
+using System.Drawing.Imaging;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace RetroFun.Controls
 {
@@ -18,7 +18,6 @@ namespace RetroFun.Controls
             DrawMode = DrawMode.OwnerDrawFixed;
             DropDownStyle = ComboBoxStyle.DropDownList;
         }
-
 
         public object[] SortNumericItems(object[] items)
         {
@@ -95,8 +94,6 @@ namespace RetroFun.Controls
             return destImage;
         }
 
-
-
         public class DropDownImageItem
         {
             public object Tag { get; }
@@ -113,10 +110,10 @@ namespace RetroFun.Controls
                 Image = image;
             }
 
-
             public DropDownImageItem(Image image)
                 : this(image, string.Empty, null)
             { }
+
             public DropDownImageItem(Image image, object tag)
                 : this(image, string.Empty, tag)
             { }
@@ -124,6 +121,7 @@ namespace RetroFun.Controls
             public DropDownImageItem(Image image, string text)
                 : this(image, text, null)
             { }
+
             public DropDownImageItem(Image image, string text, object tag)
             {
                 Tag = tag;

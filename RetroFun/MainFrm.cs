@@ -1,11 +1,9 @@
-﻿using System.ComponentModel;
-
-using RetroFun.Pages;
-using RetroFun.Controls;
+﻿using RetroFun.Controls;
+using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Modules;
 using System.Collections.Generic;
-using RetroFun.Subscribers;
+using System.ComponentModel;
 
 namespace RetroFun
 {
@@ -27,6 +25,7 @@ namespace RetroFun
         }
 
         private bool _FreezeUserMovement;
+
         public bool FreezeUserMovement
         {
             get => _FreezeUserMovement;
@@ -58,11 +57,9 @@ namespace RetroFun
                 MiscellaneousPg,
             };
 
-
             Bind(FreezeMovementCheck, "Checked", nameof(FreezeUserMovement));
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));
         }
-
 
         [OutDataCapture("RoomUserWalk")]
         public void OnOutUserWalk(DataInterceptedEventArgs e)
@@ -70,8 +67,6 @@ namespace RetroFun
             if (FreezeUserMovement)
                 e.IsBlocked = true;
         }
-
-
 
         public override void HandleOutgoing(DataInterceptedEventArgs e)
         {
@@ -125,8 +120,6 @@ namespace RetroFun
                     sub.inUserProfile(e);
                 }
             }
-
         }
-
     }
 }

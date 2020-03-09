@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Threading;
-using RetroFun.Controls;
+﻿using RetroFun.Controls;
 using Sulakore.Components;
+using System;
+using System.ComponentModel;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -18,14 +12,13 @@ namespace RetroFun.Pages
     public partial class DiscoRoomLight : ObservablePage
     {
         public MoonLightFunPage LightController;
-        Random Randomizer2 = new Random();
-        Random Randomizer1 = new Random();
+        private Random Randomizer2 = new Random();
+        private Random Randomizer1 = new Random();
 
         public bool DiscoLight;
         private bool FlashAsk;
         private bool DensityRandomizer1;
         private bool DensityRandomizer2;
-
 
         private readonly string LightBlue = "74F5F5";
         private readonly string DarkBlue = "0053F7";
@@ -36,6 +29,7 @@ namespace RetroFun.Pages
         private readonly string Black = "000000";
 
         private int _DiscoCooldown = 150;
+
         public int DiscoCooldown
         {
             get => _DiscoCooldown;
@@ -47,6 +41,7 @@ namespace RetroFun.Pages
         }
 
         private int _Density = 79;
+
         public int Density
         {
             get => _Density;
@@ -58,6 +53,7 @@ namespace RetroFun.Pages
         }
 
         private int _FlashDensity = 79;
+
         public int FlashDensity
         {
             get => _FlashDensity;
@@ -69,6 +65,7 @@ namespace RetroFun.Pages
         }
 
         private bool _JustWallpapers;
+
         public bool JustWallpapers
         {
             get => _JustWallpapers;
@@ -80,6 +77,7 @@ namespace RetroFun.Pages
         }
 
         private bool _SelectedLightblue;
+
         public bool SelectedLightblue
         {
             get => _SelectedLightblue;
@@ -91,6 +89,7 @@ namespace RetroFun.Pages
         }
 
         private bool _SelectedDarkBlue;
+
         public bool SelectedDarkBlue
         {
             get => _SelectedDarkBlue;
@@ -102,6 +101,7 @@ namespace RetroFun.Pages
         }
 
         private bool _SelectedPurple;
+
         public bool SelectedPurple
         {
             get => _SelectedPurple;
@@ -112,8 +112,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _SelectedRed;
+
         public bool SelectedRed
         {
             get => _SelectedRed;
@@ -125,6 +125,7 @@ namespace RetroFun.Pages
         }
 
         private bool _SelectedYellow;
+
         public bool SelectedYellow
         {
             get => _SelectedYellow;
@@ -136,6 +137,7 @@ namespace RetroFun.Pages
         }
 
         private bool _SelectedGreen;
+
         public bool SelectedGreen
         {
             get => _SelectedGreen;
@@ -147,6 +149,7 @@ namespace RetroFun.Pages
         }
 
         private bool _SelectedBlack;
+
         public bool SelectedBlack
         {
             get => _SelectedBlack;
@@ -156,7 +159,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
 
         public DiscoRoomLight()
         {
@@ -193,18 +195,15 @@ namespace RetroFun.Pages
                 if (LightController != null)
                 {
                     LightController.DeactivateAll();
-
                 }
                 StartDisco();
             }
         }
 
-
         private void RandomDensityTogglerBtn_Click(object sender, EventArgs e)
         {
             CheckRandomizer1();
         }
-
 
         private void CheckRandomizer1()
         {
@@ -213,7 +212,6 @@ namespace RetroFun.Pages
                 DensityRandomizer1 = false;
                 EnableButton(DensityNm, true);
                 WriteToButton(RandomDensityTogglerBtn, "Random Density : Deactivated");
-                
             }
             else
             {
@@ -224,7 +222,6 @@ namespace RetroFun.Pages
             }
         }
 
-
         private void EnableButton(NumericUpDown button, bool enabled)
         {
             Invoke((MethodInvoker)delegate
@@ -232,7 +229,6 @@ namespace RetroFun.Pages
                 button.Enabled = enabled;
             });
         }
-
 
         private void CheckRandomizer2()
         {
@@ -250,6 +246,7 @@ namespace RetroFun.Pages
                 RandomizeDensity2();
             }
         }
+
         private void FlashLightBlue_Click(object sender, EventArgs e)
         {
             RequestFlash(LightBlue);
@@ -268,19 +265,16 @@ namespace RetroFun.Pages
         private void FlashRed_Click(object sender, EventArgs e)
         {
             RequestFlash(Red);
-
         }
 
         private void FlashYellow_Click(object sender, EventArgs e)
         {
             RequestFlash(Yellow);
-
         }
 
         private void FlashGreen_Click(object sender, EventArgs e)
         {
             RequestFlash(Green);
-
         }
 
         private void FlashDensityRandomizer_Click(object sender, EventArgs e)
@@ -308,10 +302,9 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
-                 Density = Randomizer1.Next(15, 230);
+                    Density = Randomizer1.Next(15, 230);
                     Thread.Sleep(90);
                 } while (DensityRandomizer1);
-
             }).Start();
         }
 
@@ -324,11 +317,10 @@ namespace RetroFun.Pages
                 {
                     FlashDensity = Randomizer2.Next(15, 230);
                     Thread.Sleep(90);
-
                 } while (DensityRandomizer2);
-
             }).Start();
         }
+
         private void RequestFlash(string color)
         {
             if (!FlashAsk)
@@ -348,10 +340,8 @@ namespace RetroFun.Pages
                     SendMoodLightPacket(3, color, FlashDensity);
                     FlashAsk = false;
                 } while (FlashAsk);
-
             }).Start();
         }
-
 
         private void StartDisco()
         {
@@ -371,42 +361,34 @@ namespace RetroFun.Pages
                         {
                             SendMoodLightPacket(3, DarkBlue, Density);
                             Thread.Sleep(DiscoCooldown);
-
-
                         }
                         if (SelectedPurple)
                         {
                             SendMoodLightPacket(3, Purple, Density);
                             Thread.Sleep(DiscoCooldown);
-
                         }
                         if (SelectedRed)
                         {
                             SendMoodLightPacket(3, Red, Density);
                             Thread.Sleep(DiscoCooldown);
-
                         }
                         if (SelectedYellow)
                         {
                             SendMoodLightPacket(3, Yellow, Density);
                             Thread.Sleep(DiscoCooldown);
-
                         }
                         if (SelectedGreen)
                         {
                             SendMoodLightPacket(3, Green, Density);
                             Thread.Sleep(DiscoCooldown);
-
                         }
                         if (SelectedBlack)
                         {
                             SendMoodLightPacket(3, Black, Density);
                             Thread.Sleep(DiscoCooldown);
-
                         }
                     }
                 } while (DiscoLight);
-
             }).Start();
         }
 
@@ -417,16 +399,17 @@ namespace RetroFun.Pages
 
         private void SendMoodLightPacket(int preset, string color, int Density)
         {
-            if (JustWallpapers)
+            if (Connection.Remote.IsConnected)
             {
-                Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 2, "#" + color, Density, true);
-            }
-            else
-            {
-                Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
+                if (JustWallpapers)
+                {
+                    Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 2, "#" + color, Density, true);
+                }
+                else
+                {
+                    Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
+                }
             }
         }
-
-
     }
 }

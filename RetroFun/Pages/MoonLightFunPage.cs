@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Threading;
-using RetroFun.Controls;
+﻿using RetroFun.Controls;
 using Sulakore.Components;
+using System;
+using System.ComponentModel;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -18,8 +12,6 @@ namespace RetroFun.Pages
     public partial class MoonLightFunPage : ObservablePage
     {
         #region Ints and stuff
-
-
 
         // DISCO COLORS
 
@@ -33,9 +25,8 @@ namespace RetroFun.Pages
 
         private bool LiveEditing;
 
-
-
         private int _LiveEditCooldown = 150;
+
         public int LiveEditCooldown
         {
             get => _LiveEditCooldown;
@@ -47,6 +38,7 @@ namespace RetroFun.Pages
         }
 
         private int _Density = 79;
+
         public int Density
         {
             get => _Density;
@@ -57,9 +49,8 @@ namespace RetroFun.Pages
             }
         }
 
-
-
         private bool _JustWallpapers;
+
         public bool JustWallpapers
         {
             get => _JustWallpapers;
@@ -71,6 +62,7 @@ namespace RetroFun.Pages
         }
 
         private string _CustomColor;
+
         public string CustomColor
         {
             get => _CustomColor;
@@ -81,8 +73,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _SelectedCustom;
+
         public bool SelectedCustom
         {
             get => _SelectedCustom;
@@ -92,8 +84,8 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-        #endregion
 
+        #endregion Ints and stuff
 
         public MoonLightFunPage()
         {
@@ -104,12 +96,7 @@ namespace RetroFun.Pages
             Bind(ColorHTMLtxb, "Text", nameof(CustomColor));
 
             Bind(CustomBtx, "checked", nameof(SelectedCustom));
-
-
         }
-
-
-
 
         // MoodLightSaveSettings Structure
         // {u:1330} Header
@@ -118,7 +105,6 @@ namespace RetroFun.Pages
         //{s:#82F349} Colors (String , skip #, HTML Colors.)
         //{i:76} ( Density , use numberupanddown)
         //{b:True} ???
-
 
         public void DeactivateAll()
         {
@@ -135,12 +121,11 @@ namespace RetroFun.Pages
 
         private void SetMoonBtx_Click(object sender, EventArgs e)
         {
-                if (!string.IsNullOrEmpty(CustomColor))
-                {
-                    SendMoodLightPacket(3, CustomColor, Density);
-                }
+            if (!string.IsNullOrEmpty(CustomColor))
+            {
+                SendMoodLightPacket(3, CustomColor, Density);
+            }
         }
-
 
         private void WriteToButton(SKoreButton button, string text)
         {
@@ -251,7 +236,6 @@ namespace RetroFun.Pages
             CustomColor = Green;
         }
 
-
         private void BlackRadioBtn_CheckedChanged(object sender, EventArgs e)
         {
             if (ColorHTMLtxb.Enabled == true)
@@ -263,17 +247,13 @@ namespace RetroFun.Pages
 
         private void CustomBtx_CheckedChanged(object sender, EventArgs e)
         {
-                EnableTexButton(ColorHTMLtxb, true);
+            EnableTexButton(ColorHTMLtxb, true);
         }
 
         private void LiveEditBtn_Click(object sender, EventArgs e)
         {
-
             CheckLiveEdit();
         }
-
-
-
 
         private void LiveEdit()
         {
@@ -282,26 +262,25 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
-                
-                 SendMoodLightPacket(2, CustomColor, Density);
-                 Thread.Sleep(LiveEditCooldown);
+                    SendMoodLightPacket(2, CustomColor, Density);
+                    Thread.Sleep(LiveEditCooldown);
                 } while (LiveEditing);
-
             }).Start();
         }
 
-
         private void SendMoodLightPacket(int preset, string color, int Density)
         {
-            if (JustWallpapers)
+            if (Connection.Remote.IsConnected)
             {
-                Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 2, "#" + color, Density, true);
-            }
-            else
-            {
-                Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
+                if (JustWallpapers)
+                {
+                    Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 2, "#" + color, Density, true);
+                }
+                else
+                {
+                    Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
+                }
             }
         }
-
     }
 }

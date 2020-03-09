@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Threading;
-using RetroFun.Controls;
-using Sulakore.Components;
+﻿using RetroFun.Controls;
 using Sulakore.Communication;
-using Sulakore.Modules;
+using Sulakore.Components;
+using System;
+using System.ComponentModel;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -19,7 +12,6 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class RoomBackFun : ObservablePage
     {
-
         private int OldTonality;
         private int OldSaturation;
         private int OldLuminosity;
@@ -28,9 +20,8 @@ namespace RetroFun.Pages
         private bool LuminosityFader;
         private bool isLiveEditing;
 
-
-
         private int _GlobalSpeed = 150;
+
         public int GlobalSpeed
         {
             get => _GlobalSpeed;
@@ -42,6 +33,7 @@ namespace RetroFun.Pages
         }
 
         private int _LiveEditSpeed = 150;
+
         public int LiveEditSpeed
         {
             get => _LiveEditSpeed;
@@ -52,8 +44,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private int _Tonality = 0;
+
         public int Tonality
         {
             get => _Tonality;
@@ -64,8 +56,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private int _SpeedTonality = 150;
+
         public int SpeedTonality
         {
             get => _SpeedTonality;
@@ -77,6 +69,7 @@ namespace RetroFun.Pages
         }
 
         private int _Saturation = 0;
+
         public int Saturation
         {
             get => _Saturation;
@@ -88,6 +81,7 @@ namespace RetroFun.Pages
         }
 
         private int _SpeedSaturation = 150;
+
         public int SpeedSaturation
         {
             get => _SpeedSaturation;
@@ -99,6 +93,7 @@ namespace RetroFun.Pages
         }
 
         private int _Luminosity = 0;
+
         public int Luminosity
         {
             get => _Luminosity;
@@ -110,6 +105,7 @@ namespace RetroFun.Pages
         }
 
         private int _SpeedLuminosity = 150;
+
         public int SpeedLuminosity
         {
             get => _SpeedLuminosity;
@@ -120,8 +116,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private int _FurniID = 0;
+
         public int FurniID
         {
             get => _FurniID;
@@ -133,6 +129,7 @@ namespace RetroFun.Pages
         }
 
         private bool _CaptureMode;
+
         public bool CaptureMode
         {
             get => _CaptureMode;
@@ -144,6 +141,7 @@ namespace RetroFun.Pages
         }
 
         private bool _GlobalSpeedSwitch;
+
         public bool GlobalSpeedSwitch
         {
             get => _GlobalSpeedSwitch;
@@ -184,18 +182,19 @@ namespace RetroFun.Pages
                 Saturation = e.Packet.ReadInteger();
                 Luminosity = e.Packet.ReadInteger();
                 SaveSettings();
-                Speak("FurniID Set to : " + FurniID.ToString()); 
+                Speak("FurniID Set to : " + FurniID.ToString());
                 e.IsBlocked = true;
                 CaptureMode = false;
             }
         }
 
-
         private void Speak(string text)
         {
-            base.Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[RoomBackGroundFun]: "+ text + ".", 0, 34, 0, -1);
+            if (Connection.Remote.IsConnected)
+            {
+                base.Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[RoomBackGroundFun]: " + text + ".", 0, 34, 0, -1);
+            }
         }
-
 
         private void RestoreSettingsBtn_Click(object sender, EventArgs e)
         {
@@ -227,20 +226,13 @@ namespace RetroFun.Pages
             GlobalSpeedCheck();
         }
 
- 
-
-
-
-
-
         public void SendFullPacket(int furnid, int Tonality, int saturation, int luminosity)
         {
-            Connection.SendToServerAsync(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
+            }
         }
-
-
-
-
 
         private void GlobalSpeedCheck()
         {
@@ -260,7 +252,6 @@ namespace RetroFun.Pages
                 EnableButton(LumSpeedNbx, false);
                 EnableButton(GlobalSpeedNbx, true);
                 StartGlobalSpeedUpdater();
-
             }
         }
 
@@ -290,7 +281,6 @@ namespace RetroFun.Pages
                     SpeedSaturation = GlobalSpeed;
                     SpeedLuminosity = GlobalSpeed;
                 } while (GlobalSpeedSwitch);
-
             }).Start();
         }
 
@@ -304,10 +294,8 @@ namespace RetroFun.Pages
                     SendFullPacket(FurniID, Tonality, Saturation, Luminosity);
                     Thread.Sleep(LiveEditSpeed);
                 } while (isLiveEditing);
-
             }).Start();
         }
-
 
         private void CheckLuminosityFadeStatus()
         {
@@ -325,9 +313,6 @@ namespace RetroFun.Pages
                 StartLuminosityFader();
             }
         }
-
-
-
 
         private void StartLuminosityFader()
         {
@@ -348,12 +333,8 @@ namespace RetroFun.Pages
                     SendFullPacket(FurniID, Tonality, Saturation, Luminosity);
                     Thread.Sleep(SpeedLuminosity);
                 } while (LuminosityFader);
-
             }).Start();
         }
-
-
-
 
         private void CheckSaturationFadeStatus()
         {
@@ -371,9 +352,6 @@ namespace RetroFun.Pages
                 StartSaturationFader();
             }
         }
-
-
-
 
         private void StartSaturationFader()
         {
@@ -394,20 +372,15 @@ namespace RetroFun.Pages
                     SendFullPacket(FurniID, Tonality, Saturation, Luminosity);
                     Thread.Sleep(SpeedSaturation);
                 } while (SaturationFader);
-
             }).Start();
         }
 
-
-
-
-
         private void CheckTonalityFadeStatus()
         {
-            if(TonalityFader)
+            if (TonalityFader)
             {
                 TonalityFader = false;
-                EnableButton(TonNbx, true) ;
+                EnableButton(TonNbx, true);
                 WriteToButton(TonFadeBtn, "Tonality Fade : Deactivated");
             }
             else
@@ -418,9 +391,6 @@ namespace RetroFun.Pages
                 StartTonalityFader();
             }
         }
-
-
-
 
         private void StartTonalityFader()
         {
@@ -441,10 +411,8 @@ namespace RetroFun.Pages
                     SendFullPacket(FurniID, Tonality, Saturation, Luminosity);
                     Thread.Sleep(SpeedTonality);
                 } while (TonalityFader);
-
             }).Start();
         }
-
 
         private void EnableButton(NumericUpDown button, bool enabled)
         {
@@ -454,7 +422,6 @@ namespace RetroFun.Pages
             });
         }
 
-
         private void WriteToButton(SKoreButton button, string text)
         {
             Invoke((MethodInvoker)delegate
@@ -463,14 +430,13 @@ namespace RetroFun.Pages
             });
         }
 
-
-
         private void SaveSettings()
         {
             OldTonality = Tonality;
             OldSaturation = Saturation;
             OldLuminosity = Luminosity;
         }
+
         private void RestoreSettings()
         {
             Tonality = OldTonality;
@@ -478,7 +444,5 @@ namespace RetroFun.Pages
             Luminosity = OldLuminosity;
             SendFullPacket(FurniID, Tonality, Saturation, Luminosity);
         }
-
-
     }
 }

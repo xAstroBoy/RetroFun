@@ -1,15 +1,12 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows.Forms;
-using RetroFun.Controls;
-using System.Threading;
-using Sulakore.Components;
-using Sulakore.Communication;
+﻿using RetroFun.Controls;
 using RetroFun.Subscribers;
-using Sulakore.Modules;
+using Sulakore.Communication;
+using Sulakore.Components;
+using System;
+using System.ComponentModel;
 using System.IO;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
-using System.Net;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -27,20 +24,22 @@ namespace RetroFun.Pages
             Bind(FurniIDRangeNbx, "Value", nameof(FurniIDIntRange));
             Bind(GlobalSleepExtraNbx, "Value", nameof(GlobalSleeper));
 
-            
             Bind(isValidPurchcheck, "Checked", nameof(PurchaseSuccess));
             Bind(PageIDRangeChbx, "Checked", nameof(PageIDRangeToggle));
             Bind(FurniIDRangeChbx, "Checked", nameof(FurniIDRangeToggle));
-            Bind(PurchaseConfirmedChbx, "Checked", nameof(ShowOutput));
-            Bind(FurniNameShowChbx, "Checked", nameof(ShowOutput1));
+            Bind(PurchaseConfirmedChbx, "Checked", nameof(ShowPurchase));
+            Bind(FurniNameShowChbx, "Checked", nameof(ShowPurchaseFurniName));
+            Bind(CheckLockFileNameChbx, "Checked", nameof(FileNameLockToggle));
+            Bind(PageIDOptionChbx, "Checked", nameof(PageIDOptionToggle));
+            Bind(FurniIDOptionChbx, "Checked", nameof(FurniIDOptionToggle));
+            Bind(CaptureModeChbx, "Checked", nameof(CaptureModeCatalog));
 
+            Bind(FileNameTextBox, "Text", nameof(FileNameSave));
             Bind(furnITextBox, "Text", nameof(TextBox));
-
         }
 
-
-
         private bool _EnableLoop;
+
         public bool EnableLoop
         {
             get => _EnableLoop;
@@ -56,6 +55,7 @@ namespace RetroFun.Pages
         private bool GlobalBruteforcerEnabled1;
         private string FurniName;
         private int _SpeedTimer1 = 100;
+
         public int SpeedTimer1
         {
             get => _SpeedTimer1;
@@ -66,8 +66,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private int _GlobalSleeper;
+
         public int GlobalSleeper
         {
             get => _GlobalSleeper;
@@ -78,8 +78,8 @@ namespace RetroFun.Pages
             }
         }
 
-
         private int _PageIDInt1;
+
         public int PageIDInt1
         {
             get => _PageIDInt1;
@@ -91,6 +91,7 @@ namespace RetroFun.Pages
         }
 
         private int _FurniIDint1;
+
         public int FurniIDint1
         {
             get => _FurniIDint1;
@@ -102,6 +103,7 @@ namespace RetroFun.Pages
         }
 
         private int _PageIDIntRange = 0;
+
         public int PageIDIntRange
         {
             get => _PageIDIntRange;
@@ -113,6 +115,7 @@ namespace RetroFun.Pages
         }
 
         private int _FurniIDIntRange = 0;
+
         public int FurniIDIntRange
         {
             get => _FurniIDIntRange;
@@ -124,6 +127,7 @@ namespace RetroFun.Pages
         }
 
         private bool _FurniIDRangeToggle;
+
         public bool FurniIDRangeToggle
         {
             get => _FurniIDRangeToggle;
@@ -134,7 +138,32 @@ namespace RetroFun.Pages
             }
         }
 
+        private bool _CaptureModeCatalog;
+
+        public bool CaptureModeCatalog
+        {
+            get => _CaptureModeCatalog;
+            set
+            {
+                _CaptureModeCatalog = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _FileNameLockToggle;
+
+        public bool FileNameLockToggle
+        {
+            get => _FileNameLockToggle;
+            set
+            {
+                _FileNameLockToggle = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
         private bool _PageIDRangeToggle;
+
         public bool PageIDRangeToggle
         {
             get => _PageIDRangeToggle;
@@ -145,9 +174,32 @@ namespace RetroFun.Pages
             }
         }
 
+        private bool _FurniIDOptionToggle = true;
 
+        public bool FurniIDOptionToggle
+        {
+            get => _FurniIDOptionToggle;
+            set
+            {
+                _FurniIDOptionToggle = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _PageIDOptionToggle;
+
+        public bool PageIDOptionToggle
+        {
+            get => _PageIDOptionToggle;
+            set
+            {
+                _PageIDOptionToggle = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         private string _TextBox = "";
+
         public string TextBox
         {
             get => _TextBox;
@@ -158,8 +210,20 @@ namespace RetroFun.Pages
             }
         }
 
+        private string _FileNameSave = "bobbaitalia.it";
+
+        public string FileNameSave
+        {
+            get => _FileNameSave;
+            set
+            {
+                _FileNameSave = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         private bool _PurchaseSuccess;
+
         public bool PurchaseSuccess
         {
             get => _PurchaseSuccess;
@@ -170,25 +234,26 @@ namespace RetroFun.Pages
             }
         }
 
+        private bool _ShowPurchase = false;
 
-        private bool _ShowOutput = true;
-        public bool ShowOutput
+        public bool ShowPurchase
         {
-            get => _ShowOutput;
+            get => _ShowPurchase;
             set
             {
-                _ShowOutput = value;
+                _ShowPurchase = value;
                 RaiseOnPropertyChanged();
             }
         }
 
-        private bool _ShowOutput1 = true;
-        public bool ShowOutput1
+        private bool _ShowPurchaseFurniName = true;
+
+        public bool ShowPurchaseFurniName
         {
-            get => _ShowOutput1;
+            get => _ShowPurchaseFurniName;
             set
             {
-                _ShowOutput1 = value;
+                _ShowPurchaseFurniName = value;
                 RaiseOnPropertyChanged();
             }
         }
@@ -213,12 +278,25 @@ namespace RetroFun.Pages
             CheckFurniIDBruteforcer();
         }
 
-        public void OnUserLeaveRoom(DataInterceptedEventArgs e) { }
-        public void InRoomUserLeft(DataInterceptedEventArgs e) { }
-        public void InUserEnterRoom(DataInterceptedEventArgs e) { }
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e) { }
-        public void inUserProfile(DataInterceptedEventArgs e) { }
+        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
+        {
+        }
 
+        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InUserEnterRoom(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void inUserProfile(DataInterceptedEventArgs e)
+        {
+        }
 
         private void CatalogueBruteForceBtn_Click(object sender, EventArgs e)
         {
@@ -326,6 +404,14 @@ namespace RetroFun.Pages
             });
         }
 
+        private void EnableTxbutton(TextBox button, bool enabled)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                button.Enabled = enabled;
+            });
+        }
+
         private void EnableButton(SKoreButton button, bool enabled)
         {
             Invoke((MethodInvoker)delegate
@@ -344,27 +430,36 @@ namespace RetroFun.Pages
 
         public bool IsReceiving => true;
 
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e) { }
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
+        {
+        }
 
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e) { }
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        {
+        }
 
         public void InPurchaseOk(DataInterceptedEventArgs e)
         {
-
             FurniName = e.Packet.ReadString(4);
             PurchaseSuccess = true;
         }
 
+        private void OutCatalogBuyItem(DataInterceptedEventArgs e)
+        {
+        }
 
         private void SendPacket(int PageID, int FurniID)
         {
-            Connection.SendToServerAsync(
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(
             Out.CatalogBuyItem,
             PageID,
             FurniID,
             TextBox,
             1
             );
+            }
         }
 
         private void StartLoop()
@@ -372,7 +467,7 @@ namespace RetroFun.Pages
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                do 
+                do
                 {
                     SendPacket(PageIDInt1, FurniIDint1);
                     Thread.Sleep(SpeedTimer1);
@@ -391,32 +486,14 @@ namespace RetroFun.Pages
                     {
                         if (PageIDInt1 == int.MaxValue)
                         {
-                            PageIDBruteForcerEnabled1 = false;
-
-                            EnableButton(CatalogueBruteForceBtn, true);
-                            EnableButton(CatalogueFurnIDBruteForcerbtx, true);
-                            EnableNButton(CataloguePageIDBox, true);
-                            EnableNButton(CatalogueFurniIDBox, true);
-                            WriteToButton(CataloguePageIdBruteforcerbtx, "PageID Bruteforcer : Off");
-                            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing PageID Completed." + FurniIDint1, 0, 1, 0, -1);
-                            Thread.CurrentThread.Abort();
-                            return;
+                            StopPageIDBruteforcer();
                         }
                     }
                     else
                     {
                         if (PageIDInt1 == PageIDIntRange)
                         {
-                            PageIDBruteForcerEnabled1 = false;
-
-                            EnableButton(CatalogueBruteForceBtn, true);
-                            EnableButton(CatalogueFurnIDBruteForcerbtx, true);
-                            EnableNButton(CataloguePageIDBox, true);
-                            EnableNButton(CatalogueFurniIDBox, true);
-                            WriteToButton(CataloguePageIdBruteforcerbtx, "PageID Bruteforcer : Off");
-                            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing PageID Completed." + FurniIDint1, 0, 1, 0, -1);
-                            Thread.CurrentThread.Abort();
-                            return;
+                            StopPageIDBruteforcer();
                         }
                     }
                     SendPacket(PageIDInt1, FurniIDint1);
@@ -425,15 +502,20 @@ namespace RetroFun.Pages
                     if (PurchaseSuccess)
                     {
                         StoreToInput(PageIDInt1, FurniIDint1);
-                        if (ShowOutput)
+                        if (ShowPurchase)
                         {
-
-                            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + FurniIDint1, 0, 1, 0, -1);
+                            if (Connection.Remote.IsConnected)
+                            {
+                                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + FurniIDint1, 0, 1, 0, -1);
+                            }
                             Thread.Sleep(SpeedTimer1 + GlobalSleeper);
                         }
-                        if (ShowOutput1)
+                        if (ShowPurchaseFurniName)
                         {
-                            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bought Furni with name : " + FurniName, 0, 1, 0, -1);
+                            if (Connection.Remote.IsConnected)
+                            {
+                                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bought Furni with name : " + FurniName, 0, 1, 0, -1);
+                            }
                             Thread.Sleep(SpeedTimer1 + GlobalSleeper);
                         }
 
@@ -442,9 +524,9 @@ namespace RetroFun.Pages
                         FurniName = String.Empty;
                     }
                     PageIDInt1++;
+                    StoreNewPageIDAttempt(PageIDInt1);
                     Thread.Sleep(SpeedTimer1);
                 } while (PageIDBruteForcerEnabled1);
-
             }).Start();
         }
 
@@ -452,9 +534,7 @@ namespace RetroFun.Pages
         {
             new Thread(() =>
             {
-
                 Thread.CurrentThread.IsBackground = true;
-
 
                 do
                 {
@@ -462,30 +542,14 @@ namespace RetroFun.Pages
                     {
                         if (FurniIDint1 == int.MaxValue)
                         {
-                            FurnIIDBruteforcerEnabled1 = false;
-                            EnableButton(CatalogueBruteForceBtn, true);
-                            EnableButton(CataloguePageIdBruteforcerbtx, true);
-                            EnableNButton(CataloguePageIDBox, true);
-                            EnableNButton(CatalogueFurniIDBox, true);
-                            WriteToButton(CatalogueFurnIDBruteForcerbtx, "FurniID Bruteforcer : Off");
-                            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing FurniID Completed." + FurniIDint1, 0, 1, 0, -1);
-                            Thread.CurrentThread.Abort();
-                            return;
+                            StopFurniIDBruteforcer();
                         }
                     }
                     else
                     {
                         if (FurniIDint1 == FurniIDIntRange)
                         {
-                            FurnIIDBruteforcerEnabled1 = false;
-                            EnableButton(CatalogueBruteForceBtn, true);
-                            EnableButton(CataloguePageIdBruteforcerbtx, true);
-                            EnableNButton(CataloguePageIDBox, true);
-                            EnableNButton(CatalogueFurniIDBox, true);
-                            WriteToButton(CatalogueFurnIDBruteForcerbtx, "FurniID Bruteforcer : Off");
-                            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing FurniID Completed." + FurniIDint1, 0, 1, 0, -1);
-                            Thread.CurrentThread.Abort();
-                            return;
+                            StopFurniIDBruteforcer();
                         }
                     }
                     SendPacket(PageIDInt1, FurniIDint1);
@@ -496,15 +560,20 @@ namespace RetroFun.Pages
                         StoreToInput(PageIDInt1, (FurniIDint1 - 1));
                         Thread.Sleep(SpeedTimer1 + 15);
 
-                        if (ShowOutput)
+                        if (ShowPurchase)
                         {
-                            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + (FurniIDint1 - 1) , 0, 1, 0, -1);
-
+                            if (Connection.Remote.IsConnected)
+                            {
+                                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + (FurniIDint1 - 1), 0, 1, 0, -1);
+                            }
                             Thread.Sleep(SpeedTimer1 + GlobalSleeper);
                         }
-                        if (ShowOutput1)
+                        if (ShowPurchaseFurniName)
                         {
-                            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bought Furni with name : " + FurniName, 0, 1, 0, -1);
+                            if (Connection.Remote.IsConnected)
+                            {
+                                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bought Furni with name : " + FurniName, 0, 1, 0, -1);
+                            }
                             Thread.Sleep(SpeedTimer1 + GlobalSleeper);
                         }
                         Thread.Sleep(SpeedTimer1 + GlobalSleeper);
@@ -513,9 +582,7 @@ namespace RetroFun.Pages
                     }
                     FurniIDint1++;
                     Thread.Sleep(SpeedTimer1);
-
                 } while (FurnIIDBruteforcerEnabled1);
-
             }).Start();
         }
 
@@ -526,125 +593,157 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
-                    if (!FurniIDRangeToggle)
+                    if (FurniIDOptionToggle)
                     {
-                        if (FurniIDint1 == int.MaxValue)
-                        {
-                            FurniIDint1 = 0;
-                            PageIDInt1++;
-                        }
-                    }
-                    else
-                    {
-                        if (FurniIDint1 == FurniIDIntRange)
-                        {
-                            FurniIDint1 = 0;
-                            PageIDInt1++;
-                        }
-                    }
-                    if (!PageIDRangeToggle)
-                    {
-                        if (PageIDInt1 == int.MaxValue)
+                        if (!FurniIDRangeToggle)
                         {
                             if (FurniIDint1 == int.MaxValue)
                             {
-                                GlobalBruteforcerEnabled1 = false;
-                                EnableButton(CataloguePageIdBruteforcerbtx, true);
-                                EnableButton(CatalogueFurnIDBruteForcerbtx, true);
-                                EnableNButton(CataloguePageIDBox, true);
-                                EnableNButton(CatalogueFurniIDBox, true);
-                                WriteToButton(CatalogueBruteForceBtn, "BruteForcer : Off");
-                                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing Completed." + FurniIDint1, 0, 1, 0, -1);
-                                Thread.CurrentThread.Abort();
-                                return;
+                                FurniIDint1 = 0;
+                                PageIDInt1++;
+                                StoreNewPageIDAttempt(PageIDInt1);
                             }
                         }
-                    }
-                    else
-                    {
-                        if (PageIDInt1 == PageIDIntRange)
+                        else
                         {
-                            if (!FurniIDRangeToggle)
+                            if (FurniIDint1 == FurniIDIntRange)
+                            {
+                                FurniIDint1 = 0;
+                                PageIDInt1++;
+                                StoreNewPageIDAttempt(PageIDInt1);
+                            }
+                        }
+                        if (!PageIDRangeToggle)
+                        {
+                            if (PageIDInt1 == int.MaxValue)
                             {
                                 if (FurniIDint1 == int.MaxValue)
                                 {
-                                    GlobalBruteforcerEnabled1 = false;
-                                    EnableButton(CataloguePageIdBruteforcerbtx, true);
-                                    EnableButton(CatalogueFurnIDBruteForcerbtx, true);
-                                    EnableNButton(CataloguePageIDBox, true);
-                                    EnableNButton(CatalogueFurniIDBox, true);
-                                    WriteToButton(CatalogueBruteForceBtn, "BruteForcer : Off");
-                                    Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing  Completed." + FurniIDint1, 0, 1, 0, -1);
-                                    Thread.CurrentThread.Abort();
-                                    return;
+                                    StopGlobalBruteforcer();
                                 }
                             }
-                            else
-                            {
-                                if (FurniIDint1 == FurniIDIntRange)
-                                {
-                                    GlobalBruteforcerEnabled1 = false;
-                                    EnableButton(CataloguePageIdBruteforcerbtx, true);
-                                    EnableButton(CatalogueFurnIDBruteForcerbtx, true);
-                                    EnableNButton(CataloguePageIDBox, true);
-                                    EnableNButton(CatalogueFurniIDBox, true);
-                                    WriteToButton(CatalogueBruteForceBtn, "BruteForcer : Off");
-                                    Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing  Completed." + FurniIDint1, 0, 1, 0, -1);
-                                    Thread.CurrentThread.Abort();
-                                    return;
-                                }
-                                if (FurniIDint1 == FurniIDIntRange && PageIDInt1 == PageIDIntRange)
-                                {
-                                    GlobalBruteforcerEnabled1 = false;
-                                    EnableButton(CataloguePageIdBruteforcerbtx, true);
-                                    EnableButton(CatalogueFurnIDBruteForcerbtx, true);
-                                    EnableNButton(CataloguePageIDBox, true);
-                                    EnableNButton(CatalogueFurniIDBox, true);
-                                    WriteToButton(CatalogueBruteForceBtn, "BruteForcer : Off");
-                                    Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing  Completed." + FurniIDint1, 0, 1, 0, -1);
-                                    Thread.CurrentThread.Abort();
-                                    return;
-                                }
-                            }
-
                         }
+                        else
+                        {
+                            if (PageIDInt1 == PageIDIntRange)
+                            {
+                                if (!FurniIDRangeToggle)
+                                {
+                                    if (FurniIDint1 == int.MaxValue)
+                                    {
+                                        StopGlobalBruteforcer();
+                                    }
+                                }
+                                else
+                                {
+                                    if (FurniIDint1 == FurniIDIntRange)
+                                    {
+                                        StopGlobalBruteforcer();
+                                    }
+                                    if (FurniIDint1 == FurniIDIntRange && PageIDInt1 == PageIDIntRange)
+                                    {
+                                        StopGlobalBruteforcer();
+                                    }
+                                }
+                            }
+                        }
+                        FurniIDint1++;
                     }
-
-                    FurniIDint1++;
+                    if (PageIDOptionToggle)
+                    {
+                        if (!FurniIDRangeToggle)
+                        {
+                            if (FurniIDint1 == int.MaxValue)
+                            {
+                                PageIDInt1 = 0;
+                                FurniIDint1++;
+                            }
+                        }
+                        else
+                        {
+                            if (FurniIDint1 == FurniIDIntRange)
+                            {
+                                PageIDInt1 = 0;
+                                FurniIDint1++;
+                            }
+                        }
+                        if (!PageIDRangeToggle)
+                        {
+                            if (PageIDInt1 == int.MaxValue)
+                            {
+                                if (FurniIDint1 == int.MaxValue)
+                                {
+                                    StopGlobalBruteforcer();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (PageIDInt1 == PageIDIntRange)
+                            {
+                                if (!FurniIDRangeToggle)
+                                {
+                                    if (FurniIDint1 == int.MaxValue)
+                                    {
+                                        StopGlobalBruteforcer();
+                                    }
+                                    else
+                                    {
+                                        if (PageIDInt1 == PageIDIntRange)
+                                        {
+                                            PageIDInt1 = 0;
+                                            FurniIDint1++;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (FurniIDint1 == FurniIDIntRange)
+                                    {
+                                        StopGlobalBruteforcer();
+                                    }
+                                    if (FurniIDint1 == FurniIDIntRange && PageIDInt1 == PageIDIntRange)
+                                    {
+                                        StopGlobalBruteforcer();
+                                    }
+                                }
+                            }
+                        }
+                        PageIDInt1++;
+                    }
                     SendPacket(PageIDInt1, FurniIDint1);
                     Thread.Sleep(SpeedTimer1 + 15);
-
-
                     if (PurchaseSuccess)
                     {
-                                                StoreToInput(PageIDInt1, (FurniIDint1 - 1));
-
-                        if (ShowOutput)
+                        StoreToInput(PageIDInt1, (FurniIDint1 - 1));
+                        if (ShowPurchase)
                         {
-                            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + (FurniIDint1 - 1), 0, 1, 0, -1);
-
+                            if (Connection.Remote.IsConnected)
+                            {
+                                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + (FurniIDint1 - 1), 0, 1, 0, -1);
+                            }
                             Thread.Sleep(SpeedTimer1 + GlobalSleeper);
-
                         }
-                        if(ShowOutput1)
+                        if (ShowPurchaseFurniName)
                         {
-                            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bought Furni with name : " + FurniName, 0, 1, 0, -1);
+                            if (Connection.Remote.IsConnected)
+                            {
+                                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bought Furni with name : " + FurniName, 0, 1, 0, -1);
+                            }
                             Thread.Sleep(SpeedTimer1 + GlobalSleeper);
-
                         }
                         Thread.Sleep(SpeedTimer1 + GlobalSleeper);
                         PurchaseSuccess = false;
                         FurniName = String.Empty;
                     }
                     Thread.Sleep(SpeedTimer1);
-
                 } while (GlobalBruteforcerEnabled1);
             }).Start();
         }
 
         private void PageIDRangeChbx_CheckedChanged(object sender, EventArgs e)
         {
-            if(!PageIDRangeToggle)
+            if (!PageIDRangeToggle)
             {
                 EnableNButton(PageIDRangeNbx, true);
             }
@@ -668,13 +767,11 @@ namespace RetroFun.Pages
 
         private void StoreToInput(int PageId, int FurniID)
         {
-            string Filepath = "../RetroFunLogs/"+ Dns.GetHostEntry(Connection.Remote.EndPoint.Host).HostName + "BruteForcerOutput" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+            string Filepath = "../RetroFunLogs/" + FileNameSave + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+
             string FolderName = "RetroFunLogs";
-            string FolderName2 = Dns.GetHostEntry(Connection.Remote.EndPoint.Host).HostName;
 
             Directory.CreateDirectory("../" + FolderName);
-            Directory.CreateDirectory("../" + FolderName + "/"+ FolderName2);
-
 
             if (!File.Exists(Filepath))
             {
@@ -702,6 +799,96 @@ namespace RetroFun.Pages
                     txtFile.WriteLine("FurnIID : " + FurniID);
                     txtFile.WriteLine("----------------------------------------------------");
                 }
+            }
+        }
+
+        private void StoreNewPageIDAttempt(int PageId)
+        {
+            string Filepath = "../RetroFunLogs/" + FileNameSave + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+            string FolderName = "RetroFunLogs";
+
+            Directory.CreateDirectory("../" + FolderName);
+
+            if (!File.Exists(Filepath))
+            {
+                using (var txtFile = File.AppendText(Filepath))
+                {
+                    txtFile.WriteLine("RetroFun BruteForcer Output Generated in " + DateTime.Now.ToString());
+                    txtFile.WriteLine("");
+                    txtFile.WriteLine("----------------------------------------------------");
+                    txtFile.WriteLine("[RetroFun BruteForcer]" + "[" + DateTime.Now.ToString() + "]  Testing PageID : " + PageId);
+                    txtFile.WriteLine("----------------------------------------------------");
+                }
+            }
+            else if (File.Exists(Filepath))
+            {
+                using (var txtFile = File.AppendText(Filepath))
+                {
+                    txtFile.WriteLine("");
+                    txtFile.WriteLine("----------------------------------------------------");
+                    txtFile.WriteLine("[RetroFun BruteForcer]" + "[" + DateTime.Now.ToString() + "]  Testing PageID : " + PageId);
+                    txtFile.WriteLine("----------------------------------------------------");
+                }
+            }
+        }
+
+        private void StopGlobalBruteforcer()
+        {
+            GlobalBruteforcerEnabled1 = false;
+            EnableButton(CataloguePageIdBruteforcerbtx, true);
+            EnableButton(CatalogueFurnIDBruteForcerbtx, true);
+            EnableNButton(CataloguePageIDBox, true);
+            EnableNButton(CatalogueFurniIDBox, true);
+            WriteToButton(CatalogueBruteForceBtn, "BruteForcer : Off");
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing Completed.", 0, 1, 0, -1);
+            }
+            Thread.CurrentThread.Abort();
+            return;
+        }
+
+        private void StopFurniIDBruteforcer()
+        {
+            FurnIIDBruteforcerEnabled1 = false;
+            EnableButton(CatalogueBruteForceBtn, true);
+            EnableButton(CataloguePageIdBruteforcerbtx, true);
+            EnableNButton(CataloguePageIDBox, true);
+            EnableNButton(CatalogueFurniIDBox, true);
+            WriteToButton(CatalogueFurnIDBruteForcerbtx, "FurniID Bruteforcer : Off");
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing FurniID Completed.", 0, 1, 0, -1);
+            }
+            Thread.CurrentThread.Abort();
+            return;
+        }
+
+        private void StopPageIDBruteforcer()
+        {
+            PageIDBruteForcerEnabled1 = false;
+            EnableButton(CatalogueBruteForceBtn, true);
+            EnableButton(CatalogueFurnIDBruteForcerbtx, true);
+            EnableNButton(CataloguePageIDBox, true);
+            EnableNButton(CatalogueFurniIDBox, true);
+            WriteToButton(CataloguePageIdBruteforcerbtx, "PageID Bruteforcer : Off");
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing PageID Completed." + FurniIDint1, 0, 1, 0, -1);
+            }
+            Thread.CurrentThread.Abort();
+            return;
+        }
+
+        private void CheckLockFileNameChbx_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!FileNameLockToggle)
+            {
+                EnableTxbutton(FileNameTextBox, true);
+            }
+            else
+            {
+                EnableTxbutton(FileNameTextBox, false);
             }
         }
     }

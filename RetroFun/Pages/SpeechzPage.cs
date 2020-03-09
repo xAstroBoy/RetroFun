@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using RetroFun.Controls;
 using Sulakore.Protocol;
-using RetroFun.Controls;
+using System;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -22,7 +16,6 @@ namespace RetroFun.Pages
         private int i = 0;
         private bool switched_to_live_count_during_active_timer = false;
         private int max_increased = 0;
-
 
         public SpeechzPage()
         {
@@ -56,13 +49,16 @@ namespace RetroFun.Pages
             }
             else //If constructed packet is not corrupted, send it...
             {
-                if (rdo_client.Checked) //if "Client" is checked
+                if (Connection.Remote.IsConnected)
                 {
-                    Connection.SendToClientAsync(packet.ToBytes()); //...to client
-                }
-                else if (rdo_server.Checked) //or if "Server" is checked
-                {
-                    Connection.SendToServerAsync(packet.ToBytes()); //...to server
+                    if (rdo_client.Checked) //if "Client" is checked
+                    {
+                        Connection.SendToClientAsync(packet.ToBytes()); //...to client
+                    }
+                    else if (rdo_server.Checked) //or if "Server" is checked
+                    {
+                        Connection.SendToServerAsync(packet.ToBytes()); //...to server
+                    }
                 }
             }
         }

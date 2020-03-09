@@ -86,7 +86,7 @@
             this.FurniPickChbx.AutoSize = true;
             this.FurniPickChbx.Location = new System.Drawing.Point(9, 109);
             this.FurniPickChbx.Name = "FurniPickChbx";
-            this.FurniPickChbx.Size = new System.Drawing.Size(119, 17);
+            this.FurniPickChbx.Size = new System.Drawing.Size(126, 21);
             this.FurniPickChbx.TabIndex = 6;
             this.FurniPickChbx.Text = "Tell FurniID Picked.";
             this.FurniPickChbx.UseVisualStyleBackColor = true;
@@ -110,7 +110,7 @@
             this.RotationRight.AutoSize = true;
             this.RotationRight.Location = new System.Drawing.Point(78, 46);
             this.RotationRight.Name = "RotationRight";
-            this.RotationRight.Size = new System.Drawing.Size(14, 13);
+            this.RotationRight.Size = new System.Drawing.Size(21, 20);
             this.RotationRight.TabIndex = 4;
             this.RotationRight.UseVisualStyleBackColor = true;
             // 
@@ -119,7 +119,7 @@
             this.rotationLeft.AutoSize = true;
             this.rotationLeft.Location = new System.Drawing.Point(9, 47);
             this.rotationLeft.Name = "rotationLeft";
-            this.rotationLeft.Size = new System.Drawing.Size(14, 13);
+            this.rotationLeft.Size = new System.Drawing.Size(21, 20);
             this.rotationLeft.TabIndex = 3;
             this.rotationLeft.UseVisualStyleBackColor = true;
             // 
@@ -128,7 +128,7 @@
             this.RotationDown.AutoSize = true;
             this.RotationDown.Location = new System.Drawing.Point(45, 73);
             this.RotationDown.Name = "RotationDown";
-            this.RotationDown.Size = new System.Drawing.Size(14, 13);
+            this.RotationDown.Size = new System.Drawing.Size(21, 20);
             this.RotationDown.TabIndex = 2;
             this.RotationDown.UseVisualStyleBackColor = true;
             // 
@@ -138,7 +138,7 @@
             this.RotationUp.Checked = true;
             this.RotationUp.Location = new System.Drawing.Point(45, 19);
             this.RotationUp.Name = "RotationUp";
-            this.RotationUp.Size = new System.Drawing.Size(14, 13);
+            this.RotationUp.Size = new System.Drawing.Size(21, 20);
             this.RotationUp.TabIndex = 1;
             this.RotationUp.TabStop = true;
             this.RotationUp.UseVisualStyleBackColor = true;
@@ -148,7 +148,7 @@
             this.ToggleFurniRotCS.AutoSize = true;
             this.ToggleFurniRotCS.Location = new System.Drawing.Point(9, 132);
             this.ToggleFurniRotCS.Name = "ToggleFurniRotCS";
-            this.ToggleFurniRotCS.Size = new System.Drawing.Size(137, 17);
+            this.ToggleFurniRotCS.Size = new System.Drawing.Size(144, 21);
             this.ToggleFurniRotCS.TabIndex = 5;
             this.ToggleFurniRotCS.Text = "Enable Rotate Furni CS";
             this.ToggleFurniRotCS.UseVisualStyleBackColor = true;
@@ -159,10 +159,11 @@
             this.DoubleClickFurnitureRemovalChbx.AutoSize = true;
             this.DoubleClickFurnitureRemovalChbx.Location = new System.Drawing.Point(9, 90);
             this.DoubleClickFurnitureRemovalChbx.Name = "DoubleClickFurnitureRemovalChbx";
-            this.DoubleClickFurnitureRemovalChbx.Size = new System.Drawing.Size(138, 17);
+            this.DoubleClickFurnitureRemovalChbx.Size = new System.Drawing.Size(145, 21);
             this.DoubleClickFurnitureRemovalChbx.TabIndex = 4;
             this.DoubleClickFurnitureRemovalChbx.Text = "Enable Pick up furni CS";
             this.DoubleClickFurnitureRemovalChbx.UseVisualStyleBackColor = true;
+            this.DoubleClickFurnitureRemovalChbx.CheckedChanged += new System.EventHandler(this.DoubleClickFurnitureRemovalChbx_CheckedChanged);
             // 
             // FurnitureIDTxt
             // 
@@ -218,7 +219,7 @@
             this.ExchangeCreditChbx.AutoSize = true;
             this.ExchangeCreditChbx.Location = new System.Drawing.Point(23, 37);
             this.ExchangeCreditChbx.Name = "ExchangeCreditChbx";
-            this.ExchangeCreditChbx.Size = new System.Drawing.Size(157, 17);
+            this.ExchangeCreditChbx.Size = new System.Drawing.Size(164, 21);
             this.ExchangeCreditChbx.TabIndex = 6;
             this.ExchangeCreditChbx.Text = "Automatic Credit Exchanger";
             this.ExchangeCreditChbx.UseVisualStyleBackColor = true;
@@ -228,7 +229,7 @@
             this.ExchangeMPChbx.AutoSize = true;
             this.ExchangeMPChbx.Location = new System.Drawing.Point(23, 120);
             this.ExchangeMPChbx.Name = "ExchangeMPChbx";
-            this.ExchangeMPChbx.Size = new System.Drawing.Size(148, 17);
+            this.ExchangeMPChbx.Size = new System.Drawing.Size(155, 21);
             this.ExchangeMPChbx.TabIndex = 7;
             this.ExchangeMPChbx.Text = "Exchange Credit Multiplier";
             this.ExchangeMPChbx.UseVisualStyleBackColor = true;
@@ -348,7 +349,7 @@
             this.AutoGiftExchangerBtn.AutoSize = true;
             this.AutoGiftExchangerBtn.Location = new System.Drawing.Point(23, 37);
             this.AutoGiftExchangerBtn.Name = "AutoGiftExchangerBtn";
-            this.AutoGiftExchangerBtn.Size = new System.Drawing.Size(146, 17);
+            this.AutoGiftExchangerBtn.Size = new System.Drawing.Size(153, 21);
             this.AutoGiftExchangerBtn.TabIndex = 6;
             this.AutoGiftExchangerBtn.Text = "Automatic Gift Exchanger";
             this.AutoGiftExchangerBtn.UseVisualStyleBackColor = true;

@@ -1,17 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Diagnostics;
-using System.Windows.Forms;
-using System.ComponentModel;
-using System.Collections.Generic;
-
-using RetroFun.Controls;
+﻿using RetroFun.Controls;
 using RetroFun.Converter;
 using RetroFun.Subscribers;
-
-using Sulakore.Modules;
-using Sulakore.Components;
 using Sulakore.Communication;
+using Sulakore.Components;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -25,11 +20,13 @@ namespace RetroFun.Pages
 
         private int _currentDiceTargetIndex = -1;
 
-        private int _diceOneId, _diceTwoId, _diceThreeId, 
+        private int _diceOneId, _diceTwoId, _diceThreeId,
             _diceHostId;
 
         #region Dice Results
+
         private int _diceOneResult;
+
         public int DiceOneResult
         {
             get => _diceOneResult;
@@ -41,6 +38,7 @@ namespace RetroFun.Pages
         }
 
         private int _diceTwoResult;
+
         public int DiceTwoResult
         {
             get => _diceTwoResult;
@@ -52,6 +50,7 @@ namespace RetroFun.Pages
         }
 
         private int _diceThreeResult;
+
         public int DiceThreeResult
         {
             get => _diceThreeResult;
@@ -63,6 +62,7 @@ namespace RetroFun.Pages
         }
 
         private int _hostDiceResult;
+
         public int DiceHostResult
         {
             get => _hostDiceResult;
@@ -72,9 +72,11 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-        #endregion
+
+        #endregion Dice Results
 
         private bool _ISHoloDiceCheat;
+
         public bool ISHolodiceCheat
         {
             get => _ISHoloDiceCheat;
@@ -84,7 +86,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
 
         public bool IsReceiving => true;
 
@@ -115,6 +116,7 @@ namespace RetroFun.Pages
                 Triggers.InAttach(In.ItemExtraData, HandleDiceUpdate);
             }
         }
+
         private void HandleRegisterClick(object sender, EventArgs e)
         {
             var registrationButton = (SKoreButton)sender;
@@ -149,10 +151,21 @@ namespace RetroFun.Pages
             Broadcast("Dice registered!");
         }
 
-        public void OnUserLeaveRoom(DataInterceptedEventArgs e) { }
-        public void InRoomUserLeft(DataInterceptedEventArgs e) { }
-        public void InUserEnterRoom(DataInterceptedEventArgs e) { }
-        public void inUserProfile(DataInterceptedEventArgs e) { }
+        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InUserEnterRoom(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void inUserProfile(DataInterceptedEventArgs e)
+        {
+        }
 
         private void HandleDiceUpdate(DataInterceptedEventArgs e)
         {
@@ -165,11 +178,11 @@ namespace RetroFun.Pages
             e.Continue();
 
             if (!int.TryParse(data, out int diceState) || diceState == -1) return;
-            
+
             if (id == _diceHostId)
             {
                 DiceHostResult = diceState;
-                
+
                 if (diceState == 0)
                 {
                     CloseDice(_diceOneId);
@@ -191,8 +204,10 @@ namespace RetroFun.Pages
             {
                 //WON! Do the victory procedure here.
 
-
-                Connection.SendToServerAsync(Out.RoomUserShout, holoDiceShoutPhrase.Text, 0);
+                if (Connection.Remote.IsConnected)
+                {
+                    Connection.SendToServerAsync(Out.RoomUserShout, holoDiceShoutPhrase.Text, 0);
+                }
             }
             else
             {
@@ -206,32 +221,46 @@ namespace RetroFun.Pages
                     RollDice(_diceThreeId);
             }
         }
-  
+
         private void ClearButton_Click(object sender, EventArgs e)
         {
             _diceOneId = _diceTwoId = _diceThreeId = _diceHostId = -1;
         }
 
+        public void InPurchaseOk(DataInterceptedEventArgs e)
+        {
+        }
 
-        public void InPurchaseOk(DataInterceptedEventArgs e) { }
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        {
+        }
 
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e) { }
-
-
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e) { }
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        {
+        }
 
         private void RollDice(int diceID)
         {
-            Connection.SendToServerAsync(Out.TriggerDice, diceID);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(Out.TriggerDice, diceID);
+            }
         }
+
         private void CloseDice(int diceID)
         {
-            Connection.SendToServerAsync(Out.CloseDice, diceID);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(Out.CloseDice, diceID);
+            }
         }
 
         private void Broadcast(string text)
         {
-            Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[HoloCheat]: " + text, 0, 34, 0, -1);
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[HoloCheat]: " + text, 0, 34, 0, -1);
+            }
         }
     }
 }
