@@ -24,7 +24,8 @@ namespace RetroFun.Pages
 
 
         private int[] rainbowlist = new int[] { 3, 4, 5, 6, 7, 11, 12, 13, 14, 15, 18 };
-
+        private int oldrainbowbubble;
+        private int newrainbowselected;
         private Random rand = new Random();
 
         private bool _antiBobbaFilter;
@@ -177,9 +178,11 @@ namespace RetroFun.Pages
             ToggleRainbowChatRequirements();
         }
 
-        private int GetRainbowBubble()
+        private int GetRainbowBubbleint()
         {
+
             return rainbowlist[rand.Next(rainbowlist.Length)];
+
         }
 
 
@@ -189,13 +192,11 @@ namespace RetroFun.Pages
             {
                 ToggleComboBox(BubblesCmbx, true);
                 ToggleCheckbox(UseSelectedBubbleChbx, true);
-                UseSelectedBubble = false;
             }
             else
             {
                 ToggleComboBox(BubblesCmbx, false);
                 ToggleCheckbox(UseSelectedBubbleChbx, false);
-
             }
         }
 
@@ -279,7 +280,7 @@ namespace RetroFun.Pages
 
             if (RainbowChatEnabled)
             {
-                bubbleId = GetRainbowBubble();
+                bubbleId = GetRainbowBubbleint();
             }
 
             obj.IsBlocked = true;
