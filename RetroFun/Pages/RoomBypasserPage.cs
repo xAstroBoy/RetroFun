@@ -48,7 +48,7 @@ namespace RetroFun.Pages
             HMessage hmessage = new HMessage("{l}{u:" + Out.RequestRoomHeightmap.ToString() + "}");
             if (Connection.Remote.IsConnected)
             {
-               SendToServerAsync(hmessage.ToBytes());
+                Connection.SendToServerAsync(hmessage.ToBytes());
             }
         }
     }

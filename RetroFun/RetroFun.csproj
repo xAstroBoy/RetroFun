@@ -62,6 +62,7 @@
     <Compile Include="Controls\ObservableExtensionForm.cs" />
     <Compile Include="Controls\ObservablePage.cs" />
     <Compile Include="Converter\IntToStringConverter.cs" />
+    <Compile Include="Helpers\EnumerableExtensions.cs" />
     <Compile Include="Helpers\CustomBinding.cs" />
     <Compile Include="Helpers\IValueConverter.cs" />
     <Compile Include="MainFrm.cs">

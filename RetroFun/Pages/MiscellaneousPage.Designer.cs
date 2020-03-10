@@ -63,8 +63,6 @@
             this.SitOnLoopBtn = new Sulakore.Components.SKoreButton();
             this.label3 = new System.Windows.Forms.Label();
             this.SitCoolDownNbx = new System.Windows.Forms.NumericUpDown();
-            this.GenMaleLookBtn = new Sulakore.Components.SKoreButton();
-            this.GenFemaleLookBtn = new Sulakore.Components.SKoreButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Dance_TheRollieChbx = new System.Windows.Forms.CheckBox();
             this.Dance_DuckFunkChbx = new System.Windows.Forms.CheckBox();
@@ -396,18 +394,6 @@
             0,
             0});
             // 
-            // GenMaleLookBtn
-            // 
-            resources.ApplyResources(this.GenMaleLookBtn, "GenMaleLookBtn");
-            this.GenMaleLookBtn.Name = "GenMaleLookBtn";
-            this.GenMaleLookBtn.Click += new System.EventHandler(this.GenMaleLookBtn_Click);
-            // 
-            // GenFemaleLookBtn
-            // 
-            resources.ApplyResources(this.GenFemaleLookBtn, "GenFemaleLookBtn");
-            this.GenFemaleLookBtn.Name = "GenFemaleLookBtn";
-            this.GenFemaleLookBtn.Click += new System.EventHandler(this.GenFemaleLookBtn_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.Dance_TheRollieChbx);
@@ -522,9 +508,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.DancesCooldownNBx);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.GenFemaleLookBtn);
             this.Controls.Add(this.CountingBtn);
-            this.Controls.Add(this.GenMaleLookBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.SitCoolDownNbx);
             this.Controls.Add(this.SitOnLoopBtn);
@@ -584,8 +568,6 @@
         private Sulakore.Components.SKoreButton SitOnLoopBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown SitCoolDownNbx;
-        private Sulakore.Components.SKoreButton GenMaleLookBtn;
-        private Sulakore.Components.SKoreButton GenFemaleLookBtn;
         private System.Windows.Forms.CheckBox InvisibleSignChbx;
         private System.Windows.Forms.CheckBox YellowCardChbx;
         private System.Windows.Forms.CheckBox RedCardChbx;

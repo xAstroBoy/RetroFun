@@ -1045,15 +1045,10 @@ namespace RetroFun.Pages
         //{
         //}
 
-        private void GenFemaleLookBtn_Click(object sender, EventArgs e)
-        {
-            GenerateFemaleLook();
-        }
 
-        private void GenMaleLookBtn_Click(object sender, EventArgs e)
-        {
-            GenerateMaleLook();
-        }
+        
+        
+
 
         private void DanceLoopBtn_Click(object sender, EventArgs e)
         {

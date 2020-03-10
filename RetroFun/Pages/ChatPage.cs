@@ -1,9 +1,11 @@
 ﻿using RetroFun.Controls;
+using RetroFun.Helpers;
 using RetroFun.Properties;
 using Sulakore.Communication;
 using Sulakore.Protocol;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
@@ -19,6 +21,11 @@ namespace RetroFun.Pages
     public partial class ChatPage : ObservablePage
     {
         private HMessage replacement;
+
+
+        private int[] rainbowlist = new int[] { 3, 4, 5, 6, 7, 11, 12, 13, 14, 15, 18 };
+
+        private Random rand = new Random();
 
         private bool _antiBobbaFilter;
 
@@ -104,6 +111,18 @@ namespace RetroFun.Pages
             }
         }
 
+        private bool _RainbowChatEnabled;
+
+        public bool RainbowChatEnabled
+        {
+            get => _RainbowChatEnabled;
+            set
+            {
+                _RainbowChatEnabled = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
         public int SelectedBubbleId { get; private set; }
 
         public ChatPage()
@@ -117,6 +136,7 @@ namespace RetroFun.Pages
             Bind(NormalTalkBox, "Checked", nameof(ForceNormalSpeak));
             Bind(ShoutTalkBox, "Checked", nameof(ForceShoutChat));
             Bind(WhisperChatBox, "Checked", nameof(ForceWhisperChat));
+            Bind(RainbowChatChbx, "Checked", nameof(RainbowChatEnabled));
 
             var imageType = typeof(Image);
 
@@ -152,6 +172,34 @@ namespace RetroFun.Pages
             ToggleChatDefault();
         }
 
+        private void RainbowChatChbx_CheckedChanged(object sender, EventArgs e)
+        {
+            ToggleRainbowChatRequirements();
+        }
+
+        private int GetRainbowBubble()
+        {
+            return rainbowlist[rand.Next(rainbowlist.Length)];
+        }
+
+
+        private void ToggleRainbowChatRequirements()
+        {
+            if (RainbowChatEnabled)
+            {
+                ToggleComboBox(BubblesCmbx, true);
+                ToggleCheckbox(UseSelectedBubbleChbx, true);
+                UseSelectedBubble = false;
+            }
+            else
+            {
+                ToggleComboBox(BubblesCmbx, false);
+                ToggleCheckbox(UseSelectedBubbleChbx, false);
+
+            }
+        }
+
+
         private void ToggleChatDefault()
         {
             if (ForceChatSpeak)
@@ -171,6 +219,25 @@ namespace RetroFun.Pages
                 Group.Enabled = Actived;
             });
         }
+
+        private void ToggleCheckbox(CheckBox checkbox, bool Actived)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                checkbox.Enabled = Actived;
+            });
+        }
+
+
+        private void ToggleComboBox(ImageComboBox box, bool Actived)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                box.Enabled = Actived;
+            });
+        }
+
+
 
         private void BubblesCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -210,6 +277,11 @@ namespace RetroFun.Pages
                 bubbleId = SelectedBubbleId;
             }
 
+            if (RainbowChatEnabled)
+            {
+                bubbleId = GetRainbowBubble();
+            }
+
             obj.IsBlocked = true;
             if (!ForceChatSpeak)
             {
@@ -230,6 +302,8 @@ namespace RetroFun.Pages
                     replacement = new HMessage(Out.RoomUserWhisper, message, bubbleId);
                 }
             }
+
+
             if (obj.Packet.Readable > 0)
             {
                 replacement.WriteInteger(0);
@@ -249,5 +323,9 @@ namespace RetroFun.Pages
             }
             return builder.ToString();
         }
+
+
+
+
     }
 }

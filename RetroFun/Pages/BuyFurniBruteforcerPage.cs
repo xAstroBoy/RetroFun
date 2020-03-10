@@ -440,9 +440,15 @@ namespace RetroFun.Pages
 
         public void InPurchaseOk(DataInterceptedEventArgs e)
         {
-            FurniName = e.Packet.ReadString(4);
-            PurchaseSuccess = true;
-        }
+            try {
+                FurniName = e.Packet.ReadString(4);
+                PurchaseSuccess = true;
+            }
+            catch(System.IndexOutOfRangeException)
+            {
+                return;
+            }
+            }
 
         private void OutCatalogBuyItem(DataInterceptedEventArgs e)
         {
