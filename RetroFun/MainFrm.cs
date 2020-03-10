@@ -47,6 +47,7 @@ namespace RetroFun
             //Pages sharing events
             _subscribers = new List<ISubscriber>
             {
+                ChatPg,
                 DicePg,
                 AutoHoloDicePg,
                 BuyFurniBruteforcerPg,

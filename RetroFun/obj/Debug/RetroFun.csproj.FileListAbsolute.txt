@@ -56,7 +56,11 @@ H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.GenerateResour
 H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.CopyComplete
 H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.exe
 H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.pdb
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.exe.config
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.exe
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.pdb
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Flazzy.dll
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Tangine.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.MainFrm.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.AutoHoloDicePage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.BuyFurniBruteforcerPage.resources
@@ -76,11 +80,6 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.Speec
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.StalkingPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Properties.Resources.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.GenerateResource.cache
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.CopyComplete
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.exe
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.pdb
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.exe.config
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.exe
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.pdb
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Flazzy.dll
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Tangine.dll
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.CopyComplete

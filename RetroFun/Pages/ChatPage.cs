@@ -1,7 +1,10 @@
 ﻿using RetroFun.Controls;
 using RetroFun.Helpers;
 using RetroFun.Properties;
+using RetroFun.Subscribers;
 using Sulakore.Communication;
+using Sulakore.Habbo;
+using Sulakore.Modules;
 using Sulakore.Protocol;
 using System;
 using System.Collections;
@@ -18,15 +21,16 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class ChatPage : ObservablePage
+    public partial class ChatPage : ObservablePage, ISubscriber
     {
         private HMessage replacement;
-
+        private int LocalIndex;
 
         private int[] rainbowlist = new int[] { 3, 4, 5, 6, 7, 11, 12, 13, 14, 15, 18 };
-        private int oldrainbowbubble;
-        private int newrainbowselected;
+        //private int oldrainbowbubble;
+        //private int newrainbowselected;
         private Random rand = new Random();
+        public bool IsReceiving => true;
 
         private bool _antiBobbaFilter;
 
@@ -42,7 +46,7 @@ namespace RetroFun.Pages
 
         private bool _useSelectedBubble;
 
-        public bool UseSelectedBubble
+        public bool UseSelectedBubbleServerSide
         {
             get => _useSelectedBubble;
             set
@@ -51,6 +55,18 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+        private bool _UseSelectedBubbleClientSide;
+
+        public bool UseSelectedBubbleClientSide
+        {
+            get => _UseSelectedBubbleClientSide;
+            set
+            {
+                _UseSelectedBubbleClientSide = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
         private bool _hideSpeakingBubble;
 
@@ -124,6 +140,19 @@ namespace RetroFun.Pages
             }
         }
 
+        private string _UsernameFilter;
+
+        public string UsernameFilter
+        {
+            get => _UsernameFilter;
+            set
+            {
+                _UsernameFilter = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
         public int SelectedBubbleId { get; private set; }
 
         public ChatPage()
@@ -131,7 +160,10 @@ namespace RetroFun.Pages
             InitializeComponent();
 
             Bind(AntiBobbaFilterChbx, "Checked", nameof(AntiBobbaFilter));
-            Bind(UseSelectedBubbleChbx, "Checked", nameof(UseSelectedBubble));
+            Bind(UseSelectedBubbleSSChbx, "Checked", nameof(UseSelectedBubbleServerSide));
+            Bind(UseSelectedBubbleCSChbx, "Checked", nameof(UseSelectedBubbleClientSide));
+            Bind(UsernameTextBox, "Text", nameof(UsernameFilter));
+
             Bind(HideSpeakingBubbleChbx, "Checked", nameof(HideSpeakingBubble));
             Bind(ForceDefSpeakBox, "Checked", nameof(ForceChatSpeak));
             Bind(NormalTalkBox, "Checked", nameof(ForceNormalSpeak));
@@ -165,8 +197,38 @@ namespace RetroFun.Pages
                 Triggers.OutAttach(Out.RoomUserShout, RoomUserStartSpeaking);
                 Triggers.OutAttach(Out.RoomUserWhisper, RoomUserStartSpeaking);
                 Triggers.OutAttach(Out.RoomUserStartTyping, RoomUserStartTyping);
+                Triggers.OutAttach(Out.LatencyTest, nameCheck);
+                Triggers.OutAttach(Out.Username, SetUsername);
+
+
+                Triggers.InAttach(In.RoomUserTalk, CSRoomUserTalk);
+                Triggers.InAttach(In.RoomUserShout, CSRoomUserShout);
+                Triggers.InAttach(In.RoomUserWhisper, CSRoomUserWhisper);
+
             }
         }
+
+
+        private async void nameCheck(DataInterceptedEventArgs obj)
+        {
+            if (UsernameFilter == null)
+            {
+                await Connection.SendToServerAsync(Out.RequestUserData);
+            }
+        }
+
+        private void SetUsername(DataInterceptedEventArgs obj)
+        {
+            HMessage packet = obj.Packet;
+            string username = packet.ReadString();
+
+            if (UsernameFilter == null)
+            {
+                UsernameFilter = username;
+            }
+        }
+
+
 
         private void ForceDefSpeakBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -180,9 +242,7 @@ namespace RetroFun.Pages
 
         private int GetRainbowBubbleint()
         {
-
             return rainbowlist[rand.Next(rainbowlist.Length)];
-
         }
 
 
@@ -191,12 +251,12 @@ namespace RetroFun.Pages
             if (RainbowChatEnabled)
             {
                 ToggleComboBox(BubblesCmbx, true);
-                ToggleCheckbox(UseSelectedBubbleChbx, true);
+                ToggleCheckbox(UseSelectedBubbleSSChbx, true);
             }
             else
             {
                 ToggleComboBox(BubblesCmbx, false);
-                ToggleCheckbox(UseSelectedBubbleChbx, false);
+                ToggleCheckbox(UseSelectedBubbleSSChbx, false);
             }
         }
 
@@ -238,7 +298,52 @@ namespace RetroFun.Pages
             });
         }
 
+        public void InUserEnterRoom(DataInterceptedEventArgs obj)
+        {
+            if (UsernameFilter != null)
+            {
+                HEntity[] array = HEntity.Parse(obj.Packet);
+                if (array.Length != 0)
+                {
+                    foreach (HEntity hentity in array)
+                    {
+                        if (hentity.Name == UsernameFilter)
+                        {
+                            LocalIndex = hentity.Index;
+                        }
+                    }
+                }
+            }
+        }
 
+
+        public void InPurchaseOk(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void inUserProfile(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        {
+        }
 
         private void BubblesCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -249,6 +354,50 @@ namespace RetroFun.Pages
         private void RoomUserStartTyping(DataInterceptedEventArgs obj)
         {
             obj.IsBlocked = HideSpeakingBubble;
+        }
+
+
+        private void CSRoomUserTalk(DataInterceptedEventArgs obj)
+        {
+            int index = obj.Packet.ReadInteger();
+            string msg = obj.Packet.ReadString();
+            if (UseSelectedBubbleClientSide)
+            {
+                if (index == LocalIndex)
+                {
+                    Connection.SendToClientAsync(In.RoomUserTalk, LocalIndex, msg, 0, SelectedBubbleId, 0, -1);
+                    obj.IsBlocked = true;
+                }
+            }
+        }
+
+        private void CSRoomUserShout(DataInterceptedEventArgs obj)
+        {
+            int index = obj.Packet.ReadInteger();
+            string msg = obj.Packet.ReadString();
+
+            if (UseSelectedBubbleClientSide)
+            {
+                if (index == LocalIndex)
+                {
+                    Connection.SendToClientAsync(In.RoomUserShout, LocalIndex, msg, 0, SelectedBubbleId, 0, -1);
+                    obj.IsBlocked = true;
+                }
+            }
+        }
+        private void CSRoomUserWhisper(DataInterceptedEventArgs obj)
+        {
+            int index = obj.Packet.ReadInteger();
+            string msg = obj.Packet.ReadString();
+
+            if (UseSelectedBubbleClientSide)
+            {
+                if (index == LocalIndex)
+                {
+                    Connection.SendToClientAsync(In.RoomUserWhisper, LocalIndex, msg, 0, SelectedBubbleId, 0, -1);
+                    obj.IsBlocked = true;
+                }
+            }
         }
 
         private void RoomUserStartSpeaking(DataInterceptedEventArgs obj)
@@ -273,14 +422,17 @@ namespace RetroFun.Pages
                 message = whisperTarget + " " + message;
             }
 
-            if (UseSelectedBubble)
+            if (UseSelectedBubbleServerSide)
             {
                 bubbleId = SelectedBubbleId;
             }
 
             if (RainbowChatEnabled)
             {
-                bubbleId = GetRainbowBubbleint();
+                int Debug = GetRainbowBubbleint();
+                Console.WriteLine("RainbowBubbleTest : Used ID : " + Debug);
+
+                bubbleId = Debug;
             }
 
             obj.IsBlocked = true;
@@ -324,8 +476,6 @@ namespace RetroFun.Pages
             }
             return builder.ToString();
         }
-
-
 
 
     }

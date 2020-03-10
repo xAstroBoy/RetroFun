@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.BubblesCmbx = new RetroFun.Controls.ImageComboBox();
-            this.UseSelectedBubbleChbx = new System.Windows.Forms.CheckBox();
+            this.UseSelectedBubbleSSChbx = new System.Windows.Forms.CheckBox();
             this.HideSpeakingBubbleChbx = new System.Windows.Forms.CheckBox();
             this.AntiBobbaFilterChbx = new System.Windows.Forms.CheckBox();
             this.GroupChatDefault = new System.Windows.Forms.GroupBox();
@@ -38,6 +38,8 @@
             this.NormalTalkBox = new System.Windows.Forms.RadioButton();
             this.ForceDefSpeakBox = new System.Windows.Forms.CheckBox();
             this.RainbowChatChbx = new System.Windows.Forms.CheckBox();
+            this.UseSelectedBubbleCSChbx = new System.Windows.Forms.CheckBox();
+            this.UsernameTextBox = new System.Windows.Forms.TextBox();
             this.GroupChatDefault.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,28 +51,28 @@
             this.BubblesCmbx.FormattingEnabled = true;
             this.BubblesCmbx.IntegralHeight = false;
             this.BubblesCmbx.ItemHeight = 25;
-            this.BubblesCmbx.Location = new System.Drawing.Point(54, 70);
+            this.BubblesCmbx.Location = new System.Drawing.Point(62, 55);
             this.BubblesCmbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BubblesCmbx.Name = "BubblesCmbx";
             this.BubblesCmbx.Size = new System.Drawing.Size(156, 31);
             this.BubblesCmbx.TabIndex = 0;
             this.BubblesCmbx.SelectedIndexChanged += new System.EventHandler(this.BubblesCmbx_SelectedIndexChanged);
             // 
-            // UseSelectedBubbleChbx
+            // UseSelectedBubbleSSChbx
             // 
-            this.UseSelectedBubbleChbx.AutoSize = true;
-            this.UseSelectedBubbleChbx.Location = new System.Drawing.Point(56, 212);
-            this.UseSelectedBubbleChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.UseSelectedBubbleChbx.Name = "UseSelectedBubbleChbx";
-            this.UseSelectedBubbleChbx.Size = new System.Drawing.Size(185, 24);
-            this.UseSelectedBubbleChbx.TabIndex = 1;
-            this.UseSelectedBubbleChbx.Text = "Use Selected Bubble";
-            this.UseSelectedBubbleChbx.UseVisualStyleBackColor = true;
+            this.UseSelectedBubbleSSChbx.AutoSize = true;
+            this.UseSelectedBubbleSSChbx.Location = new System.Drawing.Point(62, 120);
+            this.UseSelectedBubbleSSChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.UseSelectedBubbleSSChbx.Name = "UseSelectedBubbleSSChbx";
+            this.UseSelectedBubbleSSChbx.Size = new System.Drawing.Size(310, 24);
+            this.UseSelectedBubbleSSChbx.TabIndex = 1;
+            this.UseSelectedBubbleSSChbx.Text = "Use Selected Bubble (SERVER SIDE)";
+            this.UseSelectedBubbleSSChbx.UseVisualStyleBackColor = true;
             // 
             // HideSpeakingBubbleChbx
             // 
             this.HideSpeakingBubbleChbx.AutoSize = true;
-            this.HideSpeakingBubbleChbx.Location = new System.Drawing.Point(56, 248);
+            this.HideSpeakingBubbleChbx.Location = new System.Drawing.Point(62, 310);
             this.HideSpeakingBubbleChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HideSpeakingBubbleChbx.Name = "HideSpeakingBubbleChbx";
             this.HideSpeakingBubbleChbx.Size = new System.Drawing.Size(193, 24);
@@ -81,7 +83,7 @@
             // AntiBobbaFilterChbx
             // 
             this.AntiBobbaFilterChbx.AutoSize = true;
-            this.AntiBobbaFilterChbx.Location = new System.Drawing.Point(56, 177);
+            this.AntiBobbaFilterChbx.Location = new System.Drawing.Point(64, 276);
             this.AntiBobbaFilterChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AntiBobbaFilterChbx.Name = "AntiBobbaFilterChbx";
             this.AntiBobbaFilterChbx.Size = new System.Drawing.Size(154, 24);
@@ -95,7 +97,7 @@
             this.GroupChatDefault.Controls.Add(this.ShoutTalkBox);
             this.GroupChatDefault.Controls.Add(this.NormalTalkBox);
             this.GroupChatDefault.Enabled = false;
-            this.GroupChatDefault.Location = new System.Drawing.Point(423, 118);
+            this.GroupChatDefault.Location = new System.Drawing.Point(485, 191);
             this.GroupChatDefault.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GroupChatDefault.Name = "GroupChatDefault";
             this.GroupChatDefault.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -142,7 +144,7 @@
             // ForceDefSpeakBox
             // 
             this.ForceDefSpeakBox.AutoSize = true;
-            this.ForceDefSpeakBox.Location = new System.Drawing.Point(56, 283);
+            this.ForceDefSpeakBox.Location = new System.Drawing.Point(485, 157);
             this.ForceDefSpeakBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ForceDefSpeakBox.Name = "ForceDefSpeakBox";
             this.ForceDefSpeakBox.Size = new System.Drawing.Size(200, 24);
@@ -154,7 +156,7 @@
             // RainbowChatChbx
             // 
             this.RainbowChatChbx.AutoSize = true;
-            this.RainbowChatChbx.Location = new System.Drawing.Point(56, 143);
+            this.RainbowChatChbx.Location = new System.Drawing.Point(62, 344);
             this.RainbowChatChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RainbowChatChbx.Name = "RainbowChatChbx";
             this.RainbowChatChbx.Size = new System.Drawing.Size(135, 24);
@@ -163,20 +165,41 @@
             this.RainbowChatChbx.UseVisualStyleBackColor = true;
             this.RainbowChatChbx.CheckedChanged += new System.EventHandler(this.RainbowChatChbx_CheckedChanged);
             // 
+            // UseSelectedBubbleCSChbx
+            // 
+            this.UseSelectedBubbleCSChbx.AutoSize = true;
+            this.UseSelectedBubbleCSChbx.Location = new System.Drawing.Point(62, 174);
+            this.UseSelectedBubbleCSChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.UseSelectedBubbleCSChbx.Name = "UseSelectedBubbleCSChbx";
+            this.UseSelectedBubbleCSChbx.Size = new System.Drawing.Size(298, 24);
+            this.UseSelectedBubbleCSChbx.TabIndex = 8;
+            this.UseSelectedBubbleCSChbx.Text = "Use Selected Bubble (CLIENT SIDE)";
+            this.UseSelectedBubbleCSChbx.UseVisualStyleBackColor = true;
+            // 
+            // UsernameTextBox
+            // 
+            this.UsernameTextBox.Location = new System.Drawing.Point(64, 206);
+            this.UsernameTextBox.Name = "UsernameTextBox";
+            this.UsernameTextBox.Size = new System.Drawing.Size(308, 26);
+            this.UsernameTextBox.TabIndex = 9;
+            this.UsernameTextBox.Text = "Please put username...";
+            // 
             // ChatPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.UsernameTextBox);
+            this.Controls.Add(this.UseSelectedBubbleCSChbx);
             this.Controls.Add(this.RainbowChatChbx);
             this.Controls.Add(this.ForceDefSpeakBox);
             this.Controls.Add(this.GroupChatDefault);
             this.Controls.Add(this.AntiBobbaFilterChbx);
             this.Controls.Add(this.HideSpeakingBubbleChbx);
-            this.Controls.Add(this.UseSelectedBubbleChbx);
+            this.Controls.Add(this.UseSelectedBubbleSSChbx);
             this.Controls.Add(this.BubblesCmbx);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ChatPage";
-            this.Size = new System.Drawing.Size(698, 405);
+            this.Size = new System.Drawing.Size(905, 469);
             this.GroupChatDefault.ResumeLayout(false);
             this.GroupChatDefault.PerformLayout();
             this.ResumeLayout(false);
@@ -187,7 +210,7 @@
         #endregion
 
         private Controls.ImageComboBox BubblesCmbx;
-        private System.Windows.Forms.CheckBox UseSelectedBubbleChbx;
+        private System.Windows.Forms.CheckBox UseSelectedBubbleSSChbx;
         private System.Windows.Forms.CheckBox HideSpeakingBubbleChbx;
         private System.Windows.Forms.CheckBox AntiBobbaFilterChbx;
         private System.Windows.Forms.GroupBox GroupChatDefault;
@@ -196,5 +219,7 @@
         private System.Windows.Forms.RadioButton NormalTalkBox;
         private System.Windows.Forms.CheckBox ForceDefSpeakBox;
         private System.Windows.Forms.CheckBox RainbowChatChbx;
+        private System.Windows.Forms.CheckBox UseSelectedBubbleCSChbx;
+        private System.Windows.Forms.TextBox UsernameTextBox;
     }
 }
