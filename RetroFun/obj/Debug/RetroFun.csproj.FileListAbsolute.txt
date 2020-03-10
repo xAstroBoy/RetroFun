@@ -83,3 +83,4 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.Gene
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.CopyComplete
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.exe
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.pdb
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache

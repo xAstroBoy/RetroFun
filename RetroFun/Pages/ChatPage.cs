@@ -153,7 +153,8 @@ namespace RetroFun.Pages
         }
 
 
-        public int SelectedBubbleId { get; private set; }
+        public int SelectedSSBubbleId { get; private set; }
+        public int SelectedCSBubbleId { get; private set; }
 
         public ChatPage()
         {
@@ -186,10 +187,13 @@ namespace RetroFun.Pages
                 int bubbleId = int.Parse(name);
 
                 if (entry.Value.GetType() != imageType && !entry.Value.GetType().IsSubclassOf(imageType)) continue;
-                BubblesCmbx.AddImageItem((Image)entry.Value, name, bubbleId);
+                BubblesSSCmbx.AddImageItem((Image)entry.Value, name, bubbleId);
+                BubblesCSCmbx.AddImageItem((Image)entry.Value, name, bubbleId);
+
             }
 
-            BubblesCmbx.SelectedIndex = 17;
+            BubblesSSCmbx.SelectedIndex = 17;
+            BubblesCSCmbx.SelectedIndex = 17;
 
             if (Program.Master != null)
             {
@@ -250,12 +254,12 @@ namespace RetroFun.Pages
         {
             if (RainbowChatEnabled)
             {
-                ToggleComboBox(BubblesCmbx, true);
+                ToggleComboBox(BubblesSSCmbx, true);
                 ToggleCheckbox(UseSelectedBubbleSSChbx, true);
             }
             else
             {
-                ToggleComboBox(BubblesCmbx, false);
+                ToggleComboBox(BubblesSSCmbx, false);
                 ToggleCheckbox(UseSelectedBubbleSSChbx, false);
             }
         }
@@ -348,7 +352,13 @@ namespace RetroFun.Pages
         private void BubblesCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Avoid cross-thread exceptions by waiting for an event in the UI thread to update this property.
-            SelectedBubbleId = (int)BubblesCmbx.SelectedTag;
+            SelectedSSBubbleId = (int)BubblesSSCmbx.SelectedTag;
+        }
+
+        private void BubblesCSCmbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Avoid cross-thread exceptions by waiting for an event in the UI thread to update this property.
+            SelectedCSBubbleId = (int)BubblesCSCmbx.SelectedTag;
         }
 
         private void RoomUserStartTyping(DataInterceptedEventArgs obj)
@@ -365,7 +375,7 @@ namespace RetroFun.Pages
             {
                 if (index == LocalIndex)
                 {
-                    Connection.SendToClientAsync(In.RoomUserTalk, LocalIndex, msg, 0, SelectedBubbleId, 0, -1);
+                    Connection.SendToClientAsync(In.RoomUserTalk, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
                     obj.IsBlocked = true;
                 }
             }
@@ -380,7 +390,7 @@ namespace RetroFun.Pages
             {
                 if (index == LocalIndex)
                 {
-                    Connection.SendToClientAsync(In.RoomUserShout, LocalIndex, msg, 0, SelectedBubbleId, 0, -1);
+                    Connection.SendToClientAsync(In.RoomUserShout, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
                     obj.IsBlocked = true;
                 }
             }
@@ -394,7 +404,7 @@ namespace RetroFun.Pages
             {
                 if (index == LocalIndex)
                 {
-                    Connection.SendToClientAsync(In.RoomUserWhisper, LocalIndex, msg, 0, SelectedBubbleId, 0, -1);
+                    Connection.SendToClientAsync(In.RoomUserWhisper, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
                     obj.IsBlocked = true;
                 }
             }
@@ -424,7 +434,7 @@ namespace RetroFun.Pages
 
             if (UseSelectedBubbleServerSide)
             {
-                bubbleId = SelectedBubbleId;
+                bubbleId = SelectedSSBubbleId;
             }
 
             if (RainbowChatEnabled)
