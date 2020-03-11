@@ -150,6 +150,12 @@ namespace RetroFun.Pages
 
             Broadcast("Dice registered!");
         }
+        public void OnLatencyTest(DataInterceptedEventArgs e)
+        {
+        }
+        public void OnUsername(DataInterceptedEventArgs e)
+        {
+        }
 
         public void OnUserLeaveRoom(DataInterceptedEventArgs e)
         {
@@ -167,6 +173,9 @@ namespace RetroFun.Pages
         {
         }
 
+        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        {
+        }
         private void HandleDiceUpdate(DataInterceptedEventArgs e)
         {
             if (!ISHolodiceCheat) return;

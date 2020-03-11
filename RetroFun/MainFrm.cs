@@ -26,15 +26,7 @@ namespace RetroFun
 
         private bool _FreezeUserMovement;
 
-        public bool FreezeUserMovement
-        {
-            get => _FreezeUserMovement;
-            set
-            {
-                _FreezeUserMovement = value;
-                RaiseOnPropertyChanged();
-            }
-        }
+
 
         private List<ISubscriber> _subscribers = new List<ISubscriber>();
 
@@ -56,18 +48,14 @@ namespace RetroFun
                 StalkingPg,
                 FakeMessagePg,
                 MiscellaneousPg,
+                furniSpawnPg,
+                BottomPg,
             };
 
-            Bind(FreezeMovementCheck, "Checked", nameof(FreezeUserMovement));
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));
         }
 
-        [OutDataCapture("RoomUserWalk")]
-        public void OnOutUserWalk(DataInterceptedEventArgs e)
-        {
-            if (FreezeUserMovement)
-                e.IsBlocked = true;
-        }
+
 
         public override void HandleOutgoing(DataInterceptedEventArgs e)
         {
@@ -92,6 +80,18 @@ namespace RetroFun
                 else if (Out.RequestRoomLoad == id)
                 {
                     sub.OnUserLeaveRoom(e);
+                }
+                else if (Out.LatencyTest == id)
+                {
+                    sub.OnLatencyTest(e);
+                }
+                else if (Out.Username == id)
+                {
+                    sub.OnUsername(e);
+                }
+                else if (Out.RoomUserWalk == id)
+                {
+                    sub.OnRoomUserWalk(e);
                 }
             }
         }

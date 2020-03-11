@@ -278,7 +278,12 @@ namespace RetroFun.Pages
         {
             Purchased = true;
         }
-
+        public void OnLatencyTest(DataInterceptedEventArgs e)
+        {
+        }
+        public void OnUsername(DataInterceptedEventArgs e)
+        {
+        }
         public void OnUserLeaveRoom(DataInterceptedEventArgs e)
         {
         }
@@ -300,6 +305,9 @@ namespace RetroFun.Pages
         }
 
         public void inUserProfile(DataInterceptedEventArgs e)
+        {
+        }
+        public void OnRoomUserWalk(DataInterceptedEventArgs e)
         {
         }
 

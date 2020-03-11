@@ -82,7 +82,12 @@ namespace RetroFun.Pages
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {
         }
-
+        public void OnLatencyTest(DataInterceptedEventArgs e)
+        {
+        }
+        public void OnUsername(DataInterceptedEventArgs e)
+        {
+        }
         public void OnUserFriendRemoval(DataInterceptedEventArgs e)
         {
         }
@@ -91,6 +96,9 @@ namespace RetroFun.Pages
         {
         }
 
+        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        {
+        }
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
             int userId = e.Packet.ReadInteger();

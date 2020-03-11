@@ -76,7 +76,12 @@ namespace RetroFun.Pages
         public void InPurchaseOk(DataInterceptedEventArgs e)
         {
         }
-
+        public void OnLatencyTest(DataInterceptedEventArgs e)
+        {
+        }
+        public void OnUsername(DataInterceptedEventArgs e)
+        {
+        }
         public void inUserProfile(DataInterceptedEventArgs e)
         {
         }
@@ -86,6 +91,10 @@ namespace RetroFun.Pages
         }
 
         public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnRoomUserWalk(DataInterceptedEventArgs e)
         {
         }
 

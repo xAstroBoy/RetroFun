@@ -77,6 +77,12 @@
     <Compile Include="Pages\AutoHoloDicePage.Designer.cs">
       <DependentUpon>AutoHoloDicePage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\BottomPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\BottomPage.Designer.cs">
+      <DependentUpon>BottomPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\BuyFurniBruteforcerPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,6 +100,12 @@
     </Compile>
     <Compile Include="Pages\FakeMessagePage.Designer.cs">
       <DependentUpon>FakeMessagePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\FurniSpawnPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\FurniSpawnPage.Designer.cs">
+      <DependentUpon>FurniSpawnPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\GiftEditor.cs">
       <SubType>UserControl</SubType>
@@ -176,6 +188,9 @@
     <EmbeddedResource Include="Pages\AutoHoloDicePage.resx">
       <DependentUpon>AutoHoloDicePage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\BottomPage.resx">
+      <DependentUpon>BottomPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\BuyFurniBruteforcerPage.resx">
       <DependentUpon>BuyFurniBruteforcerPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\FakeMessagePage.resx">
       <DependentUpon>FakeMessagePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\FurniSpawnPage.resx">
+      <DependentUpon>FurniSpawnPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\GiftEditor.resx">
       <DependentUpon>GiftEditor.cs</DependentUpon>

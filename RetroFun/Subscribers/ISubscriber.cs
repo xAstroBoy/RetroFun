@@ -15,6 +15,12 @@ namespace RetroFun.Subscribers
 
         void OnUserLeaveRoom(DataInterceptedEventArgs e);
 
+        void OnLatencyTest(DataInterceptedEventArgs e);
+
+        void OnUsername(DataInterceptedEventArgs e);
+
+        void OnRoomUserWalk(DataInterceptedEventArgs e);
+
         //Incoming events shared by multiple pages
         void InPurchaseOk(DataInterceptedEventArgs e);
 

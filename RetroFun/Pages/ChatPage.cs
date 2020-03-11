@@ -201,8 +201,6 @@ namespace RetroFun.Pages
                 Triggers.OutAttach(Out.RoomUserShout, RoomUserStartSpeaking);
                 Triggers.OutAttach(Out.RoomUserWhisper, RoomUserStartSpeaking);
                 Triggers.OutAttach(Out.RoomUserStartTyping, RoomUserStartTyping);
-                Triggers.OutAttach(Out.LatencyTest, nameCheck);
-                Triggers.OutAttach(Out.Username, SetUsername);
 
 
                 Triggers.InAttach(In.RoomUserTalk, CSRoomUserTalk);
@@ -213,15 +211,15 @@ namespace RetroFun.Pages
         }
 
 
-        private async void nameCheck(DataInterceptedEventArgs obj)
+        public void OnLatencyTest(DataInterceptedEventArgs obj)
         {
             if (UsernameFilter == null)
             {
-                await Connection.SendToServerAsync(Out.RequestUserData);
+                Connection.SendToServerAsync(Out.RequestUserData);
             }
         }
 
-        private void SetUsername(DataInterceptedEventArgs obj)
+        public void OnUsername(DataInterceptedEventArgs obj)
         {
             HMessage packet = obj.Packet;
             string username = packet.ReadString();
@@ -346,6 +344,10 @@ namespace RetroFun.Pages
         }
 
         public void InRoomUserLeft(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnRoomUserWalk(DataInterceptedEventArgs e)
         {
         }
 

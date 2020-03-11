@@ -27,10 +27,7 @@ namespace RetroFun.Pages
 
         public DicePage()
         {
-            Console.WriteLine("INIT DICEPAGE, SHOULD HAPPEN ONLY ONCE");
-
             InitializeComponent();
-
             Bind(DiceRegisterModeCheck, "Checked", nameof(IsRegistrationMode));
         }
 
@@ -43,11 +40,20 @@ namespace RetroFun.Pages
                 e.IsBlocked = true;
             }
         }
+        public void OnLatencyTest(DataInterceptedEventArgs e)
+        {
+        }
+        public void OnUsername(DataInterceptedEventArgs e)
+        {
+        }
 
         public void InPurchaseOk(DataInterceptedEventArgs e)
         {
         }
 
+        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        {
+        }
         public void OnUserFriendRemoval(DataInterceptedEventArgs e)
         {
         }

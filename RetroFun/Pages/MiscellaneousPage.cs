@@ -914,6 +914,13 @@ namespace RetroFun.Pages
 
         public bool IsReceiving => true;
 
+        public void OnLatencyTest(DataInterceptedEventArgs e)
+        {
+        }
+        public void OnUsername(DataInterceptedEventArgs e)
+        {
+        }
+
         public void OnUserLeaveRoom(DataInterceptedEventArgs e)
         {
         }
@@ -938,6 +945,9 @@ namespace RetroFun.Pages
         {
         }
 
+        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        {
+        }
         public void OnUserFriendRemoval(DataInterceptedEventArgs e)
         {
             if (AntiFriendRemove)

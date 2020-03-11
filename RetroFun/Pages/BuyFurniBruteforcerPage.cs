@@ -277,7 +277,12 @@ namespace RetroFun.Pages
         {
             CheckFurniIDBruteforcer();
         }
-
+        public void OnLatencyTest(DataInterceptedEventArgs e)
+        {
+        }
+        public void OnUsername(DataInterceptedEventArgs e)
+        {
+        }
         public void OnUserLeaveRoom(DataInterceptedEventArgs e)
         {
         }
@@ -298,6 +303,9 @@ namespace RetroFun.Pages
         {
         }
 
+        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        {
+        }
         private void CatalogueBruteForceBtn_Click(object sender, EventArgs e)
         {
             CheckBruteForcer();
