@@ -218,16 +218,16 @@ namespace RetroFun.Pages
                 CoordY,
                 FurniRotation,
                 CoordZ,
-                "0.0",
-                0,
-                0,
-                false,
-                false,
-                -1,
-                0,
-                0,
-                0,// REMOVE IF BAD
-                Owner,
+                "0.0", //<-?
+                0, //<-?
+                0, //<-?
+                false, //<-?
+                false, //<-?
+                -1, //<-?
+                0, //<-?
+                0, //<-?
+                0, //<-?
+                Owner, //<-?
             });
         }
 
