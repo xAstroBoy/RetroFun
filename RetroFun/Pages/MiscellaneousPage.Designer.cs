@@ -75,6 +75,9 @@
             this.TrollLookBtn = new Sulakore.Components.SKoreButton();
             this.TrollLookNbx = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
+            this.BlockMessageForYouChbx = new System.Windows.Forms.CheckBox();
+            this.ConvertMessageForYouChbx = new System.Windows.Forms.CheckBox();
+            this.BlockStaffAlertsChbx = new System.Windows.Forms.CheckBox();
             this.SignCountGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SignCountCoolDown)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -497,10 +500,31 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
+            // BlockMessageForYouChbx
+            // 
+            resources.ApplyResources(this.BlockMessageForYouChbx, "BlockMessageForYouChbx");
+            this.BlockMessageForYouChbx.Name = "BlockMessageForYouChbx";
+            this.BlockMessageForYouChbx.UseVisualStyleBackColor = true;
+            // 
+            // ConvertMessageForYouChbx
+            // 
+            resources.ApplyResources(this.ConvertMessageForYouChbx, "ConvertMessageForYouChbx");
+            this.ConvertMessageForYouChbx.Name = "ConvertMessageForYouChbx";
+            this.ConvertMessageForYouChbx.UseVisualStyleBackColor = true;
+            // 
+            // BlockStaffAlertsChbx
+            // 
+            resources.ApplyResources(this.BlockStaffAlertsChbx, "BlockStaffAlertsChbx");
+            this.BlockStaffAlertsChbx.Name = "BlockStaffAlertsChbx";
+            this.BlockStaffAlertsChbx.UseVisualStyleBackColor = true;
+            // 
             // MiscellaneousPage
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.BlockStaffAlertsChbx);
+            this.Controls.Add(this.ConvertMessageForYouChbx);
+            this.Controls.Add(this.BlockMessageForYouChbx);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.TrollLookNbx);
             this.Controls.Add(this.TrollLookBtn);
@@ -590,5 +614,8 @@
         private Sulakore.Components.SKoreButton TrollLookBtn;
         private System.Windows.Forms.NumericUpDown TrollLookNbx;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox BlockMessageForYouChbx;
+        private System.Windows.Forms.CheckBox ConvertMessageForYouChbx;
+        private System.Windows.Forms.CheckBox BlockStaffAlertsChbx;
     }
 }

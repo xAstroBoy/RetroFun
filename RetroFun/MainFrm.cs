@@ -24,9 +24,6 @@ namespace RetroFun
             }
         }
 
-        private bool _FreezeUserMovement;
-
-
 
         private List<ISubscriber> _subscribers = new List<ISubscriber>();
 

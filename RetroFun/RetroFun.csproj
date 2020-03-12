@@ -155,6 +155,12 @@
     <Compile Include="Pages\MoonLightFunPage.Designer.cs">
       <DependentUpon>MoonLightFunPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PersonalPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\PersonalPage.Designer.cs">
+      <DependentUpon>PersonalPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RoomBackFun.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\MoonLightFunPage.resx">
       <DependentUpon>MoonLightFunPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\PersonalPage.resx">
+      <DependentUpon>PersonalPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\RoomBackFun.resx">
       <DependentUpon>RoomBackFun.cs</DependentUpon>

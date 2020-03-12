@@ -42,6 +42,7 @@ namespace RetroFun
             this.BuyFurniBruteforcerPg = new RetroFun.Pages.BuyFurniBruteforcerPage();
             this.RoomBackFunPg = new RetroFun.Pages.RoomBackFun();
             this.RetroFunTabs = new Sulakore.Components.SKoreTabControl();
+            this.PersonalTab = new System.Windows.Forms.TabPage();
             this.FurnitureTab = new System.Windows.Forms.TabPage();
             this.FurnitureSpawnerTab = new System.Windows.Forms.TabPage();
             this.furniSpawnPg = new RetroFun.Pages.FurniSpawnPage();
@@ -67,7 +68,9 @@ namespace RetroFun
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
             this.BottomPg = new RetroFun.Pages.BottomPage();
+            this.personalPage1 = new RetroFun.Pages.PersonalPage();
             this.RetroFunTabs.SuspendLayout();
+            this.PersonalTab.SuspendLayout();
             this.FurnitureTab.SuspendLayout();
             this.FurnitureSpawnerTab.SuspendLayout();
             this.ChatTab.SuspendLayout();
@@ -209,6 +212,9 @@ namespace RetroFun
             // 
             this.MiscellaneousPg.AntiFriendRemove = true;
             this.MiscellaneousPg.BackColor = System.Drawing.Color.White;
+            this.MiscellaneousPg.BlockMessageForYou = false;
+            this.MiscellaneousPg.BlockStaffAlerts = false;
+            this.MiscellaneousPg.ConvertMessageForYou = false;
             this.MiscellaneousPg.Dance_Cooldown = 500;
             this.MiscellaneousPg.Dance_DuckFunkSelected = false;
             this.MiscellaneousPg.Dance_NoneSelected = false;
@@ -303,6 +309,7 @@ namespace RetroFun
             // 
             // RetroFunTabs
             // 
+            this.RetroFunTabs.Controls.Add(this.PersonalTab);
             this.RetroFunTabs.Controls.Add(this.FurnitureTab);
             this.RetroFunTabs.Controls.Add(this.FurnitureSpawnerTab);
             this.RetroFunTabs.Controls.Add(this.ChatTab);
@@ -329,6 +336,16 @@ namespace RetroFun
             this.RetroFunTabs.Size = new System.Drawing.Size(1202, 666);
             this.RetroFunTabs.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.RetroFunTabs.TabIndex = 0;
+            // 
+            // PersonalTab
+            // 
+            this.PersonalTab.Controls.Add(this.personalPage1);
+            this.PersonalTab.Location = new System.Drawing.Point(4, 28);
+            this.PersonalTab.Name = "PersonalTab";
+            this.PersonalTab.Size = new System.Drawing.Size(1194, 634);
+            this.PersonalTab.TabIndex = 15;
+            this.PersonalTab.Text = "Personal";
+            this.PersonalTab.UseVisualStyleBackColor = true;
             // 
             // FurnitureTab
             // 
@@ -364,6 +381,7 @@ namespace RetroFun
             this.furniSpawnPg.Location = new System.Drawing.Point(3, 0);
             this.furniSpawnPg.Name = "furniSpawnPg";
             this.furniSpawnPg.Size = new System.Drawing.Size(1195, 634);
+            this.furniSpawnPg.SpawnFurniOnClick = false;
             this.furniSpawnPg.TabIndex = 0;
             this.furniSpawnPg.TabStop = false;
             // 
@@ -629,15 +647,32 @@ namespace RetroFun
             this.AlwaysOnTopChbx.Text = "Always On Top";
             this.AlwaysOnTopChbx.UseVisualStyleBackColor = true;
             // 
-            // bottomPage1
+            // BottomPg
             // 
             this.BottomPg.BackColor = System.Drawing.Color.White;
             this.BottomPg.FreezeUserMovement = false;
             this.BottomPg.Location = new System.Drawing.Point(162, 670);
-            this.BottomPg.Name = "bottomPage1";
+            this.BottomPg.Name = "BottomPg";
             this.BottomPg.Size = new System.Drawing.Size(232, 37);
             this.BottomPg.TabIndex = 1;
             this.BottomPg.TabStop = false;
+            // 
+            // personalPage1
+            // 
+            this.personalPage1.BackColor = System.Drawing.Color.White;
+            this.personalPage1.CreditsChecked = false;
+            this.personalPage1.CreditsValue = 0;
+            this.personalPage1.CrystalsChecked = false;
+            this.personalPage1.CrystalsValue = 0;
+            this.personalPage1.DucketsChecked = false;
+            this.personalPage1.DucketsValue = 0;
+            this.personalPage1.HasModToolsUnlocked = false;
+            this.personalPage1.HasStaffPermissions = false;
+            this.personalPage1.Location = new System.Drawing.Point(3, 3);
+            this.personalPage1.Name = "personalPage1";
+            this.personalPage1.Size = new System.Drawing.Size(1195, 636);
+            this.personalPage1.TabIndex = 0;
+            this.personalPage1.TabStop = false;
             // 
             // MainFrm
             // 
@@ -655,6 +690,7 @@ namespace RetroFun
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RetroFun";
             this.RetroFunTabs.ResumeLayout(false);
+            this.PersonalTab.ResumeLayout(false);
             this.FurnitureTab.ResumeLayout(false);
             this.FurnitureSpawnerTab.ResumeLayout(false);
             this.ChatTab.ResumeLayout(false);
@@ -720,5 +756,7 @@ namespace RetroFun
         public Sulakore.Components.SKoreTabControl RetroFunTabs;
         private System.Windows.Forms.TabPage DoorbelTab;
         private System.Windows.Forms.TabPage FurnitureSpawnerTab;
+        private System.Windows.Forms.TabPage PersonalTab;
+        private PersonalPage personalPage1;
     }
 }

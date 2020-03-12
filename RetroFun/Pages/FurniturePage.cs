@@ -337,13 +337,7 @@ namespace RetroFun.Pages
             });
         }
 
-        private void AcquireMODPermissionsBtn_Click(object sender, EventArgs e)
-        {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.UserPermissions, int.MaxValue, int.MaxValue, true);
-            }
-        }
+
 
         private void RestoreFurnisBtn_Click(object sender, EventArgs e)
         {

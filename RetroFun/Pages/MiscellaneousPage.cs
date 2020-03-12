@@ -18,7 +18,7 @@ namespace RetroFun.Pages
 
         private string OldLook = "";
 
-        #region SignCountBools
+        #region Vars
 
         private bool SignCountEnabled;
         private bool DecreasingMode;
@@ -480,6 +480,47 @@ namespace RetroFun.Pages
 
         #region miscvars
 
+
+        private bool _ConvertMessageForYou;
+
+
+        public bool ConvertMessageForYou
+        {
+            get => _ConvertMessageForYou;
+            set
+            {
+                _ConvertMessageForYou = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _BlockMessageForYou;
+
+
+        public bool BlockMessageForYou
+        {
+            get => _BlockMessageForYou;
+            set
+            {
+                _BlockMessageForYou = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _BlockStaffAlerts;
+
+
+        public bool BlockStaffAlerts
+        {
+            get => _BlockStaffAlerts;
+            set
+            {
+                _BlockStaffAlerts = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
         private bool _AntiFriendRemove = true;
 
         public bool AntiFriendRemove
@@ -554,6 +595,17 @@ namespace RetroFun.Pages
             Bind(GestureCooldownNbx, "Value", nameof(GestureCooldown));
             Bind(SitCoolDownNbx, "Value", nameof(SitsCooldown));
             Bind(TrollLookNbx, "Value", nameof(TrollLookCooldown));
+
+
+            Bind(ConvertMessageForYouChbx, "Checked", nameof(ConvertMessageForYou));
+            Bind(BlockMessageForYouChbx, "Checked", nameof(BlockMessageForYou));
+            Bind(BlockStaffAlertsChbx, "Checked", nameof(BlockStaffAlerts));
+
+            if (Program.Master != null)
+            {
+                Triggers.InAttach(In.MessagesForYou, HandleMessageForYou);
+            }
+
         }
 
         private void SignCountBtn_Click(object sender, EventArgs e)
@@ -1008,56 +1060,56 @@ namespace RetroFun.Pages
             SitCheck();
         }
 
-        public string GenInt()
-        {
-            int Random = Randomizer.Next(0, 9);
-
-            //if(!(OldRandom == Random))
-            //{
-            //    OldRandom = Random;
-            return Random.ToString();
-            //}
-            //return GenInt();
-        }
-
-        private void GenerateMaleLook()
-        {
-            string Look = "ca-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ch-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".lg-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".sh-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + GenInt() + ".wa-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + ".hd-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + ".hr-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ha-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ea-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "";
-            if (Look != OldLook)
-            {
-                OldLook = Look;
-                Console.WriteLine("USer Look set to : " + Look);
-                if (Connection.Remote.IsConnected)
-                {
-                    Connection.SendToServerAsync(Out.UserSaveLook, "M", Look);
-                }
-            }
-            else
-            {
-                Console.WriteLine("Found Duplicated look!");
-                GenerateMaleLook();
-            }
-        }
-
-        private void GenerateFemaleLook()
-        {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(Out.UserSaveLook, "F", "ca-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ch-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".lg-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".sh-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + GenInt() + ".wa-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + ".hd-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + ".hr-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ha-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ea-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "");
-            }
-        }
-
-        //private void GenLookGenThreadBtn_Click(object sender, EventArgs e)
+        //public string GenInt()
         //{
+        //    int Random = Randomizer.Next(0, 9);
+
+        //    //if(!(OldRandom == Random))
+        //    //{
+        //    //    OldRandom = Random;
+        //    return Random.ToString();
+        //    //}
+        //    //return GenInt();
         //}
 
-        //private void ToggleLookGen()
+        //private void GenerateMaleLook()
         //{
+        //    string Look = "ca-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ch-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".lg-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".sh-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + GenInt() + ".wa-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + ".hd-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + ".hr-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ha-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ea-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "";
+        //    if (Look != OldLook)
+        //    {
+        //        OldLook = Look;
+        //        Console.WriteLine("USer Look set to : " + Look);
+        //        if (Connection.Remote.IsConnected)
+        //        {
+        //            Connection.SendToServerAsync(Out.UserSaveLook, "M", Look);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Found Duplicated look!");
+        //        GenerateMaleLook();
+        //    }
         //}
 
+        //private void GenerateFemaleLook()
+        //{
+        //    if (Connection.Remote.IsConnected)
+        //    {
+        //        Connection.SendToServerAsync(Out.UserSaveLook, "F", "ca-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ch-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".lg-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".sh-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + GenInt() + ".wa-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + ".hd-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + ".hr-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ha-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ea-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "");
+        //    }
+        //}
 
-        
-        
+        ////private void GenLookGenThreadBtn_Click(object sender, EventArgs e)
+        ////{
+        ////}
+
+        ////private void ToggleLookGen()
+        ////{
+        ////}
+
+
+
+
 
 
         private void DanceLoopBtn_Click(object sender, EventArgs e)
@@ -1155,6 +1207,36 @@ namespace RetroFun.Pages
             }
         }
 
+
+
+
+
+        private void HandleMessageForYou(DataInterceptedEventArgs e)
+        {
+            string message = e.Packet.ReadString(1);
+            if(BlockMessageForYou)
+            {
+                e.IsBlocked = true;
+            }
+            if(ConvertMessageForYou)
+            {
+                Speak(message);
+                e.IsBlocked = true;
+            }
+
+        }
+
+
+        private void Speak(string text)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[MessageForYou]: " + text, 0, 34, 0, -1);
+            }
+        }
+
+
+
         private void TrollLookLoop()
         {
             new Thread(() =>
@@ -1178,5 +1260,7 @@ namespace RetroFun.Pages
                 }
             }).Start();
         }
+
+
     }
 }
