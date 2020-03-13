@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.FurnIDnbx = new System.Windows.Forms.NumericUpDown();
             this.CoordXNbx = new System.Windows.Forms.NumericUpDown();
             this.CoordZNBx = new System.Windows.Forms.NumericUpDown();
@@ -46,7 +45,6 @@
             this.RotationUp = new System.Windows.Forms.RadioButton();
             this.SetOwnUsernameBtn = new Sulakore.Components.SKoreButton();
             this.FurniOwnerTxbx = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SpawnFloorFurniOnClickBtn = new Sulakore.Components.SKoreButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.IRadioBtn = new System.Windows.Forms.RadioButton();
@@ -55,10 +53,10 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.SpawnFurniInvBtn = new Sulakore.Components.SKoreButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.PosterIDTxbx = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.AmountNbx = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
+            this.AmountNbx = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.PosterIDTxbx = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.FurnIDnbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordXNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordZNBx)).BeginInit();
@@ -86,7 +84,7 @@
             // 
             // CoordXNbx
             // 
-            this.CoordXNbx.Location = new System.Drawing.Point(19, 41);
+            this.CoordXNbx.Location = new System.Drawing.Point(10, 124);
             this.CoordXNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -98,7 +96,7 @@
             // 
             // CoordZNBx
             // 
-            this.CoordZNBx.Location = new System.Drawing.Point(19, 163);
+            this.CoordZNBx.Location = new System.Drawing.Point(10, 246);
             this.CoordZNBx.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -110,7 +108,7 @@
             // 
             // CoordYNbx
             // 
-            this.CoordYNbx.Location = new System.Drawing.Point(19, 100);
+            this.CoordYNbx.Location = new System.Drawing.Point(10, 183);
             this.CoordYNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -141,7 +139,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 18);
+            this.label2.Location = new System.Drawing.Point(6, 101);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 20);
             this.label2.TabIndex = 6;
@@ -150,7 +148,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 77);
+            this.label3.Location = new System.Drawing.Point(6, 160);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(20, 20);
             this.label3.TabIndex = 7;
@@ -159,7 +157,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 140);
+            this.label4.Location = new System.Drawing.Point(6, 223);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(19, 20);
             this.label4.TabIndex = 8;
@@ -172,7 +170,7 @@
             this.groupBox1.Controls.Add(this.rotationLeft);
             this.groupBox1.Controls.Add(this.RotationDown);
             this.groupBox1.Controls.Add(this.RotationUp);
-            this.groupBox1.Location = new System.Drawing.Point(132, 41);
+            this.groupBox1.Location = new System.Drawing.Point(123, 124);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -197,11 +195,13 @@
             // RotationRight
             // 
             this.RotationRight.AutoSize = true;
+            this.RotationRight.Checked = true;
             this.RotationRight.Location = new System.Drawing.Point(117, 71);
             this.RotationRight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotationRight.Name = "RotationRight";
             this.RotationRight.Size = new System.Drawing.Size(21, 20);
             this.RotationRight.TabIndex = 4;
+            this.RotationRight.TabStop = true;
             this.RotationRight.UseVisualStyleBackColor = true;
             this.RotationRight.CheckedChanged += new System.EventHandler(this.RotationRight_CheckedChanged);
             // 
@@ -230,19 +230,17 @@
             // RotationUp
             // 
             this.RotationUp.AutoSize = true;
-            this.RotationUp.Checked = true;
             this.RotationUp.Location = new System.Drawing.Point(68, 29);
             this.RotationUp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotationUp.Name = "RotationUp";
             this.RotationUp.Size = new System.Drawing.Size(21, 20);
             this.RotationUp.TabIndex = 1;
-            this.RotationUp.TabStop = true;
             this.RotationUp.UseVisualStyleBackColor = true;
             this.RotationUp.CheckedChanged += new System.EventHandler(this.RotationUp_CheckedChanged);
             // 
             // SetOwnUsernameBtn
             // 
-            this.SetOwnUsernameBtn.Location = new System.Drawing.Point(19, 245);
+            this.SetOwnUsernameBtn.Location = new System.Drawing.Point(332, 399);
             this.SetOwnUsernameBtn.Name = "SetOwnUsernameBtn";
             this.SetOwnUsernameBtn.Size = new System.Drawing.Size(195, 37);
             this.SetOwnUsernameBtn.TabIndex = 10;
@@ -251,16 +249,10 @@
             // 
             // FurniOwnerTxbx
             // 
-            this.FurniOwnerTxbx.Location = new System.Drawing.Point(19, 213);
+            this.FurniOwnerTxbx.Location = new System.Drawing.Point(332, 367);
             this.FurniOwnerTxbx.Name = "FurniOwnerTxbx";
             this.FurniOwnerTxbx.Size = new System.Drawing.Size(251, 26);
             this.FurniOwnerTxbx.TabIndex = 11;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // SpawnFloorFurniOnClickBtn
             // 
@@ -309,8 +301,6 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.SpawnFloorFurniOnClickBtn);
-            this.groupBox3.Controls.Add(this.FurniOwnerTxbx);
-            this.groupBox3.Controls.Add(this.SetOwnUsernameBtn);
             this.groupBox3.Controls.Add(this.groupBox1);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.label3);
@@ -353,36 +343,12 @@
             this.groupBox5.Controls.Add(this.PosterIDTxbx);
             this.groupBox5.Controls.Add(this.SpawnFurniInvBtn);
             this.groupBox5.Controls.Add(this.groupBox2);
-            this.groupBox5.Location = new System.Drawing.Point(370, 103);
+            this.groupBox5.Location = new System.Drawing.Point(355, 100);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(356, 228);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Inventory Spawner ( CS )";
-            // 
-            // PosterIDTxbx
-            // 
-            this.PosterIDTxbx.Location = new System.Drawing.Point(140, 132);
-            this.PosterIDTxbx.Name = "PosterIDTxbx";
-            this.PosterIDTxbx.Size = new System.Drawing.Size(170, 26);
-            this.PosterIDTxbx.TabIndex = 19;
-            this.PosterIDTxbx.Text = "2005";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(136, 105);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 20);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "PosterID";
-            // 
-            // AmountNbx
-            // 
-            this.AmountNbx.Location = new System.Drawing.Point(140, 66);
-            this.AmountNbx.Name = "AmountNbx";
-            this.AmountNbx.Size = new System.Drawing.Size(170, 26);
-            this.AmountNbx.TabIndex = 21;
             // 
             // label6
             // 
@@ -393,11 +359,38 @@
             this.label6.TabIndex = 22;
             this.label6.Text = "Amount";
             // 
+            // AmountNbx
+            // 
+            this.AmountNbx.Enabled = false;
+            this.AmountNbx.Location = new System.Drawing.Point(140, 66);
+            this.AmountNbx.Name = "AmountNbx";
+            this.AmountNbx.Size = new System.Drawing.Size(170, 26);
+            this.AmountNbx.TabIndex = 21;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(136, 105);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 20);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "PosterID";
+            // 
+            // PosterIDTxbx
+            // 
+            this.PosterIDTxbx.Location = new System.Drawing.Point(140, 132);
+            this.PosterIDTxbx.Name = "PosterIDTxbx";
+            this.PosterIDTxbx.Size = new System.Drawing.Size(170, 26);
+            this.PosterIDTxbx.TabIndex = 19;
+            this.PosterIDTxbx.Text = "2005";
+            // 
             // FurniSpawnPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.FurniOwnerTxbx);
             this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.SetOwnUsernameBtn);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Name = "FurniSpawnPage";
@@ -419,6 +412,7 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AmountNbx)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -440,7 +434,6 @@
         private System.Windows.Forms.RadioButton RotationUp;
         private Sulakore.Components.SKoreButton SetOwnUsernameBtn;
         private System.Windows.Forms.TextBox FurniOwnerTxbx;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.NumericUpDown RotationNbx;
         private Sulakore.Components.SKoreButton SpawnFloorFurniOnClickBtn;
         private System.Windows.Forms.GroupBox groupBox2;

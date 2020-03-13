@@ -58,3 +58,4 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.Roo
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.SpeechzPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.BottomPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.FurniSpawnPage.resources
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.PersonalPage.resources
