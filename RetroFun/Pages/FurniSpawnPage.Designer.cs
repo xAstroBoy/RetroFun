@@ -240,7 +240,7 @@
             // 
             // SetOwnUsernameBtn
             // 
-            this.SetOwnUsernameBtn.Location = new System.Drawing.Point(332, 399);
+            this.SetOwnUsernameBtn.Location = new System.Drawing.Point(424, 376);
             this.SetOwnUsernameBtn.Name = "SetOwnUsernameBtn";
             this.SetOwnUsernameBtn.Size = new System.Drawing.Size(195, 37);
             this.SetOwnUsernameBtn.TabIndex = 10;
@@ -249,7 +249,7 @@
             // 
             // FurniOwnerTxbx
             // 
-            this.FurniOwnerTxbx.Location = new System.Drawing.Point(332, 367);
+            this.FurniOwnerTxbx.Location = new System.Drawing.Point(398, 344);
             this.FurniOwnerTxbx.Name = "FurniOwnerTxbx";
             this.FurniOwnerTxbx.Size = new System.Drawing.Size(251, 26);
             this.FurniOwnerTxbx.TabIndex = 11;
@@ -328,7 +328,7 @@
             // 
             // SpawnFurniInvBtn
             // 
-            this.SpawnFurniInvBtn.Location = new System.Drawing.Point(26, 166);
+            this.SpawnFurniInvBtn.Location = new System.Drawing.Point(25, 168);
             this.SpawnFurniInvBtn.Name = "SpawnFurniInvBtn";
             this.SpawnFurniInvBtn.Size = new System.Drawing.Size(202, 35);
             this.SpawnFurniInvBtn.TabIndex = 18;
