@@ -22,6 +22,33 @@ namespace RetroFun.Pages
         private Random rand = new Random();
         private int _FurniID;
         private int LocalFurniID;
+        private int _FurniAmountInv = 0;
+
+
+        private string _PosterID = "2005";
+
+        public string PosterID
+        {
+            get => _PosterID;
+            set
+            {
+                _PosterID = value;
+                RaiseOnPropertyChanged();
+            }
+
+
+        }
+        private string _FurniType = "I";
+
+        public string FurniType
+        {
+            get => _FurniType;
+            set
+            {
+                _FurniType = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         public int FurniID
         {
@@ -29,6 +56,17 @@ namespace RetroFun.Pages
             set
             {
                 _FurniID = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        public int FurniAmountInv
+        {
+            get => _FurniAmountInv;
+            set
+            {
+                _FurniAmountInv = value;
                 RaiseOnPropertyChanged();
             }
         }
@@ -56,6 +94,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         private int _CoordZ;
 
@@ -116,6 +155,10 @@ namespace RetroFun.Pages
             Bind(CoordZNBx, "Value", nameof(CoordZ));
             Bind(RotationNbx, "Value", nameof(FurniRotation));
             Bind(FurniOwnerTxbx, "Text", nameof(FurniOwnerName));
+            Bind(PosterIDTxbx, "Text", nameof(PosterID));
+            Bind(AmountNbx, "Value", nameof(FurniAmountInv));
+
+
 
             LocalFurniID = rand.Next(1498128, 9999999);
         }
@@ -268,6 +311,77 @@ namespace RetroFun.Pages
             {
                 button.Text = text;
             });
+        }
+
+        private void IRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            FurniType = "I";
+        }
+
+        private void SRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            FurniType = "S";
+        }
+
+        private void SpawnFurniInvBtn_Click(object sender, EventArgs e)
+        {
+            if (FurniType == "S")
+            {
+                SpawnFurniInventoryS("S",  FurniID);
+            }
+            else if(FurniType == "I")
+            {
+                SpawnFurniInventoryI("I",  FurniID);
+
+            }
+
+        }
+
+
+        private void SpawnFurniInventoryS(string furnitype, int furniIDinv)
+        {
+            FurniAmountInv++;
+
+            Connection.SendToClientAsync(In.InventoryItemUpdate, new object[]
+                {
+                    FurniAmountInv,
+                    furnitype,
+                    FurniAmountInv,
+                    furniIDinv,
+                    1,
+                    0,
+                    0,
+                    true,
+                    true,
+                    -1,
+                    -1,
+                    false,
+                    0,
+                    false,
+                    false
+                    });
+        }
+
+        private void SpawnFurniInventoryI(string furnitype, int furniIDinv)
+        {
+            FurniAmountInv++;
+            Connection.SendToClientAsync(In.InventoryItemUpdate, new object[]
+                    {
+                        FurniAmountInv,
+                        furnitype,
+                        FurniAmountInv,
+                        furniIDinv,
+                        6,
+                        0,
+                        PosterID,
+                        true,
+                        true,
+                        true,
+                        true,
+                        -1,
+                        false,
+                        -1
+                    });
         }
 
 
