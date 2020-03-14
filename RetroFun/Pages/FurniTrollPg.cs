@@ -71,15 +71,15 @@ namespace RetroFun.Pages
         private int _FurniIDInt10;
 
         private int _CooldownThread1 = 150;
-        private int _CooldownThread2 = 150;
-        private int _CooldownThread3 = 150;
-        private int _CooldownThread4 = 150;
-        private int _CooldownThread5 = 150;
-        private int _CooldownThread6 = 150;
-        private int _CooldownThread7 = 150;
-        private int _CooldownThread8 = 150;
-        private int _CooldownThread9 = 150;
-        private int _CooldownThread10 = 150;
+        private int _CooldownThread2 = 200;
+        private int _CooldownThread3 = 250;
+        private int _CooldownThread4 = 300;
+        private int _CooldownThread5 = 400;
+        private int _CooldownThread6 = 450;
+        private int _CooldownThread7 = 500;
+        private int _CooldownThread8 = 550;
+        private int _CooldownThread9 = 600;
+        private int _CooldownThread10 = 650;
 
         private int _GlobalCooldown = 150;
 
@@ -588,6 +588,21 @@ namespace RetroFun.Pages
         }
 
 
+        private int ThreadCooldownSafe(int Value)
+        {
+            if(Value < 10)
+            {
+                return 10;
+            }
+            else
+            {
+                return Value;
+
+            }
+
+        }
+
+
         #region threads
         private void StartThread1()
         {
@@ -600,7 +615,7 @@ namespace RetroFun.Pages
                         if (StartFurniThread1)
                         {
                             Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt1, 0);
-                            Thread.Sleep(CooldownThread1);
+                        Thread.Sleep(ThreadCooldownSafe(CooldownThread1));
                         }
                     
                     } while (StartFurniThread1) ;
@@ -618,9 +633,9 @@ namespace RetroFun.Pages
                         if (StartFurniThread2)
                         {
                             Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt2, 0);
-                            Thread.Sleep(CooldownThread2);
-                        }
-                    
+                        Thread.Sleep(ThreadCooldownSafe(CooldownThread2));
+                    }
+
                 } while (StartFurniThread2);
             }).Start();
         }
@@ -635,10 +650,10 @@ namespace RetroFun.Pages
                         if (StartFurniThread3)
                         {
                             Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt3, 0);
-                            Thread.Sleep(CooldownThread3);
+                        Thread.Sleep(ThreadCooldownSafe(CooldownThread3));
 
-                        }
-                    
+                    }
+
                 } while (StartFurniThread3);
             }).Start();
         }
@@ -653,9 +668,9 @@ namespace RetroFun.Pages
                         if (StartFurniThread4)
                         {
                             Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt4, 0);
-                            Thread.Sleep(CooldownThread4);
+                        Thread.Sleep(ThreadCooldownSafe(CooldownThread4));
 
-                        
+
                     }
                 } while (StartFurniThread4);
             }).Start();
@@ -671,10 +686,10 @@ namespace RetroFun.Pages
                         if (StartFurniThread5)
                         {
                             Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt5, 0);
-                            Thread.Sleep(CooldownThread5);
+                        Thread.Sleep(ThreadCooldownSafe(CooldownThread5));
 
-                        }
-                    
+                    }
+
                 } while (StartFurniThread5);
             }).Start();
         }
@@ -689,10 +704,10 @@ namespace RetroFun.Pages
                         if (StartFurniThread6)
                         {
                             Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt6, 0);
-                            Thread.Sleep(CooldownThread6);
+                        Thread.Sleep(ThreadCooldownSafe(CooldownThread6));
 
-                        }
-                    
+                    }
+
                 } while (StartFurniThread6);
             }).Start();
         }
@@ -707,9 +722,9 @@ namespace RetroFun.Pages
                         if (StartFurniThread7)
                         {
                             Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt7, 0);
-                            Thread.Sleep(CooldownThread7);
-                        }
-                    
+                        Thread.Sleep(ThreadCooldownSafe(CooldownThread7));
+                    }
+
                 } while (StartFurniThread7);
             }).Start();
         }
@@ -724,10 +739,10 @@ namespace RetroFun.Pages
                         if (StartFurniThread8)
                         {
                             Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt8, 0);
-                            Thread.Sleep(CooldownThread8);
+                        Thread.Sleep(ThreadCooldownSafe(CooldownThread8));
 
-                        }
-                    
+                    }
+
                 } while (StartFurniThread8);
             }).Start();
         }
@@ -741,9 +756,9 @@ namespace RetroFun.Pages
                         if (StartFurniThread9)
                         {
                             Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt9, 0);
-                            Thread.Sleep(CooldownThread9);
-                        }
-                    
+                        Thread.Sleep(ThreadCooldownSafe(CooldownThread9));
+                    }
+
                 } while (StartFurniThread9);
             }).Start();
         }
@@ -758,9 +773,9 @@ namespace RetroFun.Pages
                         if (StartFurniThread10)
                         {
                             Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt10, 0);
-                            Thread.Sleep(CooldownThread10);
-                        }
-                    
+                        Thread.Sleep(ThreadCooldownSafe(CooldownThread10));
+                    }
+
                 } while (StartFurniThread10);
             }).Start();
         }
@@ -858,7 +873,6 @@ namespace RetroFun.Pages
                     {
                         RegistrationDone();
                     }
-                    RegisterFurniAsk(3);
                     return;
                 }
             }
@@ -1086,15 +1100,15 @@ namespace RetroFun.Pages
         public void ResetCooldowns()
         {
             CooldownThread1 = 150;
-            CooldownThread2 = 150;
-            CooldownThread3 = 150;
-            CooldownThread4 = 150;
-            CooldownThread5 = 150;
-            CooldownThread6 = 150;
-            CooldownThread7 = 150;
-            CooldownThread8 = 150;
-            CooldownThread9 = 150;
-            CooldownThread10 = 150;
+            CooldownThread2 = 200;
+            CooldownThread3 = 250;
+            CooldownThread4 = 300;
+            CooldownThread5 = 400;
+            CooldownThread6 = 450;
+            CooldownThread7 = 500;
+            CooldownThread8 = 550;
+            CooldownThread9 = 600;
+            CooldownThread10 = 650;
             GlobalCooldown = 150;
         }
         private void WriteToButton(SKoreButton Button, string text)
@@ -1701,7 +1715,30 @@ namespace RetroFun.Pages
             CooldownThread10 = CooldownThread10 + 10;
         }
 
+        private void ResetDefaultCooldownsBtn_Click(object sender, EventArgs e)
+        {
+            CooldownThread1 = 150;
+            CooldownThread2 = 200;
+            CooldownThread3 = 250;
+            CooldownThread4 = 300;
+            CooldownThread5 = 400;
+            CooldownThread6 = 450;
+            CooldownThread7 = 500;
+            CooldownThread8 = 550;
+            CooldownThread9 = 600;
+            CooldownThread10 = 650;
+        }
+
+        private void ResetAllBtn_Click(object sender, EventArgs e)
+        {
+            ResetCooldowns();
+            ResetFurniIDs();
+            HaltThreads();
+        }
+
         #endregion
+
+
 
 
     }

@@ -85,6 +85,7 @@
             this.MinusFiftyBtn = new Sulakore.Components.SKoreButton();
             this.MinusTenBtn = new Sulakore.Components.SKoreButton();
             this.AddtenBtn = new Sulakore.Components.SKoreButton();
+            this.ResetDefaultCooldownsBtn = new Sulakore.Components.SKoreButton();
             this.FurnIDGroupbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FurniNbx10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FurniNbx9)).BeginInit();
@@ -245,7 +246,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Checked = true;
             this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(233, 37);
+            this.checkBox1.Location = new System.Drawing.Point(233, 38);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(22, 21);
             this.checkBox1.TabIndex = 10;
@@ -383,7 +384,7 @@
             // 
             // CooldownNbx1
             // 
-            this.CooldownNbx1.Location = new System.Drawing.Point(2, 417);
+            this.CooldownNbx1.Location = new System.Drawing.Point(6, 33);
             this.CooldownNbx1.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -405,7 +406,7 @@
             // 
             // CooldownNbx2
             // 
-            this.CooldownNbx2.Location = new System.Drawing.Point(2, 370);
+            this.CooldownNbx2.Location = new System.Drawing.Point(6, 70);
             this.CooldownNbx2.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -427,7 +428,7 @@
             // 
             // CooldownNbx3
             // 
-            this.CooldownNbx3.Location = new System.Drawing.Point(2, 329);
+            this.CooldownNbx3.Location = new System.Drawing.Point(6, 115);
             this.CooldownNbx3.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -449,7 +450,7 @@
             // 
             // CooldownNbx4
             // 
-            this.CooldownNbx4.Location = new System.Drawing.Point(2, 285);
+            this.CooldownNbx4.Location = new System.Drawing.Point(6, 161);
             this.CooldownNbx4.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -471,7 +472,7 @@
             // 
             // CooldownNbx5
             // 
-            this.CooldownNbx5.Location = new System.Drawing.Point(2, 242);
+            this.CooldownNbx5.Location = new System.Drawing.Point(6, 207);
             this.CooldownNbx5.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -493,7 +494,7 @@
             // 
             // CooldownNbx6
             // 
-            this.CooldownNbx6.Location = new System.Drawing.Point(2, 200);
+            this.CooldownNbx6.Location = new System.Drawing.Point(6, 247);
             this.CooldownNbx6.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -515,7 +516,7 @@
             // 
             // CooldownNbx7
             // 
-            this.CooldownNbx7.Location = new System.Drawing.Point(0, 161);
+            this.CooldownNbx7.Location = new System.Drawing.Point(6, 287);
             this.CooldownNbx7.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -537,7 +538,7 @@
             // 
             // CooldownNbx8
             // 
-            this.CooldownNbx8.Location = new System.Drawing.Point(0, 117);
+            this.CooldownNbx8.Location = new System.Drawing.Point(6, 330);
             this.CooldownNbx8.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -559,7 +560,7 @@
             // 
             // CooldownNbx9
             // 
-            this.CooldownNbx9.Location = new System.Drawing.Point(2, 74);
+            this.CooldownNbx9.Location = new System.Drawing.Point(6, 373);
             this.CooldownNbx9.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -581,7 +582,7 @@
             // 
             // CooldownNbx10
             // 
-            this.CooldownNbx10.Location = new System.Drawing.Point(2, 32);
+            this.CooldownNbx10.Location = new System.Drawing.Point(6, 414);
             this.CooldownNbx10.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -722,7 +723,7 @@
             // 
             // RegisterFurnIDBtn
             // 
-            this.RegisterFurnIDBtn.Location = new System.Drawing.Point(836, 224);
+            this.RegisterFurnIDBtn.Location = new System.Drawing.Point(621, 174);
             this.RegisterFurnIDBtn.Margin = new System.Windows.Forms.Padding(1);
             this.RegisterFurnIDBtn.Name = "RegisterFurnIDBtn";
             this.RegisterFurnIDBtn.Size = new System.Drawing.Size(185, 30);
@@ -795,7 +796,7 @@
             // 
             // ClearFurniIDsBtn
             // 
-            this.ClearFurniIDsBtn.Location = new System.Drawing.Point(836, 374);
+            this.ClearFurniIDsBtn.Location = new System.Drawing.Point(836, 224);
             this.ClearFurniIDsBtn.Margin = new System.Windows.Forms.Padding(1);
             this.ClearFurniIDsBtn.Name = "ClearFurniIDsBtn";
             this.ClearFurniIDsBtn.Size = new System.Drawing.Size(185, 30);
@@ -835,12 +836,13 @@
             // 
             // ResetAllBtn
             // 
-            this.ResetAllBtn.Location = new System.Drawing.Point(836, 430);
+            this.ResetAllBtn.Location = new System.Drawing.Point(836, 267);
             this.ResetAllBtn.Margin = new System.Windows.Forms.Padding(1);
             this.ResetAllBtn.Name = "ResetAllBtn";
             this.ResetAllBtn.Size = new System.Drawing.Size(185, 30);
             this.ResetAllBtn.TabIndex = 38;
             this.ResetAllBtn.Text = "Reset All";
+            this.ResetAllBtn.Click += new System.EventHandler(this.ResetAllBtn_Click);
             // 
             // StartThreadsBtn
             // 
@@ -854,48 +856,59 @@
             // 
             // AddfiftyBtn
             // 
-            this.AddfiftyBtn.Location = new System.Drawing.Point(21, 485);
+            this.AddfiftyBtn.Location = new System.Drawing.Point(770, 378);
             this.AddfiftyBtn.Margin = new System.Windows.Forms.Padding(1);
             this.AddfiftyBtn.Name = "AddfiftyBtn";
-            this.AddfiftyBtn.Size = new System.Drawing.Size(55, 30);
+            this.AddfiftyBtn.Size = new System.Drawing.Size(55, 33);
             this.AddfiftyBtn.TabIndex = 31;
             this.AddfiftyBtn.Text = "+50";
             this.AddfiftyBtn.Click += new System.EventHandler(this.AddfiftyBtn_Click);
             // 
             // MinusFiftyBtn
             // 
-            this.MinusFiftyBtn.Location = new System.Drawing.Point(89, 485);
+            this.MinusFiftyBtn.Location = new System.Drawing.Point(838, 378);
             this.MinusFiftyBtn.Margin = new System.Windows.Forms.Padding(1);
             this.MinusFiftyBtn.Name = "MinusFiftyBtn";
-            this.MinusFiftyBtn.Size = new System.Drawing.Size(55, 30);
+            this.MinusFiftyBtn.Size = new System.Drawing.Size(55, 33);
             this.MinusFiftyBtn.TabIndex = 40;
             this.MinusFiftyBtn.Text = "-50";
             this.MinusFiftyBtn.Click += new System.EventHandler(this.MinusFiftyBtn_Click);
             // 
             // MinusTenBtn
             // 
-            this.MinusTenBtn.Location = new System.Drawing.Point(89, 529);
+            this.MinusTenBtn.Location = new System.Drawing.Point(838, 422);
             this.MinusTenBtn.Margin = new System.Windows.Forms.Padding(1);
             this.MinusTenBtn.Name = "MinusTenBtn";
-            this.MinusTenBtn.Size = new System.Drawing.Size(55, 30);
+            this.MinusTenBtn.Size = new System.Drawing.Size(55, 33);
             this.MinusTenBtn.TabIndex = 42;
             this.MinusTenBtn.Text = "-10";
             this.MinusTenBtn.Click += new System.EventHandler(this.MinusTenBtn_Click);
             // 
             // AddtenBtn
             // 
-            this.AddtenBtn.Location = new System.Drawing.Point(21, 529);
+            this.AddtenBtn.Location = new System.Drawing.Point(770, 422);
             this.AddtenBtn.Margin = new System.Windows.Forms.Padding(1);
             this.AddtenBtn.Name = "AddtenBtn";
-            this.AddtenBtn.Size = new System.Drawing.Size(55, 30);
+            this.AddtenBtn.Size = new System.Drawing.Size(55, 33);
             this.AddtenBtn.TabIndex = 41;
             this.AddtenBtn.Text = "+10";
             this.AddtenBtn.Click += new System.EventHandler(this.AddtenBtn_Click);
+            // 
+            // ResetDefaultCooldownsBtn
+            // 
+            this.ResetDefaultCooldownsBtn.Location = new System.Drawing.Point(742, 474);
+            this.ResetDefaultCooldownsBtn.Margin = new System.Windows.Forms.Padding(1);
+            this.ResetDefaultCooldownsBtn.Name = "ResetDefaultCooldownsBtn";
+            this.ResetDefaultCooldownsBtn.Size = new System.Drawing.Size(205, 33);
+            this.ResetDefaultCooldownsBtn.TabIndex = 43;
+            this.ResetDefaultCooldownsBtn.Text = "Restore Default Cooldown";
+            this.ResetDefaultCooldownsBtn.Click += new System.EventHandler(this.ResetDefaultCooldownsBtn_Click);
             // 
             // FurniTrollPg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ResetDefaultCooldownsBtn);
             this.Controls.Add(this.MinusTenBtn);
             this.Controls.Add(this.AddtenBtn);
             this.Controls.Add(this.MinusFiftyBtn);
@@ -1004,5 +1017,6 @@
         private Sulakore.Components.SKoreButton MinusFiftyBtn;
         private Sulakore.Components.SKoreButton MinusTenBtn;
         private Sulakore.Components.SKoreButton AddtenBtn;
+        private Sulakore.Components.SKoreButton ResetDefaultCooldownsBtn;
     }
 }
