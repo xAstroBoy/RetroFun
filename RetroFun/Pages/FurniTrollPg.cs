@@ -1517,7 +1517,48 @@ namespace RetroFun.Pages
             CooldownThread9 = CooldownThread9 + 50;
             CooldownThread10 = CooldownThread10 + 50;
         }
+        private void MinusFiftyBtn_Click(object sender, EventArgs e)
+        {
+            CooldownThread1 = CooldownThread1 - 50;
+            CooldownThread2 = CooldownThread2 - 50;
+            CooldownThread3 = CooldownThread3 - 50;
+            CooldownThread4 = CooldownThread4 - 50;
+            CooldownThread5 = CooldownThread5 - 50;
+            CooldownThread6 = CooldownThread6 - 50;
+            CooldownThread7 = CooldownThread7 - 50;
+            CooldownThread8 = CooldownThread8 - 50;
+            CooldownThread9 = CooldownThread9 - 50;
+            CooldownThread10 = CooldownThread10 - 50;
+        }
 
+
+        private void MinusTenBtn_Click(object sender, EventArgs e)
+        {
+            CooldownThread1 = CooldownThread1 - 10;
+            CooldownThread2 = CooldownThread2 - 10;
+            CooldownThread3 = CooldownThread3 - 10;
+            CooldownThread4 = CooldownThread4 - 10;
+            CooldownThread5 = CooldownThread5 - 10;
+            CooldownThread6 = CooldownThread6 - 10;
+            CooldownThread7 = CooldownThread7 - 10;
+            CooldownThread8 = CooldownThread8 - 10;
+            CooldownThread9 = CooldownThread9 - 10;
+            CooldownThread10 = CooldownThread10 - 10;
+        }
+
+        private void AddtenBtn_Click(object sender, EventArgs e)
+        {
+            CooldownThread1 = CooldownThread1 + 10;
+            CooldownThread2 = CooldownThread2 + 10;
+            CooldownThread3 = CooldownThread3 + 10;
+            CooldownThread4 = CooldownThread4 + 10;
+            CooldownThread5 = CooldownThread5 + 10;
+            CooldownThread6 = CooldownThread6 + 10;
+            CooldownThread7 = CooldownThread7 + 10;
+            CooldownThread8 = CooldownThread8 + 10;
+            CooldownThread9 = CooldownThread9 + 10;
+            CooldownThread10 = CooldownThread10 + 10;
+        }
 
         #endregion
 
