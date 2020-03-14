@@ -87,3 +87,4 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csprojAssem
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.FurniSpawnPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.BottomPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.PersonalPage.resources
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.FurniTrollPg.resources

@@ -78,6 +78,19 @@
             this.BlockMessageForYouChbx = new System.Windows.Forms.CheckBox();
             this.ConvertMessageForYouChbx = new System.Windows.Forms.CheckBox();
             this.BlockStaffAlertsChbx = new System.Windows.Forms.CheckBox();
+            this.StartPollBtn = new Sulakore.Components.SKoreButton();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.sKoreButton1 = new Sulakore.Components.SKoreButton();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.InterceptMachineBtn = new Sulakore.Components.SKoreButton();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.SignCountGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SignCountCoolDown)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -86,6 +99,10 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DancesCooldownNBx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrollLookNbx)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.SuspendLayout();
             // 
             // NoRemoveFriendOnReport
@@ -110,6 +127,7 @@
             this.SignCountGroup.Controls.Add(this.ZeroChbx);
             this.SignCountGroup.Controls.Add(this.TenChBx);
             this.SignCountGroup.Controls.Add(this.SixChbx);
+            this.SignCountGroup.Controls.Add(this.CountingBtn);
             this.SignCountGroup.Controls.Add(this.SevenChbx);
             this.SignCountGroup.Controls.Add(this.EightChbx);
             this.SignCountGroup.Controls.Add(this.NineChbx);
@@ -117,6 +135,9 @@
             this.SignCountGroup.Controls.Add(this.FourChbx);
             this.SignCountGroup.Controls.Add(this.TwoChbx);
             this.SignCountGroup.Controls.Add(this.OneChbx);
+            this.SignCountGroup.Controls.Add(this.Label2);
+            this.SignCountGroup.Controls.Add(this.SignCountBtn);
+            this.SignCountGroup.Controls.Add(this.SignCountCoolDown);
             resources.ApplyResources(this.SignCountGroup, "SignCountGroup");
             this.SignCountGroup.Name = "SignCountGroup";
             this.SignCountGroup.TabStop = false;
@@ -283,6 +304,9 @@
             this.groupBox1.Controls.Add(this.Gesture_sleepChbx);
             this.groupBox1.Controls.Add(this.Gesture_WaveChbx);
             this.groupBox1.Controls.Add(this.Gesture_ThumbsUpChbx);
+            this.groupBox1.Controls.Add(this.GestureOnLoopBtn);
+            this.groupBox1.Controls.Add(this.GestureCooldownNbx);
+            this.groupBox1.Controls.Add(this.label1);
             resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
@@ -518,32 +542,142 @@
             this.BlockStaffAlertsChbx.Name = "BlockStaffAlertsChbx";
             this.BlockStaffAlertsChbx.UseVisualStyleBackColor = true;
             // 
+            // StartPollBtn
+            // 
+            resources.ApplyResources(this.StartPollBtn, "StartPollBtn");
+            this.StartPollBtn.Name = "StartPollBtn";
+            this.StartPollBtn.Click += new System.EventHandler(this.StartPollBtn_Click);
+
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.checkBox1);
+            this.groupBox3.Controls.Add(this.checkBox2);
+            this.groupBox3.Controls.Add(this.checkBox3);
+            this.groupBox3.Controls.Add(this.checkBox4);
+            this.groupBox3.Controls.Add(this.checkBox5);
+            this.groupBox3.Controls.Add(this.sKoreButton1);
+            this.groupBox3.Controls.Add(this.DancesCooldownNBx);
+            this.groupBox3.Controls.Add(this.numericUpDown1);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.DanceLoopBtn);
+            this.groupBox3.Controls.Add(this.label6);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // checkBox1
+            // 
+            resources.ApplyResources(this.checkBox1, "checkBox1");
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            resources.ApplyResources(this.checkBox2, "checkBox2");
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            resources.ApplyResources(this.checkBox3, "checkBox3");
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            resources.ApplyResources(this.checkBox4, "checkBox4");
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            resources.ApplyResources(this.checkBox5, "checkBox5");
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown1
+            // 
+            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Value = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // sKoreButton1
+            // 
+            resources.ApplyResources(this.sKoreButton1, "sKoreButton1");
+            this.sKoreButton1.Name = "sKoreButton1";
+            this.sKoreButton1.Click += new System.EventHandler(this.DanceLoopBtn_Click);
+            // 
+            // numericUpDown2
+            // 
+            resources.ApplyResources(this.numericUpDown2, "numericUpDown2");
+            this.numericUpDown2.Name = "numericUpDown2";
+            // 
+            // InterceptMachineBtn
+            // 
+            resources.ApplyResources(this.InterceptMachineBtn, "InterceptMachineBtn");
+            this.InterceptMachineBtn.Name = "InterceptMachineBtn";
+            // 
+            // numericUpDown3
+            // 
+            resources.ApplyResources(this.numericUpDown3, "numericUpDown3");
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Value = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+            // 
             // MiscellaneousPage
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.numericUpDown3);
+            this.Controls.Add(this.InterceptMachineBtn);
+            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.StartPollBtn);
             this.Controls.Add(this.BlockStaffAlertsChbx);
             this.Controls.Add(this.ConvertMessageForYouChbx);
             this.Controls.Add(this.BlockMessageForYouChbx);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.TrollLookNbx);
             this.Controls.Add(this.TrollLookBtn);
-            this.Controls.Add(this.DanceLoopBtn);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.DancesCooldownNBx);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.CountingBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.SitCoolDownNbx);
             this.Controls.Add(this.SitOnLoopBtn);
             this.Controls.Add(this.UserSitBtn);
-            this.Controls.Add(this.GestureOnLoopBtn);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.GestureCooldownNbx);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.Label2);
-            this.Controls.Add(this.SignCountCoolDown);
-            this.Controls.Add(this.SignCountBtn);
             this.Controls.Add(this.SignCountGroup);
             this.Controls.Add(this.NoRemoveFriendOnReport);
             this.Name = "MiscellaneousPage";
@@ -558,6 +692,11 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DancesCooldownNBx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrollLookNbx)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -617,5 +756,18 @@
         private System.Windows.Forms.CheckBox BlockMessageForYouChbx;
         private System.Windows.Forms.CheckBox ConvertMessageForYouChbx;
         private System.Windows.Forms.CheckBox BlockStaffAlertsChbx;
+        private Sulakore.Components.SKoreButton StartPollBtn;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private Sulakore.Components.SKoreButton sKoreButton1;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private Sulakore.Components.SKoreButton InterceptMachineBtn;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
     }
 }

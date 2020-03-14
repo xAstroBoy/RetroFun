@@ -18,6 +18,7 @@ namespace RetroFun.Pages
 
         private string OldLook = "";
 
+
         #region Vars
 
         private bool SignCountEnabled;
@@ -27,6 +28,7 @@ namespace RetroFun.Pages
         private bool SitModeEnabled;
         private bool DanceLoopEnabled;
         private bool TrollLookMode;
+        private bool SpamMachineLoopMode;
 
         private readonly string TrollLook1 = "hr-155-42.ea-1333-33.ha-3786-62.ch-201410-89.sh-3333-3333.ca-3333-33-33.lg-44689-82.wa-3333-333.hd-209-1";
         private readonly string TrollLook2 = "hr-893-42.ea-1333-33.ha-3786-62.sh-6298462-82.wa-3333-333.ca-3333-33-33.lg-5772038-82-62.ch-987462876-89.hd-209-1";
@@ -483,7 +485,6 @@ namespace RetroFun.Pages
 
         private bool _ConvertMessageForYou;
 
-
         public bool ConvertMessageForYou
         {
             get => _ConvertMessageForYou;
@@ -604,6 +605,7 @@ namespace RetroFun.Pages
             if (Program.Master != null)
             {
                 Triggers.InAttach(In.MessagesForYou, HandleMessageForYou);
+
             }
 
         }
@@ -655,7 +657,7 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
-                    UserSit();
+                    Connection.SendToServerAsync(Out.RoomUserSit);
                     Thread.Sleep(SitsCooldown);
                 } while (SitModeEnabled);
             }).Start();
@@ -956,14 +958,6 @@ namespace RetroFun.Pages
             }
         }
 
-        private void UserSit()
-        {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(Out.RoomUserSit);
-            }
-        }
-
         public bool IsReceiving => true;
 
         public void OnLatencyTest(DataInterceptedEventArgs e)
@@ -1037,7 +1031,7 @@ namespace RetroFun.Pages
 
         private void UserSitBtn_Click(object sender, EventArgs e)
         {
-            UserSit();
+            Connection.SendToServerAsync(Out.RoomUserSit);
         }
 
         private void SitCheck()
@@ -1260,6 +1254,18 @@ namespace RetroFun.Pages
                 }
             }).Start();
         }
+
+        private void StartPollBtn_Click(object sender, EventArgs e)
+        {
+            StartCSPoll();
+        }
+
+        private void StartCSPoll()
+        {
+            Connection.SendToClientAsync(In.SimplePollStart, "MATCHING_POLL", 2505, 8451, 15000, 8451, 3, 6, "RetroFun : Select your Answer to show SS", 0, 6, 0, 0);
+        }
+
+
 
 
     }

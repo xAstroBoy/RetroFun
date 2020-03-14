@@ -107,6 +107,12 @@
     <Compile Include="Pages\FurniSpawnPage.Designer.cs">
       <DependentUpon>FurniSpawnPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\FurniTrollPg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\FurniTrollPg.Designer.cs">
+      <DependentUpon>FurniTrollPg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\GiftEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -208,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\FurniSpawnPage.resx">
       <DependentUpon>FurniSpawnPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\FurniTrollPg.resx">
+      <DependentUpon>FurniTrollPg.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\GiftEditor.resx">
       <DependentUpon>GiftEditor.cs</DependentUpon>
