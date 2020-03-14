@@ -1519,31 +1519,172 @@ namespace RetroFun.Pages
         }
         private void MinusFiftyBtn_Click(object sender, EventArgs e)
         {
-            CooldownThread1 = CooldownThread1 - 50;
-            CooldownThread2 = CooldownThread2 - 50;
-            CooldownThread3 = CooldownThread3 - 50;
-            CooldownThread4 = CooldownThread4 - 50;
-            CooldownThread5 = CooldownThread5 - 50;
-            CooldownThread6 = CooldownThread6 - 50;
-            CooldownThread7 = CooldownThread7 - 50;
-            CooldownThread8 = CooldownThread8 - 50;
-            CooldownThread9 = CooldownThread9 - 50;
-            CooldownThread10 = CooldownThread10 - 50;
+            if (CooldownThread1 < 10)
+            {
+                CooldownThread1 = 10;
+            }
+            else
+            {
+                CooldownThread1 = CooldownThread1 - 50;
+            }
+            if (CooldownThread2 < 10)
+            {
+                CooldownThread2 = 10;
+            }
+            else
+            {
+                CooldownThread2 = CooldownThread2 - 50;
+            }
+            if (CooldownThread3 < 10)
+            {
+                CooldownThread3 = 10;
+            }
+            else
+            {
+                CooldownThread3 = CooldownThread3 - 50;
+            }
+            if (CooldownThread4 < 10)
+            {
+                CooldownThread4 = 10;
+            }
+            else
+            {
+                CooldownThread4 = CooldownThread4 - 50;
+            }
+            if (CooldownThread5 < 10)
+            {
+                CooldownThread5 = 10;
+            }
+            else
+            {
+                CooldownThread5 = CooldownThread5 - 50;
+            }
+            if (CooldownThread6 < 10)
+            {
+                CooldownThread6 = 10;
+            }
+            else
+            {
+                CooldownThread6 = CooldownThread6 - 50;
+            }
+            if (CooldownThread7 < 10)
+            {
+                CooldownThread7 = 10;
+            }
+            else
+            {
+                CooldownThread7 = CooldownThread7 - 50;
+            }
+            if (CooldownThread8 < 10)
+            {
+                CooldownThread8 = 10;
+            }
+            else
+            {
+                CooldownThread8 = CooldownThread8 - 50;
+            }
+            if (CooldownThread9 < 10)
+            {
+                CooldownThread9 = 10;
+            }
+            else
+            {
+                CooldownThread9 = CooldownThread9 - 50;
+            }
+            if (CooldownThread10 < 10)
+            {
+                CooldownThread10 = 10;
+            }
+            else
+            {
+                CooldownThread10 = CooldownThread10 - 50;
+            }
         }
 
 
         private void MinusTenBtn_Click(object sender, EventArgs e)
         {
-            CooldownThread1 = CooldownThread1 - 10;
-            CooldownThread2 = CooldownThread2 - 10;
-            CooldownThread3 = CooldownThread3 - 10;
-            CooldownThread4 = CooldownThread4 - 10;
-            CooldownThread5 = CooldownThread5 - 10;
-            CooldownThread6 = CooldownThread6 - 10;
-            CooldownThread7 = CooldownThread7 - 10;
-            CooldownThread8 = CooldownThread8 - 10;
-            CooldownThread9 = CooldownThread9 - 10;
-            CooldownThread10 = CooldownThread10 - 10;
+            if (CooldownThread1 < 10)
+            {
+                CooldownThread1 = 10;
+            }
+            else
+            {
+                CooldownThread1 = CooldownThread1 - 10;
+            }
+            if (CooldownThread2 < 10)
+            {
+                CooldownThread2 = 10;
+            }
+            else
+            {
+                CooldownThread2 = CooldownThread2 - 10;
+            }
+            if (CooldownThread3 < 10)
+            {
+                CooldownThread3 = 10;
+            }
+            else
+            {
+                CooldownThread3 = CooldownThread3 - 10;
+            }
+            if (CooldownThread4 < 10)
+            {
+                CooldownThread4 = 10;
+            }
+            else
+            {
+                CooldownThread4 = CooldownThread4 - 10;
+            }
+            if (CooldownThread5 < 10)
+            {
+                CooldownThread5 = 10;
+            }
+            else
+            {
+                CooldownThread5 = CooldownThread5 - 10;
+            }
+            if (CooldownThread6 < 10)
+            {
+                CooldownThread6 = 10;
+            }
+            else
+            {
+                CooldownThread6 = CooldownThread6 - 10;
+            }
+            if (CooldownThread7 < 10)
+            {
+                CooldownThread7 = 10;
+            }
+            else
+            {
+                CooldownThread7 = CooldownThread7 - 10;
+            }
+            if (CooldownThread8 < 10)
+            {
+                CooldownThread8 = 10;
+            }
+            else
+            {
+                CooldownThread8 = CooldownThread8 - 10;
+            }
+            if (CooldownThread9 < 10)
+            {
+                CooldownThread9 = 10;
+            }
+            else
+            {
+                CooldownThread9 = CooldownThread9 - 10;
+            }
+            if (CooldownThread10 < 10)
+            {
+                CooldownThread10 = 10;
+            }
+            else
+            {
+                CooldownThread10 = CooldownThread10 - 10;
+            }
+
         }
 
         private void AddtenBtn_Click(object sender, EventArgs e)
