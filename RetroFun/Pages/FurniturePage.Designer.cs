@@ -30,45 +30,40 @@
         {
             this.RemoverGrbx = new System.Windows.Forms.GroupBox();
             this.FurniPickChbx = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.RotationRight = new System.Windows.Forms.RadioButton();
-            this.rotationLeft = new System.Windows.Forms.RadioButton();
-            this.RotationDown = new System.Windows.Forms.RadioButton();
-            this.RotationUp = new System.Windows.Forms.RadioButton();
-            this.ToggleFurniRotCS = new System.Windows.Forms.CheckBox();
             this.DoubleClickFurnitureRemovalChbx = new System.Windows.Forms.CheckBox();
+            this.RestoreFurnisBtn = new Sulakore.Components.SKoreButton();
             this.FurnitureIDTxt = new Sulakore.Components.SKoreLabelBox();
             this.RemoveWallItemBtn = new Sulakore.Components.SKoreButton();
             this.RemoveFloorItemBtn = new Sulakore.Components.SKoreButton();
-            this.RestoreFurnisBtn = new Sulakore.Components.SKoreButton();
-            this.ExchangeCreditChbx = new System.Windows.Forms.CheckBox();
-            this.ExchangeMPChbx = new System.Windows.Forms.CheckBox();
+            this.FloorFurniIDNbx = new System.Windows.Forms.NumericUpDown();
+            this.FloorFurniXNbx = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.MultiplierNbx = new System.Windows.Forms.NumericUpDown();
-            this.CreditsIDNbx = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
+            this.FloorFurniYNbx = new System.Windows.Forms.NumericUpDown();
+            this.RotationUp = new System.Windows.Forms.RadioButton();
+            this.RotationDown = new System.Windows.Forms.RadioButton();
+            this.rotationLeft = new System.Windows.Forms.RadioButton();
+            this.RotationRight = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LiveEditFloorFurniBtn = new Sulakore.Components.SKoreButton();
+            this.CaptureFloorFurniBtn = new Sulakore.Components.SKoreButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.RedeemCreditsBtn = new Sulakore.Components.SKoreButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.ReedemGiftBtn = new Sulakore.Components.SKoreButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.GiftExchangerIDNBx = new System.Windows.Forms.NumericUpDown();
-            this.AutoGiftExchangerBtn = new System.Windows.Forms.CheckBox();
+            this.FloorFurniLiveEditCooldownNbx = new System.Windows.Forms.NumericUpDown();
             this.RemoverGrbx.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorFurniIDNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorFurniXNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorFurniYNbx)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MultiplierNbx)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CreditsIDNbx)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GiftExchangerIDNBx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorFurniLiveEditCooldownNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // RemoverGrbx
             // 
             this.RemoverGrbx.Controls.Add(this.FurniPickChbx);
-            this.RemoverGrbx.Controls.Add(this.groupBox1);
-            this.RemoverGrbx.Controls.Add(this.ToggleFurniRotCS);
             this.RemoverGrbx.Controls.Add(this.DoubleClickFurnitureRemovalChbx);
+            this.RemoverGrbx.Controls.Add(this.RestoreFurnisBtn);
             this.RemoverGrbx.Controls.Add(this.FurnitureIDTxt);
             this.RemoverGrbx.Controls.Add(this.RemoveWallItemBtn);
             this.RemoverGrbx.Controls.Add(this.RemoveFloorItemBtn);
@@ -76,7 +71,7 @@
             this.RemoverGrbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RemoverGrbx.Name = "RemoverGrbx";
             this.RemoverGrbx.Padding = new System.Windows.Forms.Padding(4, 5, 4, 9);
-            this.RemoverGrbx.Size = new System.Drawing.Size(378, 249);
+            this.RemoverGrbx.Size = new System.Drawing.Size(378, 260);
             this.RemoverGrbx.TabIndex = 0;
             this.RemoverGrbx.TabStop = false;
             this.RemoverGrbx.Text = "Remover";
@@ -92,76 +87,6 @@
             this.FurniPickChbx.Text = "Tell FurniID Picked.";
             this.FurniPickChbx.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.RotationRight);
-            this.groupBox1.Controls.Add(this.rotationLeft);
-            this.groupBox1.Controls.Add(this.RotationDown);
-            this.groupBox1.Controls.Add(this.RotationUp);
-            this.groupBox1.Location = new System.Drawing.Point(214, 103);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox1.Size = new System.Drawing.Size(164, 145);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Rotation";
-            this.groupBox1.Visible = false;
-            // 
-            // RotationRight
-            // 
-            this.RotationRight.AutoSize = true;
-            this.RotationRight.Location = new System.Drawing.Point(117, 71);
-            this.RotationRight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RotationRight.Name = "RotationRight";
-            this.RotationRight.Size = new System.Drawing.Size(21, 20);
-            this.RotationRight.TabIndex = 4;
-            this.RotationRight.UseVisualStyleBackColor = true;
-            // 
-            // rotationLeft
-            // 
-            this.rotationLeft.AutoSize = true;
-            this.rotationLeft.Location = new System.Drawing.Point(14, 72);
-            this.rotationLeft.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.rotationLeft.Name = "rotationLeft";
-            this.rotationLeft.Size = new System.Drawing.Size(21, 20);
-            this.rotationLeft.TabIndex = 3;
-            this.rotationLeft.UseVisualStyleBackColor = true;
-            // 
-            // RotationDown
-            // 
-            this.RotationDown.AutoSize = true;
-            this.RotationDown.Location = new System.Drawing.Point(68, 112);
-            this.RotationDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RotationDown.Name = "RotationDown";
-            this.RotationDown.Size = new System.Drawing.Size(21, 20);
-            this.RotationDown.TabIndex = 2;
-            this.RotationDown.UseVisualStyleBackColor = true;
-            // 
-            // RotationUp
-            // 
-            this.RotationUp.AutoSize = true;
-            this.RotationUp.Checked = true;
-            this.RotationUp.Location = new System.Drawing.Point(68, 29);
-            this.RotationUp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RotationUp.Name = "RotationUp";
-            this.RotationUp.Size = new System.Drawing.Size(21, 20);
-            this.RotationUp.TabIndex = 1;
-            this.RotationUp.TabStop = true;
-            this.RotationUp.UseVisualStyleBackColor = true;
-            // 
-            // ToggleFurniRotCS
-            // 
-            this.ToggleFurniRotCS.AutoSize = true;
-            this.ToggleFurniRotCS.Location = new System.Drawing.Point(14, 203);
-            this.ToggleFurniRotCS.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ToggleFurniRotCS.Name = "ToggleFurniRotCS";
-            this.ToggleFurniRotCS.Size = new System.Drawing.Size(204, 24);
-            this.ToggleFurniRotCS.TabIndex = 5;
-            this.ToggleFurniRotCS.Text = "Enable Rotate Furni CS";
-            this.ToggleFurniRotCS.UseVisualStyleBackColor = true;
-            this.ToggleFurniRotCS.Visible = false;
-            // 
             // DoubleClickFurnitureRemovalChbx
             // 
             this.DoubleClickFurnitureRemovalChbx.AutoSize = true;
@@ -172,7 +97,16 @@
             this.DoubleClickFurnitureRemovalChbx.TabIndex = 4;
             this.DoubleClickFurnitureRemovalChbx.Text = "Enable Pick up furni CS";
             this.DoubleClickFurnitureRemovalChbx.UseVisualStyleBackColor = true;
-            this.DoubleClickFurnitureRemovalChbx.CheckedChanged += new System.EventHandler(this.DoubleClickFurnitureRemovalChbx_CheckedChanged);
+            // 
+            // RestoreFurnisBtn
+            // 
+            this.RestoreFurnisBtn.Location = new System.Drawing.Point(14, 213);
+            this.RestoreFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RestoreFurnisBtn.Name = "RestoreFurnisBtn";
+            this.RestoreFurnisBtn.Size = new System.Drawing.Size(278, 34);
+            this.RestoreFurnisBtn.TabIndex = 5;
+            this.RestoreFurnisBtn.Text = "Revert All CS Edits.";
+            this.RestoreFurnisBtn.Click += new System.EventHandler(this.RestoreFurnisBtn_Click);
             // 
             // FurnitureIDTxt
             // 
@@ -208,193 +142,212 @@
             this.RemoveFloorItemBtn.Text = "Remove Floor Item";
             this.RemoveFloorItemBtn.Click += new System.EventHandler(this.RemoveFloorItemBtn_Click);
             // 
-            // RestoreFurnisBtn
+            // FloorFurniIDNbx
             // 
-            this.RestoreFurnisBtn.Location = new System.Drawing.Point(18, 285);
-            this.RestoreFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RestoreFurnisBtn.Name = "RestoreFurnisBtn";
-            this.RestoreFurnisBtn.Size = new System.Drawing.Size(278, 34);
-            this.RestoreFurnisBtn.TabIndex = 5;
-            this.RestoreFurnisBtn.Text = "Revert All Edits.";
-            this.RestoreFurnisBtn.Click += new System.EventHandler(this.RestoreFurnisBtn_Click);
+            this.FloorFurniIDNbx.Location = new System.Drawing.Point(38, 24);
+            this.FloorFurniIDNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.FloorFurniIDNbx.Name = "FloorFurniIDNbx";
+            this.FloorFurniIDNbx.Size = new System.Drawing.Size(177, 26);
+            this.FloorFurniIDNbx.TabIndex = 6;
             // 
-            // ExchangeCreditChbx
+            // FloorFurniXNbx
             // 
-            this.ExchangeCreditChbx.AutoSize = true;
-            this.ExchangeCreditChbx.Location = new System.Drawing.Point(34, 57);
-            this.ExchangeCreditChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ExchangeCreditChbx.Name = "ExchangeCreditChbx";
-            this.ExchangeCreditChbx.Size = new System.Drawing.Size(233, 24);
-            this.ExchangeCreditChbx.TabIndex = 6;
-            this.ExchangeCreditChbx.Text = "Automatic Credit Exchanger";
-            this.ExchangeCreditChbx.UseVisualStyleBackColor = true;
-            // 
-            // ExchangeMPChbx
-            // 
-            this.ExchangeMPChbx.AutoSize = true;
-            this.ExchangeMPChbx.Location = new System.Drawing.Point(34, 185);
-            this.ExchangeMPChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ExchangeMPChbx.Name = "ExchangeMPChbx";
-            this.ExchangeMPChbx.Size = new System.Drawing.Size(218, 24);
-            this.ExchangeMPChbx.TabIndex = 7;
-            this.ExchangeMPChbx.Text = "Exchange Credit Multiplier";
-            this.ExchangeMPChbx.UseVisualStyleBackColor = true;
+            this.FloorFurniXNbx.Location = new System.Drawing.Point(38, 87);
+            this.FloorFurniXNbx.Maximum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            0});
+            this.FloorFurniXNbx.Name = "FloorFurniXNbx";
+            this.FloorFurniXNbx.Size = new System.Drawing.Size(84, 26);
+            this.FloorFurniXNbx.TabIndex = 7;
+            this.FloorFurniXNbx.ValueChanged += new System.EventHandler(this.FloorFurniXNbx_ValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 215);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(34, 64);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 20);
+            this.label1.Size = new System.Drawing.Size(20, 20);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Multiplier";
-            // 
-            // MultiplierNbx
-            // 
-            this.MultiplierNbx.Location = new System.Drawing.Point(34, 242);
-            this.MultiplierNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MultiplierNbx.Maximum = new decimal(new int[] {
-            int.MaxValue,
-            0,
-            0,
-            0});
-            this.MultiplierNbx.Name = "MultiplierNbx";
-            this.MultiplierNbx.Size = new System.Drawing.Size(222, 26);
-            this.MultiplierNbx.TabIndex = 9;
-            // 
-            // CreditsIDNbx
-            // 
-            this.CreditsIDNbx.Location = new System.Drawing.Point(34, 131);
-            this.CreditsIDNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.CreditsIDNbx.Maximum = new decimal(new int[] {
-            int.MaxValue,
-            0,
-            0,
-            0});
-            this.CreditsIDNbx.Name = "CreditsIDNbx";
-            this.CreditsIDNbx.Size = new System.Drawing.Size(222, 26);
-            this.CreditsIDNbx.TabIndex = 10;
+            this.label1.Text = "X";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 102);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(144, 64);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 20);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Credit ID";
+            this.label2.Size = new System.Drawing.Size(20, 20);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Y";
+            // 
+            // FloorFurniYNbx
+            // 
+            this.FloorFurniYNbx.Location = new System.Drawing.Point(148, 87);
+            this.FloorFurniYNbx.Maximum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            0});
+            this.FloorFurniYNbx.Name = "FloorFurniYNbx";
+            this.FloorFurniYNbx.Size = new System.Drawing.Size(84, 26);
+            this.FloorFurniYNbx.TabIndex = 10;
+            this.FloorFurniYNbx.ValueChanged += new System.EventHandler(this.FloorFurniYNbx_ValueChanged);
+            // 
+            // RotationUp
+            // 
+            this.RotationUp.AutoSize = true;
+            this.RotationUp.Checked = true;
+            this.RotationUp.Location = new System.Drawing.Point(68, 29);
+            this.RotationUp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RotationUp.Name = "RotationUp";
+            this.RotationUp.Size = new System.Drawing.Size(21, 20);
+            this.RotationUp.TabIndex = 1;
+            this.RotationUp.TabStop = true;
+            this.RotationUp.UseVisualStyleBackColor = true;
+            this.RotationUp.CheckedChanged += new System.EventHandler(this.RotationUp_CheckedChanged);
+            // 
+            // RotationDown
+            // 
+            this.RotationDown.AutoSize = true;
+            this.RotationDown.Location = new System.Drawing.Point(68, 112);
+            this.RotationDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RotationDown.Name = "RotationDown";
+            this.RotationDown.Size = new System.Drawing.Size(21, 20);
+            this.RotationDown.TabIndex = 2;
+            this.RotationDown.UseVisualStyleBackColor = true;
+            this.RotationDown.CheckedChanged += new System.EventHandler(this.RotationDown_CheckedChanged);
+            // 
+            // rotationLeft
+            // 
+            this.rotationLeft.AutoSize = true;
+            this.rotationLeft.Location = new System.Drawing.Point(14, 72);
+            this.rotationLeft.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.rotationLeft.Name = "rotationLeft";
+            this.rotationLeft.Size = new System.Drawing.Size(21, 20);
+            this.rotationLeft.TabIndex = 3;
+            this.rotationLeft.UseVisualStyleBackColor = true;
+            this.rotationLeft.CheckedChanged += new System.EventHandler(this.rotationLeft_CheckedChanged);
+            // 
+            // RotationRight
+            // 
+            this.RotationRight.AutoSize = true;
+            this.RotationRight.Location = new System.Drawing.Point(117, 71);
+            this.RotationRight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RotationRight.Name = "RotationRight";
+            this.RotationRight.Size = new System.Drawing.Size(21, 20);
+            this.RotationRight.TabIndex = 4;
+            this.RotationRight.UseVisualStyleBackColor = true;
+            this.RotationRight.CheckedChanged += new System.EventHandler(this.RotationRight_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.RotationRight);
+            this.groupBox1.Controls.Add(this.rotationLeft);
+            this.groupBox1.Controls.Add(this.RotationDown);
+            this.groupBox1.Controls.Add(this.RotationUp);
+            this.groupBox1.Location = new System.Drawing.Point(176, 129);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Size = new System.Drawing.Size(164, 145);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Rotation";
+            // 
+            // LiveEditFloorFurniBtn
+            // 
+            this.LiveEditFloorFurniBtn.Location = new System.Drawing.Point(7, 241);
+            this.LiveEditFloorFurniBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LiveEditFloorFurniBtn.Name = "LiveEditFloorFurniBtn";
+            this.LiveEditFloorFurniBtn.Size = new System.Drawing.Size(157, 34);
+            this.LiveEditFloorFurniBtn.TabIndex = 7;
+            this.LiveEditFloorFurniBtn.Text = "Live Edit : OFF";
+            this.LiveEditFloorFurniBtn.Click += new System.EventHandler(this.LiveEditFloorFurniBtn_Click);
+            // 
+            // CaptureFloorFurniBtn
+            // 
+            this.CaptureFloorFurniBtn.Location = new System.Drawing.Point(176, 307);
+            this.CaptureFloorFurniBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CaptureFloorFurniBtn.Name = "CaptureFloorFurniBtn";
+            this.CaptureFloorFurniBtn.Size = new System.Drawing.Size(157, 34);
+            this.CaptureFloorFurniBtn.TabIndex = 11;
+            this.CaptureFloorFurniBtn.Text = "Capture Furni : OFF";
+            this.CaptureFloorFurniBtn.Click += new System.EventHandler(this.CaptureFloorFurniBtn_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.RedeemCreditsBtn);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.FloorFurniLiveEditCooldownNbx);
+            this.groupBox2.Controls.Add(this.CaptureFloorFurniBtn);
+            this.groupBox2.Controls.Add(this.LiveEditFloorFurniBtn);
+            this.groupBox2.Controls.Add(this.FloorFurniYNbx);
             this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.CreditsIDNbx);
-            this.groupBox2.Controls.Add(this.MultiplierNbx);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.ExchangeMPChbx);
-            this.groupBox2.Controls.Add(this.ExchangeCreditChbx);
-            this.groupBox2.Location = new System.Drawing.Point(398, 11);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Controls.Add(this.FloorFurniXNbx);
+            this.groupBox2.Controls.Add(this.FloorFurniIDNbx);
+            this.groupBox2.Controls.Add(this.groupBox1);
+            this.groupBox2.Location = new System.Drawing.Point(450, 14);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(282, 363);
+            this.groupBox2.Size = new System.Drawing.Size(340, 349);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Credits Reedemer";
-            // 
-            // RedeemCreditsBtn
-            // 
-            this.RedeemCreditsBtn.Location = new System.Drawing.Point(34, 309);
-            this.RedeemCreditsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RedeemCreditsBtn.Name = "RedeemCreditsBtn";
-            this.RedeemCreditsBtn.Size = new System.Drawing.Size(195, 31);
-            this.RedeemCreditsBtn.TabIndex = 12;
-            this.RedeemCreditsBtn.Text = "Redeem Credit.";
-            this.RedeemCreditsBtn.Click += new System.EventHandler(this.RedeemCreditsBtn_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.ReedemGiftBtn);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.GiftExchangerIDNBx);
-            this.groupBox3.Controls.Add(this.AutoGiftExchangerBtn);
-            this.groupBox3.Location = new System.Drawing.Point(724, 11);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Size = new System.Drawing.Size(282, 242);
-            this.groupBox3.TabIndex = 13;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Gift Exchanger";
-            // 
-            // ReedemGiftBtn
-            // 
-            this.ReedemGiftBtn.Location = new System.Drawing.Point(34, 185);
-            this.ReedemGiftBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ReedemGiftBtn.Name = "ReedemGiftBtn";
-            this.ReedemGiftBtn.Size = new System.Drawing.Size(195, 31);
-            this.ReedemGiftBtn.TabIndex = 12;
-            this.ReedemGiftBtn.Text = "Redeem Gift.";
-            this.ReedemGiftBtn.Click += new System.EventHandler(this.ReedemGiftBtn_Click);
+            this.groupBox2.Text = "Floor Furni Editor";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 102);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(13, 284);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 20);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Gift ID";
+            this.label3.Size = new System.Drawing.Size(140, 20);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Live Edit cooldown";
             // 
-            // GiftExchangerIDNBx
+            // FloorFurniLiveEditCooldownNbx
             // 
-            this.GiftExchangerIDNBx.Location = new System.Drawing.Point(34, 131);
-            this.GiftExchangerIDNBx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GiftExchangerIDNBx.Maximum = new decimal(new int[] {
-            int.MaxValue,
+            this.FloorFurniLiveEditCooldownNbx.Location = new System.Drawing.Point(17, 307);
+            this.FloorFurniLiveEditCooldownNbx.Maximum = new decimal(new int[] {
+            -2147483648,
             0,
             0,
             0});
-            this.GiftExchangerIDNBx.Name = "GiftExchangerIDNBx";
-            this.GiftExchangerIDNBx.Size = new System.Drawing.Size(222, 26);
-            this.GiftExchangerIDNBx.TabIndex = 10;
-            // 
-            // AutoGiftExchangerBtn
-            // 
-            this.AutoGiftExchangerBtn.AutoSize = true;
-            this.AutoGiftExchangerBtn.Location = new System.Drawing.Point(34, 57);
-            this.AutoGiftExchangerBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.AutoGiftExchangerBtn.Name = "AutoGiftExchangerBtn";
-            this.AutoGiftExchangerBtn.Size = new System.Drawing.Size(217, 24);
-            this.AutoGiftExchangerBtn.TabIndex = 6;
-            this.AutoGiftExchangerBtn.Text = "Automatic Gift Exchanger";
-            this.AutoGiftExchangerBtn.UseVisualStyleBackColor = true;
+            this.FloorFurniLiveEditCooldownNbx.Minimum = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+            this.FloorFurniLiveEditCooldownNbx.Name = "FloorFurniLiveEditCooldownNbx";
+            this.FloorFurniLiveEditCooldownNbx.Size = new System.Drawing.Size(125, 26);
+            this.FloorFurniLiveEditCooldownNbx.TabIndex = 12;
+            this.FloorFurniLiveEditCooldownNbx.Value = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
             // 
             // FurniturePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.RestoreFurnisBtn);
             this.Controls.Add(this.RemoverGrbx);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FurniturePage";
             this.Size = new System.Drawing.Size(1089, 422);
             this.RemoverGrbx.ResumeLayout(false);
             this.RemoverGrbx.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorFurniIDNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorFurniXNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorFurniYNbx)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MultiplierNbx)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CreditsIDNbx)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GiftExchangerIDNBx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorFurniLiveEditCooldownNbx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -406,26 +359,22 @@
         private Sulakore.Components.SKoreLabelBox FurnitureIDTxt;
         private Sulakore.Components.SKoreButton RemoveWallItemBtn;
         private Sulakore.Components.SKoreButton RemoveFloorItemBtn;
-        private System.Windows.Forms.CheckBox ToggleFurniRotCS;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton RotationRight;
-        private System.Windows.Forms.RadioButton rotationLeft;
-        private System.Windows.Forms.RadioButton RotationDown;
-        private System.Windows.Forms.RadioButton RotationUp;
         private Sulakore.Components.SKoreButton RestoreFurnisBtn;
         private System.Windows.Forms.CheckBox FurniPickChbx;
-        private System.Windows.Forms.CheckBox ExchangeCreditChbx;
-        private System.Windows.Forms.CheckBox ExchangeMPChbx;
+        private System.Windows.Forms.NumericUpDown FloorFurniIDNbx;
+        private System.Windows.Forms.NumericUpDown FloorFurniXNbx;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown MultiplierNbx;
-        private System.Windows.Forms.NumericUpDown CreditsIDNbx;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown FloorFurniYNbx;
+        private System.Windows.Forms.RadioButton RotationUp;
+        private System.Windows.Forms.RadioButton RotationDown;
+        private System.Windows.Forms.RadioButton rotationLeft;
+        private System.Windows.Forms.RadioButton RotationRight;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private Sulakore.Components.SKoreButton LiveEditFloorFurniBtn;
+        private Sulakore.Components.SKoreButton CaptureFloorFurniBtn;
         private System.Windows.Forms.GroupBox groupBox2;
-        private Sulakore.Components.SKoreButton RedeemCreditsBtn;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private Sulakore.Components.SKoreButton ReedemGiftBtn;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown GiftExchangerIDNBx;
-        private System.Windows.Forms.CheckBox AutoGiftExchangerBtn;
+        private System.Windows.Forms.NumericUpDown FloorFurniLiveEditCooldownNbx;
     }
 }

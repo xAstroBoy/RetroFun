@@ -1,8 +1,10 @@
 ﻿using RetroFun.Controls;
 using Sulakore.Communication;
+using Sulakore.Components;
 using Sulakore.Protocol;
 using System;
 using System.ComponentModel;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,6 +17,34 @@ namespace RetroFun.Pages
         private HMessage FurniDataStored;
 
         private bool _doubleClickFurnitureRemoval;
+        private bool liveEditFloorFurni;
+        private bool FloorFurniInterceptionMode;
+
+        private int _FloorFurniID;
+
+
+        public int FloorFurniID
+        {
+            get => _FloorFurniID;
+            set
+            {
+                _FloorFurniID = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        private int _FloorFurniRotation;
+
+        public int FloorFurniRotation
+        {
+            get => _FloorFurniRotation;
+            set
+            {
+                _FloorFurniRotation = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         public bool DoubleClickFurnitureRemoval
         {
@@ -26,17 +56,6 @@ namespace RetroFun.Pages
             }
         }
 
-        private bool _ButtonRotateMoveItem;
-
-        public bool ButtonRotateMoveItem
-        {
-            get => _ButtonRotateMoveItem;
-            set
-            {
-                _ButtonRotateMoveItem = value;
-                RaiseOnPropertyChanged();
-            }
-        }
 
         private bool _FurniPickedOutput;
 
@@ -50,74 +69,39 @@ namespace RetroFun.Pages
             }
         }
 
-        private bool _CreditMultiplierEnabled;
+        private int _FloorFurniLiveEditCooldown;
 
-        public bool CreditMultiplierEnabled
+        public int FloorFurniLiveEditCooldown
         {
-            get => _CreditMultiplierEnabled;
+            get => _FloorFurniLiveEditCooldown;
             set
             {
-                _CreditMultiplierEnabled = value;
+                _FloorFurniLiveEditCooldown = value;
                 RaiseOnPropertyChanged();
             }
         }
 
-        private int _CreditIDInt = 1;
 
-        public int CreditIDInt
+        private int _FloorFurniX;
+
+        public int FloorFurniX
         {
-            get => _CreditIDInt;
+            get => _FloorFurniX;
             set
             {
-                _CreditIDInt = value;
+                _FloorFurniX = value;
                 RaiseOnPropertyChanged();
             }
         }
 
-        private int _CreditMultiplierAmount = 1;
+        private int _FloorFurniY;
 
-        public int CreditMultiplierAmount
+        public int FloorFurniY
         {
-            get => _CreditMultiplierAmount;
+            get => _FloorFurniY;
             set
             {
-                _CreditMultiplierAmount = value;
-                RaiseOnPropertyChanged();
-            }
-        }
-
-        private bool _CreditExchangeMode;
-
-        public bool CreditExchangeMode
-        {
-            get => _CreditExchangeMode;
-            set
-            {
-                _CreditExchangeMode = value;
-                RaiseOnPropertyChanged();
-            }
-        }
-
-        private bool _GiftExchangeMode;
-
-        public bool GiftExchangeMode
-        {
-            get => _GiftExchangeMode;
-            set
-            {
-                _GiftExchangeMode = value;
-                RaiseOnPropertyChanged();
-            }
-        }
-
-        private int _GiftInt = 1;
-
-        public int GiftInt
-        {
-            get => _GiftInt;
-            set
-            {
-                _GiftInt = value;
+                _FloorFurniY = value;
                 RaiseOnPropertyChanged();
             }
         }
@@ -148,20 +132,20 @@ namespace RetroFun.Pages
 
             Bind(FurnitureIDTxt, "Text", nameof(FurnitureIdText));
             Bind(DoubleClickFurnitureRemovalChbx, "Checked", nameof(DoubleClickFurnitureRemoval));
-            //Bind(ToggleFurniRotCS, "Checked", nameof(ButtonRotateMoveItem));
             Bind(FurniPickChbx, "Checked", nameof(FurniPickedOutput));
-            Bind(ExchangeCreditChbx, "Checked", nameof(CreditExchangeMode));
-            Bind(ExchangeMPChbx, "Checked", nameof(CreditMultiplierEnabled));
-            Bind(MultiplierNbx, "Value", nameof(CreditMultiplierAmount));
-            Bind(CreditsIDNbx, "Value", nameof(CreditIDInt));
-            Bind(GiftExchangerIDNBx, "Value", nameof(GiftInt));
-            Bind(AutoGiftExchangerBtn, "Checked", nameof(GiftExchangeMode));
+
+
+            Bind(FloorFurniIDNbx, "Value", nameof(FloorFurniID));
+            Bind(FloorFurniXNbx, "Value", nameof(FloorFurniX));
+            Bind(FloorFurniYNbx, "Value", nameof(FloorFurniY));
+            Bind(FloorFurniLiveEditCooldownNbx, "Value", nameof(FloorFurniLiveEditCooldown));
+
 
             if (Program.Master != null)
             {
                 Triggers.OutAttach(Out.RoomPickupItem, RoomPickupItem);
                 Triggers.InAttach(In.RoomFloorItems, StoreRoomFurniData);
-                Triggers.OutAttach(Out.RoomPlaceItem, RoomPlaceItemsHandler);
+                Triggers.OutAttach(Out.RotateMoveItem, RotateMoveItemIntercept);
             }
         }
 
@@ -171,68 +155,31 @@ namespace RetroFun.Pages
             obj.Continue();
         }
 
-        private void RoomPlaceItemsHandler(DataInterceptedEventArgs e)
+
+        private void RotateMoveItemIntercept(DataInterceptedEventArgs e)
         {
-            if (CreditExchangeMode)
+            if(FloorFurniInterceptionMode)
             {
-                CreditIDInt = int.Parse(e.Packet.ReadString().Split(' ')[0]);
-                HandleCreditsExchanger(CreditIDInt);
+                FloorFurniID = e.Packet.ReadInteger();
+                FloorFurniX = e.Packet.ReadInteger();
+                FloorFurniY = e.Packet.ReadInteger();
+                ControlRotation(e.Packet.ReadInteger());
             }
-            if (GiftExchangeMode)
-            {
-                GiftInt = int.Parse(e.Packet.ReadString().Split(' ')[0]);
-                HandleGiftExchanger(GiftInt);
-            }
+
+
         }
 
-        private void HandleGiftExchanger(int furniid)
+
+
+
+        private void WriteToButton(SKoreButton Button, string text)
         {
-            SendOpenGiftPacket(furniid);
+            Invoke((MethodInvoker)delegate
+            {
+                Button.Text = text;
+            });
         }
 
-        private void HandleCreditsExchanger(int furniid)
-        {
-            if (!CreditMultiplierEnabled)
-            {
-                SendExchangePacket(furniid);
-            }
-            if (CreditMultiplierEnabled)
-            {
-                ExchangeMultiplier(furniid);
-            }
-        }
-
-        private async void ExchangeMultiplier(int furniid)
-        {
-            for (int i = 0; i < CreditMultiplierAmount; i++)
-            {
-                await Task.Delay(50);
-                if (Connection.Remote.IsConnected)
-                {
-                    await Connection.SendToServerAsync(Out.RedeemItem, furniid);
-                }
-            }
-        }
-
-        private async void SendExchangePacket(int furniid)
-        {
-            await Task.Delay(350);
-            if (Connection.Remote.IsConnected)
-            {
-                await Connection.SendToServerAsync(Out.RedeemItem, furniid);
-            }
-            await Task.Delay(50);
-        }
-
-        private async void SendOpenGiftPacket(int furniid)
-        {
-            await Task.Delay(350);
-            if (Connection.Remote.IsConnected)
-            {
-                await Connection.SendToServerAsync(Out.OpenRecycleBox, furniid);
-            }
-            await Task.Delay(50);
-        }
 
         private void RemoveWallItemBtn_Click(object sender, EventArgs e)
         {
@@ -267,43 +214,72 @@ namespace RetroFun.Pages
             Speak("You are picking a furni ClientSide with ID : " + FurniID);
         }
 
-        private void RotateMoveItems(DataInterceptedEventArgs obj)
+        private void ControlRotation(int Rotation)
         {
-            int FurnID = obj.Packet.ReadInteger();
-            int two = obj.Packet.ReadInteger();
-            int three = obj.Packet.ReadInteger();
-            int Rotation = obj.Packet.ReadInteger();
-
-            if (ButtonRotateMoveItem)
-            {
-                if (RotationUp.Checked)
+            if (Rotation == 6)
                 {
-                    Rotation = 6;
                     RadioButtonCheck(RotationUp, false);
-                    RadioButtonCheck(RotationRight, true);
-                }
-                else if (RotationRight.Checked)
-                {
-                    Rotation = 0;
                     RadioButtonCheck(RotationRight, false);
-                    RadioButtonCheck(RotationDown, true);
-                }
-                else if (RotationDown.Checked)
-                {
-                    Rotation = 2;
-                    RadioButtonCheck(RotationDown, false);
-                    RadioButtonCheck(rotationLeft, true);
-                }
-                else if (rotationLeft.Checked)
-                {
-                    Rotation = 4;
-                    RadioButtonCheck(rotationLeft, false);
-                    RadioButtonCheck(RotationUp, true);
-                }
-                obj.IsBlocked = true;
-                RotateItem(FurnID, two, three, Rotation);
+                RadioButtonCheck(RotationDown, false);
+                RadioButtonCheck(rotationLeft, false);
+                FloorFurniRotation = 6;
+
+
+            }
+            if (Rotation == 0)
+            {
+                RadioButtonCheck(RotationUp, false);
+                RadioButtonCheck(RotationRight, true);
+                RadioButtonCheck(RotationDown, false);
+                RadioButtonCheck(rotationLeft, false);
+                FloorFurniRotation = 0;
+            }
+            if (Rotation == 2)
+            {
+                RadioButtonCheck(RotationUp, false);
+                RadioButtonCheck(RotationRight, false);
+                RadioButtonCheck(RotationDown, true);
+                RadioButtonCheck(rotationLeft, false);
+                FloorFurniRotation = 2;
+            }
+            if (Rotation == 4)
+            {
+                RadioButtonCheck(RotationUp, false);
+                RadioButtonCheck(RotationRight, false);
+                RadioButtonCheck(RotationDown, false);
+                RadioButtonCheck(rotationLeft, true);
+                FloorFurniRotation = 4;
             }
         }
+
+        private void RotationUp_CheckedChanged(object sender, EventArgs e)
+        {
+            FloorFurniRotation = 6;
+            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+
+        }
+
+        private void RotationRight_CheckedChanged(object sender, EventArgs e)
+        {
+            FloorFurniRotation = 0;
+            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+
+        }
+
+        private void RotationDown_CheckedChanged(object sender, EventArgs e)
+        {
+            FloorFurniRotation = 2;
+            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+
+        }
+
+        private void rotationLeft_CheckedChanged(object sender, EventArgs e)
+        {
+            FloorFurniRotation = 4;
+            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+
+        }
+
 
         private void RotateItem(int furnitureId, int two, int three, int Rotation)
         {
@@ -362,19 +338,66 @@ namespace RetroFun.Pages
             }
         }
 
-        private void RedeemCreditsBtn_Click(object sender, EventArgs e)
+        //private void StartLiveFloorFurniEditor()
+        //{
+        //    new Thread(() =>
+        //    {
+        //        Thread.CurrentThread.IsBackground = true;
+        //        do
+        //        {
+
+        //            if (liveEditFloorFurni)
+        //            {
+        //                Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+        //                Thread.Sleep(FloorFurniLiveEditCooldown);
+        //            }
+        //        } while (liveEditFloorFurni);
+        //    }).Start();
+        //}
+
+
+
+        private void LiveEditFloorFurniBtn_Click(object sender, EventArgs e)
         {
-            HandleCreditsExchanger(CreditIDInt);
+            if (liveEditFloorFurni)
+            {
+                WriteToButton(LiveEditFloorFurniBtn, "Live Edit : OFF");
+                liveEditFloorFurni = false;
+            }
+            else
+            {
+
+                WriteToButton(LiveEditFloorFurniBtn, "Live Edit : ON");
+                liveEditFloorFurni = true;
+                //StartLiveFloorFurniEditor();
+            }
         }
 
-        private void ReedemGiftBtn_Click(object sender, EventArgs e)
+        private void CaptureFloorFurniBtn_Click(object sender, EventArgs e)
         {
-            HandleGiftExchanger(GiftInt);
+            if(FloorFurniInterceptionMode)
+            {
+                WriteToButton(CaptureFloorFurniBtn, "Capture Furni : OFF");
+                FloorFurniInterceptionMode = false;
+            }
+            else
+            {
+
+                WriteToButton(CaptureFloorFurniBtn, "Capture Furni : ON");
+                Speak("Please move a furni to register it on retrofun and manually edit all the coordinates!");
+                FloorFurniInterceptionMode = true;
+            }
+
         }
 
-        private void DoubleClickFurnitureRemovalChbx_CheckedChanged(object sender, EventArgs e)
+        private void FloorFurniXNbx_ValueChanged(object sender, EventArgs e)
         {
+            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+        }
 
+        private void FloorFurniYNbx_ValueChanged(object sender, EventArgs e)
+        {
+            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
         }
     }
 }

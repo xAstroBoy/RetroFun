@@ -114,6 +114,8 @@ namespace RetroFun.Pages
             if (Program.Master != null)
             {
                 Triggers.InAttach(In.ItemExtraData, HandleDiceUpdate);
+                // FOR ARCTURUS 
+                //Triggers.InAttach(In.FloorItemUpdate, HandleDiceUpdate2);
             }
         }
 
@@ -230,6 +232,64 @@ namespace RetroFun.Pages
                     RollDice(_diceThreeId);
             }
         }
+
+
+        private void HandleDiceUpdate2(DataInterceptedEventArgs e)
+        {
+
+            if (!ISHolodiceCheat) return;
+
+            int id = int.Parse(e.Packet.ReadString());
+            e.Packet.ReadInteger();
+            string data = e.Packet.ReadString();
+
+            e.Continue();
+
+            if (!int.TryParse(data, out int diceState) || diceState == -1) return;
+
+            if (id == _diceHostId)
+            {
+                DiceHostResult = diceState;
+
+                if (diceState == 0)
+                {
+                    CloseDice(_diceOneId);
+                    CloseDice(_diceTwoId);
+                    CloseDice(_diceThreeId);
+                }
+            }
+            else if (id == _diceOneId) DiceOneResult = diceState;
+            else if (id == _diceTwoId) DiceTwoResult = diceState;
+            else if (id == _diceThreeId) DiceThreeResult = diceState;
+            else return;
+
+            if (diceState < 1) return;
+
+            //These are usually very confusing if you were to read this code like after a month, or someone who has no idea what this is supposed to do were to read this. ik
+            if ((!ShouldRollFirst && !MatchSecondChk.Checked && !MatchThirdChk.Checked) ||
+                (!ShouldRollFirst && !ShouldRollSecond && !MatchThirdChk.Checked) ||
+                (!ShouldRollFirst && !ShouldRollSecond && !ShouldRollThird))
+            {
+                //WON! Do the victory procedure here.
+
+                if (Connection.Remote.IsConnected)
+                {
+                    Connection.SendToServerAsync(Out.RoomUserShout, holoDiceShoutPhrase.Text, 0);
+                }
+            }
+            else
+            {
+                if (ShouldRollFirst)
+                    RollDice(_diceOneId);
+
+                if (ShouldRollSecond)
+                    RollDice(_diceTwoId);
+
+                if (ShouldRollThird)
+                    RollDice(_diceThreeId);
+            }
+        }
+
 
         private void ClearButton_Click(object sender, EventArgs e)
         {

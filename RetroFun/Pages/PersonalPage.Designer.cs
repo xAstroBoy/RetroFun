@@ -41,10 +41,19 @@
             this.CreditsChbx = new System.Windows.Forms.CheckBox();
             this.AcquireMODPermissionsBtn = new Sulakore.Components.SKoreButton();
             this.SetCurrencyBtn = new Sulakore.Components.SKoreButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TradeSpammerCooldownNbx = new System.Windows.Forms.NumericUpDown();
+            this.UserIntUpDwn = new System.Windows.Forms.NumericUpDown();
+            this.CaptureTradeUserBtn = new Sulakore.Components.SKoreButton();
+            this.CrashUserBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).BeginInit();
             this.Currency.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TradeSpammerCooldownNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UserIntUpDwn)).BeginInit();
             this.SuspendLayout();
             // 
             // EnableModToolsBtn
@@ -183,10 +192,85 @@
             this.SetCurrencyBtn.Text = "Set Currency (CS)";
             this.SetCurrencyBtn.Click += new System.EventHandler(this.SetCurrencyBtn_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.TradeSpammerCooldownNbx);
+            this.groupBox4.Controls.Add(this.UserIntUpDwn);
+            this.groupBox4.Controls.Add(this.CaptureTradeUserBtn);
+            this.groupBox4.Controls.Add(this.CrashUserBtn);
+            this.groupBox4.Location = new System.Drawing.Point(386, 269);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(416, 193);
+            this.groupBox4.TabIndex = 81;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Trade Spammer";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(179, 115);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(79, 20);
+            this.label4.TabIndex = 76;
+            this.label4.Text = "Cooldown";
+            // 
+            // TradeSpammerCooldownNbx
+            // 
+            this.TradeSpammerCooldownNbx.Location = new System.Drawing.Point(183, 140);
+            this.TradeSpammerCooldownNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TradeSpammerCooldownNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.TradeSpammerCooldownNbx.Name = "TradeSpammerCooldownNbx";
+            this.TradeSpammerCooldownNbx.Size = new System.Drawing.Size(178, 26);
+            this.TradeSpammerCooldownNbx.TabIndex = 75;
+            this.TradeSpammerCooldownNbx.Value = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            // 
+            // UserIntUpDwn
+            // 
+            this.UserIntUpDwn.Location = new System.Drawing.Point(183, 74);
+            this.UserIntUpDwn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.UserIntUpDwn.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.UserIntUpDwn.Name = "UserIntUpDwn";
+            this.UserIntUpDwn.Size = new System.Drawing.Size(178, 26);
+            this.UserIntUpDwn.TabIndex = 60;
+            // 
+            // CaptureTradeUserBtn
+            // 
+            this.CaptureTradeUserBtn.Location = new System.Drawing.Point(-3, 69);
+            this.CaptureTradeUserBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CaptureTradeUserBtn.Name = "CaptureTradeUserBtn";
+            this.CaptureTradeUserBtn.Size = new System.Drawing.Size(178, 31);
+            this.CaptureTradeUserBtn.TabIndex = 74;
+            this.CaptureTradeUserBtn.Text = "Capture User";
+            this.CaptureTradeUserBtn.Click += new System.EventHandler(this.CaptureTradeUserBtn_Click);
+            // 
+            // CrashUserBtn
+            // 
+            this.CrashUserBtn.Location = new System.Drawing.Point(183, 33);
+            this.CrashUserBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CrashUserBtn.Name = "CrashUserBtn";
+            this.CrashUserBtn.Size = new System.Drawing.Size(178, 31);
+            this.CrashUserBtn.TabIndex = 74;
+            this.CrashUserBtn.Text = "Spam Trade : OFF";
+            this.CrashUserBtn.Click += new System.EventHandler(this.CrashUserBtn_Click);
+            // 
             // PersonalPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.SetCurrencyBtn);
             this.Controls.Add(this.AcquireMODPermissionsBtn);
             this.Controls.Add(this.Currency);
@@ -198,6 +282,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).EndInit();
             this.Currency.ResumeLayout(false);
             this.Currency.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TradeSpammerCooldownNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UserIntUpDwn)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -217,5 +305,11 @@
         private System.Windows.Forms.CheckBox CrystalsChbx;
         private System.Windows.Forms.CheckBox CreditsChbx;
         private Sulakore.Components.SKoreButton SetCurrencyBtn;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown TradeSpammerCooldownNbx;
+        private System.Windows.Forms.NumericUpDown UserIntUpDwn;
+        private Sulakore.Components.SKoreButton CaptureTradeUserBtn;
+        private Sulakore.Components.SKoreButton CrashUserBtn;
     }
 }

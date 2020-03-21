@@ -16,7 +16,7 @@ namespace RetroFun.Pages
     {
         private Random Randomizer = new Random();
 
-        private string OldLook = "";
+        //private string OldLook = "";
 
 
         #region Vars
@@ -28,7 +28,6 @@ namespace RetroFun.Pages
         private bool SitModeEnabled;
         private bool DanceLoopEnabled;
         private bool TrollLookMode;
-        private bool SpamMachineLoopMode;
 
         private readonly string TrollLook1 = "hr-155-42.ea-1333-33.ha-3786-62.ch-201410-89.sh-3333-3333.ca-3333-33-33.lg-44689-82.wa-3333-333.hd-209-1";
         private readonly string TrollLook2 = "hr-893-42.ea-1333-33.ha-3786-62.sh-6298462-82.wa-3333-333.ca-3333-33-33.lg-5772038-82-62.ch-987462876-89.hd-209-1";
@@ -200,17 +199,6 @@ namespace RetroFun.Pages
 
         #endregion GesturesBools
 
-        //private bool ZeroUsed;
-        //private bool OneUsed;
-        //private bool TwoUsed;
-        //private bool ThreeUsed;
-        //private bool FourUsed;
-        //private bool FiveUsed;
-        //private bool SixUsed;
-        //private bool SevenUsed;
-        //private bool EightUsed;
-        //private bool NineUsed;
-        //private bool TenUsed;
 
         #region SignBools
 

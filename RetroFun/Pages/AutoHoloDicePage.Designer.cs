@@ -63,27 +63,30 @@
             this.DiceGroup.Controls.Add(this.DiceThirdResTB);
             this.DiceGroup.Controls.Add(this.label1);
             this.DiceGroup.Controls.Add(this.ClearButton);
-            this.DiceGroup.Location = new System.Drawing.Point(12, 3);
+            this.DiceGroup.Location = new System.Drawing.Point(18, 5);
+            this.DiceGroup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DiceGroup.Name = "DiceGroup";
-            this.DiceGroup.Size = new System.Drawing.Size(434, 195);
+            this.DiceGroup.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DiceGroup.Size = new System.Drawing.Size(651, 300);
             this.DiceGroup.TabIndex = 0;
             this.DiceGroup.TabStop = false;
             this.DiceGroup.Text = "Dices";
             // 
             // DiceHostResTB
             // 
-            this.DiceHostResTB.Enabled = false;
-            this.DiceHostResTB.Location = new System.Drawing.Point(17, 165);
+            this.DiceHostResTB.Location = new System.Drawing.Point(26, 254);
+            this.DiceHostResTB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DiceHostResTB.Name = "DiceHostResTB";
             this.DiceHostResTB.ReadOnly = true;
-            this.DiceHostResTB.Size = new System.Drawing.Size(100, 20);
+            this.DiceHostResTB.Size = new System.Drawing.Size(148, 26);
             this.DiceHostResTB.TabIndex = 26;
             // 
             // RegisterHostBtn
             // 
-            this.RegisterHostBtn.Location = new System.Drawing.Point(17, 139);
+            this.RegisterHostBtn.Location = new System.Drawing.Point(26, 214);
+            this.RegisterHostBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RegisterHostBtn.Name = "RegisterHostBtn";
-            this.RegisterHostBtn.Size = new System.Drawing.Size(100, 20);
+            this.RegisterHostBtn.Size = new System.Drawing.Size(150, 31);
             this.RegisterHostBtn.TabIndex = 25;
             this.RegisterHostBtn.Text = "Host: -1";
             // 
@@ -92,95 +95,106 @@
             this.MatchFirstChk.AutoSize = true;
             this.MatchFirstChk.Checked = true;
             this.MatchFirstChk.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MatchFirstChk.Location = new System.Drawing.Point(23, 61);
+            this.MatchFirstChk.Location = new System.Drawing.Point(34, 94);
+            this.MatchFirstChk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MatchFirstChk.Name = "MatchFirstChk";
-            this.MatchFirstChk.Size = new System.Drawing.Size(15, 14);
+            this.MatchFirstChk.Size = new System.Drawing.Size(22, 21);
             this.MatchFirstChk.TabIndex = 24;
             this.MatchFirstChk.UseVisualStyleBackColor = true;
             // 
             // DiceFirstResTB
             // 
             this.DiceFirstResTB.Enabled = false;
-            this.DiceFirstResTB.Location = new System.Drawing.Point(42, 58);
+            this.DiceFirstResTB.Location = new System.Drawing.Point(63, 89);
+            this.DiceFirstResTB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DiceFirstResTB.Name = "DiceFirstResTB";
             this.DiceFirstResTB.ReadOnly = true;
-            this.DiceFirstResTB.Size = new System.Drawing.Size(77, 20);
+            this.DiceFirstResTB.Size = new System.Drawing.Size(114, 26);
             this.DiceFirstResTB.TabIndex = 23;
             // 
             // MatchSecondChk
             // 
             this.MatchSecondChk.AutoSize = true;
-            this.MatchSecondChk.Location = new System.Drawing.Point(134, 61);
+            this.MatchSecondChk.Location = new System.Drawing.Point(201, 94);
+            this.MatchSecondChk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MatchSecondChk.Name = "MatchSecondChk";
-            this.MatchSecondChk.Size = new System.Drawing.Size(15, 14);
+            this.MatchSecondChk.Size = new System.Drawing.Size(22, 21);
             this.MatchSecondChk.TabIndex = 22;
             this.MatchSecondChk.UseVisualStyleBackColor = true;
             // 
             // DiceSecondResTB
             // 
             this.DiceSecondResTB.Enabled = false;
-            this.DiceSecondResTB.Location = new System.Drawing.Point(153, 58);
+            this.DiceSecondResTB.Location = new System.Drawing.Point(230, 89);
+            this.DiceSecondResTB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DiceSecondResTB.Name = "DiceSecondResTB";
             this.DiceSecondResTB.ReadOnly = true;
-            this.DiceSecondResTB.Size = new System.Drawing.Size(77, 20);
+            this.DiceSecondResTB.Size = new System.Drawing.Size(114, 26);
             this.DiceSecondResTB.TabIndex = 21;
             // 
             // MatchThirdChk
             // 
             this.MatchThirdChk.AutoSize = true;
-            this.MatchThirdChk.Location = new System.Drawing.Point(243, 61);
+            this.MatchThirdChk.Location = new System.Drawing.Point(364, 94);
+            this.MatchThirdChk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MatchThirdChk.Name = "MatchThirdChk";
-            this.MatchThirdChk.Size = new System.Drawing.Size(15, 14);
+            this.MatchThirdChk.Size = new System.Drawing.Size(22, 21);
             this.MatchThirdChk.TabIndex = 20;
             this.MatchThirdChk.UseVisualStyleBackColor = true;
             // 
             // RegisterThirdBtn
             // 
-            this.RegisterThirdBtn.Location = new System.Drawing.Point(240, 32);
+            this.RegisterThirdBtn.Location = new System.Drawing.Point(360, 49);
+            this.RegisterThirdBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RegisterThirdBtn.Name = "RegisterThirdBtn";
-            this.RegisterThirdBtn.Size = new System.Drawing.Size(100, 20);
+            this.RegisterThirdBtn.Size = new System.Drawing.Size(150, 31);
             this.RegisterThirdBtn.TabIndex = 19;
             this.RegisterThirdBtn.Text = "Third: -1";
             // 
             // RegisterSecondBtn
             // 
-            this.RegisterSecondBtn.Location = new System.Drawing.Point(130, 32);
+            this.RegisterSecondBtn.Location = new System.Drawing.Point(195, 49);
+            this.RegisterSecondBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RegisterSecondBtn.Name = "RegisterSecondBtn";
-            this.RegisterSecondBtn.Size = new System.Drawing.Size(100, 20);
+            this.RegisterSecondBtn.Size = new System.Drawing.Size(150, 31);
             this.RegisterSecondBtn.TabIndex = 18;
             this.RegisterSecondBtn.Text = "Second: -1";
             // 
             // RegisterFirstBtn
             // 
-            this.RegisterFirstBtn.Location = new System.Drawing.Point(19, 32);
+            this.RegisterFirstBtn.Location = new System.Drawing.Point(28, 49);
+            this.RegisterFirstBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RegisterFirstBtn.Name = "RegisterFirstBtn";
-            this.RegisterFirstBtn.Size = new System.Drawing.Size(100, 20);
+            this.RegisterFirstBtn.Size = new System.Drawing.Size(150, 31);
             this.RegisterFirstBtn.TabIndex = 17;
             this.RegisterFirstBtn.Text = "First: -1";
             // 
             // DiceThirdResTB
             // 
             this.DiceThirdResTB.Enabled = false;
-            this.DiceThirdResTB.Location = new System.Drawing.Point(263, 58);
+            this.DiceThirdResTB.Location = new System.Drawing.Point(394, 89);
+            this.DiceThirdResTB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DiceThirdResTB.Name = "DiceThirdResTB";
             this.DiceThirdResTB.ReadOnly = true;
-            this.DiceThirdResTB.Size = new System.Drawing.Size(77, 20);
+            this.DiceThirdResTB.Size = new System.Drawing.Size(114, 26);
             this.DiceThirdResTB.TabIndex = 13;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(140, 13);
+            this.label1.Location = new System.Drawing.Point(210, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.Size = new System.Drawing.Size(87, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Your Dices";
             // 
             // ClearButton
             // 
-            this.ClearButton.Location = new System.Drawing.Point(336, 154);
+            this.ClearButton.Location = new System.Drawing.Point(504, 237);
+            this.ClearButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ClearButton.Name = "ClearButton";
-            this.ClearButton.Size = new System.Drawing.Size(61, 19);
+            this.ClearButton.Size = new System.Drawing.Size(92, 29);
             this.ClearButton.TabIndex = 10;
             this.ClearButton.Text = "Clear ";
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
@@ -188,39 +202,44 @@
             // AutoHolochbx
             // 
             this.AutoHolochbx.AutoSize = true;
-            this.AutoHolochbx.Location = new System.Drawing.Point(255, 224);
+            this.AutoHolochbx.Location = new System.Drawing.Point(382, 345);
+            this.AutoHolochbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AutoHolochbx.Name = "AutoHolochbx";
-            this.AutoHolochbx.Size = new System.Drawing.Size(118, 17);
+            this.AutoHolochbx.Size = new System.Drawing.Size(173, 24);
             this.AutoHolochbx.TabIndex = 11;
             this.AutoHolochbx.Text = "Automatic Holodice";
             this.AutoHolochbx.UseVisualStyleBackColor = true;
             // 
             // holoDiceShoutPhrase
             // 
-            this.holoDiceShoutPhrase.Location = new System.Drawing.Point(12, 224);
+            this.holoDiceShoutPhrase.Location = new System.Drawing.Point(18, 345);
+            this.holoDiceShoutPhrase.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.holoDiceShoutPhrase.Name = "holoDiceShoutPhrase";
-            this.holoDiceShoutPhrase.Size = new System.Drawing.Size(199, 20);
+            this.holoDiceShoutPhrase.Size = new System.Drawing.Size(296, 26);
             this.holoDiceShoutPhrase.TabIndex = 13;
             this.holoDiceShoutPhrase.Text = "Holodice!";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 208);
+            this.label3.Location = new System.Drawing.Point(15, 320);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(121, 13);
+            this.label3.Size = new System.Drawing.Size(178, 20);
             this.label3.TabIndex = 14;
             this.label3.Text = "Holodice Trigger Phrase";
             // 
             // AutoHoloDicePage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.holoDiceShoutPhrase);
             this.Controls.Add(this.AutoHolochbx);
             this.Controls.Add(this.DiceGroup);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AutoHoloDicePage";
+            this.Size = new System.Drawing.Size(698, 405);
             this.DiceGroup.ResumeLayout(false);
             this.DiceGroup.PerformLayout();
             this.ResumeLayout(false);

