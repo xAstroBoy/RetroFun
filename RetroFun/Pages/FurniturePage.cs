@@ -1,4 +1,5 @@
 ﻿using RetroFun.Controls;
+using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Components;
 using Sulakore.Protocol;
@@ -12,15 +13,32 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class FurniturePage : ObservablePage
+    public partial class FurniturePage : ObservablePage, ISubscriber
     {
         private HMessage FurniDataStored;
-
+        private Random ran = new Random();
         private bool _doubleClickFurnitureRemoval;
-        private bool liveEditFloorFurni;
+        private bool ConvertWalkinFurniMovement;
         private bool FloorFurniInterceptionMode;
 
         private int _FloorFurniID;
+
+
+
+        private bool isTeleportFurni = true;
+        private bool IsWalkingFurni;
+
+        private int _FurniWalkingSpeed = 300;
+
+        public int FurniWalkingSpeed
+        {
+            get => _FurniWalkingSpeed;
+            set
+            {
+                _FurniWalkingSpeed = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
 
         public int FloorFurniID
@@ -126,6 +144,8 @@ namespace RetroFun.Pages
 
         public int FurnitureId { get; private set; }
 
+        public bool IsReceiving => true;
+
         public FurniturePage()
         {
             InitializeComponent();
@@ -138,7 +158,8 @@ namespace RetroFun.Pages
             Bind(FloorFurniIDNbx, "Value", nameof(FloorFurniID));
             Bind(FloorFurniXNbx, "Value", nameof(FloorFurniX));
             Bind(FloorFurniYNbx, "Value", nameof(FloorFurniY));
-            Bind(FloorFurniLiveEditCooldownNbx, "Value", nameof(FloorFurniLiveEditCooldown));
+
+            Bind(WalkingSpeedNbx, "Value", nameof(FurniWalkingSpeed));
 
 
             if (Program.Master != null)
@@ -338,38 +359,19 @@ namespace RetroFun.Pages
             }
         }
 
-        //private void StartLiveFloorFurniEditor()
-        //{
-        //    new Thread(() =>
-        //    {
-        //        Thread.CurrentThread.IsBackground = true;
-        //        do
-        //        {
-
-        //            if (liveEditFloorFurni)
-        //            {
-        //                Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
-        //                Thread.Sleep(FloorFurniLiveEditCooldown);
-        //            }
-        //        } while (liveEditFloorFurni);
-        //    }).Start();
-        //}
-
-
-
-        private void LiveEditFloorFurniBtn_Click(object sender, EventArgs e)
+        private void WalkAsSelectedFurniBtn_Click(object sender, EventArgs e)
         {
-            if (liveEditFloorFurni)
+            if (ConvertWalkinFurniMovement)
             {
-                WriteToButton(LiveEditFloorFurniBtn, "Live Edit : OFF");
-                liveEditFloorFurni = false;
+                WriteToButton(WalkAsSelectedFurniBtn, "Furni Walk Edit : OFF");
+                ConvertWalkinFurniMovement = false;
             }
             else
             {
 
-                WriteToButton(LiveEditFloorFurniBtn, "Live Edit : ON");
-                liveEditFloorFurni = true;
-                //StartLiveFloorFurniEditor();
+                WriteToButton(WalkAsSelectedFurniBtn, "Furni Walk Edit : ON");
+                Speak("User Walking will be blocked , because you are controlling the selected furni now!");
+                ConvertWalkinFurniMovement = true;
             }
         }
 
@@ -390,6 +392,71 @@ namespace RetroFun.Pages
 
         }
 
+
+        private void WalkingStyleBtn_Click(object sender, EventArgs e)
+        {
+            if(isTeleportFurni)
+            {
+                IsWalkingFurni = true;
+                isTeleportFurni = false;
+                WriteToButton(WalkingStyleBtn, "Walking mode : Walking");
+
+            }
+            else if(IsWalkingFurni)
+            {
+                IsWalkingFurni = false;
+                isTeleportFurni = true;
+                WriteToButton(WalkingStyleBtn, "Walking mode : Teleport");
+            }
+        }
+
+
+        public void TeleportfurniToCoord(int X , int Y)
+        {
+            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
+        }
+
+
+        public async Task WalkFurniToCoord(int X, int Y)
+        {
+            //for (int i = FloorFurniX; i < X; i++)
+            //{
+            //    for (int c = FloorFurniY; c < Y; c++)
+            //    {
+            //        FloorFurniX = i;
+            //        FloorFurniY = c;
+            //        await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, i, c, FloorFurniRotation);
+            //        await Task.Delay(FurniWalkingSpeed);
+            //    }
+            //}
+            while (FloorFurniX != X && FloorFurniY != Y)
+            {
+                if(FloorFurniX < X)
+                {
+                    FloorFurniX++;
+                }
+                if(FloorFurniX > X)
+                {
+                    FloorFurniX--;
+                }
+
+                if (FloorFurniY < Y)
+                {
+                    FloorFurniY++;
+                }
+                if (FloorFurniY > Y)
+                {
+                    FloorFurniY--;
+                }
+
+                await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+                await Task.Delay(FurniWalkingSpeed);
+
+            }
+
+        }
+
+
         private void FloorFurniXNbx_ValueChanged(object sender, EventArgs e)
         {
             Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
@@ -399,5 +466,76 @@ namespace RetroFun.Pages
         {
             Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
         }
+
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnLatencyTest(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnUsername(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        {
+            int coordX = e.Packet.ReadInteger();
+            int coordY = e.Packet.ReadInteger();
+            
+            if (ConvertWalkinFurniMovement)
+            {
+                if(isTeleportFurni)
+                {
+                    TeleportfurniToCoord(coordX, coordY);
+                    e.IsBlocked = true;
+                }
+                else if(IsWalkingFurni)
+                {
+
+                    WalkFurniToCoord(coordX, coordY);
+                    e.IsBlocked = true;
+                }
+            }
+
+        }
+
+        public void InPurchaseOk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InUserEnterRoom(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void inUserProfile(DataInterceptedEventArgs e)
+        {
+        }
+
+
     }
 }

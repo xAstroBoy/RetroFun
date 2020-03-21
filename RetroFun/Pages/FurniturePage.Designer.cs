@@ -45,18 +45,19 @@
             this.rotationLeft = new System.Windows.Forms.RadioButton();
             this.RotationRight = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.LiveEditFloorFurniBtn = new Sulakore.Components.SKoreButton();
+            this.WalkAsSelectedFurniBtn = new Sulakore.Components.SKoreButton();
             this.CaptureFloorFurniBtn = new Sulakore.Components.SKoreButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.WalkingStyleBtn = new Sulakore.Components.SKoreButton();
+            this.WalkingSpeedNbx = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.FloorFurniLiveEditCooldownNbx = new System.Windows.Forms.NumericUpDown();
             this.RemoverGrbx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FloorFurniIDNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FloorFurniXNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FloorFurniYNbx)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FloorFurniLiveEditCooldownNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WalkingSpeedNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // RemoverGrbx
@@ -179,7 +180,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(144, 64);
+            this.label2.Location = new System.Drawing.Point(34, 116);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 20);
             this.label2.TabIndex = 9;
@@ -187,7 +188,7 @@
             // 
             // FloorFurniYNbx
             // 
-            this.FloorFurniYNbx.Location = new System.Drawing.Point(148, 87);
+            this.FloorFurniYNbx.Location = new System.Drawing.Point(38, 139);
             this.FloorFurniYNbx.Maximum = new decimal(new int[] {
             -2147483648,
             0,
@@ -250,7 +251,7 @@
             this.groupBox1.Controls.Add(this.rotationLeft);
             this.groupBox1.Controls.Add(this.RotationDown);
             this.groupBox1.Controls.Add(this.RotationUp);
-            this.groupBox1.Location = new System.Drawing.Point(176, 129);
+            this.groupBox1.Location = new System.Drawing.Point(190, 54);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -259,19 +260,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rotation";
             // 
-            // LiveEditFloorFurniBtn
+            // WalkAsSelectedFurniBtn
             // 
-            this.LiveEditFloorFurniBtn.Location = new System.Drawing.Point(7, 241);
-            this.LiveEditFloorFurniBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.LiveEditFloorFurniBtn.Name = "LiveEditFloorFurniBtn";
-            this.LiveEditFloorFurniBtn.Size = new System.Drawing.Size(157, 34);
-            this.LiveEditFloorFurniBtn.TabIndex = 7;
-            this.LiveEditFloorFurniBtn.Text = "Live Edit : OFF";
-            this.LiveEditFloorFurniBtn.Click += new System.EventHandler(this.LiveEditFloorFurniBtn_Click);
+            this.WalkAsSelectedFurniBtn.Location = new System.Drawing.Point(7, 194);
+            this.WalkAsSelectedFurniBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.WalkAsSelectedFurniBtn.Name = "WalkAsSelectedFurniBtn";
+            this.WalkAsSelectedFurniBtn.Size = new System.Drawing.Size(157, 34);
+            this.WalkAsSelectedFurniBtn.TabIndex = 7;
+            this.WalkAsSelectedFurniBtn.Text = "Furni Walk Edit : OFF";
+            this.WalkAsSelectedFurniBtn.Click += new System.EventHandler(this.WalkAsSelectedFurniBtn_Click);
             // 
             // CaptureFloorFurniBtn
             // 
-            this.CaptureFloorFurniBtn.Location = new System.Drawing.Point(176, 307);
+            this.CaptureFloorFurniBtn.Location = new System.Drawing.Point(190, 307);
             this.CaptureFloorFurniBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CaptureFloorFurniBtn.Name = "CaptureFloorFurniBtn";
             this.CaptureFloorFurniBtn.Size = new System.Drawing.Size(157, 34);
@@ -282,9 +283,10 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.FloorFurniLiveEditCooldownNbx);
+            this.groupBox2.Controls.Add(this.WalkingSpeedNbx);
+            this.groupBox2.Controls.Add(this.WalkingStyleBtn);
             this.groupBox2.Controls.Add(this.CaptureFloorFurniBtn);
-            this.groupBox2.Controls.Add(this.LiveEditFloorFurniBtn);
+            this.groupBox2.Controls.Add(this.WalkAsSelectedFurniBtn);
             this.groupBox2.Controls.Add(this.FloorFurniYNbx);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
@@ -293,41 +295,41 @@
             this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Location = new System.Drawing.Point(450, 14);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(340, 349);
+            this.groupBox2.Size = new System.Drawing.Size(354, 349);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Floor Furni Editor";
             // 
-            // label3
+            // WalkingStyleBtn
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 284);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(140, 20);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Live Edit cooldown";
+            this.WalkingStyleBtn.Location = new System.Drawing.Point(7, 238);
+            this.WalkingStyleBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.WalkingStyleBtn.Name = "WalkingStyleBtn";
+            this.WalkingStyleBtn.Size = new System.Drawing.Size(200, 34);
+            this.WalkingStyleBtn.TabIndex = 12;
+            this.WalkingStyleBtn.Text = "Walking mode : Teleport";
+            this.WalkingStyleBtn.Click += new System.EventHandler(this.WalkingStyleBtn_Click);
             // 
-            // FloorFurniLiveEditCooldownNbx
+            // WalkingSpeedNbx
             // 
-            this.FloorFurniLiveEditCooldownNbx.Location = new System.Drawing.Point(17, 307);
-            this.FloorFurniLiveEditCooldownNbx.Maximum = new decimal(new int[] {
+            this.WalkingSpeedNbx.Location = new System.Drawing.Point(6, 307);
+            this.WalkingSpeedNbx.Maximum = new decimal(new int[] {
             -2147483648,
             0,
             0,
             0});
-            this.FloorFurniLiveEditCooldownNbx.Minimum = new decimal(new int[] {
-            250,
-            0,
-            0,
-            0});
-            this.FloorFurniLiveEditCooldownNbx.Name = "FloorFurniLiveEditCooldownNbx";
-            this.FloorFurniLiveEditCooldownNbx.Size = new System.Drawing.Size(125, 26);
-            this.FloorFurniLiveEditCooldownNbx.TabIndex = 12;
-            this.FloorFurniLiveEditCooldownNbx.Value = new decimal(new int[] {
-            250,
-            0,
-            0,
-            0});
+            this.WalkingSpeedNbx.Name = "WalkingSpeedNbx";
+            this.WalkingSpeedNbx.Size = new System.Drawing.Size(84, 26);
+            this.WalkingSpeedNbx.TabIndex = 13;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 284);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(156, 20);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Furni Walking Speed";
             // 
             // FurniturePage
             // 
@@ -347,7 +349,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.FloorFurniLiveEditCooldownNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.WalkingSpeedNbx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -371,10 +373,11 @@
         private System.Windows.Forms.RadioButton rotationLeft;
         private System.Windows.Forms.RadioButton RotationRight;
         private System.Windows.Forms.GroupBox groupBox1;
-        private Sulakore.Components.SKoreButton LiveEditFloorFurniBtn;
+        private Sulakore.Components.SKoreButton WalkAsSelectedFurniBtn;
         private Sulakore.Components.SKoreButton CaptureFloorFurniBtn;
         private System.Windows.Forms.GroupBox groupBox2;
+        private Sulakore.Components.SKoreButton WalkingStyleBtn;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown FloorFurniLiveEditCooldownNbx;
+        private System.Windows.Forms.NumericUpDown WalkingSpeedNbx;
     }
 }
