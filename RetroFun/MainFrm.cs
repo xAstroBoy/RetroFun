@@ -93,7 +93,7 @@ namespace RetroFun
                 }
                 else if (Out.CatalogBuyItem == id)
                 {
-                    sub.OnRoomUserWalk(e);
+                    sub.OnCatalogBuyItem(e);
                 }
             }
         }

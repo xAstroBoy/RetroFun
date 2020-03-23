@@ -506,6 +506,7 @@ namespace RetroFun.Pages
                     }
                     SendBruteForceGiftPacket("FOUND VALID PAGEID :" + PageIDInt1 + " AND FURNIID : " + FurniIDint1);
                     Thread.Sleep(SpeedTimer1);
+                    PageIDInt1++;
                 } while (PageIDBruteForcerEnabled1);
             }).Start();
         }
@@ -855,7 +856,7 @@ namespace RetroFun.Pages
             {
                 Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Gift Bruteforcer]: Please purchase a furni in catalog to intercept the pageid and furniid", 0, 1, 0, -1);
                 GiftCaptureModeCatalog = true;
-                WriteToButton(CaptureCatalogGiftDataBtn, "Capture Mode : OFF");
+                WriteToButton(CaptureCatalogGiftDataBtn, "Capture Mode : ON");
             }
 
         }

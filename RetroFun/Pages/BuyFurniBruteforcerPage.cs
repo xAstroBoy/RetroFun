@@ -209,7 +209,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private string _FileNameSave = "bobbaitalia.it";
+        private string _FileNameSave = "Unnamed.RetroFun";
 
         public string FileNameSave
         {
@@ -936,7 +936,7 @@ namespace RetroFun.Pages
             {
                 Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Catalog Bruteforcer]: Please purchase a furni in catalog to intercept the pageid and furniid", 0, 1, 0, -1);
                 CaptureModeCatalog = true;
-                WriteToButton(CaptureModeBtn, "Capture Mode : OFF");
+                WriteToButton(CaptureModeBtn, "Capture Mode : ON");
             }
         }
     }
