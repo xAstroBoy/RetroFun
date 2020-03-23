@@ -26,6 +26,7 @@ namespace RetroFun.Pages
     public partial class ChatPage : ObservablePage, ISubscriber
     {
         private HMessage replacement;
+        private HMessage FlooderMessages;
         private int LocalIndex;
 
         private int[] rainbowlist = new int[] { 3, 4, 5, 6, 7, 11, 12, 13, 14, 15, 18 };
@@ -552,6 +553,56 @@ namespace RetroFun.Pages
         }
 
 
+        private HMessage FloodMessageBuilder()
+        {
+            string FloodMessage;
+
+                if (AntiBobbaFilter)
+                {
+                    FloodMessage = BypassFilter(FlooderText);
+                }
+                else
+                {
+                    FloodMessage = FlooderText;
+                }
+
+                if (UseSelectedBubbleServerSide)
+                {
+                    FloodServerBubble = SelectedSSBubbleId;
+                }
+                else
+                {
+                    FloodServerBubble = 18;
+                }
+
+                if (RainbowChatEnabled)
+                {
+                    int Debug = GetRainbowBubbleint();
+                    FloodServerBubble = Debug;
+                }
+                if (!ForceChatSpeak)
+                {
+                FlooderMessages = new HMessage(Out.RoomUserTalk, FloodMessage, FloodServerBubble);
+                }
+                else
+                {
+                    if (ForceNormalSpeak)
+                    {
+                    FlooderMessages = new HMessage(Out.RoomUserTalk, FloodMessage, FloodServerBubble);
+                    }
+                    else if (ForceShoutChat)
+                    {
+                    FlooderMessages = new HMessage(Out.RoomUserShout, FloodMessage, FloodServerBubble);
+                    }
+                    else if (ForceWhisperChat)
+                    {
+                    FlooderMessages = new HMessage(Out.RoomUserWhisper, FloodMessage, FloodServerBubble);
+                    }
+                }
+            
+            return FlooderMessages;
+        }
+
         private void StartFloodThread()
         {
             new Thread(() =>
@@ -559,60 +610,13 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
-                    string FloodMessage;
-                    if (FlooderEnabled)
-                    {
-                        if (AntiBobbaFilter)
-                        {
-                            FloodMessage = BypassFilter(FlooderText);
-                        }
-                        else
-                        {
-                            FloodMessage = FlooderText;
-                        }
-
-                        if (UseSelectedBubbleServerSide)
-                        {
-                            FloodServerBubble = SelectedSSBubbleId;
-                        }
-                        else
-                        {
-                            FloodServerBubble = 18;
-                        }
-
-                        if (RainbowChatEnabled)
-                        {
-                            int Debug = GetRainbowBubbleint();
-                            FloodServerBubble = Debug;
-                        }
-
-                        if (!ForceChatSpeak)
-                        {
-                            replacement = new HMessage(Out.RoomUserTalk, FloodMessage, FloodServerBubble);
-                        }
-                        else
-                        {
-                            if (ForceNormalSpeak)
-                            {
-                                replacement = new HMessage(Out.RoomUserTalk, FloodMessage, FloodServerBubble);
-                            }
-                            else if (ForceShoutChat)
-                            {
-                                replacement = new HMessage(Out.RoomUserShout, FloodMessage, FloodServerBubble);
-                            }
-                            else if (ForceWhisperChat)
-                            {
-                                replacement = new HMessage(Out.RoomUserWhisper, FloodMessage, FloodServerBubble);
-                            }
-                        }
-
-
+                    if(FlooderEnabled)
+                    { 
                         if (Connection.Remote.IsConnected)
                         {
-                            Connection.SendToServerAsync(replacement);
+                            Connection.SendToServerAsync(FloodMessageBuilder());
                             Thread.Sleep(FlooderCooldown);
                         }
-
                     }
 
                 } while (FlooderEnabled);
