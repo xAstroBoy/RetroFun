@@ -45,6 +45,7 @@ namespace RetroFun
             this.PersonalTab = new System.Windows.Forms.TabPage();
             this.PersonalPg = new RetroFun.Pages.PersonalPage();
             this.UtiliesTab = new System.Windows.Forms.TabPage();
+            this.UtilitiesPg = new RetroFun.Pages.UtilitiesPage();
             this.FurnitureTab = new System.Windows.Forms.TabPage();
             this.FurnitureSpawnerTab = new System.Windows.Forms.TabPage();
             this.furniSpawnPg = new RetroFun.Pages.FurniSpawnPage();
@@ -55,6 +56,7 @@ namespace RetroFun
             this.MakeSayTab = new System.Windows.Forms.TabPage();
             this.FakeMsgTab = new System.Windows.Forms.TabPage();
             this.FakeMessagePg = new RetroFun.Pages.FakeMessagePage();
+            this.PetTab = new System.Windows.Forms.TabPage();
             this.DicePageTab = new System.Windows.Forms.TabPage();
             this.HoloTab = new System.Windows.Forms.TabPage();
             this.DiscoFunTab = new System.Windows.Forms.TabPage();
@@ -72,7 +74,7 @@ namespace RetroFun
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
             this.BottomPg = new RetroFun.Pages.BottomPage();
-            this.UtilitiesPg = new RetroFun.Pages.UtilitiesPage();
+            this.PetPg = new RetroFun.Pages.PetPage();
             this.RetroFunTabs.SuspendLayout();
             this.PersonalTab.SuspendLayout();
             this.UtiliesTab.SuspendLayout();
@@ -83,6 +85,7 @@ namespace RetroFun
             this.StalkingTab.SuspendLayout();
             this.MakeSayTab.SuspendLayout();
             this.FakeMsgTab.SuspendLayout();
+            this.PetTab.SuspendLayout();
             this.DicePageTab.SuspendLayout();
             this.HoloTab.SuspendLayout();
             this.DiscoFunTab.SuspendLayout();
@@ -101,6 +104,9 @@ namespace RetroFun
             // 
             this.ChatPg.AntiBobbaFilter = false;
             this.ChatPg.BackColor = System.Drawing.Color.White;
+            this.ChatPg.FlooderCooldown = 50;
+            this.ChatPg.FlooderEnabled = false;
+            this.ChatPg.FlooderText = null;
             this.ChatPg.ForceChatSpeak = false;
             this.ChatPg.ForceNormalSpeak = true;
             this.ChatPg.ForceShoutChat = false;
@@ -139,6 +145,7 @@ namespace RetroFun
             this.FurniPg.FloorFurniY = 0;
             this.FurniPg.FurniPickedOutput = false;
             this.FurniPg.FurnitureIdText = null;
+            this.FurniPg.FurniWalkingSpeed = 300;
             this.FurniPg.Location = new System.Drawing.Point(8, 8);
             this.FurniPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.FurniPg.Name = "FurniPg";
@@ -182,8 +189,14 @@ namespace RetroFun
             // 
             this.GiftEditorPg.BackColor = System.Drawing.Color.White;
             this.GiftEditorPg.EnableLoop = false;
+            this.GiftEditorPg.FileNameSave = "Unnamed.RetroFun";
             this.GiftEditorPg.FurnIIDBruteforcerEnabled = false;
             this.GiftEditorPg.FurniIDint = 0;
+            this.GiftEditorPg.FurniIDint1 = 0;
+            this.GiftEditorPg.FurniIDIntRange = 0;
+            this.GiftEditorPg.FurniIDOptionToggle = true;
+            this.GiftEditorPg.FurniIDRangeToggle = false;
+            this.GiftEditorPg.GiftCaptureModeCatalog = false;
             this.GiftEditorPg.GlobalBruteforcerEnabled = false;
             this.GiftEditorPg.isAnonymous = false;
             this.GiftEditorPg.Location = new System.Drawing.Point(0, 0);
@@ -191,11 +204,18 @@ namespace RetroFun
             this.GiftEditorPg.Name = "GiftEditorPg";
             this.GiftEditorPg.PageIDBruteForcerEnabled = false;
             this.GiftEditorPg.PageIDInt = 0;
+            this.GiftEditorPg.PageIDInt1 = 0;
+            this.GiftEditorPg.PageIDIntRange = 0;
+            this.GiftEditorPg.PageIDOptionToggle = false;
+            this.GiftEditorPg.PageIDRangeToggle = false;
             this.GiftEditorPg.Purchased = false;
+            this.GiftEditorPg.PurchaseSuccess = false;
             this.GiftEditorPg.Size = new System.Drawing.Size(1190, 623);
             this.GiftEditorPg.SpeedTimer = 6000;
+            this.GiftEditorPg.SpeedTimer1 = 100;
             this.GiftEditorPg.TabIndex = 0;
             this.GiftEditorPg.TabStop = false;
+            this.GiftEditorPg.TextBox = "";
             // 
             // AutoHoloDicePg
             // 
@@ -322,6 +342,7 @@ namespace RetroFun
             this.RetroFunTabs.Controls.Add(this.StalkingTab);
             this.RetroFunTabs.Controls.Add(this.MakeSayTab);
             this.RetroFunTabs.Controls.Add(this.FakeMsgTab);
+            this.RetroFunTabs.Controls.Add(this.PetTab);
             this.RetroFunTabs.Controls.Add(this.DicePageTab);
             this.RetroFunTabs.Controls.Add(this.HoloTab);
             this.RetroFunTabs.Controls.Add(this.DiscoFunTab);
@@ -353,7 +374,7 @@ namespace RetroFun
             this.PersonalTab.Text = "Personal";
             this.PersonalTab.UseVisualStyleBackColor = true;
             // 
-            // personalPage1
+            // PersonalPg
             // 
             this.PersonalPg.BackColor = System.Drawing.Color.White;
             this.PersonalPg.CreditsChecked = false;
@@ -365,7 +386,7 @@ namespace RetroFun
             this.PersonalPg.HasModToolsUnlocked = false;
             this.PersonalPg.HasStaffPermissions = false;
             this.PersonalPg.Location = new System.Drawing.Point(3, 3);
-            this.PersonalPg.Name = "personalPage1";
+            this.PersonalPg.Name = "PersonalPg";
             this.PersonalPg.Size = new System.Drawing.Size(1195, 636);
             this.PersonalPg.TabIndex = 0;
             this.PersonalPg.TabStop = false;
@@ -381,6 +402,21 @@ namespace RetroFun
             this.UtiliesTab.TabIndex = 17;
             this.UtiliesTab.Text = "Utils";
             this.UtiliesTab.UseVisualStyleBackColor = true;
+            // 
+            // UtilitiesPg
+            // 
+            this.UtilitiesPg.BackColor = System.Drawing.Color.White;
+            this.UtilitiesPg.CreditExchangeMode = false;
+            this.UtilitiesPg.CreditIDInt = 1;
+            this.UtilitiesPg.CreditMultiplierAmount = 1;
+            this.UtilitiesPg.CreditMultiplierEnabled = false;
+            this.UtilitiesPg.GiftExchangeMode = false;
+            this.UtilitiesPg.GiftInt = 1;
+            this.UtilitiesPg.Location = new System.Drawing.Point(8, 16);
+            this.UtilitiesPg.Name = "UtilitiesPg";
+            this.UtilitiesPg.Size = new System.Drawing.Size(1089, 422);
+            this.UtilitiesPg.TabIndex = 0;
+            this.UtilitiesPg.TabStop = false;
             // 
             // FurnitureTab
             // 
@@ -407,9 +443,20 @@ namespace RetroFun
             // furniSpawnPg
             // 
             this.furniSpawnPg.BackColor = System.Drawing.Color.White;
+            this.furniSpawnPg.CoordX = 0;
+            this.furniSpawnPg.CoordY = 0;
+            this.furniSpawnPg.CoordZ = 0;
+            this.furniSpawnPg.FloorFurniID = 0;
+            this.furniSpawnPg.FurniAmountInv = 0;
+            this.furniSpawnPg.FurniOwnerName = " ";
+            this.furniSpawnPg.FurniRotation = 6;
+            this.furniSpawnPg.FurniType = "I";
+            this.furniSpawnPg.InventoryFurniID = 0;
             this.furniSpawnPg.Location = new System.Drawing.Point(3, 0);
             this.furniSpawnPg.Name = "furniSpawnPg";
+            this.furniSpawnPg.PosterID = "2005";
             this.furniSpawnPg.Size = new System.Drawing.Size(1195, 634);
+            this.furniSpawnPg.SpawnFurniOnClick = false;
             this.furniSpawnPg.TabIndex = 0;
             this.furniSpawnPg.TabStop = false;
             // 
@@ -423,7 +470,7 @@ namespace RetroFun
             this.FurnitureSpamTab.Text = "Furniture Troll";
             this.FurnitureSpamTab.UseVisualStyleBackColor = true;
             // 
-            // furniTrollPg1
+            // FurniTrollPg
             // 
             this.FurniTrollPg.BackColor = System.Drawing.Color.White;
             this.FurniTrollPg.CooldownThread1 = 150;
@@ -461,7 +508,7 @@ namespace RetroFun
             this.FurniTrollPg.IsRegistrationMode = false;
             this.FurniTrollPg.Location = new System.Drawing.Point(4, 5);
             this.FurniTrollPg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.FurniTrollPg.Name = "furniTrollPg1";
+            this.FurniTrollPg.Name = "FurniTrollPg";
             this.FurniTrollPg.Size = new System.Drawing.Size(1194, 632);
             this.FurniTrollPg.StartFurniThread1 = false;
             this.FurniTrollPg.StartFurniThread10 = false;
@@ -535,6 +582,16 @@ namespace RetroFun
             this.FakeMessagePg.TabIndex = 0;
             this.FakeMessagePg.TabStop = false;
             this.FakeMessagePg.UserMessage = "";
+            // 
+            // PetTab
+            // 
+            this.PetTab.Controls.Add(this.PetPg);
+            this.PetTab.Location = new System.Drawing.Point(4, 28);
+            this.PetTab.Name = "PetTab";
+            this.PetTab.Size = new System.Drawing.Size(1194, 634);
+            this.PetTab.TabIndex = 18;
+            this.PetTab.Text = "Pets";
+            this.PetTab.UseVisualStyleBackColor = true;
             // 
             // DicePageTab
             // 
@@ -748,20 +805,19 @@ namespace RetroFun
             this.BottomPg.TabIndex = 1;
             this.BottomPg.TabStop = false;
             // 
-            // utilitiesPage1
+            // petPage
             // 
-            this.UtilitiesPg.BackColor = System.Drawing.Color.White;
-            this.UtilitiesPg.CreditExchangeMode = false;
-            this.UtilitiesPg.CreditIDInt = 1;
-            this.UtilitiesPg.CreditMultiplierAmount = 1;
-            this.UtilitiesPg.CreditMultiplierEnabled = false;
-            this.UtilitiesPg.GiftExchangeMode = false;
-            this.UtilitiesPg.GiftInt = 1;
-            this.UtilitiesPg.Location = new System.Drawing.Point(8, 16);
-            this.UtilitiesPg.Name = "utilitiesPage1";
-            this.UtilitiesPg.Size = new System.Drawing.Size(1089, 422);
-            this.UtilitiesPg.TabIndex = 0;
-            this.UtilitiesPg.TabStop = false;
+            this.PetPg.BackColor = System.Drawing.Color.White;
+            this.PetPg.Location = new System.Drawing.Point(8, 3);
+            this.PetPg.Name = "petPage";
+            this.PetPg.PageID = 0;
+            this.PetPg.PetHTMLColor = null;
+            this.PetPg.PetID = 0;
+            this.PetPg.PetName = null;
+            this.PetPg.PetRace = 0;
+            this.PetPg.Size = new System.Drawing.Size(1178, 628);
+            this.PetPg.TabIndex = 0;
+            this.PetPg.TabStop = false;
             // 
             // MainFrm
             // 
@@ -788,6 +844,7 @@ namespace RetroFun
             this.StalkingTab.ResumeLayout(false);
             this.MakeSayTab.ResumeLayout(false);
             this.FakeMsgTab.ResumeLayout(false);
+            this.PetTab.ResumeLayout(false);
             this.DicePageTab.ResumeLayout(false);
             this.HoloTab.ResumeLayout(false);
             this.DiscoFunTab.ResumeLayout(false);
@@ -842,6 +899,7 @@ namespace RetroFun
         private Pages.FurniTrollPg FurniTrollPg;
         private Pages.PersonalPage PersonalPg;
         private Pages.UtilitiesPage UtilitiesPg;
+        private Pages.PetPage PetPg;
 
         private Sulakore.Components.SKoreTabControl MoonlightPages;
         private System.Windows.Forms.TabPage tabPage1;
@@ -853,5 +911,6 @@ namespace RetroFun
         private System.Windows.Forms.TabPage PersonalTab;
         private System.Windows.Forms.TabPage FurnitureSpamTab;
         private System.Windows.Forms.TabPage UtiliesTab;
+        private System.Windows.Forms.TabPage PetTab;
     }
 }

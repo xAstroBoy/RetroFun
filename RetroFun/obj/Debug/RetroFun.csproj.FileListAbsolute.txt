@@ -89,3 +89,4 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.Perso
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.FurniTrollPg.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.UtilitiesPage.resources
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.PetPage.resources
