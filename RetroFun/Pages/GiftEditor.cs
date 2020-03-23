@@ -284,7 +284,7 @@ namespace RetroFun.Pages
         public void OnUsername(DataInterceptedEventArgs e)
         {
         }
-        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
+        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
         }
 
@@ -295,6 +295,7 @@ namespace RetroFun.Pages
         public void InUserEnterRoom(DataInterceptedEventArgs e)
         {
         }
+
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {

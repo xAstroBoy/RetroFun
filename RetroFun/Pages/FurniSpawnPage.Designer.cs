@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.FurnIDnbx = new System.Windows.Forms.NumericUpDown();
             this.CoordXNbx = new System.Windows.Forms.NumericUpDown();
             this.CoordZNBx = new System.Windows.Forms.NumericUpDown();
             this.CoordYNbx = new System.Windows.Forms.NumericUpDown();
             this.SpawnFloorFurniBtn = new Sulakore.Components.SKoreButton();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,14 +48,17 @@
             this.IRadioBtn = new System.Windows.Forms.RadioButton();
             this.SRadioBtn = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.FloorFurniSpawnerNbx = new System.Windows.Forms.NumericUpDown();
             this.SpawnFurniInvBtn = new Sulakore.Components.SKoreButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.FurniInventoryIDNbx = new System.Windows.Forms.NumericUpDown();
             this.AmountNbx = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.PosterIDTxbx = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.FurnIDnbx)).BeginInit();
+            this.Username = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.CoordXNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordZNBx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordYNbx)).BeginInit();
@@ -65,22 +66,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.RotationNbx)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorFurniSpawnerNbx)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FurniInventoryIDNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountNbx)).BeginInit();
+            this.Username.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // FurnIDnbx
-            // 
-            this.FurnIDnbx.Location = new System.Drawing.Point(10, 45);
-            this.FurnIDnbx.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.FurnIDnbx.Name = "FurnIDnbx";
-            this.FurnIDnbx.Size = new System.Drawing.Size(277, 26);
-            this.FurnIDnbx.TabIndex = 0;
             // 
             // CoordXNbx
             // 
@@ -126,15 +117,6 @@
             this.SpawnFloorFurniBtn.TabIndex = 4;
             this.SpawnFloorFurniBtn.Text = "Spawn Floor Furni";
             this.SpawnFloorFurniBtn.Click += new System.EventHandler(this.SpawnFloorFurniBtn_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 20);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "FurniID";
             // 
             // label2
             // 
@@ -240,16 +222,16 @@
             // 
             // SetOwnUsernameBtn
             // 
-            this.SetOwnUsernameBtn.Location = new System.Drawing.Point(424, 376);
+            this.SetOwnUsernameBtn.Location = new System.Drawing.Point(42, 65);
             this.SetOwnUsernameBtn.Name = "SetOwnUsernameBtn";
-            this.SetOwnUsernameBtn.Size = new System.Drawing.Size(195, 37);
+            this.SetOwnUsernameBtn.Size = new System.Drawing.Size(195, 45);
             this.SetOwnUsernameBtn.TabIndex = 10;
             this.SetOwnUsernameBtn.Text = "Set own username";
             this.SetOwnUsernameBtn.Click += new System.EventHandler(this.SetOwnUsernameBtn_Click);
             // 
             // FurniOwnerTxbx
             // 
-            this.FurniOwnerTxbx.Location = new System.Drawing.Point(398, 344);
+            this.FurniOwnerTxbx.Location = new System.Drawing.Point(16, 33);
             this.FurniOwnerTxbx.Name = "FurniOwnerTxbx";
             this.FurniOwnerTxbx.Size = new System.Drawing.Size(251, 26);
             this.FurniOwnerTxbx.TabIndex = 11;
@@ -267,7 +249,7 @@
             // 
             this.groupBox2.Controls.Add(this.IRadioBtn);
             this.groupBox2.Controls.Add(this.SRadioBtn);
-            this.groupBox2.Location = new System.Drawing.Point(26, 37);
+            this.groupBox2.Location = new System.Drawing.Point(6, 101);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(108, 98);
             this.groupBox2.TabIndex = 13;
@@ -300,6 +282,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.FloorFurniSpawnerNbx);
             this.groupBox3.Controls.Add(this.SpawnFloorFurniOnClickBtn);
             this.groupBox3.Controls.Add(this.groupBox1);
             this.groupBox3.Controls.Add(this.label4);
@@ -316,19 +300,30 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Floor Furni Spawner ( CS )";
             // 
-            // groupBox4
+            // label7
             // 
-            this.groupBox4.Controls.Add(this.label1);
-            this.groupBox4.Controls.Add(this.FurnIDnbx);
-            this.groupBox4.Location = new System.Drawing.Point(370, 12);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(324, 77);
-            this.groupBox4.TabIndex = 15;
-            this.groupBox4.TabStop = false;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 35);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(62, 20);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "FurniID";
+            // 
+            // FloorFurniSpawnerNbx
+            // 
+            this.FloorFurniSpawnerNbx.Location = new System.Drawing.Point(10, 58);
+            this.FloorFurniSpawnerNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.FloorFurniSpawnerNbx.Name = "FloorFurniSpawnerNbx";
+            this.FloorFurniSpawnerNbx.Size = new System.Drawing.Size(277, 26);
+            this.FloorFurniSpawnerNbx.TabIndex = 13;
             // 
             // SpawnFurniInvBtn
             // 
-            this.SpawnFurniInvBtn.Location = new System.Drawing.Point(25, 168);
+            this.SpawnFurniInvBtn.Location = new System.Drawing.Point(5, 232);
             this.SpawnFurniInvBtn.Name = "SpawnFurniInvBtn";
             this.SpawnFurniInvBtn.Size = new System.Drawing.Size(202, 35);
             this.SpawnFurniInvBtn.TabIndex = 18;
@@ -337,32 +332,55 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Controls.Add(this.label6);
+            this.groupBox5.Controls.Add(this.FurniInventoryIDNbx);
             this.groupBox5.Controls.Add(this.AmountNbx);
             this.groupBox5.Controls.Add(this.label5);
             this.groupBox5.Controls.Add(this.PosterIDTxbx);
             this.groupBox5.Controls.Add(this.SpawnFurniInvBtn);
             this.groupBox5.Controls.Add(this.groupBox2);
-            this.groupBox5.Location = new System.Drawing.Point(355, 100);
+            this.groupBox5.Location = new System.Drawing.Point(355, 22);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(356, 228);
+            this.groupBox5.Size = new System.Drawing.Size(356, 306);
             this.groupBox5.TabIndex = 19;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Inventory Spawner ( CS )";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 20);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "FurniID";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(136, 43);
+            this.label6.Location = new System.Drawing.Point(116, 107);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 20);
             this.label6.TabIndex = 22;
             this.label6.Text = "Amount";
             // 
+            // FurniInventoryIDNbx
+            // 
+            this.FurniInventoryIDNbx.Location = new System.Drawing.Point(5, 58);
+            this.FurniInventoryIDNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.FurniInventoryIDNbx.Name = "FurniInventoryIDNbx";
+            this.FurniInventoryIDNbx.Size = new System.Drawing.Size(277, 26);
+            this.FurniInventoryIDNbx.TabIndex = 20;
+            // 
             // AmountNbx
             // 
             this.AmountNbx.Enabled = false;
-            this.AmountNbx.Location = new System.Drawing.Point(140, 66);
+            this.AmountNbx.Location = new System.Drawing.Point(120, 130);
             this.AmountNbx.Name = "AmountNbx";
             this.AmountNbx.Size = new System.Drawing.Size(170, 26);
             this.AmountNbx.TabIndex = 21;
@@ -370,7 +388,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(136, 105);
+            this.label5.Location = new System.Drawing.Point(116, 169);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(72, 20);
             this.label5.TabIndex = 20;
@@ -378,24 +396,32 @@
             // 
             // PosterIDTxbx
             // 
-            this.PosterIDTxbx.Location = new System.Drawing.Point(140, 132);
+            this.PosterIDTxbx.Location = new System.Drawing.Point(120, 196);
             this.PosterIDTxbx.Name = "PosterIDTxbx";
             this.PosterIDTxbx.Size = new System.Drawing.Size(170, 26);
             this.PosterIDTxbx.TabIndex = 19;
             this.PosterIDTxbx.Text = "2005";
             // 
+            // Username
+            // 
+            this.Username.Controls.Add(this.FurniOwnerTxbx);
+            this.Username.Controls.Add(this.SetOwnUsernameBtn);
+            this.Username.Location = new System.Drawing.Point(376, 332);
+            this.Username.Name = "Username";
+            this.Username.Size = new System.Drawing.Size(334, 140);
+            this.Username.TabIndex = 21;
+            this.Username.TabStop = false;
+            this.Username.Text = "Furni Owner";
+            // 
             // FurniSpawnPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.FurniOwnerTxbx);
+            this.Controls.Add(this.Username);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.SetOwnUsernameBtn);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Name = "FurniSpawnPage";
             this.Size = new System.Drawing.Size(1160, 491);
-            ((System.ComponentModel.ISupportInitialize)(this.FurnIDnbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordXNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordZNBx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordYNbx)).EndInit();
@@ -406,24 +432,22 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FloorFurniSpawnerNbx)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FurniInventoryIDNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AmountNbx)).EndInit();
+            this.Username.ResumeLayout(false);
+            this.Username.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.NumericUpDown FurnIDnbx;
         private System.Windows.Forms.NumericUpDown CoordXNbx;
         private System.Windows.Forms.NumericUpDown CoordZNBx;
         private System.Windows.Forms.NumericUpDown CoordYNbx;
         private Sulakore.Components.SKoreButton SpawnFloorFurniBtn;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -440,12 +464,16 @@
         private System.Windows.Forms.RadioButton SRadioBtn;
         private System.Windows.Forms.RadioButton IRadioBtn;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox4;
         private Sulakore.Components.SKoreButton SpawnFurniInvBtn;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox PosterIDTxbx;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown AmountNbx;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown FloorFurniSpawnerNbx;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown FurniInventoryIDNbx;
+        private System.Windows.Forms.GroupBox Username;
     }
 }

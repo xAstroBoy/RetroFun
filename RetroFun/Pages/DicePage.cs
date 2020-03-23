@@ -58,7 +58,7 @@ namespace RetroFun.Pages
         {
         }
 
-        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
+        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
         }
 
@@ -77,6 +77,7 @@ namespace RetroFun.Pages
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
         }
+
 
         private void DiceRegisterMode_CheckedChanged(object sender, EventArgs e)
         {

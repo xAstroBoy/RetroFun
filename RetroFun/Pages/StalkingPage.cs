@@ -61,7 +61,7 @@ namespace RetroFun.Pages
 
         public bool IsReceiving => true;
 
-        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
+        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
         }
 
@@ -97,6 +97,7 @@ namespace RetroFun.Pages
         public void OnRoomUserWalk(DataInterceptedEventArgs e)
         {
         }
+
 
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
@@ -152,5 +153,7 @@ namespace RetroFun.Pages
                 Connection.SendToServerAsync(Out.StalkFriend, UserIDCapture);
             }
         }
+
+
     }
 }

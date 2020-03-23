@@ -47,6 +47,10 @@ namespace RetroFun.Pages
         {
         }
 
+
+        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
+        {
+        }
         public void InUserEnterRoom(DataInterceptedEventArgs e)
         {
         }
@@ -71,9 +75,6 @@ namespace RetroFun.Pages
         {
         }
 
-        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
-        {
-        }
 
         public void OnUsername(DataInterceptedEventArgs e)
         {

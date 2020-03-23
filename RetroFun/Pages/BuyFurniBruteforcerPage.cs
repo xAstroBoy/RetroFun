@@ -283,7 +283,7 @@ namespace RetroFun.Pages
         public void OnUsername(DataInterceptedEventArgs e)
         {
         }
-        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
+        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
         }
 
@@ -461,6 +461,9 @@ namespace RetroFun.Pages
         private void OutCatalogBuyItem(DataInterceptedEventArgs e)
         {
         }
+
+
+
 
         private void SendPacket(int PageID, int FurniID)
         {

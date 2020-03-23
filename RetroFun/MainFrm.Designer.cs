@@ -407,19 +407,9 @@ namespace RetroFun
             // furniSpawnPg
             // 
             this.furniSpawnPg.BackColor = System.Drawing.Color.White;
-            this.furniSpawnPg.CoordX = 0;
-            this.furniSpawnPg.CoordY = 0;
-            this.furniSpawnPg.CoordZ = 0;
-            this.furniSpawnPg.FurniAmountInv = 0;
-            this.furniSpawnPg.FurniID = 0;
-            this.furniSpawnPg.FurniOwnerName = " ";
-            this.furniSpawnPg.FurniRotation = 6;
-            this.furniSpawnPg.FurniType = "I";
             this.furniSpawnPg.Location = new System.Drawing.Point(3, 0);
             this.furniSpawnPg.Name = "furniSpawnPg";
-            this.furniSpawnPg.PosterID = "2005";
             this.furniSpawnPg.Size = new System.Drawing.Size(1195, 634);
-            this.furniSpawnPg.SpawnFurniOnClick = false;
             this.furniSpawnPg.TabIndex = 0;
             this.furniSpawnPg.TabStop = false;
             // 

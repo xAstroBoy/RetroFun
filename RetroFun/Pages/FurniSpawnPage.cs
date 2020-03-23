@@ -20,10 +20,12 @@ namespace RetroFun.Pages
     public partial class FurniSpawnPage : ObservablePage, ISubscriber
     {
         private Random rand = new Random();
-        private int _FurniID;
+        private int _InventoryFurniID;
+        private int _FloorFurniID;
+
         private int LocalFurniID;
         private int _FurniAmountInv = 0;
-
+        private bool BlockRoomLoad;
 
         private string _PosterID = "2005";
 
@@ -50,16 +52,26 @@ namespace RetroFun.Pages
             }
         }
 
-        public int FurniID
+        public int FloorFurniID
         {
-            get => _FurniID;
+            get => _FloorFurniID;
             set
             {
-                _FurniID = value;
+                _FloorFurniID = value;
                 RaiseOnPropertyChanged();
             }
         }
 
+
+        public int InventoryFurniID
+        {
+            get => _InventoryFurniID;
+            set
+            {
+                _InventoryFurniID = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         public int FurniAmountInv
         {
@@ -149,7 +161,7 @@ namespace RetroFun.Pages
         {
             InitializeComponent();
 
-            Bind(FurnIDnbx, "Value", nameof(FurniID));
+            Bind(FloorFurniSpawnerNbx, "Value", nameof(FloorFurniID));
             Bind(CoordXNbx, "Value", nameof(CoordX));
             Bind(CoordYNbx, "Value", nameof(CoordY));
             Bind(CoordZNBx, "Value", nameof(CoordZ));
@@ -157,6 +169,8 @@ namespace RetroFun.Pages
             Bind(FurniOwnerTxbx, "Text", nameof(FurniOwnerName));
             Bind(PosterIDTxbx, "Text", nameof(PosterID));
             Bind(AmountNbx, "Value", nameof(FurniAmountInv));
+
+            Bind(FurniInventoryIDNbx, "Value", nameof(InventoryFurniID));
 
 
 
@@ -184,9 +198,6 @@ namespace RetroFun.Pages
         {
         }
 
-        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
-        {
-        }
 
         public void OnLatencyTest(DataInterceptedEventArgs e)
         {
@@ -194,6 +205,17 @@ namespace RetroFun.Pages
 
         public void InUserEnterRoom(DataInterceptedEventArgs e)
         {
+        }
+
+        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
+        {
+            if(BlockRoomLoad)
+            {
+                
+                e.IsBlocked = true;
+                BlockRoomLoad = false;
+            }
+
         }
 
         public void OnRoomUserWalk(DataInterceptedEventArgs e)
@@ -204,7 +226,7 @@ namespace RetroFun.Pages
             {
                 CoordX = coordX;
                 CoordY = coordY;
-                SpawnFurni(FurniID, coordX, coordY, CoordZ, FurniRotation, FurniOwnerName);
+                SpawnFurni(FloorFurniID, coordX, coordY, CoordZ, FurniRotation, FurniOwnerName);
                 e.IsBlocked = true;
             }
         }
@@ -247,7 +269,7 @@ namespace RetroFun.Pages
 
         private void SpawnFloorFurniBtn_Click(object sender, EventArgs e)
         {
-            SpawnFurni(FurniID, CoordX, CoordY, CoordZ, FurniRotation, FurniOwnerName); 
+            SpawnFurni(FloorFurniID, CoordX, CoordY, CoordZ, FurniRotation, FurniOwnerName); 
         }
 
         private void SpawnFurni(int FurniID, int CoordX, int CoordY, int CoordZ, int FurniRotation, string Owner) 
@@ -269,7 +291,6 @@ namespace RetroFun.Pages
                 -1, //<-?
                 0, //<-?
                 0, //<-?
-                0, //<-?
                 Owner, //<-?
             });
         }
@@ -277,8 +298,10 @@ namespace RetroFun.Pages
         private void SetOwnUsernameBtn_Click(object sender, EventArgs e)
         {
             Connection.SendToServerAsync(Out.RequestUserData);
+            BlockRoomLoad = true;
 
         }
+
 
         private void SpawnFloorFurniOnClickBtn_Click(object sender, EventArgs e)
         {
@@ -327,11 +350,11 @@ namespace RetroFun.Pages
         {
             if (FurniType == "S")
             {
-                SpawnFurniInventoryS("S",  FurniID);
+                SpawnFurniInventoryS("S",  InventoryFurniID);
             }
             else if(FurniType == "I")
             {
-                SpawnFurniInventoryI("I",  FurniID);
+                SpawnFurniInventoryI("I", InventoryFurniID);
 
             }
 

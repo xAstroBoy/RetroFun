@@ -3,6 +3,7 @@ using RetroFun.Helpers;
 using RetroFun.Properties;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
+using Sulakore.Components;
 using Sulakore.Habbo;
 using Sulakore.Modules;
 using Sulakore.Protocol;
@@ -15,6 +16,7 @@ using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace RetroFun.Pages
@@ -31,6 +33,49 @@ namespace RetroFun.Pages
         //private int newrainbowselected;
         private Random rand = new Random();
         public bool IsReceiving => true;
+        private bool BlockRoomLoad;
+
+        private bool _FlooderEnabled;
+
+        private int FloodServerBubble;
+
+        public bool FlooderEnabled
+        {
+            get => _FlooderEnabled;
+            set
+            {
+                _FlooderEnabled = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+
+        private string _FlooderText;
+
+        public string FlooderText
+        {
+            get => _FlooderText;
+            set
+            {
+                _FlooderText = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        private int _FlooderCooldown;
+
+        public int FlooderCooldown
+        {
+            get => _FlooderCooldown;
+            set
+            {
+                _FlooderCooldown = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
         private bool _antiBobbaFilter;
 
@@ -172,6 +217,10 @@ namespace RetroFun.Pages
             Bind(WhisperChatBox, "Checked", nameof(ForceWhisperChat));
             Bind(RainbowChatChbx, "Checked", nameof(RainbowChatEnabled));
 
+            Bind(TextFloodPhraseBox, "Text", nameof(FlooderText));
+            Bind(CooldownFloodNbx, "Value", nameof(FlooderCooldown));
+
+
             var imageType = typeof(Image);
 
             ResourceSet res = Resources.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
@@ -216,6 +265,7 @@ namespace RetroFun.Pages
             if (UsernameFilter == null)
             {
                 Connection.SendToServerAsync(Out.RequestUserData);
+                BlockRoomLoad = true;
             }
         }
 
@@ -231,7 +281,15 @@ namespace RetroFun.Pages
         }
 
 
+        private void WriteToButton(SKoreButton Button, string text)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                Button.Text = text;
+            });
+            
 
+        }
         private void ForceDefSpeakBox_CheckedChanged(object sender, EventArgs e)
         {
             ToggleChatDefault();
@@ -335,11 +393,17 @@ namespace RetroFun.Pages
         {
         }
 
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
-        }
+            if (BlockRoomLoad)
+            {
 
-        public void OnUserLeaveRoom(DataInterceptedEventArgs e)
+                e.IsBlocked = true;
+                BlockRoomLoad = false;
+            }
+
+        }
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
         }
 
@@ -442,8 +506,6 @@ namespace RetroFun.Pages
             if (RainbowChatEnabled)
             {
                 int Debug = GetRainbowBubbleint();
-                Console.WriteLine("RainbowBubbleTest : Used ID : " + Debug);
-
                 bubbleId = Debug;
             }
 
@@ -490,5 +552,89 @@ namespace RetroFun.Pages
         }
 
 
+        private void StartFloodThread()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    string FloodMessage;
+                    if (FlooderEnabled)
+                    {
+                        if (AntiBobbaFilter)
+                        {
+                            FloodMessage = BypassFilter(FlooderText);
+                        }
+                        else
+                        {
+                            FloodMessage = FlooderText;
+                        }
+
+                        if (UseSelectedBubbleServerSide)
+                        {
+                            FloodServerBubble = SelectedSSBubbleId;
+                        }
+                        else
+                        {
+                            FloodServerBubble = 18;
+                        }
+
+                        if (RainbowChatEnabled)
+                        {
+                            int Debug = GetRainbowBubbleint();
+                            FloodServerBubble = Debug;
+                        }
+
+                        if (!ForceChatSpeak)
+                        {
+                            replacement = new HMessage(Out.RoomUserTalk, FloodMessage, FloodServerBubble);
+                        }
+                        else
+                        {
+                            if (ForceNormalSpeak)
+                            {
+                                replacement = new HMessage(Out.RoomUserTalk, FloodMessage, FloodServerBubble);
+                            }
+                            else if (ForceShoutChat)
+                            {
+                                replacement = new HMessage(Out.RoomUserShout, FloodMessage, FloodServerBubble);
+                            }
+                            else if (ForceWhisperChat)
+                            {
+                                replacement = new HMessage(Out.RoomUserWhisper, FloodMessage, FloodServerBubble);
+                            }
+                        }
+
+
+                        if (Connection.Remote.IsConnected)
+                        {
+                            Connection.SendToServerAsync(replacement);
+                            Thread.Sleep(FlooderCooldown);
+                        }
+
+                    }
+
+                } while (FlooderEnabled);
+            }).Start();
+        }
+
+
+
+
+        private void FloodBtn_Click(object sender, EventArgs e)
+        {
+            if(FlooderEnabled)
+            {
+                WriteToButton(FloodBtn, "Flooder : OFF");
+                FlooderEnabled = false;
+            }
+        else
+            {
+                WriteToButton(FloodBtn, "Flooder : ON");
+                FlooderEnabled = true;
+                StartFloodThread();
+            }
+        }
     }
 }

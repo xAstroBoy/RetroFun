@@ -96,6 +96,7 @@ namespace RetroFun.Pages
         {
         }
 
+
         public void OnRoomUserWalk(DataInterceptedEventArgs e)
         {
         }
@@ -112,7 +113,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnUserLeaveRoom(DataInterceptedEventArgs obj)
+        public void OnRequestRoomLoad(DataInterceptedEventArgs obj)
         {
             users.Clear();
             WriteRegistrationUsers(users.Count);

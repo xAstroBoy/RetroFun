@@ -77,7 +77,7 @@ namespace RetroFun
                 }
                 else if (Out.RequestRoomLoad == id)
                 {
-                    sub.OnUserLeaveRoom(e);
+                    sub.OnRequestRoomLoad(e);
                 }
                 else if (Out.LatencyTest == id)
                 {

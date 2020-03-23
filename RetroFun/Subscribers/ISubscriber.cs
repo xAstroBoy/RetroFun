@@ -13,13 +13,14 @@ namespace RetroFun.Subscribers
 
         void OnUserFriendRemoval(DataInterceptedEventArgs e);
 
-        void OnUserLeaveRoom(DataInterceptedEventArgs e);
+        void OnRequestRoomLoad(DataInterceptedEventArgs e);
 
         void OnLatencyTest(DataInterceptedEventArgs e);
 
         void OnUsername(DataInterceptedEventArgs e);
 
         void OnRoomUserWalk(DataInterceptedEventArgs e);
+
 
         //Incoming events shared by multiple pages
         void InPurchaseOk(DataInterceptedEventArgs e);
