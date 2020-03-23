@@ -242,7 +242,7 @@
             0,
             0});
             this.CooldownFloodNbx.Minimum = new decimal(new int[] {
-            200,
+            100,
             0,
             0,
             0});
@@ -250,7 +250,7 @@
             this.CooldownFloodNbx.Size = new System.Drawing.Size(120, 26);
             this.CooldownFloodNbx.TabIndex = 14;
             this.CooldownFloodNbx.Value = new decimal(new int[] {
-            250,
+            400,
             0,
             0,
             0});

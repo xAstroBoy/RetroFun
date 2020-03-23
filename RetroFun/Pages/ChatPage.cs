@@ -611,12 +611,12 @@ namespace RetroFun.Pages
                 do
                 {
                     if(FlooderEnabled)
-                    { 
-                        if (Connection.Remote.IsConnected)
-                        {
-                            Connection.SendToServerAsync(FloodMessageBuilder());
-                            Thread.Sleep(FlooderCooldown);
-                        }
+                    {
+
+                        Thread.Sleep(FlooderCooldown);
+                        Connection.SendToServerAsync(FloodMessageBuilder());
+                        Thread.Sleep(100);
+
                     }
 
                 } while (FlooderEnabled);
