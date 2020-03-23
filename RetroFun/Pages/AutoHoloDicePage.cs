@@ -178,6 +178,11 @@ namespace RetroFun.Pages
         public void OnRoomUserWalk(DataInterceptedEventArgs e)
         {
         }
+        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
+        {
+        }
+
+
         private void HandleDiceUpdate(DataInterceptedEventArgs e)
         {
             if (!ISHolodiceCheat) return;

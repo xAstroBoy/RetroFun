@@ -91,6 +91,10 @@ namespace RetroFun
                 {
                     sub.OnRoomUserWalk(e);
                 }
+                else if (Out.CatalogBuyItem == id)
+                {
+                    sub.OnRoomUserWalk(e);
+                }
             }
         }
 

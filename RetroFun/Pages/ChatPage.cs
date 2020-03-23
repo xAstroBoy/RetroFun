@@ -65,7 +65,7 @@ namespace RetroFun.Pages
         }
 
 
-        private int _FlooderCooldown;
+        private int _FlooderCooldown = 50 ;
 
         public int FlooderCooldown
         {
@@ -386,6 +386,9 @@ namespace RetroFun.Pages
         {
         }
 
+        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
+        {
+        }
         public void OnUserFriendRemoval(DataInterceptedEventArgs e)
         {
         }

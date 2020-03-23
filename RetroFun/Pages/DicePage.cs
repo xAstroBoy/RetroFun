@@ -78,6 +78,10 @@ namespace RetroFun.Pages
         {
         }
 
+        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
+        {
+        }
+
 
         private void DiceRegisterMode_CheckedChanged(object sender, EventArgs e)
         {

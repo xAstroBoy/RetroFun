@@ -207,6 +207,10 @@ namespace RetroFun.Pages
         {
         }
 
+        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
+        {
+        }
+
         public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
             if(BlockRoomLoad)

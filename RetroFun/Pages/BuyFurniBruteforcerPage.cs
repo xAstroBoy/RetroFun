@@ -32,7 +32,6 @@ namespace RetroFun.Pages
             Bind(CheckLockFileNameChbx, "Checked", nameof(FileNameLockToggle));
             Bind(PageIDOptionChbx, "Checked", nameof(PageIDOptionToggle));
             Bind(FurniIDOptionChbx, "Checked", nameof(FurniIDOptionToggle));
-            Bind(CaptureModeChbx, "Checked", nameof(CaptureModeCatalog));
 
             Bind(FileNameTextBox, "Text", nameof(FileNameSave));
             Bind(furnITextBox, "Text", nameof(TextBox));
@@ -446,23 +445,30 @@ namespace RetroFun.Pages
         {
         }
 
+        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
+        {
+            if(CaptureModeCatalog)
+            {
+                PageIDInt1 = e.Packet.ReadInteger();
+                FurniIDint1 = e.Packet.ReadInteger();
+                CaptureModeCatalog = false;
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Catalog Bruteforcer]: Required Data Found, Check RetroFun.", 0, 1, 0, -1);
+                WriteToButton(CaptureModeBtn, "Capture Mode : OFF");
+                e.IsBlocked = true;
+            }
+        }
+
         public void InPurchaseOk(DataInterceptedEventArgs e)
         {
             try {
                 FurniName = e.Packet.ReadString(4);
                 PurchaseSuccess = true;
             }
-            catch(System.IndexOutOfRangeException)
+            catch (System.IndexOutOfRangeException)
             {
                 return;
             }
-            }
-
-        private void OutCatalogBuyItem(DataInterceptedEventArgs e)
-        {
         }
-
-
 
 
         private void SendPacket(int PageID, int FurniID)
@@ -603,6 +609,126 @@ namespace RetroFun.Pages
             }).Start();
         }
 
+
+
+        private void FurniIDGlobalBruteForce()
+        {
+            if (!FurniIDRangeToggle)
+            {
+                if (FurniIDint1 == int.MaxValue)
+                {
+                    FurniIDint1 = 0;
+                    PageIDInt1++;
+                    StoreNewPageIDAttempt(PageIDInt1);
+                }
+            }
+            else
+            {
+                if (FurniIDint1 == FurniIDIntRange)
+                {
+                    FurniIDint1 = 0;
+                    PageIDInt1++;
+                    StoreNewPageIDAttempt(PageIDInt1);
+                }
+            }
+            if (!PageIDRangeToggle)
+            {
+                if (PageIDInt1 == int.MaxValue)
+                {
+                    if (FurniIDint1 == int.MaxValue)
+                    {
+                        StopGlobalBruteforcer();
+                    }
+                }
+            }
+            else
+            {
+                if (PageIDInt1 == PageIDIntRange)
+                {
+                    if (!FurniIDRangeToggle)
+                    {
+                        if (FurniIDint1 == int.MaxValue)
+                        {
+                            StopGlobalBruteforcer();
+                        }
+                    }
+                    else
+                    {
+                        if (FurniIDint1 == FurniIDIntRange)
+                        {
+                            StopGlobalBruteforcer();
+                        }
+                        if (FurniIDint1 == FurniIDIntRange && PageIDInt1 == PageIDIntRange)
+                        {
+                            StopGlobalBruteforcer();
+                        }
+                    }
+                }
+            }
+            FurniIDint1++;
+        }
+
+
+
+        private void GlobalPageIDBruteforcer()
+        {
+                if (!PageIDRangeToggle)
+                {
+                    if (PageIDInt1 == int.MaxValue)
+                    {
+                    PageIDInt1 = 0;
+                    FurniIDint1++;
+                    }
+                }
+                else
+                {
+                if (PageIDInt1 == PageIDIntRange)
+                {
+                    PageIDInt1 = 0;
+                    FurniIDint1++;
+                    }
+                }
+                if (!PageIDRangeToggle)
+                {
+                    if (PageIDInt1 == int.MaxValue)
+                    {
+                        if (FurniIDint1 == int.MaxValue)
+                        {
+                            StopGlobalBruteforcer();
+                        }
+                    }
+                }
+                else
+                {
+                    if (PageIDInt1 == PageIDIntRange)
+                    {
+                        if (!FurniIDRangeToggle)
+                        {
+                            if (FurniIDint1 == int.MaxValue)
+                            {
+                                StopGlobalBruteforcer();
+                            }
+                        }
+                        else
+                        {
+                            if (FurniIDint1 == FurniIDIntRange)
+                            {
+                                StopGlobalBruteforcer();
+                            }
+                            if (FurniIDint1 == FurniIDIntRange && PageIDInt1 == PageIDIntRange)
+                            {
+                                StopGlobalBruteforcer();
+                            }
+                        }
+                    }
+                }
+                PageIDInt1++;
+            }
+
+        
+
+
+
         private void GlobalBruteForcer()
         {
             new Thread(() =>
@@ -612,121 +738,11 @@ namespace RetroFun.Pages
                 {
                     if (FurniIDOptionToggle)
                     {
-                        if (!FurniIDRangeToggle)
-                        {
-                            if (FurniIDint1 == int.MaxValue)
-                            {
-                                FurniIDint1 = 0;
-                                PageIDInt1++;
-                                StoreNewPageIDAttempt(PageIDInt1);
-                            }
-                        }
-                        else
-                        {
-                            if (FurniIDint1 == FurniIDIntRange)
-                            {
-                                FurniIDint1 = 0;
-                                PageIDInt1++;
-                                StoreNewPageIDAttempt(PageIDInt1);
-                            }
-                        }
-                        if (!PageIDRangeToggle)
-                        {
-                            if (PageIDInt1 == int.MaxValue)
-                            {
-                                if (FurniIDint1 == int.MaxValue)
-                                {
-                                    StopGlobalBruteforcer();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (PageIDInt1 == PageIDIntRange)
-                            {
-                                if (!FurniIDRangeToggle)
-                                {
-                                    if (FurniIDint1 == int.MaxValue)
-                                    {
-                                        StopGlobalBruteforcer();
-                                    }
-                                }
-                                else
-                                {
-                                    if (FurniIDint1 == FurniIDIntRange)
-                                    {
-                                        StopGlobalBruteforcer();
-                                    }
-                                    if (FurniIDint1 == FurniIDIntRange && PageIDInt1 == PageIDIntRange)
-                                    {
-                                        StopGlobalBruteforcer();
-                                    }
-                                }
-                            }
-                        }
-                        FurniIDint1++;
+                        FurniIDGlobalBruteForce();
                     }
                     if (PageIDOptionToggle)
                     {
-                        if (!FurniIDRangeToggle)
-                        {
-                            if (FurniIDint1 == int.MaxValue)
-                            {
-                                PageIDInt1 = 0;
-                                FurniIDint1++;
-                            }
-                        }
-                        else
-                        {
-                            if (FurniIDint1 == FurniIDIntRange)
-                            {
-                                PageIDInt1 = 0;
-                                FurniIDint1++;
-                            }
-                        }
-                        if (!PageIDRangeToggle)
-                        {
-                            if (PageIDInt1 == int.MaxValue)
-                            {
-                                if (FurniIDint1 == int.MaxValue)
-                                {
-                                    StopGlobalBruteforcer();
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (PageIDInt1 == PageIDIntRange)
-                            {
-                                if (!FurniIDRangeToggle)
-                                {
-                                    if (FurniIDint1 == int.MaxValue)
-                                    {
-                                        StopGlobalBruteforcer();
-                                    }
-                                    else
-                                    {
-                                        if (PageIDInt1 == PageIDIntRange)
-                                        {
-                                            PageIDInt1 = 0;
-                                            FurniIDint1++;
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    if (FurniIDint1 == FurniIDIntRange)
-                                    {
-                                        StopGlobalBruteforcer();
-                                    }
-                                    if (FurniIDint1 == FurniIDIntRange && PageIDInt1 == PageIDIntRange)
-                                    {
-                                        StopGlobalBruteforcer();
-                                    }
-                                }
-                            }
-                        }
-                        PageIDInt1++;
+                        GlobalPageIDBruteforcer();
                     }
                     SendPacket(PageIDInt1, FurniIDint1);
                     Thread.Sleep(SpeedTimer1 + 15);
@@ -906,6 +922,21 @@ namespace RetroFun.Pages
             else
             {
                 EnableTxbutton(FileNameTextBox, false);
+            }
+        }
+
+        private void CaptureModeBtn_Click(object sender, EventArgs e)
+        {
+            if (CaptureModeCatalog)
+            {
+                CaptureModeCatalog = false;
+                WriteToButton(CaptureModeBtn, "Capture Mode : OFF");
+            }
+            else
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Catalog Bruteforcer]: Please purchase a furni in catalog to intercept the pageid and furniid", 0, 1, 0, -1);
+                CaptureModeCatalog = true;
+                WriteToButton(CaptureModeBtn, "Capture Mode : OFF");
             }
         }
     }

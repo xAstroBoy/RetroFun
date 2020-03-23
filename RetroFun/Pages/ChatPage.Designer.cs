@@ -235,14 +235,14 @@
             // 
             // CooldownFloodNbx
             // 
-            this.CooldownFloodNbx.Location = new System.Drawing.Point(8, 130);
+            this.CooldownFloodNbx.Location = new System.Drawing.Point(10, 132);
             this.CooldownFloodNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.CooldownFloodNbx.Minimum = new decimal(new int[] {
-            100,
+            50,
             0,
             0,
             0});
@@ -250,7 +250,7 @@
             this.CooldownFloodNbx.Size = new System.Drawing.Size(120, 26);
             this.CooldownFloodNbx.TabIndex = 14;
             this.CooldownFloodNbx.Value = new decimal(new int[] {
-            400,
+            50,
             0,
             0,
             0});

@@ -39,6 +39,9 @@ namespace RetroFun.Pages
 
         public bool IsReceiving => true;
 
+        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
+        {
+        }
         public void InPurchaseOk(DataInterceptedEventArgs e)
         {
         }

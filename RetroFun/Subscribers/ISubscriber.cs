@@ -21,6 +21,8 @@ namespace RetroFun.Subscribers
 
         void OnRoomUserWalk(DataInterceptedEventArgs e);
 
+        void OnCatalogBuyItem(DataInterceptedEventArgs e);
+
 
         //Incoming events shared by multiple pages
         void InPurchaseOk(DataInterceptedEventArgs e);

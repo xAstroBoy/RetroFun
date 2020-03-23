@@ -980,6 +980,10 @@ namespace RetroFun.Pages
         {
         }
 
+        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
+        {
+        }
+
         public void OnRoomUserWalk(DataInterceptedEventArgs e)
         {
         }
