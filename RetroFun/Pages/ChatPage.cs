@@ -361,19 +361,25 @@ namespace RetroFun.Pages
 
         public void InUserEnterRoom(DataInterceptedEventArgs obj)
         {
-            if (UsernameFilter != null)
+            try
             {
-                HEntity[] array = HEntity.Parse(obj.Packet);
-                if (array.Length != 0)
+                if (UsernameFilter != null)
                 {
-                    foreach (HEntity hentity in array)
+                    HEntity[] array = HEntity.Parse(obj.Packet);
+                    if (array.Length != 0)
                     {
-                        if (hentity.Name == UsernameFilter)
+                        foreach (HEntity hentity in array)
                         {
-                            LocalIndex = hentity.Index;
+                            if (hentity.Name == UsernameFilter)
+                            {
+                                LocalIndex = hentity.Index;
+                            }
                         }
                     }
                 }
+            }
+            catch(IndexOutOfRangeException)
+            {
             }
         }
 

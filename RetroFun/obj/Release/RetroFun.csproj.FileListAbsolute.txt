@@ -61,3 +61,4 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.Fur
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.PersonalPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.FurniTrollPg.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.UtilitiesPage.resources
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.PetPage.resources

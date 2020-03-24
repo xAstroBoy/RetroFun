@@ -58,19 +58,26 @@ namespace RetroFun.Pages
 
         public void InUserEnterRoom(DataInterceptedEventArgs obj)
         {
-            HEntity[] array = HEntity.Parse(obj.Packet);
-            if (array.Length != 0)
+            try
             {
-                foreach (HEntity hentity in array)
+                HEntity[] array = HEntity.Parse(obj.Packet);
+                if (array.Length != 0)
                 {
-                    hentity.Motto = String.Empty;
-                    if (!users.ContainsKey(hentity.Id))
+                    foreach (HEntity hentity in array)
                     {
-                        users.Add(hentity.Id, hentity);
+                        hentity.Motto = String.Empty;
+                        if (!users.ContainsKey(hentity.Id))
+                        {
+                            users.Add(hentity.Id, hentity);
+                        }
                     }
                 }
+                WriteRegistrationUsers(users.Count);
             }
-            WriteRegistrationUsers(users.Count);
+            catch(IndexOutOfRangeException)
+            {
+
+            }
         }
 
         public bool IsReceiving => true;

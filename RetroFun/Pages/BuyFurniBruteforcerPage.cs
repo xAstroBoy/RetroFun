@@ -800,7 +800,7 @@ namespace RetroFun.Pages
 
         private void StoreToInput(int PageId, int FurniID)
         {
-            string Filepath = "../RetroFunLogs/" + FileNameSave + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+            string Filepath = "RetroFunLogs/" + FileNameSave + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
 
             string FolderName = "RetroFunLogs";
 

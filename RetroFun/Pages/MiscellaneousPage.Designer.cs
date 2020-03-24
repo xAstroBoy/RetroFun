@@ -85,7 +85,6 @@
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.sKoreButton1 = new Sulakore.Components.SKoreButton();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.SignCountGroup.SuspendLayout();
@@ -550,7 +549,6 @@
             this.groupBox3.Controls.Add(this.checkBox3);
             this.groupBox3.Controls.Add(this.checkBox4);
             this.groupBox3.Controls.Add(this.checkBox5);
-            this.groupBox3.Controls.Add(this.sKoreButton1);
             this.groupBox3.Controls.Add(this.DancesCooldownNBx);
             this.groupBox3.Controls.Add(this.numericUpDown1);
             this.groupBox3.Controls.Add(this.label5);
@@ -589,12 +587,6 @@
             resources.ApplyResources(this.checkBox5, "checkBox5");
             this.checkBox5.Name = "checkBox5";
             this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // sKoreButton1
-            // 
-            resources.ApplyResources(this.sKoreButton1, "sKoreButton1");
-            this.sKoreButton1.Name = "sKoreButton1";
-            this.sKoreButton1.Click += new System.EventHandler(this.DanceLoopBtn_Click);
             // 
             // numericUpDown1
             // 
@@ -722,7 +714,6 @@
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox5;
-        private Sulakore.Components.SKoreButton sKoreButton1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label6;
     }
