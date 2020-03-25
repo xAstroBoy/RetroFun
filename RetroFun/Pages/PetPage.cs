@@ -190,7 +190,7 @@ namespace RetroFun.Pages
 
         public void SendPetPurchase()
         {
-            Connection.SendToServerAsync(Out.CatalogBuyItem, PageID, PetID, PetName + '\n' +PetRace.ToString() + '\n' +PetHTMLColor);
+            Connection.SendToServerAsync(Out.CatalogBuyItem, PageID, PetID, PetName + '\n' +PetRace.ToString() + '\n' +PetHTMLColor , 1);
         }
 
 
