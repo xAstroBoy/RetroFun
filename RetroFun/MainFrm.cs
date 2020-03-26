@@ -49,6 +49,7 @@ namespace RetroFun
                 BottomPg,
                 FurniPg,
                 PetPg,
+                UserEditorPg,
             };
 
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));

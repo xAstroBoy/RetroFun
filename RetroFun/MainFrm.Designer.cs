@@ -52,11 +52,13 @@ namespace RetroFun
             this.FurnitureSpamTab = new System.Windows.Forms.TabPage();
             this.FurniTrollPg = new RetroFun.Pages.FurniTrollPg();
             this.ChatTab = new System.Windows.Forms.TabPage();
-            this.StalkingTab = new System.Windows.Forms.TabPage();
+            this.UserEditorTab = new System.Windows.Forms.TabPage();
             this.MakeSayTab = new System.Windows.Forms.TabPage();
+            this.StalkingTab = new System.Windows.Forms.TabPage();
             this.FakeMsgTab = new System.Windows.Forms.TabPage();
             this.FakeMessagePg = new RetroFun.Pages.FakeMessagePage();
             this.PetTab = new System.Windows.Forms.TabPage();
+            this.PetPg = new RetroFun.Pages.PetPage();
             this.DicePageTab = new System.Windows.Forms.TabPage();
             this.HoloTab = new System.Windows.Forms.TabPage();
             this.DiscoFunTab = new System.Windows.Forms.TabPage();
@@ -74,7 +76,7 @@ namespace RetroFun
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
             this.BottomPg = new RetroFun.Pages.BottomPage();
-            this.PetPg = new RetroFun.Pages.PetPage();
+            this.UserEditorPg = new RetroFun.Pages.UserEditorPage();
             this.RetroFunTabs.SuspendLayout();
             this.PersonalTab.SuspendLayout();
             this.UtiliesTab.SuspendLayout();
@@ -82,8 +84,9 @@ namespace RetroFun
             this.FurnitureSpawnerTab.SuspendLayout();
             this.FurnitureSpamTab.SuspendLayout();
             this.ChatTab.SuspendLayout();
-            this.StalkingTab.SuspendLayout();
+            this.UserEditorTab.SuspendLayout();
             this.MakeSayTab.SuspendLayout();
+            this.StalkingTab.SuspendLayout();
             this.FakeMsgTab.SuspendLayout();
             this.PetTab.SuspendLayout();
             this.DicePageTab.SuspendLayout();
@@ -339,8 +342,9 @@ namespace RetroFun
             this.RetroFunTabs.Controls.Add(this.FurnitureSpawnerTab);
             this.RetroFunTabs.Controls.Add(this.FurnitureSpamTab);
             this.RetroFunTabs.Controls.Add(this.ChatTab);
-            this.RetroFunTabs.Controls.Add(this.StalkingTab);
+            this.RetroFunTabs.Controls.Add(this.UserEditorTab);
             this.RetroFunTabs.Controls.Add(this.MakeSayTab);
+            this.RetroFunTabs.Controls.Add(this.StalkingTab);
             this.RetroFunTabs.Controls.Add(this.FakeMsgTab);
             this.RetroFunTabs.Controls.Add(this.PetTab);
             this.RetroFunTabs.Controls.Add(this.DicePageTab);
@@ -457,8 +461,18 @@ namespace RetroFun
             this.furniSpawnPg.PosterID = "2005";
             this.furniSpawnPg.Size = new System.Drawing.Size(1195, 634);
             this.furniSpawnPg.SpawnFloorFurniOnClick = false;
+            this.furniSpawnPg.SpawnFloorFurniOnValueChange = false;
+            this.furniSpawnPg.SpawnWallFurniOnClick = false;
+            this.furniSpawnPg.SpawnWallFurniOnValueChange = false;
             this.furniSpawnPg.TabIndex = 0;
             this.furniSpawnPg.TabStop = false;
+            this.furniSpawnPg.Wallcoords2l = 0;
+            this.furniSpawnPg.Wallcoords2w = 0;
+            this.furniSpawnPg.Wallcoordsl = 0;
+            this.furniSpawnPg.Wallcoordsw = 0;
+            this.furniSpawnPg.WallCSRotation = "l";
+            this.furniSpawnPg.WallFurniID = 0;
+            this.furniSpawnPg.WallPosterID = "2005";
             // 
             // FurnitureSpamTab
             // 
@@ -535,17 +549,15 @@ namespace RetroFun
             this.ChatTab.Text = "Chat";
             this.ChatTab.UseVisualStyleBackColor = true;
             // 
-            // StalkingTab
+            // UserEditorTab
             // 
-            this.StalkingTab.Controls.Add(this.StalkingPg);
-            this.StalkingTab.Location = new System.Drawing.Point(4, 28);
-            this.StalkingTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.StalkingTab.Name = "StalkingTab";
-            this.StalkingTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.StalkingTab.Size = new System.Drawing.Size(1194, 634);
-            this.StalkingTab.TabIndex = 2;
-            this.StalkingTab.Text = "Stalking";
-            this.StalkingTab.UseVisualStyleBackColor = true;
+            this.UserEditorTab.Controls.Add(this.UserEditorPg);
+            this.UserEditorTab.Location = new System.Drawing.Point(4, 28);
+            this.UserEditorTab.Name = "UserEditorTab";
+            this.UserEditorTab.Size = new System.Drawing.Size(1194, 634);
+            this.UserEditorTab.TabIndex = 19;
+            this.UserEditorTab.Text = "User Editor";
+            this.UserEditorTab.UseVisualStyleBackColor = true;
             // 
             // MakeSayTab
             // 
@@ -558,6 +570,18 @@ namespace RetroFun
             this.MakeSayTab.TabIndex = 4;
             this.MakeSayTab.Text = "MakeSay";
             this.MakeSayTab.UseVisualStyleBackColor = true;
+            // 
+            // StalkingTab
+            // 
+            this.StalkingTab.Controls.Add(this.StalkingPg);
+            this.StalkingTab.Location = new System.Drawing.Point(4, 28);
+            this.StalkingTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.StalkingTab.Name = "StalkingTab";
+            this.StalkingTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.StalkingTab.Size = new System.Drawing.Size(1194, 634);
+            this.StalkingTab.TabIndex = 2;
+            this.StalkingTab.Text = "Stalking";
+            this.StalkingTab.UseVisualStyleBackColor = true;
             // 
             // FakeMsgTab
             // 
@@ -592,6 +616,20 @@ namespace RetroFun
             this.PetTab.TabIndex = 18;
             this.PetTab.Text = "Pets";
             this.PetTab.UseVisualStyleBackColor = true;
+            // 
+            // PetPg
+            // 
+            this.PetPg.BackColor = System.Drawing.Color.White;
+            this.PetPg.Location = new System.Drawing.Point(8, 3);
+            this.PetPg.Name = "PetPg";
+            this.PetPg.PageID = 0;
+            this.PetPg.PetHTMLColor = null;
+            this.PetPg.PetID = 0;
+            this.PetPg.PetName = null;
+            this.PetPg.PetRace = 0;
+            this.PetPg.Size = new System.Drawing.Size(1178, 628);
+            this.PetPg.TabIndex = 0;
+            this.PetPg.TabStop = false;
             // 
             // DicePageTab
             // 
@@ -790,7 +828,7 @@ namespace RetroFun
             this.AlwaysOnTopChbx.Location = new System.Drawing.Point(6, 675);
             this.AlwaysOnTopChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AlwaysOnTopChbx.Name = "AlwaysOnTopChbx";
-            this.AlwaysOnTopChbx.Size = new System.Drawing.Size(140, 24);
+            this.AlwaysOnTopChbx.Size = new System.Drawing.Size(133, 24);
             this.AlwaysOnTopChbx.TabIndex = 0;
             this.AlwaysOnTopChbx.Text = "Always On Top";
             this.AlwaysOnTopChbx.UseVisualStyleBackColor = true;
@@ -805,19 +843,21 @@ namespace RetroFun
             this.BottomPg.TabIndex = 1;
             this.BottomPg.TabStop = false;
             // 
-            // petPage
+            // userEditorPage1
             // 
-            this.PetPg.BackColor = System.Drawing.Color.White;
-            this.PetPg.Location = new System.Drawing.Point(8, 3);
-            this.PetPg.Name = "petPage";
-            this.PetPg.PageID = 0;
-            this.PetPg.PetHTMLColor = null;
-            this.PetPg.PetID = 0;
-            this.PetPg.PetName = null;
-            this.PetPg.PetRace = 0;
-            this.PetPg.Size = new System.Drawing.Size(1178, 628);
-            this.PetPg.TabIndex = 0;
-            this.PetPg.TabStop = false;
+            this.UserEditorPg.BackColor = System.Drawing.Color.White;
+            this.UserEditorPg.Location = new System.Drawing.Point(2, 0);
+            this.UserEditorPg.LockLook = false;
+            this.UserEditorPg.LockMotto = false;
+            this.UserEditorPg.LockNickname = false;
+            this.UserEditorPg.Name = "userEditorPage1";
+            this.UserEditorPg.SelectedIndex = 0;
+            this.UserEditorPg.Size = new System.Drawing.Size(1192, 631);
+            this.UserEditorPg.TabIndex = 0;
+            this.UserEditorPg.TabStop = false;
+            this.UserEditorPg.UserLook = null;
+            this.UserEditorPg.UserMotto = null;
+            this.UserEditorPg.UserNickname = null;
             // 
             // MainFrm
             // 
@@ -841,8 +881,9 @@ namespace RetroFun
             this.FurnitureSpawnerTab.ResumeLayout(false);
             this.FurnitureSpamTab.ResumeLayout(false);
             this.ChatTab.ResumeLayout(false);
-            this.StalkingTab.ResumeLayout(false);
+            this.UserEditorTab.ResumeLayout(false);
             this.MakeSayTab.ResumeLayout(false);
+            this.StalkingTab.ResumeLayout(false);
             this.FakeMsgTab.ResumeLayout(false);
             this.PetTab.ResumeLayout(false);
             this.DicePageTab.ResumeLayout(false);
@@ -900,6 +941,7 @@ namespace RetroFun
         private Pages.PersonalPage PersonalPg;
         private Pages.UtilitiesPage UtilitiesPg;
         private Pages.PetPage PetPg;
+        private Pages.UserEditorPage UserEditorPg;
 
         private Sulakore.Components.SKoreTabControl MoonlightPages;
         private System.Windows.Forms.TabPage tabPage1;
@@ -912,5 +954,6 @@ namespace RetroFun
         private System.Windows.Forms.TabPage FurnitureSpamTab;
         private System.Windows.Forms.TabPage UtiliesTab;
         private System.Windows.Forms.TabPage PetTab;
+        private System.Windows.Forms.TabPage UserEditorTab;
     }
 }

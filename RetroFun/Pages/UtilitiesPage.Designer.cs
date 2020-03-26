@@ -101,7 +101,7 @@
             this.AutoGiftExchangerBtn.Location = new System.Drawing.Point(34, 57);
             this.AutoGiftExchangerBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AutoGiftExchangerBtn.Name = "AutoGiftExchangerBtn";
-            this.AutoGiftExchangerBtn.Size = new System.Drawing.Size(217, 24);
+            this.AutoGiftExchangerBtn.Size = new System.Drawing.Size(210, 24);
             this.AutoGiftExchangerBtn.TabIndex = 6;
             this.AutoGiftExchangerBtn.Text = "Automatic Gift Exchanger";
             this.AutoGiftExchangerBtn.UseVisualStyleBackColor = true;
@@ -185,7 +185,7 @@
             this.ExchangeMPChbx.Location = new System.Drawing.Point(34, 185);
             this.ExchangeMPChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExchangeMPChbx.Name = "ExchangeMPChbx";
-            this.ExchangeMPChbx.Size = new System.Drawing.Size(218, 24);
+            this.ExchangeMPChbx.Size = new System.Drawing.Size(211, 24);
             this.ExchangeMPChbx.TabIndex = 7;
             this.ExchangeMPChbx.Text = "Exchange Credit Multiplier";
             this.ExchangeMPChbx.UseVisualStyleBackColor = true;
@@ -196,7 +196,7 @@
             this.ExchangeCreditChbx.Location = new System.Drawing.Point(34, 57);
             this.ExchangeCreditChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExchangeCreditChbx.Name = "ExchangeCreditChbx";
-            this.ExchangeCreditChbx.Size = new System.Drawing.Size(233, 24);
+            this.ExchangeCreditChbx.Size = new System.Drawing.Size(226, 24);
             this.ExchangeCreditChbx.TabIndex = 6;
             this.ExchangeCreditChbx.Text = "Automatic Credit Exchanger";
             this.ExchangeCreditChbx.UseVisualStyleBackColor = true;
@@ -208,7 +208,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Name = "UtilitiesPage";
-            this.Size = new System.Drawing.Size(1089, 422);
+            this.Size = new System.Drawing.Size(1098, 406);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GiftExchangerIDNBx)).EndInit();

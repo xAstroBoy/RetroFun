@@ -197,6 +197,12 @@
     <Compile Include="Pages\StalkingPage.Designer.cs">
       <DependentUpon>StalkingPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UserEditorPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\UserEditorPage.Designer.cs">
+      <DependentUpon>UserEditorPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\UtilitiesPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\StalkingPage.resx">
       <DependentUpon>StalkingPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\UserEditorPage.resx">
+      <DependentUpon>UserEditorPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\UtilitiesPage.resx">
       <DependentUpon>UtilitiesPage.cs</DependentUpon>

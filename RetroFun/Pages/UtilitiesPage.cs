@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using RetroFun.Controls;
 using Sulakore.Communication;
+using RetroFun.Subscribers;
+using Sulakore.Habbo;
 
 namespace RetroFun.Pages
 {
@@ -17,6 +19,8 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class UtilitiesPage : ObservablePage
     {
+
+
 
         private bool _CreditMultiplierEnabled;
 
@@ -29,6 +33,9 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+        private int selectedIndex;
+
 
         private int _CreditIDInt = 1;
 
@@ -90,7 +97,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
 
         public UtilitiesPage()
         {
@@ -188,5 +194,10 @@ namespace RetroFun.Pages
             HandleGiftExchanger(GiftInt);
 
         }
+
+
+
+
+
     }
 }

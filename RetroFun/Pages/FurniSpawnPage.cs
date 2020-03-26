@@ -27,9 +27,9 @@ namespace RetroFun.Pages
         private int _FurniAmountInv = 0;
         private bool BlockRoomLoad;
 
-        private decimal _Wallcoordsl;
+        private int _Wallcoordsl;
 
-        public decimal Wallcoordsl
+        public int Wallcoordsl
         {
             get => _Wallcoordsl;
             set
@@ -39,9 +39,9 @@ namespace RetroFun.Pages
             }
         }
 
-        private decimal _Wallcoordsw;
+        private int _Wallcoordsw;
 
-        public decimal Wallcoordsw
+        public int Wallcoordsw
         {
             get => _Wallcoordsw;
             set
@@ -50,6 +50,31 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+        private int _Wallcoords2l;
+
+        public int Wallcoords2l
+        {
+            get => _Wallcoords2l;
+            set
+            {
+                _Wallcoords2l = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _Wallcoords2w;
+
+        public int Wallcoords2w
+        {
+            get => _Wallcoords2w;
+            set
+            {
+                _Wallcoords2w = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
 
 
@@ -276,8 +301,9 @@ namespace RetroFun.Pages
             Bind(WallFurniIDNbx, "Value", nameof(WallFurniID));
             Bind(CoordWnumbx, "Value", nameof(Wallcoordsw));
             Bind(CoordINumbx, "Value", nameof(Wallcoordsl));
-            Bind(WallPosterIDTbx, "Text", nameof(WallPosterID));
-
+            //Bind(WallPosterIDTbx, "Text", nameof(WallPosterID));
+            Bind(CoordWDecimalPartNbx, "Value", nameof(Wallcoords2w));
+            Bind(CoordLDecimalPartNbx, "Value", nameof(Wallcoords2l));
 
 
             LocalFurniID = rand.Next(1498128, 9999999);
@@ -343,7 +369,7 @@ namespace RetroFun.Pages
             {
                 Wallcoordsw = coordX;
                 Wallcoordsl = coordY;
-                SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, WallPosterID, FurniOwnerName);
+                SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, FurniOwnerName);
                 e.IsBlocked = true;
             }
         }
@@ -532,22 +558,22 @@ namespace RetroFun.Pages
         }
 
 
-        private void SpawnWallFurni(int FurniID, decimal Coordw, decimal coordsl, string FurniRotation, string PosterID, string Owner)
+        private void SpawnWallFurni(int FurniID, decimal Coordw, decimal coordsl, string FurniRotation, string Owner)
         {
             LocalFurniID++;
             Connection.SendToClientAsync(In.AddWallItem,
-
                 LocalFurniID.ToString(),
                 FurniID,
-                ":w=" + Coordw.ToString() + " l=" + coordsl.ToString() + " " + FurniRotation,
-               PosterID,
+                ":w=" + Coordw.ToString() + "," + Wallcoords2w.ToString() + " l=" + coordsl.ToString() + "," + Wallcoords2l.ToString() + " " + FurniRotation,
+                false,
+                false,
                 -1,
-                0,
+                1,
                 0,
                 Owner
             );
-            WallFurniSpeak("[DEBUG]: Furni : " +  FurniID + ":w=" + Coordw.ToString() + " l=" + coordsl.ToString() + " " + FurniRotation + " " + PosterID + -1 + 0 + 0 + Owner);
-            }
+            WallFurniSpeak("[DEBUG]: Furni : " + FurniID + ":w=" + Coordw.ToString() + "," + Wallcoords2w.ToString() + " l=" + coordsl.ToString() + "," + Wallcoords2l.ToString() + " " + FurniRotation + " " + PosterID + -1 + 0 + 0 + Owner);
+        }
 
 
         private void DisableSpawnFloorFurniOnClick()
@@ -577,7 +603,7 @@ namespace RetroFun.Pages
 
         private void SpawnWallFurniBtn_Click(object sender, EventArgs e)
         {
-            SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation,  WallPosterID, FurniOwnerName);
+            SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation,   FurniOwnerName);
         }
 
         private void SpawnWallFurniOnClickBtn_Click(object sender, EventArgs e)
@@ -654,20 +680,37 @@ namespace RetroFun.Pages
 
 
         // WALL FURNI
-        private void CoordWNbx_ValueChanged(object sender, EventArgs e)
+ 
+
+        private void CoordWDecimalPartNbx_ValueChanged(object sender, EventArgs e)
         {
             if (SpawnWallFurniOnValueChange)
             {
-                SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, WallPosterID, FurniOwnerName);
+                SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, FurniOwnerName);
             }
-
         }
 
-        private void CoordlNbx_ValueChanged(object sender, EventArgs e)
+        private void CoordLDecimalPartNbx_ValueChanged(object sender, EventArgs e)
         {
             if (SpawnWallFurniOnValueChange)
             {
-                SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, WallPosterID, FurniOwnerName);
+                SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, FurniOwnerName);
+            }
+        }
+
+        private void CoordWnumbx_ValueChanged(object sender, EventArgs e)
+        {
+            if (SpawnWallFurniOnValueChange)
+            {
+                SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, FurniOwnerName);
+            }
+        }
+
+        private void CoordINumbx_ValueChanged(object sender, EventArgs e)
+        {
+            if (SpawnWallFurniOnValueChange)
+            {
+                SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, FurniOwnerName);
             }
         }
     }

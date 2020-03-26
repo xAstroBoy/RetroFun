@@ -61,6 +61,8 @@
             this.PosterIDTxbx = new System.Windows.Forms.TextBox();
             this.Username = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.CoordLDecimalPartNbx = new System.Windows.Forms.NumericUpDown();
+            this.CoordWDecimalPartNbx = new System.Windows.Forms.NumericUpDown();
             this.CoordINumbx = new System.Windows.Forms.NumericUpDown();
             this.CoordWnumbx = new System.Windows.Forms.NumericUpDown();
             this.WallFurniSpawnOnChangeBtn = new Sulakore.Components.SKoreButton();
@@ -68,8 +70,6 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.RotationRBtn = new System.Windows.Forms.RadioButton();
             this.RotationIBtn = new System.Windows.Forms.RadioButton();
-            this.label9 = new System.Windows.Forms.Label();
-            this.WallPosterIDTbx = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.WallFurniIDNbx = new System.Windows.Forms.NumericUpDown();
             this.SpawnWallFurniBtn = new Sulakore.Components.SKoreButton();
@@ -88,6 +88,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.AmountNbx)).BeginInit();
             this.Username.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CoordLDecimalPartNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CoordWDecimalPartNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordINumbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordWnumbx)).BeginInit();
             this.groupBox6.SuspendLayout();
@@ -449,13 +451,13 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.CoordLDecimalPartNbx);
+            this.groupBox4.Controls.Add(this.CoordWDecimalPartNbx);
             this.groupBox4.Controls.Add(this.CoordINumbx);
             this.groupBox4.Controls.Add(this.CoordWnumbx);
             this.groupBox4.Controls.Add(this.WallFurniSpawnOnChangeBtn);
             this.groupBox4.Controls.Add(this.SpawnWallFurniOnClickBtn);
             this.groupBox4.Controls.Add(this.groupBox6);
-            this.groupBox4.Controls.Add(this.label9);
-            this.groupBox4.Controls.Add(this.WallPosterIDTbx);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.WallFurniIDNbx);
             this.groupBox4.Controls.Add(this.SpawnWallFurniBtn);
@@ -468,22 +470,47 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Wall Furni Spawner ( CS )";
             // 
+            // CoordLDecimalPartNbx
+            // 
+            this.CoordLDecimalPartNbx.Location = new System.Drawing.Point(102, 178);
+            this.CoordLDecimalPartNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.CoordLDecimalPartNbx.Name = "CoordLDecimalPartNbx";
+            this.CoordLDecimalPartNbx.Size = new System.Drawing.Size(99, 26);
+            this.CoordLDecimalPartNbx.TabIndex = 18;
+            this.CoordLDecimalPartNbx.ValueChanged += new System.EventHandler(this.CoordLDecimalPartNbx_ValueChanged);
+            // 
+            // CoordWDecimalPartNbx
+            // 
+            this.CoordWDecimalPartNbx.Location = new System.Drawing.Point(102, 112);
+            this.CoordWDecimalPartNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.CoordWDecimalPartNbx.Name = "CoordWDecimalPartNbx";
+            this.CoordWDecimalPartNbx.Size = new System.Drawing.Size(99, 26);
+            this.CoordWDecimalPartNbx.TabIndex = 17;
+            this.CoordWDecimalPartNbx.ValueChanged += new System.EventHandler(this.CoordWDecimalPartNbx_ValueChanged);
+            // 
             // CoordINumbx
             // 
-            this.CoordINumbx.DecimalPlaces = 3;
-            this.CoordINumbx.Location = new System.Drawing.Point(121, 114);
+            this.CoordINumbx.Location = new System.Drawing.Point(9, 178);
             this.CoordINumbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.CoordINumbx.Name = "CoordINumbx";
-            this.CoordINumbx.Size = new System.Drawing.Size(80, 26);
+            this.CoordINumbx.Size = new System.Drawing.Size(87, 26);
             this.CoordINumbx.TabIndex = 16;
+            this.CoordINumbx.ValueChanged += new System.EventHandler(this.CoordINumbx_ValueChanged);
             // 
             // CoordWnumbx
             // 
-            this.CoordWnumbx.DecimalPlaces = 3;
             this.CoordWnumbx.Location = new System.Drawing.Point(10, 112);
             this.CoordWnumbx.Maximum = new decimal(new int[] {
             2147483647,
@@ -491,8 +518,9 @@
             0,
             0});
             this.CoordWnumbx.Name = "CoordWnumbx";
-            this.CoordWnumbx.Size = new System.Drawing.Size(80, 26);
+            this.CoordWnumbx.Size = new System.Drawing.Size(86, 26);
             this.CoordWnumbx.TabIndex = 15;
+            this.CoordWnumbx.ValueChanged += new System.EventHandler(this.CoordWnumbx_ValueChanged);
             // 
             // WallFurniSpawnOnChangeBtn
             // 
@@ -516,11 +544,11 @@
             // 
             this.groupBox6.Controls.Add(this.RotationRBtn);
             this.groupBox6.Controls.Add(this.RotationIBtn);
-            this.groupBox6.Location = new System.Drawing.Point(10, 148);
+            this.groupBox6.Location = new System.Drawing.Point(222, 112);
             this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox6.Size = new System.Drawing.Size(134, 57);
+            this.groupBox6.Size = new System.Drawing.Size(102, 61);
             this.groupBox6.TabIndex = 14;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Rotation";
@@ -528,7 +556,7 @@
             // RotationRBtn
             // 
             this.RotationRBtn.AutoSize = true;
-            this.RotationRBtn.Location = new System.Drawing.Point(76, 23);
+            this.RotationRBtn.Location = new System.Drawing.Point(47, 24);
             this.RotationRBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotationRBtn.Name = "RotationRBtn";
             this.RotationRBtn.Size = new System.Drawing.Size(43, 24);
@@ -551,22 +579,6 @@
             this.RotationIBtn.Text = "↑";
             this.RotationIBtn.UseVisualStyleBackColor = true;
             this.RotationIBtn.CheckedChanged += new System.EventHandler(this.RotationIBtn_CheckedChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 211);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(76, 20);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "Poster ID";
-            // 
-            // WallPosterIDTbx
-            // 
-            this.WallPosterIDTbx.Location = new System.Drawing.Point(6, 234);
-            this.WallPosterIDTbx.Name = "WallPosterIDTbx";
-            this.WallPosterIDTbx.Size = new System.Drawing.Size(309, 26);
-            this.WallPosterIDTbx.TabIndex = 14;
             // 
             // label8
             // 
@@ -591,7 +603,7 @@
             // 
             // SpawnWallFurniBtn
             // 
-            this.SpawnWallFurniBtn.Location = new System.Drawing.Point(6, 294);
+            this.SpawnWallFurniBtn.Location = new System.Drawing.Point(6, 296);
             this.SpawnWallFurniBtn.Name = "SpawnWallFurniBtn";
             this.SpawnWallFurniBtn.Size = new System.Drawing.Size(195, 35);
             this.SpawnWallFurniBtn.TabIndex = 4;
@@ -601,7 +613,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(132, 89);
+            this.label10.Location = new System.Drawing.Point(15, 153);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(12, 20);
             this.label10.TabIndex = 7;
@@ -645,6 +657,8 @@
             this.Username.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CoordLDecimalPartNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CoordWDecimalPartNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordINumbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordWnumbx)).EndInit();
             this.groupBox6.ResumeLayout(false);
@@ -695,12 +709,12 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.RadioButton RotationRBtn;
         private System.Windows.Forms.RadioButton RotationIBtn;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox WallPosterIDTbx;
         private Sulakore.Components.SKoreButton SpawnWallFurniOnClickBtn;
         private Sulakore.Components.SKoreButton FloorlFurniSpawnOnChangeBtn;
         private Sulakore.Components.SKoreButton WallFurniSpawnOnChangeBtn;
         private System.Windows.Forms.NumericUpDown CoordINumbx;
         private System.Windows.Forms.NumericUpDown CoordWnumbx;
+        private System.Windows.Forms.NumericUpDown CoordLDecimalPartNbx;
+        private System.Windows.Forms.NumericUpDown CoordWDecimalPartNbx;
     }
 }
