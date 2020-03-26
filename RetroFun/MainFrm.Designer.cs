@@ -456,7 +456,7 @@ namespace RetroFun
             this.furniSpawnPg.Name = "furniSpawnPg";
             this.furniSpawnPg.PosterID = "2005";
             this.furniSpawnPg.Size = new System.Drawing.Size(1195, 634);
-            this.furniSpawnPg.SpawnFurniOnClick = false;
+            this.furniSpawnPg.SpawnFloorFurniOnClick = false;
             this.furniSpawnPg.TabIndex = 0;
             this.furniSpawnPg.TabStop = false;
             // 

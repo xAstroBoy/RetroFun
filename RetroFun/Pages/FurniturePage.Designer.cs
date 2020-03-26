@@ -48,9 +48,9 @@
             this.WalkAsSelectedFurniBtn = new Sulakore.Components.SKoreButton();
             this.CaptureFloorFurniBtn = new Sulakore.Components.SKoreButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.WalkingStyleBtn = new Sulakore.Components.SKoreButton();
-            this.WalkingSpeedNbx = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.WalkingSpeedNbx = new System.Windows.Forms.NumericUpDown();
+            this.WalkingStyleBtn = new Sulakore.Components.SKoreButton();
             this.RemoverGrbx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FloorFurniIDNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FloorFurniXNbx)).BeginInit();
@@ -83,7 +83,7 @@
             this.FurniPickChbx.Location = new System.Drawing.Point(14, 168);
             this.FurniPickChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.FurniPickChbx.Name = "FurniPickChbx";
-            this.FurniPickChbx.Size = new System.Drawing.Size(171, 24);
+            this.FurniPickChbx.Size = new System.Drawing.Size(164, 24);
             this.FurniPickChbx.TabIndex = 6;
             this.FurniPickChbx.Text = "Tell FurniID Picked.";
             this.FurniPickChbx.UseVisualStyleBackColor = true;
@@ -94,19 +94,19 @@
             this.DoubleClickFurnitureRemovalChbx.Location = new System.Drawing.Point(14, 138);
             this.DoubleClickFurnitureRemovalChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DoubleClickFurnitureRemovalChbx.Name = "DoubleClickFurnitureRemovalChbx";
-            this.DoubleClickFurnitureRemovalChbx.Size = new System.Drawing.Size(201, 24);
+            this.DoubleClickFurnitureRemovalChbx.Size = new System.Drawing.Size(344, 24);
             this.DoubleClickFurnitureRemovalChbx.TabIndex = 4;
-            this.DoubleClickFurnitureRemovalChbx.Text = "Enable Pick up furni CS";
+            this.DoubleClickFurnitureRemovalChbx.Text = "Enable Pick up furni CS (blocks Furni Pickup)";
             this.DoubleClickFurnitureRemovalChbx.UseVisualStyleBackColor = true;
             // 
             // RestoreFurnisBtn
             // 
-            this.RestoreFurnisBtn.Location = new System.Drawing.Point(14, 213);
+            this.RestoreFurnisBtn.Location = new System.Drawing.Point(14, 212);
             this.RestoreFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RestoreFurnisBtn.Name = "RestoreFurnisBtn";
             this.RestoreFurnisBtn.Size = new System.Drawing.Size(278, 34);
             this.RestoreFurnisBtn.TabIndex = 5;
-            this.RestoreFurnisBtn.Text = "Revert All CS Edits.";
+            this.RestoreFurnisBtn.Text = "Reset Room (Removes all Client Edits)";
             this.RestoreFurnisBtn.Click += new System.EventHandler(this.RestoreFurnisBtn_Click);
             // 
             // FurnitureIDTxt
@@ -206,7 +206,7 @@
             this.RotationUp.Location = new System.Drawing.Point(68, 29);
             this.RotationUp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotationUp.Name = "RotationUp";
-            this.RotationUp.Size = new System.Drawing.Size(21, 20);
+            this.RotationUp.Size = new System.Drawing.Size(14, 13);
             this.RotationUp.TabIndex = 1;
             this.RotationUp.TabStop = true;
             this.RotationUp.UseVisualStyleBackColor = true;
@@ -218,7 +218,7 @@
             this.RotationDown.Location = new System.Drawing.Point(68, 112);
             this.RotationDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotationDown.Name = "RotationDown";
-            this.RotationDown.Size = new System.Drawing.Size(21, 20);
+            this.RotationDown.Size = new System.Drawing.Size(14, 13);
             this.RotationDown.TabIndex = 2;
             this.RotationDown.UseVisualStyleBackColor = true;
             this.RotationDown.CheckedChanged += new System.EventHandler(this.RotationDown_CheckedChanged);
@@ -229,7 +229,7 @@
             this.rotationLeft.Location = new System.Drawing.Point(14, 72);
             this.rotationLeft.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rotationLeft.Name = "rotationLeft";
-            this.rotationLeft.Size = new System.Drawing.Size(21, 20);
+            this.rotationLeft.Size = new System.Drawing.Size(14, 13);
             this.rotationLeft.TabIndex = 3;
             this.rotationLeft.UseVisualStyleBackColor = true;
             this.rotationLeft.CheckedChanged += new System.EventHandler(this.rotationLeft_CheckedChanged);
@@ -240,7 +240,7 @@
             this.RotationRight.Location = new System.Drawing.Point(117, 71);
             this.RotationRight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotationRight.Name = "RotationRight";
-            this.RotationRight.Size = new System.Drawing.Size(21, 20);
+            this.RotationRight.Size = new System.Drawing.Size(14, 13);
             this.RotationRight.TabIndex = 4;
             this.RotationRight.UseVisualStyleBackColor = true;
             this.RotationRight.CheckedChanged += new System.EventHandler(this.RotationRight_CheckedChanged);
@@ -293,22 +293,21 @@
             this.groupBox2.Controls.Add(this.FloorFurniXNbx);
             this.groupBox2.Controls.Add(this.FloorFurniIDNbx);
             this.groupBox2.Controls.Add(this.groupBox1);
-            this.groupBox2.Location = new System.Drawing.Point(450, 14);
+            this.groupBox2.Location = new System.Drawing.Point(389, 17);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(354, 349);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Floor Furni Editor";
             // 
-            // WalkingStyleBtn
+            // label3
             // 
-            this.WalkingStyleBtn.Location = new System.Drawing.Point(7, 238);
-            this.WalkingStyleBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.WalkingStyleBtn.Name = "WalkingStyleBtn";
-            this.WalkingStyleBtn.Size = new System.Drawing.Size(200, 34);
-            this.WalkingStyleBtn.TabIndex = 12;
-            this.WalkingStyleBtn.Text = "Walking mode : Teleport";
-            this.WalkingStyleBtn.Click += new System.EventHandler(this.WalkingStyleBtn_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 284);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(156, 20);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Furni Walking Speed";
             // 
             // WalkingSpeedNbx
             // 
@@ -322,14 +321,15 @@
             this.WalkingSpeedNbx.Size = new System.Drawing.Size(84, 26);
             this.WalkingSpeedNbx.TabIndex = 13;
             // 
-            // label3
+            // WalkingStyleBtn
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 284);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(156, 20);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Furni Walking Speed";
+            this.WalkingStyleBtn.Location = new System.Drawing.Point(7, 238);
+            this.WalkingStyleBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.WalkingStyleBtn.Name = "WalkingStyleBtn";
+            this.WalkingStyleBtn.Size = new System.Drawing.Size(200, 34);
+            this.WalkingStyleBtn.TabIndex = 12;
+            this.WalkingStyleBtn.Text = "Walking mode : Teleport";
+            this.WalkingStyleBtn.Click += new System.EventHandler(this.WalkingStyleBtn_Click);
             // 
             // FurniturePage
             // 

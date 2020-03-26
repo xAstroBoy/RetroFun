@@ -27,6 +27,46 @@ namespace RetroFun.Pages
         private int _FurniAmountInv = 0;
         private bool BlockRoomLoad;
 
+        private decimal _Wallcoordsl;
+
+        public decimal Wallcoordsl
+        {
+            get => _Wallcoordsl;
+            set
+            {
+                _Wallcoordsl = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private decimal _Wallcoordsw;
+
+        public decimal Wallcoordsw
+        {
+            get => _Wallcoordsw;
+            set
+            {
+                _Wallcoordsw = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+
+        private int _WallFurniID;
+
+        public int WallFurniID
+        {
+            get => _WallFurniID;
+            set
+            {
+                _WallFurniID = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+
         private string _PosterID = "2005";
 
         public string PosterID
@@ -37,9 +77,34 @@ namespace RetroFun.Pages
                 _PosterID = value;
                 RaiseOnPropertyChanged();
             }
-
-
         }
+
+
+        private string _WallCSRotation = "l";
+
+        public string WallCSRotation
+        {
+            get => _WallCSRotation;
+            set
+            {
+                _WallCSRotation = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        private string _WallPosterID = "2005";
+
+        public string WallPosterID
+        {
+            get => _WallPosterID;
+            set
+            {
+                _WallPosterID = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
         private string _FurniType = "I";
 
         public string FurniType
@@ -83,6 +148,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private int _CoordX;
 
         public int CoordX
@@ -120,7 +186,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private string _FurniOwnerName =" ";
+        private string _FurniOwnerName = " ";
 
         public string FurniOwnerName
         {
@@ -145,7 +211,7 @@ namespace RetroFun.Pages
             }
         }
         private bool _SpawnFurniOnClick;
-        public bool SpawnFurniOnClick
+        public bool SpawnFloorFurniOnClick
         {
             get => _SpawnFurniOnClick;
             set
@@ -154,6 +220,41 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+        private bool _SpawnWallFurniOnClick;
+        public bool SpawnWallFurniOnClick
+        {
+            get => _SpawnWallFurniOnClick;
+            set
+            {
+                _SpawnWallFurniOnClick = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        private bool _SpawnWallFurniOnValueChange;
+        public bool SpawnWallFurniOnValueChange
+        {
+            get => _SpawnWallFurniOnValueChange;
+            set
+            {
+                _SpawnWallFurniOnValueChange = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _SpawnFloorFurniOnValueChange;
+        public bool SpawnFloorFurniOnValueChange
+        {
+            get => _SpawnFloorFurniOnValueChange;
+            set
+            {
+                _SpawnFloorFurniOnValueChange = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
 
 
@@ -171,6 +272,11 @@ namespace RetroFun.Pages
             Bind(AmountNbx, "Value", nameof(FurniAmountInv));
 
             Bind(FurniInventoryIDNbx, "Value", nameof(InventoryFurniID));
+
+            Bind(WallFurniIDNbx, "Value", nameof(WallFurniID));
+            Bind(CoordWnumbx, "Value", nameof(Wallcoordsw));
+            Bind(CoordINumbx, "Value", nameof(Wallcoordsl));
+            Bind(WallPosterIDTbx, "Text", nameof(WallPosterID));
 
 
 
@@ -226,11 +332,18 @@ namespace RetroFun.Pages
         {
             int coordX = e.Packet.ReadInteger();
             int coordY = e.Packet.ReadInteger();
-            if (SpawnFurniOnClick)
+            if (SpawnFloorFurniOnClick)
             {
                 CoordX = coordX;
                 CoordY = coordY;
                 SpawnFurni(FloorFurniID, coordX, coordY, CoordZ, FurniRotation, FurniOwnerName);
+                e.IsBlocked = true;
+            }
+            if (SpawnWallFurniOnClick)
+            {
+                Wallcoordsw = coordX;
+                Wallcoordsl = coordY;
+                SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, WallPosterID, FurniOwnerName);
                 e.IsBlocked = true;
             }
         }
@@ -241,7 +354,7 @@ namespace RetroFun.Pages
             string username = packet.ReadString();
 
             FurniOwnerName = username;
-            
+            BlockRoomLoad = false;
         }
 
 
@@ -309,28 +422,35 @@ namespace RetroFun.Pages
 
         private void SpawnFloorFurniOnClickBtn_Click(object sender, EventArgs e)
         {
-            if(SpawnFurniOnClick)
+            if(SpawnFloorFurniOnClick)
             {
                 WriteToButton(SpawnFloorFurniOnClickBtn, "Spawn Floor Furni on click : OFF");
-                SpawnFurniOnClick = false;
+                SpawnFloorFurniOnClick = false;
             }
             else
             {
                 WriteToButton(SpawnFloorFurniOnClickBtn, "Spawn Floor Furni on click : ON");
-                Speak("The User won't be able to move until this option is toggled off!");
-                SpawnFurniOnClick = true;
+                WallFurniSpeak("The User won't be able to move until this option is toggled off!");
+                DisableSpawnWallFurniOnClick();
+                SpawnFloorFurniOnClick = true;
             }
         }
 
 
-        private void Speak(string text)
+        private void WallFurniSpeak(string text)
         {
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Furni Spawner]: " + text, 0, 34, 0, -1);
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[WallFurni Spawner]: " + text, 0, 34, 0, -1);
             }
         }
-
+        private void FloorFurniSpeak(string text)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[FloorFurni Spawner]: " + text, 0, 34, 0, -1);
+            }
+        }
 
         private void WriteToButton(SKoreButton button, string text)
         {
@@ -412,5 +532,143 @@ namespace RetroFun.Pages
         }
 
 
+        private void SpawnWallFurni(int FurniID, decimal Coordw, decimal coordsl, string FurniRotation, string PosterID, string Owner)
+        {
+            LocalFurniID++;
+            Connection.SendToClientAsync(In.AddWallItem,
+
+                LocalFurniID.ToString(),
+                FurniID,
+                ":w=" + Coordw.ToString() + " l=" + coordsl.ToString() + " " + FurniRotation,
+               PosterID,
+                -1,
+                0,
+                0,
+                Owner
+            );
+            WallFurniSpeak("[DEBUG]: Furni : " +  FurniID + ":w=" + Coordw.ToString() + " l=" + coordsl.ToString() + " " + FurniRotation + " " + PosterID + -1 + 0 + 0 + Owner);
+            }
+
+
+        private void DisableSpawnFloorFurniOnClick()
+        {
+            if(SpawnFloorFurniOnClick)
+            {
+                WriteToButton(SpawnFloorFurniOnClickBtn, "Spawn Floor Furni on click : OFF");
+                SpawnFloorFurniOnClick = false;
+            }
+        }
+
+        private void DisableSpawnWallFurniOnClick()
+        {
+            WriteToButton(SpawnWallFurniOnClickBtn, "Spawn Wall Furni on click : OFF");
+            SpawnWallFurniOnClick = false;
+        }
+
+        private void RotationIBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            WallCSRotation = "l";
+        }
+
+        private void RotationRBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            WallCSRotation = "r";
+        }
+
+        private void SpawnWallFurniBtn_Click(object sender, EventArgs e)
+        {
+            SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation,  WallPosterID, FurniOwnerName);
+        }
+
+        private void SpawnWallFurniOnClickBtn_Click(object sender, EventArgs e)
+        {
+            if (SpawnWallFurniOnClick)
+            {
+                WriteToButton(SpawnWallFurniOnClickBtn, "Spawn Wall Furni on click : OFF");
+                SpawnWallFurniOnClick = false;
+            }
+            else
+            {
+                WriteToButton(SpawnWallFurniOnClickBtn, "Spawn Wall Furni on click : ON");
+                WallFurniSpeak("The User won't be able to move until this option is toggled off!");
+                DisableSpawnFloorFurniOnClick();
+                SpawnWallFurniOnClick = true;
+            }
+        }
+
+        private void WallFurniSpawnOnChangeBtn_Click(object sender, EventArgs e)
+        {
+            if (SpawnWallFurniOnValueChange)
+            {
+                WriteToButton(WallFurniSpawnOnChangeBtn, "Spawn Wall Furni on value change : OFF");
+                SpawnWallFurniOnValueChange = false;
+            }
+            else
+            {
+                WriteToButton(WallFurniSpawnOnChangeBtn, "Spawn Wall Furni on value change : ON");
+                SpawnWallFurniOnValueChange = true;
+            }
+        }
+
+        private void FloorlFurniSpawnOnChangeBtn_Click(object sender, EventArgs e)
+        {
+            if (SpawnFloorFurniOnValueChange)
+            {
+                WriteToButton(FloorlFurniSpawnOnChangeBtn, "Spawn Floor Furni on value change : OFF");
+                SpawnFloorFurniOnValueChange = false;
+            }
+            else
+            {
+                WriteToButton(FloorlFurniSpawnOnChangeBtn, "Spawn Floor Furni on value change : ON");
+                SpawnFloorFurniOnValueChange = true;
+            }
+        }
+
+
+        // FLOORFURNI
+
+
+        private void CoordXNbx_ValueChanged(object sender, EventArgs e)
+        {
+            if (SpawnFloorFurniOnValueChange)
+            {
+                SpawnFurni(FloorFurniID, CoordX, CoordY, CoordZ, FurniRotation, FurniOwnerName);
+            }
+        }
+
+        private void CoordYNbx_ValueChanged(object sender, EventArgs e)
+        {
+            if (SpawnFloorFurniOnValueChange)
+            {
+                SpawnFurni(FloorFurniID, CoordX, CoordY, CoordZ, FurniRotation, FurniOwnerName);
+            }
+        }
+
+        private void CoordZNBx_ValueChanged(object sender, EventArgs e)
+        {
+            if (SpawnFloorFurniOnValueChange)
+            {
+                SpawnFurni(FloorFurniID, CoordX, CoordY, CoordZ, FurniRotation, FurniOwnerName);
+            }
+        }
+
+
+        // WALL FURNI
+        private void CoordWNbx_ValueChanged(object sender, EventArgs e)
+        {
+            if (SpawnWallFurniOnValueChange)
+            {
+                SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, WallPosterID, FurniOwnerName);
+            }
+
+        }
+
+        private void CoordlNbx_ValueChanged(object sender, EventArgs e)
+        {
+            if (SpawnWallFurniOnValueChange)
+            {
+                SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, WallPosterID, FurniOwnerName);
+            }
+        }
     }
 }
