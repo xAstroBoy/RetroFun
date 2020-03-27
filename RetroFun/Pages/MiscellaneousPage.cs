@@ -3,6 +3,7 @@ using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Components;
 using Sulakore.Habbo;
+using Sulakore.Protocol;
 using System;
 using System.ComponentModel;
 using System.Threading;
@@ -33,7 +34,7 @@ namespace RetroFun.Pages
         private readonly string TrollLook2 = "hr-893-42.ea-1333-33.ha-3786-62.sh-6298462-82.wa-3333-333.ca-3333-33-33.lg-5772038-82-62.ch-987462876-89.hd-209-1";
         private readonly string TrollLook3 = "hr-893-42.cc-156282-77.ea-1333-33.ha-3786-62.ch-9784419-82.sh-3035-82.ca-3333-33-33.lg-6050208-78.wa-3333-333.hd-209-1";
 
-        private readonly string OriginalLook = "hr-893-42.cc-156282-77.ea-1333-33.ch-9784419-82.sh-3035-82.ca-3333-33-33.lg-6050208-78.wa-3333-333.hd-209-1";
+        private string OriginalLook = " ";
 
         #region DanceBools
 
@@ -470,6 +471,18 @@ namespace RetroFun.Pages
 
         #region miscvars
 
+        private string _UsernameFilter;
+
+        public string UsernameFilter
+        {
+            get => _UsernameFilter;
+            set
+            {
+                _UsernameFilter = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
         private bool _ConvertMessageForYou;
 
@@ -593,7 +606,6 @@ namespace RetroFun.Pages
             if (Program.Master != null)
             {
                 Triggers.InAttach(In.MessagesForYou, HandleMessageForYou);
-
             }
 
         }
@@ -948,11 +960,22 @@ namespace RetroFun.Pages
 
         public bool IsReceiving => true;
 
-        public void OnLatencyTest(DataInterceptedEventArgs e)
+        public void OnLatencyTest(DataInterceptedEventArgs obj)
         {
+            if (UsernameFilter == null)
+            {
+                Connection.SendToServerAsync(Out.RequestUserData);
+            }
         }
-        public void OnUsername(DataInterceptedEventArgs e)
+
+        public void OnUsername(DataInterceptedEventArgs obj)
         {
+            string username = obj.Packet.ReadString();
+
+            if (UsernameFilter == null)
+            {
+                UsernameFilter = username;
+            }
         }
 
         public void OnRequestRoomLoad(DataInterceptedEventArgs e)
@@ -964,13 +987,34 @@ namespace RetroFun.Pages
         {
         }
 
-        public void InUserEnterRoom(DataInterceptedEventArgs e)
+        public void InUserEnterRoom(DataInterceptedEventArgs obj)
         {
+            try
+            {
+                if (UsernameFilter != null)
+                {
+                    HEntity[] array = HEntity.Parse(obj.Packet);
+                    if (array.Length != 0)
+                    {
+                        foreach (HEntity hentity in array)
+                        {
+                            if (hentity.Name == UsernameFilter)
+                            {
+                                OriginalLook = hentity.FigureId;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+            }
         }
 
         public void InPurchaseOk(DataInterceptedEventArgs e)
         {
         }
+
 
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
