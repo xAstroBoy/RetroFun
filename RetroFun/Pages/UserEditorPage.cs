@@ -154,7 +154,8 @@ namespace RetroFun.Pages
 
         public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
-
+            users.Clear();
+            WriteRegistrationUsers(users.Count);
         }
 
         public void OnLatencyTest(DataInterceptedEventArgs e)
