@@ -187,7 +187,9 @@ namespace RetroFun.Pages
 
         }
 
-
+        public void InItemExtraData(DataInterceptedEventArgs e)
+        {
+        }
         public void SendPetPurchase()
         {
             Connection.SendToServerAsync(Out.CatalogBuyItem, PageID, PetID, PetName + '\n' +PetRace.ToString() + '\n' +PetHTMLColor , 1);

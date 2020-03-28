@@ -32,5 +32,7 @@ namespace RetroFun.Subscribers
         void InUserEnterRoom(DataInterceptedEventArgs e);
 
         void inUserProfile(DataInterceptedEventArgs e);
+
+        void InItemExtraData(DataInterceptedEventArgs e);
     }
 }

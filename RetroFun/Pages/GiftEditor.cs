@@ -405,6 +405,9 @@ namespace RetroFun.Pages
         {
         }
 
+        public void InItemExtraData(DataInterceptedEventArgs e)
+        {
+        }
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {

@@ -124,6 +124,10 @@ namespace RetroFun
                 {
                     sub.inUserProfile(e);
                 }
+                else if(In.ItemExtraData == id)
+                {
+                    sub.InItemExtraData(e);
+                }
             }
         }
     }

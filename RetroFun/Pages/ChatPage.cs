@@ -425,6 +425,10 @@ namespace RetroFun.Pages
         {
         }
 
+        public void InItemExtraData(DataInterceptedEventArgs e)
+        {
+        }
+
         private void BubblesCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Avoid cross-thread exceptions by waiting for an event in the UI thread to update this property.
@@ -456,6 +460,7 @@ namespace RetroFun.Pages
                 }
             }
         }
+
 
         private void CSRoomUserShout(DataInterceptedEventArgs obj)
         {

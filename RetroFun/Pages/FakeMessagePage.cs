@@ -87,6 +87,10 @@ namespace RetroFun.Pages
         {
         }
 
+        public void InItemExtraData(DataInterceptedEventArgs e)
+        {
+        }
+
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
             SelectedUserID = e.Packet.ReadInteger();

@@ -713,5 +713,8 @@ namespace RetroFun.Pages
                 SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, FurniOwnerName);
             }
         }
+        public void InItemExtraData(DataInterceptedEventArgs e)
+        {
+        }
     }
 }

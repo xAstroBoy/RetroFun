@@ -183,6 +183,9 @@ namespace RetroFun.Pages
 
         }
 
+        public void InItemExtraData(DataInterceptedEventArgs e)
+        {
+        }
         public void InRoomUserLeft(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());

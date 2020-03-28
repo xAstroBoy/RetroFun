@@ -25,10 +25,238 @@ namespace RetroFun.Pages
 
         public bool IsReceiving => true;
 
+
+        private int _DiceResult1;
+
+        public int DiceResult1
+        {
+            get => _DiceResult1;
+            set
+            {
+                _DiceResult1 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _DiceResult2;
+
+        public int DiceResult2
+        {
+            get => _DiceResult2;
+            set
+            {
+                _DiceResult2 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        private int _DiceResult3;
+
+        public int DiceResult3
+        {
+            get => _DiceResult3;
+            set
+            {
+                _DiceResult3 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        private int _DiceResult4;
+
+        public int DiceResult4
+        {
+            get => _DiceResult4;
+            set
+            {
+                _DiceResult4 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        private int _DiceResult5;
+
+        public int DiceResult5
+        {
+            get => _DiceResult5;
+            set
+            {
+                _DiceResult5 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        private int _DiceResult6;
+
+        public int DiceResult6
+        {
+            get => _DiceResult6;
+            set
+            {
+                _DiceResult6 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+                private int _DiceID1;
+
+        public int DiceID1
+        {
+            get => _DiceID1;
+            set
+            {
+                _DiceID1 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+		
+		        private int _DiceID2;
+
+        public int DiceID2
+        {
+            get => _DiceID2;
+            set
+            {
+                _DiceID2 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+		        private int _DiceID3;
+
+        public int DiceID3
+        {
+            get => _DiceID3;
+            set
+            {
+                _DiceID3 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+		        private int _DiceID4;
+
+        public int DiceID4
+        {
+            get => _DiceID4;
+            set
+            {
+                _DiceID4 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+		        private int _DiceID5;
+
+        public int DiceID5
+        {
+            get => _DiceID5;
+            set
+            {
+                _DiceID5 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+		        private int _DiceID6;
+
+        public int DiceID6
+        {
+            get => _DiceID6;
+            set
+            {
+                _DiceID6 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _DiceSelected1;
+        public bool DiceSelected1
+        {
+            get => _DiceSelected1;
+            set
+            {
+                _DiceSelected1 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _DiceSelected2;
+
+        public bool DiceSelected2
+        {
+            get => _DiceSelected2;
+            set
+            {
+                _DiceSelected2 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        private bool _DiceSelected3;
+
+        public bool DiceSelected3
+        {
+            get => _DiceSelected3;
+            set
+            {
+                _DiceSelected3 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        private bool _DiceSelected4;
+
+        public bool DiceSelected4
+        {
+            get => _DiceSelected4;
+            set
+            {
+                _DiceSelected4 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        private bool _DiceSelected5;
+
+        public bool DiceSelected5
+        {
+            get => _DiceSelected5;
+            set
+            {
+                _DiceSelected5 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        private bool _DiceSelected6;
+
+        public bool DiceSelected6
+        {
+            get => _DiceSelected6;
+            set
+            {
+                _DiceSelected6 = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
         public DicePage()
         {
             InitializeComponent();
             Bind(DiceRegisterModeCheck, "Checked", nameof(IsRegistrationMode));
+
+
+            Bind(DiceID1Nbx, "Value", nameof(DiceID1));
+            Bind(DiceID2Nbx, "Value", nameof(DiceID2));
+            Bind(DiceID3Nbx, "Value", nameof(DiceID3));
+            Bind(DiceID4Nbx, "Value", nameof(DiceID4));
+            Bind(DiceID5Nbx, "Value", nameof(DiceID5));
+            Bind(DiceID6Nbx, "Value", nameof(DiceID6));
+
+            Bind(Dice1ResultNbx, "Value", nameof(DiceResult1));
+            Bind(Dice2ResultNbx, "Value", nameof(DiceResult2));
+            Bind(Dice3ResultNbx, "Value", nameof(DiceResult3));
+            Bind(Dice4ResultNbx, "Value", nameof(DiceResult4));
+            Bind(Dice5ResultNbx, "Value", nameof(DiceResult5));
+            Bind(Dice6ResultNbx, "Value", nameof(DiceResult6));
+
+            Bind(DiceSelect1Chbx, "Checked", nameof(DiceSelected1));
+            Bind(DiceSelect2Chbx, "Checked", nameof(DiceSelected2));
+            Bind(DiceSelect3Chbx, "Checked", nameof(DiceSelected3));
+            Bind(DiceSelect4Chbx, "Checked", nameof(DiceSelected4));
+            Bind(DiceSelect5Chbx, "Checked", nameof(DiceSelected5));
+            Bind(DiceSelect6Chbx, "Checked", nameof(DiceSelected6));
+
+
         }
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
@@ -111,42 +339,42 @@ namespace RetroFun.Pages
             if (!DiceRegistered1)
             {
                 DiceRegistered1 = true;
-                WriteIDToBox(DiceID1, NewDice.ToString());
+                DiceID1 = NewDice;
                 RegisterDiceAsk(2);
                 return;
             }
             if (!DiceRegistered2)
             {
                 DiceRegistered2 = true;
-                WriteIDToBox(DiceID2, NewDice.ToString());
+                DiceID2 = NewDice;
                 RegisterDiceAsk(3);
                 return;
             }
             if (!DiceRegistered3)
             {
                 DiceRegistered3 = true;
-                WriteIDToBox(DiceID3, NewDice.ToString());
+                DiceID3 = NewDice;
                 RegisterDiceAsk(4);
                 return;
             }
             if (!DiceRegistered4)
             {
                 DiceRegistered4 = true;
-                WriteIDToBox(DiceID4, NewDice.ToString());
+                DiceID4 = NewDice;
                 RegisterDiceAsk(5);
                 return;
             }
             if (!DiceRegistered5)
             {
                 DiceRegistered5 = true;
-                WriteIDToBox(DiceID5, NewDice.ToString());
+                DiceID5 = NewDice;
                 RegisterDiceAsk(6);
                 return;
             }
             if (!DiceRegistered6)
             {
                 DiceRegistered6 = true;
-                WriteIDToBox(DiceID6, NewDice.ToString());
+                DiceID6 = NewDice;
                 RegistrationCompleted = true;
                 if (RegistrationCompleted)
                 {
@@ -159,190 +387,138 @@ namespace RetroFun.Pages
 
         private void RollCheckedDices_Click(object sender, EventArgs e)
         {
-            if (DiceSelect1.Checked)
+            if (DiceSelected1)
             {
-                if (int.TryParse(DiceID1.Text, out int result))
-                {
-                    RollDice(result);
-                }
+
+                    RollDice(DiceID1);
+                
             }
-            if (DiceSelect2.Checked)
+            if (DiceSelected2)
             {
-                if (int.TryParse(DiceID2.Text, out int result))
-                {
-                    RollDice(result);
-                }
+
+                    RollDice(DiceID2);
+                
             }
-            if (DiceSelect3.Checked)
+            if (DiceSelected3)
             {
-                if (int.TryParse(DiceID3.Text, out int result))
-                {
-                    RollDice(result);
-                }
+
+                    RollDice(DiceID3);
+
             }
-            if (DiceSelect4.Checked)
+            if (DiceSelected4)
             {
-                if (int.TryParse(DiceID4.Text, out int result))
-                {
-                    RollDice(result);
-                }
+
+                    RollDice(DiceID4);
             }
-            if (DiceSelect5.Checked)
+            if (DiceSelected5)
             {
-                if (int.TryParse(DiceID5.Text, out int result))
-                {
-                    RollDice(result);
-                }
+                    RollDice(DiceID5);
+                
             }
-            if (DiceSelect6.Checked)
+            if (DiceSelected6)
             {
-                if (int.TryParse(DiceID6.Text, out int result))
-                {
-                    RollDice(result);
-                }
+
+                    RollDice(DiceID6);
             }
         }
 
         private void CloseCheckedDices_Click(object sender, EventArgs e)
         {
-            if (DiceSelect1.Checked)
+            if (DiceSelected1)
             {
-                if (int.TryParse(DiceID1.Text, out int result))
-                {
-                    CloseDice(result);
-                }
+                CloseDice(DiceID1);
             }
-            if (DiceSelect2.Checked)
+            if (DiceSelected2)
             {
-                if (int.TryParse(DiceID2.Text, out int result))
-                {
-                    CloseDice(result);
-                }
+                CloseDice(DiceID2);
             }
-            if (DiceSelect3.Checked)
+            if (DiceSelected3)
             {
-                if (int.TryParse(DiceID3.Text, out int result))
-                {
-                    CloseDice(result);
-                }
+                CloseDice(DiceID3);
             }
-            if (DiceSelect4.Checked)
+            if (DiceSelected4)
             {
-                if (int.TryParse(DiceID4.Text, out int result))
-                {
-                    CloseDice(result);
-                }
+                CloseDice(DiceID4);
             }
-            if (DiceSelect5.Checked)
+            if (DiceSelected5)
             {
-                if (int.TryParse(DiceID5.Text, out int result))
-                {
-                    CloseDice(result);
-                }
+                CloseDice(DiceID5);
             }
-            if (DiceSelect6.Checked)
+            if (DiceSelected6)
             {
-                if (int.TryParse(DiceID6.Text, out int result))
-                {
-                    CloseDice(result);
-                }
+                CloseDice(DiceID6);
             }
         }
 
         private void ThrowDice1Btn_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(DiceID1.Text, out int result))
-            {
-                RollDice(result);
-            }
+            RollDice(DiceID1);
+
         }
 
         private void ThrowDice2Btn_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(DiceID2.Text, out int result))
-            {
-                RollDice(result);
-            }
+            RollDice(DiceID2);
+
         }
 
         private void ThrowDice3Btn_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(DiceID3.Text, out int result))
-            {
-                RollDice(result);
-            }
+            RollDice(DiceID3);
+
         }
 
         private void ThrowDice4Btn_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(DiceID4.Text, out int result))
-            {
-                RollDice(result);
-            }
+            RollDice(DiceID4);
+
         }
 
         private void ThrowDice5Btn_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(DiceID5.Text, out int result))
-            {
-                RollDice(result);
-            }
+            RollDice(DiceID5);
+
         }
 
         private void ThrowDice6Btn_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(DiceID6.Text, out int result))
-            {
-                RollDice(result);
-            }
+            RollDice(DiceID6);
         }
 
         private void CloseDice1Btn_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(DiceID1.Text, out int result))
-            {
-                CloseDice(result);
-            }
+            CloseDice(DiceID1);
+
         }
 
         private void CloseDice2Btn_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(DiceID2.Text, out int result))
-            {
-                CloseDice(result);
-            }
+            CloseDice(DiceID2);
+
         }
 
         private void CloseDice3Btn_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(DiceID3.Text, out int result))
-            {
-                CloseDice(result);
-            }
+            CloseDice(DiceID3);
+
         }
 
         private void CloseDice4Btn_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(DiceID4.Text, out int result))
-            {
-                CloseDice(result);
-            }
+            CloseDice(DiceID4);
+
         }
 
         private void CloseDice5Btn_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(DiceID5.Text, out int result))
-            {
-                CloseDice(result);
-            }
+            CloseDice(DiceID5);
+
         }
 
         private void CloseDice6Btn_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(DiceID6.Text, out int result))
-            {
-                CloseDice(result);
-            }
+            CloseDice(DiceID6);
+
         }
 
         private void UnSelectAllButton_Click(object sender, EventArgs e)
@@ -357,23 +533,31 @@ namespace RetroFun.Pages
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
-            WriteIDToBox(DiceID1, "");
-            WriteIDToBox(DiceID2, "");
-            WriteIDToBox(DiceID3, "");
-            WriteIDToBox(DiceID4, "");
-            WriteIDToBox(DiceID5, "");
-            WriteIDToBox(DiceID6, "");
+            DiceID1 = 0;
+            DiceID2 = 0;
+            DiceID3 = 0;
+            DiceID4 = 0;
+            DiceID5 = 0;
+            DiceID6 = 0;
+
+            DiceResult1 = 0;
+            DiceResult2 = 0;
+            DiceResult3 = 0;
+            DiceResult4 = 0;
+            DiceResult5 = 0;
+            DiceResult6 = 0;
+
             CheckStatus(false);
         }
 
         public void CheckStatus(bool status)
         {
-            CheckBoxToggler(DiceSelect1, status);
-            CheckBoxToggler(DiceSelect2, status);
-            CheckBoxToggler(DiceSelect3, status);
-            CheckBoxToggler(DiceSelect4, status);
-            CheckBoxToggler(DiceSelect5, status);
-            CheckBoxToggler(DiceSelect6, status);
+            CheckBoxToggler(DiceSelect1Chbx, status);
+            CheckBoxToggler(DiceSelect2Chbx, status);
+            CheckBoxToggler(DiceSelect3Chbx, status);
+            CheckBoxToggler(DiceSelect4Chbx, status);
+            CheckBoxToggler(DiceSelect5Chbx, status);
+            CheckBoxToggler(DiceSelect6Chbx, status);
         }
 
         private void RollDice(int DiceID)
@@ -408,14 +592,6 @@ namespace RetroFun.Pages
             }
         }
 
-        private void WriteIDToBox(TextBox DiceBox, string text)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                DiceBox.Text = text;
-            });
-        }
-
         private void CheckBoxToggler(CheckBox box, bool value)
         {
             Invoke((MethodInvoker)delegate
@@ -424,6 +600,50 @@ namespace RetroFun.Pages
             });
         }
 
+
+        public void InItemExtraData(DataInterceptedEventArgs e)
+        {
+           
+            int id = int.Parse(e.Packet.ReadString());
+            e.Packet.ReadInteger();
+            string data = e.Packet.ReadString();
+
+            e.Continue();
+
+            if (!int.TryParse(data, out int diceState) || diceState == -1) return;
+
+            if (id == DiceID1)
+            {
+                DiceResult1 = diceState;
+            }
+
+            if (id == DiceID2)
+            {
+                DiceResult2 = diceState;
+            }
+
+            if (id == DiceID3)
+            {
+                DiceResult3 = diceState;
+            }
+
+            if (id == DiceID4)
+            {
+                DiceResult4 = diceState;
+            }
+
+            if (id == DiceID5)
+            {
+                DiceResult5 = diceState;
+            }
+
+            if (id == DiceID6)
+            {
+                DiceResult6 = diceState;
+            }
+        }
+
+
         private bool DiceRegistered1;
         private bool DiceRegistered2;
         private bool DiceRegistered3;
@@ -431,5 +651,6 @@ namespace RetroFun.Pages
         private bool DiceRegistered5;
         private bool DiceRegistered6;
         private bool RegistrationCompleted;
+
     }
 }

@@ -107,7 +107,9 @@ namespace RetroFun.Pages
         {
         }
 
-
+        public void InItemExtraData(DataInterceptedEventArgs e)
+        {
+        }
         public void OnRoomUserWalk(DataInterceptedEventArgs e)
         {
         }
