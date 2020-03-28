@@ -267,6 +267,7 @@
             0,
             0});
             this.Dice6ResultNbx.Name = "Dice6ResultNbx";
+            this.Dice6ResultNbx.ReadOnly = true;
             this.Dice6ResultNbx.Size = new System.Drawing.Size(65, 26);
             this.Dice6ResultNbx.TabIndex = 23;
             // 
@@ -281,6 +282,7 @@
             0,
             0});
             this.Dice5ResultNbx.Name = "Dice5ResultNbx";
+            this.Dice5ResultNbx.ReadOnly = true;
             this.Dice5ResultNbx.Size = new System.Drawing.Size(65, 26);
             this.Dice5ResultNbx.TabIndex = 22;
             // 
@@ -295,6 +297,7 @@
             0,
             0});
             this.Dice4ResultNbx.Name = "Dice4ResultNbx";
+            this.Dice4ResultNbx.ReadOnly = true;
             this.Dice4ResultNbx.Size = new System.Drawing.Size(65, 26);
             this.Dice4ResultNbx.TabIndex = 21;
             // 
@@ -309,6 +312,7 @@
             0,
             0});
             this.Dice3ResultNbx.Name = "Dice3ResultNbx";
+            this.Dice3ResultNbx.ReadOnly = true;
             this.Dice3ResultNbx.Size = new System.Drawing.Size(65, 26);
             this.Dice3ResultNbx.TabIndex = 20;
             // 
@@ -323,6 +327,7 @@
             0,
             0});
             this.Dice2ResultNbx.Name = "Dice2ResultNbx";
+            this.Dice2ResultNbx.ReadOnly = true;
             this.Dice2ResultNbx.Size = new System.Drawing.Size(65, 26);
             this.Dice2ResultNbx.TabIndex = 19;
             // 
@@ -337,6 +342,7 @@
             0,
             0});
             this.Dice1ResultNbx.Name = "Dice1ResultNbx";
+            this.Dice1ResultNbx.ReadOnly = true;
             this.Dice1ResultNbx.Size = new System.Drawing.Size(65, 26);
             this.Dice1ResultNbx.TabIndex = 18;
             // 
@@ -372,15 +378,16 @@
             0,
             0});
             this.DiceID6Nbx.Name = "DiceID6Nbx";
+            this.DiceID6Nbx.ReadOnly = true;
             this.DiceID6Nbx.Size = new System.Drawing.Size(148, 26);
             this.DiceID6Nbx.TabIndex = 11;
             // 
-            // DiceSelect6
+            // DiceSelect6Chbx
             // 
             this.DiceSelect6Chbx.AutoSize = true;
             this.DiceSelect6Chbx.Location = new System.Drawing.Point(157, 249);
             this.DiceSelect6Chbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DiceSelect6Chbx.Name = "DiceSelect6";
+            this.DiceSelect6Chbx.Name = "DiceSelect6Chbx";
             this.DiceSelect6Chbx.Size = new System.Drawing.Size(80, 24);
             this.DiceSelect6Chbx.TabIndex = 10;
             this.DiceSelect6Chbx.Text = "Dice 6";
@@ -397,15 +404,16 @@
             0,
             0});
             this.DiceID5Nbx.Name = "DiceID5Nbx";
+            this.DiceID5Nbx.ReadOnly = true;
             this.DiceID5Nbx.Size = new System.Drawing.Size(148, 26);
             this.DiceID5Nbx.TabIndex = 9;
             // 
-            // DiceSelect5
+            // DiceSelect5Chbx
             // 
             this.DiceSelect5Chbx.AutoSize = true;
             this.DiceSelect5Chbx.Location = new System.Drawing.Point(157, 214);
             this.DiceSelect5Chbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DiceSelect5Chbx.Name = "DiceSelect5";
+            this.DiceSelect5Chbx.Name = "DiceSelect5Chbx";
             this.DiceSelect5Chbx.Size = new System.Drawing.Size(80, 24);
             this.DiceSelect5Chbx.TabIndex = 8;
             this.DiceSelect5Chbx.Text = "Dice 5";
@@ -422,15 +430,16 @@
             0,
             0});
             this.DiceID4Nbx.Name = "DiceID4Nbx";
+            this.DiceID4Nbx.ReadOnly = true;
             this.DiceID4Nbx.Size = new System.Drawing.Size(148, 26);
             this.DiceID4Nbx.TabIndex = 7;
             // 
-            // DiceSelect4
+            // DiceSelect4Chbx
             // 
             this.DiceSelect4Chbx.AutoSize = true;
             this.DiceSelect4Chbx.Location = new System.Drawing.Point(157, 178);
             this.DiceSelect4Chbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DiceSelect4Chbx.Name = "DiceSelect4";
+            this.DiceSelect4Chbx.Name = "DiceSelect4Chbx";
             this.DiceSelect4Chbx.Size = new System.Drawing.Size(80, 24);
             this.DiceSelect4Chbx.TabIndex = 6;
             this.DiceSelect4Chbx.Text = "Dice 4";
@@ -447,15 +456,16 @@
             0,
             0});
             this.DiceID3Nbx.Name = "DiceID3Nbx";
+            this.DiceID3Nbx.ReadOnly = true;
             this.DiceID3Nbx.Size = new System.Drawing.Size(148, 26);
             this.DiceID3Nbx.TabIndex = 5;
             // 
-            // DiceSelect3
+            // DiceSelect3Chbx
             // 
             this.DiceSelect3Chbx.AutoSize = true;
             this.DiceSelect3Chbx.Location = new System.Drawing.Point(157, 138);
             this.DiceSelect3Chbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DiceSelect3Chbx.Name = "DiceSelect3";
+            this.DiceSelect3Chbx.Name = "DiceSelect3Chbx";
             this.DiceSelect3Chbx.Size = new System.Drawing.Size(80, 24);
             this.DiceSelect3Chbx.TabIndex = 4;
             this.DiceSelect3Chbx.Text = "Dice 3";
@@ -472,15 +482,16 @@
             0,
             0});
             this.DiceID2Nbx.Name = "DiceID2Nbx";
+            this.DiceID2Nbx.ReadOnly = true;
             this.DiceID2Nbx.Size = new System.Drawing.Size(148, 26);
             this.DiceID2Nbx.TabIndex = 3;
             // 
-            // DiceSelect2
+            // DiceSelect2Chbx
             // 
             this.DiceSelect2Chbx.AutoSize = true;
             this.DiceSelect2Chbx.Location = new System.Drawing.Point(157, 103);
             this.DiceSelect2Chbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DiceSelect2Chbx.Name = "DiceSelect2";
+            this.DiceSelect2Chbx.Name = "DiceSelect2Chbx";
             this.DiceSelect2Chbx.Size = new System.Drawing.Size(80, 24);
             this.DiceSelect2Chbx.TabIndex = 2;
             this.DiceSelect2Chbx.Text = "Dice 2";
@@ -497,15 +508,16 @@
             0,
             0});
             this.DiceID1Nbx.Name = "DiceID1Nbx";
+            this.DiceID1Nbx.ReadOnly = true;
             this.DiceID1Nbx.Size = new System.Drawing.Size(148, 26);
             this.DiceID1Nbx.TabIndex = 1;
             // 
-            // DiceSelect1
+            // DiceSelect1Chbx
             // 
             this.DiceSelect1Chbx.AutoSize = true;
             this.DiceSelect1Chbx.Location = new System.Drawing.Point(157, 68);
             this.DiceSelect1Chbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DiceSelect1Chbx.Name = "DiceSelect1";
+            this.DiceSelect1Chbx.Name = "DiceSelect1Chbx";
             this.DiceSelect1Chbx.Size = new System.Drawing.Size(80, 24);
             this.DiceSelect1Chbx.TabIndex = 0;
             this.DiceSelect1Chbx.Text = "Dice 1";

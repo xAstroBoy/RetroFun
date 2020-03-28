@@ -109,7 +109,6 @@ namespace RetroFun.Pages
             Bind(DiceThirdResTB, "Text", nameof(DiceThreeResult), new IntToStringConverter());
             Bind(DiceHostResTB, "Text", nameof(DiceHostResult), new IntToStringConverter());
 
-            Bind(AutoHolochbx, "Checked", nameof(ISHolodiceCheat));
 
                 // FOR ARCTURUS 
                 //Triggers.InAttach(In.FloorItemUpdate, HandleDiceUpdate2);
@@ -182,8 +181,6 @@ namespace RetroFun.Pages
 
         public void InItemExtraData(DataInterceptedEventArgs e)
         {
-            if (!ISHolodiceCheat) return;
-
             int id = int.Parse(e.Packet.ReadString());
             e.Packet.ReadInteger();
             string data = e.Packet.ReadString();
@@ -196,11 +193,14 @@ namespace RetroFun.Pages
             {
                 DiceHostResult = diceState;
 
-                if (diceState == 0)
+                if (ISHolodiceCheat)
                 {
-                    CloseDice(_diceOneId);
-                    CloseDice(_diceTwoId);
-                    CloseDice(_diceThreeId);
+                    if (diceState == 0)
+                    {
+                        CloseDice(_diceOneId);
+                        CloseDice(_diceTwoId);
+                        CloseDice(_diceThreeId);
+                    }
                 }
             }
             else if (id == _diceOneId) DiceOneResult = diceState;
@@ -210,88 +210,47 @@ namespace RetroFun.Pages
 
             if (diceState < 1) return;
 
-            //These are usually very confusing if you were to read this code like after a month, or someone who has no idea what this is supposed to do were to read this. ik
-            if ((!ShouldRollFirst && !MatchSecondChk.Checked && !MatchThirdChk.Checked) ||
-                (!ShouldRollFirst && !ShouldRollSecond && !MatchThirdChk.Checked) ||
-                (!ShouldRollFirst && !ShouldRollSecond && !ShouldRollThird))
+            if (ISHolodiceCheat)
             {
-                //WON! Do the victory procedure here.
 
-                if (Connection.Remote.IsConnected)
+                //These are usually very confusing if you were to read this code like after a month, or someone who has no idea what this is supposed to do were to read this. ik
+                if ((!ShouldRollFirst && !MatchSecondChk.Checked && !MatchThirdChk.Checked) ||
+                    (!ShouldRollFirst && !ShouldRollSecond && !MatchThirdChk.Checked) ||
+                    (!ShouldRollFirst && !ShouldRollSecond && !ShouldRollThird))
                 {
-                    Connection.SendToServerAsync(Out.RoomUserShout, holoDiceShoutPhrase.Text, 0);
+                    //WON! Do the victory procedure here.
+
+                    if (Connection.Remote.IsConnected)
+                    {
+                        Connection.SendToServerAsync(Out.RoomUserShout, holoDiceShoutPhrase.Text, 0);
+                    }
+
+                    // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!
+                    ISHolodiceCheat = false;
+                    WriteToButton(EnableHoloBotBtn, "HoloBot : OFF");
                 }
-            }
-            else
-            {
-                if (ShouldRollFirst)
-                    RollDice(_diceOneId);
+                else
+                {
+                    if (ShouldRollFirst)
+                        RollDice(_diceOneId);
 
-                if (ShouldRollSecond)
-                    RollDice(_diceTwoId);
+                    if (ShouldRollSecond)
+                        RollDice(_diceTwoId);
 
-                if (ShouldRollThird)
-                    RollDice(_diceThreeId);
+                    if (ShouldRollThird)
+                        RollDice(_diceThreeId);
+                }
             }
         }
 
 
-        //private void HandleDiceUpdate2(DataInterceptedEventArgs e)
-        //{
-
-        //    if (!ISHolodiceCheat) return;
-
-        //    int id = int.Parse(e.Packet.ReadString());
-        //    e.Packet.ReadInteger();
-        //    string data = e.Packet.ReadString();
-
-        //    e.Continue();
-
-        //    if (!int.TryParse(data, out int diceState) || diceState == -1) return;
-
-        //    if (id == _diceHostId)
-        //    {
-        //        DiceHostResult = diceState;
-
-        //        if (diceState == 0)
-        //        {
-        //            CloseDice(_diceOneId);
-        //            CloseDice(_diceTwoId);
-        //            CloseDice(_diceThreeId);
-        //        }
-        //    }
-        //    else if (id == _diceOneId) DiceOneResult = diceState;
-        //    else if (id == _diceTwoId) DiceTwoResult = diceState;
-        //    else if (id == _diceThreeId) DiceThreeResult = diceState;
-        //    else return;
-
-        //    if (diceState < 1) return;
-
-        //    //These are usually very confusing if you were to read this code like after a month, or someone who has no idea what this is supposed to do were to read this. ik
-        //    if ((!ShouldRollFirst && !MatchSecondChk.Checked && !MatchThirdChk.Checked) ||
-        //        (!ShouldRollFirst && !ShouldRollSecond && !MatchThirdChk.Checked) ||
-        //        (!ShouldRollFirst && !ShouldRollSecond && !ShouldRollThird))
-        //    {
-        //        //WON! Do the victory procedure here.
-
-        //        if (Connection.Remote.IsConnected)
-        //        {
-        //            Connection.SendToServerAsync(Out.RoomUserShout, holoDiceShoutPhrase.Text, 0);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (ShouldRollFirst)
-        //            RollDice(_diceOneId);
-
-        //        if (ShouldRollSecond)
-        //            RollDice(_diceTwoId);
-
-        //        if (ShouldRollThird)
-        //            RollDice(_diceThreeId);
-        //    }
-        //}
-
+        private void WriteToButton(SKoreButton button, string text)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                button.Text = text;
+            });
+        }
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
@@ -308,6 +267,49 @@ namespace RetroFun.Pages
 
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
+        }
+
+        private void StartHoloBotBtn_Click(object sender, EventArgs e)
+        {
+            if (!ISHolodiceCheat)
+            {
+                ISHolodiceCheat = true;
+                Broadcast("Holodice Bot started!");
+                WriteToButton(EnableHoloBotBtn, "HoloBot : ON");
+                if (MatchFirstChk.Checked)
+                    RollDice(_diceOneId);
+
+                if (MatchSecondChk.Checked)
+                    RollDice(_diceTwoId);
+
+                if (MatchThirdChk.Checked)
+                    RollDice(_diceThreeId);
+            }
+            else
+            {
+                if (MatchFirstChk.Checked)
+                    RollDice(_diceOneId);
+
+                if (MatchSecondChk.Checked)
+                    RollDice(_diceTwoId);
+
+                if (MatchThirdChk.Checked)
+                    RollDice(_diceThreeId);
+            }
+        }
+
+        private void EnableHoloBotBtn_Click(object sender, EventArgs e)
+        {
+            if(ISHolodiceCheat)
+            {
+                ISHolodiceCheat = false;
+                WriteToButton(EnableHoloBotBtn, "HoloBot : OFF");
+            }
+            else
+            {
+                ISHolodiceCheat = true;
+                WriteToButton(EnableHoloBotBtn, "HoloBot : ON");
+            }
         }
 
         private void RollDice(int diceID)

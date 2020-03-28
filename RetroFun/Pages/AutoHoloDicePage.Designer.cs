@@ -42,9 +42,10 @@
             this.DiceThirdResTB = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.ClearButton = new Sulakore.Components.SKoreButton();
-            this.AutoHolochbx = new System.Windows.Forms.CheckBox();
             this.holoDiceShoutPhrase = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.EnableHoloBotBtn = new Sulakore.Components.SKoreButton();
+            this.StartHoloBotBtn = new Sulakore.Components.SKoreButton();
             this.DiceGroup.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -199,17 +200,6 @@
             this.ClearButton.Text = "Clear ";
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
-            // AutoHolochbx
-            // 
-            this.AutoHolochbx.AutoSize = true;
-            this.AutoHolochbx.Location = new System.Drawing.Point(382, 345);
-            this.AutoHolochbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.AutoHolochbx.Name = "AutoHolochbx";
-            this.AutoHolochbx.Size = new System.Drawing.Size(173, 24);
-            this.AutoHolochbx.TabIndex = 11;
-            this.AutoHolochbx.Text = "Automatic Holodice";
-            this.AutoHolochbx.UseVisualStyleBackColor = true;
-            // 
             // holoDiceShoutPhrase
             // 
             this.holoDiceShoutPhrase.Location = new System.Drawing.Point(18, 345);
@@ -229,13 +219,34 @@
             this.label3.TabIndex = 14;
             this.label3.Text = "Holodice Trigger Phrase";
             // 
+            // EnableHoloBotBtn
+            // 
+            this.EnableHoloBotBtn.Location = new System.Drawing.Point(342, 340);
+            this.EnableHoloBotBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.EnableHoloBotBtn.Name = "EnableHoloBotBtn";
+            this.EnableHoloBotBtn.Size = new System.Drawing.Size(150, 31);
+            this.EnableHoloBotBtn.TabIndex = 27;
+            this.EnableHoloBotBtn.Text = "HoloBot : OFF";
+            this.EnableHoloBotBtn.Click += new System.EventHandler(this.EnableHoloBotBtn_Click);
+            // 
+            // StartHoloBotBtn
+            // 
+            this.StartHoloBotBtn.Location = new System.Drawing.Point(519, 340);
+            this.StartHoloBotBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.StartHoloBotBtn.Name = "StartHoloBotBtn";
+            this.StartHoloBotBtn.Size = new System.Drawing.Size(150, 31);
+            this.StartHoloBotBtn.TabIndex = 28;
+            this.StartHoloBotBtn.Text = "Start Holobot";
+            this.StartHoloBotBtn.Click += new System.EventHandler(this.StartHoloBotBtn_Click);
+            // 
             // AutoHoloDicePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.StartHoloBotBtn);
+            this.Controls.Add(this.EnableHoloBotBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.holoDiceShoutPhrase);
-            this.Controls.Add(this.AutoHolochbx);
             this.Controls.Add(this.DiceGroup);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AutoHoloDicePage";
@@ -252,7 +263,6 @@
         private System.Windows.Forms.GroupBox DiceGroup;
         private Sulakore.Components.SKoreButton ClearButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox AutoHolochbx;
         private System.Windows.Forms.TextBox DiceThirdResTB;
         private System.Windows.Forms.TextBox holoDiceShoutPhrase;
         private System.Windows.Forms.Label label3;
@@ -266,5 +276,7 @@
         private Sulakore.Components.SKoreButton RegisterFirstBtn;
         private System.Windows.Forms.TextBox DiceHostResTB;
         private Sulakore.Components.SKoreButton RegisterHostBtn;
+        private Sulakore.Components.SKoreButton EnableHoloBotBtn;
+        private Sulakore.Components.SKoreButton StartHoloBotBtn;
     }
 }
