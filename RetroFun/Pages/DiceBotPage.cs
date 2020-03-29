@@ -6,6 +6,7 @@ using Sulakore.Components;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace RetroFun.Pages
@@ -357,7 +358,7 @@ namespace RetroFun.Pages
             Bind(MatchFifthChbx, "Checked", nameof(DiceSelected5));
             Bind(MatchSixthChbx, "Checked", nameof(DiceSelected6));
 
-            Bind(holoDiceShoutPhraseTxb, "Text", nameof(DiceSelected6));
+            Bind(holoDiceShoutPhraseTxb, "Text", nameof(ShoutPhrase));
 
 
 
@@ -687,23 +688,29 @@ namespace RetroFun.Pages
             }
         }
 
-        private void GlobalTargetNbx_ValueChanged(object sender, EventArgs e)
+        // TEMP FIX
+
+
+        private void StartGlobalTargetSync()
         {
-            if(isGlobalTargetOn)
+            new Thread(() =>
             {
-                DiceSelectedResult1 = GlobalSelectResult;
-                DiceSelectedResult2 = GlobalSelectResult;
-                DiceSelectedResult3 = GlobalSelectResult;
-                DiceSelectedResult4 = GlobalSelectResult;
-                DiceSelectedResult5 = GlobalSelectResult;
-                DiceSelectedResult6 = GlobalSelectResult;
-            }
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    DiceSelectedResult1 = GlobalSelectResult;
+                    DiceSelectedResult2 = GlobalSelectResult;
+                    DiceSelectedResult3 = GlobalSelectResult;
+                    DiceSelectedResult4 = GlobalSelectResult;
+                    DiceSelectedResult5 = GlobalSelectResult;
+                    DiceSelectedResult6 = GlobalSelectResult;
+
+                } while (isGlobalTargetOn) ;
+            }).Start();
         }
 
-        private void DiceBotPage_Load(object sender, EventArgs e)
-        {
 
-        }
+
 
         private void AntiCheatBtn_Click(object sender, EventArgs e)
         {
@@ -744,6 +751,7 @@ namespace RetroFun.Pages
             {
                 WriteToButton(GlobalTargetBtn, "Global Target : ON");
                 isGlobalTargetOn = true;
+                StartGlobalTargetSync();
             }
         }
 

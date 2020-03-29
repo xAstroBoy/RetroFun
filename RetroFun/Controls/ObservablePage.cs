@@ -64,14 +64,20 @@ namespace RetroFun.Controls
 
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
+            try
             {
-                FindForm()?.Invoke(handler, this, e);
-            }
-            if (DesignMode)
+                PropertyChangedEventHandler handler = PropertyChanged;
+                if (handler != null)
+                {
+                    FindForm()?.Invoke(handler, this, e);
+                }
+                if (DesignMode)
+                {
+                    _bindings[e.PropertyName].ReadValue();
+                }
+            } catch(System.ObjectDisposedException)
             {
-                _bindings[e.PropertyName].ReadValue();
+
             }
         }
 

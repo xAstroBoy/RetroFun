@@ -489,6 +489,7 @@
             this.TargetNumberBox.Controls.Add(this.DiceNumber3TargetNbx);
             this.TargetNumberBox.Controls.Add(this.DiceNumber2TargetNbx);
             this.TargetNumberBox.Controls.Add(this.DiceNumber1TargetNbx);
+            this.TargetNumberBox.Enabled = false;
             this.TargetNumberBox.Location = new System.Drawing.Point(287, 25);
             this.TargetNumberBox.Name = "TargetNumberBox";
             this.TargetNumberBox.Size = new System.Drawing.Size(240, 254);
@@ -640,7 +641,6 @@
             this.GlobalTargetNbx.Name = "GlobalTargetNbx";
             this.GlobalTargetNbx.Size = new System.Drawing.Size(148, 26);
             this.GlobalTargetNbx.TabIndex = 38;
-            this.GlobalTargetNbx.ValueChanged += new System.EventHandler(this.GlobalTargetNbx_ValueChanged);
             // 
             // groupBox3
             // 
@@ -658,6 +658,7 @@
             // 
             this.GlobalGroupBox.Controls.Add(this.GlobalTargetBtn);
             this.GlobalGroupBox.Controls.Add(this.GlobalTargetNbx);
+            this.GlobalGroupBox.Enabled = false;
             this.GlobalGroupBox.Location = new System.Drawing.Point(20, 34);
             this.GlobalGroupBox.Name = "GlobalGroupBox";
             this.GlobalGroupBox.Size = new System.Drawing.Size(186, 105);
@@ -711,7 +712,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "DiceBotPage";
             this.Size = new System.Drawing.Size(1188, 438);
-            this.Load += new System.EventHandler(this.DiceBotPage_Load);
             this.DiceGroup.ResumeLayout(false);
             this.DiceGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DiceFourthResTB)).EndInit();
