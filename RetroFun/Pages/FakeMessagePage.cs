@@ -1,8 +1,11 @@
 ﻿using RetroFun.Controls;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
+using Sulakore.Habbo;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace RetroFun.Pages
@@ -39,6 +42,9 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+        private Dictionary<int, HEntity> users = new Dictionary<int, HEntity>();
+
 
         public FakeMessagePage()
         {
@@ -78,6 +84,7 @@ namespace RetroFun.Pages
 
         public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
+            users.Clear();
         }
 
         public void OnUserFriendRemoval(DataInterceptedEventArgs e)
@@ -94,15 +101,50 @@ namespace RetroFun.Pages
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
             SelectedUserID = e.Packet.ReadInteger();
+            if (users.TryGetValue(SelectedUserID, out var entity))
+            {
+                SelectUserLabel.Invoke((MethodInvoker)delegate
+                {
+                    SelectUserLabel.Text = entity.Name;
+                    SelectedLook = entity.FigureId;
+                    SelectedUsername = entity.Name;
+                });
+            }
         }
 
         public void InUserEnterRoom(DataInterceptedEventArgs obj)
-        { }
+        {
+
+            try
+            {
+                HEntity[] array = HEntity.Parse(obj.Packet);
+                if (array.Length != 0)
+                {
+                    foreach (HEntity hentity in array)
+                    {
+                        if (!users.ContainsKey(hentity.Id))
+                        {
+                            users.Add(hentity.Id, hentity);
+                        }
+                    }
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+
+            }
+        }
 
 
 
         public void InRoomUserLeft(DataInterceptedEventArgs e)
-        { }
+        {
+            int index = int.Parse(e.Packet.ReadString());
+            var UserLeaveEntity = users.Values.FirstOrDefault(ent => ent.Index == index);
+            if (UserLeaveEntity == null) return;
+
+            users.Remove(UserLeaveEntity.Id);
+        }
 
         public void inUserProfile(DataInterceptedEventArgs e)
         {

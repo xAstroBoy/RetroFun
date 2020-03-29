@@ -68,6 +68,8 @@
             this.SelectAllButton = new Sulakore.Components.SKoreButton();
             this.UnSelectAllButton = new Sulakore.Components.SKoreButton();
             this.ClearButton = new Sulakore.Components.SKoreButton();
+            this.RollDicePkrBtn = new Sulakore.Components.SKoreButton();
+            this.CloseDicePkrBtn = new Sulakore.Components.SKoreButton();
             this.DiceGroup.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -585,10 +587,32 @@
             this.ClearButton.Text = "Clear ";
             this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
+            // RollDicePkrBtn
+            // 
+            this.RollDicePkrBtn.Location = new System.Drawing.Point(723, 380);
+            this.RollDicePkrBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RollDicePkrBtn.Name = "RollDicePkrBtn";
+            this.RollDicePkrBtn.Size = new System.Drawing.Size(208, 31);
+            this.RollDicePkrBtn.TabIndex = 11;
+            this.RollDicePkrBtn.Text = "Roll Dices Poker Style";
+            this.RollDicePkrBtn.Click += new System.EventHandler(this.RollDicePkrBtn_Click);
+            // 
+            // CloseDicePkrBtn
+            // 
+            this.CloseDicePkrBtn.Location = new System.Drawing.Point(723, 421);
+            this.CloseDicePkrBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CloseDicePkrBtn.Name = "CloseDicePkrBtn";
+            this.CloseDicePkrBtn.Size = new System.Drawing.Size(208, 31);
+            this.CloseDicePkrBtn.TabIndex = 12;
+            this.CloseDicePkrBtn.Text = "Close Dices Poker Style";
+            this.CloseDicePkrBtn.Click += new System.EventHandler(this.CloseDicePkrBtn_Click);
+            // 
             // DicePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CloseDicePkrBtn);
+            this.Controls.Add(this.RollDicePkrBtn);
             this.Controls.Add(this.ClearButton);
             this.Controls.Add(this.UnSelectAllButton);
             this.Controls.Add(this.SelectAllButton);
@@ -663,5 +687,7 @@
         private System.Windows.Forms.NumericUpDown Dice2ResultNbx;
         private System.Windows.Forms.NumericUpDown Dice1ResultNbx;
         private System.Windows.Forms.GroupBox Dices;
+        private Sulakore.Components.SKoreButton RollDicePkrBtn;
+        private Sulakore.Components.SKoreButton CloseDicePkrBtn;
     }
 }

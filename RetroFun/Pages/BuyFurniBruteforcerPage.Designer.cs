@@ -59,6 +59,7 @@
             this.FurniIDOptionChbx = new System.Windows.Forms.RadioButton();
             this.PageIDOptionChbx = new System.Windows.Forms.RadioButton();
             this.CaptureModeBtn = new Sulakore.Components.SKoreButton();
+            this.FindHostNameBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseLoopCoolDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CataloguePageIDBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CatalogueFurniIDBox)).BeginInit();
@@ -108,7 +109,7 @@
             // 
             // SendPurchaseBtn
             // 
-            this.SendPurchaseBtn.Location = new System.Drawing.Point(405, 429);
+            this.SendPurchaseBtn.Location = new System.Drawing.Point(394, 429);
             this.SendPurchaseBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SendPurchaseBtn.Name = "SendPurchaseBtn";
             this.SendPurchaseBtn.Size = new System.Drawing.Size(336, 31);
@@ -202,7 +203,7 @@
             // 
             // CatalogueSButtonLoopToggle
             // 
-            this.CatalogueSButtonLoopToggle.Location = new System.Drawing.Point(30, 370);
+            this.CatalogueSButtonLoopToggle.Location = new System.Drawing.Point(30, 470);
             this.CatalogueSButtonLoopToggle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CatalogueSButtonLoopToggle.Name = "CatalogueSButtonLoopToggle";
             this.CatalogueSButtonLoopToggle.Size = new System.Drawing.Size(319, 31);
@@ -366,7 +367,7 @@
             // FileNameTextBox
             // 
             this.FileNameTextBox.Enabled = false;
-            this.FileNameTextBox.Location = new System.Drawing.Point(30, 334);
+            this.FileNameTextBox.Location = new System.Drawing.Point(31, 334);
             this.FileNameTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.FileNameTextBox.MaxLength = 1073741823;
             this.FileNameTextBox.Name = "FileNameTextBox";
@@ -440,10 +441,21 @@
             this.CaptureModeBtn.Text = "Capture Mode : OFF";
             this.CaptureModeBtn.Click += new System.EventHandler(this.CaptureModeBtn_Click);
             // 
+            // FindHostNameBtn
+            // 
+            this.FindHostNameBtn.Location = new System.Drawing.Point(30, 370);
+            this.FindHostNameBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.FindHostNameBtn.Name = "FindHostNameBtn";
+            this.FindHostNameBtn.Size = new System.Drawing.Size(215, 31);
+            this.FindHostNameBtn.TabIndex = 63;
+            this.FindHostNameBtn.Text = "Find Host Name";
+            this.FindHostNameBtn.Click += new System.EventHandler(this.FindHostNameBtn_Click);
+            // 
             // BuyFurniBruteforcerPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.FindHostNameBtn);
             this.Controls.Add(this.CaptureModeBtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.CheckLockFileNameChbx);
@@ -475,7 +487,7 @@
             this.Controls.Add(this.SendPurchaseBtn);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "BuyFurniBruteforcerPage";
-            this.Size = new System.Drawing.Size(1026, 495);
+            this.Size = new System.Drawing.Size(1103, 548);
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseLoopCoolDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CataloguePageIDBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CatalogueFurniIDBox)).EndInit();
@@ -522,5 +534,6 @@
         private System.Windows.Forms.RadioButton FurniIDOptionChbx;
         private System.Windows.Forms.RadioButton PageIDOptionChbx;
         private Sulakore.Components.SKoreButton CaptureModeBtn;
+        private Sulakore.Components.SKoreButton FindHostNameBtn;
     }
 }

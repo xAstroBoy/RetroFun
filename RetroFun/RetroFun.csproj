@@ -71,6 +71,12 @@
     <Compile Include="MainFrm.Designer.cs">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\AvatarEditorPg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\AvatarEditorPg.Designer.cs">
+      <DependentUpon>AvatarEditorPg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DiceBotPage.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -3,6 +3,7 @@ using RetroFun.Subscribers;
 using Sulakore.Communication;
 using System;
 using System.ComponentModel;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace RetroFun.Pages
@@ -651,6 +652,117 @@ namespace RetroFun.Pages
         private bool DiceRegistered5;
         private bool DiceRegistered6;
         private bool RegistrationCompleted;
+        private bool StartDiceRoll;
+        private bool StartDiceCloseRoll;
 
+        private void RollPokerDices()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+
+                    if (StartDiceRoll)
+                    {
+                        if (DiceSelected1)
+                        {
+                            Thread.Sleep(150);
+                            RollDice(DiceID1);
+                        }
+                        if (DiceSelected2)
+                        {
+                            Thread.Sleep(150);
+                            RollDice(DiceID2);
+                        }
+                        if (DiceSelected3)
+                        {
+                            Thread.Sleep(150);
+                            RollDice(DiceID3);
+
+                        }
+                        if (DiceSelected4)
+                        {
+                            Thread.Sleep(150);
+                            RollDice(DiceID4);
+                        }
+                        if (DiceSelected5)
+                        {
+                            Thread.Sleep(150);
+                            RollDice(DiceID5);
+                        }
+
+                        if (DiceSelected6)
+                        {
+                            Thread.Sleep(150);
+                            RollDice(DiceID6);
+                        }
+                        StartDiceRoll = false;
+                    }
+
+                } while (StartDiceRoll);
+            }).Start();
+        }
+
+        private void ClosePokerDice()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+
+                    if (StartDiceCloseRoll)
+                    {
+                        if (DiceSelected1)
+                        {
+                            Thread.Sleep(150);
+                            CloseDice(DiceID1);
+                        }
+                        if (DiceSelected2)
+                        {
+                            Thread.Sleep(150);
+                            CloseDice(DiceID2);
+                        }
+                        if (DiceSelected3)
+                        {
+                            Thread.Sleep(150);
+                            CloseDice(DiceID3);
+
+                        }
+                        if (DiceSelected4)
+                        {
+                            Thread.Sleep(150);
+                            CloseDice(DiceID4);
+                        }
+                        if (DiceSelected5)
+                        {
+                            Thread.Sleep(150);
+                            CloseDice(DiceID5);
+                        }
+
+                        if (DiceSelected6)
+                        {
+                            Thread.Sleep(150);
+                            CloseDice(DiceID6);
+                        }
+                        StartDiceCloseRoll = false;
+                    }
+
+                } while (StartDiceCloseRoll);
+            }).Start();
+        }
+
+        private void RollDicePkrBtn_Click(object sender, EventArgs e)
+        {
+            StartDiceRoll = true;
+            RollPokerDices();
+
+        }
+
+        private void CloseDicePkrBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

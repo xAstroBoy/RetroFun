@@ -5,37 +5,20 @@ using Sulakore.Components;
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Net;
 using System.Threading;
 using System.Windows.Forms;
+#pragma warning disable CS0618
 
 namespace RetroFun.Pages
 {
+
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
     public partial class BuyFurniBruteforcerPage : ObservablePage, ISubscriber
     {
-        public BuyFurniBruteforcerPage()
-        {
-            InitializeComponent();
-            Bind(PurchaseLoopCoolDown, "Value", nameof(SpeedTimer1));
-            Bind(CataloguePageIDBox, "Value", nameof(PageIDInt1));
-            Bind(CatalogueFurniIDBox, "Value", nameof(FurniIDint1));
-            Bind(PageIDRangeNbx, "Value", nameof(PageIDIntRange));
-            Bind(FurniIDRangeNbx, "Value", nameof(FurniIDIntRange));
-            Bind(GlobalSleepExtraNbx, "Value", nameof(GlobalSleeper));
 
-            Bind(isValidPurchcheck, "Checked", nameof(PurchaseSuccess));
-            Bind(PageIDRangeChbx, "Checked", nameof(PageIDRangeToggle));
-            Bind(FurniIDRangeChbx, "Checked", nameof(FurniIDRangeToggle));
-            Bind(PurchaseConfirmedChbx, "Checked", nameof(ShowPurchase));
-            Bind(FurniNameShowChbx, "Checked", nameof(ShowPurchaseFurniName));
-            Bind(CheckLockFileNameChbx, "Checked", nameof(FileNameLockToggle));
-            Bind(PageIDOptionChbx, "Checked", nameof(PageIDOptionToggle));
-            Bind(FurniIDOptionChbx, "Checked", nameof(FurniIDOptionToggle));
 
-            Bind(FileNameTextBox, "Text", nameof(FileNameSave));
-            Bind(furnITextBox, "Text", nameof(TextBox));
-        }
 
         private bool _EnableLoop;
 
@@ -209,7 +192,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private string _FileNameSave = "Unnamed.RetroFun";
+        private string _FileNameSave;
 
         public string FileNameSave
         {
@@ -256,6 +239,51 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+        public BuyFurniBruteforcerPage()
+        {
+            InitializeComponent();
+            Bind(PurchaseLoopCoolDown, "Value", nameof(SpeedTimer1));
+            Bind(CataloguePageIDBox, "Value", nameof(PageIDInt1));
+            Bind(CatalogueFurniIDBox, "Value", nameof(FurniIDint1));
+            Bind(PageIDRangeNbx, "Value", nameof(PageIDIntRange));
+            Bind(FurniIDRangeNbx, "Value", nameof(FurniIDIntRange));
+            Bind(GlobalSleepExtraNbx, "Value", nameof(GlobalSleeper));
+
+            Bind(isValidPurchcheck, "Checked", nameof(PurchaseSuccess));
+            Bind(PageIDRangeChbx, "Checked", nameof(PageIDRangeToggle));
+            Bind(FurniIDRangeChbx, "Checked", nameof(FurniIDRangeToggle));
+            Bind(PurchaseConfirmedChbx, "Checked", nameof(ShowPurchase));
+            Bind(FurniNameShowChbx, "Checked", nameof(ShowPurchaseFurniName));
+            Bind(CheckLockFileNameChbx, "Checked", nameof(FileNameLockToggle));
+            Bind(PageIDOptionChbx, "Checked", nameof(PageIDOptionToggle));
+            Bind(FurniIDOptionChbx, "Checked", nameof(FurniIDOptionToggle));
+
+            Bind(FileNameTextBox, "Text", nameof(FileNameSave));
+            Bind(furnITextBox, "Text", nameof(TextBox));
+        }
+
+
+
+
+        private string GetHost(string host)
+        {
+            if(host == "217.182.58.18")
+            {
+                return "bobbaitalia.it";
+            }
+            else
+            {
+                return host;
+            }
+        }
+
+        //public static string getDNSName(string HostIP)
+        //{
+        //    IPHostEntry entry = Dns.GetHostEntry(HostIP);
+        //    return entry.HostName;
+        //}
+
 
         private void SendPurchaseBtn_Click(object sender, EventArgs e)
         {
@@ -804,7 +832,8 @@ namespace RetroFun.Pages
 
         private void StoreToInput(int PageId, int FurniID)
         {
-            string Filepath = "RetroFunLogs/" + FileNameSave + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+            try { 
+            string Filepath = "../RetroFunLogs/" + FileNameSave + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
 
             string FolderName = "RetroFunLogs";
 
@@ -836,6 +865,11 @@ namespace RetroFun.Pages
                     txtFile.WriteLine("FurnIID : " + FurniID);
                     txtFile.WriteLine("----------------------------------------------------");
                 }
+            }
+            }
+            catch(DirectoryNotFoundException)
+            {
+
             }
         }
 
@@ -942,6 +976,11 @@ namespace RetroFun.Pages
                 CaptureModeCatalog = true;
                 WriteToButton(CaptureModeBtn, "Capture Mode : ON");
             }
+        }
+
+        private void FindHostNameBtn_Click(object sender, EventArgs e)
+        {
+            FileNameSave = GetHost(Connection.Host);
         }
     }
 }

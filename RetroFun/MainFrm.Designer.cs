@@ -1,4 +1,5 @@
 ﻿using RetroFun.Pages;
+using System.Net;
 
 namespace RetroFun
 {
@@ -39,7 +40,6 @@ namespace RetroFun
             this.GiftEditorPg = new RetroFun.Pages.GiftEditor();
             this.AutoHoloDicePg = new RetroFun.Pages.DiceBotPage();
             this.MiscellaneousPg = new RetroFun.Pages.MiscellaneousPage();
-            this.BuyFurniBruteforcerPg = new RetroFun.Pages.BuyFurniBruteforcerPage();
             this.RoomBackFunPg = new RetroFun.Pages.RoomBackFun();
             this.RetroFunTabs = new Sulakore.Components.SKoreTabControl();
             this.PersonalTab = new System.Windows.Forms.TabPage();
@@ -77,6 +77,7 @@ namespace RetroFun
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
             this.BottomPg = new RetroFun.Pages.BottomPage();
+            this.BuyFurniBruteforcerPg = new RetroFun.Pages.BuyFurniBruteforcerPage();
             this.RetroFunTabs.SuspendLayout();
             this.PersonalTab.SuspendLayout();
             this.UtiliesTab.SuspendLayout();
@@ -320,34 +321,6 @@ namespace RetroFun
             this.MiscellaneousPg.WaveSelected = false;
             this.MiscellaneousPg.YellowcardSelected = false;
             this.MiscellaneousPg.ZeroSelected = false;
-            // 
-            // BuyFurniBruteforcerPg
-            // 
-            this.BuyFurniBruteforcerPg.BackColor = System.Drawing.Color.White;
-            this.BuyFurniBruteforcerPg.CaptureModeCatalog = false;
-            this.BuyFurniBruteforcerPg.EnableLoop = false;
-            this.BuyFurniBruteforcerPg.FileNameLockToggle = false;
-            this.BuyFurniBruteforcerPg.FileNameSave = "bobbaitalia.it";
-            this.BuyFurniBruteforcerPg.FurniIDint1 = 0;
-            this.BuyFurniBruteforcerPg.FurniIDIntRange = 0;
-            this.BuyFurniBruteforcerPg.FurniIDOptionToggle = true;
-            this.BuyFurniBruteforcerPg.FurniIDRangeToggle = false;
-            this.BuyFurniBruteforcerPg.GlobalSleeper = 0;
-            this.BuyFurniBruteforcerPg.Location = new System.Drawing.Point(4, 5);
-            this.BuyFurniBruteforcerPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.BuyFurniBruteforcerPg.Name = "BuyFurniBruteforcerPg";
-            this.BuyFurniBruteforcerPg.PageIDInt1 = 0;
-            this.BuyFurniBruteforcerPg.PageIDIntRange = 0;
-            this.BuyFurniBruteforcerPg.PageIDOptionToggle = false;
-            this.BuyFurniBruteforcerPg.PageIDRangeToggle = false;
-            this.BuyFurniBruteforcerPg.PurchaseSuccess = false;
-            this.BuyFurniBruteforcerPg.ShowPurchase = false;
-            this.BuyFurniBruteforcerPg.ShowPurchaseFurniName = true;
-            this.BuyFurniBruteforcerPg.Size = new System.Drawing.Size(1185, 608);
-            this.BuyFurniBruteforcerPg.SpeedTimer1 = 100;
-            this.BuyFurniBruteforcerPg.TabIndex = 0;
-            this.BuyFurniBruteforcerPg.TabStop = false;
-            this.BuyFurniBruteforcerPg.TextBox = "";
             // 
             // RoomBackFunPg
             // 
@@ -895,6 +868,34 @@ namespace RetroFun
             this.BottomPg.TabIndex = 1;
             this.BottomPg.TabStop = false;
             // 
+            // buyFurniBruteforcerPage1
+            // 
+            this.BuyFurniBruteforcerPg.BackColor = System.Drawing.Color.White;
+            this.BuyFurniBruteforcerPg.CaptureModeCatalog = false;
+            this.BuyFurniBruteforcerPg.EnableLoop = false;
+            this.BuyFurniBruteforcerPg.FileNameLockToggle = false;
+            this.BuyFurniBruteforcerPg.FileNameSave = null;
+            this.BuyFurniBruteforcerPg.FurniIDint1 = 0;
+            this.BuyFurniBruteforcerPg.FurniIDIntRange = 0;
+            this.BuyFurniBruteforcerPg.FurniIDOptionToggle = true;
+            this.BuyFurniBruteforcerPg.FurniIDRangeToggle = false;
+            this.BuyFurniBruteforcerPg.GlobalSleeper = 0;
+            this.BuyFurniBruteforcerPg.Location = new System.Drawing.Point(9, 17);
+            this.BuyFurniBruteforcerPg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BuyFurniBruteforcerPg.Name = "buyFurniBruteforcerPage1";
+            this.BuyFurniBruteforcerPg.PageIDInt1 = 0;
+            this.BuyFurniBruteforcerPg.PageIDIntRange = 0;
+            this.BuyFurniBruteforcerPg.PageIDOptionToggle = false;
+            this.BuyFurniBruteforcerPg.PageIDRangeToggle = false;
+            this.BuyFurniBruteforcerPg.PurchaseSuccess = false;
+            this.BuyFurniBruteforcerPg.ShowPurchase = false;
+            this.BuyFurniBruteforcerPg.ShowPurchaseFurniName = true;
+            this.BuyFurniBruteforcerPg.Size = new System.Drawing.Size(1181, 612);
+            this.BuyFurniBruteforcerPg.SpeedTimer1 = 100;
+            this.BuyFurniBruteforcerPg.TabIndex = 0;
+            this.BuyFurniBruteforcerPg.TabStop = false;
+            this.BuyFurniBruteforcerPg.TextBox = "";
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -965,7 +966,7 @@ namespace RetroFun
         private Pages.StalkingPage StalkingPg;
         private Pages.DiceBotPage AutoHoloDicePg;
         private Pages.MiscellaneousPage MiscellaneousPg;
-        private Pages.BuyFurniBruteforcerPage BuyFurniBruteforcerPg;
+        private BuyFurniBruteforcerPage BuyFurniBruteforcerPg;
         private Pages.FakeMessagePage FakeMessagePg;
         private Pages.RoomBackFun RoomBackFunPg;
         private Pages.FurniSpawnPage furniSpawnPg;
@@ -974,7 +975,6 @@ namespace RetroFun
         private Pages.DiscoRoomLight DiscoRoomFunPg;
         private Pages.BottomPage BottomPg;
         private Pages.FurniTrollPg FurniTrollPg;
-        private Pages.PersonalPage PersonalPg;
         private Pages.UtilitiesPage UtilitiesPg;
         private Pages.PetPage PetPg;
         private Pages.UserEditorPage UserEditorPg;
@@ -991,5 +991,6 @@ namespace RetroFun
         private System.Windows.Forms.TabPage UtiliesTab;
         private System.Windows.Forms.TabPage PetTab;
         private System.Windows.Forms.TabPage UserEditorTab;
+        private PersonalPage PersonalPg;
     }
 }
