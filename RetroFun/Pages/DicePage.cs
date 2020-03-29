@@ -762,7 +762,8 @@ namespace RetroFun.Pages
 
         private void CloseDicePkrBtn_Click(object sender, EventArgs e)
         {
-
+            StartDiceCloseRoll = true;
+            ClosePokerDice();
         }
     }
 }
