@@ -62,7 +62,6 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.pdb
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Flazzy.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Tangine.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.MainFrm.resources
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.AutoHoloDicePage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.BottomPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.BuyFurniBruteforcerPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.DiscoRoomLight.resources
@@ -91,4 +90,4 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.Core
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.CopyComplete
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.exe
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.pdb
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.DiceBotPage.resources

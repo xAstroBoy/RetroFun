@@ -71,11 +71,11 @@
     <Compile Include="MainFrm.Designer.cs">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AutoHoloDicePage.cs">
+    <Compile Include="Pages\DiceBotPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pages\AutoHoloDicePage.Designer.cs">
-      <DependentUpon>AutoHoloDicePage.cs</DependentUpon>
+    <Compile Include="Pages\DiceBotPage.Designer.cs">
+      <DependentUpon>DiceBotPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\BottomPage.cs">
       <SubType>UserControl</SubType>
@@ -215,8 +215,8 @@
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\AutoHoloDicePage.resx">
-      <DependentUpon>AutoHoloDicePage.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\DiceBotPage.resx">
+      <DependentUpon>DiceBotPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\BottomPage.resx">
       <DependentUpon>BottomPage.cs</DependentUpon>

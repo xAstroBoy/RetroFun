@@ -46,7 +46,6 @@ C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.Pages.Fak
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.Pages.LookGeneratorPage.resources
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.csprojAssemblyReference.cache
 C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Release\RetroFun.Pages.RoomBypasserPage.resources
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.AutoHoloDicePage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.BuyFurniBruteforcerPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.DiscoRoomLight.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.FakeMessagePage.resources
@@ -64,3 +63,4 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.Uti
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.PetPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.UserEditorPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csproj.CoreCompileInputs.cache
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.DiceBotPage.resources

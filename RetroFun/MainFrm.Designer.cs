@@ -37,7 +37,7 @@ namespace RetroFun
             this.SpeechzPg = new RetroFun.Pages.SpeechzPage();
             this.StalkingPg = new RetroFun.Pages.StalkingPage();
             this.GiftEditorPg = new RetroFun.Pages.GiftEditor();
-            this.AutoHoloDicePg = new RetroFun.Pages.AutoHoloDicePage();
+            this.AutoHoloDicePg = new RetroFun.Pages.DiceBotPage();
             this.MiscellaneousPg = new RetroFun.Pages.MiscellaneousPage();
             this.BuyFurniBruteforcerPg = new RetroFun.Pages.BuyFurniBruteforcerPage();
             this.RoomBackFunPg = new RetroFun.Pages.RoomBackFun();
@@ -53,6 +53,7 @@ namespace RetroFun
             this.FurniTrollPg = new RetroFun.Pages.FurniTrollPg();
             this.ChatTab = new System.Windows.Forms.TabPage();
             this.UserEditorTab = new System.Windows.Forms.TabPage();
+            this.UserEditorPg = new RetroFun.Pages.UserEditorPage();
             this.MakeSayTab = new System.Windows.Forms.TabPage();
             this.StalkingTab = new System.Windows.Forms.TabPage();
             this.FakeMsgTab = new System.Windows.Forms.TabPage();
@@ -60,7 +61,7 @@ namespace RetroFun
             this.PetTab = new System.Windows.Forms.TabPage();
             this.PetPg = new RetroFun.Pages.PetPage();
             this.DicePageTab = new System.Windows.Forms.TabPage();
-            this.HoloTab = new System.Windows.Forms.TabPage();
+            this.DiceBotTab = new System.Windows.Forms.TabPage();
             this.DiscoFunTab = new System.Windows.Forms.TabPage();
             this.MoonlightPages = new Sulakore.Components.SKoreTabControl();
             this.MoonLightTab = new System.Windows.Forms.TabPage();
@@ -76,7 +77,6 @@ namespace RetroFun
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
             this.BottomPg = new RetroFun.Pages.BottomPage();
-            this.UserEditorPg = new RetroFun.Pages.UserEditorPage();
             this.RetroFunTabs.SuspendLayout();
             this.PersonalTab.SuspendLayout();
             this.UtiliesTab.SuspendLayout();
@@ -90,7 +90,7 @@ namespace RetroFun
             this.FakeMsgTab.SuspendLayout();
             this.PetTab.SuspendLayout();
             this.DicePageTab.SuspendLayout();
-            this.HoloTab.SuspendLayout();
+            this.DiceBotTab.SuspendLayout();
             this.DiscoFunTab.SuspendLayout();
             this.MoonlightPages.SuspendLayout();
             this.MoonLightTab.SuspendLayout();
@@ -129,6 +129,24 @@ namespace RetroFun
             // DicePg
             // 
             this.DicePg.BackColor = System.Drawing.Color.White;
+            this.DicePg.DiceID1 = 0;
+            this.DicePg.DiceID2 = 0;
+            this.DicePg.DiceID3 = 0;
+            this.DicePg.DiceID4 = 0;
+            this.DicePg.DiceID5 = 0;
+            this.DicePg.DiceID6 = 0;
+            this.DicePg.DiceResult1 = 0;
+            this.DicePg.DiceResult2 = 0;
+            this.DicePg.DiceResult3 = 0;
+            this.DicePg.DiceResult4 = 0;
+            this.DicePg.DiceResult5 = 0;
+            this.DicePg.DiceResult6 = 0;
+            this.DicePg.DiceSelected1 = false;
+            this.DicePg.DiceSelected2 = false;
+            this.DicePg.DiceSelected3 = false;
+            this.DicePg.DiceSelected4 = false;
+            this.DicePg.DiceSelected5 = false;
+            this.DicePg.DiceSelected6 = false;
             this.DicePg.IsRegistrationMode = false;
             this.DicePg.Location = new System.Drawing.Point(4, 5);
             this.DicePg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
@@ -224,14 +242,31 @@ namespace RetroFun
             // 
             this.AutoHoloDicePg.BackColor = System.Drawing.Color.White;
             this.AutoHoloDicePg.DiceHostResult = 0;
-            this.AutoHoloDicePg.DiceOneResult = 0;
-            this.AutoHoloDicePg.DiceThreeResult = 0;
-            this.AutoHoloDicePg.DiceTwoResult = 0;
-            this.AutoHoloDicePg.ISHolodiceCheat = false;
-            this.AutoHoloDicePg.Location = new System.Drawing.Point(111, 26);
+            this.AutoHoloDicePg.DiceResult1 = 0;
+            this.AutoHoloDicePg.DiceResult2 = 0;
+            this.AutoHoloDicePg.DiceResult3 = 0;
+            this.AutoHoloDicePg.DiceResult4 = 0;
+            this.AutoHoloDicePg.DiceResult5 = 0;
+            this.AutoHoloDicePg.DiceResult6 = 0;
+            this.AutoHoloDicePg.DiceSelected1 = false;
+            this.AutoHoloDicePg.DiceSelected2 = false;
+            this.AutoHoloDicePg.DiceSelected3 = false;
+            this.AutoHoloDicePg.DiceSelected4 = false;
+            this.AutoHoloDicePg.DiceSelected5 = false;
+            this.AutoHoloDicePg.DiceSelected6 = false;
+            this.AutoHoloDicePg.DiceSelectedResult1 = 0;
+            this.AutoHoloDicePg.DiceSelectedResult2 = 0;
+            this.AutoHoloDicePg.DiceSelectedResult3 = 0;
+            this.AutoHoloDicePg.DiceSelectedResult4 = 0;
+            this.AutoHoloDicePg.DiceSelectedResult5 = 0;
+            this.AutoHoloDicePg.DiceSelectedResult6 = 0;
+            this.AutoHoloDicePg.GlobalSelectResult = 0;
+            this.AutoHoloDicePg.IsBotActive = false;
+            this.AutoHoloDicePg.Location = new System.Drawing.Point(2, 0);
             this.AutoHoloDicePg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.AutoHoloDicePg.Name = "AutoHoloDicePg";
-            this.AutoHoloDicePg.Size = new System.Drawing.Size(698, 405);
+            this.AutoHoloDicePg.ShoutPhrase = null;
+            this.AutoHoloDicePg.Size = new System.Drawing.Size(1186, 634);
             this.AutoHoloDicePg.TabIndex = 0;
             this.AutoHoloDicePg.TabStop = false;
             // 
@@ -281,6 +316,7 @@ namespace RetroFun
             this.MiscellaneousPg.ThumbsUpSelected = false;
             this.MiscellaneousPg.TrollLookCooldown = 500;
             this.MiscellaneousPg.TwoSelected = false;
+            this.MiscellaneousPg.UsernameFilter = null;
             this.MiscellaneousPg.WaveSelected = false;
             this.MiscellaneousPg.YellowcardSelected = false;
             this.MiscellaneousPg.ZeroSelected = false;
@@ -348,7 +384,7 @@ namespace RetroFun
             this.RetroFunTabs.Controls.Add(this.FakeMsgTab);
             this.RetroFunTabs.Controls.Add(this.PetTab);
             this.RetroFunTabs.Controls.Add(this.DicePageTab);
-            this.RetroFunTabs.Controls.Add(this.HoloTab);
+            this.RetroFunTabs.Controls.Add(this.DiceBotTab);
             this.RetroFunTabs.Controls.Add(this.DiscoFunTab);
             this.RetroFunTabs.Controls.Add(this.RoomBGTab);
             this.RetroFunTabs.Controls.Add(this.CatalogBuyEditorTab);
@@ -559,6 +595,22 @@ namespace RetroFun
             this.UserEditorTab.Text = "User Editor";
             this.UserEditorTab.UseVisualStyleBackColor = true;
             // 
+            // UserEditorPg
+            // 
+            this.UserEditorPg.BackColor = System.Drawing.Color.White;
+            this.UserEditorPg.Location = new System.Drawing.Point(2, 0);
+            this.UserEditorPg.LockLook = false;
+            this.UserEditorPg.LockMotto = false;
+            this.UserEditorPg.LockNickname = false;
+            this.UserEditorPg.Name = "UserEditorPg";
+            this.UserEditorPg.SelectedIndex = 0;
+            this.UserEditorPg.Size = new System.Drawing.Size(1192, 631);
+            this.UserEditorPg.TabIndex = 0;
+            this.UserEditorPg.TabStop = false;
+            this.UserEditorPg.UserLook = null;
+            this.UserEditorPg.UserMotto = null;
+            this.UserEditorPg.UserNickname = null;
+            // 
             // MakeSayTab
             // 
             this.MakeSayTab.Controls.Add(this.MakeSayPg);
@@ -642,17 +694,17 @@ namespace RetroFun
             this.DicePageTab.Text = "Dice ";
             this.DicePageTab.UseVisualStyleBackColor = true;
             // 
-            // HoloTab
+            // DiceBotTab
             // 
-            this.HoloTab.Controls.Add(this.AutoHoloDicePg);
-            this.HoloTab.Location = new System.Drawing.Point(4, 28);
-            this.HoloTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.HoloTab.Name = "HoloTab";
-            this.HoloTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.HoloTab.Size = new System.Drawing.Size(1194, 634);
-            this.HoloTab.TabIndex = 6;
-            this.HoloTab.Text = "AutomaticHolo";
-            this.HoloTab.UseVisualStyleBackColor = true;
+            this.DiceBotTab.Controls.Add(this.AutoHoloDicePg);
+            this.DiceBotTab.Location = new System.Drawing.Point(4, 28);
+            this.DiceBotTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DiceBotTab.Name = "DiceBotTab";
+            this.DiceBotTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DiceBotTab.Size = new System.Drawing.Size(1194, 634);
+            this.DiceBotTab.TabIndex = 6;
+            this.DiceBotTab.Text = "Dice Bot";
+            this.DiceBotTab.UseVisualStyleBackColor = true;
             // 
             // DiscoFunTab
             // 
@@ -828,7 +880,7 @@ namespace RetroFun
             this.AlwaysOnTopChbx.Location = new System.Drawing.Point(6, 675);
             this.AlwaysOnTopChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AlwaysOnTopChbx.Name = "AlwaysOnTopChbx";
-            this.AlwaysOnTopChbx.Size = new System.Drawing.Size(133, 24);
+            this.AlwaysOnTopChbx.Size = new System.Drawing.Size(140, 24);
             this.AlwaysOnTopChbx.TabIndex = 0;
             this.AlwaysOnTopChbx.Text = "Always On Top";
             this.AlwaysOnTopChbx.UseVisualStyleBackColor = true;
@@ -842,22 +894,6 @@ namespace RetroFun
             this.BottomPg.Size = new System.Drawing.Size(232, 37);
             this.BottomPg.TabIndex = 1;
             this.BottomPg.TabStop = false;
-            // 
-            // userEditorPage1
-            // 
-            this.UserEditorPg.BackColor = System.Drawing.Color.White;
-            this.UserEditorPg.Location = new System.Drawing.Point(2, 0);
-            this.UserEditorPg.LockLook = false;
-            this.UserEditorPg.LockMotto = false;
-            this.UserEditorPg.LockNickname = false;
-            this.UserEditorPg.Name = "userEditorPage1";
-            this.UserEditorPg.SelectedIndex = 0;
-            this.UserEditorPg.Size = new System.Drawing.Size(1192, 631);
-            this.UserEditorPg.TabIndex = 0;
-            this.UserEditorPg.TabStop = false;
-            this.UserEditorPg.UserLook = null;
-            this.UserEditorPg.UserMotto = null;
-            this.UserEditorPg.UserNickname = null;
             // 
             // MainFrm
             // 
@@ -887,7 +923,7 @@ namespace RetroFun
             this.FakeMsgTab.ResumeLayout(false);
             this.PetTab.ResumeLayout(false);
             this.DicePageTab.ResumeLayout(false);
-            this.HoloTab.ResumeLayout(false);
+            this.DiceBotTab.ResumeLayout(false);
             this.DiscoFunTab.ResumeLayout(false);
             this.MoonlightPages.ResumeLayout(false);
             this.MoonLightTab.ResumeLayout(false);
@@ -911,7 +947,7 @@ namespace RetroFun
         private System.Windows.Forms.CheckBox AlwaysOnTopChbx;
         private System.Windows.Forms.TabPage MakeSayTab;
         private System.Windows.Forms.TabPage DicePageTab;
-        private System.Windows.Forms.TabPage HoloTab;
+        private System.Windows.Forms.TabPage DiceBotTab;
         private System.Windows.Forms.TabPage GiftPageTab;
         private System.Windows.Forms.TabPage CatalogBuyEditorTab;
         private System.Windows.Forms.TabPage SpeechzTab;
@@ -927,7 +963,7 @@ namespace RetroFun
         private Pages.SpeechzPage SpeechzPg;
         private Pages.GiftEditor GiftEditorPg;
         private Pages.StalkingPage StalkingPg;
-        private Pages.AutoHoloDicePage AutoHoloDicePg;
+        private Pages.DiceBotPage AutoHoloDicePg;
         private Pages.MiscellaneousPage MiscellaneousPg;
         private Pages.BuyFurniBruteforcerPage BuyFurniBruteforcerPg;
         private Pages.FakeMessagePage FakeMessagePg;
