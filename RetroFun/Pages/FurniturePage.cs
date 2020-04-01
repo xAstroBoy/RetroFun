@@ -429,29 +429,32 @@ namespace RetroFun.Pages
             //        await Task.Delay(FurniWalkingSpeed);
             //    }
             //}
-            while (FloorFurniX != X && FloorFurniY != Y)
+            if (ConvertWalkinFurniMovement)
             {
-                if(FloorFurniX < X)
+                while (FloorFurniX != X && FloorFurniY != Y)
                 {
-                    FloorFurniX++;
-                }
-                if(FloorFurniX > X)
-                {
-                    FloorFurniX--;
-                }
+                    if (FloorFurniX < X)
+                    {
+                        FloorFurniX++;
+                    }
+                    if (FloorFurniX > X)
+                    {
+                        FloorFurniX--;
+                    }
 
-                if (FloorFurniY < Y)
-                {
-                    FloorFurniY++;
-                }
-                if (FloorFurniY > Y)
-                {
-                    FloorFurniY--;
-                }
+                    if (FloorFurniY < Y)
+                    {
+                        FloorFurniY++;
+                    }
+                    if (FloorFurniY > Y)
+                    {
+                        FloorFurniY--;
+                    }
 
-                await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
-                await Task.Delay(FurniWalkingSpeed);
+                    await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+                    await Task.Delay(FurniWalkingSpeed);
 
+                }
             }
 
         }
@@ -519,7 +522,7 @@ namespace RetroFun.Pages
                 else if(IsWalkingFurni)
                 {
 
-                    WalkFurniToCoord(coordX, coordY);
+                     WalkFurniToCoord(coordX, coordY);
                     e.IsBlocked = true;
                 }
             }
@@ -539,8 +542,38 @@ namespace RetroFun.Pages
         {
         }
 
-        public void inUserProfile(DataInterceptedEventArgs e)
+        public void InUserProfile(DataInterceptedEventArgs e)
         {
+        }
+
+        public void OnRoomUserTalk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserShout(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserTalk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserShout(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+
         }
 
     }

@@ -39,6 +39,8 @@ namespace RetroFun
             this.StalkingPg = new RetroFun.Pages.StalkingPage();
             this.GiftEditorPg = new RetroFun.Pages.GiftEditor();
             this.AutoHoloDicePg = new RetroFun.Pages.DiceBotPage();
+
+            this.AvatarEditorPg = new RetroFun.Pages.AvatarEditorPg();
             this.MiscellaneousPg = new RetroFun.Pages.MiscellaneousPage();
             this.RoomBackFunPg = new RetroFun.Pages.RoomBackFun();
             this.RetroFunTabs = new Sulakore.Components.SKoreTabControl();
@@ -965,6 +967,7 @@ namespace RetroFun
         private Pages.GiftEditor GiftEditorPg;
         private Pages.StalkingPage StalkingPg;
         private Pages.DiceBotPage AutoHoloDicePg;
+        private Pages.AvatarEditorPg AvatarEditorPg;
         private Pages.MiscellaneousPage MiscellaneousPg;
         private BuyFurniBruteforcerPage BuyFurniBruteforcerPg;
         private Pages.FakeMessagePage FakeMessagePg;

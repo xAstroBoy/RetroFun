@@ -97,6 +97,35 @@ namespace RetroFun.Pages
         public void InItemExtraData(DataInterceptedEventArgs e)
         {
         }
+        public void OnRoomUserTalk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserShout(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserTalk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserShout(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+
+        }
 
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
@@ -146,7 +175,7 @@ namespace RetroFun.Pages
             users.Remove(UserLeaveEntity.Id);
         }
 
-        public void inUserProfile(DataInterceptedEventArgs e)
+        public void InUserProfile(DataInterceptedEventArgs e)
         {
             e.Packet.ReadInteger();
             SelectedUsername = e.Packet.ReadString();

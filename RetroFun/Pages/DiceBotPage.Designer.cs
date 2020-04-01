@@ -78,6 +78,8 @@
             this.ShoutPhraseBtn = new Sulakore.Components.SKoreButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.DiceGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DiceFourthResTB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiceFifthResTB)).BeginInit();
@@ -98,6 +100,7 @@
             this.groupBox3.SuspendLayout();
             this.GlobalGroupBox.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // DiceGroup
@@ -426,7 +429,7 @@
             // 
             // ChoseDiceTargetBtn
             // 
-            this.ChoseDiceTargetBtn.Location = new System.Drawing.Point(655, 325);
+            this.ChoseDiceTargetBtn.Location = new System.Drawing.Point(722, 381);
             this.ChoseDiceTargetBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ChoseDiceTargetBtn.Name = "ChoseDiceTargetBtn";
             this.ChoseDiceTargetBtn.Size = new System.Drawing.Size(401, 29);
@@ -697,10 +700,34 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Shout Trigger Phrase";
             // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(403, 322);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(148, 26);
+            this.numericUpDown1.TabIndex = 42;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(399, 297);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 20);
+            this.label3.TabIndex = 43;
+            this.label3.Text = "Cooldown BOT";
+            // 
             // DiceBotPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.ChoseDiceTargetBtn);
@@ -735,7 +762,9 @@
             this.GlobalGroupBox.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -791,5 +820,7 @@
         private Sulakore.Components.SKoreButton ShoutPhraseBtn;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label3;
     }
 }

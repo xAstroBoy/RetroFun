@@ -11,6 +11,8 @@ using RetroFun.Controls;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Habbo;
+using Sulakore.Protocol;
+using Sulakore.Components;
 
 namespace RetroFun.Pages
 {
@@ -20,8 +22,18 @@ namespace RetroFun.Pages
     public partial class UserEditorPage : ObservablePage, ISubscriber
     {
 
-        private int TempUserID;
+        private int _selectedUserId;
+        private bool _isBlacklistActive = true;
 
+        private Dictionary<string, bool> _blacklistedEntities;
+
+        //username => Removed entity
+        private Dictionary<string, HEntity> _removedEntities; //
+
+        private Dictionary<int, HEntity> _users = new Dictionary<int, HEntity>();
+
+        //
+        private string OwnUsername;
 
         private bool _LockNickname;
 
@@ -59,55 +71,51 @@ namespace RetroFun.Pages
             }
         }
 
-        private int _SelectedIndex;
-
+        private int _selectedIndex;
         public int SelectedIndex
         {
-            get => _SelectedIndex;
+            get => _selectedIndex;
             set
             {
-                _SelectedIndex = value;
+                _selectedIndex = value;
                 RaiseOnPropertyChanged();
             }
         }
 
-        private string _UserNickname;
-
+        private string _userNickname;
         public string UserNickname
         {
-            get => _UserNickname;
+            get => _userNickname;
             set
             {
-                _UserNickname = value;
+                _userNickname = value;
                 RaiseOnPropertyChanged();
             }
         }
 
-        private string _UserMotto;
-
+        private string _userMotto;
         public string UserMotto
         {
-            get => _UserMotto;
+            get => _userMotto;
             set
             {
-                _UserMotto = value;
+                _userMotto = value;
                 RaiseOnPropertyChanged();
             }
         }
 
-        private string _UserLook;
+        private string _userLook;
 
         public string UserLook
         {
-            get => _UserLook;
+            get => _userLook;
             set
             {
-                _UserLook = value;
+                _userLook = value;
                 RaiseOnPropertyChanged();
             }
         }
 
-        private Dictionary<int, HEntity> users = new Dictionary<int, HEntity>();
 
         public bool IsReceiving => true;
 
@@ -122,7 +130,8 @@ namespace RetroFun.Pages
             Bind(LockMottoBoxChbx, "Checked", nameof(LockMotto));
             Bind(lockLookChbx, "Checked", nameof(LockLook));
 
-
+            _removedEntities = new Dictionary<string, HEntity>();
+            _blacklistedEntities = new Dictionary<string, bool>();
         }
 
         private void WriteRegistrationUsers(int count)
@@ -133,6 +142,21 @@ namespace RetroFun.Pages
             });
         }
 
+        private void CountUserInRoomBlacklist()
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                BlackListUserRoomLbl.Text = "Blacklisted Users in room : " + _users.Values.Count(e => _blacklistedEntities.ContainsKey(e.Name) && _blacklistedEntities[e.Name]);
+            });
+        }
+
+        private void CountNicknamesBlacklisted()
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                BlacklistCountLbl.Text = "Blacklisted Users : " + _blacklistedEntities.Count.ToString();
+            });
+        }
 
         private void EnableTxbx(TextBox txb, bool value)
         {
@@ -154,64 +178,139 @@ namespace RetroFun.Pages
 
         public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
-            users.Clear();
-            WriteRegistrationUsers(users.Count);
+            _users.Clear();
+            _removedEntities.Clear();
+
+            CountUserInRoomBlacklist();
+            WriteRegistrationUsers(_users.Count);
         }
 
-        public void OnLatencyTest(DataInterceptedEventArgs e)
+        public void OnLatencyTest(DataInterceptedEventArgs obj)
         {
-
+            if (OwnUsername == null)
+            {
+                Connection.SendToServerAsync(Out.RequestUserData);
+            }
         }
 
-        public void OnUsername(DataInterceptedEventArgs e)
+        public void OnUsername(DataInterceptedEventArgs obj)
         {
+            string username = obj.Packet.ReadString();
 
+            if (OwnUsername == null)
+            {
+                OwnUsername = username;
+            }
         }
 
         public void OnRoomUserWalk(DataInterceptedEventArgs e)
         {
 
         }
-
         public void OnCatalogBuyItem(DataInterceptedEventArgs e)
         {
 
         }
-
         public void InPurchaseOk(DataInterceptedEventArgs e)
         {
 
         }
-
         public void InItemExtraData(DataInterceptedEventArgs e)
         {
         }
+
+
+        public void OnRoomUserTalk(DataInterceptedEventArgs e)
+        {
+
+        }
+        public void OnRoomUserShout(DataInterceptedEventArgs e)
+        { }
+        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
+        { }
+
+        public void InRoomUserTalk(DataInterceptedEventArgs e) => e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger());
+        public void InRoomUserShout(DataInterceptedEventArgs e) => e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger());
+        public void InRoomUserWhisper(DataInterceptedEventArgs e) => e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger());
+
+        //public void InRoomUserTalk(DataInterceptedEventArgs e) //Leaving these here if you use those later :P
+        //{
+        //    int index = e.Packet.ReadInteger();
+        //    e.IsBlocked = IsBlockedEntity(index);
+        //}
+        //public void InRoomUserShout(DataInterceptedEventArgs e)
+        //{
+        //    int index = e.Packet.ReadInteger();
+        //    e.IsBlocked = IsBlockedEntity(index);
+        //}
+        //public void InRoomUserWhisper(DataInterceptedEventArgs e)
+        //{
+        //    int index = e.Packet.ReadInteger();
+        //    e.IsBlocked = IsBlockedEntity(index);
+        //}
+
+        private bool IsBlockedEntity(int index)
+        {
+            //This "entity" we grab here is gives the _original_ entity, so we can check if that _original_ username exists in the removed dictionary, or in the blacklisted users list and is active => the boolean value is true:)
+            var entity = _users.Values.FirstOrDefault(e => e.Index == index);
+            if (entity == null) return false;
+            
+            return _removedEntities.ContainsKey(entity.Name) || IsActiveAndBlacklisted(entity.Name);
+        }
+        private bool IsActiveAndBlacklisted(string username)
+        {
+            //_isBlacklistActive and username is in blacklist and THAT blacklist entry is active (  VVVVVVVVVVV )
+            return (_isBlacklistActive && _blacklistedEntities.ContainsKey(username) && _blacklistedEntities[username]);
+        }
+
+
         public void InRoomUserLeft(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
-            var UserLeaveEntity = users.Values.FirstOrDefault(ent => ent.Index == index);
-            if (UserLeaveEntity == null) return;
+            var entity = _users.Values.FirstOrDefault(ent => ent.Index == index);
+            if (entity == null) return;
 
-            users.Remove(UserLeaveEntity.Id);
-            WriteRegistrationUsers(users.Count);
+            _users.Remove(entity.Id);
+
+            WriteRegistrationUsers(_users.Count);
+            CountUserInRoomBlacklist();
         }
 
         public void InUserEnterRoom(DataInterceptedEventArgs obj)
         {
+            var removedEntities = new List<HEntity>(); //these need to be removed, they cant be removed inside this method because the clietn doesnt have those users => cant remove either
             try
             {
                 HEntity[] array = HEntity.Parse(obj.Packet);
-                if (array.Length != 0)
+                if (array.Length > 0)
                 {
-                    foreach (HEntity hentity in array)
+                    foreach (HEntity entity in array)
                     {
-                        if (!users.ContainsKey(hentity.Id))
+                        if (!_users.ContainsKey(entity.Id))
                         {
-                            users.Add(hentity.Id, hentity);
+                            _users.Add(entity.Id, entity);
+                        }
+
+                        if (_isBlacklistActive && IsActiveAndBlacklisted(entity.Name))
+                        {
+                            removedEntities.Add(entity);
                         }
                     }
                 }
-                WriteRegistrationUsers(users.Count);
+                WriteRegistrationUsers(_users.Count);
+                CountUserInRoomBlacklist();
+
+                //obj.Continue(); //hopefully 
+                //
+                ////Before we can remove them using RemoveEntity, the RoomUsers packet has to be received by our client. Otherwise this call below doesnt do anything because theres no users to remove yet.
+                //foreach (var entity in removedEntities)
+                //{
+                //    RemoveEntity(entity);
+                //}
+                if (_isBlacklistActive)
+                {
+                    DeleteBlacklistedUsers();
+                }
             }
             catch (IndexOutOfRangeException)
             {
@@ -221,115 +320,235 @@ namespace RetroFun.Pages
 
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
-            TempUserID = e.Packet.ReadInteger();
-            if (users.TryGetValue(TempUserID, out var entity))
+            _selectedUserId = e.Packet.ReadInteger();
+
+            if (_users.TryGetValue(_selectedUserId, out HEntity entity))
             {
                 SelectedIndex = entity.Index;
+
+                if (!LockNickname)
+                {
+                    UserNickname = entity.Name;
+                }
+                if (!LockMotto)
+                {
+                    UserMotto = entity.Motto;
+                }
+                if (!LockLook)
+                {
+                    UserLook = entity.FigureId;
+                }
+
                 SelectUserLabel.Invoke((MethodInvoker)delegate
                 {
-                    SelectUserLabel.Text = entity.Name;
-                    if(!LockNickname)
-                    {
-                        UserNickname = entity.Name;
-                    }
-                    if(!LockMotto)
-                    {
-                        UserMotto = entity.Motto;
-                    }
-                    if(!LockLook)
-                    {
-                        UserLook = entity.FigureId;
-                    }
+                    SelectUserLabel.Text = entity.Name;   
                 });
             }
         }
 
-        public void inUserProfile(DataInterceptedEventArgs e)
+        public void InUserProfile(DataInterceptedEventArgs e)
         {
 
         }
 
-        private void RemoveUserFromRoomBtn_Click(object sender, EventArgs e)
+        private void RemoveEntity(string username)
         {
-            RemoveUser(SelectedIndex);
+            var entity = _users.Values.FirstOrDefault(e => e.Name == username);
+            RemoveEntity(entity);
+        }
+        private void RemoveEntity(int index)
+        {
+            var entity = _users.Values.FirstOrDefault(e => e.Index == index);
+            RemoveEntity(entity);
+        }
+        private void RemoveEntity(HEntity entity)
+        {
+            //Connection.SendToClientAsync(In.RoomUserWhisper, 0, $"[User Blacklist] : DEBUG - RemoveEntity(entity.. {{ name: {entity.Name}, entity.index: {entity.Index} }}) ", 0, 34, 0, -1);
+
+            //Cache the og entity we removed 
+            if (entity != null)
+            {
+                if (!_removedEntities.ContainsKey(entity.Name))
+                    _removedEntities.Add(entity.Name, entity);
+
+
+                RemoveRoomUser(entity.Index);
+            }
         }
 
-        private void RemoveUser(int index)
+        private void RemoveRoomUser(int index)
         {
             Connection.SendToClientAsync(In.RoomUserRemove, index.ToString());
         }
 
-
-
-        private void ReplaceUser(string nickname, string motto, string look)
+        private void RestoreEntity(string username)
         {
-            if (users.TryGetValue(TempUserID, out var entity))
+            if (_removedEntities.TryGetValue(username, out HEntity entity))
             {
-                RemoveUser(SelectedIndex);
-                Connection.SendToClientAsync(In.RoomUsers,
-                    1,
-                    entity.Id,
-                    nickname,
-                    motto,
-                    look,
-                    SelectedIndex,
-                    entity.Tile.X,
-                    entity.Tile.Y,
-                    entity.Tile.Z.ToString(),
-                    1,
-                    1,
-                    ((char)entity.Gender).ToString(),
-                   1,
-                   1,
-                    entity.FavoriteGroup,
-                    "",
-                    1,
-                    false
-            );
+                //Remove fake entity
+                RemoveRoomUser(entity.Index);
 
 
+                //Add original entity back
+                AddUser(entity.Id, entity.Index, entity.Name, entity.Motto, entity.FigureId, entity.Tile, entity.Gender, entity.FavoriteGroup);
+                
+                //Remove the original data because we have it already
+                _removedEntities.Remove(username);
             }
+
+        }
+
+        private void ReplaceUser(int id, string newName, string motto, string look)
+        {
+            if (!_users.TryGetValue(id, out var entity))
+            {
+                //ouch
+                return;
+            }
+
+            if(_blacklistedEntities.ContainsKey(entity.Name))
+            {
+
+                _blacklistedEntities[entity.Name] = false;
+            }
+            //Connection.SendToClientAsync(In.RoomUserWhisper, 0, $"[User Blacklist] : DEBUG - ReplaceUser(index: {entity.Index}, {entity.Name}=>{newName}, {entity.Motto}=>{motto}..)", 0, 34, 0, -1);
+
+
+            //remove it
+            RemoveEntity(entity);
+
+            //Add our edited entity
+            AddUser(id, entity.Index, newName, motto, look, entity.Tile, entity.Gender, entity.FavoriteGroup);
+        }
+
+        private void AddUser(int id, int index, string name, string motto, string figureId, HPoint tile, HGender gender, string favoriteGroup)
+        {
+
+            //Connection.SendToClientAsync(In.RoomUserWhisper, 0, $"[User Blacklist] : DEBUG - AddUser({index}, {name}, ({tile})..)", 0, 34, 0, -1);
+
+            Connection.SendToClientAsync(In.RoomUsers,
+                1,
+                id,
+                name,
+                motto,
+                figureId,
+                index,
+                tile.X, tile.Y,
+                tile.Z.ToString(),
+                1,
+                1,
+                ((char)gender).ToString(),
+                1,
+                1,
+                favoriteGroup,
+                "",
+                1,
+                false
+            );
         }
 
         private void EditUserBtn_Click(object sender, EventArgs e)
         {
-            ReplaceUser(UserNickname, UserMotto, UserLook);
+            ReplaceUser(_selectedUserId, _userNickname, _userMotto, _userLook);
         }
 
         private void lockLookChbx_CheckedChanged(object sender, EventArgs e)
         {
-            if(LockLook)
-            {
-                EnableTxbx(LookTxbx, true);
-            }
-            else
-            {
-                EnableTxbx(LookTxbx, false);
-            }
+            EnableTxbx(LookTxbx, LockLook);
         }
-
         private void LockMottoBoxChbx_CheckedChanged(object sender, EventArgs e)
         {
-            if (LockMotto)
+            EnableTxbx(MottoTxbx, LockMotto);
+        }
+        private void LockNicknameBoxChbx_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableTxbx(UserNameTxbx, LockNickname); //Because that LockX bool is always same as your true and false if bodies
+        }
+
+        private void WriteToButton(SKoreButton button, string text)
+        {
+            Invoke((MethodInvoker)delegate
             {
-                EnableTxbx(MottoTxbx, true);
+                button.Text = text;
+            });
+        }
+
+        private void BlacklistBtn_Click(object sender, EventArgs e)
+        {
+            _isBlacklistActive = !_isBlacklistActive;
+            WriteToButton(BlacklistBtn, "Blacklist: " + (_isBlacklistActive ? "ON" : "OFF"));
+
+            if (!_isBlacklistActive)
+            {
+                RestoreBlacklistedUsers();
             }
-            else
+            else DeleteBlacklistedUsers();
+        }
+
+        //_blacklistedEntitities entry.Key: string name, entry.Value: "is active" bool
+        private void DeleteBlacklistedUsers()
+        {
+            foreach (var entry in _blacklistedEntities)
             {
-                EnableTxbx(MottoTxbx, false);
+                RemoveEntity(entry.Key);
+            }
+        }
+        private void RestoreBlacklistedUsers()
+        {
+            foreach (var entry in _blacklistedEntities.ToArray())
+            {
+                RestoreEntity(entry.Key);
+
+                //De-activate this blacklistEntry
+                _blacklistedEntities[entry.Key] = false;
             }
         }
 
-        private void LockNicknameBoxChbx_CheckedChanged(object sender, EventArgs e)
+        private void ClearBlacklistBtn_Click(object sender, EventArgs e)
         {
-            if (LockNickname)
+            //Restore em before clearing the list
+            RestoreBlacklistedUsers();
+
+            _blacklistedEntities.Clear();
+
+            CountUserInRoomBlacklist();
+            CountNicknamesBlacklisted();
+        }
+
+        private void AddSelectedUserInBlacklistBtn_Click(object sender, EventArgs e)
+        {
+            if (!_users.TryGetValue(_selectedUserId, out var entityToBlacklist))
             {
-                EnableTxbx(UserNameTxbx, true);
+                //ouch
+                return;
             }
-            else
+
+            if (entityToBlacklist.Name == OwnUsername)
             {
-                EnableTxbx(UserNameTxbx, false);
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[User Blacklist] : Hey, you can't blacklist yourself! :C", 0, 34, 0, -1);
+                return; //ouchie
             }
+
+            if (_blacklistedEntities.ContainsKey(entityToBlacklist.Name))
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[User Blacklist] : This user is already blacklisted!", 0, 34, 0, -1);
+                return; //ouchie
+            }
+
+            //Blacklist it, add blacklist entry
+            _blacklistedEntities.Add(entityToBlacklist.Name, true);
+
+            //Remove it
+            RemoveEntity(entityToBlacklist);
+            CountNicknamesBlacklisted();
+        }
+
+        private void RemoveUserFromRoomBtn_Click(object sender, EventArgs e)
+        {
+            // TODO : MAKE SURE IS JUST A TEMPORARY REMOVAL, AND NOT THE BLACKLIST REMOVAL.
+
+            if (_users.TryGetValue(_selectedUserId, out var entityToRemove))
+                RemoveEntity(entityToRemove);
         }
     }
 }

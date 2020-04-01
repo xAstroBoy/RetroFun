@@ -29,11 +29,17 @@ namespace RetroFun.Pages
         private HMessage FlooderMessages;
         private int LocalIndex;
 
+        private bool isRaidMode;
+
         private int[] rainbowlist = new int[] { 3, 4, 5, 6, 7, 11, 12, 13, 14, 15, 18 };
+
         //private int oldrainbowbubble;
         //private int newrainbowselected;
+
         private Random rand = new Random();
+
         public bool IsReceiving => true;
+
         private bool BlockRoomLoad;
 
         private bool _FlooderEnabled;
@@ -199,6 +205,31 @@ namespace RetroFun.Pages
         }
 
 
+        private string _CloneUsernameFilter = "marcocorriero";
+
+        public string CloneUsernameFilter
+        {
+            get => _CloneUsernameFilter;
+            set
+            {
+                _CloneUsernameFilter = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _MainUserIndex;
+
+        public int MainUserIndex
+        {
+            get => _MainUserIndex;
+            set
+            {
+                _MainUserIndex = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
         public int SelectedSSBubbleId { get; private set; }
         public int SelectedCSBubbleId { get; private set; }
 
@@ -220,6 +251,8 @@ namespace RetroFun.Pages
 
             Bind(TextFloodPhraseBox, "Text", nameof(FlooderText));
             Bind(CooldownFloodNbx, "Value", nameof(FlooderCooldown));
+            Bind(TargetUserTxb, "Text", nameof(CloneUsernameFilter));
+            Bind(IndexNbx, "Value", nameof(MainUserIndex));
 
 
             var imageType = typeof(Image);
@@ -244,20 +277,6 @@ namespace RetroFun.Pages
 
             BubblesSSCmbx.SelectedIndex = 17;
             BubblesCSCmbx.SelectedIndex = 17;
-
-            if (Program.Master != null)
-            {
-                Triggers.OutAttach(Out.RoomUserTalk, RoomUserStartSpeaking);
-                Triggers.OutAttach(Out.RoomUserShout, RoomUserStartSpeaking);
-                Triggers.OutAttach(Out.RoomUserWhisper, RoomUserStartSpeaking);
-                Triggers.OutAttach(Out.RoomUserStartTyping, RoomUserStartTyping);
-
-
-                Triggers.InAttach(In.RoomUserTalk, CSRoomUserTalk);
-                Triggers.InAttach(In.RoomUserShout, CSRoomUserShout);
-                Triggers.InAttach(In.RoomUserWhisper, CSRoomUserWhisper);
-
-            }
         }
 
 
@@ -272,8 +291,8 @@ namespace RetroFun.Pages
 
         public void OnUsername(DataInterceptedEventArgs obj)
         {
-            HMessage packet = obj.Packet;
-            string username = packet.ReadString();
+            string username = obj.Packet.ReadString();
+
 
             if (UsernameFilter == null)
             {
@@ -374,6 +393,10 @@ namespace RetroFun.Pages
                             {
                                 LocalIndex = hentity.Index;
                             }
+                            if(hentity.Name == CloneUsernameFilter)
+                            {
+                                MainUserIndex = hentity.Index;
+                            }
                         }
                     }
                 }
@@ -399,7 +422,7 @@ namespace RetroFun.Pages
         {
         }
 
-        public void inUserProfile(DataInterceptedEventArgs e)
+        public void InUserProfile(DataInterceptedEventArgs e)
         {
         }
 
@@ -447,57 +470,98 @@ namespace RetroFun.Pages
         }
 
 
-        private void CSRoomUserTalk(DataInterceptedEventArgs obj)
+
+
+
+
+
+
+
+        public void OnRoomUserTalk(DataInterceptedEventArgs e)
         {
-            int index = obj.Packet.ReadInteger();
-            string msg = obj.Packet.ReadString();
+            RoomUserStartSpeaking(e);
+        }
+
+        public void OnRoomUserShout(DataInterceptedEventArgs e)
+        {
+            RoomUserStartSpeaking(e);
+        }
+
+        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+            RoomUserStartSpeaking(e);
+        }
+
+
+        public void InRoomUserTalk(DataInterceptedEventArgs e)
+        {
+            int index = e.Packet.ReadInteger();
+            string msg = e.Packet.ReadString();
+            e.Packet.ReadInteger();
+            int bubbleid = e.Packet.ReadInteger();
             if (UseSelectedBubbleClientSide)
             {
                 if (index == LocalIndex)
                 {
                     Connection.SendToClientAsync(In.RoomUserTalk, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
-                    obj.IsBlocked = true;
+                    e.IsBlocked = true;
+                }
+            }
+            if (isRaidMode)
+            {
+                if (index == MainUserIndex)
+                {
+                    Connection.SendToServerAsync(Out.RoomUserTalk, " " + msg, bubbleid);
                 }
             }
         }
 
-
-        private void CSRoomUserShout(DataInterceptedEventArgs obj)
+        public void InRoomUserShout(DataInterceptedEventArgs e)
         {
-            int index = obj.Packet.ReadInteger();
-            string msg = obj.Packet.ReadString();
+            int index = e.Packet.ReadInteger();
+            string msg = e.Packet.ReadString();
+            e.Packet.ReadInteger();
+            int bubbleid = e.Packet.ReadInteger();
 
             if (UseSelectedBubbleClientSide)
             {
                 if (index == LocalIndex)
                 {
                     Connection.SendToClientAsync(In.RoomUserShout, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
-                    obj.IsBlocked = true;
+                    e.IsBlocked = true;
+                }
+            }
+            if (isRaidMode)
+            {
+                if (index == MainUserIndex)
+                {
+                    Connection.SendToServerAsync(Out.RoomUserShout, " " + msg, bubbleid);
                 }
             }
         }
-        private void CSRoomUserWhisper(DataInterceptedEventArgs obj)
-        {
-            int index = obj.Packet.ReadInteger();
-            string msg = obj.Packet.ReadString();
 
+        public void InRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+            int index = e.Packet.ReadInteger();
+            string msg = e.Packet.ReadString();
             if (UseSelectedBubbleClientSide)
             {
                 if (index == LocalIndex)
                 {
                     Connection.SendToClientAsync(In.RoomUserWhisper, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
-                    obj.IsBlocked = true;
+                    e.IsBlocked = true;
                 }
+
             }
         }
 
-        private void RoomUserStartSpeaking(DataInterceptedEventArgs obj)
+        private void RoomUserStartSpeaking(DataInterceptedEventArgs Packet)
         {
-            string message = obj.Packet.ReadString();
-            int bubbleId = obj.Packet.ReadInteger();
+            string message = Packet.Packet.ReadString();
+            int bubbleId = Packet.Packet.ReadInteger();
 
             string whisperTarget = null;
-            if (obj.Packet.Header == Out.RoomUserWhisper)
+            if (Packet.Packet.Header == Out.RoomUserWhisper)
             {
                 whisperTarget = message.Split(' ')[0];
                 message = message.Substring(whisperTarget.Length);
@@ -524,29 +588,29 @@ namespace RetroFun.Pages
                 bubbleId = Debug;
             }
 
-            obj.IsBlocked = true;
+            Packet.IsBlocked = true;
             if (!ForceChatSpeak)
             {
-                replacement = new HMessage(obj.Packet.Header, message, bubbleId);
+                replacement = new HMessage(Packet.Packet.Header, message, bubbleId);
             }
             else
             {
                 if (ForceNormalSpeak)
                 {
-                    replacement = new HMessage(Out.RoomUserTalk, message, bubbleId);
+                    replacement = new HMessage(Out.RoomUserTalk, " " + message, bubbleId);
                 }
                 else if (ForceShoutChat)
                 {
-                    replacement = new HMessage(Out.RoomUserShout, message, bubbleId);
+                    replacement = new HMessage(Out.RoomUserShout, " " + message, bubbleId);
                 }
                 else if (ForceWhisperChat)
                 {
-                    replacement = new HMessage(Out.RoomUserWhisper, message, bubbleId);
+                    replacement = new HMessage(Out.RoomUserWhisper, " " + message, bubbleId);
                 }
             }
 
 
-            if (obj.Packet.Readable > 0)
+            if (Packet.Packet.Readable > 0)
             {
                 replacement.WriteInteger(0);
             }
@@ -653,6 +717,24 @@ namespace RetroFun.Pages
                 FlooderEnabled = true;
                 StartFloodThread();
             }
+        }
+
+
+
+        private void CloneUserSpeakBtn_Click(object sender, EventArgs e)
+        {
+            if(isRaidMode)
+            {
+                WriteToButton(CloneUserSpeakBtn, "Clone User Speak : OFF");
+                isRaidMode = false;
+            } else {
+
+                WriteToButton(CloneUserSpeakBtn, "Clone User Speak : ON");
+                isRaidMode = true;
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "Warning: This can result in a ban of the account! Use with caution!", 0, 34, 0, -1);
+
+            }
+
         }
     }
 }

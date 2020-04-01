@@ -51,12 +51,19 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.CloneUserSpeakBtn = new Sulakore.Components.SKoreButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TargetUserTxb = new System.Windows.Forms.TextBox();
+            this.IndexNbx = new System.Windows.Forms.NumericUpDown();
             this.GroupChatDefault.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CooldownFloodNbx)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IndexNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // BubblesSSCmbx
@@ -324,10 +331,63 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Chat Override";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.IndexNbx);
+            this.groupBox5.Controls.Add(this.CloneUserSpeakBtn);
+            this.groupBox5.Controls.Add(this.label3);
+            this.groupBox5.Controls.Add(this.TargetUserTxb);
+            this.groupBox5.Location = new System.Drawing.Point(481, 262);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(346, 194);
+            this.groupBox5.TabIndex = 20;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Raid With Clone";
+            // 
+            // CloneUserSpeakBtn
+            // 
+            this.CloneUserSpeakBtn.Location = new System.Drawing.Point(10, 142);
+            this.CloneUserSpeakBtn.Name = "CloneUserSpeakBtn";
+            this.CloneUserSpeakBtn.Size = new System.Drawing.Size(308, 37);
+            this.CloneUserSpeakBtn.TabIndex = 17;
+            this.CloneUserSpeakBtn.Text = "Clone User Speak : OFF";
+            this.CloneUserSpeakBtn.Click += new System.EventHandler(this.CloneUserSpeakBtn_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 20);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Target User :";
+            // 
+            // TargetUserTxb
+            // 
+            this.TargetUserTxb.Location = new System.Drawing.Point(8, 62);
+            this.TargetUserTxb.MaxLength = 2147483647;
+            this.TargetUserTxb.Name = "TargetUserTxb";
+            this.TargetUserTxb.Size = new System.Drawing.Size(308, 26);
+            this.TargetUserTxb.TabIndex = 12;
+            // 
+            // IndexNbx
+            // 
+            this.IndexNbx.Location = new System.Drawing.Point(10, 94);
+            this.IndexNbx.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.IndexNbx.Name = "IndexNbx";
+            this.IndexNbx.ReadOnly = true;
+            this.IndexNbx.Size = new System.Drawing.Size(306, 26);
+            this.IndexNbx.TabIndex = 18;
+            // 
             // ChatPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -346,6 +406,9 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.IndexNbx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -376,5 +439,10 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label3;
+        private Sulakore.Components.SKoreButton CloneUserSpeakBtn;
+        private System.Windows.Forms.TextBox TargetUserTxb;
+        private System.Windows.Forms.NumericUpDown IndexNbx;
     }
 }

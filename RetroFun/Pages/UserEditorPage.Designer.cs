@@ -43,6 +43,12 @@
             this.lockLookChbx = new System.Windows.Forms.CheckBox();
             this.LockMottoBoxChbx = new System.Windows.Forms.CheckBox();
             this.LockNicknameBoxChbx = new System.Windows.Forms.CheckBox();
+            this.AddSelectedUserInBlacklistBtn = new Sulakore.Components.SKoreButton();
+            this.ClearBlacklistBtn = new Sulakore.Components.SKoreButton();
+            this.BlacklistBtn = new Sulakore.Components.SKoreButton();
+            this.BlacklistCountLbl = new System.Windows.Forms.Label();
+            this.BlackListUserRoomLbl = new System.Windows.Forms.Label();
+            this.RestoreBlacklistBtn = new Sulakore.Components.SKoreButton();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
@@ -66,12 +72,13 @@
             // 
             // RemoveUserFromRoomBtn
             // 
-            this.RemoveUserFromRoomBtn.Location = new System.Drawing.Point(23, 251);
+            this.RemoveUserFromRoomBtn.Location = new System.Drawing.Point(23, 232);
             this.RemoveUserFromRoomBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RemoveUserFromRoomBtn.Name = "RemoveUserFromRoomBtn";
             this.RemoveUserFromRoomBtn.Size = new System.Drawing.Size(235, 31);
             this.RemoveUserFromRoomBtn.TabIndex = 21;
             this.RemoveUserFromRoomBtn.Text = "Remove User From Room (CS)";
+            this.RemoveUserFromRoomBtn.Click += new System.EventHandler(this.RemoveUserFromRoomBtn_Click);
             // 
             // groupBox1
             // 
@@ -98,7 +105,7 @@
             this.SelectUserLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SelectUserLabel.Name = "SelectUserLabel";
             this.SelectUserLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.SelectUserLabel.Size = new System.Drawing.Size(20, 23);
+            this.SelectUserLabel.Size = new System.Drawing.Size(29, 36);
             this.SelectUserLabel.TabIndex = 0;
             this.SelectUserLabel.Text = "?";
             this.SelectUserLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -127,7 +134,7 @@
             this.TotUserRegistered.Location = new System.Drawing.Point(58, 38);
             this.TotUserRegistered.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.TotUserRegistered.Name = "TotUserRegistered";
-            this.TotUserRegistered.Size = new System.Drawing.Size(20, 23);
+            this.TotUserRegistered.Size = new System.Drawing.Size(29, 36);
             this.TotUserRegistered.TabIndex = 0;
             this.TotUserRegistered.Text = "?";
             this.TotUserRegistered.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -180,7 +187,7 @@
             this.lockLookChbx.AutoSize = true;
             this.lockLookChbx.Location = new System.Drawing.Point(706, 201);
             this.lockLookChbx.Name = "lockLookChbx";
-            this.lockLookChbx.Size = new System.Drawing.Size(15, 14);
+            this.lockLookChbx.Size = new System.Drawing.Size(22, 21);
             this.lockLookChbx.TabIndex = 31;
             this.lockLookChbx.UseVisualStyleBackColor = true;
             this.lockLookChbx.CheckedChanged += new System.EventHandler(this.lockLookChbx_CheckedChanged);
@@ -190,7 +197,7 @@
             this.LockMottoBoxChbx.AutoSize = true;
             this.LockMottoBoxChbx.Location = new System.Drawing.Point(706, 129);
             this.LockMottoBoxChbx.Name = "LockMottoBoxChbx";
-            this.LockMottoBoxChbx.Size = new System.Drawing.Size(15, 14);
+            this.LockMottoBoxChbx.Size = new System.Drawing.Size(22, 21);
             this.LockMottoBoxChbx.TabIndex = 32;
             this.LockMottoBoxChbx.UseVisualStyleBackColor = true;
             this.LockMottoBoxChbx.CheckedChanged += new System.EventHandler(this.LockMottoBoxChbx_CheckedChanged);
@@ -200,15 +207,80 @@
             this.LockNicknameBoxChbx.AutoSize = true;
             this.LockNicknameBoxChbx.Location = new System.Drawing.Point(706, 63);
             this.LockNicknameBoxChbx.Name = "LockNicknameBoxChbx";
-            this.LockNicknameBoxChbx.Size = new System.Drawing.Size(15, 14);
+            this.LockNicknameBoxChbx.Size = new System.Drawing.Size(22, 21);
             this.LockNicknameBoxChbx.TabIndex = 33;
             this.LockNicknameBoxChbx.UseVisualStyleBackColor = true;
             this.LockNicknameBoxChbx.CheckedChanged += new System.EventHandler(this.LockNicknameBoxChbx_CheckedChanged);
+            // 
+            // AddSelectedUserInBlacklistBtn
+            // 
+            this.AddSelectedUserInBlacklistBtn.Location = new System.Drawing.Point(23, 273);
+            this.AddSelectedUserInBlacklistBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AddSelectedUserInBlacklistBtn.Name = "AddSelectedUserInBlacklistBtn";
+            this.AddSelectedUserInBlacklistBtn.Size = new System.Drawing.Size(235, 31);
+            this.AddSelectedUserInBlacklistBtn.TabIndex = 34;
+            this.AddSelectedUserInBlacklistBtn.Text = "Add Selected User in blacklist";
+            this.AddSelectedUserInBlacklistBtn.Click += new System.EventHandler(this.AddSelectedUserInBlacklistBtn_Click);
+            // 
+            // ClearBlacklistBtn
+            // 
+            this.ClearBlacklistBtn.Location = new System.Drawing.Point(493, 332);
+            this.ClearBlacklistBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ClearBlacklistBtn.Name = "ClearBlacklistBtn";
+            this.ClearBlacklistBtn.Size = new System.Drawing.Size(235, 31);
+            this.ClearBlacklistBtn.TabIndex = 35;
+            this.ClearBlacklistBtn.Text = "Clear Blacklisted User List";
+            this.ClearBlacklistBtn.Click += new System.EventHandler(this.ClearBlacklistBtn_Click);
+            // 
+            // BlacklistBtn
+            // 
+            this.BlacklistBtn.Location = new System.Drawing.Point(493, 291);
+            this.BlacklistBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BlacklistBtn.Name = "BlacklistBtn";
+            this.BlacklistBtn.Size = new System.Drawing.Size(235, 31);
+            this.BlacklistBtn.TabIndex = 36;
+            this.BlacklistBtn.Text = "Blacklist : ON";
+            this.BlacklistBtn.Click += new System.EventHandler(this.BlacklistBtn_Click);
+            // 
+            // BlacklistCountLbl
+            // 
+            this.BlacklistCountLbl.AutoSize = true;
+            this.BlacklistCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BlacklistCountLbl.Location = new System.Drawing.Point(19, 322);
+            this.BlacklistCountLbl.Name = "BlacklistCountLbl";
+            this.BlacklistCountLbl.Size = new System.Drawing.Size(285, 36);
+            this.BlacklistCountLbl.TabIndex = 1;
+            this.BlacklistCountLbl.Text = "Blacklisted Users : 0";
+            // 
+            // BlackListUserRoomLbl
+            // 
+            this.BlackListUserRoomLbl.AutoSize = true;
+            this.BlackListUserRoomLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BlackListUserRoomLbl.Location = new System.Drawing.Point(19, 383);
+            this.BlackListUserRoomLbl.Name = "BlackListUserRoomLbl";
+            this.BlackListUserRoomLbl.Size = new System.Drawing.Size(392, 36);
+            this.BlackListUserRoomLbl.TabIndex = 37;
+            this.BlackListUserRoomLbl.Text = "Blacklisted Users in room : 0";
+            // 
+            // RestoreBlacklistBtn
+            // 
+            this.RestoreBlacklistBtn.Location = new System.Drawing.Point(493, 373);
+            this.RestoreBlacklistBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RestoreBlacklistBtn.Name = "RestoreBlacklistBtn";
+            this.RestoreBlacklistBtn.Size = new System.Drawing.Size(235, 31);
+            this.RestoreBlacklistBtn.TabIndex = 38;
+            this.RestoreBlacklistBtn.Text = "Restore Blacked.com";
             // 
             // UserEditorPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.RestoreBlacklistBtn);
+            this.Controls.Add(this.BlackListUserRoomLbl);
+            this.Controls.Add(this.BlacklistCountLbl);
+            this.Controls.Add(this.BlacklistBtn);
+            this.Controls.Add(this.ClearBlacklistBtn);
+            this.Controls.Add(this.AddSelectedUserInBlacklistBtn);
             this.Controls.Add(this.LockNicknameBoxChbx);
             this.Controls.Add(this.LockMottoBoxChbx);
             this.Controls.Add(this.lockLookChbx);
@@ -223,7 +295,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Name = "UserEditorPage";
-            this.Size = new System.Drawing.Size(806, 323);
+            this.Size = new System.Drawing.Size(1048, 464);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -249,5 +321,11 @@
         private System.Windows.Forms.CheckBox lockLookChbx;
         private System.Windows.Forms.CheckBox LockMottoBoxChbx;
         private System.Windows.Forms.CheckBox LockNicknameBoxChbx;
+        private Sulakore.Components.SKoreButton AddSelectedUserInBlacklistBtn;
+        private Sulakore.Components.SKoreButton ClearBlacklistBtn;
+        private Sulakore.Components.SKoreButton BlacklistBtn;
+        private System.Windows.Forms.Label BlacklistCountLbl;
+        private System.Windows.Forms.Label BlackListUserRoomLbl;
+        private Sulakore.Components.SKoreButton RestoreBlacklistBtn;
     }
 }

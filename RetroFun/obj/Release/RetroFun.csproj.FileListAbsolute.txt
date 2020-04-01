@@ -3,7 +3,6 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\RetroFun.exe
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\RetroFun.pdb
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\Flazzy.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\Tangine.dll
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csprojAssemblyReference.cache
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.MainFrm.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.MakeSayPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.ChatPage.resources
@@ -64,3 +63,4 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.Pet
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.UserEditorPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csproj.CoreCompileInputs.cache
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.DiceBotPage.resources
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csprojAssemblyReference.cache

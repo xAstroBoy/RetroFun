@@ -712,7 +712,7 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-        public void inUserProfile(DataInterceptedEventArgs e)
+        public void InUserProfile(DataInterceptedEventArgs e)
         {
         }
 
@@ -1306,6 +1306,35 @@ namespace RetroFun.Pages
 
         public void InItemExtraData(DataInterceptedEventArgs e)
         {
+        }
+        public void OnRoomUserTalk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserShout(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserTalk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserShout(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+
         }
     }
 }

@@ -50,6 +50,7 @@ namespace RetroFun
                 FurniPg,
                 PetPg,
                 UserEditorPg,
+                AvatarEditorPg
             };
 
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));
@@ -97,6 +98,18 @@ namespace RetroFun
                 {
                     sub.OnCatalogBuyItem(e);
                 }
+                else if (Out.RoomUserTalk == id)
+                {
+                    sub.OnRoomUserTalk(e);
+                }
+                else if (Out.RoomUserShout == id)
+                {
+                    sub.OnRoomUserShout(e);
+                }
+                else if (Out.RoomUserWhisper == id)
+                {
+                    sub.OnRoomUserWhisper(e);
+                }
             }
         }
 
@@ -122,12 +135,25 @@ namespace RetroFun
                 }
                 else if (In.UserProfile == id)
                 {
-                    sub.inUserProfile(e);
+                    sub.InUserProfile(e);
                 }
                 else if(In.ItemExtraData == id)
                 {
                     sub.InItemExtraData(e);
                 }
+                else if (In.RoomUserTalk == id)
+                {
+                    sub.InRoomUserTalk(e);
+                }
+                else if (In.RoomUserShout == id)
+                {
+                    sub.InRoomUserShout(e);
+                }
+                else if (In.RoomUserWhisper == id)
+                {
+                    sub.InRoomUserWhisper(e);
+                }
+
             }
         }
     }
