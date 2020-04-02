@@ -91,4 +91,3 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.Copy
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.exe
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.pdb
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.DiceBotPage.resources
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache

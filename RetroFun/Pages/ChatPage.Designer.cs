@@ -52,10 +52,10 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.IndexNbx = new System.Windows.Forms.NumericUpDown();
             this.CloneUserSpeakBtn = new Sulakore.Components.SKoreButton();
             this.label3 = new System.Windows.Forms.Label();
             this.TargetUserTxb = new System.Windows.Forms.TextBox();
-            this.IndexNbx = new System.Windows.Forms.NumericUpDown();
             this.GroupChatDefault.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CooldownFloodNbx)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -204,6 +204,7 @@
             this.UsernameTextBox.Enabled = false;
             this.UsernameTextBox.Location = new System.Drawing.Point(30, 122);
             this.UsernameTextBox.Name = "UsernameTextBox";
+            this.UsernameTextBox.ReadOnly = true;
             this.UsernameTextBox.Size = new System.Drawing.Size(308, 26);
             this.UsernameTextBox.TabIndex = 9;
             this.UsernameTextBox.Text = "Finding Username...";
@@ -344,6 +345,19 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Raid With Clone";
             // 
+            // IndexNbx
+            // 
+            this.IndexNbx.Location = new System.Drawing.Point(10, 94);
+            this.IndexNbx.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.IndexNbx.Name = "IndexNbx";
+            this.IndexNbx.ReadOnly = true;
+            this.IndexNbx.Size = new System.Drawing.Size(306, 26);
+            this.IndexNbx.TabIndex = 18;
+            // 
             // CloneUserSpeakBtn
             // 
             this.CloneUserSpeakBtn.Location = new System.Drawing.Point(10, 142);
@@ -369,19 +383,6 @@
             this.TargetUserTxb.Name = "TargetUserTxb";
             this.TargetUserTxb.Size = new System.Drawing.Size(308, 26);
             this.TargetUserTxb.TabIndex = 12;
-            // 
-            // IndexNbx
-            // 
-            this.IndexNbx.Location = new System.Drawing.Point(10, 94);
-            this.IndexNbx.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.IndexNbx.Name = "IndexNbx";
-            this.IndexNbx.ReadOnly = true;
-            this.IndexNbx.Size = new System.Drawing.Size(306, 26);
-            this.IndexNbx.TabIndex = 18;
             // 
             // ChatPage
             // 

@@ -28,12 +28,24 @@ namespace RetroFun.Pages
             }
         }
 
+        private string _UsernameFilter;
+
+        public string UsernameFilter
+        {
+            get => _UsernameFilter;
+            set
+            {
+                _UsernameFilter = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         public BottomPage()
         {
             InitializeComponent();
 
             Bind(FreezeMovementCheck, "Checked", nameof(FreezeUserMovement));
+            Bind(UsernameTextBox, "Text", nameof(UsernameFilter));
 
         }
 
@@ -91,9 +103,14 @@ namespace RetroFun.Pages
         {
         }
 
-        public void OnLatencyTest(DataInterceptedEventArgs e)
+        public void OnLatencyTest(DataInterceptedEventArgs obj)
         {
+            if (UsernameFilter == null)
+            {
+                Connection.SendToServerAsync(Out.RequestUserData);
+            }
         }
+
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {
@@ -108,8 +125,15 @@ namespace RetroFun.Pages
         }
 
 
-        public void OnUsername(DataInterceptedEventArgs e)
+        public void OnUsername(DataInterceptedEventArgs obj)
         {
+            string username = obj.Packet.ReadString();
+
+
+            if (UsernameFilter == null)
+            {
+                UsernameFilter = username;
+            }
         }
 
         public void OnRoomUserWalk(DataInterceptedEventArgs e)
@@ -123,5 +147,6 @@ namespace RetroFun.Pages
         public void InItemExtraData(DataInterceptedEventArgs e)
         {
         }
+
     }
 }

@@ -205,7 +205,7 @@ namespace RetroFun.Pages
         }
 
 
-        private string _CloneUsernameFilter = "marcocorriero";
+        private string _CloneUsernameFilter;
 
         public string CloneUsernameFilter
         {

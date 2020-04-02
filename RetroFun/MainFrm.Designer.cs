@@ -39,7 +39,6 @@ namespace RetroFun
             this.StalkingPg = new RetroFun.Pages.StalkingPage();
             this.GiftEditorPg = new RetroFun.Pages.GiftEditor();
             this.AutoHoloDicePg = new RetroFun.Pages.DiceBotPage();
-
             this.AvatarEditorPg = new RetroFun.Pages.AvatarEditorPg();
             this.MiscellaneousPg = new RetroFun.Pages.MiscellaneousPage();
             this.RoomBackFunPg = new RetroFun.Pages.RoomBackFun();
@@ -72,6 +71,7 @@ namespace RetroFun
             this.DiscoRoomFunPg = new RetroFun.Pages.DiscoRoomLight();
             this.RoomBGTab = new System.Windows.Forms.TabPage();
             this.CatalogBuyEditorTab = new System.Windows.Forms.TabPage();
+            this.BuyFurniBruteforcerPg = new RetroFun.Pages.BuyFurniBruteforcerPage();
             this.GiftPageTab = new System.Windows.Forms.TabPage();
             this.SpeechzTab = new System.Windows.Forms.TabPage();
             this.DoorbelTab = new System.Windows.Forms.TabPage();
@@ -79,7 +79,6 @@ namespace RetroFun
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
             this.BottomPg = new RetroFun.Pages.BottomPage();
-            this.BuyFurniBruteforcerPg = new RetroFun.Pages.BuyFurniBruteforcerPage();
             this.RetroFunTabs.SuspendLayout();
             this.PersonalTab.SuspendLayout();
             this.UtiliesTab.SuspendLayout();
@@ -110,6 +109,7 @@ namespace RetroFun
             // 
             this.ChatPg.AntiBobbaFilter = false;
             this.ChatPg.BackColor = System.Drawing.Color.White;
+            this.ChatPg.CloneUsernameFilter = "marcocorriero";
             this.ChatPg.FlooderCooldown = 50;
             this.ChatPg.FlooderEnabled = false;
             this.ChatPg.FlooderText = null;
@@ -119,6 +119,7 @@ namespace RetroFun
             this.ChatPg.ForceWhisperChat = false;
             this.ChatPg.HideSpeakingBubble = false;
             this.ChatPg.Location = new System.Drawing.Point(9, 0);
+            this.ChatPg.MainUserIndex = 0;
             this.ChatPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.ChatPg.Name = "ChatPg";
             this.ChatPg.RainbowChatEnabled = false;
@@ -272,6 +273,15 @@ namespace RetroFun
             this.AutoHoloDicePg.Size = new System.Drawing.Size(1186, 634);
             this.AutoHoloDicePg.TabIndex = 0;
             this.AutoHoloDicePg.TabStop = false;
+            // 
+            // AvatarEditorPg
+            // 
+            this.AvatarEditorPg.BackColor = System.Drawing.Color.White;
+            this.AvatarEditorPg.Location = new System.Drawing.Point(0, 0);
+            this.AvatarEditorPg.Name = "AvatarEditorPg";
+            this.AvatarEditorPg.Size = new System.Drawing.Size(465, 263);
+            this.AvatarEditorPg.TabIndex = 0;
+            this.AvatarEditorPg.TabStop = false;
             // 
             // MiscellaneousPg
             // 
@@ -790,6 +800,34 @@ namespace RetroFun
             this.CatalogBuyEditorTab.Text = "Catalog Buy Hack";
             this.CatalogBuyEditorTab.UseVisualStyleBackColor = true;
             // 
+            // BuyFurniBruteforcerPg
+            // 
+            this.BuyFurniBruteforcerPg.BackColor = System.Drawing.Color.White;
+            this.BuyFurniBruteforcerPg.CaptureModeCatalog = false;
+            this.BuyFurniBruteforcerPg.EnableLoop = false;
+            this.BuyFurniBruteforcerPg.FileNameLockToggle = false;
+            this.BuyFurniBruteforcerPg.FileNameSave = null;
+            this.BuyFurniBruteforcerPg.FurniIDint1 = 0;
+            this.BuyFurniBruteforcerPg.FurniIDIntRange = 0;
+            this.BuyFurniBruteforcerPg.FurniIDOptionToggle = true;
+            this.BuyFurniBruteforcerPg.FurniIDRangeToggle = false;
+            this.BuyFurniBruteforcerPg.GlobalSleeper = 0;
+            this.BuyFurniBruteforcerPg.Location = new System.Drawing.Point(9, 17);
+            this.BuyFurniBruteforcerPg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BuyFurniBruteforcerPg.Name = "BuyFurniBruteforcerPg";
+            this.BuyFurniBruteforcerPg.PageIDInt1 = 0;
+            this.BuyFurniBruteforcerPg.PageIDIntRange = 0;
+            this.BuyFurniBruteforcerPg.PageIDOptionToggle = false;
+            this.BuyFurniBruteforcerPg.PageIDRangeToggle = false;
+            this.BuyFurniBruteforcerPg.PurchaseSuccess = false;
+            this.BuyFurniBruteforcerPg.ShowPurchase = false;
+            this.BuyFurniBruteforcerPg.ShowPurchaseFurniName = true;
+            this.BuyFurniBruteforcerPg.Size = new System.Drawing.Size(1181, 612);
+            this.BuyFurniBruteforcerPg.SpeedTimer1 = 100;
+            this.BuyFurniBruteforcerPg.TabIndex = 0;
+            this.BuyFurniBruteforcerPg.TabStop = false;
+            this.BuyFurniBruteforcerPg.TextBox = "";
+            // 
             // GiftPageTab
             // 
             this.GiftPageTab.Controls.Add(this.GiftEditorPg);
@@ -864,39 +902,12 @@ namespace RetroFun
             // 
             this.BottomPg.BackColor = System.Drawing.Color.White;
             this.BottomPg.FreezeUserMovement = false;
-            this.BottomPg.Location = new System.Drawing.Point(162, 670);
+            this.BottomPg.Location = new System.Drawing.Point(157, 668);
             this.BottomPg.Name = "BottomPg";
-            this.BottomPg.Size = new System.Drawing.Size(232, 37);
+            this.BottomPg.Size = new System.Drawing.Size(1045, 37);
             this.BottomPg.TabIndex = 1;
             this.BottomPg.TabStop = false;
-            // 
-            // buyFurniBruteforcerPage1
-            // 
-            this.BuyFurniBruteforcerPg.BackColor = System.Drawing.Color.White;
-            this.BuyFurniBruteforcerPg.CaptureModeCatalog = false;
-            this.BuyFurniBruteforcerPg.EnableLoop = false;
-            this.BuyFurniBruteforcerPg.FileNameLockToggle = false;
-            this.BuyFurniBruteforcerPg.FileNameSave = null;
-            this.BuyFurniBruteforcerPg.FurniIDint1 = 0;
-            this.BuyFurniBruteforcerPg.FurniIDIntRange = 0;
-            this.BuyFurniBruteforcerPg.FurniIDOptionToggle = true;
-            this.BuyFurniBruteforcerPg.FurniIDRangeToggle = false;
-            this.BuyFurniBruteforcerPg.GlobalSleeper = 0;
-            this.BuyFurniBruteforcerPg.Location = new System.Drawing.Point(9, 17);
-            this.BuyFurniBruteforcerPg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.BuyFurniBruteforcerPg.Name = "buyFurniBruteforcerPage1";
-            this.BuyFurniBruteforcerPg.PageIDInt1 = 0;
-            this.BuyFurniBruteforcerPg.PageIDIntRange = 0;
-            this.BuyFurniBruteforcerPg.PageIDOptionToggle = false;
-            this.BuyFurniBruteforcerPg.PageIDRangeToggle = false;
-            this.BuyFurniBruteforcerPg.PurchaseSuccess = false;
-            this.BuyFurniBruteforcerPg.ShowPurchase = false;
-            this.BuyFurniBruteforcerPg.ShowPurchaseFurniName = true;
-            this.BuyFurniBruteforcerPg.Size = new System.Drawing.Size(1181, 612);
-            this.BuyFurniBruteforcerPg.SpeedTimer1 = 100;
-            this.BuyFurniBruteforcerPg.TabIndex = 0;
-            this.BuyFurniBruteforcerPg.TabStop = false;
-            this.BuyFurniBruteforcerPg.TextBox = "";
+            this.BottomPg.UsernameFilter = null;
             // 
             // MainFrm
             // 
