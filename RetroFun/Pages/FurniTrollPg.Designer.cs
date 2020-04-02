@@ -86,6 +86,9 @@
             this.MinusTenBtn = new Sulakore.Components.SKoreButton();
             this.AddtenBtn = new Sulakore.Components.SKoreButton();
             this.ResetDefaultCooldownsBtn = new Sulakore.Components.SKoreButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.CooldownHanditemGiverNbx = new System.Windows.Forms.NumericUpDown();
+            this.GiveFurniHanditemBtn = new Sulakore.Components.SKoreButton();
             this.FurnIDGroupbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FurniNbx10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FurniNbx9)).BeginInit();
@@ -111,6 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.GlobalCooldownNbx)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CooldownHanditemGiverNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // FurnIDGroupbox
@@ -904,10 +908,57 @@
             this.ResetDefaultCooldownsBtn.Text = "Restore Default Cooldown";
             this.ResetDefaultCooldownsBtn.Click += new System.EventHandler(this.ResetDefaultCooldownsBtn_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(18, 471);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(190, 20);
+            this.label5.TabIndex = 86;
+            this.label5.Text = "Handitem Giver cooldown";
+            // 
+            // CooldownHanditemGiverNbx
+            // 
+            this.CooldownHanditemGiverNbx.Location = new System.Drawing.Point(22, 491);
+            this.CooldownHanditemGiverNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CooldownHanditemGiverNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.CooldownHanditemGiverNbx.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.CooldownHanditemGiverNbx.Name = "CooldownHanditemGiverNbx";
+            this.CooldownHanditemGiverNbx.Size = new System.Drawing.Size(257, 26);
+            this.CooldownHanditemGiverNbx.TabIndex = 85;
+            this.CooldownHanditemGiverNbx.Value = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+            // 
+            // GiveFurniHanditemBtn
+            // 
+            this.GiveFurniHanditemBtn.Location = new System.Drawing.Point(21, 523);
+            this.GiveFurniHanditemBtn.Margin = new System.Windows.Forms.Padding(1);
+            this.GiveFurniHanditemBtn.Name = "GiveFurniHanditemBtn";
+            this.GiveFurniHanditemBtn.Size = new System.Drawing.Size(258, 30);
+            this.GiveFurniHanditemBtn.TabIndex = 84;
+            this.GiveFurniHanditemBtn.Text = "Give Furni handitem to user : OFF";
+            this.GiveFurniHanditemBtn.Click += new System.EventHandler(this.GiveFurniHanditemBtn_Click);
+            // 
             // FurniTrollPg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.CooldownHanditemGiverNbx);
+            this.Controls.Add(this.GiveFurniHanditemBtn);
             this.Controls.Add(this.ResetDefaultCooldownsBtn);
             this.Controls.Add(this.MinusTenBtn);
             this.Controls.Add(this.AddtenBtn);
@@ -954,7 +1005,9 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.CooldownHanditemGiverNbx)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1018,5 +1071,8 @@
         private Sulakore.Components.SKoreButton MinusTenBtn;
         private Sulakore.Components.SKoreButton AddtenBtn;
         private Sulakore.Components.SKoreButton ResetDefaultCooldownsBtn;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown CooldownHanditemGiverNbx;
+        private Sulakore.Components.SKoreButton GiveFurniHanditemBtn;
     }
 }

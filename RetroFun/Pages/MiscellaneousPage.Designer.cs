@@ -61,16 +61,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.UserSitBtn = new Sulakore.Components.SKoreButton();
             this.SitOnLoopBtn = new Sulakore.Components.SKoreButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.SitCoolDownNbx = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Dance_TheRollieChbx = new System.Windows.Forms.CheckBox();
             this.Dance_DuckFunkChbx = new System.Windows.Forms.CheckBox();
             this.Dance_PogoMogoChbx = new System.Windows.Forms.CheckBox();
             this.Dance_NormalChbx = new System.Windows.Forms.CheckBox();
             this.Dance_NoneChbx = new System.Windows.Forms.CheckBox();
-            this.DancesCooldownNBx = new System.Windows.Forms.NumericUpDown();
             this.DanceLoopBtn = new Sulakore.Components.SKoreButton();
+            this.DancesCooldownNBx = new System.Windows.Forms.NumericUpDown();
             this.TrollLookBtn = new Sulakore.Components.SKoreButton();
             this.TrollLookNbx = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
@@ -79,14 +77,17 @@
             this.BlockStaffAlertsChbx = new System.Windows.Forms.CheckBox();
             this.StartPollBtn = new Sulakore.Components.SKoreButton();
             this.label6 = new System.Windows.Forms.Label();
+            this.AddYourselfAsFriendBtn = new Sulakore.Components.SKoreButton();
+            this.SitCoolDownNbx = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.SignCountGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SignCountCoolDown)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GestureCooldownNbx)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SitCoolDownNbx)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DancesCooldownNBx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrollLookNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SitCoolDownNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // NoRemoveFriendOnReport
@@ -380,31 +381,6 @@
             this.SitOnLoopBtn.Name = "SitOnLoopBtn";
             this.SitOnLoopBtn.Click += new System.EventHandler(this.SitOnLoopBtn_Click);
             // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // SitCoolDownNbx
-            // 
-            resources.ApplyResources(this.SitCoolDownNbx, "SitCoolDownNbx");
-            this.SitCoolDownNbx.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.SitCoolDownNbx.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.SitCoolDownNbx.Name = "SitCoolDownNbx";
-            this.SitCoolDownNbx.Value = new decimal(new int[] {
-            250,
-            0,
-            0,
-            0});
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.Dance_TheRollieChbx);
@@ -447,6 +423,12 @@
             this.Dance_NoneChbx.Name = "Dance_NoneChbx";
             this.Dance_NoneChbx.UseVisualStyleBackColor = true;
             // 
+            // DanceLoopBtn
+            // 
+            resources.ApplyResources(this.DanceLoopBtn, "DanceLoopBtn");
+            this.DanceLoopBtn.Name = "DanceLoopBtn";
+            this.DanceLoopBtn.Click += new System.EventHandler(this.DanceLoopBtn_Click);
+            // 
             // DancesCooldownNBx
             // 
             resources.ApplyResources(this.DancesCooldownNBx, "DancesCooldownNBx");
@@ -466,12 +448,6 @@
             0,
             0,
             0});
-            // 
-            // DanceLoopBtn
-            // 
-            resources.ApplyResources(this.DanceLoopBtn, "DanceLoopBtn");
-            this.DanceLoopBtn.Name = "DanceLoopBtn";
-            this.DanceLoopBtn.Click += new System.EventHandler(this.DanceLoopBtn_Click);
             // 
             // TrollLookBtn
             // 
@@ -533,10 +509,42 @@
             resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
             // 
+            // AddYourselfAsFriendBtn
+            // 
+            resources.ApplyResources(this.AddYourselfAsFriendBtn, "AddYourselfAsFriendBtn");
+            this.AddYourselfAsFriendBtn.Name = "AddYourselfAsFriendBtn";
+            this.AddYourselfAsFriendBtn.Click += new System.EventHandler(this.AddYourselfAsFriendBtn_Click);
+            // 
+            // SitCoolDownNbx
+            // 
+            resources.ApplyResources(this.SitCoolDownNbx, "SitCoolDownNbx");
+            this.SitCoolDownNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.SitCoolDownNbx.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.SitCoolDownNbx.Name = "SitCoolDownNbx";
+            this.SitCoolDownNbx.Value = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
             // MiscellaneousPage
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.AddYourselfAsFriendBtn);
             this.Controls.Add(this.StartPollBtn);
             this.Controls.Add(this.BlockStaffAlertsChbx);
             this.Controls.Add(this.ConvertMessageForYouChbx);
@@ -561,11 +569,11 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GestureCooldownNbx)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.SitCoolDownNbx)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DancesCooldownNBx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrollLookNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SitCoolDownNbx)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -598,8 +606,6 @@
         private Sulakore.Components.SKoreButton GestureOnLoopBtn;
         private Sulakore.Components.SKoreButton UserSitBtn;
         private Sulakore.Components.SKoreButton SitOnLoopBtn;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown SitCoolDownNbx;
         private System.Windows.Forms.CheckBox InvisibleSignChbx;
         private System.Windows.Forms.CheckBox YellowCardChbx;
         private System.Windows.Forms.CheckBox RedCardChbx;
@@ -626,5 +632,8 @@
         private System.Windows.Forms.CheckBox BlockStaffAlertsChbx;
         private Sulakore.Components.SKoreButton StartPollBtn;
         private System.Windows.Forms.Label label6;
+        private Sulakore.Components.SKoreButton AddYourselfAsFriendBtn;
+        private System.Windows.Forms.NumericUpDown SitCoolDownNbx;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -980,7 +980,7 @@ namespace RetroFun
         private Pages.DiceBotPage AutoHoloDicePg;
         private Pages.AvatarEditorPg AvatarEditorPg;
         private Pages.MiscellaneousPage MiscellaneousPg;
-        private BuyFurniBruteforcerPage BuyFurniBruteforcerPg;
+        private Pages.BuyFurniBruteforcerPage BuyFurniBruteforcerPg;
         private Pages.FakeMessagePage FakeMessagePg;
         private Pages.RoomBackFun RoomBackFunPg;
         private Pages.FurniSpawnPage furniSpawnPg;
@@ -992,6 +992,7 @@ namespace RetroFun
         private Pages.UtilitiesPage UtilitiesPg;
         private Pages.PetPage PetPg;
         private Pages.UserEditorPage UserEditorPg;
+        private Pages.PersonalPage PersonalPg;
 
         private Sulakore.Components.SKoreTabControl MoonlightPages;
         private System.Windows.Forms.TabPage tabPage1;
@@ -1005,6 +1006,5 @@ namespace RetroFun
         private System.Windows.Forms.TabPage UtiliesTab;
         private System.Windows.Forms.TabPage PetTab;
         private System.Windows.Forms.TabPage UserEditorTab;
-        private PersonalPage PersonalPg;
     }
 }

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Windows.Forms;
 using RetroFun.Controls;
+using RetroFun.Subscribers;
 using Sulakore;
 using Sulakore.Communication;
 using Sulakore.Components;
@@ -12,7 +13,7 @@ namespace RetroFun.Pages
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
 
-    public partial class FurniTrollPg : ObservablePage
+    public partial class FurniTrollPg : ObservablePage , ISubscriber
     {
 
         #region vars
@@ -46,6 +47,8 @@ namespace RetroFun.Pages
         private bool _StartFurniThread9;
         private bool _StartFurniThread10;
 
+        private bool isHanditemGiverActivated;
+
         private bool _isFurniBoxChecked1 = true;
         private bool _isFurniBoxChecked2;
         private bool _isFurniBoxChecked3;
@@ -70,6 +73,8 @@ namespace RetroFun.Pages
         private int _FurniIDInt9;
         private int _FurniIDInt10;
 
+        private int UserID;
+
         private int _CooldownThread1 = 150;
         private int _CooldownThread2 = 200;
         private int _CooldownThread3 = 250;
@@ -80,6 +85,9 @@ namespace RetroFun.Pages
         private int _CooldownThread8 = 550;
         private int _CooldownThread9 = 600;
         private int _CooldownThread10 = 650;
+
+        private int _CooldownHanditemGiver = 150;
+
 
         private int _GlobalCooldown = 150;
 
@@ -513,7 +521,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
+        
         public int GlobalCooldown
         {
             get => _GlobalCooldown;
@@ -523,6 +531,17 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+        public int CooldownHanditemGiver
+        {
+            get => _CooldownHanditemGiver;
+            set
+            {
+                _CooldownHanditemGiver = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+        public bool IsReceiving => true;
 
 
         #endregion
@@ -578,7 +597,9 @@ namespace RetroFun.Pages
 
             Bind(GlobalCooldownNbx, "Value", nameof(GlobalCooldown));
 
+            Bind(CooldownHanditemGiverNbx, "Value", nameof(CooldownHanditemGiver));
 
+            
 
             #endregion
             if (Program.Master != null)
@@ -604,6 +625,27 @@ namespace RetroFun.Pages
 
 
         #region threads
+
+        private void StartHanditemGiver()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+
+                    if (isHanditemGiverActivated)
+                    {
+                        Connection.SendToServerAsync(Out.RoomUserGiveHandItem, UserID);
+                        Thread.Sleep(ThreadCooldownSafe(CooldownHanditemGiver));
+                    }
+
+                } while (isHanditemGiverActivated);
+            }).Start();
+        }
+
+
+
         private void StartThread1()
         {
             new Thread(() =>
@@ -1736,9 +1778,127 @@ namespace RetroFun.Pages
             HaltThreads();
         }
 
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        {
+            UserID = e.Packet.ReadInteger();
+        }
+
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnLatencyTest(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnUsername(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserTalk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserShout(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InPurchaseOk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InUserEnterRoom(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InUserProfile(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InItemExtraData(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserTalk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserShout(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+
+        }
+
+
+
+
         #endregion
 
+        private void GiveFurniHanditemSpammer_Click(object sender, EventArgs e)
+        {
+            if(isHanditemGiverActivated)
+            {
+                isHanditemGiverActivated = false;
+                WriteToButton(GiveFurniHanditemBtn, "Give Furni handitem to user : OFF");
 
+            }
+            else
+            {
+                WriteToButton(GiveFurniHanditemBtn, "Give Furni handitem to user : ON");
+                isHanditemGiverActivated = true;
+                StartHanditemGiver();
+            }
+
+        }
+
+        private void GiveFurniHanditemBtn_Click(object sender, EventArgs e)
+        {
+
+        }
 
 
     }

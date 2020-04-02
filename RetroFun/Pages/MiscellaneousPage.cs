@@ -1332,5 +1332,21 @@ namespace RetroFun.Pages
         {
 
         }
+
+        private void SendFriendRequest(string username)
+        {
+            Connection.SendToServerAsync(Out.FriendRequest, username);
+        }
+
+        private void AddYourselfAsFriendBtn_Click(object sender, EventArgs e)
+        {
+            if(UsernameFilter != null)
+            {
+                SendFriendRequest(UsernameFilter);
+            }
+        }
+
+
+
     }
 }
