@@ -21,11 +21,10 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class UserEditorPage : ObservablePage, ISubscriber
     {
-
         private int _selectedUserId;
         private bool _isBlacklistActive = true;
-
         private Dictionary<string, bool> _blacklistedEntities;
+        public  int LocalIndex;
 
         //username => Removed entity
         private Dictionary<string, HEntity> _removedEntities; //
@@ -34,6 +33,7 @@ namespace RetroFun.Pages
 
         //
         private string OwnUsername;
+
 
         private bool _LockNickname;
 
@@ -229,9 +229,46 @@ namespace RetroFun.Pages
         public void OnRoomUserWhisper(DataInterceptedEventArgs e)
         { }
 
-        public void InRoomUserTalk(DataInterceptedEventArgs e) { if (_isBlacklistActive) { e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger()); } }
-        public void InRoomUserShout(DataInterceptedEventArgs e) { if (_isBlacklistActive) { e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger()); } }
-        public void InRoomUserWhisper(DataInterceptedEventArgs e) { if (_isBlacklistActive) { e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger()); } }
+        public void InRoomUserTalk(DataInterceptedEventArgs e)
+        {
+                if (LocalIndex == e.Packet.ReadInteger())
+                {
+                e.Continue();
+                return;
+                }
+            
+            if (_isBlacklistActive)
+            {
+                e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger());
+            }
+        }
+
+        public void InRoomUserShout(DataInterceptedEventArgs e)
+        {
+            if (LocalIndex == e.Packet.ReadInteger())
+            {
+                e.Continue();
+                return;
+            }
+
+            if (_isBlacklistActive)
+            {
+                e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger());
+            }
+        }
+        public void InRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+            if (LocalIndex == e.Packet.ReadInteger())
+            {
+                e.Continue();
+                return;
+            }
+
+            if (_isBlacklistActive)
+            {
+                e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger());
+            }
+        }
 
 
         private bool IsBlockedEntity(int index)
@@ -271,9 +308,16 @@ namespace RetroFun.Pages
                 {
                     foreach (HEntity entity in array)
                     {
+
+
                         if (!_users.ContainsKey(entity.Id))
                         {
                             _users.Add(entity.Id, entity);
+                        }
+
+                        if (entity.Name == OwnUsername)
+                        {
+                            LocalIndex = entity.Index;
                         }
 
                         if (_isBlacklistActive && IsActiveAndBlacklisted(entity.Name))

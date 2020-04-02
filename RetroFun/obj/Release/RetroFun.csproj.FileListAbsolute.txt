@@ -64,3 +64,4 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.Use
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csproj.CoreCompileInputs.cache
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.DiceBotPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csprojAssemblyReference.cache
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\Sulakore.dll

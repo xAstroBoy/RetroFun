@@ -118,7 +118,7 @@ namespace RetroFun
             this.ChatPg.ForceShoutChat = false;
             this.ChatPg.ForceWhisperChat = false;
             this.ChatPg.HideSpeakingBubble = false;
-            this.ChatPg.Location = new System.Drawing.Point(9, 0);
+            this.ChatPg.Location = new System.Drawing.Point(4, 8);
             this.ChatPg.MainUserIndex = 0;
             this.ChatPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.ChatPg.Name = "ChatPg";
@@ -127,7 +127,6 @@ namespace RetroFun
             this.ChatPg.TabIndex = 0;
             this.ChatPg.TabStop = false;
             this.ChatPg.UsernameFilter = null;
-            this.ChatPg.UseSelectedBubbleClientSide = false;
             this.ChatPg.UseSelectedBubbleServerSide = false;
             // 
             // DicePg
@@ -508,6 +507,7 @@ namespace RetroFun
             // FurniTrollPg
             // 
             this.FurniTrollPg.BackColor = System.Drawing.Color.White;
+            this.FurniTrollPg.CooldownHanditemGiver = 150;
             this.FurniTrollPg.CooldownThread1 = 150;
             this.FurniTrollPg.CooldownThread10 = 650;
             this.FurniTrollPg.CooldownThread2 = 200;
@@ -595,6 +595,7 @@ namespace RetroFun
             this.UserEditorPg.UserLook = null;
             this.UserEditorPg.UserMotto = null;
             this.UserEditorPg.UserNickname = null;
+
             // 
             // MakeSayTab
             // 

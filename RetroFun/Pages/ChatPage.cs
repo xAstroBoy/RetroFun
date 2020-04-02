@@ -18,7 +18,6 @@ using System.Resources;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-
 namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
@@ -107,6 +106,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
         private bool _UseSelectedBubbleClientSide;
 
         public bool UseSelectedBubbleClientSide
@@ -240,6 +240,7 @@ namespace RetroFun.Pages
             Bind(AntiBobbaFilterChbx, "Checked", nameof(AntiBobbaFilter));
             Bind(UseSelectedBubbleSSChbx, "Checked", nameof(UseSelectedBubbleServerSide));
             Bind(UseSelectedBubbleCSChbx, "Checked", nameof(UseSelectedBubbleClientSide));
+
             Bind(UsernameTextBox, "Text", nameof(UsernameFilter));
 
             Bind(HideSpeakingBubbleChbx, "Checked", nameof(HideSpeakingBubble));
@@ -277,6 +278,11 @@ namespace RetroFun.Pages
 
             BubblesSSCmbx.SelectedIndex = 17;
             BubblesCSCmbx.SelectedIndex = 17;
+            if (Program.Master != null)
+            {
+                Triggers.OutAttach(Out.RoomUserStartTyping, RoomUserStartTyping);
+            }
+
         }
 
 
@@ -503,8 +509,8 @@ namespace RetroFun.Pages
             {
                 if (index == LocalIndex)
                 {
-                    Connection.SendToClientAsync(In.RoomUserTalk, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
                     e.IsBlocked = true;
+                    Connection.SendToClientAsync(In.RoomUserTalk, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
             if (isRaidMode)
@@ -527,10 +533,11 @@ namespace RetroFun.Pages
             {
                 if (index == LocalIndex)
                 {
-                    Connection.SendToClientAsync(In.RoomUserShout, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
                     e.IsBlocked = true;
+                    Connection.SendToClientAsync(In.RoomUserShout, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
+
             if (isRaidMode)
             {
                 if (index == MainUserIndex)
@@ -544,16 +551,22 @@ namespace RetroFun.Pages
         {
             int index = e.Packet.ReadInteger();
             string msg = e.Packet.ReadString();
+            e.Packet.ReadInteger();
+            int bubbleid = e.Packet.ReadInteger();
+
             if (UseSelectedBubbleClientSide)
             {
                 if (index == LocalIndex)
                 {
-                    Connection.SendToClientAsync(In.RoomUserWhisper, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
                     e.IsBlocked = true;
+                    Connection.SendToClientAsync(In.RoomUserWhisper, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
-
             }
         }
+
+
+
+
 
         private void RoomUserStartSpeaking(DataInterceptedEventArgs Packet)
         {

@@ -1,4 +1,5 @@
 ﻿using RetroFun.Controls;
+using RetroFun.Pages;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Modules;
@@ -13,6 +14,7 @@ namespace RetroFun
     public partial class MainFrm : ObservableExtensionForm
     {
         public override bool IsRemoteModule => true;
+
 
         public bool IsAlwaysOnTop
         {
