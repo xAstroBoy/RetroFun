@@ -633,11 +633,17 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
-
-                    if (isHanditemGiverActivated)
+                    try
                     {
-                        Connection.SendToServerAsync(Out.RoomUserGiveHandItem, UserID);
-                        Thread.Sleep(ThreadCooldownSafe(CooldownHanditemGiver));
+                        if (isHanditemGiverActivated)
+                        {
+                            Connection.SendToServerAsync(Out.RoomUserGiveHandItem, UserID);
+                            Thread.Sleep(ThreadCooldownSafe(CooldownHanditemGiver));
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
                     }
 
                 } while (isHanditemGiverActivated);
