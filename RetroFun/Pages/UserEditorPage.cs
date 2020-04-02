@@ -231,42 +231,36 @@ namespace RetroFun.Pages
 
         public void InRoomUserTalk(DataInterceptedEventArgs e)
         {
-                if (LocalIndex == e.Packet.ReadInteger())
-                {
-                e.Continue();
-                return;
-                }
-            
-            if (_isBlacklistActive)
+            var index = e.Packet.ReadInteger();
+            if (LocalIndex != index)
             {
-                e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger());
+                if (_isBlacklistActive)
+                {
+                    e.IsBlocked = IsBlockedEntity(index);
+                }
             }
         }
 
         public void InRoomUserShout(DataInterceptedEventArgs e)
         {
-            if (LocalIndex == e.Packet.ReadInteger())
+            var index = e.Packet.ReadInteger();
+            if (LocalIndex != index)
             {
-                e.Continue();
-                return;
-            }
-
-            if (_isBlacklistActive)
-            {
-                e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger());
+                if (_isBlacklistActive)
+                {
+                    e.IsBlocked = IsBlockedEntity(index);
+                }
             }
         }
         public void InRoomUserWhisper(DataInterceptedEventArgs e)
         {
-            if (LocalIndex == e.Packet.ReadInteger())
+            var index = e.Packet.ReadInteger();
+            if (LocalIndex != index)
             {
-                e.Continue();
-                return;
-            }
-
-            if (_isBlacklistActive)
-            {
-                e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger());
+                if (_isBlacklistActive)
+                {
+                    e.IsBlocked = IsBlockedEntity(index);
+                }
             }
         }
 
@@ -282,7 +276,7 @@ namespace RetroFun.Pages
         private bool IsActiveAndBlacklisted(string username)
         {
             //_isBlacklistActive and username is in blacklist and THAT blacklist entry is active (  VVVVVVVVVVV )
-            return (_isBlacklistActive && _blacklistedEntities.ContainsKey(username) && _blacklistedEntities[username]);
+            return (_blacklistedEntities.ContainsKey(username) && _blacklistedEntities[username]);
         }
 
 
@@ -414,15 +408,18 @@ namespace RetroFun.Pages
         {
             if (_removedEntities.TryGetValue(username, out HEntity entity))
             {
-                //Remove fake entity
-                RemoveRoomUser(entity.Index);
+                if (_users.TryGetValue(entity.Id, out _))
+                    {
+                    //Remove fake entity
+                    RemoveRoomUser(entity.Index);
 
 
-                //Add original entity back
-                AddUser(entity.Id, entity.Index, entity.Name, entity.Motto, entity.FigureId, entity.Tile, entity.Gender, entity.FavoriteGroup);
-                
-                //Remove the original data because we have it already
-                _removedEntities.Remove(username);
+                    //Add original entity back
+                    AddUser(entity.Id, entity.Index, entity.Name, entity.Motto, entity.FigureId, entity.Tile, entity.Gender, entity.FavoriteGroup);
+
+                    //Remove the original data because we have it already
+                    _removedEntities.Remove(username);
+                }
             }
 
         }
@@ -568,7 +565,11 @@ namespace RetroFun.Pages
             _blacklistedEntities.Add(entityToBlacklist.Name, true);
 
             //Remove it
-            RemoveEntity(entityToBlacklist);
+            if (_isBlacklistActive)
+            {
+                RemoveEntity(entityToBlacklist);
+            }
+
             CountNicknamesBlacklisted();
         }
 
