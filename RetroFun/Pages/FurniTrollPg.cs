@@ -1778,6 +1778,28 @@ namespace RetroFun.Pages
             HaltThreads();
         }
 
+    
+
+
+
+        private void GiveFurniHanditemBtn_Click(object sender, EventArgs e)
+        {
+            if (isHanditemGiverActivated)
+            {
+                isHanditemGiverActivated = false;
+                WriteToButton(GiveFurniHanditemBtn, "Give Furni handitem to user : OFF");
+
+            }
+            else
+            {
+                WriteToButton(GiveFurniHanditemBtn, "Give Furni handitem to user : ON");
+                isHanditemGiverActivated = true;
+                StartHanditemGiver();
+            }
+        }
+        #endregion
+
+        #region Subscribers
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {
 
@@ -1873,32 +1895,8 @@ namespace RetroFun.Pages
 
         }
 
-
-
-
         #endregion
 
-        private void GiveFurniHanditemSpammer_Click(object sender, EventArgs e)
-        {
-            if(isHanditemGiverActivated)
-            {
-                isHanditemGiverActivated = false;
-                WriteToButton(GiveFurniHanditemBtn, "Give Furni handitem to user : OFF");
-
-            }
-            else
-            {
-                WriteToButton(GiveFurniHanditemBtn, "Give Furni handitem to user : ON");
-                isHanditemGiverActivated = true;
-                StartHanditemGiver();
-            }
-
-        }
-
-        private void GiveFurniHanditemBtn_Click(object sender, EventArgs e)
-        {
-
-        }
 
 
     }
