@@ -69,7 +69,6 @@
             this.Dance_PogoMogoChbx = new System.Windows.Forms.CheckBox();
             this.Dance_NormalChbx = new System.Windows.Forms.CheckBox();
             this.Dance_NoneChbx = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.DancesCooldownNBx = new System.Windows.Forms.NumericUpDown();
             this.DanceLoopBtn = new Sulakore.Components.SKoreButton();
             this.TrollLookBtn = new Sulakore.Components.SKoreButton();
@@ -79,13 +78,6 @@
             this.ConvertMessageForYouChbx = new System.Windows.Forms.CheckBox();
             this.BlockStaffAlertsChbx = new System.Windows.Forms.CheckBox();
             this.StartPollBtn = new Sulakore.Components.SKoreButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.SignCountGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SignCountCoolDown)).BeginInit();
@@ -95,8 +87,6 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DancesCooldownNBx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrollLookNbx)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // NoRemoveFriendOnReport
@@ -422,6 +412,7 @@
             this.groupBox2.Controls.Add(this.Dance_PogoMogoChbx);
             this.groupBox2.Controls.Add(this.Dance_NormalChbx);
             this.groupBox2.Controls.Add(this.Dance_NoneChbx);
+            this.groupBox2.Controls.Add(this.DanceLoopBtn);
             resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
@@ -455,11 +446,6 @@
             resources.ApplyResources(this.Dance_NoneChbx, "Dance_NoneChbx");
             this.Dance_NoneChbx.Name = "Dance_NoneChbx";
             this.Dance_NoneChbx.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
             // 
             // DancesCooldownNBx
             // 
@@ -542,72 +528,6 @@
             this.StartPollBtn.Name = "StartPollBtn";
             this.StartPollBtn.Click += new System.EventHandler(this.StartPollBtn_Click);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.checkBox1);
-            this.groupBox3.Controls.Add(this.checkBox2);
-            this.groupBox3.Controls.Add(this.checkBox3);
-            this.groupBox3.Controls.Add(this.checkBox4);
-            this.groupBox3.Controls.Add(this.checkBox5);
-            this.groupBox3.Controls.Add(this.DancesCooldownNBx);
-            this.groupBox3.Controls.Add(this.numericUpDown1);
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.DanceLoopBtn);
-            this.groupBox3.Controls.Add(this.label6);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.TabStop = false;
-            // 
-            // checkBox1
-            // 
-            resources.ApplyResources(this.checkBox1, "checkBox1");
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            resources.ApplyResources(this.checkBox2, "checkBox2");
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            resources.ApplyResources(this.checkBox3, "checkBox3");
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            resources.ApplyResources(this.checkBox4, "checkBox4");
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            resources.ApplyResources(this.checkBox5, "checkBox5");
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDown1
-            // 
-            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
-            this.numericUpDown1.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Value = new decimal(new int[] {
-            250,
-            0,
-            0,
-            0});
-            // 
             // label6
             // 
             resources.ApplyResources(this.label6, "label6");
@@ -622,9 +542,10 @@
             this.Controls.Add(this.ConvertMessageForYouChbx);
             this.Controls.Add(this.BlockMessageForYouChbx);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.DancesCooldownNBx);
             this.Controls.Add(this.TrollLookNbx);
             this.Controls.Add(this.TrollLookBtn);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.SitCoolDownNbx);
@@ -645,9 +566,6 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DancesCooldownNBx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TrollLookNbx)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -693,7 +611,6 @@
         private System.Windows.Forms.CheckBox Gesture_NoneChbx;
         private System.Windows.Forms.CheckBox Gesture_PogoHopChbx;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown DancesCooldownNBx;
         private Sulakore.Components.SKoreButton DanceLoopBtn;
         private System.Windows.Forms.CheckBox Dance_TheRollieChbx;
@@ -708,13 +625,6 @@
         private System.Windows.Forms.CheckBox ConvertMessageForYouChbx;
         private System.Windows.Forms.CheckBox BlockStaffAlertsChbx;
         private Sulakore.Components.SKoreButton StartPollBtn;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label6;
     }
 }

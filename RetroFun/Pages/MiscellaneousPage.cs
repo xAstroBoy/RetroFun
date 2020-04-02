@@ -1145,11 +1145,6 @@ namespace RetroFun.Pages
 
         private void DanceLoopBtn_Click(object sender, EventArgs e)
         {
-            DanceLoopManager();
-        }
-
-        private void DanceLoopManager()
-        {
             if (DanceLoopEnabled)
             {
                 DanceLoopEnabled = false;
@@ -1162,6 +1157,7 @@ namespace RetroFun.Pages
                 DanceLoop();
             }
         }
+
 
         private void DanceLoop()
         {
