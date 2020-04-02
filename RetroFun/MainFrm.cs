@@ -8,7 +8,7 @@ using System.ComponentModel;
 namespace RetroFun
 {
     [DesignerCategory("Form")]
-    [Module("RetroFun", "Miscellaneous stuff for retroservers")]
+    [Module("RetroFun", "All-in-one scripting tool!")]
     [Author("marcocorriero")]
     public partial class MainFrm : ObservableExtensionForm
     {
