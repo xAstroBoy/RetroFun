@@ -109,7 +109,7 @@ namespace RetroFun
             // 
             this.ChatPg.AntiBobbaFilter = false;
             this.ChatPg.BackColor = System.Drawing.Color.White;
-            this.ChatPg.CloneUsernameFilter = "marcocorriero";
+            this.ChatPg.CloneUsernameFilter = "";
             this.ChatPg.FlooderCooldown = 50;
             this.ChatPg.FlooderEnabled = false;
             this.ChatPg.FlooderText = null;
