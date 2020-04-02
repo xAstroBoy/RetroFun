@@ -229,25 +229,10 @@ namespace RetroFun.Pages
         public void OnRoomUserWhisper(DataInterceptedEventArgs e)
         { }
 
-        public void InRoomUserTalk(DataInterceptedEventArgs e) => e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger());
-        public void InRoomUserShout(DataInterceptedEventArgs e) => e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger());
-        public void InRoomUserWhisper(DataInterceptedEventArgs e) => e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger());
+        public void InRoomUserTalk(DataInterceptedEventArgs e) { if (_isBlacklistActive) { e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger()); } }
+        public void InRoomUserShout(DataInterceptedEventArgs e) { if (_isBlacklistActive) { e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger()); } }
+        public void InRoomUserWhisper(DataInterceptedEventArgs e) { if (_isBlacklistActive) { e.IsBlocked = IsBlockedEntity(e.Packet.ReadInteger()); } }
 
-        //public void InRoomUserTalk(DataInterceptedEventArgs e) //Leaving these here if you use those later :P
-        //{
-        //    int index = e.Packet.ReadInteger();
-        //    e.IsBlocked = IsBlockedEntity(index);
-        //}
-        //public void InRoomUserShout(DataInterceptedEventArgs e)
-        //{
-        //    int index = e.Packet.ReadInteger();
-        //    e.IsBlocked = IsBlockedEntity(index);
-        //}
-        //public void InRoomUserWhisper(DataInterceptedEventArgs e)
-        //{
-        //    int index = e.Packet.ReadInteger();
-        //    e.IsBlocked = IsBlockedEntity(index);
-        //}
 
         private bool IsBlockedEntity(int index)
         {
