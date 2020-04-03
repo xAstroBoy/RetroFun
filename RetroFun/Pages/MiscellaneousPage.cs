@@ -1308,6 +1308,10 @@ namespace RetroFun.Pages
 
         }
 
+        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
+        {
+        }
+
         public void OnRoomUserShout(DataInterceptedEventArgs e)
         {
 

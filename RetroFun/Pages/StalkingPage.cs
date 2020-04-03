@@ -93,6 +93,9 @@ namespace RetroFun.Pages
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {
         }
+        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
+        {
+        }
 
         public void OnUserFriendRemoval(DataInterceptedEventArgs e)
         {

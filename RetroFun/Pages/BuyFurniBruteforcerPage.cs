@@ -1012,5 +1012,9 @@ namespace RetroFun.Pages
         {
             FileNameSave = GetHost(Connection.Host);
         }
+
+        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
+        {
+        }
     }
 }

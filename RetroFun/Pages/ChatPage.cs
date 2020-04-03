@@ -70,7 +70,7 @@ namespace RetroFun.Pages
         }
 
 
-        private int _FlooderCooldown = 50 ;
+        private int _FlooderCooldown = 50;
 
         public int FlooderCooldown
         {
@@ -278,10 +278,6 @@ namespace RetroFun.Pages
 
             BubblesSSCmbx.SelectedIndex = 17;
             BubblesCSCmbx.SelectedIndex = 17;
-            if (Program.Master != null)
-            {
-                Triggers.OutAttach(Out.RoomUserStartTyping, RoomUserStartTyping);
-            }
 
         }
 
@@ -313,7 +309,7 @@ namespace RetroFun.Pages
             {
                 Button.Text = text;
             });
-            
+
 
         }
         private void ForceDefSpeakBox_CheckedChanged(object sender, EventArgs e)
@@ -399,7 +395,7 @@ namespace RetroFun.Pages
                             {
                                 LocalIndex = hentity.Index;
                             }
-                            if(hentity.Name == CloneUsernameFilter)
+                            if (hentity.Name == CloneUsernameFilter)
                             {
                                 MainUserIndex = hentity.Index;
                             }
@@ -407,7 +403,7 @@ namespace RetroFun.Pages
                     }
                 }
             }
-            catch(IndexOutOfRangeException)
+            catch (IndexOutOfRangeException)
             {
             }
         }
@@ -469,18 +465,6 @@ namespace RetroFun.Pages
             // Avoid cross-thread exceptions by waiting for an event in the UI thread to update this property.
             SelectedCSBubbleId = (int)BubblesCSCmbx.SelectedTag;
         }
-
-        private void RoomUserStartTyping(DataInterceptedEventArgs obj)
-        {
-            obj.IsBlocked = HideSpeakingBubble;
-        }
-
-
-
-
-
-
-
 
 
         public void OnRoomUserTalk(DataInterceptedEventArgs e)
@@ -648,49 +632,49 @@ namespace RetroFun.Pages
         {
             string FloodMessage;
 
-                if (AntiBobbaFilter)
-                {
-                    FloodMessage = BypassFilter(FlooderText);
-                }
-                else
-                {
-                    FloodMessage = FlooderText;
-                }
+            if (AntiBobbaFilter)
+            {
+                FloodMessage = BypassFilter(FlooderText);
+            }
+            else
+            {
+                FloodMessage = FlooderText;
+            }
 
-                if (UseSelectedBubbleServerSide)
-                {
-                    FloodServerBubble = SelectedSSBubbleId;
-                }
-                else
-                {
-                    FloodServerBubble = 18;
-                }
+            if (UseSelectedBubbleServerSide)
+            {
+                FloodServerBubble = SelectedSSBubbleId;
+            }
+            else
+            {
+                FloodServerBubble = 18;
+            }
 
-                if (RainbowChatEnabled)
-                {
-                    int Debug = GetRainbowBubbleint();
-                    FloodServerBubble = Debug;
-                }
-                if (!ForceChatSpeak)
-                {
+            if (RainbowChatEnabled)
+            {
+                int Debug = GetRainbowBubbleint();
+                FloodServerBubble = Debug;
+            }
+            if (!ForceChatSpeak)
+            {
                 FlooderMessages = new HMessage(Out.RoomUserTalk, FloodMessage, FloodServerBubble);
-                }
-                else
+            }
+            else
+            {
+                if (ForceNormalSpeak)
                 {
-                    if (ForceNormalSpeak)
-                    {
                     FlooderMessages = new HMessage(Out.RoomUserTalk, FloodMessage, FloodServerBubble);
-                    }
-                    else if (ForceShoutChat)
-                    {
-                    FlooderMessages = new HMessage(Out.RoomUserShout, FloodMessage, FloodServerBubble);
-                    }
-                    else if (ForceWhisperChat)
-                    {
-                    FlooderMessages = new HMessage(Out.RoomUserWhisper, FloodMessage, FloodServerBubble);
-                    }
                 }
-            
+                else if (ForceShoutChat)
+                {
+                    FlooderMessages = new HMessage(Out.RoomUserShout, FloodMessage, FloodServerBubble);
+                }
+                else if (ForceWhisperChat)
+                {
+                    FlooderMessages = new HMessage(Out.RoomUserWhisper, FloodMessage, FloodServerBubble);
+                }
+            }
+
             return FlooderMessages;
         }
 
@@ -701,7 +685,7 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
-                    if(FlooderEnabled)
+                    if (FlooderEnabled)
                     {
 
                         Thread.Sleep(FlooderCooldown);
@@ -719,12 +703,12 @@ namespace RetroFun.Pages
 
         private void FloodBtn_Click(object sender, EventArgs e)
         {
-            if(FlooderEnabled)
+            if (FlooderEnabled)
             {
                 WriteToButton(FloodBtn, "Flooder : OFF");
                 FlooderEnabled = false;
             }
-        else
+            else
             {
                 WriteToButton(FloodBtn, "Flooder : ON");
                 FlooderEnabled = true;
@@ -736,11 +720,13 @@ namespace RetroFun.Pages
 
         private void CloneUserSpeakBtn_Click(object sender, EventArgs e)
         {
-            if(isRaidMode)
+            if (isRaidMode)
             {
                 WriteToButton(CloneUserSpeakBtn, "Clone User Speak : OFF");
                 isRaidMode = false;
-            } else {
+            }
+            else
+            {
 
                 WriteToButton(CloneUserSpeakBtn, "Clone User Speak : ON");
                 isRaidMode = true;
@@ -749,5 +735,12 @@ namespace RetroFun.Pages
             }
 
         }
+
+        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
+        {
+            e.IsBlocked = HideSpeakingBubble;
+
+        }
+
     }
 }

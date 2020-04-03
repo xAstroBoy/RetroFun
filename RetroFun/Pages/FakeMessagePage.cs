@@ -14,7 +14,6 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class FakeMessagePage : ObservablePage, ISubscriber
     {
-        public readonly string blockhash = "ef5f3ca3b9e2ee58f030527d85bd4da7";
         private int SelectedUserID;
         private string SelectedUsername;
         private string SelectedLook;
@@ -224,5 +223,9 @@ namespace RetroFun.Pages
         {
             RemoveFriend(SelectedUserID);
         }
+        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
+        {
+        }
+
     }
 }

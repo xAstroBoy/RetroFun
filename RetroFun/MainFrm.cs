@@ -113,6 +113,10 @@ namespace RetroFun
                 {
                     sub.OnRoomUserWhisper(e);
                 }
+                else if(Out.RoomUserStartTyping == id)
+                {
+                    sub.OnRoomUserStartTyping(e);
+                }
             }
         }
 

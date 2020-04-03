@@ -424,21 +424,23 @@ namespace RetroFun.Pages
 
         }
 
-        private void ReplaceUser(int id, string newName, string motto, string look)
+        private void ReplaceUser(int id, string newName, string motto, string look , bool shouldstore)
         {
             if (!_users.TryGetValue(id, out var entity))
             {
                 //ouch
                 return;
             }
+            if (shouldstore)
 
-            if(_blacklistedEntities.ContainsKey(entity.Name))
             {
+                if (_blacklistedEntities.ContainsKey(entity.Name))
+                {
 
-                _blacklistedEntities[entity.Name] = false;
+                    _blacklistedEntities[entity.Name] = false;
+                }
+                //Connection.SendToClientAsync(In.RoomUserWhisper, 0, $"[User Blacklist] : DEBUG - ReplaceUser(index: {entity.Index}, {entity.Name}=>{newName}, {entity.Motto}=>{motto}..)", 0, 34, 0, -1);
             }
-            //Connection.SendToClientAsync(In.RoomUserWhisper, 0, $"[User Blacklist] : DEBUG - ReplaceUser(index: {entity.Index}, {entity.Name}=>{newName}, {entity.Motto}=>{motto}..)", 0, 34, 0, -1);
-
 
             //remove it
             RemoveEntity(entity);
@@ -475,7 +477,7 @@ namespace RetroFun.Pages
 
         private void EditUserBtn_Click(object sender, EventArgs e)
         {
-            ReplaceUser(_selectedUserId, _userNickname, _userMotto, _userLook);
+            ReplaceUser(_selectedUserId, _userNickname, _userMotto, _userLook, false);
         }
 
         private void lockLookChbx_CheckedChanged(object sender, EventArgs e)
@@ -579,6 +581,10 @@ namespace RetroFun.Pages
 
             if (_users.TryGetValue(_selectedUserId, out var entityToRemove))
                 RemoveEntity(entityToRemove);
+        }
+
+        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
+        {
         }
     }
 }

@@ -18,6 +18,7 @@ namespace RetroFun.Subscribers
         void OnRoomUserTalk(DataInterceptedEventArgs e);
         void OnRoomUserShout(DataInterceptedEventArgs e);
         void OnRoomUserWhisper(DataInterceptedEventArgs e);
+        void OnRoomUserStartTyping(DataInterceptedEventArgs e);
 
         //Incoming events shared by multiple pages
         void InPurchaseOk(DataInterceptedEventArgs e);

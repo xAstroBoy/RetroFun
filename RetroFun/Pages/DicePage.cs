@@ -795,6 +795,10 @@ namespace RetroFun.Pages
         {
 
         }
+
+        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
+        {
+        }
     }
 
 }

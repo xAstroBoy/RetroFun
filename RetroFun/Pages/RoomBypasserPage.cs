@@ -12,11 +12,6 @@ namespace RetroFun.Pages
         public RoomBypasserPage()
         {
             InitializeComponent();
-
-            if (Program.Master != null)
-            {
-                //Triggers.InAttach();
-            }
         }
 
         private bool _ReloadCheckbox;

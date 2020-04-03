@@ -121,6 +121,10 @@ namespace RetroFun.Pages
 
         }
 
+        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
+        {
+        }
+
         public void OnCatalogBuyItem(DataInterceptedEventArgs e)
         {
             int PetRaceType;
