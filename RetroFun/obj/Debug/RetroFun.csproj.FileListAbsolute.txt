@@ -1,65 +1,8 @@
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\bin\Debug\RetroFun.exe.config
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\bin\Debug\RetroFun.exe
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\bin\Debug\RetroFun.pdb
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\bin\Debug\Flazzy.dll
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\bin\Debug\Sulakore.dll
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\bin\Debug\Tangine.dll
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.MainFrm.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.AutoHoloDicePage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.BuyFurniBruteforcerPage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.GiftEditor.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.MakeSayPage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.ChatPage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.FurniturePage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.MiscellaneousPage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.DicePage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.MoonLightFunPage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.RoomBackFun.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.SpeechzPage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.StalkingPage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Properties.Resources.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.GenerateResource.cache
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.CoreCompileInputs.cache
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.CopyComplete
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.exe
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.pdb
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.DiscoRoomLight.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.FakeMessagePage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.LookGeneratorPage.resources
-C:\Users\marco\Documents\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.RoomBypasserPage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\bin\Debug\RetroFun.exe.config
-H:\Documents 2\GitHub\BobbaFun\RetroFun\bin\Debug\RetroFun.exe
-H:\Documents 2\GitHub\BobbaFun\RetroFun\bin\Debug\RetroFun.pdb
-H:\Documents 2\GitHub\BobbaFun\RetroFun\bin\Debug\Flazzy.dll
-H:\Documents 2\GitHub\BobbaFun\RetroFun\bin\Debug\Tangine.dll
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.MainFrm.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.AutoHoloDicePage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.BuyFurniBruteforcerPage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.DiscoRoomLight.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.FakeMessagePage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.GiftEditor.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.LookGeneratorPage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.MakeSayPage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.ChatPage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.FurniturePage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.MiscellaneousPage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.DicePage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.MoonLightFunPage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.RoomBackFun.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.RoomBypasserPage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.SpeechzPage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Pages.StalkingPage.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.Properties.Resources.resources
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.GenerateResource.cache
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.csproj.CopyComplete
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.exe
-H:\Documents 2\GitHub\BobbaFun\RetroFun\obj\Debug\RetroFun.pdb
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.exe.config
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.exe
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.pdb
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Flazzy.dll
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Sulakore.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Tangine.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.MainFrm.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.DiceBotPage.resources
@@ -91,5 +34,3 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.Core
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.CopyComplete
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.exe
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.pdb
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Sulakore.dll
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache
