@@ -70,6 +70,8 @@
             this.ClearButton = new Sulakore.Components.SKoreButton();
             this.RollDicePkrBtn = new Sulakore.Components.SKoreButton();
             this.CloseDicePkrBtn = new Sulakore.Components.SKoreButton();
+            this.TotalDiceResultNbx = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.DiceGroup.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -86,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DiceID3Nbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiceID2Nbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiceID1Nbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TotalDiceResultNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // DiceGroup
@@ -251,7 +254,7 @@
             this.groupBox1.Controls.Add(this.Dice3ResultNbx);
             this.groupBox1.Controls.Add(this.Dice2ResultNbx);
             this.groupBox1.Controls.Add(this.Dice1ResultNbx);
-            this.groupBox1.Location = new System.Drawing.Point(302, 39);
+            this.groupBox1.Location = new System.Drawing.Point(301, 40);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(92, 269);
             this.groupBox1.TabIndex = 25;
@@ -607,10 +610,30 @@
             this.CloseDicePkrBtn.Text = "Close Dices Poker Style";
             this.CloseDicePkrBtn.Click += new System.EventHandler(this.CloseDicePkrBtn_Click);
             // 
+            // TotalDiceResultNbx
+            // 
+            this.TotalDiceResultNbx.Enabled = false;
+            this.TotalDiceResultNbx.Location = new System.Drawing.Point(28, 476);
+            this.TotalDiceResultNbx.Name = "TotalDiceResultNbx";
+            this.TotalDiceResultNbx.ReadOnly = true;
+            this.TotalDiceResultNbx.Size = new System.Drawing.Size(136, 26);
+            this.TotalDiceResultNbx.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(34, 453);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 20);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Dice Total Result";
+            // 
             // DicePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.TotalDiceResultNbx);
             this.Controls.Add(this.CloseDicePkrBtn);
             this.Controls.Add(this.RollDicePkrBtn);
             this.Controls.Add(this.ClearButton);
@@ -622,7 +645,7 @@
             this.Controls.Add(this.DiceGroup);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "DicePage";
-            this.Size = new System.Drawing.Size(976, 465);
+            this.Size = new System.Drawing.Size(976, 536);
             this.DiceGroup.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -640,6 +663,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.DiceID3Nbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiceID2Nbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DiceID1Nbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TotalDiceResultNbx)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -689,5 +713,7 @@
         private System.Windows.Forms.GroupBox Dices;
         private Sulakore.Components.SKoreButton RollDicePkrBtn;
         private Sulakore.Components.SKoreButton CloseDicePkrBtn;
+        private System.Windows.Forms.NumericUpDown TotalDiceResultNbx;
+        private System.Windows.Forms.Label label1;
     }
 }

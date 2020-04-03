@@ -27,6 +27,19 @@ namespace RetroFun.Pages
         public bool IsReceiving => true;
 
 
+        private int _DiceTotResult;
+
+        public int DiceTotResult
+        {
+            get => _DiceTotResult;
+            set
+            {
+                _DiceTotResult = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
         private int _DiceResult1;
 
         public int DiceResult1
@@ -257,6 +270,8 @@ namespace RetroFun.Pages
             Bind(DiceSelect5Chbx, "Checked", nameof(DiceSelected5));
             Bind(DiceSelect6Chbx, "Checked", nameof(DiceSelected6));
 
+            Bind(TotalDiceResultNbx, "Value", nameof(DiceTotResult));
+
 
         }
 
@@ -337,6 +352,7 @@ namespace RetroFun.Pages
 
         public void RegisterDice(int NewDice)
         {
+
             if (!DiceRegistered1)
             {
                 DiceRegistered1 = true;
@@ -616,34 +632,53 @@ namespace RetroFun.Pages
             if (id == DiceID1)
             {
                 DiceResult1 = diceState;
+                CalculateResults();
+
             }
 
             if (id == DiceID2)
             {
                 DiceResult2 = diceState;
+                CalculateResults();
+
             }
 
             if (id == DiceID3)
             {
                 DiceResult3 = diceState;
+                CalculateResults();
+
             }
 
             if (id == DiceID4)
             {
                 DiceResult4 = diceState;
+                CalculateResults();
+
             }
 
             if (id == DiceID5)
             {
                 DiceResult5 = diceState;
+                CalculateResults();
+
             }
 
             if (id == DiceID6)
             {
                 DiceResult6 = diceState;
+                CalculateResults();
             }
+
+
         }
 
+
+        private void CalculateResults()
+        {
+            DiceTotResult = 0;
+            DiceTotResult = DiceResult1 + DiceResult2 + DiceResult3 + DiceResult4 + DiceResult5 + DiceResult6;
+        }
 
         private bool DiceRegistered1;
         private bool DiceRegistered2;
@@ -799,6 +834,7 @@ namespace RetroFun.Pages
         public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
         {
         }
+
     }
 
 }
