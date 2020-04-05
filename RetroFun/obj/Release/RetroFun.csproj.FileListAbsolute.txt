@@ -23,7 +23,6 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.Moo
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.PersonalPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.PetPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.RoomBackFun.resources
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.RoomBypasserPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.SpeechzPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.StalkingPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.UserEditorPage.resources

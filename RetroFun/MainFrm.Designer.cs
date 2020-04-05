@@ -74,8 +74,6 @@ namespace RetroFun
             this.BuyFurniBruteforcerPg = new RetroFun.Pages.BuyFurniBruteforcerPage();
             this.GiftPageTab = new System.Windows.Forms.TabPage();
             this.SpeechzTab = new System.Windows.Forms.TabPage();
-            this.DoorbelTab = new System.Windows.Forms.TabPage();
-            this.roomBypasserPage = new RetroFun.Pages.RoomBypasserPage();
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
             this.BottomPg = new RetroFun.Pages.BottomPage();
@@ -101,7 +99,6 @@ namespace RetroFun
             this.CatalogBuyEditorTab.SuspendLayout();
             this.GiftPageTab.SuspendLayout();
             this.SpeechzTab.SuspendLayout();
-            this.DoorbelTab.SuspendLayout();
             this.MiscellaneousTab.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,6 +124,7 @@ namespace RetroFun
             this.ChatPg.TabIndex = 0;
             this.ChatPg.TabStop = false;
             this.ChatPg.UsernameFilter = null;
+            this.ChatPg.UseSelectedBubbleClientSide = false;
             this.ChatPg.UseSelectedBubbleServerSide = false;
             // 
             // DicePg
@@ -150,6 +148,7 @@ namespace RetroFun
             this.DicePg.DiceSelected4 = false;
             this.DicePg.DiceSelected5 = false;
             this.DicePg.DiceSelected6 = false;
+            this.DicePg.DiceTotResult = 0;
             this.DicePg.IsRegistrationMode = false;
             this.DicePg.Location = new System.Drawing.Point(4, 5);
             this.DicePg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
@@ -190,10 +189,13 @@ namespace RetroFun
             // SpeechzPg
             // 
             this.SpeechzPg.BackColor = System.Drawing.Color.White;
+            this.SpeechzPg.BubbleType = 38;
+            this.SpeechzPg.Interval = 100;
             this.SpeechzPg.Location = new System.Drawing.Point(0, 0);
             this.SpeechzPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.SpeechzPg.Name = "SpeechzPg";
             this.SpeechzPg.Size = new System.Drawing.Size(1190, 617);
+            this.SpeechzPg.SpeechText = "<id>";
             this.SpeechzPg.TabIndex = 0;
             this.SpeechzPg.TabStop = false;
             // 
@@ -374,7 +376,6 @@ namespace RetroFun
             this.RetroFunTabs.Controls.Add(this.CatalogBuyEditorTab);
             this.RetroFunTabs.Controls.Add(this.GiftPageTab);
             this.RetroFunTabs.Controls.Add(this.SpeechzTab);
-            this.RetroFunTabs.Controls.Add(this.DoorbelTab);
             this.RetroFunTabs.Controls.Add(this.MiscellaneousTab);
             this.RetroFunTabs.DisplayBoundary = true;
             this.RetroFunTabs.Dock = System.Windows.Forms.DockStyle.Top;
@@ -400,13 +401,15 @@ namespace RetroFun
             // 
             // PersonalPg
             // 
+            this.PersonalPg.AutomaticAttempt = false;
             this.PersonalPg.BackColor = System.Drawing.Color.White;
-            this.PersonalPg.CreditsChecked = false;
-            this.PersonalPg.CreditsValue = 0;
-            this.PersonalPg.CrystalsChecked = false;
-            this.PersonalPg.CrystalsValue = 0;
-            this.PersonalPg.DucketsChecked = false;
-            this.PersonalPg.DucketsValue = 0;
+            this.PersonalPg.BlockBypassers = false;
+            this.PersonalPg.CreditsChecked = true;
+            this.PersonalPg.CreditsValue = 999999999;
+            this.PersonalPg.CrystalsChecked = true;
+            this.PersonalPg.CrystalsValue = 999999999;
+            this.PersonalPg.DucketsChecked = true;
+            this.PersonalPg.DucketsValue = 999999999;
             this.PersonalPg.HasModToolsUnlocked = false;
             this.PersonalPg.HasStaffPermissions = false;
             this.PersonalPg.Location = new System.Drawing.Point(3, 3);
@@ -595,7 +598,6 @@ namespace RetroFun
             this.UserEditorPg.UserLook = null;
             this.UserEditorPg.UserMotto = null;
             this.UserEditorPg.UserNickname = null;
-
             // 
             // MakeSayTab
             // 
@@ -853,29 +855,6 @@ namespace RetroFun
             this.SpeechzTab.Text = "Speechz";
             this.SpeechzTab.UseVisualStyleBackColor = true;
             // 
-            // DoorbelTab
-            // 
-            this.DoorbelTab.Controls.Add(this.roomBypasserPage);
-            this.DoorbelTab.Location = new System.Drawing.Point(4, 28);
-            this.DoorbelTab.Name = "DoorbelTab";
-            this.DoorbelTab.Padding = new System.Windows.Forms.Padding(3);
-            this.DoorbelTab.Size = new System.Drawing.Size(1194, 634);
-            this.DoorbelTab.TabIndex = 13;
-            this.DoorbelTab.Text = "DoorbellBypass";
-            this.DoorbelTab.UseVisualStyleBackColor = true;
-            // 
-            // roomBypasserPage
-            // 
-            this.roomBypasserPage.BackColor = System.Drawing.Color.White;
-            this.roomBypasserPage.BlockBypassers = true;
-            this.roomBypasserPage.Location = new System.Drawing.Point(0, 5);
-            this.roomBypasserPage.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.roomBypasserPage.Name = "roomBypasserPage";
-            this.roomBypasserPage.ReloadCheckbox = false;
-            this.roomBypasserPage.Size = new System.Drawing.Size(1190, 624);
-            this.roomBypasserPage.TabIndex = 0;
-            this.roomBypasserPage.TabStop = false;
-            // 
             // MiscellaneousTab
             // 
             this.MiscellaneousTab.Controls.Add(this.MiscellaneousPg);
@@ -947,7 +926,6 @@ namespace RetroFun
             this.CatalogBuyEditorTab.ResumeLayout(false);
             this.GiftPageTab.ResumeLayout(false);
             this.SpeechzTab.ResumeLayout(false);
-            this.DoorbelTab.ResumeLayout(false);
             this.MiscellaneousTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -985,7 +963,6 @@ namespace RetroFun
         private Pages.FakeMessagePage FakeMessagePg;
         private Pages.RoomBackFun RoomBackFunPg;
         private Pages.FurniSpawnPage furniSpawnPg;
-        private Pages.RoomBypasserPage roomBypasserPage;
         private Pages.MoonLightFunPage MoonLightFunPg;
         private Pages.DiscoRoomLight DiscoRoomFunPg;
         private Pages.BottomPage BottomPg;
@@ -1000,7 +977,6 @@ namespace RetroFun
         private System.Windows.Forms.TabPage MoonLightTab;
         private System.Windows.Forms.TabPage FakeMsgTab;
         public Sulakore.Components.SKoreTabControl RetroFunTabs;
-        private System.Windows.Forms.TabPage DoorbelTab;
         private System.Windows.Forms.TabPage FurnitureSpawnerTab;
         private System.Windows.Forms.TabPage PersonalTab;
         private System.Windows.Forms.TabPage FurnitureSpamTab;

@@ -17,9 +17,49 @@ namespace RetroFun.Pages
         private bool switched_to_live_count_during_active_timer = false;
         private int max_increased = 0;
 
+
+        private int _Interval = 100;
+        public int Interval
+        {
+            get => _Interval;
+            set
+            {
+                _Interval = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _BubbleType = 38;
+        public int BubbleType
+        {
+            get => _BubbleType;
+            set
+            {
+                _BubbleType = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        private string _SpeechText = "<id>";
+        public string SpeechText
+        {
+            get => _SpeechText;
+            set
+            {
+                _SpeechText = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
         public SpeechzPage()
         {
             InitializeComponent();
+
+            Bind(IntervalNbx, "Value", nameof(Interval));
+            Bind(BubbleTypeNbx, "Value", nameof(BubbleType));
+            Bind(SpeechTextTxt, "Text", nameof(SpeechText));
+
         }
 
         private void btn_start_Click(object sender, EventArgs e)
@@ -32,7 +72,7 @@ namespace RetroFun.Pages
 
         private void send_packet()
         {
-            speechtext_with_id = txt_speechtext.Text.Replace("<id>", i.ToString()); //replace all "<id>"s with i, leave rest of the string unchanged
+            speechtext_with_id = SpeechText.Replace("<id>", i.ToString()); //replace all "<id>"s with i, leave rest of the string unchanged
 
             if (rdo_client.Checked) //if "Client" is checked
             {
@@ -63,9 +103,21 @@ namespace RetroFun.Pages
             }
         }
 
+        private int SafeInterval(int Value)
+        {
+            if (Value < 1)
+            {
+                return 1;
+            }
+            else
+            {
+                return Value;
+            }
+        }
+
         private void timer_Tick(object sender, EventArgs e)
         {
-            timer.Interval = Convert.ToInt32(nmr_interval.Value); //to update the interval even when the timer is running
+            timer.Interval = SafeInterval(Interval); //to update the interval even when the timer is running
 
             if (first_timer_tick)
             {
@@ -74,12 +126,12 @@ namespace RetroFun.Pages
                     i = 1;
                     if (rdo_live_counting.Checked)
                     {
-                        max_increased = Convert.ToInt32(nmr_bubbletype.Value);
+                        max_increased = BubbleType;
                     }
                 }
                 else if (rdo_descending.Checked)
                 {
-                    i = Convert.ToInt32(nmr_bubbletype.Value);
+                    i = BubbleType;
                 }
                 send_packet(); //Timer needs to count one value higher by doing only a packet send, but not changing any counting value
                 update_live_count();
@@ -97,11 +149,11 @@ namespace RetroFun.Pages
             {
                 if (switched_to_live_count_during_active_timer)
                 {
-                    nmr_bubbletype.Value = i;
+                    BubbleType = i;
                     switched_to_live_count_during_active_timer = false;
                 }
 
-                if ((rdo_ascending.Checked && rdo_manual_value.Checked && i <= nmr_bubbletype.Value) || (rdo_ascending.Checked && rdo_live_counting.Checked && i <= max_increased))
+                if ((rdo_ascending.Checked && rdo_manual_value.Checked && i <= BubbleType) || (rdo_ascending.Checked && rdo_live_counting.Checked && i <= max_increased))
                 {
                     send_packet();
                     update_live_count();
@@ -125,7 +177,7 @@ namespace RetroFun.Pages
         {
             if (rdo_live_counting.Checked) //but only when "Live counting" is checked/enabled
             {
-                nmr_bubbletype.Value = i;
+                BubbleType = i;
             }
         }
 

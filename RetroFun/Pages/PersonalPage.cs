@@ -12,12 +12,13 @@ using Sulakore.Protocol;
 using Sulakore.Communication;
 using Sulakore.Components;
 using System.Threading;
+using RetroFun.Subscribers;
 
 namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class PersonalPage : ObservablePage
+    public partial class PersonalPage : ObservablePage, ISubscriber
     {
         HMessage Permissions;
 
@@ -51,9 +52,9 @@ namespace RetroFun.Pages
             }
         }
 
-        private bool _CreditsChecked;
+        private bool _CreditsChecked = true;
 
-        private bool _CrystalsChecked;
+        private bool _CrystalsChecked = true;
         public bool CrystalsChecked
         {
             get => _CrystalsChecked;
@@ -75,7 +76,7 @@ namespace RetroFun.Pages
         }
 
 
-        private bool _DucketsChecked;
+        private bool _DucketsChecked = true;
 
         public bool DucketsChecked
         {
@@ -88,9 +89,9 @@ namespace RetroFun.Pages
         }
 
 
-        private int _CreditsValue;
+        private int _CreditsValue = int.MaxValue;
 
-        private int _CrystalsValue;
+        private int _CrystalsValue = int.MaxValue;
         public int CrystalsValue
         {
             get => _CrystalsValue;
@@ -141,7 +142,7 @@ namespace RetroFun.Pages
         }
 
 
-        private int _DucketsValue;
+        private int _DucketsValue = int.MaxValue;
 
         public int DucketsValue
         {
@@ -153,6 +154,31 @@ namespace RetroFun.Pages
             }
         }
 
+        private bool _BlockBypassers;
+
+        public bool BlockBypassers
+        {
+            get => _BlockBypassers;
+            set
+            {
+                _BlockBypassers = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _AutomaticAttempt;
+
+        public bool AutomaticAttempt
+        {
+            get => _AutomaticAttempt;
+            set
+            {
+                _AutomaticAttempt = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        public bool IsReceiving => true;
 
         public PersonalPage()
         {
@@ -166,6 +192,7 @@ namespace RetroFun.Pages
             Bind(DucketsNbx, "Value", nameof(DucketsValue));
             Bind(UserIntUpDwn, "Value", nameof(TradeSpammerUserID));
             Bind(TradeSpammerCooldownNbx, "Value", nameof(TradeSpammerCooldown));
+            Bind(AntiReloadChbx, "Checked", nameof(BlockBypassers));
 
             if (Program.Master != null)
             {
@@ -173,11 +200,21 @@ namespace RetroFun.Pages
                 Triggers.InAttach(In.TradeStopped, PreventCrashOnTrade);
 
                 Triggers.OutAttach(Out.TradeStart, InterceptTradeUser);
+                Triggers.InAttach(In.GenericErrorMessages, AntiRoomUnload);
+                Triggers.InAttach(In.RoomAccessDenied, AntiRoomUnload);
             }
 
 
         }
 
+
+
+        public void AntiRoomUnload(DataInterceptedEventArgs e)
+        {
+            e.IsBlocked = BlockBypassers;
+        }
+
+      
         private void CloneDefaultUserPermissions(DataInterceptedEventArgs e)
         {
             if (!HasUserPermissionsMessage)
@@ -386,7 +423,10 @@ namespace RetroFun.Pages
 
 
 
-
+        private void RequestRoomHeightmap()
+        {
+            Connection.SendToServerAsync(Out.RequestRoomHeightmap);
+        }
 
         private void CrashUserBtn_Click(object sender, EventArgs e)
         {
@@ -417,6 +457,129 @@ namespace RetroFun.Pages
             }
         }
 
+        private void EnterRoomBtn_Click(object sender, EventArgs e)
+        {
+            RequestRoomHeightmap();
 
+        }
+
+        private void AutomaticBypassBtn_Click(object sender, EventArgs e)
+        {
+            if (AutomaticAttempt)
+            {
+                WriteToButton(AutomaticBypassBtn, "Automatic: OFF");
+                AutomaticAttempt = false;
+            }
+            else
+            {
+                WriteToButton(AutomaticBypassBtn, "Automatic: ON");
+                AutomaticAttempt = true;
+            }
+        }
+
+        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
+        {
+            if (AutomaticAttempt)
+            {
+                RequestRoomHeightmap();
+                WriteToButton(AutomaticBypassBtn, "Automatic: OFF");
+                AutomaticAttempt = false;
+            }
+        }
+
+        public void OnLatencyTest(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnUsername(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserTalk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserShout(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InPurchaseOk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InUserEnterRoom(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InUserProfile(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InItemExtraData(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserTalk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserShout(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomUserWhisper(DataInterceptedEventArgs e)
+        {
+
+        }
     }
 }

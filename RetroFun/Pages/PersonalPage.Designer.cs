@@ -47,6 +47,11 @@
             this.UserIntUpDwn = new System.Windows.Forms.NumericUpDown();
             this.CaptureTradeUserBtn = new Sulakore.Components.SKoreButton();
             this.CrashUserBtn = new Sulakore.Components.SKoreButton();
+            this.AutomaticBypassBtn = new Sulakore.Components.SKoreButton();
+            this.AntiReloadChbx = new System.Windows.Forms.CheckBox();
+            this.EnterRoomBtn = new Sulakore.Components.SKoreButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).BeginInit();
@@ -54,11 +59,13 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TradeSpammerCooldownNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserIntUpDwn)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // EnableModToolsBtn
             // 
-            this.EnableModToolsBtn.Location = new System.Drawing.Point(524, 110);
+            this.EnableModToolsBtn.Location = new System.Drawing.Point(28, 83);
             this.EnableModToolsBtn.Name = "EnableModToolsBtn";
             this.EnableModToolsBtn.Size = new System.Drawing.Size(278, 33);
             this.EnableModToolsBtn.TabIndex = 0;
@@ -69,9 +76,9 @@
             // 
             this.CreditsNbx.Location = new System.Drawing.Point(61, 36);
             this.CreditsNbx.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
+            -402653185,
+            -1613725636,
+            54210108,
             0});
             this.CreditsNbx.Name = "CreditsNbx";
             this.CreditsNbx.Size = new System.Drawing.Size(261, 26);
@@ -81,9 +88,9 @@
             // 
             this.CrystalsNbx.Location = new System.Drawing.Point(61, 83);
             this.CrystalsNbx.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
+            -402653185,
+            -1613725636,
+            54210108,
             0});
             this.CrystalsNbx.Name = "CrystalsNbx";
             this.CrystalsNbx.Size = new System.Drawing.Size(261, 26);
@@ -93,9 +100,9 @@
             // 
             this.DucketsNbx.Location = new System.Drawing.Point(61, 126);
             this.DucketsNbx.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
+            -402653185,
+            -1613725636,
+            54210108,
             0});
             this.DucketsNbx.Name = "DucketsNbx";
             this.DucketsNbx.Size = new System.Drawing.Size(261, 26);
@@ -175,7 +182,7 @@
             // 
             // AcquireMODPermissionsBtn
             // 
-            this.AcquireMODPermissionsBtn.Location = new System.Drawing.Point(524, 48);
+            this.AcquireMODPermissionsBtn.Location = new System.Drawing.Point(28, 21);
             this.AcquireMODPermissionsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AcquireMODPermissionsBtn.Name = "AcquireMODPermissionsBtn";
             this.AcquireMODPermissionsBtn.Size = new System.Drawing.Size(278, 34);
@@ -199,7 +206,7 @@
             this.groupBox4.Controls.Add(this.UserIntUpDwn);
             this.groupBox4.Controls.Add(this.CaptureTradeUserBtn);
             this.groupBox4.Controls.Add(this.CrashUserBtn);
-            this.groupBox4.Location = new System.Drawing.Point(386, 269);
+            this.groupBox4.Location = new System.Drawing.Point(22, 271);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(416, 193);
             this.groupBox4.TabIndex = 81;
@@ -266,17 +273,71 @@
             this.CrashUserBtn.Text = "Spam Trade : OFF";
             this.CrashUserBtn.Click += new System.EventHandler(this.CrashUserBtn_Click);
             // 
+            // AutomaticBypassBtn
+            // 
+            this.AutomaticBypassBtn.Location = new System.Drawing.Point(14, 109);
+            this.AutomaticBypassBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AutomaticBypassBtn.Name = "AutomaticBypassBtn";
+            this.AutomaticBypassBtn.Size = new System.Drawing.Size(150, 38);
+            this.AutomaticBypassBtn.TabIndex = 84;
+            this.AutomaticBypassBtn.Text = "Automatic : OFF";
+            this.AutomaticBypassBtn.Click += new System.EventHandler(this.AutomaticBypassBtn_Click);
+            // 
+            // AntiReloadChbx
+            // 
+            this.AntiReloadChbx.AutoSize = true;
+            this.AntiReloadChbx.Location = new System.Drawing.Point(14, 178);
+            this.AntiReloadChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AntiReloadChbx.Name = "AntiReloadChbx";
+            this.AntiReloadChbx.Size = new System.Drawing.Size(168, 24);
+            this.AntiReloadChbx.TabIndex = 83;
+            this.AntiReloadChbx.Text = "Bypass restrictions";
+            this.AntiReloadChbx.UseVisualStyleBackColor = true;
+            // 
+            // EnterRoomBtn
+            // 
+            this.EnterRoomBtn.Location = new System.Drawing.Point(14, 42);
+            this.EnterRoomBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.EnterRoomBtn.Name = "EnterRoomBtn";
+            this.EnterRoomBtn.Size = new System.Drawing.Size(168, 37);
+            this.EnterRoomBtn.TabIndex = 82;
+            this.EnterRoomBtn.Text = "Enter Room";
+            this.EnterRoomBtn.Click += new System.EventHandler(this.EnterRoomBtn_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.AutomaticBypassBtn);
+            this.groupBox1.Controls.Add(this.AntiReloadChbx);
+            this.groupBox1.Controls.Add(this.EnterRoomBtn);
+            this.groupBox1.Location = new System.Drawing.Point(484, 25);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(217, 227);
+            this.groupBox1.TabIndex = 85;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Doorbell Bypass";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.AcquireMODPermissionsBtn);
+            this.groupBox2.Controls.Add(this.EnableModToolsBtn);
+            this.groupBox2.Location = new System.Drawing.Point(470, 337);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(348, 139);
+            this.groupBox2.TabIndex = 86;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Staff Utils (CLIENT)";
+            // 
             // PersonalPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.SetCurrencyBtn);
-            this.Controls.Add(this.AcquireMODPermissionsBtn);
             this.Controls.Add(this.Currency);
-            this.Controls.Add(this.EnableModToolsBtn);
             this.Name = "PersonalPage";
-            this.Size = new System.Drawing.Size(832, 488);
+            this.Size = new System.Drawing.Size(874, 477);
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).EndInit();
@@ -286,6 +347,9 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TradeSpammerCooldownNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserIntUpDwn)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -311,5 +375,10 @@
         private System.Windows.Forms.NumericUpDown UserIntUpDwn;
         private Sulakore.Components.SKoreButton CaptureTradeUserBtn;
         private Sulakore.Components.SKoreButton CrashUserBtn;
+        private Sulakore.Components.SKoreButton AutomaticBypassBtn;
+        private System.Windows.Forms.CheckBox AntiReloadChbx;
+        private Sulakore.Components.SKoreButton EnterRoomBtn;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

@@ -185,12 +185,6 @@
     <Compile Include="Pages\RoomBackFun.Designer.cs">
       <DependentUpon>RoomBackFun.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\RoomBypasserPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\RoomBypasserPage.Designer.cs">
-      <DependentUpon>RoomBypasserPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Pages\SpeechzPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -276,9 +270,6 @@
     <EmbeddedResource Include="Pages\RoomBackFun.resx">
       <DependentUpon>RoomBackFun.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\RoomBypasserPage.resx">
-      <DependentUpon>RoomBypasserPage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\SpeechzPage.resx">
       <DependentUpon>SpeechzPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,7 +292,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

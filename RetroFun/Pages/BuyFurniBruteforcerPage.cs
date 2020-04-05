@@ -535,8 +535,7 @@ namespace RetroFun.Pages
 
         private void SendPacket(int PageID, int FurniID)
         {
-            if (Connection.Remote.IsConnected)
-            {
+
                 Connection.SendToServerAsync(
             Out.CatalogBuyItem,
             PageID,
@@ -544,7 +543,7 @@ namespace RetroFun.Pages
             TextBox,
             1
             );
-            }
+            
         }
 
         private void StartLoop()
