@@ -42,6 +42,8 @@ namespace RetroFun.Pages
             }
         }
 
+        private ushort privateMessageAlert;
+
         private Dictionary<int, HEntity> users = new Dictionary<int, HEntity>();
 
 
@@ -50,9 +52,12 @@ namespace RetroFun.Pages
             InitializeComponent();
             Bind(StringMessageTbx, "Text", nameof(UserMessage));
             Bind(NoClientMessageBlockerChbx, "Checked", nameof(ShouldBlockReminders));
+
+            privateMessageAlert = Game.GetMessageIds("ef5f3ca3b9e2ee58f030527d85bd4da7").FirstOrDefault();
+
             if (Program.Master != null)
             {
-                Triggers.InAttach(In.PrivateMessageAlert, BlockThis);
+                Triggers.InAttach(privateMessageAlert, BlockThis);
             }
         }
 
