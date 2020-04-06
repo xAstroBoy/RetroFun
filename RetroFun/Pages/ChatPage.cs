@@ -27,6 +27,7 @@ namespace RetroFun.Pages
         private HMessage replacement;
         private HMessage FlooderMessages;
         private int LocalIndex;
+        private Dictionary<int, HEntity> users = new Dictionary<int, HEntity>();
 
         private bool isRaidMode;
 
@@ -391,6 +392,10 @@ namespace RetroFun.Pages
                     {
                         foreach (HEntity hentity in array)
                         {
+                            if (!users.ContainsKey(hentity.Id))
+                            {
+                                users.Add(hentity.Id, hentity);
+                            }
                             if (hentity.Name == UsernameFilter)
                             {
                                 LocalIndex = hentity.Index;
@@ -430,6 +435,7 @@ namespace RetroFun.Pages
 
         public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
+            users.Clear();
             if (BlockRoomLoad)
             {
 
@@ -444,6 +450,11 @@ namespace RetroFun.Pages
 
         public void InRoomUserLeft(DataInterceptedEventArgs e)
         {
+            int index = int.Parse(e.Packet.ReadString());
+            var UserLeaveEntity = users.Values.FirstOrDefault(ent => ent.Index == index);
+            if (UserLeaveEntity == null) return;
+
+            users.Remove(UserLeaveEntity.Id);
         }
 
         public void OnRoomUserWalk(DataInterceptedEventArgs e)
@@ -742,5 +753,15 @@ namespace RetroFun.Pages
 
         }
 
+
+        private void FindUserIndex(string username)
+        {
+            MainUserIndex = users.Values.FirstOrDefault(e => e.Name == username).Index;
+        }
+
+        private void FindIndexBtn_click(object sender, EventArgs e)
+        {
+            FindUserIndex(CloneUsernameFilter);
+        }
     }
 }

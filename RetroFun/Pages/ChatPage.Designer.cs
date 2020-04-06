@@ -56,6 +56,7 @@
             this.CloneUserSpeakBtn = new Sulakore.Components.SKoreButton();
             this.label3 = new System.Windows.Forms.Label();
             this.TargetUserTxb = new System.Windows.Forms.TextBox();
+            this.FindIndexBtn = new Sulakore.Components.SKoreButton();
             this.GroupChatDefault.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CooldownFloodNbx)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -334,13 +335,14 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.FindIndexBtn);
             this.groupBox5.Controls.Add(this.IndexNbx);
             this.groupBox5.Controls.Add(this.CloneUserSpeakBtn);
             this.groupBox5.Controls.Add(this.label3);
             this.groupBox5.Controls.Add(this.TargetUserTxb);
             this.groupBox5.Location = new System.Drawing.Point(481, 262);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(346, 194);
+            this.groupBox5.Size = new System.Drawing.Size(346, 220);
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Raid With Clone";
@@ -360,7 +362,7 @@
             // 
             // CloneUserSpeakBtn
             // 
-            this.CloneUserSpeakBtn.Location = new System.Drawing.Point(10, 142);
+            this.CloneUserSpeakBtn.Location = new System.Drawing.Point(8, 126);
             this.CloneUserSpeakBtn.Name = "CloneUserSpeakBtn";
             this.CloneUserSpeakBtn.Size = new System.Drawing.Size(308, 37);
             this.CloneUserSpeakBtn.TabIndex = 17;
@@ -384,6 +386,15 @@
             this.TargetUserTxb.Size = new System.Drawing.Size(308, 26);
             this.TargetUserTxb.TabIndex = 12;
             // 
+            // sKoreButton1
+            // 
+            this.FindIndexBtn.Location = new System.Drawing.Point(8, 169);
+            this.FindIndexBtn.Name = "sKoreButton1";
+            this.FindIndexBtn.Size = new System.Drawing.Size(308, 37);
+            this.FindIndexBtn.TabIndex = 19;
+            this.FindIndexBtn.Text = "Find Index";
+            this.FindIndexBtn.Click += new System.EventHandler(this.FindIndexBtn_click);
+            // 
             // ChatPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -395,7 +406,7 @@
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ChatPage";
-            this.Size = new System.Drawing.Size(1090, 469);
+            this.Size = new System.Drawing.Size(1090, 550);
             this.GroupChatDefault.ResumeLayout(false);
             this.GroupChatDefault.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CooldownFloodNbx)).EndInit();
@@ -445,5 +456,6 @@
         private Sulakore.Components.SKoreButton CloneUserSpeakBtn;
         private System.Windows.Forms.TextBox TargetUserTxb;
         private System.Windows.Forms.NumericUpDown IndexNbx;
+        private Sulakore.Components.SKoreButton FindIndexBtn;
     }
 }
