@@ -48,10 +48,10 @@
             this.CaptureTradeUserBtn = new Sulakore.Components.SKoreButton();
             this.CrashUserBtn = new Sulakore.Components.SKoreButton();
             this.AutomaticBypassBtn = new Sulakore.Components.SKoreButton();
-            this.BlockdoorBellDeniedChbx = new System.Windows.Forms.CheckBox();
             this.EnterRoomBtn = new Sulakore.Components.SKoreButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.BlockRestrictionsBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).BeginInit();
@@ -283,17 +283,6 @@
             this.AutomaticBypassBtn.Text = "Automatic : OFF";
             this.AutomaticBypassBtn.Click += new System.EventHandler(this.AutomaticBypassBtn_Click);
             // 
-            // BlockdoorBellDeniedChbx
-            // 
-            this.BlockdoorBellDeniedChbx.AutoSize = true;
-            this.BlockdoorBellDeniedChbx.Location = new System.Drawing.Point(14, 178);
-            this.BlockdoorBellDeniedChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.BlockdoorBellDeniedChbx.Name = "BlockdoorBellDeniedChbx";
-            this.BlockdoorBellDeniedChbx.Size = new System.Drawing.Size(168, 24);
-            this.BlockdoorBellDeniedChbx.TabIndex = 83;
-            this.BlockdoorBellDeniedChbx.Text = "Bypass restrictions";
-            this.BlockdoorBellDeniedChbx.UseVisualStyleBackColor = true;
-            // 
             // EnterRoomBtn
             // 
             this.EnterRoomBtn.Location = new System.Drawing.Point(14, 42);
@@ -306,8 +295,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.BlockRestrictionsBtn);
             this.groupBox1.Controls.Add(this.AutomaticBypassBtn);
-            this.groupBox1.Controls.Add(this.BlockdoorBellDeniedChbx);
             this.groupBox1.Controls.Add(this.EnterRoomBtn);
             this.groupBox1.Location = new System.Drawing.Point(484, 25);
             this.groupBox1.Name = "groupBox1";
@@ -326,6 +315,16 @@
             this.groupBox2.TabIndex = 86;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Staff Utils (CLIENT)";
+            // 
+            // sKoreButton1
+            // 
+            this.BlockRestrictionsBtn.Location = new System.Drawing.Point(14, 173);
+            this.BlockRestrictionsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BlockRestrictionsBtn.Name = "BlockRestrictionsBtn";
+            this.BlockRestrictionsBtn.Size = new System.Drawing.Size(182, 38);
+            this.BlockRestrictionsBtn.TabIndex = 85;
+            this.BlockRestrictionsBtn.Text = "Block Restrictions : OFF";
+            this.BlockRestrictionsBtn.Click += new System.EventHandler(this.BlockRestrictionsBtn_Click);
             // 
             // PersonalPage
             // 
@@ -348,7 +347,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.TradeSpammerCooldownNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UserIntUpDwn)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -376,9 +374,9 @@
         private Sulakore.Components.SKoreButton CaptureTradeUserBtn;
         private Sulakore.Components.SKoreButton CrashUserBtn;
         private Sulakore.Components.SKoreButton AutomaticBypassBtn;
-        private System.Windows.Forms.CheckBox BlockdoorBellDeniedChbx;
         private Sulakore.Components.SKoreButton EnterRoomBtn;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private Sulakore.Components.SKoreButton BlockRestrictionsBtn;
     }
 }

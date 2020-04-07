@@ -952,10 +952,7 @@ namespace RetroFun.Pages
 
         private void SendRoomSign(HSign Sign)
         {
-            if (Connection.Remote.IsConnected)
-            {
                 Connection.SendToServerAsync(Out.RoomUserSign, Sign);
-            }
         }
 
         public bool IsReceiving => true;
@@ -1240,7 +1237,8 @@ namespace RetroFun.Pages
 
         private void HandleMessageForYou(DataInterceptedEventArgs e)
         {
-            string message = e.Packet.ReadString(1);
+            e.Packet.ReadInteger();
+            string message = e.Packet.ReadString();
             if(BlockMessageForYou)
             {
                 e.IsBlocked = true;

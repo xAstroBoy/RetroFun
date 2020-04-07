@@ -192,7 +192,6 @@ namespace RetroFun.Pages
             Bind(DucketsNbx, "Value", nameof(DucketsValue));
             Bind(UserIntUpDwn, "Value", nameof(TradeSpammerUserID));
             Bind(TradeSpammerCooldownNbx, "Value", nameof(TradeSpammerCooldown));
-            Bind(BlockdoorBellDeniedChbx, "Checked", nameof(BlockBypassers));
 
             if (Program.Master != null)
             {
@@ -598,6 +597,19 @@ namespace RetroFun.Pages
 
         }
 
+        private void BlockRestrictionsBtn_Click(object sender, EventArgs e)
+        {
+            if(BlockBypassers)
+            {
+                WriteToButton(BlockRestrictionsBtn, "Block Restrictions : OFF");
+                BlockBypassers = false;
 
+            }
+            else
+            {
+                WriteToButton(BlockRestrictionsBtn, "Block Restrictions : ON");
+                BlockBypassers = true;
+            }
+        }
     }
 }

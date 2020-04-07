@@ -698,11 +698,9 @@ namespace RetroFun.Pages
                 {
                     if (FlooderEnabled)
                     {
-
                         Thread.Sleep(FlooderCooldown);
                         Connection.SendToServerAsync(FloodMessageBuilder());
                         Thread.Sleep(100);
-
                     }
 
                 } while (FlooderEnabled);

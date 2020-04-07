@@ -374,28 +374,31 @@ namespace RetroFun.Pages
 
         }
 
-        private void RemoveEntity(string username)
+        private void RemoveEntity(string username, bool ShouldBlacklist)
         {
             var entity = _users.Values.FirstOrDefault(e => e.Name == username);
-            RemoveEntity(entity);
+            RemoveEntity(entity, ShouldBlacklist);
         }
-        private void RemoveEntity(int index)
+        private void RemoveEntity(int index, bool shouldblacklist)
         {
             var entity = _users.Values.FirstOrDefault(e => e.Index == index);
-            RemoveEntity(entity);
+            RemoveEntity(entity, shouldblacklist);
         }
-        private void RemoveEntity(HEntity entity)
+        private void RemoveEntity(HEntity entity, bool shouldblacklist)
         {
             //Connection.SendToClientAsync(In.RoomUserWhisper, 0, $"[User Blacklist] : DEBUG - RemoveEntity(entity.. {{ name: {entity.Name}, entity.index: {entity.Index} }}) ", 0, 34, 0, -1);
 
             //Cache the og entity we removed 
-            if (entity != null)
+            if (shouldblacklist)
             {
-                if (!_removedEntities.ContainsKey(entity.Name))
-                    _removedEntities.Add(entity.Name, entity);
+                if (entity != null)
+                {
+                    if (!_removedEntities.ContainsKey(entity.Name))
+                        _removedEntities.Add(entity.Name, entity);
 
 
-                RemoveRoomUser(entity.Index);
+                    RemoveRoomUser(entity.Index);
+                }
             }
         }
 
@@ -443,7 +446,7 @@ namespace RetroFun.Pages
             }
 
             //remove it
-            RemoveEntity(entity);
+            RemoveEntity(entity, shouldstore);
 
             //Add our edited entity
             AddUser(id, entity.Index, newName, motto, look, entity.Tile, entity.Gender, entity.FavoriteGroup);
@@ -518,7 +521,7 @@ namespace RetroFun.Pages
         {
             foreach (var entry in _blacklistedEntities)
             {
-                RemoveEntity(entry.Key);
+                RemoveEntity(entry.Key, true);
             }
         }
         private void RestoreBlacklistedUsers()
@@ -569,7 +572,7 @@ namespace RetroFun.Pages
             //Remove it
             if (_isBlacklistActive)
             {
-                RemoveEntity(entityToBlacklist);
+                RemoveEntity(entityToBlacklist , true);
             }
 
             CountNicknamesBlacklisted();
@@ -580,7 +583,13 @@ namespace RetroFun.Pages
             // TODO : MAKE SURE IS JUST A TEMPORARY REMOVAL, AND NOT THE BLACKLIST REMOVAL.
 
             if (_users.TryGetValue(_selectedUserId, out var entityToRemove))
-                RemoveEntity(entityToRemove);
+
+                if (entityToRemove.Name == OwnUsername)
+                {
+                    Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[User Blacklist] : Hey, you can't blacklist yourself! :C", 0, 34, 0, -1);
+                    return; //ouchie
+                }
+            RemoveEntity(entityToRemove, true);
         }
 
         public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
