@@ -204,6 +204,7 @@ namespace RetroFun.Pages
                 Triggers.InAttach(In.RoomAccessDenied, AntiRoomUnload);
                 Triggers.InAttach(In.HotelView, AntiRoomUnload);
                 Triggers.InAttach(In.RoomOpen, DoorbellBypasser);
+                Triggers.InAttach(In.RoomEnterError, AntiRoomUnload);
             }
 
 
