@@ -192,7 +192,7 @@ namespace RetroFun.Pages
             Bind(DucketsNbx, "Value", nameof(DucketsValue));
             Bind(UserIntUpDwn, "Value", nameof(TradeSpammerUserID));
             Bind(TradeSpammerCooldownNbx, "Value", nameof(TradeSpammerCooldown));
-            Bind(AntiReloadChbx, "Checked", nameof(BlockBypassers));
+            Bind(BlockdoorBellDeniedChbx, "Checked", nameof(BlockBypassers));
 
             if (Program.Master != null)
             {
@@ -200,8 +200,11 @@ namespace RetroFun.Pages
                 Triggers.InAttach(In.TradeStopped, PreventCrashOnTrade);
 
                 Triggers.OutAttach(Out.TradeStart, InterceptTradeUser);
+
                 Triggers.InAttach(In.GenericErrorMessages, AntiRoomUnload);
                 Triggers.InAttach(In.RoomAccessDenied, AntiRoomUnload);
+                Triggers.InAttach(In.HotelView, AntiRoomUnload);
+                Triggers.InAttach(In.RoomOpen, DoorbellBypasser);
             }
 
 
@@ -214,7 +217,15 @@ namespace RetroFun.Pages
             e.IsBlocked = BlockBypassers;
         }
 
-      
+
+        public void DoorbellBypasser(DataInterceptedEventArgs e)
+        {
+            if (AutomaticAttempt)
+            {
+                RoomBypass();
+            }
+        }
+
         private void CloneDefaultUserPermissions(DataInterceptedEventArgs e)
         {
             if (!HasUserPermissionsMessage)
@@ -239,11 +250,7 @@ namespace RetroFun.Pages
 
         private void PreventCrashOnTrade(DataInterceptedEventArgs e)
         {
-            if (TradeSpammerActivated)
-            {
-                e.IsBlocked = true;
-            }
-
+                e.IsBlocked = TradeSpammerActivated;
         }
 
 
@@ -494,12 +501,21 @@ namespace RetroFun.Pages
 
         public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
-            if (AutomaticAttempt)
-            {
-                RequestRoomHeightmap();
-                WriteToButton(AutomaticBypassBtn, "Automatic: OFF");
-                AutomaticAttempt = false;
-            }
+            //if (AutomaticAttempt)
+            //{
+            //    RoomBypass();
+            //    WriteToButton(AutomaticBypassBtn, "Automatic: OFF");
+            //    AutomaticAttempt = false;
+            //}
+        }
+
+
+        private async void RoomBypass()
+        {
+            await Task.Delay(200);
+            await Connection.SendToServerAsync(Out.RequestRoomHeightmap);
+            WriteToButton(AutomaticBypassBtn, "Automatic: OFF");
+            AutomaticAttempt = false;
         }
 
         public void OnLatencyTest(DataInterceptedEventArgs e)
@@ -581,5 +597,7 @@ namespace RetroFun.Pages
         {
 
         }
+
+
     }
 }

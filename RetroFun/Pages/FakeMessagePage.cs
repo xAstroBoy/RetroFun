@@ -2,6 +2,7 @@
 using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Habbo;
+using Sulakore.Modules;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -42,7 +43,8 @@ namespace RetroFun.Pages
             }
         }
 
-        private ushort privateMessageAlert;
+        [MessageId("ef5f3ca3b9e2ee58f030527d85bd4da7")]
+        public ushort PrivateMessageAlert { get; set; }
 
         private Dictionary<int, HEntity> users = new Dictionary<int, HEntity>();
 
@@ -53,11 +55,9 @@ namespace RetroFun.Pages
             Bind(StringMessageTbx, "Text", nameof(UserMessage));
             Bind(NoClientMessageBlockerChbx, "Checked", nameof(ShouldBlockReminders));
 
-            privateMessageAlert = Game.GetMessageIds("ef5f3ca3b9e2ee58f030527d85bd4da7")[0];
-
             if (Program.Master != null)
             {
-                Triggers.InAttach(privateMessageAlert, BlockThis);
+                Triggers.InAttach(PrivateMessageAlert, BlockThis);
             }
         }
 

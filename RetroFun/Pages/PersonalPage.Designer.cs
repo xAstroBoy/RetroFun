@@ -48,7 +48,7 @@
             this.CaptureTradeUserBtn = new Sulakore.Components.SKoreButton();
             this.CrashUserBtn = new Sulakore.Components.SKoreButton();
             this.AutomaticBypassBtn = new Sulakore.Components.SKoreButton();
-            this.AntiReloadChbx = new System.Windows.Forms.CheckBox();
+            this.BlockdoorBellDeniedChbx = new System.Windows.Forms.CheckBox();
             this.EnterRoomBtn = new Sulakore.Components.SKoreButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -283,16 +283,16 @@
             this.AutomaticBypassBtn.Text = "Automatic : OFF";
             this.AutomaticBypassBtn.Click += new System.EventHandler(this.AutomaticBypassBtn_Click);
             // 
-            // AntiReloadChbx
+            // BlockdoorBellDeniedChbx
             // 
-            this.AntiReloadChbx.AutoSize = true;
-            this.AntiReloadChbx.Location = new System.Drawing.Point(14, 178);
-            this.AntiReloadChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.AntiReloadChbx.Name = "AntiReloadChbx";
-            this.AntiReloadChbx.Size = new System.Drawing.Size(168, 24);
-            this.AntiReloadChbx.TabIndex = 83;
-            this.AntiReloadChbx.Text = "Bypass restrictions";
-            this.AntiReloadChbx.UseVisualStyleBackColor = true;
+            this.BlockdoorBellDeniedChbx.AutoSize = true;
+            this.BlockdoorBellDeniedChbx.Location = new System.Drawing.Point(14, 178);
+            this.BlockdoorBellDeniedChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BlockdoorBellDeniedChbx.Name = "BlockdoorBellDeniedChbx";
+            this.BlockdoorBellDeniedChbx.Size = new System.Drawing.Size(168, 24);
+            this.BlockdoorBellDeniedChbx.TabIndex = 83;
+            this.BlockdoorBellDeniedChbx.Text = "Bypass restrictions";
+            this.BlockdoorBellDeniedChbx.UseVisualStyleBackColor = true;
             // 
             // EnterRoomBtn
             // 
@@ -307,7 +307,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.AutomaticBypassBtn);
-            this.groupBox1.Controls.Add(this.AntiReloadChbx);
+            this.groupBox1.Controls.Add(this.BlockdoorBellDeniedChbx);
             this.groupBox1.Controls.Add(this.EnterRoomBtn);
             this.groupBox1.Location = new System.Drawing.Point(484, 25);
             this.groupBox1.Name = "groupBox1";
@@ -376,7 +376,7 @@
         private Sulakore.Components.SKoreButton CaptureTradeUserBtn;
         private Sulakore.Components.SKoreButton CrashUserBtn;
         private Sulakore.Components.SKoreButton AutomaticBypassBtn;
-        private System.Windows.Forms.CheckBox AntiReloadChbx;
+        private System.Windows.Forms.CheckBox BlockdoorBellDeniedChbx;
         private Sulakore.Components.SKoreButton EnterRoomBtn;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
