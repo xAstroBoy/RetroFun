@@ -34,7 +34,6 @@ namespace RetroFun.Pages
             }
         }
 
-        private int selectedIndex;
 
 
         private int _CreditIDInt = 1;

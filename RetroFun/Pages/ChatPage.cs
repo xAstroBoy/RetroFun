@@ -17,6 +17,7 @@ using System.Linq;
 using System.Resources;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace RetroFun.Pages
 {
@@ -30,6 +31,7 @@ namespace RetroFun.Pages
         private Dictionary<int, HEntity> users = new Dictionary<int, HEntity>();
 
         private bool isRaidMode;
+        private bool IsRaidModeAlertDone;
 
         private int[] rainbowlist = new int[] { 3, 4, 5, 6, 7, 11, 12, 13, 14, 15, 18 };
 
@@ -83,6 +85,18 @@ namespace RetroFun.Pages
             }
         }
 
+
+        private int _RaidUserCooldownCooldown = 50;
+
+        public int RaidUserCooldownCooldown
+        {
+            get => _RaidUserCooldownCooldown;
+            set
+            {
+                _RaidUserCooldownCooldown = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         private bool _antiBobbaFilter;
 
@@ -255,7 +269,9 @@ namespace RetroFun.Pages
             Bind(CooldownFloodNbx, "Value", nameof(FlooderCooldown));
             Bind(TargetUserTxb, "Text", nameof(CloneUsernameFilter));
             Bind(IndexNbx, "Value", nameof(MainUserIndex));
+            Bind(CooldownCloneUserChatNbx, "Value", nameof(RaidUserCooldownCooldown));
 
+            
 
             var imageType = typeof(Image);
 
@@ -512,10 +528,24 @@ namespace RetroFun.Pages
             {
                 if (index == MainUserIndex)
                 {
-                    Connection.SendToServerAsync(Out.RoomUserTalk, " " + msg, bubbleid);
+                    ConvertCSChatTalk(msg, bubbleid);
                 }
             }
         }
+        private async void ConvertCSChatTalk(string message, int bubbleid)
+        {
+            await Task.Delay(RaidUserCooldownCooldown);
+            await Connection.SendToServerAsync(Out.RoomUserTalk, " " + message, bubbleid);
+            return;
+        }
+
+        private async void ConvertCSChatShout(string message, int bubbleid)
+        {
+            await Task.Delay(RaidUserCooldownCooldown);
+            await Connection.SendToServerAsync(Out.RoomUserTalk, " " + message, bubbleid);
+            return;
+        }
+
 
         public void InRoomUserShout(DataInterceptedEventArgs e)
         {
@@ -537,7 +567,7 @@ namespace RetroFun.Pages
             {
                 if (index == MainUserIndex)
                 {
-                    Connection.SendToServerAsync(Out.RoomUserShout, " " + msg, bubbleid);
+                    ConvertCSChatShout(msg, bubbleid);
                 }
             }
         }

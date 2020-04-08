@@ -52,11 +52,13 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.FindIndexBtn = new Sulakore.Components.SKoreButton();
             this.IndexNbx = new System.Windows.Forms.NumericUpDown();
             this.CloneUserSpeakBtn = new Sulakore.Components.SKoreButton();
             this.label3 = new System.Windows.Forms.Label();
             this.TargetUserTxb = new System.Windows.Forms.TextBox();
-            this.FindIndexBtn = new Sulakore.Components.SKoreButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.CooldownCloneUserChatNbx = new System.Windows.Forms.NumericUpDown();
             this.GroupChatDefault.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CooldownFloodNbx)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -65,6 +67,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IndexNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CooldownCloneUserChatNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // BubblesSSCmbx
@@ -335,6 +338,8 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.CooldownCloneUserChatNbx);
+            this.groupBox5.Controls.Add(this.label4);
             this.groupBox5.Controls.Add(this.FindIndexBtn);
             this.groupBox5.Controls.Add(this.IndexNbx);
             this.groupBox5.Controls.Add(this.CloneUserSpeakBtn);
@@ -342,16 +347,25 @@
             this.groupBox5.Controls.Add(this.TargetUserTxb);
             this.groupBox5.Location = new System.Drawing.Point(481, 262);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(346, 220);
+            this.groupBox5.Size = new System.Drawing.Size(564, 285);
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Raid With Clone";
             // 
+            // FindIndexBtn
+            // 
+            this.FindIndexBtn.Location = new System.Drawing.Point(10, 209);
+            this.FindIndexBtn.Name = "FindIndexBtn";
+            this.FindIndexBtn.Size = new System.Drawing.Size(308, 37);
+            this.FindIndexBtn.TabIndex = 19;
+            this.FindIndexBtn.Text = "Find Index";
+            this.FindIndexBtn.Click += new System.EventHandler(this.FindIndexBtn_click);
+            // 
             // IndexNbx
             // 
-            this.IndexNbx.Location = new System.Drawing.Point(10, 94);
+            this.IndexNbx.Location = new System.Drawing.Point(12, 134);
             this.IndexNbx.Maximum = new decimal(new int[] {
-            999999999,
+            2147483647,
             0,
             0,
             0});
@@ -362,7 +376,7 @@
             // 
             // CloneUserSpeakBtn
             // 
-            this.CloneUserSpeakBtn.Location = new System.Drawing.Point(8, 126);
+            this.CloneUserSpeakBtn.Location = new System.Drawing.Point(10, 166);
             this.CloneUserSpeakBtn.Name = "CloneUserSpeakBtn";
             this.CloneUserSpeakBtn.Size = new System.Drawing.Size(308, 37);
             this.CloneUserSpeakBtn.TabIndex = 17;
@@ -372,7 +386,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 29);
+            this.label3.Location = new System.Drawing.Point(8, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 20);
             this.label3.TabIndex = 16;
@@ -380,20 +394,42 @@
             // 
             // TargetUserTxb
             // 
-            this.TargetUserTxb.Location = new System.Drawing.Point(8, 62);
+            this.TargetUserTxb.Location = new System.Drawing.Point(10, 102);
             this.TargetUserTxb.MaxLength = 2147483647;
             this.TargetUserTxb.Name = "TargetUserTxb";
             this.TargetUserTxb.Size = new System.Drawing.Size(308, 26);
             this.TargetUserTxb.TabIndex = 12;
             // 
-            // sKoreButton1
+            // label4
             // 
-            this.FindIndexBtn.Location = new System.Drawing.Point(8, 169);
-            this.FindIndexBtn.Name = "sKoreButton1";
-            this.FindIndexBtn.Size = new System.Drawing.Size(308, 37);
-            this.FindIndexBtn.TabIndex = 19;
-            this.FindIndexBtn.Text = "Find Index";
-            this.FindIndexBtn.Click += new System.EventHandler(this.FindIndexBtn_click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(379, 51);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(83, 20);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Cooldown:";
+            // 
+            // CooldownCloneUserChatNbx
+            // 
+            this.CooldownCloneUserChatNbx.Location = new System.Drawing.Point(383, 73);
+            this.CooldownCloneUserChatNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.CooldownCloneUserChatNbx.Minimum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.CooldownCloneUserChatNbx.Name = "CooldownCloneUserChatNbx";
+            this.CooldownCloneUserChatNbx.Size = new System.Drawing.Size(120, 26);
+            this.CooldownCloneUserChatNbx.TabIndex = 17;
+            this.CooldownCloneUserChatNbx.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
             // 
             // ChatPage
             // 
@@ -421,6 +457,7 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.IndexNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CooldownCloneUserChatNbx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -457,5 +494,7 @@
         private System.Windows.Forms.TextBox TargetUserTxb;
         private System.Windows.Forms.NumericUpDown IndexNbx;
         private Sulakore.Components.SKoreButton FindIndexBtn;
+        private System.Windows.Forms.NumericUpDown CooldownCloneUserChatNbx;
+        private System.Windows.Forms.Label label4;
     }
 }
