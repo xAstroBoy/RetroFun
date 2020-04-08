@@ -1015,5 +1015,17 @@ namespace RetroFun.Pages
         public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
         {
         }
+
+        private void BuyWithPreviousPageIDBtn_Click(object sender, EventArgs e)
+        {
+            PageIDInt1--;
+            SendPacket(PageIDInt1, FurniIDint1);
+        }
+
+        private void BuyWithPreviousFurnIIDBtn_Click(object sender, EventArgs e)
+        {
+            FurniIDint1--;
+            SendPacket(PageIDInt1, FurniIDint1);
+        }
     }
 }

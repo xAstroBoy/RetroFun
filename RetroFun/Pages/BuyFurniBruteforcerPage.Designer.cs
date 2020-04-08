@@ -60,6 +60,8 @@
             this.PageIDOptionChbx = new System.Windows.Forms.RadioButton();
             this.CaptureModeBtn = new Sulakore.Components.SKoreButton();
             this.FindHostNameBtn = new Sulakore.Components.SKoreButton();
+            this.BuyWithPreviousPageIDBtn = new Sulakore.Components.SKoreButton();
+            this.BuyWithPreviousFurnIIDBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseLoopCoolDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CataloguePageIDBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CatalogueFurniIDBox)).BeginInit();
@@ -451,10 +453,32 @@
             this.FindHostNameBtn.Text = "Find Host Name";
             this.FindHostNameBtn.Click += new System.EventHandler(this.FindHostNameBtn_Click);
             // 
+            // BuyWithPreviousPageIDBtn
+            // 
+            this.BuyWithPreviousPageIDBtn.Location = new System.Drawing.Point(394, 482);
+            this.BuyWithPreviousPageIDBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BuyWithPreviousPageIDBtn.Name = "BuyWithPreviousPageIDBtn";
+            this.BuyWithPreviousPageIDBtn.Size = new System.Drawing.Size(336, 31);
+            this.BuyWithPreviousPageIDBtn.TabIndex = 64;
+            this.BuyWithPreviousPageIDBtn.Text = "Subtract PageID and purchase ";
+            this.BuyWithPreviousPageIDBtn.Click += new System.EventHandler(this.BuyWithPreviousPageIDBtn_Click);
+            // 
+            // BuyWithPreviousFurnIIDBtn
+            // 
+            this.BuyWithPreviousFurnIIDBtn.Location = new System.Drawing.Point(394, 523);
+            this.BuyWithPreviousFurnIIDBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BuyWithPreviousFurnIIDBtn.Name = "BuyWithPreviousFurnIIDBtn";
+            this.BuyWithPreviousFurnIIDBtn.Size = new System.Drawing.Size(336, 31);
+            this.BuyWithPreviousFurnIIDBtn.TabIndex = 65;
+            this.BuyWithPreviousFurnIIDBtn.Text = "Subtract FurniID and purchase ";
+            this.BuyWithPreviousFurnIIDBtn.Click += new System.EventHandler(this.BuyWithPreviousFurnIIDBtn_Click);
+            // 
             // BuyFurniBruteforcerPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.BuyWithPreviousFurnIIDBtn);
+            this.Controls.Add(this.BuyWithPreviousPageIDBtn);
             this.Controls.Add(this.FindHostNameBtn);
             this.Controls.Add(this.CaptureModeBtn);
             this.Controls.Add(this.groupBox1);
@@ -487,7 +511,7 @@
             this.Controls.Add(this.SendPurchaseBtn);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "BuyFurniBruteforcerPage";
-            this.Size = new System.Drawing.Size(1103, 548);
+            this.Size = new System.Drawing.Size(1103, 565);
             ((System.ComponentModel.ISupportInitialize)(this.PurchaseLoopCoolDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CataloguePageIDBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CatalogueFurniIDBox)).EndInit();
@@ -535,5 +559,7 @@
         private System.Windows.Forms.RadioButton PageIDOptionChbx;
         private Sulakore.Components.SKoreButton CaptureModeBtn;
         private Sulakore.Components.SKoreButton FindHostNameBtn;
+        private Sulakore.Components.SKoreButton BuyWithPreviousPageIDBtn;
+        private Sulakore.Components.SKoreButton BuyWithPreviousFurnIIDBtn;
     }
 }
