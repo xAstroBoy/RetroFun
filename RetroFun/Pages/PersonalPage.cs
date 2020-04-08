@@ -598,6 +598,10 @@ namespace RetroFun.Pages
 
         }
 
+        public void InFloorItemUpdate(DataInterceptedEventArgs e)
+        {
+        }
+
         private void BlockRestrictionsBtn_Click(object sender, EventArgs e)
         {
             if(BlockBypassers)

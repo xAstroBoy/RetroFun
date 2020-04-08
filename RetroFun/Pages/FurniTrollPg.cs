@@ -1806,6 +1806,10 @@ namespace RetroFun.Pages
         #endregion
 
         #region Subscribers
+        public void InFloorItemUpdate(DataInterceptedEventArgs e)
+        {
+        }
+
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {
 

@@ -475,6 +475,10 @@ namespace RetroFun.Pages
 
         }
 
+        public void InFloorItemUpdate(DataInterceptedEventArgs e)
+        {
+        }
+
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
 

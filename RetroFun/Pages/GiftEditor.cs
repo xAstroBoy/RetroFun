@@ -896,5 +896,9 @@ namespace RetroFun.Pages
         public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
         {
         }
+
+        public void InFloorItemUpdate(DataInterceptedEventArgs e)
+        {
+        }
     }
 }

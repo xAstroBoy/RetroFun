@@ -1027,5 +1027,9 @@ namespace RetroFun.Pages
             FurniIDint1--;
             SendPacket(PageIDInt1, FurniIDint1);
         }
+
+        public void InFloorItemUpdate(DataInterceptedEventArgs e)
+        {
+        }
     }
 }

@@ -795,5 +795,9 @@ namespace RetroFun.Pages
         {
             FindUserIndex(CloneUsernameFilter);
         }
+
+        public void InFloorItemUpdate(DataInterceptedEventArgs e)
+        {
+        }
     }
 }

@@ -149,6 +149,10 @@ namespace RetroFun.Pages
         {
         }
 
+        public void InFloorItemUpdate(DataInterceptedEventArgs e)
+        {
+        }
+
     }
 
     public class PartColor

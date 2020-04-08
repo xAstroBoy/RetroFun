@@ -108,6 +108,11 @@ namespace RetroFun.Pages
         public void InItemExtraData(DataInterceptedEventArgs e)
         {
         }
+
+        public void InFloorItemUpdate(DataInterceptedEventArgs e)
+        {
+        }
+
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
             if (ShouldCaptureIDMode)

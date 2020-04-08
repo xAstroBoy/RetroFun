@@ -161,7 +161,10 @@ namespace RetroFun
                 {
                     sub.InRoomUserWhisper(e);
                 }
-
+                else if (In.FloorItemUpdate == id)
+                {
+                    sub.InFloorItemUpdate(e);
+                }
             }
         }
     }
