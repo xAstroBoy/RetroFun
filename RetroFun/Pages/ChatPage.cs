@@ -769,7 +769,11 @@ namespace RetroFun.Pages
 
                 WriteToButton(CloneUserSpeakBtn, "Clone User Speak : ON");
                 isRaidMode = true;
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "Warning: This can result in a ban of the account! Use with caution!", 0, 34, 0, -1);
+                if(!IsRaidModeAlertDone)
+                {
+                    Connection.SendToClientAsync(In.RoomUserWhisper, 0, "CAUTION: This can result in a ban of the account! Use with caution!", 0, 34, 0, -1);
+                    IsRaidModeAlertDone = true;
+                }
 
             }
 
