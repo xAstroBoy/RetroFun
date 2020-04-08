@@ -817,17 +817,6 @@ namespace RetroFun.Pages
 
             string data = e.Packet.ReadString();
 
-
-            //e.Packet.ReadInteger();
-
-            //e.Packet.ReadInteger();
-            // e.Packet.ReadInteger();
-            //e.Packet.ReadInteger();
-            // e.Packet.ReadInteger();
-
-            //string data = e.Packet.ReadString();
-
-
             e.Continue();
 
             if (!int.TryParse(data, out int diceState) || diceState == -1) return;
