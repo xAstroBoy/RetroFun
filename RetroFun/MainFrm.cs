@@ -3,19 +3,26 @@ using RetroFun.Pages;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Modules;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
 
 namespace RetroFun
 {
     [DesignerCategory("Form")]
     [Module("RetroFun", "All-in-one scripting tool!")]
     [Author("marcocorriero")]
+
+
+
     public partial class MainFrm : ObservableExtensionForm
     {
         public override bool IsRemoteModule => true;
 
 
+
+        
         public bool IsAlwaysOnTop
         {
             get => TopMost;
