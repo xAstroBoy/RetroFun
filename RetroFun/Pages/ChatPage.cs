@@ -26,7 +26,9 @@ namespace RetroFun.Pages
     public partial class ChatPage : ObservablePage, ISubscriber
     {
         private HMessage replacement;
-        private HMessage FlooderMessages;
+        private HMessage ChatMessageBuild;
+        private HMessage FloodMessageBuild;
+
         private int LocalIndex;
         private Dictionary<int, HEntity> users = new Dictionary<int, HEntity>();
 
@@ -46,7 +48,9 @@ namespace RetroFun.Pages
 
         private bool _FlooderEnabled;
 
-        private int FloodServerBubble;
+        private int ChatMessageBubble;
+
+        private int FloodMessageBubble;
 
         public bool FlooderEnabled
         {
@@ -72,6 +76,18 @@ namespace RetroFun.Pages
             }
         }
 
+
+        private string _ChatMessageText;
+
+        public string ChatMessageText
+        {
+            get => _ChatMessageText;
+            set
+            {
+                _ChatMessageText = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
         private int _FlooderCooldown = 50;
 
@@ -270,6 +286,7 @@ namespace RetroFun.Pages
             Bind(TargetUserTxb, "Text", nameof(CloneUsernameFilter));
             Bind(IndexNbx, "Value", nameof(MainUserIndex));
             Bind(CooldownCloneUserChatNbx, "Value", nameof(RaidUserCooldownCooldown));
+            Bind(ChatMsgTxb, "Text", nameof(ChatMessageText));
 
             
 
@@ -329,10 +346,7 @@ namespace RetroFun.Pages
 
 
         }
-        private void ForceDefSpeakBox_CheckedChanged(object sender, EventArgs e)
-        {
-            ToggleChatDefault();
-        }
+
 
         private void RainbowChatChbx_CheckedChanged(object sender, EventArgs e)
         {
@@ -360,17 +374,6 @@ namespace RetroFun.Pages
         }
 
 
-        private void ToggleChatDefault()
-        {
-            if (ForceChatSpeak)
-            {
-                ToggleGroupbox(GroupChatDefault, false);
-            }
-            else
-            {
-                ToggleGroupbox(GroupChatDefault, true);
-            }
-        }
 
         private void ToggleGroupbox(GroupBox Group, bool Actived)
         {
@@ -684,40 +687,91 @@ namespace RetroFun.Pages
 
             if (UseSelectedBubbleServerSide)
             {
-                FloodServerBubble = SelectedSSBubbleId;
+                FloodMessageBubble = SelectedSSBubbleId;
             }
             else
             {
-                FloodServerBubble = 18;
+                FloodMessageBubble = 18;
             }
 
             if (RainbowChatEnabled)
             {
                 int Debug = GetRainbowBubbleint();
-                FloodServerBubble = Debug;
+                FloodMessageBubble = Debug;
             }
             if (!ForceChatSpeak)
             {
-                FlooderMessages = new HMessage(Out.RoomUserTalk, FloodMessage, FloodServerBubble);
+                FloodMessageBuild = new HMessage(Out.RoomUserTalk, FloodMessage, ChatMessageBubble);
             }
             else
             {
                 if (ForceNormalSpeak)
                 {
-                    FlooderMessages = new HMessage(Out.RoomUserTalk, FloodMessage, FloodServerBubble);
+                    FloodMessageBuild = new HMessage(Out.RoomUserTalk, FloodMessage, ChatMessageBubble);
                 }
                 else if (ForceShoutChat)
                 {
-                    FlooderMessages = new HMessage(Out.RoomUserShout, FloodMessage, FloodServerBubble);
+                    FloodMessageBuild = new HMessage(Out.RoomUserShout, FloodMessage, ChatMessageBubble);
                 }
                 else if (ForceWhisperChat)
                 {
-                    FlooderMessages = new HMessage(Out.RoomUserWhisper, FloodMessage, FloodServerBubble);
+                    FloodMessageBuild = new HMessage(Out.RoomUserWhisper, FloodMessage, ChatMessageBubble);
                 }
             }
 
-            return FlooderMessages;
+            return FloodMessageBuild;
         }
+
+
+        private HMessage ChatMessageBuilder()
+        {
+            string ChatMessage;
+
+            if (AntiBobbaFilter)
+            {
+                ChatMessage = BypassFilter(ChatMessageText);
+            }
+            else
+            {
+                ChatMessage = ChatMessageText;
+            }
+
+            if (UseSelectedBubbleServerSide)
+            {
+                ChatMessageBubble = SelectedSSBubbleId;
+            }
+            else
+            {
+                ChatMessageBubble = 18;
+            }
+
+            if (RainbowChatEnabled)
+            {
+                int Debug = GetRainbowBubbleint();
+                ChatMessageBubble = Debug;
+            }
+            if (!ForceChatSpeak)
+            {
+                ChatMessageBuild = new HMessage(Out.RoomUserTalk, ChatMessage, ChatMessageBubble);
+            }
+            else
+            {
+                if (ForceNormalSpeak)
+                {
+                    ChatMessageBuild = new HMessage(Out.RoomUserTalk, ChatMessage, ChatMessageBubble);
+                }
+                else if (ForceShoutChat)
+                {
+                    ChatMessageBuild = new HMessage(Out.RoomUserShout, ChatMessage, ChatMessageBubble);
+                }
+                else if (ForceWhisperChat)
+                {
+                    ChatMessageBuild = new HMessage(Out.RoomUserWhisper, ChatMessage, ChatMessageBubble);
+                }
+            }
+            return ChatMessageBuild;
+        }
+
 
         private void StartFloodThread()
         {
@@ -798,6 +852,11 @@ namespace RetroFun.Pages
 
         public void InFloorItemUpdate(DataInterceptedEventArgs e)
         {
+        }
+
+        private void SendMessageBtn_Click(object sender, EventArgs e)
+        {
+            Connection.SendToServerAsync(ChatMessageBuilder());
         }
     }
 }

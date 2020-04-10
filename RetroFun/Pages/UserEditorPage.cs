@@ -13,6 +13,7 @@ using Sulakore.Communication;
 using Sulakore.Habbo;
 using Sulakore.Protocol;
 using Sulakore.Components;
+using System.Threading;
 
 namespace RetroFun.Pages
 {
@@ -24,7 +25,9 @@ namespace RetroFun.Pages
         private int _selectedUserId;
         private bool _isBlacklistActive = true;
         private Dictionary<string, bool> _blacklistedEntities;
-        public  int LocalIndex;
+        public int LocalIndex;
+
+        private bool _IsAddAllUsersInBlacklist;
 
         //username => Removed entity
         private Dictionary<string, HEntity> _removedEntities; //
@@ -270,7 +273,7 @@ namespace RetroFun.Pages
             //This "entity" we grab here is gives the _original_ entity, so we can check if that _original_ username exists in the removed dictionary, or in the blacklisted users list and is active => the boolean value is true:)
             var entity = _users.Values.FirstOrDefault(e => e.Index == index);
             if (entity == null) return false;
-            
+
             return _removedEntities.ContainsKey(entity.Name) || IsActiveAndBlacklisted(entity.Name);
         }
         private bool IsActiveAndBlacklisted(string username)
@@ -318,6 +321,13 @@ namespace RetroFun.Pages
                         {
                             removedEntities.Add(entity);
                         }
+                        if(_IsAddAllUsersInBlacklist)
+                        {
+                            if (entity.Name != OwnUsername)
+                            {
+                                removedEntities.Add(entity);
+                            }
+                        }
                     }
                 }
                 WriteRegistrationUsers(_users.Count);
@@ -364,7 +374,7 @@ namespace RetroFun.Pages
 
                 SelectUserLabel.Invoke((MethodInvoker)delegate
                 {
-                    SelectUserLabel.Text = entity.Name;   
+                    SelectUserLabel.Text = entity.Name;
                 });
             }
         }
@@ -412,7 +422,7 @@ namespace RetroFun.Pages
             if (_removedEntities.TryGetValue(username, out HEntity entity))
             {
                 if (_users.TryGetValue(entity.Id, out _))
-                    {
+                {
                     //Remove fake entity
                     RemoveRoomUser(entity.Index);
 
@@ -427,7 +437,7 @@ namespace RetroFun.Pages
 
         }
 
-        private void ReplaceUser(int id, string newName, string motto, string look , bool shouldstore)
+        private void ReplaceUser(int id, string newName, string motto, string look, bool shouldstore)
         {
             if (!_users.TryGetValue(id, out var entity))
             {
@@ -556,13 +566,14 @@ namespace RetroFun.Pages
 
             if (entityToBlacklist.Name == OwnUsername)
             {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[User Blacklist] : Hey, you can't blacklist yourself! :C", 0, 34, 0, -1);
+                Connection.SendToClientAsync(In.RoomUserTalk, entityToBlacklist.Index, "[User Blacklist] :Hey, you can't blacklist yourself!", 0, 30, 0, -1);
                 return; //ouchie
             }
 
             if (_blacklistedEntities.ContainsKey(entityToBlacklist.Name))
             {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[User Blacklist] : This user is already blacklisted!", 0, 34, 0, -1);
+                Connection.SendToClientAsync(In.RoomUserTalk, entityToBlacklist.Index, "[User Blacklist] : Hey, im already added in your blacklist!", 0, 30, 0, -1);
+
                 return; //ouchie
             }
 
@@ -572,7 +583,7 @@ namespace RetroFun.Pages
             //Remove it
             if (_isBlacklistActive)
             {
-                RemoveEntity(entityToBlacklist , true);
+                RemoveEntity(entityToBlacklist, true);
             }
 
             CountNicknamesBlacklisted();
@@ -586,7 +597,7 @@ namespace RetroFun.Pages
 
                 if (entityToRemove.Name == OwnUsername)
                 {
-                    Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[User Blacklist] : Hey, you can't blacklist yourself! :C", 0, 34, 0, -1);
+                    Connection.SendToClientAsync(In.RoomUserTalk, entityToRemove.Index, "[User Blacklist] :Hey, you can't blacklist yourself!", 0, 30, 0, -1);
                     return; //ouchie
                 }
             RemoveEntity(entityToRemove, true);
@@ -599,5 +610,102 @@ namespace RetroFun.Pages
         public void InFloorItemUpdate(DataInterceptedEventArgs e)
         {
         }
+
+
+
+
+        private void AddAllUsersInBlacklist()
+        {
+            foreach (KeyValuePair<int, HEntity> entity in _users)
+            {
+                if (!_users.TryGetValue(entity.Key, out var entityToBlacklist))
+                {
+                    //ouch
+                    return;
+                }
+
+                if (entityToBlacklist.Name == OwnUsername)
+                {
+                    return; //ouchie
+                }
+
+                if (_blacklistedEntities.ContainsKey(OwnUsername))
+                {
+                    //Blacklist it, add blacklist entry
+                    _blacklistedEntities.Remove(OwnUsername);
+
+                }
+
+                if (!_blacklistedEntities.ContainsKey(entityToBlacklist.Name))
+                {
+
+                    //Blacklist it, add blacklist entry
+                    _blacklistedEntities.Add(entityToBlacklist.Name, true);
+
+                    //Remove it
+                    if (_isBlacklistActive)
+                    {
+                        RemoveEntity(entityToBlacklist, true);
+                    }
+
+                }
+                CountNicknamesBlacklisted();
+            }
+        }
+
+
+        private void StartAllUserRemover()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    try
+                    {
+                        if (_IsAddAllUsersInBlacklist)
+                        {
+                            AddAllUsersInBlacklist();
+                            Thread.Sleep(150);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+
+                } while (_IsAddAllUsersInBlacklist);
+            }).Start();
+        }
+
+
+        private void AddAllUsersOnBlacklistBtn_Click(object sender, EventArgs e)
+        {
+            if(_IsAddAllUsersInBlacklist)
+            {
+                _IsAddAllUsersInBlacklist = false;
+                WriteToButton(AddAllUsersOnBlacklistBtn, "Add All Users in blacklist : OFF");
+            }
+            else
+            {
+                _IsAddAllUsersInBlacklist = true;
+                StartAllUserRemover();
+                WriteToButton(AddAllUsersOnBlacklistBtn, "Add All Users in blacklist : ON");
+
+            }
+        }
+
+        private void RestoreBlacklistBtn_Click(object sender, EventArgs e)
+        {
+            //foreach (var entry in _blacklistedEntities.ToArray())
+            //{
+
+            //    RestoreEntity(entry.Key);
+
+            //    //De-activate this blacklistEntry
+            //    _blacklistedEntities[entry.Key] = false;
+            //}
+        }
     }
 }
+
