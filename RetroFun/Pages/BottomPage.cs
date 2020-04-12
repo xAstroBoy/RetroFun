@@ -90,7 +90,6 @@ namespace RetroFun.Pages
 
         public void InRoomUserWhisper(DataInterceptedEventArgs e)
         {
-
         }
         public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {

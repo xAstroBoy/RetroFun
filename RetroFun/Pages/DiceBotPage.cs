@@ -942,6 +942,7 @@ namespace RetroFun.Pages
 
         public void InRoomUserWhisper(DataInterceptedEventArgs e)
         {
+            e.Continue();
 
         }
 

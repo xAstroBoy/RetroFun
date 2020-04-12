@@ -143,8 +143,8 @@ namespace RetroFun.Pages
 
         public void InRoomUserWhisper(DataInterceptedEventArgs e)
         {
-
         }
+
         public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
         {
         }

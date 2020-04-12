@@ -464,9 +464,6 @@ namespace RetroFun.Pages
 
         private void AddUser(int id, int index, string name, string motto, string figureId, HPoint tile, HGender gender, string favoriteGroup)
         {
-
-            //Connection.SendToClientAsync(In.RoomUserWhisper, 0, $"[User Blacklist] : DEBUG - AddUser({index}, {name}, ({tile})..)", 0, 34, 0, -1);
-
             Connection.SendToClientAsync(In.RoomUsers,
                 1,
                 id,
