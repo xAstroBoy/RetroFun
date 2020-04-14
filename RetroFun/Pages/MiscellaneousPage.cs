@@ -5,7 +5,11 @@ using Sulakore.Components;
 using Sulakore.Habbo;
 using Sulakore.Protocol;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -18,6 +22,11 @@ namespace RetroFun.Pages
         private Random Randomizer = new Random();
 
         //private string OldLook = "";
+
+        private int RoomID = 0;
+        private string OwnerName = "NOT INITIATED";
+        private string roomname = "NOT INITIATED";
+        private bool newroom = true;
 
 
         #region Vars
@@ -34,6 +43,8 @@ namespace RetroFun.Pages
         private readonly string TrollLook1 = "hr-155-42.ea-1333-33.ha-3786-62.ch-201410-89.sh-3333-3333.ca-3333-33-33.lg-44689-82.wa-3333-333.hd-209-1";
         private readonly string TrollLook2 = "hr-893-42.ea-1333-33.ha-3786-62.sh-6298462-82.wa-3333-333.ca-3333-33-33.lg-5772038-82-62.ch-987462876-89.hd-209-1";
         private readonly string TrollLook3 = "hr-893-42.cc-156282-77.ea-1333-33.ha-3786-62.ch-9784419-82.sh-3035-82.ca-3333-33-33.lg-6050208-78.wa-3333-333.hd-209-1";
+        private Dictionary<int, HEntity> users = new Dictionary<int, HEntity>();
+
 
         private string OriginalLook = " ";
 
@@ -299,6 +310,19 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+        private bool _ConvertMessageForYouToFile;
+
+        public bool ConvertMessageForYouToFile
+        {
+            get => _ConvertMessageForYouToFile;
+            set
+            {
+                _ConvertMessageForYouToFile = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
         private bool _ZeroSelected;
 
@@ -603,10 +627,13 @@ namespace RetroFun.Pages
             Bind(ConvertMessageForYouChbx, "Checked", nameof(ConvertMessageForYou));
             Bind(BlockMessageForYouChbx, "Checked", nameof(BlockMessageForYou));
             Bind(BlockStaffAlertsChbx, "Checked", nameof(BlockStaffAlerts));
+            Bind(ConvertMessageForyouFileChbx, "Checked", nameof(ConvertMessageForYouToFile));
+
 
             if (Program.Master != null)
             {
                 Triggers.InAttach(In.MessagesForYou, HandleMessageForYou);
+                Triggers.InAttach(In.RoomData, HandleRoomData);
             }
 
         }
@@ -969,7 +996,7 @@ namespace RetroFun.Pages
         public void OnUsername(DataInterceptedEventArgs obj)
         {
             string username = obj.Packet.ReadString();
-
+            
             if (UsernameFilter == null)
             {
                 UsernameFilter = username;
@@ -978,32 +1005,41 @@ namespace RetroFun.Pages
 
         public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
+            users.Clear();
+            newroom = true;
         }
 
 
         public void InRoomUserLeft(DataInterceptedEventArgs e)
         {
+            int index = int.Parse(e.Packet.ReadString());
+            var UserLeaveEntity = users.Values.FirstOrDefault(ent => ent.Index == index);
+            if (UserLeaveEntity == null) return;
+
+            users.Remove(UserLeaveEntity.Id);
         }
 
         public void InUserEnterRoom(DataInterceptedEventArgs obj)
         {
             try
             {
-                if (UsernameFilter != null)
+                HEntity[] array = HEntity.Parse(obj.Packet);
+                if (array.Length != 0)
                 {
-                    HEntity[] array = HEntity.Parse(obj.Packet);
-                    if (array.Length != 0)
+                    foreach (HEntity hentity in array)
                     {
-                        foreach (HEntity hentity in array)
+                        if (!users.ContainsKey(hentity.Id))
                         {
-                            if (hentity.Name == UsernameFilter)
-                            {
-                                OriginalLook = hentity.FigureId;
-                                LocalIndex = hentity.Index;
-                            }
+                            users.Add(hentity.Id, hentity);
+                        }
+                        if (hentity.Name == UsernameFilter)
+                        {
+                            OriginalLook = hentity.FigureId;
+                            LocalIndex = hentity.Index;
                         }
                     }
                 }
+
             }
             catch (IndexOutOfRangeException)
             {
@@ -1233,9 +1269,26 @@ namespace RetroFun.Pages
             }
         }
 
+        
+        private string StripUnicode(string name)
+        {
+            string process1 = Regex.Replace(name, @"\p{C}+", String.Empty);
+            return  new string(process1.Where(c => char.IsLetter(c) || char.IsDigit(c)).ToArray());
+        }
 
-
-
+        private void HandleRoomData(DataInterceptedEventArgs e)
+        {
+            e.Packet.ReadBoolean();
+            RoomID = e.Packet.ReadInteger();
+            roomname = e.Packet.ReadString();
+            OwnerName = StripUnicode(e.Packet.ReadString());
+            e.Packet.ReadInteger();
+            e.Packet.ReadInteger();
+            e.Packet.ReadInteger();
+            e.Packet.ReadInteger();
+            e.Packet.ReadInteger();
+            e.Packet.ReadInteger();
+        }
 
         private void HandleMessageForYou(DataInterceptedEventArgs e)
         {
@@ -1248,6 +1301,11 @@ namespace RetroFun.Pages
             if(ConvertMessageForYou)
             {
                 Speak(message);
+                e.IsBlocked = true;
+            }
+            if(ConvertMessageForYouToFile)
+            {
+                StoreToInput(message);
                 e.IsBlocked = true;
             }
 
@@ -1327,18 +1385,24 @@ namespace RetroFun.Pages
 
         public void InRoomUserTalk(DataInterceptedEventArgs e)
         {
-
+            int index = e.Packet.ReadInteger();
+            string text = e.Packet.ReadString();
+            SaveChatlog(text, "TALKING", FindUsername(index));
         }
 
         public void InRoomUserShout(DataInterceptedEventArgs e)
         {
-
+            int index = e.Packet.ReadInteger();
+            string text = e.Packet.ReadString();
+            SaveChatlog(text, "SHOUTING", FindUsername(index));
         }
+
 
         public void InRoomUserWhisper(DataInterceptedEventArgs e)
         {
-
-
+            int index = e.Packet.ReadInteger();
+            string text = e.Packet.ReadString();
+            SaveChatlog(text, "WHISPERING", FindUsername(index));
         }
 
         private void SendFriendRequest(string username)
@@ -1354,7 +1418,127 @@ namespace RetroFun.Pages
             }
         }
 
+        private string FindUsername(int index)
+        {
+            try
+            {
+                if (users != null)
+                {
+                    return users.Values.FirstOrDefault(e => e.Index == index).Name;
+                }
+                else
+                {
+                    return "NULL";
+                }
+            } 
+            catch(NullReferenceException)
+            {
+                return "NULL";
+            }
+        }
+        
 
+        private void StoreToInput(string text)
+        {
+            try
+            {
+                string Filepath = "../RetroFunLogs/" + "MessageForYouToText" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+
+                string FolderName = "RetroFunLogs";
+
+                Directory.CreateDirectory("../" + FolderName);
+
+                if (!File.Exists(Filepath))
+                {
+                    using (var txtFile = File.AppendText(Filepath))
+                    {
+                        txtFile.WriteLine("RetroFun MessageForYou Output Generated in " + DateTime.Now.ToString());
+                        txtFile.WriteLine("");
+                        txtFile.WriteLine("----------------------------------------------------");
+                        txtFile.WriteLine(text);
+                        txtFile.WriteLine("----------------------------------------------------");
+                    }
+                }
+                else if (File.Exists(Filepath))
+                {
+                    using (var txtFile = File.AppendText(Filepath))
+                    {
+                        txtFile.WriteLine("RetroFun MessageForYou Output Generated in " + DateTime.Now.ToString());
+                        txtFile.WriteLine("");
+                        txtFile.WriteLine("----------------------------------------------------");
+                        txtFile.WriteLine(text);
+                        txtFile.WriteLine("----------------------------------------------------");
+                    }
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+
+            }
+        }
+
+        private string GetHost(string host)
+        {
+            if (host == "217.182.58.18")
+            {
+                return "bobbaitalia.it";
+            }
+            else
+            {
+                return host;
+            }
+        }
+
+        private void SaveChatlog(string text, string TalkType, string entityname)
+        {
+            try
+            {
+                if (entityname != "NULL")
+                {
+                    string Filepath = "../RetroFunLogs/" + GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                    string FolderName = "RetroFunLogs";
+
+                    Directory.CreateDirectory("../" + FolderName);
+
+                    if (!File.Exists(Filepath))
+                    {
+                        using (var txtFile = File.AppendText(Filepath))
+                        {
+                            txtFile.WriteLine("RetroFun Chatlog stored at :" + DateTime.Now.ToString());
+                            if (newroom)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("Room : " + RoomID + " Room Owner : " + OwnerName + " Room Name : " + roomname);
+                                txtFile.WriteLine("----------------------------------------------------");
+                                newroom = false;
+                            }
+                            txtFile.WriteLine("[" + DateTime.Now + "]" + "[CHATLOG] : " + "[" + TalkType + "]" + " " + entityname + ": " + text);
+                        }
+                    }
+                    else if (File.Exists(Filepath))
+                    {
+                        using (var txtFile = File.AppendText(Filepath))
+                        {
+                            if (newroom)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("Room : " + RoomID + " Room Owner : " + OwnerName + " Room Name : " + roomname);
+                                txtFile.WriteLine("----------------------------------------------------");
+                                newroom = false;
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("[" + DateTime.Now + "]" + "[CHATLOG] : " + "[" + TalkType + "]" + " " + entityname + ": " + text);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+
+            }
+        }
 
     }
 }

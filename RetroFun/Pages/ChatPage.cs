@@ -590,13 +590,6 @@ namespace RetroFun.Pages
                     Connection.SendToClientAsync(In.RoomUserWhisper, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
-            //if(msg.Contains("Sussurra"))
-            //{
-            //    msg.Remove(8);
-            //    Connection.SendToClientAsync(In.RoomUserWhisper, LocalIndex, "Sussurra " + msg, 0, bubbleid, 0, -1);
-            //    e.IsBlocked = true;
-
-            //}
         }
 
 

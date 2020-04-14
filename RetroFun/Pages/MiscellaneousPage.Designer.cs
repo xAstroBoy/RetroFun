@@ -80,6 +80,7 @@
             this.AddYourselfAsFriendBtn = new Sulakore.Components.SKoreButton();
             this.SitCoolDownNbx = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
+            this.ConvertMessageForyouFileChbx = new System.Windows.Forms.CheckBox();
             this.SignCountGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SignCountCoolDown)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -540,10 +541,17 @@
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
             // 
+            // ConvertMessageForyouFileChbx
+            // 
+            resources.ApplyResources(this.ConvertMessageForyouFileChbx, "ConvertMessageForyouFileChbx");
+            this.ConvertMessageForyouFileChbx.Name = "ConvertMessageForyouFileChbx";
+            this.ConvertMessageForyouFileChbx.UseVisualStyleBackColor = true;
+            // 
             // MiscellaneousPage
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ConvertMessageForyouFileChbx);
             this.Controls.Add(this.AddYourselfAsFriendBtn);
             this.Controls.Add(this.StartPollBtn);
             this.Controls.Add(this.BlockStaffAlertsChbx);
@@ -635,5 +643,6 @@
         private Sulakore.Components.SKoreButton AddYourselfAsFriendBtn;
         private System.Windows.Forms.NumericUpDown SitCoolDownNbx;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.CheckBox ConvertMessageForyouFileChbx;
     }
 }

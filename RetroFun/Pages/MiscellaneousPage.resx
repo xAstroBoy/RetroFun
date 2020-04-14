@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;NoRemoveFriendOnReport.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="YellowCardChbx.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -880,7 +880,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SignCountGroup.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="Gesture_NoneChbx.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1204,7 +1204,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="UserSitBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>830, 155</value>
@@ -1231,7 +1231,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;UserSitBtn.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="SitOnLoopBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>830, 195</value>
@@ -1258,7 +1258,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SitOnLoopBtn.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="Dance_TheRollieChbx.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1465,7 +1465,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="DancesCooldownNBx.Location" type="System.Drawing.Point, System.Drawing">
     <value>652, 268</value>
@@ -1489,7 +1489,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DancesCooldownNBx.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="TrollLookBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>830, 40</value>
@@ -1516,7 +1516,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;TrollLookBtn.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="TrollLookNbx.Location" type="System.Drawing.Point, System.Drawing">
     <value>832, 108</value>
@@ -1540,7 +1540,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;TrollLookNbx.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1573,7 +1573,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="BlockMessageForYouChbx.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1606,7 +1606,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BlockMessageForYouChbx.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="ConvertMessageForYouChbx.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1615,19 +1615,19 @@
     <value>NoControl</value>
   </data>
   <data name="ConvertMessageForYouChbx.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 389</value>
+    <value>808, 442</value>
   </data>
   <data name="ConvertMessageForYouChbx.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
   </data>
   <data name="ConvertMessageForYouChbx.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 24</value>
+    <value>269, 24</value>
   </data>
   <data name="ConvertMessageForYouChbx.TabIndex" type="System.Int32, mscorlib">
     <value>78</value>
   </data>
   <data name="ConvertMessageForYouChbx.Text" xml:space="preserve">
-    <value>Convert MessageForYou</value>
+    <value>Convert MessageForYou (CHAT)</value>
   </data>
   <data name="&gt;&gt;ConvertMessageForYouChbx.Name" xml:space="preserve">
     <value>ConvertMessageForYouChbx</value>
@@ -1639,7 +1639,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;ConvertMessageForYouChbx.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="BlockStaffAlertsChbx.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1648,7 +1648,7 @@
     <value>NoControl</value>
   </data>
   <data name="BlockStaffAlertsChbx.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 425</value>
+    <value>10, 389</value>
   </data>
   <data name="BlockStaffAlertsChbx.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 5, 4, 5</value>
@@ -1672,7 +1672,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BlockStaffAlertsChbx.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="StartPollBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 455</value>
@@ -1696,7 +1696,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;StartPollBtn.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1729,7 +1729,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="AddYourselfAsFriendBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>235, 455</value>
@@ -1753,7 +1753,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;AddYourselfAsFriendBtn.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="SitCoolDownNbx.Location" type="System.Drawing.Point, System.Drawing">
     <value>830, 268</value>
@@ -1777,7 +1777,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SitCoolDownNbx.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1810,7 +1810,40 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
+  </data>
+  <data name="ConvertMessageForyouFileChbx.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ConvertMessageForyouFileChbx.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ConvertMessageForyouFileChbx.Location" type="System.Drawing.Point, System.Drawing">
+    <value>808, 476</value>
+  </data>
+  <data name="ConvertMessageForyouFileChbx.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="ConvertMessageForyouFileChbx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 24</value>
+  </data>
+  <data name="ConvertMessageForyouFileChbx.TabIndex" type="System.Int32, mscorlib">
+    <value>81</value>
+  </data>
+  <data name="ConvertMessageForyouFileChbx.Text" xml:space="preserve">
+    <value>Convert MessageForYou (FILE)</value>
+  </data>
+  <data name="&gt;&gt;ConvertMessageForyouFileChbx.Name" xml:space="preserve">
+    <value>ConvertMessageForyouFileChbx</value>
+  </data>
+  <data name="&gt;&gt;ConvertMessageForyouFileChbx.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ConvertMessageForyouFileChbx.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ConvertMessageForyouFileChbx.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1828,6 +1861,6 @@
     <value>MiscellaneousPage</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>RetroFun.Controls.ObservablePage, RetroFun, Version=6.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>RetroFun.Controls.ObservablePage, RetroFun, Version=6.0.7407.41245, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>
