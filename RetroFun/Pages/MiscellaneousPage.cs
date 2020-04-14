@@ -1273,7 +1273,7 @@ namespace RetroFun.Pages
         private string StripUnicode(string name)
         {
             string process1 = Regex.Replace(name, @"\p{C}+", String.Empty);
-            return  new string(process1.Where(c => char.IsLetter(c) || char.IsDigit(c)).ToArray());
+            return  new string(process1.Where(c => char.IsLetter(c) || char.IsDigit(c) || char.IsSymbol(c)).ToArray());
         }
 
         private void HandleRoomData(DataInterceptedEventArgs e)

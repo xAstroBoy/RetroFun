@@ -44,7 +44,6 @@ namespace RetroFun.Pages
 
         public bool IsReceiving => true;
 
-        private bool BlockRoomLoad;
 
         private bool _FlooderEnabled;
 
@@ -321,7 +320,6 @@ namespace RetroFun.Pages
             if (UsernameFilter == null)
             {
                 Connection.SendToServerAsync(Out.RequestUserData);
-                BlockRoomLoad = true;
             }
         }
 
@@ -455,12 +453,6 @@ namespace RetroFun.Pages
         public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
             users.Clear();
-            if (BlockRoomLoad)
-            {
-
-                e.IsBlocked = true;
-                BlockRoomLoad = false;
-            }
 
         }
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)

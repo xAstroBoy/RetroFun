@@ -25,7 +25,6 @@ namespace RetroFun.Pages
 
         private int LocalFurniID;
         private int _FurniAmountInv = 0;
-        private bool BlockRoomLoad;
 
         private int _Wallcoordsl;
 
@@ -345,12 +344,6 @@ namespace RetroFun.Pages
 
         public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
-            if(BlockRoomLoad)
-            {
-                
-                e.IsBlocked = true;
-                BlockRoomLoad = false;
-            }
 
         }
 
@@ -380,7 +373,6 @@ namespace RetroFun.Pages
             string username = packet.ReadString();
 
             FurniOwnerName = username;
-            BlockRoomLoad = false;
         }
 
 
@@ -441,8 +433,6 @@ namespace RetroFun.Pages
         private void SetOwnUsernameBtn_Click(object sender, EventArgs e)
         {
             Connection.SendToServerAsync(Out.RequestUserData);
-            BlockRoomLoad = true;
-
         }
 
 
