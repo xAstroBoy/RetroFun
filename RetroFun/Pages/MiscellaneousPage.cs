@@ -1507,6 +1507,7 @@ namespace RetroFun.Pages
                             txtFile.WriteLine("RetroFun Chatlog stored at :" + DateTime.Now.ToString());
                             if (newroom)
                             {
+                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
                                 txtFile.WriteLine("");
                                 txtFile.WriteLine("Room : " + RoomID + " Room Owner : " + OwnerName + " Room Name : " + roomname);
                                 txtFile.WriteLine("----------------------------------------------------");
@@ -1521,6 +1522,7 @@ namespace RetroFun.Pages
                         {
                             if (newroom)
                             {
+                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
                                 txtFile.WriteLine("");
                                 txtFile.WriteLine("Room : " + RoomID + " Room Owner : " + OwnerName + " Room Name : " + roomname);
                                 txtFile.WriteLine("----------------------------------------------------");

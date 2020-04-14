@@ -41,11 +41,33 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ExchangeMPChbx = new System.Windows.Forms.CheckBox();
             this.ExchangeCreditChbx = new System.Windows.Forms.CheckBox();
+            this.CaptureRoomBGBtn = new Sulakore.Components.SKoreButton();
+            this.SetRoomBGBtn = new Sulakore.Components.SKoreButton();
+            this.LiveEditBtn = new Sulakore.Components.SKoreButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.RoomBGNBx = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.RoomBGurlTxb = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.OffsetZNbx = new System.Windows.Forms.NumericUpDown();
+            this.OffsetYNbx = new System.Windows.Forms.NumericUpDown();
+            this.OffsetXNbx = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.RoomBGXNbx = new System.Windows.Forms.NumericUpDown();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GiftExchangerIDNBx)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsIDNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MultiplierNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RoomBGNBx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OffsetZNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OffsetYNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OffsetXNbx)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RoomBGXNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -101,7 +123,7 @@
             this.AutoGiftExchangerBtn.Location = new System.Drawing.Point(34, 57);
             this.AutoGiftExchangerBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AutoGiftExchangerBtn.Name = "AutoGiftExchangerBtn";
-            this.AutoGiftExchangerBtn.Size = new System.Drawing.Size(210, 24);
+            this.AutoGiftExchangerBtn.Size = new System.Drawing.Size(217, 24);
             this.AutoGiftExchangerBtn.TabIndex = 6;
             this.AutoGiftExchangerBtn.Text = "Automatic Gift Exchanger";
             this.AutoGiftExchangerBtn.UseVisualStyleBackColor = true;
@@ -185,7 +207,7 @@
             this.ExchangeMPChbx.Location = new System.Drawing.Point(34, 185);
             this.ExchangeMPChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExchangeMPChbx.Name = "ExchangeMPChbx";
-            this.ExchangeMPChbx.Size = new System.Drawing.Size(211, 24);
+            this.ExchangeMPChbx.Size = new System.Drawing.Size(218, 24);
             this.ExchangeMPChbx.TabIndex = 7;
             this.ExchangeMPChbx.Text = "Exchange Credit Multiplier";
             this.ExchangeMPChbx.UseVisualStyleBackColor = true;
@@ -196,19 +218,231 @@
             this.ExchangeCreditChbx.Location = new System.Drawing.Point(34, 57);
             this.ExchangeCreditChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExchangeCreditChbx.Name = "ExchangeCreditChbx";
-            this.ExchangeCreditChbx.Size = new System.Drawing.Size(226, 24);
+            this.ExchangeCreditChbx.Size = new System.Drawing.Size(233, 24);
             this.ExchangeCreditChbx.TabIndex = 6;
             this.ExchangeCreditChbx.Text = "Automatic Credit Exchanger";
             this.ExchangeCreditChbx.UseVisualStyleBackColor = true;
+            // 
+            // CaptureRoomBGBtn
+            // 
+            this.CaptureRoomBGBtn.Location = new System.Drawing.Point(269, 259);
+            this.CaptureRoomBGBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CaptureRoomBGBtn.Name = "CaptureRoomBGBtn";
+            this.CaptureRoomBGBtn.Size = new System.Drawing.Size(214, 31);
+            this.CaptureRoomBGBtn.TabIndex = 66;
+            this.CaptureRoomBGBtn.Text = "Capture RoomBG : OFF";
+            this.CaptureRoomBGBtn.Click += new System.EventHandler(this.CaptureRoomBGBtn_Click);
+            // 
+            // SetRoomBGBtn
+            // 
+            this.SetRoomBGBtn.Location = new System.Drawing.Point(301, 401);
+            this.SetRoomBGBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SetRoomBGBtn.Name = "SetRoomBGBtn";
+            this.SetRoomBGBtn.Size = new System.Drawing.Size(214, 31);
+            this.SetRoomBGBtn.TabIndex = 65;
+            this.SetRoomBGBtn.Text = "Set RoomBG";
+            this.SetRoomBGBtn.Click += new System.EventHandler(this.SetRoomBGBtn_Click);
+            // 
+            // LiveEditBtn
+            // 
+            this.LiveEditBtn.Location = new System.Drawing.Point(36, 401);
+            this.LiveEditBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LiveEditBtn.Name = "LiveEditBtn";
+            this.LiveEditBtn.Size = new System.Drawing.Size(214, 31);
+            this.LiveEditBtn.TabIndex = 64;
+            this.LiveEditBtn.Text = "Live Edit : OFF";
+            this.LiveEditBtn.Click += new System.EventHandler(this.LiveEditBtn_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(32, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(97, 20);
+            this.label5.TabIndex = 54;
+            this.label5.Text = "RoomBG ID";
+            // 
+            // RoomBGNBx
+            // 
+            this.RoomBGNBx.Location = new System.Drawing.Point(36, 43);
+            this.RoomBGNBx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RoomBGNBx.Maximum = new decimal(new int[] {
+            2147483647,
+            2,
+            0,
+            0});
+            this.RoomBGNBx.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+            this.RoomBGNBx.Name = "RoomBGNBx";
+            this.RoomBGNBx.Size = new System.Drawing.Size(180, 26);
+            this.RoomBGNBx.TabIndex = 53;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(32, 314);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(91, 20);
+            this.label4.TabIndex = 52;
+            this.label4.Text = "Image URL";
+            // 
+            // RoomBGurlTxb
+            // 
+            this.RoomBGurlTxb.Location = new System.Drawing.Point(36, 337);
+            this.RoomBGurlTxb.Name = "RoomBGurlTxb";
+            this.RoomBGurlTxb.Size = new System.Drawing.Size(427, 26);
+            this.RoomBGurlTxb.TabIndex = 51;
+            this.RoomBGurlTxb.TextChanged += new System.EventHandler(this.RoomBGUrlTxb_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(32, 234);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(67, 20);
+            this.label6.TabIndex = 50;
+            this.label6.Text = "Offset Z";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(32, 163);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(68, 20);
+            this.label7.TabIndex = 49;
+            this.label7.Text = "Offset Y";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(32, 90);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(68, 20);
+            this.label8.TabIndex = 48;
+            this.label8.Text = "Offset X";
+            // 
+            // OffsetZNbx
+            // 
+            this.OffsetZNbx.Location = new System.Drawing.Point(36, 259);
+            this.OffsetZNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.OffsetZNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            2,
+            0,
+            0});
+            this.OffsetZNbx.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+            this.OffsetZNbx.Name = "OffsetZNbx";
+            this.OffsetZNbx.Size = new System.Drawing.Size(180, 26);
+            this.OffsetZNbx.TabIndex = 47;
+            this.OffsetZNbx.ValueChanged += new System.EventHandler(this.OffsetZNbx_ValueChanged);
+            // 
+            // OffsetYNbx
+            // 
+            this.OffsetYNbx.Location = new System.Drawing.Point(36, 188);
+            this.OffsetYNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.OffsetYNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            2,
+            0,
+            0});
+            this.OffsetYNbx.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+            this.OffsetYNbx.Name = "OffsetYNbx";
+            this.OffsetYNbx.Size = new System.Drawing.Size(180, 26);
+            this.OffsetYNbx.TabIndex = 46;
+            this.OffsetYNbx.ValueChanged += new System.EventHandler(this.OffsetYNbx_ValueChanged);
+            // 
+            // OffsetXNbx
+            // 
+            this.OffsetXNbx.Location = new System.Drawing.Point(36, 115);
+            this.OffsetXNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.OffsetXNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.OffsetXNbx.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+            this.OffsetXNbx.Name = "OffsetXNbx";
+            this.OffsetXNbx.Size = new System.Drawing.Size(180, 26);
+            this.OffsetXNbx.TabIndex = 45;
+            this.OffsetXNbx.ValueChanged += new System.EventHandler(this.OffsetXNbx_ValueChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.RoomBGXNbx);
+            this.groupBox1.Controls.Add(this.CaptureRoomBGBtn);
+            this.groupBox1.Controls.Add(this.SetRoomBGBtn);
+            this.groupBox1.Controls.Add(this.LiveEditBtn);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.RoomBGNBx);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.RoomBGurlTxb);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.OffsetZNbx);
+            this.groupBox1.Controls.Add(this.OffsetYNbx);
+            this.groupBox1.Controls.Add(this.OffsetXNbx);
+            this.groupBox1.Location = new System.Drawing.Point(635, 14);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(522, 460);
+            this.groupBox1.TabIndex = 69;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Room Background Editor";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(275, 43);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(204, 20);
+            this.label9.TabIndex = 68;
+            this.label9.Text = "Room BG x (NOT OFFSET)";
+            this.label9.Visible = false;
+            // 
+            // RoomBGXNbx
+            // 
+            this.RoomBGXNbx.Location = new System.Drawing.Point(279, 68);
+            this.RoomBGXNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RoomBGXNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.RoomBGXNbx.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+            this.RoomBGXNbx.Name = "RoomBGXNbx";
+            this.RoomBGXNbx.Size = new System.Drawing.Size(180, 26);
+            this.RoomBGXNbx.TabIndex = 67;
+            this.RoomBGXNbx.Visible = false;
             // 
             // UtilitiesPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Name = "UtilitiesPage";
-            this.Size = new System.Drawing.Size(1098, 406);
+            this.Size = new System.Drawing.Size(1184, 533);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GiftExchangerIDNBx)).EndInit();
@@ -216,6 +450,13 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsIDNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MultiplierNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RoomBGNBx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OffsetZNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OffsetYNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OffsetXNbx)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RoomBGXNbx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -235,5 +476,21 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox ExchangeMPChbx;
         private System.Windows.Forms.CheckBox ExchangeCreditChbx;
+        private Sulakore.Components.SKoreButton CaptureRoomBGBtn;
+        private Sulakore.Components.SKoreButton SetRoomBGBtn;
+        private Sulakore.Components.SKoreButton LiveEditBtn;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown RoomBGNBx;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown OffsetZNbx;
+        private System.Windows.Forms.NumericUpDown OffsetYNbx;
+        private System.Windows.Forms.NumericUpDown OffsetXNbx;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox RoomBGurlTxb;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown RoomBGXNbx;
     }
 }

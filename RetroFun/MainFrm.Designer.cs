@@ -106,6 +106,7 @@ namespace RetroFun
             // 
             this.ChatPg.AntiBobbaFilter = false;
             this.ChatPg.BackColor = System.Drawing.Color.White;
+            this.ChatPg.ChatMessageText = null;
             this.ChatPg.CloneUsernameFilter = "";
             this.ChatPg.FlooderCooldown = 50;
             this.ChatPg.FlooderEnabled = false;
@@ -119,6 +120,7 @@ namespace RetroFun
             this.ChatPg.MainUserIndex = 0;
             this.ChatPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.ChatPg.Name = "ChatPg";
+            this.ChatPg.RaidUserCooldownCooldown = 50;
             this.ChatPg.RainbowChatEnabled = false;
             this.ChatPg.Size = new System.Drawing.Size(1180, 612);
             this.ChatPg.TabIndex = 0;
@@ -291,6 +293,7 @@ namespace RetroFun
             this.MiscellaneousPg.BlockMessageForYou = false;
             this.MiscellaneousPg.BlockStaffAlerts = false;
             this.MiscellaneousPg.ConvertMessageForYou = false;
+            this.MiscellaneousPg.ConvertMessageForYouToFile = false;
             this.MiscellaneousPg.Dance_Cooldown = 500;
             this.MiscellaneousPg.Dance_DuckFunkSelected = false;
             this.MiscellaneousPg.Dance_NoneSelected = false;
@@ -441,7 +444,7 @@ namespace RetroFun
             this.UtilitiesPg.GiftInt = 1;
             this.UtilitiesPg.Location = new System.Drawing.Point(8, 16);
             this.UtilitiesPg.Name = "UtilitiesPg";
-            this.UtilitiesPg.Size = new System.Drawing.Size(1089, 422);
+            this.UtilitiesPg.Size = new System.Drawing.Size(1169, 615);
             this.UtilitiesPg.TabIndex = 0;
             this.UtilitiesPg.TabStop = false;
             // 
@@ -641,6 +644,7 @@ namespace RetroFun
             this.FakeMessagePg.Location = new System.Drawing.Point(195, 69);
             this.FakeMessagePg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.FakeMessagePg.Name = "FakeMessagePg";
+            this.FakeMessagePg.PrivateMessageAlert = ((ushort)(0));
             this.FakeMessagePg.ShouldBlockReminders = true;
             this.FakeMessagePg.Size = new System.Drawing.Size(726, 460);
             this.FakeMessagePg.TabIndex = 0;
