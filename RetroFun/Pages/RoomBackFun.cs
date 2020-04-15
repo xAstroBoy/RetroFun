@@ -226,11 +226,11 @@ namespace RetroFun.Pages
             GlobalSpeedCheck();
         }
 
-        public void SendFullPacket(int furnid, int Tonality, int saturation, int luminosity)
+        public async void SendFullPacket(int furnid, int Tonality, int saturation, int luminosity)
         {
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToServerAsync(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
+                await Connection.SendToServerAsync(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
             }
         }
 

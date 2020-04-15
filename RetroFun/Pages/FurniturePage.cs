@@ -273,56 +273,56 @@ namespace RetroFun.Pages
             }
         }
 
-        private void RotationUp_CheckedChanged(object sender, EventArgs e)
+        private async void RotationUp_CheckedChanged(object sender, EventArgs e)
         {
             FloorFurniRotation = 6;
-            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
 
         }
 
-        private void RotationRight_CheckedChanged(object sender, EventArgs e)
+        private async void RotationRight_CheckedChanged(object sender, EventArgs e)
         {
             FloorFurniRotation = 0;
-            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
 
         }
 
-        private void RotationDown_CheckedChanged(object sender, EventArgs e)
+        private async void RotationDown_CheckedChanged(object sender, EventArgs e)
         {
             FloorFurniRotation = 2;
-            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
 
         }
 
-        private void rotationLeft_CheckedChanged(object sender, EventArgs e)
+        private async void rotationLeft_CheckedChanged(object sender, EventArgs e)
         {
             FloorFurniRotation = 4;
-            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
 
         }
 
 
-        private void RotateItem(int furnitureId, int two, int three, int Rotation)
+        private async void RotateItem(int furnitureId, int two, int three, int Rotation)
         {
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToClientAsync(In.FloorItemUpdate, furnitureId, 0, two, three, 0, Rotation, 0, 0, 0, 0, 0, 0, 0);
+                await Connection.SendToClientAsync(In.FloorItemUpdate, furnitureId, 0, two, three, 0, Rotation, 0, 0, 0, 0, 0, 0, 0);
             }
         }
 
-        private void RemoveWallItem(string furnitureId)
+        private async void RemoveWallItem(string furnitureId)
         {
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToClientAsync(In.RemoveWallItem, furnitureId, 0);
+                await Connection.SendToClientAsync(In.RemoveWallItem, furnitureId, 0);
             }
         }
 
-        private void RemoveFloorItem(string furnitureId)
+        private async void RemoveFloorItem(string furnitureId)
         {
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToClientAsync(In.RemoveFloorItem, furnitureId, false, 0, 0);
+                await Connection.SendToClientAsync(In.RemoveFloorItem, furnitureId, false, 0, 0);
             }
         }
 
@@ -351,11 +351,11 @@ namespace RetroFun.Pages
             }
         }
 
-        private void Speak(string text)
+        private async void Speak(string text)
         {
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, text, 0, 1, 0, -1);
+               await  Connection.SendToClientAsync(In.RoomUserWhisper, 0, text, 0, 1, 0, -1);
             }
         }
 
@@ -411,24 +411,14 @@ namespace RetroFun.Pages
         }
 
 
-        public void TeleportfurniToCoord(int X , int Y)
+        public async void TeleportfurniToCoord(int X , int Y)
         {
-            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
+            await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
         }
 
 
-        public async Task WalkFurniToCoord(int X, int Y)
+        public async void WalkFurniToCoord(int X, int Y)
         {
-            //for (int i = FloorFurniX; i < X; i++)
-            //{
-            //    for (int c = FloorFurniY; c < Y; c++)
-            //    {
-            //        FloorFurniX = i;
-            //        FloorFurniY = c;
-            //        await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, i, c, FloorFurniRotation);
-            //        await Task.Delay(FurniWalkingSpeed);
-            //    }
-            //}
             if (ConvertWalkinFurniMovement)
             {
                 while (FloorFurniX != X && FloorFurniY != Y)

@@ -315,11 +315,11 @@ namespace RetroFun.Pages
         }
 
 
-        public void OnLatencyTest(DataInterceptedEventArgs obj)
+        public async void OnLatencyTest(DataInterceptedEventArgs obj)
         {
             if (UsernameFilter == null)
             {
-                Connection.SendToServerAsync(Out.RequestUserData);
+                await Connection.SendToServerAsync(Out.RequestUserData);
             }
         }
 

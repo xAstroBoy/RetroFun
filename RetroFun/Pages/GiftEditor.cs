@@ -428,15 +428,15 @@ namespace RetroFun.Pages
         {
         }
 
-        private void SendPacket()
+        private async void SendPacket()
         {
             if (String.IsNullOrEmpty(UsernameTextBox.Text))
             {
-                return;
+               return;
             }
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToServerAsync(
+               await  Connection.SendToServerAsync(
             Out.CatalogBuyItemAsGift,
             PageIDInt,
             FurniIDint,
@@ -451,11 +451,11 @@ namespace RetroFun.Pages
             }
         }
 
-        private void SendBruteForceGiftPacket(string GiftBoxTest)
+        private async void SendBruteForceGiftPacket(string GiftBoxTest)
         {
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToServerAsync(
+                await Connection.SendToServerAsync(
             Out.CatalogBuyItemAsGift,
             PageIDInt,
             FurniIDint,

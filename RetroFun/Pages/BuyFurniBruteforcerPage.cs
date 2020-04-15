@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 #pragma warning disable CS0618
 
@@ -533,10 +534,10 @@ namespace RetroFun.Pages
         }
 
 
-        private void SendPacket(int PageID, int FurniID)
+        private async void SendPacket(int PageID, int FurniID)
         {
-
-                Connection.SendToServerAsync(
+            await Task.Delay(30);
+            await Connection.SendToServerAsync(
             Out.CatalogBuyItem,
             PageID,
             FurniID,

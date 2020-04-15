@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RetroFun.Pages
@@ -744,19 +745,21 @@ namespace RetroFun.Pages
         {
         }
 
-        private void SendGesturePacket(HGesture Gesture)
+        private async void SendGesturePacket(HGesture Gesture)
         {
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToServerAsync(Out.RoomUserAction, Gesture);
+                await Task.Delay(150);
+                await Connection.SendToServerAsync(Out.RoomUserAction, Gesture);
             }
         }
 
-        private void SendDancePacket(HDance Dance)
+        private async void SendDancePacket(HDance Dance)
         {
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToServerAsync(Out.RoomUserDance, Dance);
+                await Task.Delay(150);
+                await Connection.SendToServerAsync(Out.RoomUserDance, Dance);
             }
         }
 
@@ -978,9 +981,10 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-        private void SendRoomSign(HSign Sign)
+        private async void SendRoomSign(HSign Sign)
         {
-                Connection.SendToServerAsync(Out.RoomUserSign, Sign);
+            await Task.Delay(150);
+            await Connection.SendToServerAsync(Out.RoomUserSign, Sign);
         }
 
         public bool IsReceiving => true;
@@ -1237,11 +1241,12 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-        private void SendLookPacket(string look)
+        private async void SendLookPacket(string look)
         {
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToServerAsync(Out.UserSaveLook, "M", look);
+                Task.Delay(50);
+                await Connection.SendToServerAsync(Out.UserSaveLook, "M", look);
             }
         }
 
@@ -1536,7 +1541,7 @@ namespace RetroFun.Pages
                     }
                 }
             }
-            catch (DirectoryNotFoundException)
+            catch (Exception e)
             {
 
             }

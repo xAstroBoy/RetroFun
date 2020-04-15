@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using RetroFun.Controls;
 using RetroFun.Subscribers;
@@ -662,7 +663,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread1)
                         {
-                            Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt1, 0);
+                        SendToggleFloorItem(FurniIDInt1);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread1));
                         }
                     
@@ -680,7 +681,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread2)
                         {
-                            Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt2, 0);
+                             SendToggleFloorItem(FurniIDInt2);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread2));
                     }
 
@@ -697,7 +698,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread3)
                         {
-                            Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt3, 0);
+                             SendToggleFloorItem(FurniIDInt3);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread3));
 
                     }
@@ -715,7 +716,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread4)
                         {
-                            Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt4, 0);
+                             SendToggleFloorItem(FurniIDInt4);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread4));
 
 
@@ -733,7 +734,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread5)
                         {
-                            Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt5, 0);
+                             SendToggleFloorItem(FurniIDInt5);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread5));
 
                     }
@@ -751,7 +752,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread6)
                         {
-                            Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt6, 0);
+                             SendToggleFloorItem(FurniIDInt6);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread6));
 
                     }
@@ -769,7 +770,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread7)
                         {
-                            Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt7, 0);
+                             SendToggleFloorItem(FurniIDInt7);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread7));
                     }
 
@@ -786,7 +787,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread8)
                         {
-                            Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt8, 0);
+                             SendToggleFloorItem(FurniIDInt8);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread8));
 
                     }
@@ -803,7 +804,7 @@ namespace RetroFun.Pages
                 {
                         if (StartFurniThread9)
                         {
-                            Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt9, 0);
+                             SendToggleFloorItem(FurniIDInt9);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread9));
                     }
 
@@ -820,7 +821,7 @@ namespace RetroFun.Pages
                 {
                         if (StartFurniThread10)
                         {
-                            Connection.SendToServerAsync(Out.ToggleFloorItem, FurniIDInt10, 0);
+                             SendToggleFloorItem(FurniIDInt10);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread10));
                     }
 
@@ -886,7 +887,10 @@ namespace RetroFun.Pages
 
         }
 
-
+        private async void SendToggleFloorItem(int FurnID)
+        {
+            await Connection.SendToServerAsync(Out.ToggleFloorItem, FurnID);
+        }
         public void RegisterFurni(int FurnID)
         {
             if (isFurniBoxChecked1)

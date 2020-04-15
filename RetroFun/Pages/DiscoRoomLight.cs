@@ -397,17 +397,17 @@ namespace RetroFun.Pages
             CheckDisco();
         }
 
-        private void SendMoodLightPacket(int preset, string color, int Density)
+        private async void SendMoodLightPacket(int preset, string color, int Density)
         {
             if (Connection.Remote.IsConnected)
             {
                 if (JustWallpapers)
                 {
-                    Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 2, "#" + color, Density, true);
+                   await Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 2, "#" + color, Density, true);
                 }
                 else
                 {
-                    Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
+                    await Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
                 }
             }
         }
