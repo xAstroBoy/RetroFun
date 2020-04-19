@@ -834,12 +834,24 @@ namespace RetroFun.Pages
 
         private void FindUserIndex(string username)
         {
-            MainUserIndex = users.Values.FirstOrDefault(e => e.Name == username).Index;
+            if (!String.IsNullOrEmpty(username))
+            {
+                if(users.Values != null)
+                {
+                    MainUserIndex = users.Values.FirstOrDefault(e => e.Name == username).Index;
+                }
+            }
         }
 
         private void FindIndexBtn_click(object sender, EventArgs e)
         {
-            FindUserIndex(CloneUsernameFilter);
+            if (!String.IsNullOrEmpty(CloneUsernameFilter))
+            {
+                if (users.Values != null)
+                {
+                    FindUserIndex(CloneUsernameFilter);
+                }
+            }
         }
 
         public void InFloorItemUpdate(DataInterceptedEventArgs e)
