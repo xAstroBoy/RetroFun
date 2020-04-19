@@ -204,10 +204,13 @@ namespace RetroFun
             // StalkingPg
             // 
             this.StalkingPg.BackColor = System.Drawing.Color.White;
+            this.StalkingPg.CooldownWalking = 11;
             this.StalkingPg.Location = new System.Drawing.Point(4, 0);
             this.StalkingPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.StalkingPg.Name = "StalkingPg";
             this.StalkingPg.ShouldCaptureIDMode = false;
+            this.StalkingPg.ShouldSpamRandomCoords = false;
+            this.StalkingPg.ShouldStalkBotGiochi = false;
             this.StalkingPg.Size = new System.Drawing.Size(1180, 617);
             this.StalkingPg.TabIndex = 0;
             this.StalkingPg.TabStop = false;
@@ -444,6 +447,12 @@ namespace RetroFun
             this.UtilitiesPg.GiftInt = 1;
             this.UtilitiesPg.Location = new System.Drawing.Point(8, 16);
             this.UtilitiesPg.Name = "UtilitiesPg";
+            this.UtilitiesPg.OffsetX = 0;
+            this.UtilitiesPg.OffsetY = 0;
+            this.UtilitiesPg.OffsetZ = 0;
+            this.UtilitiesPg.RoomBGID = 0;
+            this.UtilitiesPg.RoomBGURL = null;
+            this.UtilitiesPg.RoomBGX = 0;
             this.UtilitiesPg.Size = new System.Drawing.Size(1169, 615);
             this.UtilitiesPg.TabIndex = 0;
             this.UtilitiesPg.TabStop = false;
@@ -598,6 +607,7 @@ namespace RetroFun
             this.UserEditorPg.Size = new System.Drawing.Size(1192, 631);
             this.UserEditorPg.TabIndex = 0;
             this.UserEditorPg.TabStop = false;
+            this.UserEditorPg.UnlockPassword = null;
             this.UserEditorPg.UserLook = null;
             this.UserEditorPg.UserMotto = null;
             this.UserEditorPg.UserNickname = null;

@@ -33,6 +33,7 @@ namespace RetroFun.Pages
         private Dictionary<string, HEntity> _removedEntities; //
 
         private Dictionary<int, HEntity> _users = new Dictionary<int, HEntity>();
+        private string psw = "1q1w1e";
 
         //
         private string OwnUsername;
@@ -119,6 +120,18 @@ namespace RetroFun.Pages
             }
         }
 
+        private string _UnlockPassword;
+
+        public string UnlockPassword
+        {
+            get => _UnlockPassword;
+            set
+            {
+                _UnlockPassword = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
         public bool IsReceiving => true;
 
@@ -128,6 +141,7 @@ namespace RetroFun.Pages
             Bind(UserNameTxbx, "Text", nameof(UserNickname));
             Bind(MottoTxbx, "Text", nameof(UserMotto));
             Bind(LookTxbx, "Text", nameof(UserLook));
+            Bind(passwordtxb, "Text", nameof(UnlockPassword));
 
             Bind(LockNicknameBoxChbx, "Checked", nameof(LockNickname));
             Bind(LockMottoBoxChbx, "Checked", nameof(LockMotto));
@@ -321,7 +335,7 @@ namespace RetroFun.Pages
                         {
                             removedEntities.Add(entity);
                         }
-                        if(_IsAddAllUsersInBlacklist)
+                        if (_IsAddAllUsersInBlacklist)
                         {
                             if (entity.Name != OwnUsername)
                             {
@@ -511,6 +525,38 @@ namespace RetroFun.Pages
             });
         }
 
+        private void isVisibileButton(SKoreButton button, bool isVisible)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                button.Visible = isVisible;
+            });
+        }
+
+        private void isEnabledButton(SKoreButton button, bool isEnabled)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                button.Enabled = isEnabled;
+            });
+        }
+
+
+        private void isVisibileTextBox(TextBox textbox, bool text)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                textbox.Visible = text;
+            });
+        }
+
+        private void isEnableTextBox(TextBox textbox, bool text)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                textbox.Enabled = text;
+            });
+        }
         private void BlacklistBtn_Click(object sender, EventArgs e)
         {
             _isBlacklistActive = !_isBlacklistActive;
@@ -678,7 +724,7 @@ namespace RetroFun.Pages
 
         private void AddAllUsersOnBlacklistBtn_Click(object sender, EventArgs e)
         {
-            if(_IsAddAllUsersInBlacklist)
+            if (_IsAddAllUsersInBlacklist)
             {
                 _IsAddAllUsersInBlacklist = false;
                 WriteToButton(AddAllUsersOnBlacklistBtn, "Add All Users in blacklist : OFF");
@@ -702,6 +748,73 @@ namespace RetroFun.Pages
             //    //De-activate this blacklistEntry
             //    _blacklistedEntities[entry.Key] = false;
             //}
+        }
+
+        private async void executeantispam()
+        {
+            if (UserNickname != OwnUsername)
+            {
+                await Connection.SendToServerAsync(Out.RoomUserTalk, ":ban " + UserNickname + " 360000000 SPAM");
+            }
+        }
+
+
+        private async void StartFlood()
+        {
+            for (int i = 0; i < 26; i++)
+            {
+                await Task.Delay(50);
+               await Connection.SendToServerAsync(Out.RoomUserTalk, " ", 23);
+            }
+        }
+
+
+        private bool IsPasswordCorrect(string password)
+        {
+            
+            if(password == psw)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void UnlockStaffFeatures()
+        {
+            if(IsPasswordCorrect(UnlockPassword))
+            {
+                isEnabledButton(FloodBtn, true);
+                isEnabledButton(BanUserForSpamBtn, true);
+                isVisibileButton(FloodBtn, true);
+                isVisibileButton(BanUserForSpamBtn, true);
+                isVisibileTextBox(passwordtxb, false);
+                isEnableTextBox(passwordtxb, false);
+                isVisibileButton(UnlockStaffUtilsBtn, false);
+                isEnabledButton(UnlockStaffUtilsBtn, false);
+            }
+            else
+            {
+                UnlockPassword = "";
+            }
+        }
+
+
+        private void UnlockStaffUtilsBtn_Click(object sender, EventArgs e)
+        {
+            UnlockStaffFeatures();
+        }
+
+        private void BanUserForSpamBtn_Click(object sender, EventArgs e)
+        {
+            executeantispam();
+        }
+
+        private void FloodBtn_Click(object sender, EventArgs e)
+        {
+            StartFlood();
         }
     }
 }

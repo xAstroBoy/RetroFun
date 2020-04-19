@@ -1000,7 +1000,7 @@ namespace RetroFun.Pages
         public void OnUsername(DataInterceptedEventArgs obj)
         {
             string username = obj.Packet.ReadString();
-            
+
             if (UsernameFilter == null)
             {
                 UsernameFilter = username;
@@ -1245,7 +1245,7 @@ namespace RetroFun.Pages
         {
             if (Connection.Remote.IsConnected)
             {
-                Task.Delay(50);
+                await Task.Delay(50);
                 await Connection.SendToServerAsync(Out.UserSaveLook, "M", look);
             }
         }
@@ -1274,26 +1274,36 @@ namespace RetroFun.Pages
             }
         }
 
-        
+
         private string StripUnicode(string name)
         {
             string process1 = Regex.Replace(name, @"\p{C}+", String.Empty);
-            return  new string(process1.Where(c => char.IsLetter(c) || char.IsDigit(c) || char.IsSymbol(c)).ToArray());
+            return new string(process1.Where(c => char.IsLetter(c) || char.IsDigit(c) || char.IsSymbol(c)).ToArray());
         }
 
         private void HandleRoomData(DataInterceptedEventArgs e)
         {
-            e.Packet.ReadBoolean();
-            RoomID = e.Packet.ReadInteger();
-            roomname = e.Packet.ReadString();
-            OwnerName = StripUnicode(e.Packet.ReadString());
-            e.Packet.ReadInteger();
-            e.Packet.ReadInteger();
-            e.Packet.ReadInteger();
-            e.Packet.ReadInteger();
-            e.Packet.ReadInteger();
-            e.Packet.ReadInteger();
+            try
+            {
+                e.Packet.ReadBoolean();
+                RoomID = e.Packet.ReadInteger();
+                roomname = e.Packet.ReadString();
+                OwnerName = StripUnicode(e.Packet.ReadString());
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
+            }
+
+
+            catch (Exception _)
+            {
+
+            }
         }
+
 
         private void HandleMessageForYou(DataInterceptedEventArgs e)
         {

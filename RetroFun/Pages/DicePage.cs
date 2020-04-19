@@ -620,54 +620,60 @@ namespace RetroFun.Pages
 
         public void InItemExtraData(DataInterceptedEventArgs e)
         {
-           
-            int id = int.Parse(e.Packet.ReadString());
-            e.Packet.ReadInteger();
-            string data = e.Packet.ReadString();
-
-            e.Continue();
-
-            if (!int.TryParse(data, out int diceState) || diceState == -1) return;
-
-            if (id == DiceID1)
+            try
             {
-                DiceResult1 = diceState;
-                CalculateResults();
+                int id = int.Parse(e.Packet.ReadString());
+                e.Packet.ReadInteger();
+                string data = e.Packet.ReadString();
 
+                e.Continue();
+
+                if (!int.TryParse(data, out int diceState) || diceState == -1) return;
+
+                if (id == DiceID1)
+                {
+                    DiceResult1 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID2)
+                {
+                    DiceResult2 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID3)
+                {
+                    DiceResult3 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID4)
+                {
+                    DiceResult4 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID5)
+                {
+                    DiceResult5 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID6)
+                {
+                    DiceResult6 = diceState;
+                    CalculateResults();
+                }
             }
-
-            if (id == DiceID2)
+            catch(Exception exc)
             {
-                DiceResult2 = diceState;
-                CalculateResults();
 
-            }
-
-            if (id == DiceID3)
-            {
-                DiceResult3 = diceState;
-                CalculateResults();
-
-            }
-
-            if (id == DiceID4)
-            {
-                DiceResult4 = diceState;
-                CalculateResults();
-
-            }
-
-            if (id == DiceID5)
-            {
-                DiceResult5 = diceState;
-                CalculateResults();
-
-            }
-
-            if (id == DiceID6)
-            {
-                DiceResult6 = diceState;
-                CalculateResults();
             }
 
 
@@ -804,62 +810,69 @@ namespace RetroFun.Pages
 
         public void InFloorItemUpdate(DataInterceptedEventArgs e)
         {
-            int id = e.Packet.ReadInteger();
-
-             e.Packet.ReadInteger();
-            e.Packet.ReadInteger();
-             e.Packet.ReadInteger();
-             e.Packet.ReadInteger();
-             e.Packet.ReadString();
-            e.Packet.ReadString();
-            e.Packet.ReadInteger();
-            e.Packet.ReadInteger();
-
-            string data = e.Packet.ReadString();
-
-            e.Continue();
-
-            if (!int.TryParse(data, out int diceState) || diceState == -1) return;
-
-            if (id == DiceID1)
+            try
             {
-                DiceResult1 = diceState;
-                CalculateResults();
+                int id = e.Packet.ReadInteger();
 
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
+                e.Packet.ReadString();
+                e.Packet.ReadString();
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
+
+                string data = e.Packet.ReadString();
+
+                e.Continue();
+
+                if (!int.TryParse(data, out int diceState) || diceState == -1) return;
+
+                if (id == DiceID1)
+                {
+                    DiceResult1 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID2)
+                {
+                    DiceResult2 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID3)
+                {
+                    DiceResult3 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID4)
+                {
+                    DiceResult4 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID5)
+                {
+                    DiceResult5 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID6)
+                {
+                    DiceResult6 = diceState;
+                    CalculateResults();
+                }
             }
-
-            if (id == DiceID2)
+            catch(Exception exc)
             {
-                DiceResult2 = diceState;
-                CalculateResults();
 
-            }
-
-            if (id == DiceID3)
-            {
-                DiceResult3 = diceState;
-                CalculateResults();
-
-            }
-
-            if (id == DiceID4)
-            {
-                DiceResult4 = diceState;
-                CalculateResults();
-
-            }
-
-            if (id == DiceID5)
-            {
-                DiceResult5 = diceState;
-                CalculateResults();
-
-            }
-
-            if (id == DiceID6)
-            {
-                DiceResult6 = diceState;
-                CalculateResults();
             }
 
         }
