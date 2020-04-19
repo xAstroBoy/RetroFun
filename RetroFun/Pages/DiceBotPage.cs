@@ -440,7 +440,8 @@ namespace RetroFun.Pages
                 int id = int.Parse(e.Packet.ReadString());
                 e.Packet.ReadInteger();
                 string data = e.Packet.ReadString();
-
+                
+                e.Packet.Position = 0;
                 e.Continue();
 
                 if (!int.TryParse(data, out int diceState) || diceState == -1) return;

@@ -246,7 +246,7 @@ namespace RetroFun
             this.GiftEditorPg.SpeedTimer1 = 100;
             this.GiftEditorPg.TabIndex = 0;
             this.GiftEditorPg.TabStop = false;
-            this.GiftEditorPg.TextBox = "";
+            this.GiftEditorPg.FurniIDStringBox = "";
             // 
             // AutoHoloDicePg
             // 

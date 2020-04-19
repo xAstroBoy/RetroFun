@@ -142,7 +142,10 @@ namespace RetroFun.Pages
             Bind(PageIDOptionChbx, "Checked", nameof(PageIDOptionToggle));
             Bind(FurniIDOptionChbx, "Checked", nameof(FurniIDOptionToggle));
 
-            Bind(furnITextBox, "Text", nameof(TextBox));
+            Bind(furnITextBox, "Text", nameof(FurniIDStringBox));
+
+            Bind(UsernameTextBox, "Text", nameof(GiftReceiver));
+
         }
 
 
@@ -271,17 +274,31 @@ namespace RetroFun.Pages
             }
         }
 
-        private string _TextBox = "";
+        private string _FurniIDStringBox = "";
 
-        public string TextBox
+        public string FurniIDStringBox
         {
-            get => _TextBox;
+            get => _FurniIDStringBox;
             set
             {
-                _TextBox = value;
+                _FurniIDStringBox = value;
                 RaiseOnPropertyChanged();
             }
         }
+
+
+        private string _GiftReceiver;
+
+        public string GiftReceiver
+        {
+            get => _GiftReceiver;
+            set
+            {
+                _GiftReceiver = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
         private string _FileNameSave = "Unnamed.RetroFun";
 
@@ -311,13 +328,32 @@ namespace RetroFun.Pages
 
         private void SendGiftBtn_Click_1(object sender, EventArgs e)
         {
-            SendPacket();
+            if (String.IsNullOrEmpty(GiftReceiver))
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 1, 0, -1);
+                return;
+
+            }
+            else
+            {
+                SendPacket();
+            }
         }
 
         private void SButtonLoopToggle_Click(object sender, EventArgs e)
         {
-            CheckLoopStatus();
+            if (String.IsNullOrEmpty(GiftReceiver))
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 1, 0, -1);
+                return;
+
+            }
+            else
+            {
+                CheckLoopStatus();
+            }
         }
+
 
 
 
@@ -739,18 +775,41 @@ namespace RetroFun.Pages
 
         private void GiftFurniIDBruteforcerBtn_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(GiftReceiver))
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 1, 0, -1);
+                return;
+
+            }
             CheckFurniIDBruteforcer();
         }
 
         private void GiftPageIDBruteForcerBtn_Click(object sender, EventArgs e)
         {
-            CheckPageIDBruteforcer();
+            if (String.IsNullOrEmpty(GiftReceiver))
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 1, 0, -1);
+                return;
 
+            }
+            else
+            {
+                CheckPageIDBruteforcer();
+            }
         }
 
         private void GiftBruteForceBtn_Click(object sender, EventArgs e)
         {
-            CheckGiftBruteForcer();
+            if (String.IsNullOrEmpty(GiftReceiver))
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 1, 0, -1);
+                return;
+
+            }
+            else
+            {
+                CheckGiftBruteForcer();
+            }
         }
 
 
