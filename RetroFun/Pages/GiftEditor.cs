@@ -456,6 +456,11 @@ namespace RetroFun.Pages
         public void InUserProfile(DataInterceptedEventArgs e)
         {
         }
+
+        public void InRoomData(DataInterceptedEventArgs e)
+        {
+
+        }
         public void OnRoomUserWalk(DataInterceptedEventArgs e)
         {
         }

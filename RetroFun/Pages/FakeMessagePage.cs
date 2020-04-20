@@ -101,6 +101,11 @@ namespace RetroFun.Pages
         public void InItemExtraData(DataInterceptedEventArgs e)
         {
         }
+
+        public void InRoomData(DataInterceptedEventArgs e)
+        {
+
+        }
         public void OnRoomUserTalk(DataInterceptedEventArgs e)
         {
 

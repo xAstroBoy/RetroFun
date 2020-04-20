@@ -88,6 +88,10 @@ namespace RetroFun.Pages
 
         }
 
+        public void InRoomData(DataInterceptedEventArgs e)
+        {
+
+        }
         public void InRoomUserWhisper(DataInterceptedEventArgs e)
         {
         }

@@ -455,6 +455,11 @@ namespace RetroFun.Pages
             users.Clear();
 
         }
+
+        public void InRoomData(DataInterceptedEventArgs e)
+        {
+
+        }
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
         }
@@ -847,7 +852,7 @@ namespace RetroFun.Pages
         {
             if (!String.IsNullOrEmpty(CloneUsernameFilter))
             {
-                if (users.Values != null)
+                if (users != null && users.Values != null)
                 {
                     FindUserIndex(CloneUsernameFilter);
                 }
@@ -862,5 +867,6 @@ namespace RetroFun.Pages
         {
             Connection.SendToServerAsync(ChatMessageBuilder());
         }
+
     }
 }

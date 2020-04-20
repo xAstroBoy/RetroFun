@@ -1814,6 +1814,11 @@ namespace RetroFun.Pages
         {
         }
 
+        public void InRoomData(DataInterceptedEventArgs e)
+        {
+
+        }
+
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {
 

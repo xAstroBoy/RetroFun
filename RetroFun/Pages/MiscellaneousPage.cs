@@ -634,7 +634,6 @@ namespace RetroFun.Pages
             if (Program.Master != null)
             {
                 Triggers.InAttach(In.MessagesForYou, HandleMessageForYou);
-                Triggers.InAttach(In.RoomData, HandleRoomData);
             }
 
         }
@@ -1281,7 +1280,7 @@ namespace RetroFun.Pages
             return new string(process1.Where(c => char.IsLetter(c) || char.IsDigit(c) || char.IsSymbol(c)).ToArray());
         }
 
-        private void HandleRoomData(DataInterceptedEventArgs e)
+        public void InRoomData(DataInterceptedEventArgs e)
         {
             try
             {

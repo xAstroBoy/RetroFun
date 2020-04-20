@@ -113,6 +113,11 @@ namespace RetroFun.Pages
         public void OnRoomUserWalk(DataInterceptedEventArgs e)
         {
         }
+
+        public void InRoomData(DataInterceptedEventArgs e)
+        {
+
+        }
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
         {
             int userId = e.Packet.ReadInteger();

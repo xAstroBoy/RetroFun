@@ -50,8 +50,12 @@
             this.AutomaticBypassBtn = new Sulakore.Components.SKoreButton();
             this.EnterRoomBtn = new Sulakore.Components.SKoreButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BlockRestrictionsBtn = new Sulakore.Components.SKoreButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.HanditemCmbx = new System.Windows.Forms.ComboBox();
+            this.GiveallUserHanditemBtn = new Sulakore.Components.SKoreButton();
+            this.GiveHanditemToMyself = new Sulakore.Components.SKoreButton();
+            this.GiveHanditemToClickedUserbtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).BeginInit();
@@ -305,6 +309,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Doorbell Bypass";
             // 
+            // BlockRestrictionsBtn
+            // 
+            this.BlockRestrictionsBtn.Location = new System.Drawing.Point(14, 173);
+            this.BlockRestrictionsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.BlockRestrictionsBtn.Name = "BlockRestrictionsBtn";
+            this.BlockRestrictionsBtn.Size = new System.Drawing.Size(182, 38);
+            this.BlockRestrictionsBtn.TabIndex = 85;
+            this.BlockRestrictionsBtn.Text = "Block Restrictions : OFF";
+            this.BlockRestrictionsBtn.Click += new System.EventHandler(this.BlockRestrictionsBtn_Click);
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.AcquireMODPermissionsBtn);
@@ -316,27 +330,61 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Staff Utils (CLIENT)";
             // 
-            // sKoreButton1
+            // HanditemCmbx
             // 
-            this.BlockRestrictionsBtn.Location = new System.Drawing.Point(14, 173);
-            this.BlockRestrictionsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.BlockRestrictionsBtn.Name = "BlockRestrictionsBtn";
-            this.BlockRestrictionsBtn.Size = new System.Drawing.Size(182, 38);
-            this.BlockRestrictionsBtn.TabIndex = 85;
-            this.BlockRestrictionsBtn.Text = "Block Restrictions : OFF";
-            this.BlockRestrictionsBtn.Click += new System.EventHandler(this.BlockRestrictionsBtn_Click);
+            this.HanditemCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.HanditemCmbx.FormattingEnabled = true;
+            this.HanditemCmbx.Location = new System.Drawing.Point(724, 57);
+            this.HanditemCmbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HanditemCmbx.Name = "HanditemCmbx";
+            this.HanditemCmbx.Size = new System.Drawing.Size(289, 28);
+            this.HanditemCmbx.TabIndex = 88;
+            // 
+            // GiveallUserHanditemBtn
+            // 
+            this.GiveallUserHanditemBtn.Location = new System.Drawing.Point(807, 157);
+            this.GiveallUserHanditemBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GiveallUserHanditemBtn.Name = "GiveallUserHanditemBtn";
+            this.GiveallUserHanditemBtn.Size = new System.Drawing.Size(204, 32);
+            this.GiveallUserHanditemBtn.TabIndex = 87;
+            this.GiveallUserHanditemBtn.Text = "Give Handitem to all users";
+            this.GiveallUserHanditemBtn.Click += new System.EventHandler(this.GiveallUserHanditemBtn_Click);
+            // 
+            // GiveHanditemToMyself
+            // 
+            this.GiveHanditemToMyself.Location = new System.Drawing.Point(807, 108);
+            this.GiveHanditemToMyself.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GiveHanditemToMyself.Name = "GiveHanditemToMyself";
+            this.GiveHanditemToMyself.Size = new System.Drawing.Size(204, 32);
+            this.GiveHanditemToMyself.TabIndex = 89;
+            this.GiveHanditemToMyself.Text = "Give Handitem To yourself";
+            this.GiveHanditemToMyself.Click += new System.EventHandler(this.GiveHanditemToMyself_Click);
+            // 
+            // GiveHanditemToClickedUserbtn
+            // 
+            this.GiveHanditemToClickedUserbtn.Location = new System.Drawing.Point(738, 204);
+            this.GiveHanditemToClickedUserbtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GiveHanditemToClickedUserbtn.Name = "GiveHanditemToClickedUserbtn";
+            this.GiveHanditemToClickedUserbtn.Size = new System.Drawing.Size(273, 32);
+            this.GiveHanditemToClickedUserbtn.TabIndex = 90;
+            this.GiveHanditemToClickedUserbtn.Text = "Give Handitem to clicked user : OFF";
+            this.GiveHanditemToClickedUserbtn.Click += new System.EventHandler(this.GiveHanditemToClickedUserbtn_Click);
             // 
             // PersonalPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.GiveHanditemToClickedUserbtn);
+            this.Controls.Add(this.GiveHanditemToMyself);
+            this.Controls.Add(this.HanditemCmbx);
+            this.Controls.Add(this.GiveallUserHanditemBtn);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.SetCurrencyBtn);
             this.Controls.Add(this.Currency);
             this.Name = "PersonalPage";
-            this.Size = new System.Drawing.Size(874, 477);
+            this.Size = new System.Drawing.Size(1066, 477);
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).EndInit();
@@ -378,5 +426,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private Sulakore.Components.SKoreButton BlockRestrictionsBtn;
+        private System.Windows.Forms.ComboBox HanditemCmbx;
+        private Sulakore.Components.SKoreButton GiveallUserHanditemBtn;
+        private Sulakore.Components.SKoreButton GiveHanditemToMyself;
+        private Sulakore.Components.SKoreButton GiveHanditemToClickedUserbtn;
     }
 }

@@ -37,6 +37,7 @@
             this.SpamWalkChb = new System.Windows.Forms.CheckBox();
             this.CooldownFloodNbx = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.SpectatorChbx = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.IdOfVictimNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CooldownFloodNbx)).BeginInit();
             this.SuspendLayout();
@@ -148,10 +149,22 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "Walking Speed";
             // 
+            // SpectatorChbx
+            // 
+            this.SpectatorChbx.AutoSize = true;
+            this.SpectatorChbx.Location = new System.Drawing.Point(312, 342);
+            this.SpectatorChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SpectatorChbx.Name = "SpectatorChbx";
+            this.SpectatorChbx.Size = new System.Drawing.Size(316, 24);
+            this.SpectatorChbx.TabIndex = 17;
+            this.SpectatorChbx.Text = "Should Spectate on Bot-Giochi games?";
+            this.SpectatorChbx.UseVisualStyleBackColor = true;
+            // 
             // StalkingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.SpectatorChbx);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CooldownFloodNbx);
             this.Controls.Add(this.SpamWalkChb);
@@ -182,5 +195,6 @@
         private System.Windows.Forms.CheckBox SpamWalkChb;
         private System.Windows.Forms.NumericUpDown CooldownFloodNbx;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox SpectatorChbx;
     }
 }

@@ -31,5 +31,7 @@ namespace RetroFun.Subscribers
         void InRoomUserWhisper(DataInterceptedEventArgs e);
 
         void InFloorItemUpdate(DataInterceptedEventArgs e);
+        void InRoomData(DataInterceptedEventArgs e);
+
     }
 }

@@ -173,6 +173,10 @@ namespace RetroFun
                 {
                     sub.InFloorItemUpdate(e);
                 }
+                else if (In.RoomData == id)
+                {
+                    sub.InRoomData(e);
+                }
             }
         }
     }

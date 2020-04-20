@@ -86,6 +86,17 @@ namespace RetroFun.Pages
             }
         }
 
+        private int _Handitem;
+        public int Handitem
+        {
+            get => _Handitem;
+            set
+            {
+                _Handitem = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
         private string _userNickname;
         public string UserNickname
         {
@@ -146,6 +157,7 @@ namespace RetroFun.Pages
             Bind(LockNicknameBoxChbx, "Checked", nameof(LockNickname));
             Bind(LockMottoBoxChbx, "Checked", nameof(LockMotto));
             Bind(lockLookChbx, "Checked", nameof(LockLook));
+
 
             _removedEntities = new Dictionary<string, HEntity>();
             _blacklistedEntities = new Dictionary<string, bool>();
@@ -229,6 +241,11 @@ namespace RetroFun.Pages
 
         }
         public void InPurchaseOk(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRoomData(DataInterceptedEventArgs e)
         {
 
         }
@@ -697,6 +714,9 @@ namespace RetroFun.Pages
         }
 
 
+
+
+
         private void StartAllUserRemover()
         {
             new Thread(() =>
@@ -816,6 +836,8 @@ namespace RetroFun.Pages
         {
             StartFlood();
         }
+
+
     }
 }
 

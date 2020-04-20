@@ -25,8 +25,21 @@ namespace RetroFun.Pages
         };
 
 
-
         private bool isUserManualWalking;
+
+        private bool _isBotGiochiStalked;
+
+        public bool isSpectatorModeActive
+        {
+            get => _isBotGiochiStalked;
+            set
+            {
+                _isBotGiochiStalked = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
         private int _UserIDCapture;
 
         public int UserIDCapture
@@ -77,8 +90,19 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+        private bool _ShouldExitDirectlyOnGames;
 
-        private bool _ShouldSpamRandomCoords;
+        public bool ShouldExitDirectlyOnGames
+        {
+            get => _ShouldExitDirectlyOnGames;
+            set
+            {
+                _ShouldExitDirectlyOnGames = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+            private bool _ShouldSpamRandomCoords;
 
         public bool ShouldSpamRandomCoords
         {
@@ -91,6 +115,9 @@ namespace RetroFun.Pages
         }
 
 
+
+
+
         public StalkingPage()
         {
             InitializeComponent();
@@ -101,12 +128,16 @@ namespace RetroFun.Pages
             Bind(Stalkbotgamescheckbx, "Checked", nameof(ShouldStalkBotGiochi));
             Bind(SpamWalkChb, "Checked", nameof(ShouldSpamRandomCoords));
 
+            Bind(SpectatorChbx, "Checked", nameof(ShouldExitDirectlyOnGames));
+
+            
             Bind(IdOfVictimNbx, "Value", nameof(UserIDCapture));
             Bind(CooldownFloodNbx, "Value", nameof(CooldownWalking));
 
             if (Program.Master != null)
             {
                 Triggers.InAttach(In.ReceivePrivateMessage, CheckifIsBotGiochi);
+                Triggers.OutAttach(Out.RequestRoomData, RoomDataRequest);
             }
         }
 
@@ -154,13 +185,39 @@ namespace RetroFun.Pages
 
 
 
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
+        public void InRoomData(DataInterceptedEventArgs e)
         {
-            if(ShouldSpamRandomCoords)
+            isUserRandomWalking();
+        }
+
+        public void RoomDataRequest(DataInterceptedEventArgs e)
+        {
+            isUserSpectatorMode();
+        }
+
+        private async void isUserSpectatorMode()
+        {
+            if (ShouldExitDirectlyOnGames)
+            {
+                if (isSpectatorModeActive)
+                {
+                   await  Connection.SendToServerAsync(Out.RoomUserTalk, "exit", 18);
+                    isSpectatorModeActive = false;
+                }
+            }
+        }
+
+        private void isUserRandomWalking()
+        {
+            if (ShouldSpamRandomCoords)
             {
                 isUserManualWalking = false;
                 StartRandomWalk();
             }
+        }
+
+        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
+        {
         }
 
         public void InRoomUserLeft(DataInterceptedEventArgs e)
@@ -229,6 +286,10 @@ namespace RetroFun.Pages
                 int UserID = obj.Packet.ReadInteger();
                 if (UserID == 1442790)
                 {
+                    if (ShouldExitDirectlyOnGames)
+                    {
+                        isSpectatorModeActive = true;
+                    }
                     if (Connection.Remote.IsConnected)
                     {
                         Connection.SendToServerAsync(Out.StalkFriend, 1442790);

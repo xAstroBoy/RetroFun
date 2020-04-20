@@ -441,7 +441,6 @@ namespace RetroFun.Pages
                 e.Packet.ReadInteger();
                 string data = e.Packet.ReadString();
                 
-                e.Packet.Position = 0;
                 e.Continue();
 
                 if (!int.TryParse(data, out int diceState) || diceState == -1) return;
@@ -932,6 +931,12 @@ namespace RetroFun.Pages
         }
 
         public void InRoomUserTalk(DataInterceptedEventArgs e)
+        {
+
+        }
+        
+
+         public void InRoomData(DataInterceptedEventArgs e)
         {
 
         }

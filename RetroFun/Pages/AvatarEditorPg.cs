@@ -81,6 +81,11 @@ namespace RetroFun.Pages
 
         }
 
+        public void InRoomData(DataInterceptedEventArgs e)
+        {
+
+        }
+
         public void OnLatencyTest(DataInterceptedEventArgs e)
         {
 
