@@ -166,7 +166,6 @@
             this.FloorFurniXNbx.Name = "FloorFurniXNbx";
             this.FloorFurniXNbx.Size = new System.Drawing.Size(84, 26);
             this.FloorFurniXNbx.TabIndex = 7;
-            this.FloorFurniXNbx.ValueChanged += new System.EventHandler(this.FloorFurniXNbx_ValueChanged);
             // 
             // label1
             // 
@@ -197,7 +196,6 @@
             this.FloorFurniYNbx.Name = "FloorFurniYNbx";
             this.FloorFurniYNbx.Size = new System.Drawing.Size(84, 26);
             this.FloorFurniYNbx.TabIndex = 10;
-            this.FloorFurniYNbx.ValueChanged += new System.EventHandler(this.FloorFurniYNbx_ValueChanged);
             // 
             // RotationUp
             // 
@@ -251,7 +249,7 @@
             this.groupBox1.Controls.Add(this.rotationLeft);
             this.groupBox1.Controls.Add(this.RotationDown);
             this.groupBox1.Controls.Add(this.RotationUp);
-            this.groupBox1.Location = new System.Drawing.Point(190, 54);
+            this.groupBox1.Location = new System.Drawing.Point(222, 35);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -272,7 +270,7 @@
             // 
             // CaptureFloorFurniBtn
             // 
-            this.CaptureFloorFurniBtn.Location = new System.Drawing.Point(190, 307);
+            this.CaptureFloorFurniBtn.Location = new System.Drawing.Point(7, 307);
             this.CaptureFloorFurniBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CaptureFloorFurniBtn.Name = "CaptureFloorFurniBtn";
             this.CaptureFloorFurniBtn.Size = new System.Drawing.Size(157, 34);
@@ -295,7 +293,7 @@
             this.groupBox2.Controls.Add(this.groupBox1);
             this.groupBox2.Location = new System.Drawing.Point(389, 17);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(354, 349);
+            this.groupBox2.Size = new System.Drawing.Size(416, 349);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Floor Furni Editor";
@@ -303,7 +301,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 284);
+            this.label3.Location = new System.Drawing.Point(237, 214);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(156, 20);
             this.label3.TabIndex = 14;
@@ -311,7 +309,7 @@
             // 
             // WalkingSpeedNbx
             // 
-            this.WalkingSpeedNbx.Location = new System.Drawing.Point(6, 307);
+            this.WalkingSpeedNbx.Location = new System.Drawing.Point(237, 237);
             this.WalkingSpeedNbx.Maximum = new decimal(new int[] {
             -2147483648,
             0,
@@ -320,10 +318,15 @@
             this.WalkingSpeedNbx.Name = "WalkingSpeedNbx";
             this.WalkingSpeedNbx.Size = new System.Drawing.Size(84, 26);
             this.WalkingSpeedNbx.TabIndex = 13;
+            this.WalkingSpeedNbx.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
             // 
             // WalkingStyleBtn
             // 
-            this.WalkingStyleBtn.Location = new System.Drawing.Point(7, 238);
+            this.WalkingStyleBtn.Location = new System.Drawing.Point(7, 251);
             this.WalkingStyleBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.WalkingStyleBtn.Name = "WalkingStyleBtn";
             this.WalkingStyleBtn.Size = new System.Drawing.Size(200, 34);

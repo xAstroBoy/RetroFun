@@ -5,6 +5,7 @@ using Sulakore.Components;
 using Sulakore.Protocol;
 using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,7 +29,7 @@ namespace RetroFun.Pages
         private bool isTeleportFurni = true;
         private bool IsWalkingFurni;
 
-        private int _FurniWalkingSpeed = 300;
+        private int _FurniWalkingSpeed = 15;
 
         public int FurniWalkingSpeed
         {
@@ -417,47 +418,81 @@ namespace RetroFun.Pages
         }
 
 
-        public async void WalkFurniToCoord(int X, int Y)
+        private async void WalkFurniToCoordX(int X)
         {
             if (ConvertWalkinFurniMovement)
             {
-                while (FloorFurniX != X && FloorFurniY != Y)
+                while (FloorFurniX != X )
                 {
                     if (FloorFurniX < X)
                     {
                         FloorFurniX++;
+                        await Task.Delay(FurniWalkingSpeed);
+                        SendWalkingFurniPacket(FloorFurniX, FloorFurniY);
                     }
                     if (FloorFurniX > X)
                     {
                         FloorFurniX--;
-                    }
+                        await Task.Delay(FurniWalkingSpeed);
+                        SendWalkingFurniPacket(FloorFurniX, FloorFurniY);
 
+                    }
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private async void WalkFurniToCoordY(int Y)
+        {
+            if (ConvertWalkinFurniMovement)
+            {
+                while (FloorFurniY != Y)
+                {
                     if (FloorFurniY < Y)
                     {
                         FloorFurniY++;
+                        await Task.Delay(FurniWalkingSpeed);
+                        SendWalkingFurniPacket(FloorFurniX, FloorFurniY);
+
                     }
                     if (FloorFurniY > Y)
                     {
                         FloorFurniY--;
+                        await Task.Delay(FurniWalkingSpeed);
+                        SendWalkingFurniPacket(FloorFurniX, FloorFurniY);
                     }
-
-                    await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
-                    await Task.Delay(FurniWalkingSpeed);
-
                 }
             }
-
+            else
+            {
+                return;
+            }
         }
 
-
+        private  void SendWalkingFurniPacket(int X, int Y)
+        {
+            if (ConvertWalkinFurniMovement)
+            {
+                Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
+            }
+        }
         private void FloorFurniXNbx_ValueChanged(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            if (ConvertWalkinFurniMovement)
+            {
+                Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            }
         }
 
         private void FloorFurniYNbx_ValueChanged(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            if (ConvertWalkinFurniMovement)
+            {
+                Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            }
         }
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
@@ -525,7 +560,14 @@ namespace RetroFun.Pages
                     e.IsBlocked = true;
                 }
             }
+        }
 
+        private async void WalkFurniToCoord(int X , int Y)
+        {
+            WalkFurniToCoordX(X);
+            await Task.Delay(10);
+            WalkFurniToCoordY(Y);
+            await Task.Delay(10);
         }
 
         public void InPurchaseOk(DataInterceptedEventArgs e)

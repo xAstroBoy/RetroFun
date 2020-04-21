@@ -170,7 +170,7 @@ namespace RetroFun
             this.FurniPg.FloorFurniY = 0;
             this.FurniPg.FurniPickedOutput = false;
             this.FurniPg.FurnitureIdText = null;
-            this.FurniPg.FurniWalkingSpeed = 300;
+            this.FurniPg.FurniWalkingSpeed = 15;
             this.FurniPg.Location = new System.Drawing.Point(8, 8);
             this.FurniPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.FurniPg.Name = "FurniPg";
@@ -205,10 +205,12 @@ namespace RetroFun
             // 
             this.StalkingPg.BackColor = System.Drawing.Color.White;
             this.StalkingPg.CooldownWalking = 11;
+            this.StalkingPg.isSpectatorModeActive = false;
             this.StalkingPg.Location = new System.Drawing.Point(4, 0);
             this.StalkingPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.StalkingPg.Name = "StalkingPg";
             this.StalkingPg.ShouldCaptureIDMode = false;
+            this.StalkingPg.ShouldExitDirectlyOnGames = false;
             this.StalkingPg.ShouldSpamRandomCoords = false;
             this.StalkingPg.ShouldStalkBotGiochi = false;
             this.StalkingPg.Size = new System.Drawing.Size(1180, 617);
@@ -227,7 +229,9 @@ namespace RetroFun
             this.GiftEditorPg.FurniIDIntRange = 0;
             this.GiftEditorPg.FurniIDOptionToggle = true;
             this.GiftEditorPg.FurniIDRangeToggle = false;
+            this.GiftEditorPg.FurniIDStringBox = "";
             this.GiftEditorPg.GiftCaptureModeCatalog = false;
+            this.GiftEditorPg.GiftReceiver = null;
             this.GiftEditorPg.GlobalBruteforcerEnabled = false;
             this.GiftEditorPg.isAnonymous = false;
             this.GiftEditorPg.Location = new System.Drawing.Point(0, 0);
@@ -246,7 +250,6 @@ namespace RetroFun
             this.GiftEditorPg.SpeedTimer1 = 100;
             this.GiftEditorPg.TabIndex = 0;
             this.GiftEditorPg.TabStop = false;
-            this.GiftEditorPg.FurniIDStringBox = "";
             // 
             // AutoHoloDicePg
             // 
@@ -416,6 +419,9 @@ namespace RetroFun
             this.PersonalPg.CrystalsValue = 999999999;
             this.PersonalPg.DucketsChecked = true;
             this.PersonalPg.DucketsValue = 999999999;
+            this.PersonalPg.giveHanditemToselecteduser = false;
+            this.PersonalPg.HanditemHunter = 0;
+            this.PersonalPg.HanditemID = 0;
             this.PersonalPg.HasModToolsUnlocked = false;
             this.PersonalPg.HasStaffPermissions = false;
             this.PersonalPg.Location = new System.Drawing.Point(3, 3);
@@ -598,6 +604,7 @@ namespace RetroFun
             // UserEditorPg
             // 
             this.UserEditorPg.BackColor = System.Drawing.Color.White;
+            this.UserEditorPg.Handitem = 0;
             this.UserEditorPg.Location = new System.Drawing.Point(2, 0);
             this.UserEditorPg.LockLook = false;
             this.UserEditorPg.LockMotto = false;
