@@ -32,3 +32,5 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csproj.Co
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csproj.CopyComplete
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.exe
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.pdb
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csprojAssemblyReference.cache
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.ModerationPage.resources

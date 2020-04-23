@@ -77,6 +77,8 @@ namespace RetroFun
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
             this.BottomPg = new RetroFun.Pages.BottomPage();
+            this.ModerationTab = new System.Windows.Forms.TabPage();
+            this.ModerationPg = new Pages.ModerationPage();
             this.RetroFunTabs.SuspendLayout();
             this.PersonalTab.SuspendLayout();
             this.UtiliesTab.SuspendLayout();
@@ -100,6 +102,7 @@ namespace RetroFun
             this.GiftPageTab.SuspendLayout();
             this.SpeechzTab.SuspendLayout();
             this.MiscellaneousTab.SuspendLayout();
+            this.ModerationTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // ChatPg
@@ -369,6 +372,7 @@ namespace RetroFun
             // 
             this.RetroFunTabs.Controls.Add(this.PersonalTab);
             this.RetroFunTabs.Controls.Add(this.UtiliesTab);
+            this.RetroFunTabs.Controls.Add(this.ModerationTab);
             this.RetroFunTabs.Controls.Add(this.FurnitureTab);
             this.RetroFunTabs.Controls.Add(this.FurnitureSpawnerTab);
             this.RetroFunTabs.Controls.Add(this.FurnitureSpamTab);
@@ -394,7 +398,7 @@ namespace RetroFun
             this.RetroFunTabs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RetroFunTabs.Name = "RetroFunTabs";
             this.RetroFunTabs.SelectedIndex = 0;
-            this.RetroFunTabs.Size = new System.Drawing.Size(1202, 666);
+            this.RetroFunTabs.Size = new System.Drawing.Size(1241, 675);
             this.RetroFunTabs.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.RetroFunTabs.TabIndex = 0;
             // 
@@ -891,7 +895,7 @@ namespace RetroFun
             // AlwaysOnTopChbx
             // 
             this.AlwaysOnTopChbx.AutoSize = true;
-            this.AlwaysOnTopChbx.Location = new System.Drawing.Point(6, 675);
+            this.AlwaysOnTopChbx.Location = new System.Drawing.Point(4, 685);
             this.AlwaysOnTopChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AlwaysOnTopChbx.Name = "AlwaysOnTopChbx";
             this.AlwaysOnTopChbx.Size = new System.Drawing.Size(140, 24);
@@ -903,19 +907,47 @@ namespace RetroFun
             // 
             this.BottomPg.BackColor = System.Drawing.Color.White;
             this.BottomPg.FreezeUserMovement = false;
-            this.BottomPg.Location = new System.Drawing.Point(157, 668);
+            this.BottomPg.Location = new System.Drawing.Point(155, 678);
             this.BottomPg.Name = "BottomPg";
             this.BottomPg.Size = new System.Drawing.Size(1045, 37);
             this.BottomPg.TabIndex = 1;
             this.BottomPg.TabStop = false;
             this.BottomPg.UsernameFilter = null;
             // 
+            // ModerationTab
+            // 
+            this.ModerationTab.Controls.Add(this.ModerationPg);
+            this.ModerationTab.Location = new System.Drawing.Point(4, 28);
+            this.ModerationTab.Name = "ModerationTab";
+            this.ModerationTab.Size = new System.Drawing.Size(1233, 643);
+            this.ModerationTab.TabIndex = 20;
+            this.ModerationTab.Text = "Moderation Page";
+            this.ModerationTab.UseVisualStyleBackColor = true;
+            // 
+            // moderationPage1
+            // 
+            this.ModerationPg.AlertMessage = null;
+            this.ModerationPg.BackColor = System.Drawing.Color.White;
+            this.ModerationPg.BanMessage = null;
+            this.ModerationPg.Location = new System.Drawing.Point(8, 6);
+            this.ModerationPg.ManualBanTime = 3600;
+            this.ModerationPg.ManualMuteTime = 60;
+            this.ModerationPg.Name = "moderationPage1";
+            this.ModerationPg.SelectedIndex = 0;
+            this.ModerationPg.Size = new System.Drawing.Size(1217, 634);
+            this.ModerationPg.TabIndex = 0;
+            this.ModerationPg.TabStop = false;
+            this.ModerationPg.UnlockPassword = null;
+            this.ModerationPg.UserLook = null;
+            this.ModerationPg.UserMotto = null;
+            this.ModerationPg.UserNickname = null;
+            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1202, 703);
+            this.ClientSize = new System.Drawing.Size(1241, 723);
             this.Controls.Add(this.BottomPg);
             this.Controls.Add(this.AlwaysOnTopChbx);
             this.Controls.Add(this.RetroFunTabs);
@@ -948,6 +980,7 @@ namespace RetroFun
             this.GiftPageTab.ResumeLayout(false);
             this.SpeechzTab.ResumeLayout(false);
             this.MiscellaneousTab.ResumeLayout(false);
+            this.ModerationTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -992,6 +1025,7 @@ namespace RetroFun
         private Pages.PetPage PetPg;
         private Pages.UserEditorPage UserEditorPg;
         private Pages.PersonalPage PersonalPg;
+        private Pages.ModerationPage ModerationPg;
 
         private Sulakore.Components.SKoreTabControl MoonlightPages;
         private System.Windows.Forms.TabPage tabPage1;
@@ -1004,5 +1038,6 @@ namespace RetroFun
         private System.Windows.Forms.TabPage UtiliesTab;
         private System.Windows.Forms.TabPage PetTab;
         private System.Windows.Forms.TabPage UserEditorTab;
+        private System.Windows.Forms.TabPage ModerationTab;
     }
 }

@@ -50,10 +50,6 @@
             this.BlackListUserRoomLbl = new System.Windows.Forms.Label();
             this.RestoreBlacklistBtn = new Sulakore.Components.SKoreButton();
             this.AddAllUsersOnBlacklistBtn = new Sulakore.Components.SKoreButton();
-            this.BanUserForSpamBtn = new Sulakore.Components.SKoreButton();
-            this.FloodBtn = new Sulakore.Components.SKoreButton();
-            this.passwordtxb = new System.Windows.Forms.TextBox();
-            this.UnlockStaffUtilsBtn = new Sulakore.Components.SKoreButton();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
@@ -244,7 +240,7 @@
             this.BlacklistBtn.Name = "BlacklistBtn";
             this.BlacklistBtn.Size = new System.Drawing.Size(236, 29);
             this.BlacklistBtn.TabIndex = 36;
-            this.BlacklistBtn.Text = "Blacklist : ON";
+            this.BlacklistBtn.Text = "Blacklist : OFF";
             this.BlacklistBtn.Click += new System.EventHandler(this.BlacklistBtn_Click);
             // 
             // BlacklistCountLbl
@@ -287,53 +283,10 @@
             this.AddAllUsersOnBlacklistBtn.Text = "Add All Users in blacklist : OFF";
             this.AddAllUsersOnBlacklistBtn.Click += new System.EventHandler(this.AddAllUsersOnBlacklistBtn_Click);
             // 
-            // BanUserForSpamBtn
-            // 
-            this.BanUserForSpamBtn.Enabled = false;
-            this.BanUserForSpamBtn.Location = new System.Drawing.Point(187, 436);
-            this.BanUserForSpamBtn.Name = "BanUserForSpamBtn";
-            this.BanUserForSpamBtn.Size = new System.Drawing.Size(234, 53);
-            this.BanUserForSpamBtn.TabIndex = 1;
-            this.BanUserForSpamBtn.Text = "Ban Selected User for SPAM";
-            this.BanUserForSpamBtn.Visible = false;
-            this.BanUserForSpamBtn.Click += new System.EventHandler(this.BanUserForSpamBtn_Click);
-            // 
-            // FloodBtn
-            // 
-            this.FloodBtn.Enabled = false;
-            this.FloodBtn.Location = new System.Drawing.Point(15, 436);
-            this.FloodBtn.Name = "FloodBtn";
-            this.FloodBtn.Size = new System.Drawing.Size(160, 53);
-            this.FloodBtn.TabIndex = 0;
-            this.FloodBtn.Text = "Flood x25";
-            this.FloodBtn.Visible = false;
-            this.FloodBtn.Click += new System.EventHandler(this.FloodBtn_Click);
-            // 
-            // passwordtxb
-            // 
-            this.passwordtxb.Location = new System.Drawing.Point(498, 429);
-            this.passwordtxb.MaxLength = 2147483647;
-            this.passwordtxb.Name = "passwordtxb";
-            this.passwordtxb.Size = new System.Drawing.Size(234, 26);
-            this.passwordtxb.TabIndex = 40;
-            // 
-            // UnlockStaffUtilsBtn
-            // 
-            this.UnlockStaffUtilsBtn.Location = new System.Drawing.Point(536, 461);
-            this.UnlockStaffUtilsBtn.Name = "UnlockStaffUtilsBtn";
-            this.UnlockStaffUtilsBtn.Size = new System.Drawing.Size(176, 28);
-            this.UnlockStaffUtilsBtn.TabIndex = 41;
-            this.UnlockStaffUtilsBtn.Text = "Unlock staff utils";
-            this.UnlockStaffUtilsBtn.Click += new System.EventHandler(this.UnlockStaffUtilsBtn_Click);
-            // 
             // UserEditorPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.UnlockStaffUtilsBtn);
-            this.Controls.Add(this.passwordtxb);
-            this.Controls.Add(this.FloodBtn);
-            this.Controls.Add(this.BanUserForSpamBtn);
             this.Controls.Add(this.AddAllUsersOnBlacklistBtn);
             this.Controls.Add(this.RestoreBlacklistBtn);
             this.Controls.Add(this.BlackListUserRoomLbl);
@@ -388,9 +341,5 @@
         private System.Windows.Forms.Label BlackListUserRoomLbl;
         private Sulakore.Components.SKoreButton RestoreBlacklistBtn;
         private Sulakore.Components.SKoreButton AddAllUsersOnBlacklistBtn;
-        private Sulakore.Components.SKoreButton BanUserForSpamBtn;
-        private Sulakore.Components.SKoreButton FloodBtn;
-        private System.Windows.Forms.TextBox passwordtxb;
-        private Sulakore.Components.SKoreButton UnlockStaffUtilsBtn;
     }
 }

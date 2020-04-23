@@ -61,7 +61,9 @@ namespace RetroFun
                 UserEditorPg,
                 AvatarEditorPg,
                 FurniTrollPg,
-                PersonalPg
+                PersonalPg,
+                ModerationPg
+
             };
 
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));

@@ -23,7 +23,7 @@ namespace RetroFun.Pages
     public partial class UserEditorPage : ObservablePage, ISubscriber
     {
         private int _selectedUserId;
-        private bool _isBlacklistActive = true;
+        private bool _isBlacklistActive = false;
         private Dictionary<string, bool> _blacklistedEntities;
         public int LocalIndex;
 
@@ -152,7 +152,6 @@ namespace RetroFun.Pages
             Bind(UserNameTxbx, "Text", nameof(UserNickname));
             Bind(MottoTxbx, "Text", nameof(UserMotto));
             Bind(LookTxbx, "Text", nameof(UserLook));
-            Bind(passwordtxb, "Text", nameof(UnlockPassword));
 
             Bind(LockNicknameBoxChbx, "Checked", nameof(LockNickname));
             Bind(LockMottoBoxChbx, "Checked", nameof(LockMotto));
@@ -542,38 +541,7 @@ namespace RetroFun.Pages
             });
         }
 
-        private void isVisibileButton(SKoreButton button, bool isVisible)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                button.Visible = isVisible;
-            });
-        }
-
-        private void isEnabledButton(SKoreButton button, bool isEnabled)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                button.Enabled = isEnabled;
-            });
-        }
-
-
-        private void isVisibileTextBox(TextBox textbox, bool text)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                textbox.Visible = text;
-            });
-        }
-
-        private void isEnableTextBox(TextBox textbox, bool text)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                textbox.Enabled = text;
-            });
-        }
+   
         private void BlacklistBtn_Click(object sender, EventArgs e)
         {
             _isBlacklistActive = !_isBlacklistActive;
@@ -801,43 +769,6 @@ namespace RetroFun.Pages
                 return false;
             }
         }
-
-        private void UnlockStaffFeatures()
-        {
-            if(IsPasswordCorrect(UnlockPassword))
-            {
-                isEnabledButton(FloodBtn, true);
-                isEnabledButton(BanUserForSpamBtn, true);
-                isVisibileButton(FloodBtn, true);
-                isVisibileButton(BanUserForSpamBtn, true);
-                isVisibileTextBox(passwordtxb, false);
-                isEnableTextBox(passwordtxb, false);
-                isVisibileButton(UnlockStaffUtilsBtn, false);
-                isEnabledButton(UnlockStaffUtilsBtn, false);
-            }
-            else
-            {
-                UnlockPassword = "";
-            }
-        }
-
-
-        private void UnlockStaffUtilsBtn_Click(object sender, EventArgs e)
-        {
-            UnlockStaffFeatures();
-        }
-
-        private void BanUserForSpamBtn_Click(object sender, EventArgs e)
-        {
-            executeantispam();
-        }
-
-        private void FloodBtn_Click(object sender, EventArgs e)
-        {
-            StartFlood();
-        }
-
-
     }
 }
 

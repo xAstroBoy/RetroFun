@@ -120,7 +120,7 @@ namespace RetroFun.Pages
            new Handitems(88, "Gin"),
            new Handitems(89, "Cupcake"),
            new Handitems(90, "Rosè"),
-           new Handitems(90, "Tazzina blu"),
+           new Handitems(91, "Tazzina blu"),
            new Handitems(92, "Gomma Blu"),
            new Handitems(93, "Gomma Rossa"),
            new Handitems(94, "Gomma Pink"),
@@ -930,20 +930,27 @@ namespace RetroFun.Pages
 
         private async void GiveAllUserHanditem(int handitem)
         {
-            if (_users.Values != null && _users != null)
+            try
             {
-                foreach (KeyValuePair<int, HEntity> entity in _users)
+                if (_users.Values != null && _users != null)
                 {
-                    if (!_users.TryGetValue(entity.Key, out var user))
+                    foreach (KeyValuePair<int, HEntity> entity in _users)
                     {
-                        //ouch
-                        return;
+                        if (!_users.TryGetValue(entity.Key, out var user))
+                        {
+                            //ouch
+                            return;
+                        }
+                        Thread.Sleep(50);
+                        await Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
+                        await Connection.SendToServerAsync(Out.RoomUserGiveHandItem, user.Id);
                     }
-                    Thread.Sleep(50);
                     await Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
-                    await Connection.SendToServerAsync(Out.RoomUserGiveHandItem, user.Id);
+
                 }
-                await Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
+            }
+            catch(Exception)
+            {
 
             }
         }
