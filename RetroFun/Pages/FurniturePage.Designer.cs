@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.RemoverGrbx = new System.Windows.Forms.GroupBox();
+            this.StoreFurniIDOnFileChbx = new System.Windows.Forms.CheckBox();
+            this.PickWallItemCSBtn = new Sulakore.Components.SKoreButton();
+            this.PickFloorFurniSSBtn = new Sulakore.Components.SKoreButton();
             this.FurniPickChbx = new System.Windows.Forms.CheckBox();
             this.DoubleClickFurnitureRemovalChbx = new System.Windows.Forms.CheckBox();
             this.RestoreFurnisBtn = new Sulakore.Components.SKoreButton();
@@ -62,6 +65,9 @@
             // 
             // RemoverGrbx
             // 
+            this.RemoverGrbx.Controls.Add(this.StoreFurniIDOnFileChbx);
+            this.RemoverGrbx.Controls.Add(this.PickWallItemCSBtn);
+            this.RemoverGrbx.Controls.Add(this.PickFloorFurniSSBtn);
             this.RemoverGrbx.Controls.Add(this.FurniPickChbx);
             this.RemoverGrbx.Controls.Add(this.DoubleClickFurnitureRemovalChbx);
             this.RemoverGrbx.Controls.Add(this.RestoreFurnisBtn);
@@ -72,10 +78,41 @@
             this.RemoverGrbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RemoverGrbx.Name = "RemoverGrbx";
             this.RemoverGrbx.Padding = new System.Windows.Forms.Padding(4, 5, 4, 9);
-            this.RemoverGrbx.Size = new System.Drawing.Size(378, 260);
+            this.RemoverGrbx.Size = new System.Drawing.Size(378, 390);
             this.RemoverGrbx.TabIndex = 0;
             this.RemoverGrbx.TabStop = false;
             this.RemoverGrbx.Text = "Remover";
+            // 
+            // StoreFurniIDOnFileChbx
+            // 
+            this.StoreFurniIDOnFileChbx.AutoSize = true;
+            this.StoreFurniIDOnFileChbx.Location = new System.Drawing.Point(14, 273);
+            this.StoreFurniIDOnFileChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.StoreFurniIDOnFileChbx.Name = "StoreFurniIDOnFileChbx";
+            this.StoreFurniIDOnFileChbx.Size = new System.Drawing.Size(185, 24);
+            this.StoreFurniIDOnFileChbx.TabIndex = 9;
+            this.StoreFurniIDOnFileChbx.Text = "Store FurniID On File";
+            this.StoreFurniIDOnFileChbx.UseVisualStyleBackColor = true;
+            // 
+            // PickWallItemCSBtn
+            // 
+            this.PickWallItemCSBtn.Location = new System.Drawing.Point(188, 76);
+            this.PickWallItemCSBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PickWallItemCSBtn.Name = "PickWallItemCSBtn";
+            this.PickWallItemCSBtn.Size = new System.Drawing.Size(165, 31);
+            this.PickWallItemCSBtn.TabIndex = 8;
+            this.PickWallItemCSBtn.Text = "Remove Wall Item SS";
+            this.PickWallItemCSBtn.Click += new System.EventHandler(this.PickWallItemCSBtn_Click);
+            // 
+            // PickFloorFurniSSBtn
+            // 
+            this.PickFloorFurniSSBtn.Location = new System.Drawing.Point(14, 76);
+            this.PickFloorFurniSSBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PickFloorFurniSSBtn.Name = "PickFloorFurniSSBtn";
+            this.PickFloorFurniSSBtn.Size = new System.Drawing.Size(165, 31);
+            this.PickFloorFurniSSBtn.TabIndex = 7;
+            this.PickFloorFurniSSBtn.Text = "Remove Floor Item SS";
+            this.PickFloorFurniSSBtn.Click += new System.EventHandler(this.PickFloorFurniSSBtn_Click);
             // 
             // FurniPickChbx
             // 
@@ -98,6 +135,7 @@
             this.DoubleClickFurnitureRemovalChbx.TabIndex = 4;
             this.DoubleClickFurnitureRemovalChbx.Text = "Enable Pick up furni CS (blocks Furni Pickup)";
             this.DoubleClickFurnitureRemovalChbx.UseVisualStyleBackColor = true;
+            this.DoubleClickFurnitureRemovalChbx.CheckedChanged += new System.EventHandler(this.DoubleClickFurnitureRemovalChbx_CheckedChanged);
             // 
             // RestoreFurnisBtn
             // 
@@ -125,22 +163,22 @@
             // 
             // RemoveWallItemBtn
             // 
-            this.RemoveWallItemBtn.Location = new System.Drawing.Point(188, 63);
+            this.RemoveWallItemBtn.Location = new System.Drawing.Point(188, 319);
             this.RemoveWallItemBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RemoveWallItemBtn.Name = "RemoveWallItemBtn";
             this.RemoveWallItemBtn.Size = new System.Drawing.Size(165, 31);
             this.RemoveWallItemBtn.TabIndex = 2;
-            this.RemoveWallItemBtn.Text = "Remove Wall Item";
+            this.RemoveWallItemBtn.Text = "Remove Wall Item CS";
             this.RemoveWallItemBtn.Click += new System.EventHandler(this.RemoveWallItemBtn_Click);
             // 
             // RemoveFloorItemBtn
             // 
-            this.RemoveFloorItemBtn.Location = new System.Drawing.Point(14, 63);
+            this.RemoveFloorItemBtn.Location = new System.Drawing.Point(14, 319);
             this.RemoveFloorItemBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RemoveFloorItemBtn.Name = "RemoveFloorItemBtn";
             this.RemoveFloorItemBtn.Size = new System.Drawing.Size(165, 31);
             this.RemoveFloorItemBtn.TabIndex = 1;
-            this.RemoveFloorItemBtn.Text = "Remove Floor Item";
+            this.RemoveFloorItemBtn.Text = "Remove Floor Item CS";
             this.RemoveFloorItemBtn.Click += new System.EventHandler(this.RemoveFloorItemBtn_Click);
             // 
             // FloorFurniIDNbx
@@ -361,7 +399,6 @@
 
         private System.Windows.Forms.GroupBox RemoverGrbx;
         private System.Windows.Forms.CheckBox DoubleClickFurnitureRemovalChbx;
-        private Sulakore.Components.SKoreLabelBox FurnitureIDTxt;
         private Sulakore.Components.SKoreButton RemoveWallItemBtn;
         private Sulakore.Components.SKoreButton RemoveFloorItemBtn;
         private Sulakore.Components.SKoreButton RestoreFurnisBtn;
@@ -382,5 +419,9 @@
         private Sulakore.Components.SKoreButton WalkingStyleBtn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown WalkingSpeedNbx;
+        private Sulakore.Components.SKoreButton PickWallItemCSBtn;
+        private Sulakore.Components.SKoreButton PickFloorFurniSSBtn;
+        private Sulakore.Components.SKoreLabelBox FurnitureIDTxt;
+        private System.Windows.Forms.CheckBox StoreFurniIDOnFileChbx;
     }
 }

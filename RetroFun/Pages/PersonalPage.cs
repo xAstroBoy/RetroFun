@@ -28,7 +28,9 @@ namespace RetroFun.Pages
         private bool IsInterceptTradeUserOn;
         private bool TradeSpammerActivated;
         private int _selectedUserId;
-
+        private string OwnUsername;
+        private bool isLiveEnableEdit;
+        private bool isStaticThreadStarted;
         private Dictionary<int, HEntity> _users = new Dictionary<int, HEntity>();
 
         private readonly Handitems[] _Handitems = new[]
@@ -263,6 +265,18 @@ namespace RetroFun.Pages
 
         #region crap
 
+        private string _badgecode;
+        public string badgecode
+        {
+            get => _badgecode;
+            set
+            {
+                _badgecode = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
         private bool _giveHanditemToselecteduser;
         public bool giveHanditemToselecteduser
         {
@@ -360,6 +374,19 @@ namespace RetroFun.Pages
             }
         }
 
+
+        private int _EffectNumbers;
+        public int EffectNumbers
+        {
+            get => _EffectNumbers;
+            set
+            {
+                _EffectNumbers = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
         private int _TradeSpammerUserID;
         public int TradeSpammerUserID
         {
@@ -416,6 +443,19 @@ namespace RetroFun.Pages
             }
         }
 
+        private int _CooldownEffectLoop;
+
+        public int CooldownEffectLoop
+        {
+            get => _CooldownEffectLoop;
+            set
+            {
+                _CooldownEffectLoop = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
         private bool _BlockBypassers;
 
         public bool BlockBypassers
@@ -459,8 +499,12 @@ namespace RetroFun.Pages
             Bind(DucketsNbx, "Value", nameof(DucketsValue));
             Bind(UserIntUpDwn, "Value", nameof(TradeSpammerUserID));
             Bind(TradeSpammerCooldownNbx, "Value", nameof(TradeSpammerCooldown));
-            Bind(Handitemnbx, "Value", nameof(HanditemHunter));
+            Bind(EnableNbx, "Value", nameof(EffectNumbers));
+            Bind(CooldownEffectNbx, "Value", nameof(CooldownEffectLoop));
 
+            Bind(BadgeTxbx, "Text", nameof(badgecode));
+
+            
 
             if (Program.Master != null)
             {
@@ -798,12 +842,20 @@ namespace RetroFun.Pages
 
         public void OnLatencyTest(DataInterceptedEventArgs e)
         {
-
+            if (OwnUsername == null)
+            {
+                Connection.SendToServerAsync(Out.RequestUserData);
+            }
         }
 
         public void OnUsername(DataInterceptedEventArgs e)
         {
+            string username = e.Packet.ReadString();
 
+            if (OwnUsername == null)
+            {
+                OwnUsername = username;
+            }
         }
 
         public void OnRoomUserWalk(DataInterceptedEventArgs e)
@@ -1002,6 +1054,97 @@ namespace RetroFun.Pages
         {
             Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + HanditemHunter, 18);
 
+        }
+
+        private void GibeBadgeToYoutselfBtn_Click(object sender, EventArgs e)
+        {
+            Connection.SendToServerAsync(Out.RoomUserTalk, ":givebadge " + OwnUsername +  " " + badgecode, 18);
+        }
+
+        private void LiveEditBtn_Click(object sender, EventArgs e)
+        {
+            if(isLiveEnableEdit)
+            {
+                WriteToButton(LiveEditBtn, "Live Edit : OFF");
+                isLiveEnableEdit = false;
+            }
+            else
+            {
+                WriteToButton(LiveEditBtn, "Live Edit : ON");
+                isLiveEnableEdit = true;
+            }
+        }
+
+        // USE CooldownEffectLoop FOR COOLDOWN
+        private void StartStaticEffectThread()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    try
+                    {
+                        if (isStaticThreadStarted)
+                        {
+                            Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + EffectNumbers, 18);
+                            Thread.Sleep(CooldownEffectLoop);
+                            Connection.SendToServerAsync(Out.RoomUserTalk, ":enable 0" , 18);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+
+                } while (isStaticThreadStarted);
+            }).Start();
+        }
+
+        private void EnableOnLoopBtn_Click(object sender, EventArgs e)
+        {
+            if (isStaticThreadStarted)
+            {
+                WriteToButton(EnableOnLoopBtn, "Enable Effect On loop : OFF");
+                isStaticThreadStarted = false;
+            }
+            else
+            {
+                WriteToButton(EnableOnLoopBtn, "Enable Effect On loop : ON");
+                isStaticThreadStarted = true;
+                StartStaticEffectThread();
+            }
+        }
+
+        private void EnableNbx_ValueChanged(object sender, EventArgs e)
+        {
+            if(isLiveEnableEdit)
+            {
+                Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + EffectNumbers, 18);
+            }
+        }
+
+        private void EnableSub1Btn_Click(object sender, EventArgs e)
+        {
+            EffectNumbers--;
+            if (isLiveEnableEdit)
+            {
+                Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + EffectNumbers, 18);
+            }
+        }
+
+        private void EnableAdd1Btn_Click(object sender, EventArgs e)
+        {
+            EffectNumbers++;
+            if (isLiveEnableEdit)
+            {
+                Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + EffectNumbers, 18);
+            }
+        }
+
+        private void SetEnableBtn_Click(object sender, EventArgs e)
+        {
+            Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + EffectNumbers, 18);
         }
     }
 

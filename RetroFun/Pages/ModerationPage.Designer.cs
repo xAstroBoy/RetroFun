@@ -47,6 +47,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.MutaUtenteTimerNbx = new System.Windows.Forms.NumericUpDown();
             this.Utente = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.UsersCmbx = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.KickUserWithAlertBtn = new Sulakore.Components.SKoreButton();
             this.AlertBoxTxb = new System.Windows.Forms.TextBox();
@@ -64,6 +66,7 @@
             this.BanManualReasonTxb = new System.Windows.Forms.TextBox();
             this.UnlockStaffUtilsBtn = new Sulakore.Components.SKoreButton();
             this.passwordtxb = new System.Windows.Forms.TextBox();
+            this.FakeRespectUserBtn = new Sulakore.Components.SKoreButton();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -78,7 +81,7 @@
             // UserNameTxbx
             // 
             this.UserNameTxbx.Enabled = false;
-            this.UserNameTxbx.Location = new System.Drawing.Point(17, 50);
+            this.UserNameTxbx.Location = new System.Drawing.Point(10, 109);
             this.UserNameTxbx.MaxLength = 2147483647;
             this.UserNameTxbx.Name = "UserNameTxbx";
             this.UserNameTxbx.Size = new System.Drawing.Size(234, 26);
@@ -155,7 +158,7 @@
             // MottoTxbx
             // 
             this.MottoTxbx.Enabled = false;
-            this.MottoTxbx.Location = new System.Drawing.Point(14, 109);
+            this.MottoTxbx.Location = new System.Drawing.Point(7, 168);
             this.MottoTxbx.MaxLength = 2147483647;
             this.MottoTxbx.Name = "MottoTxbx";
             this.MottoTxbx.Size = new System.Drawing.Size(234, 26);
@@ -165,7 +168,7 @@
             // LookTxbx
             // 
             this.LookTxbx.Enabled = false;
-            this.LookTxbx.Location = new System.Drawing.Point(14, 174);
+            this.LookTxbx.Location = new System.Drawing.Point(7, 233);
             this.LookTxbx.MaxLength = 2147483647;
             this.LookTxbx.Name = "LookTxbx";
             this.LookTxbx.Size = new System.Drawing.Size(234, 26);
@@ -176,7 +179,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Enabled = false;
-            this.label1.Location = new System.Drawing.Point(13, 27);
+            this.label1.Location = new System.Drawing.Point(6, 86);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 20);
             this.label1.TabIndex = 28;
@@ -187,7 +190,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Enabled = false;
-            this.label2.Location = new System.Drawing.Point(10, 86);
+            this.label2.Location = new System.Drawing.Point(3, 145);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 20);
             this.label2.TabIndex = 29;
@@ -198,7 +201,7 @@
             // 
             this.Label3.AutoSize = true;
             this.Label3.Enabled = false;
-            this.Label3.Location = new System.Drawing.Point(10, 151);
+            this.Label3.Location = new System.Drawing.Point(3, 210);
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(44, 20);
             this.Label3.TabIndex = 30;
@@ -305,6 +308,8 @@
             // 
             // Utente
             // 
+            this.Utente.Controls.Add(this.label6);
+            this.Utente.Controls.Add(this.UsersCmbx);
             this.Utente.Controls.Add(this.Label3);
             this.Utente.Controls.Add(this.label2);
             this.Utente.Controls.Add(this.label1);
@@ -312,13 +317,35 @@
             this.Utente.Controls.Add(this.MottoTxbx);
             this.Utente.Controls.Add(this.UserNameTxbx);
             this.Utente.Enabled = false;
-            this.Utente.Location = new System.Drawing.Point(22, 155);
+            this.Utente.Location = new System.Drawing.Point(22, 105);
             this.Utente.Name = "Utente";
-            this.Utente.Size = new System.Drawing.Size(257, 226);
+            this.Utente.Size = new System.Drawing.Size(257, 276);
             this.Utente.TabIndex = 33;
             this.Utente.TabStop = false;
             this.Utente.Text = "Dettagli Utente";
             this.Utente.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(181, 20);
+            this.label6.TabIndex = 95;
+            this.label6.Text = "Utenti usciti dalla stanza";
+            // 
+            // UsersCmbx
+            // 
+            this.UsersCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UsersCmbx.Enabled = false;
+            this.UsersCmbx.FormattingEnabled = true;
+            this.UsersCmbx.Location = new System.Drawing.Point(10, 53);
+            this.UsersCmbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.UsersCmbx.Name = "UsersCmbx";
+            this.UsersCmbx.Size = new System.Drawing.Size(204, 28);
+            this.UsersCmbx.TabIndex = 94;
+            this.UsersCmbx.Visible = false;
+            this.UsersCmbx.SelectedIndexChanged += new System.EventHandler(this.UsersCmbx_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -517,10 +544,22 @@
             this.passwordtxb.Size = new System.Drawing.Size(234, 26);
             this.passwordtxb.TabIndex = 42;
             // 
+            // StalkSelectedUserBtn
+            // 
+            this.FakeRespectUserBtn.Enabled = false;
+            this.FakeRespectUserBtn.Location = new System.Drawing.Point(362, 160);
+            this.FakeRespectUserBtn.Name = "StalkSelectedUserBtn";
+            this.FakeRespectUserBtn.Size = new System.Drawing.Size(214, 37);
+            this.FakeRespectUserBtn.TabIndex = 44;
+            this.FakeRespectUserBtn.Text = "Fake Respect This User!";
+            this.FakeRespectUserBtn.Visible = false;
+            this.FakeRespectUserBtn.Click += new System.EventHandler(this.FakeRespectThisUserBtn_click);
+            // 
             // ModerationPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.FakeRespectUserBtn);
             this.Controls.Add(this.UnlockStaffUtilsBtn);
             this.Controls.Add(this.passwordtxb);
             this.Controls.Add(this.groupBox6);
@@ -590,5 +629,8 @@
         private Sulakore.Components.SKoreButton UnmuteUserBtn;
         private Sulakore.Components.SKoreButton UnlockStaffUtilsBtn;
         private System.Windows.Forms.TextBox passwordtxb;
+        private System.Windows.Forms.ComboBox UsersCmbx;
+        private System.Windows.Forms.Label label6;
+        private Sulakore.Components.SKoreButton FakeRespectUserBtn;
     }
 }

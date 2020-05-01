@@ -31,10 +31,11 @@ namespace RetroFun.Pages
         private string OwnerName = "NOT INITIATED";
         private string roomname = "NOT INITIATED";
         private bool newroom = true;
-
-        //username => Removed entity
+        private bool isStalkingModeEnabled;
+        private string StalkingUserName;
 
         private Dictionary<int, HEntity> _users = new Dictionary<int, HEntity>();
+        private  RegisteredUsers[] _registeredUsers;
         private readonly BanTime[] _BanTime = new[]
         {
             new BanTime(3600, "1 ora"),
@@ -175,7 +176,10 @@ namespace RetroFun.Pages
 
         public ModerationPage()
         {
+
             InitializeComponent();
+
+            _registeredUsers = new RegisteredUsers[] { };
 
             BantimeCmbx.Items.AddRange(_BanTime);
             BantimeCmbx.SelectedIndex = 0;
@@ -229,6 +233,10 @@ namespace RetroFun.Pages
             _users.Clear();
 
             WriteRegistrationUsers(_users.Count);
+            Invoke((MethodInvoker)delegate
+            {
+                UsersCmbx.Items.Clear();
+            });
         }
 
         public void OnLatencyTest(DataInterceptedEventArgs obj)
@@ -305,6 +313,28 @@ namespace RetroFun.Pages
         }
 
 
+        private class RegisteredUsers
+        {
+            public string Name { get; set; }
+            public string  Motto { get; set; }
+            public string Look { get; set; }
+
+            public int ID { get; set; }
+
+            public RegisteredUsers(int id, string name, string motto, string look)
+            {
+                ID = id;
+                Name = name;
+                Motto = motto;
+                Look = look;
+            }
+
+            public override string ToString() => $"{Name} [UserID: {ID}]";
+        }
+
+
+
+
         private class BanTime
         {
             public string Name { get; }
@@ -319,6 +349,8 @@ namespace RetroFun.Pages
 
             public override string ToString() => $"{Name} [Time: {ID}]";
         }
+
+
 
 
         private class MuteTime
@@ -346,6 +378,62 @@ namespace RetroFun.Pages
             _users.Remove(entity.Id);
 
             WriteRegistrationUsers(_users.Count);
+
+
+            //int id, string name, string motto, string look
+            if (!_registeredUsers.Where(x => x.ID == entity.Id).Any())
+            {
+                AddUserInCmbx(entity);
+            }
+
+
+            //if (isStalkingModeEnabled)
+            //{
+            //    if (entity.Name == StalkingUserName)
+            //    {
+            //        Connection.SendToServerAsync(Out.RoomUserTalk, ":follow " + entity.Name, 18);
+            //    }
+            //}
+        }
+
+        private void AddUserInCmbx(HEntity entity)
+        {
+            var user = new RegisteredUsers(entity.Id, entity.Name, entity.Motto, entity.FigureId);
+            Invoke((MethodInvoker)delegate
+            {
+                if (!UsersCmbx.Items.Contains(user))
+                {
+                    UsersCmbx.Items.Add(user);
+                }
+            });
+        }
+
+
+        //private void GotoUserCmbx(HEntity entity)
+        //{
+        //    Invoke((MethodInvoker)delegate
+        //    {
+        //        UsersCmbx.
+        //    });
+        //}
+
+
+        //private void UpdateUserCmbx(HEntity entity)
+        //{
+        //    var user = new RegisteredUsers(entity.Id, entity.Name, entity.Motto, entity.FigureId);
+        //    Invoke((MethodInvoker)delegate
+        //    {
+        //        UsersCmbx.Items.Add(user);
+        //    });
+        //}
+
+
+        private void RemoveUserInCmbx(string username)
+        {
+            if (_registeredUsers.Where(x => x.Name == username).Any())
+            {
+                UsersCmbx.Items.Remove(username);
+            }
         }
 
         public void InUserEnterRoom(DataInterceptedEventArgs obj)
@@ -384,8 +472,9 @@ namespace RetroFun.Pages
 
             if (_users.TryGetValue(_selectedUserId, out HEntity entity))
             {
-                SelectedIndex = entity.Index;
 
+                SelectedIndex = entity.Index;
+                
 
                 UserNickname = entity.Name;
 
@@ -398,6 +487,7 @@ namespace RetroFun.Pages
                 {
                     SelectUserLabel.Text = entity.Name;
                 });
+
             }
         }
 
@@ -434,6 +524,7 @@ namespace RetroFun.Pages
                 Connection.SendToServerAsync(Out.RoomUserTalk, ":ban " + username + " " + time + " " + reason);
                 RecordModeration("BAN", username, reason, time);
             }
+            //RemoveUserInCmbx()
         }
 
         private void RecordedMute(string username, int time)
@@ -854,6 +945,9 @@ namespace RetroFun.Pages
                 isUnblocked(BanTimeManualNbx, true);
                 isUnblocked(BantimeCmbx, true);
                 isUnblocked(BanManualReasonTxb, true);
+                isUnblocked(UsersCmbx, true);
+                isUnblocked(FakeRespectUserBtn, true);
+
                 isUnblocked(UnlockStaffUtilsBtn, false);
                 isUnblocked(passwordtxb, false);
 
@@ -869,6 +963,38 @@ namespace RetroFun.Pages
         {
             UnlockStaffFeatures();
 
+        }
+
+        private void UsersCmbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                UserNickname = ((RegisteredUsers)UsersCmbx.SelectedItem).Name;
+                UserMotto = ((RegisteredUsers)UsersCmbx.SelectedItem).Motto;
+                UserLook = ((RegisteredUsers)UsersCmbx.SelectedItem).Look;
+                SelectUserLabel.Invoke((MethodInvoker)delegate
+                {
+                    SelectUserLabel.Text = ((RegisteredUsers)UsersCmbx.SelectedItem).Name;
+                });
+
+            }
+            catch (Exception) { }
+        }
+
+        private void WriteToButton(SKoreButton button, string text)
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                button.Text = text;
+            });
+        }
+
+
+
+        private void FakeRespectThisUserBtn_click(object sender, EventArgs e)
+        {
+            Connection.SendToServerAsync(Out.RoomUserAction, 7);
+            Connection.SendToServerAsync(Out.RoomUserTalk, "Stanno inviando rispetti a " + UserNickname + "!", 1);
         }
     }
 }

@@ -56,9 +56,18 @@
             this.GiveallUserHanditemBtn = new Sulakore.Components.SKoreButton();
             this.GiveHanditemToMyself = new Sulakore.Components.SKoreButton();
             this.GiveHanditemToClickedUserbtn = new Sulakore.Components.SKoreButton();
-            this.HanditemAddBtn = new Sulakore.Components.SKoreButton();
-            this.HanditemSubBtn = new Sulakore.Components.SKoreButton();
-            this.Handitemnbx = new System.Windows.Forms.NumericUpDown();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BadgeTxbx = new System.Windows.Forms.TextBox();
+            this.GibeBadgeToYoutselfBtn = new Sulakore.Components.SKoreButton();
+            this.EnableOnLoopBtn = new Sulakore.Components.SKoreButton();
+            this.EnableNbx = new System.Windows.Forms.NumericUpDown();
+            this.EnableAdd1Btn = new Sulakore.Components.SKoreButton();
+            this.EnableSub1Btn = new Sulakore.Components.SKoreButton();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.CooldownEffectNbx = new System.Windows.Forms.NumericUpDown();
+            this.LiveEditBtn = new Sulakore.Components.SKoreButton();
+            this.SetEnableBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).BeginInit();
@@ -68,85 +77,81 @@
             ((System.ComponentModel.ISupportInitialize)(this.UserIntUpDwn)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Handitemnbx)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.EnableNbx)).BeginInit();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CooldownEffectNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // EnableModToolsBtn
             // 
-            this.EnableModToolsBtn.Location = new System.Drawing.Point(19, 54);
-            this.EnableModToolsBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.EnableModToolsBtn.Location = new System.Drawing.Point(28, 83);
             this.EnableModToolsBtn.Name = "EnableModToolsBtn";
-            this.EnableModToolsBtn.Size = new System.Drawing.Size(185, 21);
+            this.EnableModToolsBtn.Size = new System.Drawing.Size(278, 32);
             this.EnableModToolsBtn.TabIndex = 0;
             this.EnableModToolsBtn.Text = "Show Mod Tools (CS)";
             this.EnableModToolsBtn.Click += new System.EventHandler(this.EnableModToolsBtn_Click);
             // 
             // CreditsNbx
             // 
-            this.CreditsNbx.Location = new System.Drawing.Point(41, 23);
-            this.CreditsNbx.Margin = new System.Windows.Forms.Padding(2);
+            this.CreditsNbx.Location = new System.Drawing.Point(62, 35);
             this.CreditsNbx.Maximum = new decimal(new int[] {
             -402653185,
             -1613725636,
             54210108,
             0});
             this.CreditsNbx.Name = "CreditsNbx";
-            this.CreditsNbx.Size = new System.Drawing.Size(174, 20);
+            this.CreditsNbx.Size = new System.Drawing.Size(261, 26);
             this.CreditsNbx.TabIndex = 1;
             // 
             // CrystalsNbx
             // 
-            this.CrystalsNbx.Location = new System.Drawing.Point(41, 54);
-            this.CrystalsNbx.Margin = new System.Windows.Forms.Padding(2);
+            this.CrystalsNbx.Location = new System.Drawing.Point(62, 83);
             this.CrystalsNbx.Maximum = new decimal(new int[] {
             -402653185,
             -1613725636,
             54210108,
             0});
             this.CrystalsNbx.Name = "CrystalsNbx";
-            this.CrystalsNbx.Size = new System.Drawing.Size(174, 20);
+            this.CrystalsNbx.Size = new System.Drawing.Size(261, 26);
             this.CrystalsNbx.TabIndex = 2;
             // 
             // DucketsNbx
             // 
-            this.DucketsNbx.Location = new System.Drawing.Point(41, 82);
-            this.DucketsNbx.Margin = new System.Windows.Forms.Padding(2);
+            this.DucketsNbx.Location = new System.Drawing.Point(62, 126);
             this.DucketsNbx.Maximum = new decimal(new int[] {
             -402653185,
             -1613725636,
             54210108,
             0});
             this.DucketsNbx.Name = "DucketsNbx";
-            this.DucketsNbx.Size = new System.Drawing.Size(174, 20);
+            this.DucketsNbx.Size = new System.Drawing.Size(261, 26);
             this.DucketsNbx.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(217, 27);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(326, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.Size = new System.Drawing.Size(59, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "Credits";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(219, 58);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(328, 89);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.Size = new System.Drawing.Size(65, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Crystals";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(217, 86);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(326, 132);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.Size = new System.Drawing.Size(68, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "Duckets";
             // 
@@ -161,11 +166,9 @@
             this.Currency.Controls.Add(this.label2);
             this.Currency.Controls.Add(this.DucketsNbx);
             this.Currency.Controls.Add(this.label1);
-            this.Currency.Location = new System.Drawing.Point(15, 16);
-            this.Currency.Margin = new System.Windows.Forms.Padding(2);
+            this.Currency.Location = new System.Drawing.Point(22, 25);
             this.Currency.Name = "Currency";
-            this.Currency.Padding = new System.Windows.Forms.Padding(2);
-            this.Currency.Size = new System.Drawing.Size(268, 105);
+            this.Currency.Size = new System.Drawing.Size(402, 162);
             this.Currency.TabIndex = 7;
             this.Currency.TabStop = false;
             this.Currency.Text = "Currency Set (CLIENT SIDE)";
@@ -173,48 +176,45 @@
             // DucketsChbx
             // 
             this.DucketsChbx.AutoSize = true;
-            this.DucketsChbx.Location = new System.Drawing.Point(16, 82);
-            this.DucketsChbx.Margin = new System.Windows.Forms.Padding(2);
+            this.DucketsChbx.Location = new System.Drawing.Point(24, 126);
             this.DucketsChbx.Name = "DucketsChbx";
-            this.DucketsChbx.Size = new System.Drawing.Size(15, 14);
+            this.DucketsChbx.Size = new System.Drawing.Size(22, 21);
             this.DucketsChbx.TabIndex = 9;
             this.DucketsChbx.UseVisualStyleBackColor = true;
             // 
             // CrystalsChbx
             // 
             this.CrystalsChbx.AutoSize = true;
-            this.CrystalsChbx.Location = new System.Drawing.Point(16, 54);
-            this.CrystalsChbx.Margin = new System.Windows.Forms.Padding(2);
+            this.CrystalsChbx.Location = new System.Drawing.Point(24, 83);
             this.CrystalsChbx.Name = "CrystalsChbx";
-            this.CrystalsChbx.Size = new System.Drawing.Size(15, 14);
+            this.CrystalsChbx.Size = new System.Drawing.Size(22, 21);
             this.CrystalsChbx.TabIndex = 8;
             this.CrystalsChbx.UseVisualStyleBackColor = true;
             // 
             // CreditsChbx
             // 
             this.CreditsChbx.AutoSize = true;
-            this.CreditsChbx.Location = new System.Drawing.Point(16, 23);
-            this.CreditsChbx.Margin = new System.Windows.Forms.Padding(2);
+            this.CreditsChbx.Location = new System.Drawing.Point(24, 35);
             this.CreditsChbx.Name = "CreditsChbx";
-            this.CreditsChbx.Size = new System.Drawing.Size(15, 14);
+            this.CreditsChbx.Size = new System.Drawing.Size(22, 21);
             this.CreditsChbx.TabIndex = 7;
             this.CreditsChbx.UseVisualStyleBackColor = true;
             // 
             // AcquireMODPermissionsBtn
             // 
-            this.AcquireMODPermissionsBtn.Location = new System.Drawing.Point(19, 14);
+            this.AcquireMODPermissionsBtn.Location = new System.Drawing.Point(28, 22);
+            this.AcquireMODPermissionsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AcquireMODPermissionsBtn.Name = "AcquireMODPermissionsBtn";
-            this.AcquireMODPermissionsBtn.Size = new System.Drawing.Size(185, 22);
+            this.AcquireMODPermissionsBtn.Size = new System.Drawing.Size(278, 34);
             this.AcquireMODPermissionsBtn.TabIndex = 8;
             this.AcquireMODPermissionsBtn.Text = "Acquire MOD Permissions (CS)";
             this.AcquireMODPermissionsBtn.Click += new System.EventHandler(this.AcquireMODPermissionsBtn_Click);
             // 
             // SetCurrencyBtn
             // 
-            this.SetCurrencyBtn.Location = new System.Drawing.Point(15, 132);
-            this.SetCurrencyBtn.Margin = new System.Windows.Forms.Padding(2);
+            this.SetCurrencyBtn.Location = new System.Drawing.Point(22, 203);
             this.SetCurrencyBtn.Name = "SetCurrencyBtn";
-            this.SetCurrencyBtn.Size = new System.Drawing.Size(262, 21);
+            this.SetCurrencyBtn.Size = new System.Drawing.Size(393, 32);
             this.SetCurrencyBtn.TabIndex = 9;
             this.SetCurrencyBtn.Text = "Set Currency (CS)";
             this.SetCurrencyBtn.Click += new System.EventHandler(this.SetCurrencyBtn_Click);
@@ -226,11 +226,9 @@
             this.groupBox4.Controls.Add(this.UserIntUpDwn);
             this.groupBox4.Controls.Add(this.CaptureTradeUserBtn);
             this.groupBox4.Controls.Add(this.CrashUserBtn);
-            this.groupBox4.Location = new System.Drawing.Point(15, 176);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox4.Location = new System.Drawing.Point(22, 271);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(277, 125);
+            this.groupBox4.Size = new System.Drawing.Size(416, 192);
             this.groupBox4.TabIndex = 81;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Trade Spammer";
@@ -238,23 +236,23 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(119, 75);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(178, 115);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 13);
+            this.label4.Size = new System.Drawing.Size(79, 20);
             this.label4.TabIndex = 76;
             this.label4.Text = "Cooldown";
             // 
             // TradeSpammerCooldownNbx
             // 
-            this.TradeSpammerCooldownNbx.Location = new System.Drawing.Point(122, 91);
+            this.TradeSpammerCooldownNbx.Location = new System.Drawing.Point(183, 140);
+            this.TradeSpammerCooldownNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TradeSpammerCooldownNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.TradeSpammerCooldownNbx.Name = "TradeSpammerCooldownNbx";
-            this.TradeSpammerCooldownNbx.Size = new System.Drawing.Size(119, 20);
+            this.TradeSpammerCooldownNbx.Size = new System.Drawing.Size(178, 26);
             this.TradeSpammerCooldownNbx.TabIndex = 75;
             this.TradeSpammerCooldownNbx.Value = new decimal(new int[] {
             150,
@@ -264,48 +262,53 @@
             // 
             // UserIntUpDwn
             // 
-            this.UserIntUpDwn.Location = new System.Drawing.Point(122, 48);
+            this.UserIntUpDwn.Location = new System.Drawing.Point(183, 74);
+            this.UserIntUpDwn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UserIntUpDwn.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.UserIntUpDwn.Name = "UserIntUpDwn";
-            this.UserIntUpDwn.Size = new System.Drawing.Size(119, 20);
+            this.UserIntUpDwn.Size = new System.Drawing.Size(178, 26);
             this.UserIntUpDwn.TabIndex = 60;
             // 
             // CaptureTradeUserBtn
             // 
-            this.CaptureTradeUserBtn.Location = new System.Drawing.Point(-2, 45);
+            this.CaptureTradeUserBtn.Location = new System.Drawing.Point(-3, 69);
+            this.CaptureTradeUserBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CaptureTradeUserBtn.Name = "CaptureTradeUserBtn";
-            this.CaptureTradeUserBtn.Size = new System.Drawing.Size(119, 20);
+            this.CaptureTradeUserBtn.Size = new System.Drawing.Size(178, 31);
             this.CaptureTradeUserBtn.TabIndex = 74;
             this.CaptureTradeUserBtn.Text = "Capture User";
             this.CaptureTradeUserBtn.Click += new System.EventHandler(this.CaptureTradeUserBtn_Click);
             // 
             // CrashUserBtn
             // 
-            this.CrashUserBtn.Location = new System.Drawing.Point(122, 21);
+            this.CrashUserBtn.Location = new System.Drawing.Point(183, 32);
+            this.CrashUserBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CrashUserBtn.Name = "CrashUserBtn";
-            this.CrashUserBtn.Size = new System.Drawing.Size(119, 20);
+            this.CrashUserBtn.Size = new System.Drawing.Size(178, 31);
             this.CrashUserBtn.TabIndex = 74;
             this.CrashUserBtn.Text = "Spam Trade : OFF";
             this.CrashUserBtn.Click += new System.EventHandler(this.CrashUserBtn_Click);
             // 
             // AutomaticBypassBtn
             // 
-            this.AutomaticBypassBtn.Location = new System.Drawing.Point(9, 71);
+            this.AutomaticBypassBtn.Location = new System.Drawing.Point(14, 109);
+            this.AutomaticBypassBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AutomaticBypassBtn.Name = "AutomaticBypassBtn";
-            this.AutomaticBypassBtn.Size = new System.Drawing.Size(100, 25);
+            this.AutomaticBypassBtn.Size = new System.Drawing.Size(150, 38);
             this.AutomaticBypassBtn.TabIndex = 84;
             this.AutomaticBypassBtn.Text = "Automatic : OFF";
             this.AutomaticBypassBtn.Click += new System.EventHandler(this.AutomaticBypassBtn_Click);
             // 
             // EnterRoomBtn
             // 
-            this.EnterRoomBtn.Location = new System.Drawing.Point(9, 27);
+            this.EnterRoomBtn.Location = new System.Drawing.Point(14, 42);
+            this.EnterRoomBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.EnterRoomBtn.Name = "EnterRoomBtn";
-            this.EnterRoomBtn.Size = new System.Drawing.Size(112, 24);
+            this.EnterRoomBtn.Size = new System.Drawing.Size(168, 37);
             this.EnterRoomBtn.TabIndex = 82;
             this.EnterRoomBtn.Text = "Enter Room";
             this.EnterRoomBtn.Click += new System.EventHandler(this.EnterRoomBtn_Click);
@@ -315,20 +318,19 @@
             this.groupBox1.Controls.Add(this.BlockRestrictionsBtn);
             this.groupBox1.Controls.Add(this.AutomaticBypassBtn);
             this.groupBox1.Controls.Add(this.EnterRoomBtn);
-            this.groupBox1.Location = new System.Drawing.Point(323, 16);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(484, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(145, 148);
+            this.groupBox1.Size = new System.Drawing.Size(218, 228);
             this.groupBox1.TabIndex = 85;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Doorbell Bypass";
             // 
             // BlockRestrictionsBtn
             // 
-            this.BlockRestrictionsBtn.Location = new System.Drawing.Point(9, 112);
+            this.BlockRestrictionsBtn.Location = new System.Drawing.Point(14, 172);
+            this.BlockRestrictionsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BlockRestrictionsBtn.Name = "BlockRestrictionsBtn";
-            this.BlockRestrictionsBtn.Size = new System.Drawing.Size(121, 25);
+            this.BlockRestrictionsBtn.Size = new System.Drawing.Size(182, 38);
             this.BlockRestrictionsBtn.TabIndex = 85;
             this.BlockRestrictionsBtn.Text = "Block Restrictions : OFF";
             this.BlockRestrictionsBtn.Click += new System.EventHandler(this.BlockRestrictionsBtn_Click);
@@ -337,11 +339,9 @@
             // 
             this.groupBox2.Controls.Add(this.AcquireMODPermissionsBtn);
             this.groupBox2.Controls.Add(this.EnableModToolsBtn);
-            this.groupBox2.Location = new System.Drawing.Point(313, 219);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Location = new System.Drawing.Point(470, 337);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox2.Size = new System.Drawing.Size(232, 90);
+            this.groupBox2.Size = new System.Drawing.Size(348, 138);
             this.groupBox2.TabIndex = 86;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Staff Utils (CLIENT)";
@@ -350,88 +350,198 @@
             // 
             this.HanditemCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.HanditemCmbx.FormattingEnabled = true;
-            this.HanditemCmbx.Location = new System.Drawing.Point(483, 37);
+            this.HanditemCmbx.Location = new System.Drawing.Point(24, 27);
+            this.HanditemCmbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HanditemCmbx.Name = "HanditemCmbx";
-            this.HanditemCmbx.Size = new System.Drawing.Size(194, 21);
+            this.HanditemCmbx.Size = new System.Drawing.Size(289, 28);
             this.HanditemCmbx.TabIndex = 88;
             // 
             // GiveallUserHanditemBtn
             // 
-            this.GiveallUserHanditemBtn.Location = new System.Drawing.Point(538, 102);
+            this.GiveallUserHanditemBtn.Location = new System.Drawing.Point(107, 127);
+            this.GiveallUserHanditemBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GiveallUserHanditemBtn.Name = "GiveallUserHanditemBtn";
-            this.GiveallUserHanditemBtn.Size = new System.Drawing.Size(136, 21);
+            this.GiveallUserHanditemBtn.Size = new System.Drawing.Size(204, 32);
             this.GiveallUserHanditemBtn.TabIndex = 87;
             this.GiveallUserHanditemBtn.Text = "Give Handitem to all users";
             this.GiveallUserHanditemBtn.Click += new System.EventHandler(this.GiveallUserHanditemBtn_Click);
             // 
             // GiveHanditemToMyself
             // 
-            this.GiveHanditemToMyself.Location = new System.Drawing.Point(538, 70);
+            this.GiveHanditemToMyself.Location = new System.Drawing.Point(107, 78);
+            this.GiveHanditemToMyself.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GiveHanditemToMyself.Name = "GiveHanditemToMyself";
-            this.GiveHanditemToMyself.Size = new System.Drawing.Size(136, 21);
+            this.GiveHanditemToMyself.Size = new System.Drawing.Size(204, 32);
             this.GiveHanditemToMyself.TabIndex = 89;
             this.GiveHanditemToMyself.Text = "Give Handitem To yourself";
             this.GiveHanditemToMyself.Click += new System.EventHandler(this.GiveHanditemToMyself_Click);
             // 
             // GiveHanditemToClickedUserbtn
             // 
-            this.GiveHanditemToClickedUserbtn.Location = new System.Drawing.Point(492, 133);
+            this.GiveHanditemToClickedUserbtn.Location = new System.Drawing.Point(38, 175);
+            this.GiveHanditemToClickedUserbtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GiveHanditemToClickedUserbtn.Name = "GiveHanditemToClickedUserbtn";
-            this.GiveHanditemToClickedUserbtn.Size = new System.Drawing.Size(182, 21);
+            this.GiveHanditemToClickedUserbtn.Size = new System.Drawing.Size(273, 32);
             this.GiveHanditemToClickedUserbtn.TabIndex = 90;
             this.GiveHanditemToClickedUserbtn.Text = "Give Handitem to clicked user : OFF";
             this.GiveHanditemToClickedUserbtn.Click += new System.EventHandler(this.GiveHanditemToClickedUserbtn_Click);
             // 
-            // HanditemAddBtn
+            // groupBox3
             // 
-            this.HanditemAddBtn.Location = new System.Drawing.Point(557, 176);
-            this.HanditemAddBtn.Name = "HanditemAddBtn";
-            this.HanditemAddBtn.Size = new System.Drawing.Size(120, 21);
-            this.HanditemAddBtn.TabIndex = 91;
-            this.HanditemAddBtn.Text = "handitem hunt + 1";
-            this.HanditemAddBtn.Click += new System.EventHandler(this.HanditemAddBtn_Click);
+            this.groupBox3.Controls.Add(this.GiveHanditemToClickedUserbtn);
+            this.groupBox3.Controls.Add(this.GiveHanditemToMyself);
+            this.groupBox3.Controls.Add(this.HanditemCmbx);
+            this.groupBox3.Controls.Add(this.GiveallUserHanditemBtn);
+            this.groupBox3.Location = new System.Drawing.Point(708, 20);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(344, 233);
+            this.groupBox3.TabIndex = 93;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Handitems";
             // 
-            // HanditemSubBtn
+            // BadgeTxbx
             // 
-            this.HanditemSubBtn.Location = new System.Drawing.Point(557, 203);
-            this.HanditemSubBtn.Name = "HanditemSubBtn";
-            this.HanditemSubBtn.Size = new System.Drawing.Size(120, 21);
-            this.HanditemSubBtn.TabIndex = 92;
-            this.HanditemSubBtn.Text = "handitem hunt - 1";
-            this.HanditemSubBtn.Click += new System.EventHandler(this.HanditemSubBtn_Click);
+            this.BadgeTxbx.Location = new System.Drawing.Point(848, 426);
+            this.BadgeTxbx.Name = "BadgeTxbx";
+            this.BadgeTxbx.Size = new System.Drawing.Size(160, 26);
+            this.BadgeTxbx.TabIndex = 94;
             // 
-            // Handitemnbx
+            // GibeBadgeToYoutselfBtn
             // 
-            this.Handitemnbx.Location = new System.Drawing.Point(558, 235);
-            this.Handitemnbx.Maximum = new decimal(new int[] {
-            2147483647,
+            this.GibeBadgeToYoutselfBtn.Location = new System.Drawing.Point(848, 380);
+            this.GibeBadgeToYoutselfBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GibeBadgeToYoutselfBtn.Name = "GibeBadgeToYoutselfBtn";
+            this.GibeBadgeToYoutselfBtn.Size = new System.Drawing.Size(182, 38);
+            this.GibeBadgeToYoutselfBtn.TabIndex = 86;
+            this.GibeBadgeToYoutselfBtn.Text = "Give Badge To Yourself";
+            this.GibeBadgeToYoutselfBtn.Click += new System.EventHandler(this.GibeBadgeToYoutselfBtn_Click);
+            // 
+            // EnableOnLoopBtn
+            // 
+            this.EnableOnLoopBtn.Location = new System.Drawing.Point(459, 36);
+            this.EnableOnLoopBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.EnableOnLoopBtn.Name = "EnableOnLoopBtn";
+            this.EnableOnLoopBtn.Size = new System.Drawing.Size(199, 31);
+            this.EnableOnLoopBtn.TabIndex = 77;
+            this.EnableOnLoopBtn.Text = "Enable Effect On loop : OFF";
+            this.EnableOnLoopBtn.Click += new System.EventHandler(this.EnableOnLoopBtn_Click);
+            // 
+            // EnableNbx
+            // 
+            this.EnableNbx.Location = new System.Drawing.Point(24, 75);
+            this.EnableNbx.Maximum = new decimal(new int[] {
+            -402653185,
+            -1613725636,
+            54210108,
+            0});
+            this.EnableNbx.Name = "EnableNbx";
+            this.EnableNbx.Size = new System.Drawing.Size(172, 26);
+            this.EnableNbx.TabIndex = 10;
+            this.EnableNbx.ValueChanged += new System.EventHandler(this.EnableNbx_ValueChanged);
+            // 
+            // EnableAdd1Btn
+            // 
+            this.EnableAdd1Btn.Location = new System.Drawing.Point(24, 108);
+            this.EnableAdd1Btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.EnableAdd1Btn.Name = "EnableAdd1Btn";
+            this.EnableAdd1Btn.Size = new System.Drawing.Size(41, 31);
+            this.EnableAdd1Btn.TabIndex = 95;
+            this.EnableAdd1Btn.Text = " + 1";
+            this.EnableAdd1Btn.Click += new System.EventHandler(this.EnableAdd1Btn_Click);
+            // 
+            // EnableSub1Btn
+            // 
+            this.EnableSub1Btn.Location = new System.Drawing.Point(92, 108);
+            this.EnableSub1Btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.EnableSub1Btn.Name = "EnableSub1Btn";
+            this.EnableSub1Btn.Size = new System.Drawing.Size(42, 31);
+            this.EnableSub1Btn.TabIndex = 96;
+            this.EnableSub1Btn.Text = " - 1";
+            this.EnableSub1Btn.Click += new System.EventHandler(this.EnableSub1Btn_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label5);
+            this.groupBox5.Controls.Add(this.SetEnableBtn);
+            this.groupBox5.Controls.Add(this.EnableSub1Btn);
+            this.groupBox5.Controls.Add(this.CooldownEffectNbx);
+            this.groupBox5.Controls.Add(this.EnableAdd1Btn);
+            this.groupBox5.Controls.Add(this.EnableNbx);
+            this.groupBox5.Controls.Add(this.LiveEditBtn);
+            this.groupBox5.Controls.Add(this.EnableOnLoopBtn);
+            this.groupBox5.Location = new System.Drawing.Point(22, 483);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(754, 141);
+            this.groupBox5.TabIndex = 97;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Enables";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(455, 72);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 20);
+            this.label5.TabIndex = 100;
+            this.label5.Text = "Cooldown";
+            // 
+            // CooldownEffectNbx
+            // 
+            this.CooldownEffectNbx.Location = new System.Drawing.Point(459, 95);
+            this.CooldownEffectNbx.Maximum = new decimal(new int[] {
+            -402653185,
+            -1613725636,
+            54210108,
+            0});
+            this.CooldownEffectNbx.Minimum = new decimal(new int[] {
+            50,
             0,
             0,
             0});
-            this.Handitemnbx.Name = "Handitemnbx";
-            this.Handitemnbx.Size = new System.Drawing.Size(119, 20);
-            this.Handitemnbx.TabIndex = 77;
-            this.Handitemnbx.ValueChanged += new System.EventHandler(this.Handitemnbx_ValueChanged);
+            this.CooldownEffectNbx.Name = "CooldownEffectNbx";
+            this.CooldownEffectNbx.Size = new System.Drawing.Size(199, 26);
+            this.CooldownEffectNbx.TabIndex = 99;
+            this.CooldownEffectNbx.Value = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            // 
+            // LiveEditBtn
+            // 
+            this.LiveEditBtn.Location = new System.Drawing.Point(234, 36);
+            this.LiveEditBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LiveEditBtn.Name = "LiveEditBtn";
+            this.LiveEditBtn.Size = new System.Drawing.Size(199, 31);
+            this.LiveEditBtn.TabIndex = 98;
+            this.LiveEditBtn.Text = "Live Edit : OFF";
+            this.LiveEditBtn.Click += new System.EventHandler(this.LiveEditBtn_Click);
+            // 
+            // SetEnableBtn
+            // 
+            this.SetEnableBtn.Location = new System.Drawing.Point(16, 36);
+            this.SetEnableBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SetEnableBtn.Name = "SetEnableBtn";
+            this.SetEnableBtn.Size = new System.Drawing.Size(199, 31);
+            this.SetEnableBtn.TabIndex = 97;
+            this.SetEnableBtn.Text = "Set Enable";
+            this.SetEnableBtn.Click += new System.EventHandler(this.SetEnableBtn_Click);
             // 
             // PersonalPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.Handitemnbx);
-            this.Controls.Add(this.HanditemSubBtn);
-            this.Controls.Add(this.HanditemAddBtn);
-            this.Controls.Add(this.GiveHanditemToClickedUserbtn);
-            this.Controls.Add(this.GiveHanditemToMyself);
-            this.Controls.Add(this.HanditemCmbx);
-            this.Controls.Add(this.GiveallUserHanditemBtn);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.GibeBadgeToYoutselfBtn);
+            this.Controls.Add(this.BadgeTxbx);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.SetCurrencyBtn);
             this.Controls.Add(this.Currency);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PersonalPage";
-            this.Size = new System.Drawing.Size(711, 310);
+            this.Size = new System.Drawing.Size(1300, 627);
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).EndInit();
@@ -443,8 +553,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.UserIntUpDwn)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Handitemnbx)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.EnableNbx)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CooldownEffectNbx)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -478,8 +593,17 @@
         private Sulakore.Components.SKoreButton GiveallUserHanditemBtn;
         private Sulakore.Components.SKoreButton GiveHanditemToMyself;
         private Sulakore.Components.SKoreButton GiveHanditemToClickedUserbtn;
-        private Sulakore.Components.SKoreButton HanditemAddBtn;
-        private Sulakore.Components.SKoreButton HanditemSubBtn;
-        private System.Windows.Forms.NumericUpDown Handitemnbx;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox BadgeTxbx;
+        private Sulakore.Components.SKoreButton GibeBadgeToYoutselfBtn;
+        private Sulakore.Components.SKoreButton EnableOnLoopBtn;
+        private System.Windows.Forms.NumericUpDown EnableNbx;
+        private Sulakore.Components.SKoreButton EnableAdd1Btn;
+        private Sulakore.Components.SKoreButton EnableSub1Btn;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private Sulakore.Components.SKoreButton LiveEditBtn;
+        private Sulakore.Components.SKoreButton SetEnableBtn;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown CooldownEffectNbx;
     }
 }

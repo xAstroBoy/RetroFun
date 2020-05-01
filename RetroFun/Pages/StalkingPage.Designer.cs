@@ -46,7 +46,7 @@
             // 
             this.VictimsCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.VictimsCmbx.FormattingEnabled = true;
-            this.VictimsCmbx.Location = new System.Drawing.Point(72, 138);
+            this.VictimsCmbx.Location = new System.Drawing.Point(18, 131);
             this.VictimsCmbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.VictimsCmbx.Name = "VictimsCmbx";
             this.VictimsCmbx.Size = new System.Drawing.Size(206, 28);
@@ -54,7 +54,7 @@
             // 
             // StalkVictimBtn
             // 
-            this.StalkVictimBtn.Location = new System.Drawing.Point(72, 180);
+            this.StalkVictimBtn.Location = new System.Drawing.Point(18, 173);
             this.StalkVictimBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.StalkVictimBtn.Name = "StalkVictimBtn";
             this.StalkVictimBtn.Size = new System.Drawing.Size(208, 31);
@@ -65,7 +65,7 @@
             // Stalkbotgamescheckbx
             // 
             this.Stalkbotgamescheckbx.AutoSize = true;
-            this.Stalkbotgamescheckbx.Location = new System.Drawing.Point(325, 94);
+            this.Stalkbotgamescheckbx.Location = new System.Drawing.Point(281, 33);
             this.Stalkbotgamescheckbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Stalkbotgamescheckbx.Name = "Stalkbotgamescheckbx";
             this.Stalkbotgamescheckbx.Size = new System.Drawing.Size(323, 24);
@@ -75,7 +75,7 @@
             // 
             // StalkVictimID
             // 
-            this.StalkVictimID.Location = new System.Drawing.Point(72, 288);
+            this.StalkVictimID.Location = new System.Drawing.Point(18, 281);
             this.StalkVictimID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.StalkVictimID.Name = "StalkVictimID";
             this.StalkVictimID.Size = new System.Drawing.Size(208, 31);
@@ -86,7 +86,7 @@
             // InterceptVictimIDChbx
             // 
             this.InterceptVictimIDChbx.AutoSize = true;
-            this.InterceptVictimIDChbx.Location = new System.Drawing.Point(312, 288);
+            this.InterceptVictimIDChbx.Location = new System.Drawing.Point(268, 227);
             this.InterceptVictimIDChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.InterceptVictimIDChbx.Name = "InterceptVictimIDChbx";
             this.InterceptVictimIDChbx.Size = new System.Drawing.Size(171, 24);
@@ -96,7 +96,7 @@
             // 
             // IdOfVictimNbx
             // 
-            this.IdOfVictimNbx.Location = new System.Drawing.Point(72, 248);
+            this.IdOfVictimNbx.Location = new System.Drawing.Point(18, 241);
             this.IdOfVictimNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.IdOfVictimNbx.Maximum = new decimal(new int[] {
             -1304428545,
@@ -110,7 +110,7 @@
             // SpamWalkChb
             // 
             this.SpamWalkChb.AutoSize = true;
-            this.SpamWalkChb.Location = new System.Drawing.Point(325, 140);
+            this.SpamWalkChb.Location = new System.Drawing.Point(281, 79);
             this.SpamWalkChb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SpamWalkChb.Name = "SpamWalkChb";
             this.SpamWalkChb.Size = new System.Drawing.Size(265, 24);
@@ -120,7 +120,7 @@
             // 
             // CooldownFloodNbx
             // 
-            this.CooldownFloodNbx.Location = new System.Drawing.Point(325, 185);
+            this.CooldownFloodNbx.Location = new System.Drawing.Point(281, 124);
             this.CooldownFloodNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -143,7 +143,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(329, 214);
+            this.label1.Location = new System.Drawing.Point(285, 153);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 20);
             this.label1.TabIndex = 16;
@@ -152,7 +152,7 @@
             // SpectatorChbx
             // 
             this.SpectatorChbx.AutoSize = true;
-            this.SpectatorChbx.Location = new System.Drawing.Point(312, 342);
+            this.SpectatorChbx.Location = new System.Drawing.Point(268, 281);
             this.SpectatorChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SpectatorChbx.Name = "SpectatorChbx";
             this.SpectatorChbx.Size = new System.Drawing.Size(316, 24);

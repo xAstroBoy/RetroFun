@@ -5,6 +5,7 @@ using Sulakore.Components;
 using Sulakore.Protocol;
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -76,6 +77,18 @@ namespace RetroFun.Pages
         }
 
 
+        private bool _StoreFurniID;
+
+        public bool StoreFurniID
+        {
+            get => _StoreFurniID;
+            set
+            {
+                _StoreFurniID = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
         private bool _FurniPickedOutput;
 
         public bool FurniPickedOutput
@@ -143,6 +156,8 @@ namespace RetroFun.Pages
             }
         }
 
+
+
         public int FurnitureId { get; private set; }
 
         public bool IsReceiving => true;
@@ -155,6 +170,7 @@ namespace RetroFun.Pages
             Bind(DoubleClickFurnitureRemovalChbx, "Checked", nameof(DoubleClickFurnitureRemoval));
             Bind(FurniPickChbx, "Checked", nameof(FurniPickedOutput));
 
+            Bind(StoreFurniIDOnFileChbx, "Checked", nameof(StoreFurniID));
 
             Bind(FloorFurniIDNbx, "Value", nameof(FloorFurniID));
             Bind(FloorFurniXNbx, "Value", nameof(FloorFurniX));
@@ -218,6 +234,12 @@ namespace RetroFun.Pages
         private void RoomPickupItem(DataInterceptedEventArgs obj)
         {
             int furnitureId = obj.Packet.ReadInteger(4);
+
+            if (StoreFurniID)
+            {
+                RecordPlacedRare(furnitureId);
+            }
+
             if (DoubleClickFurnitureRemoval)
             {
                 string furnitureIdString = furnitureId.ToString();
@@ -228,6 +250,53 @@ namespace RetroFun.Pages
                     NoticePickup(furnitureIdString);
                 }
                 obj.IsBlocked = true;
+            }
+
+            
+        }
+
+        private string GetHost(string host)
+        {
+            if (host == "217.182.58.18")
+            {
+                return "bobbaitalia.it";
+            }
+            else
+            {
+                return host;
+            }
+        }
+
+
+        private void RecordPlacedRare(int rareid)
+        {
+            try
+            {
+                string Filepath = "../PlacedRares/" + GetHost(Connection.Host) + "_rari" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string FolderName = "PlacedRares";
+
+                Directory.CreateDirectory("../" + FolderName);
+
+                if (!File.Exists(Filepath))
+                {
+                    using (var txtFile = File.AppendText(Filepath))
+                    {
+                        txtFile.WriteLine("Rares ID stored at :" + DateTime.Now.ToString());
+                        txtFile.WriteLine(rareid);
+                    }
+                }
+                else if (File.Exists(Filepath))
+                {
+                    using (var txtFile = File.AppendText(Filepath))
+                    {
+                        txtFile.WriteLine(rareid);
+                    }
+                }
+            }
+
+            catch (Exception)
+            {
+
             }
         }
 
@@ -621,6 +690,26 @@ namespace RetroFun.Pages
         {
         }
 
+        private void PickWallItemCSBtn_Click(object sender, EventArgs e)
+        {
+            if (FurnitureId == 0) return;
+            PickFurniSS(FurnitureId);
+        }
 
+        private void PickFloorFurniSSBtn_Click(object sender, EventArgs e)
+        {
+            if (FurnitureId == 0) return;
+            PickFurniSS(FurnitureId);
+        }
+
+        private void PickFurniSS(int furniID)
+        {
+            Connection.SendToServerAsync(Out.RoomPickupItem, 2, furniID);
+        }
+
+        private void DoubleClickFurnitureRemovalChbx_CheckedChanged(object sender, EventArgs e)
+        {
+            Speak("You will be picking furni on CLient, instead of Server side!");
+        }
     }
 }
