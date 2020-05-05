@@ -685,7 +685,11 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
-                    Connection.SendToServerAsync(Out.RoomUserSit);
+                    if (Connection.Remote.IsConnected)
+                    {
+                        Connection.SendToServerAsync(Out.RoomUserSit);
+
+                    }
                     Thread.Sleep(SitsCooldown);
                 } while (SitModeEnabled);
             }).Start();
@@ -1556,5 +1560,39 @@ namespace RetroFun.Pages
             }
         }
 
+        public void OnRoomPickupItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnRotateMoveItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnMoveWallItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomFloorItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomWallItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddFloorItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddWallItem(DataInterceptedEventArgs e)
+        {
+        }
+        public void InRemoveFloorItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRemoveWallItem(DataInterceptedEventArgs e)
+        {
+        }
     }
 }

@@ -540,15 +540,18 @@ namespace RetroFun.Pages
 
         private async void SendPacket(int PageID, int FurniID)
         {
-            await Task.Delay(30);
-            await Connection.SendToServerAsync(
-            Out.CatalogBuyItem,
-            PageID,
-            FurniID,
-            TextBox,
-            1
-            );
-            
+            if (Connection.Remote.IsConnected)
+            {
+                await Task.Delay(30);
+                await Connection.SendToServerAsync(
+                Out.CatalogBuyItem,
+                PageID,
+                FurniID,
+                TextBox,
+                1
+                );
+
+            }
         }
 
         private void StartLoop()
@@ -1036,6 +1039,37 @@ namespace RetroFun.Pages
         public void InFloorItemUpdate(DataInterceptedEventArgs e)
         {
         }
+        public void OnRoomPickupItem(DataInterceptedEventArgs e)
+        {
+        }
 
+        public void OnRotateMoveItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnMoveWallItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomFloorItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomWallItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddFloorItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddWallItem(DataInterceptedEventArgs e)
+        {
+        }
+        public void InRemoveFloorItem(DataInterceptedEventArgs e)
+        { }
+
+        public void InRemoveWallItem(DataInterceptedEventArgs e)
+        { }
     }
 }

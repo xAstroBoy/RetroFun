@@ -319,7 +319,11 @@ namespace RetroFun.Pages
         {
             if (UsernameFilter == null)
             {
-                await Connection.SendToServerAsync(Out.RequestUserData);
+                if (Connection.Remote.IsConnected)
+                {
+
+                    await Connection.SendToServerAsync(Out.RequestUserData);
+                }
             }
         }
 
@@ -535,14 +539,20 @@ namespace RetroFun.Pages
         private async void ConvertCSChatTalk(string message, int bubbleid)
         {
             await Task.Delay(RaidUserCooldownCooldown);
-            await Connection.SendToServerAsync(Out.RoomUserTalk, " " + message, bubbleid);
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(Out.RoomUserTalk, " " + message, bubbleid);
+            }
             return;
         }
 
         private async void ConvertCSChatShout(string message, int bubbleid)
         {
             await Task.Delay(RaidUserCooldownCooldown);
-            await Connection.SendToServerAsync(Out.RoomUserTalk, " " + message, bubbleid);
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(Out.RoomUserTalk, " " + message, bubbleid);
+            }
             return;
         }
 
@@ -780,7 +790,11 @@ namespace RetroFun.Pages
                     if (FlooderEnabled)
                     {
                         Thread.Sleep(FlooderCooldown);
-                        Connection.SendToServerAsync(FloodMessageBuilder());
+                        if (Connection.Remote.IsConnected)
+                        {
+                            Connection.SendToServerAsync(FloodMessageBuilder());
+
+                        }
                         Thread.Sleep(100);
                     }
 
@@ -865,8 +879,44 @@ namespace RetroFun.Pages
 
         private void SendMessageBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(ChatMessageBuilder());
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(ChatMessageBuilder());
+            }
+        }
+        public void OnRoomPickupItem(DataInterceptedEventArgs e)
+        {
         }
 
+        public void OnRotateMoveItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnMoveWallItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomFloorItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomWallItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddFloorItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddWallItem(DataInterceptedEventArgs e)
+        {
+        }
+        public void InRemoveFloorItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRemoveWallItem(DataInterceptedEventArgs e)
+        {
+        }
     }
 }

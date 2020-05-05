@@ -530,7 +530,10 @@ namespace RetroFun.Pages
                             {
                                 if (ShouldShoutPhrase)
                                 {
-                                    Connection.SendToServerAsync(Out.RoomUserShout, ShoutPhrase, 0);
+                                    if (Connection.Remote.IsConnected)
+                                    {
+                                        Connection.SendToServerAsync(Out.RoomUserShout, ShoutPhrase, 0);
+                                    }
                                 }
                             }
 
@@ -581,7 +584,10 @@ namespace RetroFun.Pages
                                 if (ShouldShoutPhrase)
 
                                 {
-                                    Connection.SendToServerAsync(Out.RoomUserShout, ShoutPhrase, 0);
+                                    if (Connection.Remote.IsConnected)
+                                    {
+                                        Connection.SendToServerAsync(Out.RoomUserShout, ShoutPhrase, 0);
+                                    }
                                 }
                             }
 
@@ -1149,5 +1155,38 @@ namespace RetroFun.Pages
             catch (Exception exc)
             { }
         }
+
+        public void OnRoomPickupItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnRotateMoveItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnMoveWallItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomFloorItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomWallItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddFloorItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddWallItem(DataInterceptedEventArgs e)
+        {
+        }
+        public void InRemoveFloorItem(DataInterceptedEventArgs e)
+        { }
+
+        public void InRemoveWallItem(DataInterceptedEventArgs e)
+        { }
     }
 }

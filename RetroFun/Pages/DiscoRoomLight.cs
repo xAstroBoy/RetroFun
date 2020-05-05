@@ -403,11 +403,17 @@ namespace RetroFun.Pages
             {
                 if (JustWallpapers)
                 {
-                   await Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 2, "#" + color, Density, true);
+                    if (Connection.Remote.IsConnected)
+                    {
+                        await Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 2, "#" + color, Density, true);
+                    }
                 }
                 else
                 {
-                    await Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
+                    if (Connection.Remote.IsConnected)
+                    {
+                        await Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
+                    }
                 }
             }
         }

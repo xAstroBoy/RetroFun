@@ -93,6 +93,7 @@
             this.StoreFurniIDOnFileChbx.TabIndex = 9;
             this.StoreFurniIDOnFileChbx.Text = "Store FurniID On File";
             this.StoreFurniIDOnFileChbx.UseVisualStyleBackColor = true;
+            this.StoreFurniIDOnFileChbx.CheckedChanged += new System.EventHandler(this.StoreFurniIDOnFileChbx_CheckedChanged);
             // 
             // PickWallItemCSBtn
             // 
@@ -380,7 +381,7 @@
             this.Controls.Add(this.RemoverGrbx);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FurniturePage";
-            this.Size = new System.Drawing.Size(1089, 422);
+            this.Size = new System.Drawing.Size(1310, 567);
             this.RemoverGrbx.ResumeLayout(false);
             this.RemoverGrbx.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FloorFurniIDNbx)).EndInit();

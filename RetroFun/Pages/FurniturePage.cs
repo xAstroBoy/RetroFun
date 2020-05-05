@@ -6,10 +6,16 @@ using Sulakore.Protocol;
 using System;
 using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop;
+using Microsoft.Office.Interop.Excel;
+using System.Collections.Generic;
+using Sulakore.Habbo;
+using System.Linq;
 
 namespace RetroFun.Pages
 {
@@ -18,12 +24,29 @@ namespace RetroFun.Pages
     public partial class FurniturePage : ObservablePage, ISubscriber
     {
         private HMessage FurniDataStored;
+
+
         private Random ran = new Random();
         private bool _doubleClickFurnitureRemoval;
         private bool ConvertWalkinFurniMovement;
         private bool FloorFurniInterceptionMode;
 
+
         private int _FloorFurniID;
+
+
+
+        private int _FurniIDToCheck;
+
+        public int FurniIDToCheck
+        {
+            get => _FurniIDToCheck;
+            set
+            {
+                _FurniIDToCheck = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
 
 
@@ -49,6 +72,18 @@ namespace RetroFun.Pages
             set
             {
                 _FloorFurniID = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _controlledFloorFurni;
+
+        public int ControlledFloorFurni
+        {
+            get => _controlledFloorFurni;
+            set
+            {
+                _controlledFloorFurni = value;
                 RaiseOnPropertyChanged();
             }
         }
@@ -178,37 +213,10 @@ namespace RetroFun.Pages
 
             Bind(WalkingSpeedNbx, "Value", nameof(FurniWalkingSpeed));
 
-
             if (Program.Master != null)
             {
-                Triggers.OutAttach(Out.RoomPickupItem, RoomPickupItem);
-                Triggers.InAttach(In.RoomFloorItems, StoreRoomFurniData);
-                Triggers.OutAttach(Out.RotateMoveItem, RotateMoveItemIntercept);
             }
         }
-
-        private void StoreRoomFurniData(DataInterceptedEventArgs obj)
-        {
-            FurniDataStored = obj.Packet;
-            obj.Continue();
-        }
-
-
-        private void RotateMoveItemIntercept(DataInterceptedEventArgs e)
-        {
-            if(FloorFurniInterceptionMode)
-            {
-                FloorFurniID = e.Packet.ReadInteger();
-                FloorFurniX = e.Packet.ReadInteger();
-                FloorFurniY = e.Packet.ReadInteger();
-                ControlRotation(e.Packet.ReadInteger());
-            }
-
-
-        }
-
-
-
 
         private void WriteToButton(SKoreButton Button, string text)
         {
@@ -230,30 +238,7 @@ namespace RetroFun.Pages
             if (FurnitureId == 0) return;
             RemoveFloorItem(FurnitureIdText);
         }
-
-        private void RoomPickupItem(DataInterceptedEventArgs obj)
-        {
-            int furnitureId = obj.Packet.ReadInteger(4);
-
-            if (StoreFurniID)
-            {
-                RecordPlacedRare(furnitureId);
-            }
-
-            if (DoubleClickFurnitureRemoval)
-            {
-                string furnitureIdString = furnitureId.ToString();
-                RemoveWallItem(furnitureIdString);
-                RemoveFloorItem(furnitureIdString);
-                if (FurniPickedOutput)
-                {
-                    NoticePickup(furnitureIdString);
-                }
-                obj.IsBlocked = true;
-            }
-
-            
-        }
+ 
 
         private string GetHost(string host)
         {
@@ -267,13 +252,12 @@ namespace RetroFun.Pages
             }
         }
 
-
-        private void RecordPlacedRare(int rareid)
+        private void RecordPlacedRare(int FurniID)
         {
             try
             {
-                string Filepath = "../PlacedRares/" + GetHost(Connection.Host) + "_rari" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
-                string FolderName = "PlacedRares";
+                string Filepath = "../PlacedFurnis/" + GetHost(Connection.Host) + "_FURNI" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string FolderName = "PlacedFurnis";
 
                 Directory.CreateDirectory("../" + FolderName);
 
@@ -281,15 +265,15 @@ namespace RetroFun.Pages
                 {
                     using (var txtFile = File.AppendText(Filepath))
                     {
-                        txtFile.WriteLine("Rares ID stored at :" + DateTime.Now.ToString());
-                        txtFile.WriteLine(rareid);
+                        txtFile.WriteLine("furni ID stored at :" + DateTime.Now.ToString());
+                        txtFile.WriteLine(FurniID);
                     }
                 }
                 else if (File.Exists(Filepath))
                 {
                     using (var txtFile = File.AppendText(Filepath))
                     {
-                        txtFile.WriteLine(rareid);
+                        txtFile.WriteLine(FurniID);
                     }
                 }
             }
@@ -300,6 +284,50 @@ namespace RetroFun.Pages
             }
         }
 
+
+        private void RecordRareControl(bool isRegolar, string text)
+        {
+            string raretype;
+            try
+            {
+                if (isRegolar)
+                {
+                    raretype = "_rari_regolari";
+                }
+                else
+                {
+                    raretype = "_rari_irregolari";
+                }
+
+                string Filepath = "../RareControls/" + GetHost(Connection.Host) + raretype + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string FolderName = "RareControls";
+
+                Directory.CreateDirectory("../" + FolderName);
+
+                if (!File.Exists(Filepath))
+                {
+                    using (var txtFile = File.AppendText(Filepath))
+                    {
+                        txtFile.WriteLine("Rares Control Done at :" + DateTime.Now.ToString());
+                        txtFile.WriteLine(text);
+                    }
+                }
+                else if (File.Exists(Filepath))
+                {
+                    using (var txtFile = File.AppendText(Filepath))
+                    {
+                        txtFile.WriteLine(text);
+                    }
+                }
+            }
+
+            catch (Exception)
+            {
+
+            }
+        }
+
+
         private void NoticePickup(string FurniID)
         {
             Speak("You are picking a furni ClientSide with ID : " + FurniID);
@@ -308,9 +336,9 @@ namespace RetroFun.Pages
         private void ControlRotation(int Rotation)
         {
             if (Rotation == 6)
-                {
-                    RadioButtonCheck(RotationUp, false);
-                    RadioButtonCheck(RotationRight, false);
+            {
+                RadioButtonCheck(RotationUp, false);
+                RadioButtonCheck(RotationRight, false);
                 RadioButtonCheck(RotationDown, false);
                 RadioButtonCheck(rotationLeft, false);
                 FloorFurniRotation = 6;
@@ -346,29 +374,39 @@ namespace RetroFun.Pages
         private async void RotationUp_CheckedChanged(object sender, EventArgs e)
         {
             FloorFurniRotation = 6;
-            await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            }
 
         }
 
         private async void RotationRight_CheckedChanged(object sender, EventArgs e)
         {
             FloorFurniRotation = 0;
-            await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            }
 
         }
 
         private async void RotationDown_CheckedChanged(object sender, EventArgs e)
         {
             FloorFurniRotation = 2;
-            await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
-
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            }
         }
 
         private async void rotationLeft_CheckedChanged(object sender, EventArgs e)
         {
             FloorFurniRotation = 4;
-            await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
-
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+            }
         }
 
 
@@ -425,7 +463,17 @@ namespace RetroFun.Pages
         {
             if (Connection.Remote.IsConnected)
             {
-               await  Connection.SendToClientAsync(In.RoomUserWhisper, 0, text, 0, 1, 0, -1);
+                await Task.Delay(150);
+                await Connection.SendToClientAsync(In.RoomUserTalk, 0, text, 0, 1, 0, -1);
+            }
+        }
+
+        private async void Speak(string text, int bubble)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                await Task.Delay(50);
+                await Connection.SendToClientAsync(In.RoomUserTalk, 0, text, 0, bubble, 0, -1);
             }
         }
 
@@ -447,7 +495,7 @@ namespace RetroFun.Pages
 
         private void CaptureFloorFurniBtn_Click(object sender, EventArgs e)
         {
-            if(FloorFurniInterceptionMode)
+            if (FloorFurniInterceptionMode)
             {
                 WriteToButton(CaptureFloorFurniBtn, "Capture Furni : OFF");
                 FloorFurniInterceptionMode = false;
@@ -465,14 +513,14 @@ namespace RetroFun.Pages
 
         private void WalkingStyleBtn_Click(object sender, EventArgs e)
         {
-            if(isTeleportFurni)
+            if (isTeleportFurni)
             {
                 IsWalkingFurni = true;
                 isTeleportFurni = false;
                 WriteToButton(WalkingStyleBtn, "Walking mode : Walking");
 
             }
-            else if(IsWalkingFurni)
+            else if (IsWalkingFurni)
             {
                 IsWalkingFurni = false;
                 isTeleportFurni = true;
@@ -481,9 +529,12 @@ namespace RetroFun.Pages
         }
 
 
-        public async void TeleportfurniToCoord(int X , int Y)
+        public async void TeleportfurniToCoord(int X, int Y)
         {
-            await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
+            }
         }
 
 
@@ -491,7 +542,7 @@ namespace RetroFun.Pages
         {
             if (ConvertWalkinFurniMovement)
             {
-                while (FloorFurniX != X )
+                while (FloorFurniX != X)
                 {
                     if (FloorFurniX < X)
                     {
@@ -541,11 +592,14 @@ namespace RetroFun.Pages
             }
         }
 
-        private  void SendWalkingFurniPacket(int X, int Y)
+        private void SendWalkingFurniPacket(int X, int Y)
         {
             if (ConvertWalkinFurniMovement)
             {
-                Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
+                if (Connection.Remote.IsConnected)
+                {
+                    Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
+                }
             }
         }
         private void FloorFurniXNbx_ValueChanged(object sender, EventArgs e)
@@ -585,7 +639,6 @@ namespace RetroFun.Pages
 
         public void OnRequestRoomLoad(DataInterceptedEventArgs e)
         {
-
         }
 
         public void OnLatencyTest(DataInterceptedEventArgs e)
@@ -614,24 +667,42 @@ namespace RetroFun.Pages
         {
             int coordX = e.Packet.ReadInteger();
             int coordY = e.Packet.ReadInteger();
-            
+
             if (ConvertWalkinFurniMovement)
             {
-                if(isTeleportFurni)
+                if (isTeleportFurni)
                 {
                     TeleportfurniToCoord(coordX, coordY);
                     e.IsBlocked = true;
                 }
-                else if(IsWalkingFurni)
+                else if (IsWalkingFurni)
                 {
 
-                     WalkFurniToCoord(coordX, coordY);
+                    WalkFurniToCoord(coordX, coordY);
                     e.IsBlocked = true;
                 }
             }
         }
 
-        private async void WalkFurniToCoord(int X , int Y)
+        public static HWallItem[] BobbaParser(HMessage packet)
+        {
+            int ownersCount = packet.ReadInteger();
+            for (int i = 0; i < ownersCount; i++)
+            {
+                packet.ReadInteger();
+                packet.ReadString();
+            }
+
+            var wallItems = new HWallItem[packet.ReadInteger()];
+            for (int i = 0; i < wallItems.Length; i++)
+            {
+                wallItems[i] = new HWallItem(packet);
+            }
+            return wallItems;
+        }
+
+
+        private async void WalkFurniToCoord(int X, int Y)
         {
             WalkFurniToCoordX(X);
             await Task.Delay(10);
@@ -709,7 +780,85 @@ namespace RetroFun.Pages
 
         private void DoubleClickFurnitureRemovalChbx_CheckedChanged(object sender, EventArgs e)
         {
-            Speak("You will be picking furni on CLient, instead of Server side!");
+            Speak("You will be picking furni on Client, instead of Server side!");
         }
+
+
+
+
+
+        private void StoreFurniIDOnFileChbx_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        public void OnRoomPickupItem(DataInterceptedEventArgs e)
+        {
+            int furnitureId = e.Packet.ReadInteger(4);
+
+            if (StoreFurniID)
+            {
+                RecordPlacedRare(furnitureId);
+            }
+
+            if (DoubleClickFurnitureRemoval)
+            {
+                string furnitureIdString = furnitureId.ToString();
+                RemoveWallItem(furnitureIdString);
+                RemoveFloorItem(furnitureIdString);
+                if (FurniPickedOutput)
+                {
+                    NoticePickup(furnitureIdString);
+                }
+                e.IsBlocked = true;
+            }
+        }
+
+        public void OnRotateMoveItem(DataInterceptedEventArgs e)
+        {
+            int FloorFurni = e.Packet.ReadInteger();
+            int FurniX = e.Packet.ReadInteger();
+            int FurniY = e.Packet.ReadInteger();
+            int Rotation = e.Packet.ReadInteger();
+            if (FloorFurniInterceptionMode)
+            {
+                FloorFurniID = FloorFurni;
+                FloorFurniX = FurniX;
+                FloorFurniY = FurniY;
+                ControlRotation(Rotation);
+            }
+        }
+
+        public void OnMoveWallItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomFloorItems(DataInterceptedEventArgs e)
+        {
+            if (FurniDataStored == null)
+            {
+                FurniDataStored = e.Packet;
+            }
+        }
+
+        public void InRoomWallItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddFloorItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddWallItem(DataInterceptedEventArgs e)
+        {
+
+        }
+
+        public void InRemoveFloorItem(DataInterceptedEventArgs e)
+        { }
+
+        public void InRemoveWallItem(DataInterceptedEventArgs e)
+        { }
     }
 }

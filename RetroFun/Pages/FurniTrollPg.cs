@@ -638,7 +638,11 @@ namespace RetroFun.Pages
                     {
                         if (isHanditemGiverActivated)
                         {
-                            Connection.SendToServerAsync(Out.RoomUserGiveHandItem, UserID);
+                            if (Connection.Remote.IsConnected)
+                            {
+                                Connection.SendToServerAsync(Out.RoomUserGiveHandItem, UserID);
+
+                            }
                             Thread.Sleep(ThreadCooldownSafe(CooldownHanditemGiver));
                         }
                     }
@@ -889,7 +893,10 @@ namespace RetroFun.Pages
 
         private async void SendToggleFloorItem(int FurnID)
         {
-            await Connection.SendToServerAsync(Out.ToggleFloorItem, FurnID);
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(Out.ToggleFloorItem, FurnID);
+            }
         }
         public void RegisterFurni(int FurnID)
         {
@@ -1810,6 +1817,34 @@ namespace RetroFun.Pages
         #endregion
 
         #region Subscribers
+
+        public void OnRoomPickupItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnRotateMoveItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnMoveWallItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomFloorItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomWallItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddFloorItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddWallItem(DataInterceptedEventArgs e)
+        {
+        }
         public void InFloorItemUpdate(DataInterceptedEventArgs e)
         {
         }
@@ -1917,7 +1952,11 @@ namespace RetroFun.Pages
         public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
         {
         }
+        public void InRemoveFloorItem(DataInterceptedEventArgs e)
+        { }
 
+        public void InRemoveWallItem(DataInterceptedEventArgs e)
+        { }
         #endregion
 
 

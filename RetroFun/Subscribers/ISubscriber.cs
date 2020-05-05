@@ -19,6 +19,10 @@ namespace RetroFun.Subscribers
         void OnRoomUserShout(DataInterceptedEventArgs e);
         void OnRoomUserWhisper(DataInterceptedEventArgs e);
         void OnRoomUserStartTyping(DataInterceptedEventArgs e);
+        void OnRoomPickupItem(DataInterceptedEventArgs e);
+        void OnRotateMoveItem(DataInterceptedEventArgs e);
+        void OnMoveWallItem(DataInterceptedEventArgs e);
+
 
         //Incoming events shared by multiple pages
         void InPurchaseOk(DataInterceptedEventArgs e);
@@ -29,9 +33,15 @@ namespace RetroFun.Subscribers
         void InRoomUserTalk(DataInterceptedEventArgs e);
         void InRoomUserShout(DataInterceptedEventArgs e);
         void InRoomUserWhisper(DataInterceptedEventArgs e);
-
         void InFloorItemUpdate(DataInterceptedEventArgs e);
         void InRoomData(DataInterceptedEventArgs e);
+        void InRoomFloorItems(DataInterceptedEventArgs e);
+        void InRoomWallItems(DataInterceptedEventArgs e);
+        void InAddFloorItem(DataInterceptedEventArgs e);
+        void InAddWallItem(DataInterceptedEventArgs e);
+        void InRemoveFloorItem(DataInterceptedEventArgs e);
+        void InRemoveWallItem(DataInterceptedEventArgs e);
+
 
     }
 }

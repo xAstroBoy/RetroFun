@@ -964,5 +964,38 @@ namespace RetroFun.Pages
         public void InFloorItemUpdate(DataInterceptedEventArgs e)
         {
         }
+
+        public void OnRoomPickupItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnRotateMoveItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void OnMoveWallItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomFloorItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InRoomWallItems(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddFloorItem(DataInterceptedEventArgs e)
+        {
+        }
+
+        public void InAddWallItem(DataInterceptedEventArgs e)
+        {
+        }
+        public void InRemoveFloorItem(DataInterceptedEventArgs e)
+        { }
+
+        public void InRemoveWallItem(DataInterceptedEventArgs e)
+        { }
     }
 }

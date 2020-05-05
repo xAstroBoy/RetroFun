@@ -62,8 +62,8 @@ namespace RetroFun
                 AvatarEditorPg,
                 FurniTrollPg,
                 PersonalPg,
-                ModerationPg
-
+                ModerationPg,
+                FurnitureCheckerPg
             };
 
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));
@@ -127,6 +127,18 @@ namespace RetroFun
                 {
                     sub.OnRoomUserStartTyping(e);
                 }
+                else if (Out.RoomPickupItem == id)
+                {
+                    sub.OnRoomPickupItem(e);
+                }
+                else if (Out.RotateMoveItem == id)
+                {
+                    sub.OnRotateMoveItem(e);
+                }
+                else if (Out.MoveWallItem == id)
+                {
+                    sub.OnMoveWallItem(e);
+                }
             }
         }
 
@@ -156,7 +168,6 @@ namespace RetroFun
                 }
                 else if(In.ItemExtraData == id)
                 {
-
                     sub.InItemExtraData(e);
                 }
                 else if (In.RoomUserTalk == id)
@@ -178,6 +189,30 @@ namespace RetroFun
                 else if (In.RoomData == id)
                 {
                     sub.InRoomData(e);
+                }
+                else if (In.RoomFloorItems == id)
+                {
+                    sub.InRoomFloorItems(e);
+                }
+                else if (In.RoomWallItems == id)
+                {
+                    sub.InRoomWallItems(e);
+                }
+                else if (In.AddFloorItem == id)
+                {
+                    sub.InAddFloorItem(e);
+                }
+                else if (In.AddWallItem == id)
+                {
+                    sub.InAddWallItem(e);
+                }
+                else if (In.RemoveWallItem == id)
+                {
+                    sub.InRemoveWallItem(e);
+                }
+                else if (In.RemoveFloorItem == id)
+                {
+                    sub.InRemoveFloorItem(e);
                 }
             }
         }
