@@ -52,10 +52,15 @@
             this.UpdateListConstantlyBtn = new Sulakore.Components.SKoreButton();
             this.ConvertExcelSheetsToTxtBtn = new Sulakore.Components.SKoreButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ClearWhiteListBtn = new Sulakore.Components.SKoreButton();
+            this.RemoveFalsePositivesBtn = new Sulakore.Components.SKoreButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.WhitelistedFurniLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.FurniIDToCheckNbx)).BeginInit();
             this.RoomScannerGroupbox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // SelectRareListBtn
@@ -111,7 +116,7 @@
             // 
             // RemoveIrregolarBtn
             // 
-            this.RemoveIrregolarBtn.Location = new System.Drawing.Point(37, 210);
+            this.RemoveIrregolarBtn.Location = new System.Drawing.Point(37, 215);
             this.RemoveIrregolarBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RemoveIrregolarBtn.Name = "RemoveIrregolarBtn";
             this.RemoveIrregolarBtn.Size = new System.Drawing.Size(165, 31);
@@ -121,7 +126,7 @@
             // 
             // AnalyzeRooMFurnisBtn
             // 
-            this.AnalyzeRooMFurnisBtn.Location = new System.Drawing.Point(18, 418);
+            this.AnalyzeRooMFurnisBtn.Location = new System.Drawing.Point(33, 494);
             this.AnalyzeRooMFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AnalyzeRooMFurnisBtn.Name = "AnalyzeRooMFurnisBtn";
             this.AnalyzeRooMFurnisBtn.Size = new System.Drawing.Size(165, 31);
@@ -131,7 +136,7 @@
             // 
             // PickRegisteredFurnisBtn
             // 
-            this.PickRegisteredFurnisBtn.Location = new System.Drawing.Point(219, 455);
+            this.PickRegisteredFurnisBtn.Location = new System.Drawing.Point(7, 97);
             this.PickRegisteredFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PickRegisteredFurnisBtn.Name = "PickRegisteredFurnisBtn";
             this.PickRegisteredFurnisBtn.Size = new System.Drawing.Size(191, 27);
@@ -141,7 +146,7 @@
             // 
             // PickUnregisteredFurniBtn
             // 
-            this.PickUnregisteredFurniBtn.Location = new System.Drawing.Point(219, 418);
+            this.PickUnregisteredFurniBtn.Location = new System.Drawing.Point(7, 42);
             this.PickUnregisteredFurniBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PickUnregisteredFurniBtn.Name = "PickUnregisteredFurniBtn";
             this.PickUnregisteredFurniBtn.Size = new System.Drawing.Size(191, 27);
@@ -221,19 +226,18 @@
             // 
             // RoomScannerGroupbox
             // 
+            this.RoomScannerGroupbox.Controls.Add(this.WhitelistedFurniLbl);
             this.RoomScannerGroupbox.Controls.Add(this.RemovedFloorFurnisLbl);
             this.RoomScannerGroupbox.Controls.Add(this.RemovedWallFurnisLbl);
             this.RoomScannerGroupbox.Controls.Add(this.RegularFurnisCountLbl);
             this.RoomScannerGroupbox.Controls.Add(this.IrregularFurnisCountLbl);
-            this.RoomScannerGroupbox.Controls.Add(this.PickRegisteredFurnisBtn);
-            this.RoomScannerGroupbox.Controls.Add(this.PickUnregisteredFurniBtn);
             this.RoomScannerGroupbox.Controls.Add(this.WallFurniCountLbl);
             this.RoomScannerGroupbox.Controls.Add(this.FloorFurniCountLbl);
             this.RoomScannerGroupbox.Controls.Add(this.TotFurnisinroomLbl);
             this.RoomScannerGroupbox.Controls.Add(this.AnalyzeRooMFurnisBtn);
             this.RoomScannerGroupbox.Location = new System.Drawing.Point(662, 10);
             this.RoomScannerGroupbox.Name = "RoomScannerGroupbox";
-            this.RoomScannerGroupbox.Size = new System.Drawing.Size(648, 487);
+            this.RoomScannerGroupbox.Size = new System.Drawing.Size(648, 542);
             this.RoomScannerGroupbox.TabIndex = 31;
             this.RoomScannerGroupbox.TabStop = false;
             this.RoomScannerGroupbox.Text = "Room Scanner";
@@ -309,6 +313,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.ClearWhiteListBtn);
+            this.groupBox2.Controls.Add(this.RemoveFalsePositivesBtn);
             this.groupBox2.Controls.Add(this.RemoveIrregolarBtn);
             this.groupBox2.Controls.Add(this.CheckRegolarBtn);
             this.groupBox2.Controls.Add(this.label4);
@@ -316,15 +322,57 @@
             this.groupBox2.Controls.Add(this.FileCheckBtn);
             this.groupBox2.Location = new System.Drawing.Point(20, 10);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(249, 279);
+            this.groupBox2.Size = new System.Drawing.Size(249, 370);
             this.groupBox2.TabIndex = 33;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rare Check (MANUAL)";
+            // 
+            // ClearWhiteListBtn
+            // 
+            this.ClearWhiteListBtn.Location = new System.Drawing.Point(37, 314);
+            this.ClearWhiteListBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ClearWhiteListBtn.Name = "ClearWhiteListBtn";
+            this.ClearWhiteListBtn.Size = new System.Drawing.Size(184, 31);
+            this.ClearWhiteListBtn.TabIndex = 20;
+            this.ClearWhiteListBtn.Text = "Reset False positives";
+            this.ClearWhiteListBtn.Click += new System.EventHandler(this.ClearWhiteListBtn_click);
+            // 
+            // RemoveFalsePositivesBtn
+            // 
+            this.RemoveFalsePositivesBtn.Location = new System.Drawing.Point(13, 273);
+            this.RemoveFalsePositivesBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RemoveFalsePositivesBtn.Name = "RemoveFalsePositivesBtn";
+            this.RemoveFalsePositivesBtn.Size = new System.Drawing.Size(229, 31);
+            this.RemoveFalsePositivesBtn.TabIndex = 19;
+            this.RemoveFalsePositivesBtn.Text = "Mark False Positives : OFF";
+            this.RemoveFalsePositivesBtn.Click += new System.EventHandler(this.RemoveFalsePositivesBtn_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.PickUnregisteredFurniBtn);
+            this.groupBox4.Controls.Add(this.PickRegisteredFurnisBtn);
+            this.groupBox4.Location = new System.Drawing.Point(26, 386);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(507, 149);
+            this.groupBox4.TabIndex = 35;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Furni Picker / Hider";
+            // 
+            // WhitelistedFurniLbl
+            // 
+            this.WhitelistedFurniLbl.AutoSize = true;
+            this.WhitelistedFurniLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WhitelistedFurniLbl.Location = new System.Drawing.Point(12, 418);
+            this.WhitelistedFurniLbl.Name = "WhitelistedFurniLbl";
+            this.WhitelistedFurniLbl.Size = new System.Drawing.Size(295, 36);
+            this.WhitelistedFurniLbl.TabIndex = 33;
+            this.WhitelistedFurniLbl.Text = "Whitelisted Furnis : 0";
             // 
             // FurnitureChecker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.RoomScannerGroupbox);
@@ -338,6 +386,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -367,5 +416,9 @@
         private System.Windows.Forms.Label RemovedWallFurnisLbl;
         private Sulakore.Components.SKoreButton UpdateListConstantlyBtn;
         private Sulakore.Components.SKoreButton RefreshExcelListBtn;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private Sulakore.Components.SKoreButton RemoveFalsePositivesBtn;
+        private Sulakore.Components.SKoreButton ClearWhiteListBtn;
+        private System.Windows.Forms.Label WhitelistedFurniLbl;
     }
 }

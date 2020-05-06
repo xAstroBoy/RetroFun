@@ -40,8 +40,25 @@ namespace RetroFun.Pages
         List<HWallItem> RegularWallFurni;
         List<HFloorItem> RegularFloorFurni;
 
+
+
+        List<HWallItem> WhitelistedWallFurni;
+        List<HFloorItem> WhiteListedFloorFurni;
+
+
+        List<HWallItem> HIDDEN_IRREGULAR_WALLFURNIS;
+        List<HFloorItem> HIDDEN_IRREGULAR_FLOORFURNIS;
+
+        List<HWallItem> HIDDEN_REGULAR_WALLFURNIS;
+        List<HFloorItem> HIDDEN_REGULAR_FLOORFURNIS;
+
+
         List<int> RemovedWallFurnis;
         List<int> RemovedFloorFurnis;
+
+
+        private bool HIDE_IRREGULARS;
+        private bool HIDE_REGULARS;
 
 
         private bool REM_IRR_FLOOR_FURNI;
@@ -58,10 +75,10 @@ namespace RetroFun.Pages
         private bool ConvertWalkinFurniMovement;
         private bool ShouldIRemoveIrregolar;
         private bool FurniIDToCheckMode;
-        private bool IsRoomScannerActivated;
-
+        private bool IS_REMOVE_FALSE_POSITIVE_MODE;
         private int _FloorFurniID;
-
+        private bool IS_SCANNING_FLOORFURNIS;
+        private bool IS_SCANNING_WALLFURNIS;
 
         private int _FurniIDToCheck;
 
@@ -243,6 +260,12 @@ namespace RetroFun.Pages
             IrregularFloorFurni = new List<HFloorItem>();
             RegularWallFurni = new List<HWallItem>();
             RegularFloorFurni = new List<HFloorItem>();
+            WhitelistedWallFurni = new List<HWallItem>();
+            WhiteListedFloorFurni = new List<HFloorItem>();
+            HIDDEN_IRREGULAR_WALLFURNIS = new List<HWallItem>();
+            HIDDEN_IRREGULAR_FLOORFURNIS = new List<HFloorItem>();
+            HIDDEN_REGULAR_WALLFURNIS = new List<HWallItem>();
+            HIDDEN_REGULAR_FLOORFURNIS = new List<HFloorItem>();
             RemovedWallFurnis = new List<int>();
             RemovedFloorFurnis = new List<int>();
         }
@@ -291,69 +314,97 @@ namespace RetroFun.Pages
 
             if (FilePathList != null && FilePathList.Count != 0)
             {
-                bool isRegular = SearchPaymentRare(id, isQuiet);
+                var wall = RoomWallFurni.Find(f => f.Id == id);
+                var floor = RoomFloorFurni.Find(f => f.Id == id);
+               if(wall != null)
+                {
+                    CheckForRares(wall, isQuiet);
+                }
+               if(floor != null)
+                {
+                    CheckForRares(floor, isQuiet);
+                }
+            }
+        }
+    
+
+
+        private void CheckForRares(HWallItem wall, bool isQuiet)
+        {
+
+            if (FilePathList != null && FilePathList.Count != 0)
+            {
+                bool isRegular = SearchPaymentRare(wall, isQuiet);
                 if (!isRegular)
                 {
-                    if (!isQuiet)
+                    if (!WhitelistedWallFurni.Contains(wall) && WhitelistedWallFurni != null)
                     {
-                        Speak("This Furni is NOT Registered!", 30);
+                        if (!isQuiet)
+                        {
+                            Speak("This Furni is NOT Registered!", 30);
+                        }
+                        RecordRareControl(false, "[IRREGOLARE] : " + wall.Id);
+
+                        if (!IrregularWallFurni.Contains(wall))
+                        {
+                            IrregularWallFurni.Add(wall);
+                            UpdateIrregolarFurniLabel();
+                        }
+                        if (ShouldIRemoveIrregolar)
+                        {
+                            PickFurniSS(wall.Id);
+                        }
                     }
-                    RecordRareControl(false, "[IRREGOLARE] : " + id);
-                    if (ShouldIRemoveIrregolar)
+                    else
                     {
-                        PickFurniSS(id);
+                        if (wall != null && !RegularWallFurni.Contains(wall))
+                        {
+                            RegularWallFurni.Add(wall);
+                        }
+                        if (!isQuiet)
+                        {
+                            Speak("This Furni is A FALSE POSITIVE Hit!", 30);
+                        }
                     }
                 }
             }
         }
 
-
-        private void CheckForRares(HWallItem wallitem, bool isQuiet)
-        {
-
-            if (FilePathList != null && FilePathList.Count != 0)
-            {
-                bool isRegular = SearchPaymentRare(wallitem, isQuiet);
-                if (!isRegular)
-                {
-                    if (!isQuiet)
-                    {
-                        Speak("This Furni is NOT Registered!", 30);
-                    }
-                    RecordRareControl(false, "[IRREGOLARE] : " + wallitem.Id);
-                    if (!IrregularWallFurni.Contains(wallitem))
-                    {
-                        IrregularWallFurni.Add(wallitem);
-                        UpdateIrregolarFurniLabel();
-                    }
-                    if (ShouldIRemoveIrregolar)
-                    {
-                        PickFurniSS(wallitem.Id);
-                    }
-                }
-            }
-        }
-
-        private void CheckForRares(HFloorItem FloorItem, bool isQuiet)
+        private void CheckForRares(HFloorItem furni, bool isQuiet)
         {
             if (FilePathList != null && FilePathList.Count != 0)
             {
-                bool isRegular = SearchPaymentRare(FloorItem, isQuiet);
+                bool isRegular = SearchPaymentRare(furni, isQuiet);
                 if (!isRegular)
                 {
-                    if (!isQuiet)
+                    if (!WhiteListedFloorFurni.Contains(furni) && WhiteListedFloorFurni != null)
                     {
-                        Speak("This Furni is NOT Registered!", 30);
+                        if (!isQuiet)
+                        {
+                            Speak("This Furni is NOT Registered!", 30);
+                        }
+                        RecordRareControl(false, "[IRREGOLARE] : " + furni.Id);
+
+                        if (!IrregularFloorFurni.Contains(furni))
+                        {
+                            IrregularFloorFurni.Add(furni);
+                            UpdateIrregolarFurniLabel();
+                        }
+                        if (ShouldIRemoveIrregolar)
+                        {
+                            PickFurniSS(furni.Id);
+                        }
                     }
-                    RecordRareControl(false, "[IRREGOLARE] : " + FloorItem.Id);
-                    if (!IrregularFloorFurni.Contains(FloorItem))
+                    else
                     {
-                        IrregularFloorFurni.Add(FloorItem);
-                        UpdateIrregolarFurniLabel();
-                    }
-                    if (ShouldIRemoveIrregolar)
-                    {
-                        PickFurniSS(FloorItem.Id);
+                        if (!RegularFloorFurni.Contains(furni))
+                        {
+                            RegularFloorFurni.Add(furni);
+                        }
+                        if (!isQuiet)
+                        {
+                            Speak("This Furni is A FALSE POSITIVE Hit!", 30);
+                        }
                     }
                 }
             }
@@ -698,6 +749,16 @@ namespace RetroFun.Pages
         }
 
 
+        private void UpdateWhitelistFurniLabel()
+        {
+            int a = SyncWhitelistedWallFurniCount();
+            int b = SyncWhitelisteFloorFurniCount();
+            int c = a + b;
+            WriteToLabel(WhitelistedFurniLbl, "Whitelisted Furnis : " + c);
+        }
+
+
+
         private int SyncRemovedWallFurniCount()
         {
             if (RemovedWallFurnis != null)
@@ -735,6 +796,7 @@ namespace RetroFun.Pages
         }
 
 
+
         private void ResetRareCheckScanner()
         {
             IrregularWallFurni.Clear();
@@ -757,6 +819,31 @@ namespace RetroFun.Pages
             }
         }
 
+
+        private int SyncWhitelisteFloorFurniCount()
+        {
+            if (WhiteListedFloorFurni != null)
+            {
+                return WhiteListedFloorFurni.Count();
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+
+        private int SyncWhitelistedWallFurniCount()
+        {
+            if (WhitelistedWallFurni != null)
+            {
+                return WhitelistedWallFurni.Count();
+            }
+            else
+            {
+                return 0;
+            }
+        }
         private int SyncWallFurniCount()
         {
             if (RoomWallFurni != null)
@@ -775,6 +862,8 @@ namespace RetroFun.Pages
             WriteToLabel(TotFurnisinroomLbl, "Tot Furni In room  : 0");
             WriteToLabel(RemovedFloorFurnisLbl, "Removed Floor Furnis : 0");
             WriteToLabel(RemovedWallFurnisLbl, "Removed WallFurnis : 0");
+            WriteToLabel(WhitelistedFurniLbl, "Whitelisted Furnis : 0");
+
         }
 
         private void WriteToLabel(Label label, string text)
@@ -1090,6 +1179,8 @@ namespace RetroFun.Pages
             RegularFloorFurni.Clear();
             RemovedWallFurnis.Clear();
             RemovedFloorFurnis.Clear();
+            WhiteListedFloorFurni.Clear();
+            WhitelistedWallFurni.Clear();
             FurniDataStored = null;
             ResetRoomScannerLabels();
             ResetRareCheckScanner();
@@ -1248,6 +1339,8 @@ namespace RetroFun.Pages
             {
                 WriteToButton(FileCheckBtn, "Rare Check : ON");
                 FurniIDToCheckMode = true;
+                WriteToButton(RemoveFalsePositivesBtn, "Mark False Positives : OFF");
+                IS_REMOVE_FALSE_POSITIVE_MODE = false;
                 Speak("Rotate Furni / Rare To check if is a irregular or not!", 30);
             }
         }
@@ -1281,49 +1374,70 @@ namespace RetroFun.Pages
             }
         }
 
-        private void AnalyzeCurrentFurnis()
+
+            
+
+
+
+        private void StartWallFurniAnalyzer()
         {
-
-            if (FilePathList != null)
+            new Thread(() =>
             {
-                if (RoomWallFurni != null && RoomWallFurni.Count != 0)
+                Thread.CurrentThread.IsBackground = true;
+                try
                 {
-                    foreach (HWallItem wallfurni in RoomWallFurni)
+                    if (FilePathList != null)
                     {
-                        CheckForRares(wallfurni, true);
+                        if (RoomWallFurni != null && RoomWallFurni.Count != 0)
+                        {
+                            foreach (HWallItem wallfurni in RoomWallFurni)
+                            {
+                                CheckForRares(wallfurni, true);
+                            }
+                            Speak("Scanned all Wall Furnis!", 30);
+                            IS_SCANNING_WALLFURNIS = false;
+                        }
+
                     }
                 }
-                if (RoomFloorFurni != null && RoomFloorFurni.Count != 0)
+                catch (Exception e)
                 {
-                    foreach (HFloorItem flooritem in RoomFloorFurni)
-                    {
-                        CheckForRares(flooritem, true);
-                    }
+                    IS_SCANNING_WALLFURNIS = false;
                 }
-                if (RoomWallFurni != null)
-                {
-                    Speak("Found Tot Wall Furni : " + SyncWallFurniCount(), 34);
-                }
-                if (RoomFloorFurni != null)
-                {
-                    Speak("Found Tot Floor Furni : " + SyncFloorFurniCount(), 34);
-                }
-                int regolar1 = SyncRegularFloorFurniCount();
-                int regolar2 = SyncRegularWallFurniCount();
-                int totalreg = regolar1 + regolar2;
+            }).Start();
 
-                int irr1 = SyncIrregolarFloorFurniCount();
-                int irr2 = SyncIrregolarWallFurniCount();
-                int totirr = irr1 + irr2;
-
-
-                Speak("Regolari : " + totalreg + ".", 34);
-                Speak("Irregolari : " + totirr + ".", 34);
-                IsRoomScannerActivated = false;
-            }
         }
-    
 
+
+        private void StartFloorFurnIAnalyzer()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                try
+                {
+                    if (FilePathList != null)
+                    {
+                        if (RoomFloorFurni != null && RoomFloorFurni.Count != 0)
+                        {
+
+                            foreach (HFloorItem flooritem in RoomFloorFurni)
+                            {
+                                CheckForRares(flooritem, true);
+                            }
+                            Speak("Scanned all Floor Furnis!", 30);
+                            IS_SCANNING_FLOORFURNIS = false;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    IS_SCANNING_FLOORFURNIS = false;
+
+                }
+            }).Start();
+
+        }
         
 
         private void StartExcelConverter()
@@ -1343,10 +1457,10 @@ namespace RetroFun.Pages
             {
                 Thread.CurrentThread.IsBackground = true;
                 ResetRareCheckScanner();
-                AnalyzeCurrentFurnis();
+                StartFloorFurnIAnalyzer();
+                StartWallFurniAnalyzer();
             }).Start();
         }
-
 
 
         private void AnalyzeRooMFurnisBtn_Click(object sender, EventArgs e)
@@ -1355,11 +1469,13 @@ namespace RetroFun.Pages
             {
                 if (RoomFloorFurni.Count != 0 || RoomWallFurni.Count != 0 || RoomWallFurni.Count != 0 && RoomFloorFurni.Count != 0)
                 {
-                    if (!IsRoomScannerActivated)
+                    if (!IS_SCANNING_FLOORFURNIS || IS_SCANNING_WALLFURNIS)
                     {
                         Speak("Scanning room, please wait!", 30);
                         StartRoomAnalyze();
-                        IsRoomScannerActivated = true;
+                        IS_SCANNING_FLOORFURNIS = true;
+                        IS_SCANNING_WALLFURNIS = true;
+
                     }
                     else
                     {
@@ -1368,7 +1484,7 @@ namespace RetroFun.Pages
                 }
                 else
                 {
-                    Speak("Im unable to scan this room because there's no Wall/Floor Furni, can you try re-entering the room?! ", 30);
+                    Speak("Im unable to scan this room because there's no Wall/Floor Furni, can you try re-entering the room?", 30);
                 }
             }
             else
@@ -1568,7 +1684,87 @@ namespace RetroFun.Pages
                 CheckForRares(ControlledFloorFurni, false);
                 e.IsBlocked = true;
             }
+            if(IS_REMOVE_FALSE_POSITIVE_MODE)
+            {
+                ControlledFloorFurni = FurniID;
+                WhitelistFurni(ControlledFloorFurni);
+                e.IsBlocked = true;
+            }
         }
+
+        private void WhitelistFurni(int furni)
+        {
+
+            var wall = RoomWallFurni.Find(f => f.Id == furni);
+            var floor = RoomFloorFurni.Find(f => f.Id == furni);
+            if(floor != null)
+            {
+                WhitelistFurni(floor);
+            }
+            if (wall != null)
+            {
+                WhitelistFurni(wall);
+            }
+        }
+
+
+        private void WhitelistFurni(HFloorItem furni)
+        {
+            if(WhiteListedFloorFurni != null)
+            {
+                if (!WhiteListedFloorFurni.Contains(furni))
+                {
+                    Speak(furni.Id + " : Added To The Whitelist!");
+                    WhiteListedFloorFurni.Add(furni);
+                    UpdateWhitelistFurniLabel();
+                }
+                if (IrregularFloorFurni.Contains(furni))
+                {
+                    IrregularFloorFurni.Remove(furni);
+                    UpdateIrregolarFurniLabel();
+                }
+                if (!RegularFloorFurni.Contains(furni))
+                {
+                    RegularFloorFurni.Add(furni);
+                    UpdateRegularFurniLabel();
+                }
+
+                else
+                {
+                    Speak(furni.Id + " : Hey, im already in the whitelist!");
+                    UpdateWhitelistFurniLabel();
+                }
+            }
+        }
+
+        private void WhitelistFurni(HWallItem furni)
+        {
+            if (WhitelistedWallFurni != null)
+            {
+                if (!WhitelistedWallFurni.Contains(furni))
+                {
+                    Speak(furni.Id + " : Added To The Whitelist!");
+                    WhitelistedWallFurni.Add(furni);
+                    UpdateWhitelistFurniLabel();
+                }
+                if (IrregularWallFurni.Contains(furni))
+                {
+                    IrregularWallFurni.Remove(furni);
+                    UpdateIrregolarFurniLabel();
+                }
+                if (!RegularWallFurni.Contains(furni))
+                {
+                    RegularWallFurni.Add(furni);
+                    UpdateRegularFurniLabel();
+
+                }
+                else
+                {
+                    Speak(furni.Id + " : Hey, im already in the whitelist!");
+                }
+            }
+        }
+
 
         public void OnMoveWallItem(DataInterceptedEventArgs e)
         {
@@ -1746,6 +1942,31 @@ namespace RetroFun.Pages
             {
                 Speak("please select the excel file first!");
             }
+        }
+
+        private void RemoveFalsePositivesBtn_Click(object sender, EventArgs e)
+        {
+            if (IS_REMOVE_FALSE_POSITIVE_MODE)
+            {
+                WriteToButton(FileCheckBtn, "Rare Check : OFF");
+                WriteToButton(RemoveFalsePositivesBtn, "Mark False Positives : OFF");
+                IS_REMOVE_FALSE_POSITIVE_MODE = false;
+            }
+            else
+            {
+                FurniIDToCheckMode = false;
+                IS_REMOVE_FALSE_POSITIVE_MODE = true;
+                WriteToButton(RemoveFalsePositivesBtn, "Mark False Positives : ON");
+
+            }
+        }
+
+        private void ClearWhiteListBtn_click(object sender, EventArgs e)
+        {
+            WhiteListedFloorFurni.Clear();
+            WhitelistedWallFurni.Clear();
+            Speak("Cleared Whitelisted furnis!");
+            UpdateWhitelistFurniLabel();
         }
     }
 }
