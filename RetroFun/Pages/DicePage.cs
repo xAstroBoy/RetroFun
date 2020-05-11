@@ -12,6 +12,9 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class DicePage : ObservablePage, ISubscriber
     {
+
+        private bool USEARCUTURS = false;
+
         private bool _IsRegistrationMode;
 
         public bool IsRegistrationMode
@@ -277,7 +280,6 @@ namespace RetroFun.Pages
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {
-            Console.WriteLine("OnOutDiceTrigger: " + IsRegistrationMode);
             if (_IsRegistrationMode)
             {
                 RegisterDice(e.Packet.ReadInteger());
@@ -624,63 +626,70 @@ namespace RetroFun.Pages
 
         public void InItemExtraData(DataInterceptedEventArgs e)
         {
-            try
+            if (USEARCUTURS)
             {
-                int id = int.Parse(e.Packet.ReadString());
-                e.Packet.ReadInteger();
-                string data = e.Packet.ReadString();
+                try
+                {
+                    int id = int.Parse(e.Packet.ReadString());
+                    e.Packet.ReadInteger();
+                    string data = e.Packet.ReadString();
+                    e.Packet.Position = 0;
+                    e.Continue();
 
+                    if (!int.TryParse(data, out int diceState) || diceState == -1) return;
+
+                    if (id == DiceID1)
+                    {
+                        DiceResult1 = diceState;
+                        CalculateResults();
+
+                    }
+
+                    if (id == DiceID2)
+                    {
+                        DiceResult2 = diceState;
+                        CalculateResults();
+
+                    }
+
+                    if (id == DiceID3)
+                    {
+                        DiceResult3 = diceState;
+                        CalculateResults();
+
+                    }
+
+                    if (id == DiceID4)
+                    {
+                        DiceResult4 = diceState;
+                        CalculateResults();
+
+                    }
+
+                    if (id == DiceID5)
+                    {
+                        DiceResult5 = diceState;
+                        CalculateResults();
+
+                    }
+
+                    if (id == DiceID6)
+                    {
+                        DiceResult6 = diceState;
+                        CalculateResults();
+                    }
+                }
+                catch (Exception exc)
+                {
+
+                }
+
+            }
+            else
+            {
+                e.Packet.Position = 0;
                 e.Continue();
-
-                if (!int.TryParse(data, out int diceState) || diceState == -1) return;
-
-                if (id == DiceID1)
-                {
-                    DiceResult1 = diceState;
-                    CalculateResults();
-
-                }
-
-                if (id == DiceID2)
-                {
-                    DiceResult2 = diceState;
-                    CalculateResults();
-
-                }
-
-                if (id == DiceID3)
-                {
-                    DiceResult3 = diceState;
-                    CalculateResults();
-
-                }
-
-                if (id == DiceID4)
-                {
-                    DiceResult4 = diceState;
-                    CalculateResults();
-
-                }
-
-                if (id == DiceID5)
-                {
-                    DiceResult5 = diceState;
-                    CalculateResults();
-
-                }
-
-                if (id == DiceID6)
-                {
-                    DiceResult6 = diceState;
-                    CalculateResults();
-                }
             }
-            catch(Exception exc)
-            {
-
-            }
-
-
         }
 
 
@@ -948,6 +957,17 @@ namespace RetroFun.Pages
         public void InRemoveWallItem(DataInterceptedEventArgs e)
         {
         }
+        public void OnToggleFloorItem(DataInterceptedEventArgs e)
+        { }
+
+
+        public void OnToggleWallItem(DataInterceptedEventArgs e)
+        { }
+
+        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
+        { }
+        public void InWallItemUpdate(DataInterceptedEventArgs e)
+        { }
     }
 
 }

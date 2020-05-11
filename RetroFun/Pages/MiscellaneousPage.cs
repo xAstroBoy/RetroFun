@@ -629,7 +629,7 @@ namespace RetroFun.Pages
             Bind(BlockMessageForYouChbx, "Checked", nameof(BlockMessageForYou));
             Bind(BlockStaffAlertsChbx, "Checked", nameof(BlockStaffAlerts));
             Bind(ConvertMessageForyouFileChbx, "Checked", nameof(ConvertMessageForYouToFile));
-
+            users = new Dictionary<int, HEntity>();
 
             if (Program.Master != null)
             {
@@ -1438,23 +1438,16 @@ namespace RetroFun.Pages
 
         private string FindUsername(int index)
         {
-            try
+            if (users != null)
             {
-                if (users != null)
-                {
-                    return users.Values.FirstOrDefault(e => e.Index == index).Name;
-                }
-                else
-                {
-                    return "NULL";
-                }
-            } 
-            catch(NullReferenceException)
+                return users.Where(x => x.Value.Id == index).Select(x => x.Value.Name).DefaultIfEmpty("NOT_LOGGED_USER").First();
+            }
+            else
             {
-                return "NULL";
+                return "NOT_LOGGED_USER";
             }
         }
-        
+
 
         private void StoreToInput(string text)
         {
@@ -1511,7 +1504,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                if (entityname != "NULL")
+                if (entityname != "NOT_LOGGED_USER")
                 {
                     string Filepath = "../RetroFunLogs/" + GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                     string FolderName = "RetroFunLogs";
@@ -1594,5 +1587,16 @@ namespace RetroFun.Pages
         public void InRemoveWallItem(DataInterceptedEventArgs e)
         {
         }
+        public void OnToggleFloorItem(DataInterceptedEventArgs e)
+        { }
+
+
+        public void OnToggleWallItem(DataInterceptedEventArgs e)
+        { }
+
+        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
+        { }
+        public void InWallItemUpdate(DataInterceptedEventArgs e)
+        { }
     }
 }

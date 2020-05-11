@@ -49,6 +49,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.LiveEditChatBtn = new Sulakore.Components.SKoreButton();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -63,6 +64,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.SendMessageBtn = new Sulakore.Components.SKoreButton();
             this.ChatMsgTxb = new System.Windows.Forms.TextBox();
+            this.EditChatPacketsChbx = new System.Windows.Forms.CheckBox();
             this.GroupChatDefault.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CooldownFloodNbx)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -104,7 +106,7 @@
             // HideSpeakingBubbleChbx
             // 
             this.HideSpeakingBubbleChbx.AutoSize = true;
-            this.HideSpeakingBubbleChbx.Location = new System.Drawing.Point(28, 35);
+            this.HideSpeakingBubbleChbx.Location = new System.Drawing.Point(11, 63);
             this.HideSpeakingBubbleChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HideSpeakingBubbleChbx.Name = "HideSpeakingBubbleChbx";
             this.HideSpeakingBubbleChbx.Size = new System.Drawing.Size(193, 24);
@@ -115,7 +117,7 @@
             // AntiBobbaFilterChbx
             // 
             this.AntiBobbaFilterChbx.AutoSize = true;
-            this.AntiBobbaFilterChbx.Location = new System.Drawing.Point(28, 105);
+            this.AntiBobbaFilterChbx.Location = new System.Drawing.Point(11, 133);
             this.AntiBobbaFilterChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AntiBobbaFilterChbx.Name = "AntiBobbaFilterChbx";
             this.AntiBobbaFilterChbx.Size = new System.Drawing.Size(154, 24);
@@ -186,7 +188,7 @@
             // RainbowChatChbx
             // 
             this.RainbowChatChbx.AutoSize = true;
-            this.RainbowChatChbx.Location = new System.Drawing.Point(28, 69);
+            this.RainbowChatChbx.Location = new System.Drawing.Point(11, 97);
             this.RainbowChatChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RainbowChatChbx.Name = "RainbowChatChbx";
             this.RainbowChatChbx.Size = new System.Drawing.Size(135, 24);
@@ -304,18 +306,20 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.EditChatPacketsChbx);
             this.groupBox2.Controls.Add(this.RainbowChatChbx);
             this.groupBox2.Controls.Add(this.AntiBobbaFilterChbx);
             this.groupBox2.Controls.Add(this.HideSpeakingBubbleChbx);
             this.groupBox2.Location = new System.Drawing.Point(33, 192);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(278, 142);
+            this.groupBox2.Size = new System.Drawing.Size(278, 174);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Extras";
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.LiveEditChatBtn);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.CooldownFloodNbx);
@@ -323,10 +327,19 @@
             this.groupBox3.Controls.Add(this.TextFloodPhraseBox);
             this.groupBox3.Location = new System.Drawing.Point(482, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(346, 240);
+            this.groupBox3.Size = new System.Drawing.Size(346, 273);
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Flooder";
+            // 
+            // LiveEditChatBtn
+            // 
+            this.LiveEditChatBtn.Location = new System.Drawing.Point(10, 230);
+            this.LiveEditChatBtn.Name = "LiveEditChatBtn";
+            this.LiveEditChatBtn.Size = new System.Drawing.Size(308, 37);
+            this.LiveEditChatBtn.TabIndex = 17;
+            this.LiveEditChatBtn.Text = "Live Edit : OFF";
+            this.LiveEditChatBtn.Click += new System.EventHandler(this.LiveEditChatBtn_Click);
             // 
             // groupBox4
             // 
@@ -348,16 +361,16 @@
             this.groupBox5.Controls.Add(this.CloneUserSpeakBtn);
             this.groupBox5.Controls.Add(this.label3);
             this.groupBox5.Controls.Add(this.TargetUserTxb);
-            this.groupBox5.Location = new System.Drawing.Point(482, 262);
+            this.groupBox5.Location = new System.Drawing.Point(492, 325);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(564, 285);
+            this.groupBox5.Size = new System.Drawing.Size(564, 221);
             this.groupBox5.TabIndex = 20;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Raid With Clone";
+            this.groupBox5.Text = "Mimic User Chat";
             // 
             // CooldownCloneUserChatNbx
             // 
-            this.CooldownCloneUserChatNbx.Location = new System.Drawing.Point(382, 72);
+            this.CooldownCloneUserChatNbx.Location = new System.Drawing.Point(354, 172);
             this.CooldownCloneUserChatNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -380,7 +393,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(380, 51);
+            this.label4.Location = new System.Drawing.Point(352, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 20);
             this.label4.TabIndex = 20;
@@ -388,7 +401,7 @@
             // 
             // FindIndexBtn
             // 
-            this.FindIndexBtn.Location = new System.Drawing.Point(10, 209);
+            this.FindIndexBtn.Location = new System.Drawing.Point(8, 168);
             this.FindIndexBtn.Name = "FindIndexBtn";
             this.FindIndexBtn.Size = new System.Drawing.Size(308, 37);
             this.FindIndexBtn.TabIndex = 19;
@@ -397,7 +410,7 @@
             // 
             // IndexNbx
             // 
-            this.IndexNbx.Location = new System.Drawing.Point(12, 134);
+            this.IndexNbx.Location = new System.Drawing.Point(10, 93);
             this.IndexNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -410,7 +423,7 @@
             // 
             // CloneUserSpeakBtn
             // 
-            this.CloneUserSpeakBtn.Location = new System.Drawing.Point(10, 166);
+            this.CloneUserSpeakBtn.Location = new System.Drawing.Point(8, 125);
             this.CloneUserSpeakBtn.Name = "CloneUserSpeakBtn";
             this.CloneUserSpeakBtn.Size = new System.Drawing.Size(308, 37);
             this.CloneUserSpeakBtn.TabIndex = 17;
@@ -420,7 +433,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 78);
+            this.label3.Location = new System.Drawing.Point(6, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 20);
             this.label3.TabIndex = 16;
@@ -428,7 +441,7 @@
             // 
             // TargetUserTxb
             // 
-            this.TargetUserTxb.Location = new System.Drawing.Point(10, 102);
+            this.TargetUserTxb.Location = new System.Drawing.Point(8, 61);
             this.TargetUserTxb.MaxLength = 2147483647;
             this.TargetUserTxb.Name = "TargetUserTxb";
             this.TargetUserTxb.Size = new System.Drawing.Size(308, 26);
@@ -471,6 +484,17 @@
             this.ChatMsgTxb.Name = "ChatMsgTxb";
             this.ChatMsgTxb.Size = new System.Drawing.Size(308, 26);
             this.ChatMsgTxb.TabIndex = 12;
+            // 
+            // EditChatPacketsChbx
+            // 
+            this.EditChatPacketsChbx.AutoSize = true;
+            this.EditChatPacketsChbx.Location = new System.Drawing.Point(11, 34);
+            this.EditChatPacketsChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.EditChatPacketsChbx.Name = "EditChatPacketsChbx";
+            this.EditChatPacketsChbx.Size = new System.Drawing.Size(161, 24);
+            this.EditChatPacketsChbx.TabIndex = 7;
+            this.EditChatPacketsChbx.Text = "Edit Chat packets";
+            this.EditChatPacketsChbx.UseVisualStyleBackColor = true;
             // 
             // ChatPage
             // 
@@ -544,5 +568,7 @@
         private System.Windows.Forms.Label label5;
         private Sulakore.Components.SKoreButton SendMessageBtn;
         private System.Windows.Forms.TextBox ChatMsgTxb;
+        private Sulakore.Components.SKoreButton LiveEditChatBtn;
+        private System.Windows.Forms.CheckBox EditChatPacketsChbx;
     }
 }

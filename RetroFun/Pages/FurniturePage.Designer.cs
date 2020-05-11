@@ -54,6 +54,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.WalkingSpeedNbx = new System.Windows.Forms.NumericUpDown();
             this.WalkingStyleBtn = new Sulakore.Components.SKoreButton();
+            this.PickSelectedTypeSSBtn = new Sulakore.Components.SKoreButton();
+            this.GrabTypeIdBtn = new Sulakore.Components.SKoreButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.SelectedFurniTypeNbx = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.PickerSpeedNbx = new System.Windows.Forms.NumericUpDown();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.PickSelectedTypeCSBtn = new Sulakore.Components.SKoreButton();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.RemoveRoomBGCSBtn = new Sulakore.Components.SKoreButton();
             this.RemoverGrbx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FloorFurniIDNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FloorFurniXNbx)).BeginInit();
@@ -61,6 +71,9 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WalkingSpeedNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SelectedFurniTypeNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PickerSpeedNbx)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // RemoverGrbx
@@ -373,10 +386,120 @@
             this.WalkingStyleBtn.Text = "Walking mode : Teleport";
             this.WalkingStyleBtn.Click += new System.EventHandler(this.WalkingStyleBtn_Click);
             // 
+            // PickSelectedTypeSSBtn
+            // 
+            this.PickSelectedTypeSSBtn.Location = new System.Drawing.Point(452, 93);
+            this.PickSelectedTypeSSBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PickSelectedTypeSSBtn.Name = "PickSelectedTypeSSBtn";
+            this.PickSelectedTypeSSBtn.Size = new System.Drawing.Size(279, 25);
+            this.PickSelectedTypeSSBtn.TabIndex = 28;
+            this.PickSelectedTypeSSBtn.Text = "Pick Selected Furni Server-side";
+            this.PickSelectedTypeSSBtn.Click += new System.EventHandler(this.PickRegisteredFurniTypes_Click);
+            // 
+            // GrabTypeIdBtn
+            // 
+            this.GrabTypeIdBtn.Location = new System.Drawing.Point(6, 93);
+            this.GrabTypeIdBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GrabTypeIdBtn.Name = "GrabTypeIdBtn";
+            this.GrabTypeIdBtn.Size = new System.Drawing.Size(165, 31);
+            this.GrabTypeIdBtn.TabIndex = 27;
+            this.GrabTypeIdBtn.Text = "TypeID Grabber : OFF";
+            this.GrabTypeIdBtn.Click += new System.EventHandler(this.GrabTypeIDBtn_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 36);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(146, 20);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Selected FurniType";
+            // 
+            // SelectedFurniTypeNbx
+            // 
+            this.SelectedFurniTypeNbx.Location = new System.Drawing.Point(6, 59);
+            this.SelectedFurniTypeNbx.Maximum = new decimal(new int[] {
+            1874919423,
+            2328306,
+            0,
+            0});
+            this.SelectedFurniTypeNbx.Name = "SelectedFurniTypeNbx";
+            this.SelectedFurniTypeNbx.Size = new System.Drawing.Size(177, 26);
+            this.SelectedFurniTypeNbx.TabIndex = 25;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(213, 36);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(103, 20);
+            this.label5.TabIndex = 30;
+            this.label5.Text = "Picker Speed";
+            // 
+            // PickerSpeedNbx
+            // 
+            this.PickerSpeedNbx.Location = new System.Drawing.Point(209, 59);
+            this.PickerSpeedNbx.Maximum = new decimal(new int[] {
+            1874919423,
+            2328306,
+            0,
+            0});
+            this.PickerSpeedNbx.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.PickerSpeedNbx.Name = "PickerSpeedNbx";
+            this.PickerSpeedNbx.Size = new System.Drawing.Size(177, 26);
+            this.PickerSpeedNbx.TabIndex = 29;
+            this.PickerSpeedNbx.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.PickSelectedTypeCSBtn);
+            this.groupBox3.Controls.Add(this.PickerSpeedNbx);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.PickSelectedTypeSSBtn);
+            this.groupBox3.Controls.Add(this.GrabTypeIdBtn);
+            this.groupBox3.Controls.Add(this.SelectedFurniTypeNbx);
+            this.groupBox3.Location = new System.Drawing.Point(18, 403);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1044, 138);
+            this.groupBox3.TabIndex = 31;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Target Furni Picker";
+            // 
+            // PickSelectedTypeCSBtn
+            // 
+            this.PickSelectedTypeCSBtn.Location = new System.Drawing.Point(452, 31);
+            this.PickSelectedTypeCSBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PickSelectedTypeCSBtn.Name = "PickSelectedTypeCSBtn";
+            this.PickSelectedTypeCSBtn.Size = new System.Drawing.Size(279, 25);
+            this.PickSelectedTypeCSBtn.TabIndex = 31;
+            this.PickSelectedTypeCSBtn.Text = "Pick Selected Furni Client-side";
+            this.PickSelectedTypeCSBtn.Click += new System.EventHandler(this.PickFurniCSBtn_Click);
+            // 
+            // RemoveRoomBGCSBtn
+            // 
+            this.RemoveRoomBGCSBtn.Location = new System.Drawing.Point(916, 52);
+            this.RemoveRoomBGCSBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RemoveRoomBGCSBtn.Name = "RemoveRoomBGCSBtn";
+            this.RemoveRoomBGCSBtn.Size = new System.Drawing.Size(279, 60);
+            this.RemoveRoomBGCSBtn.TabIndex = 32;
+            this.RemoveRoomBGCSBtn.Text = "Remove RoomBG Client-side";
+            this.RemoveRoomBGCSBtn.Click += new System.EventHandler(this.RemoveRoomBGCS_click);
+            // 
             // FurniturePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.RemoveRoomBGCSBtn);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.RemoverGrbx);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -392,6 +515,10 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WalkingSpeedNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SelectedFurniTypeNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PickerSpeedNbx)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -424,5 +551,15 @@
         private Sulakore.Components.SKoreButton PickFloorFurniSSBtn;
         private Sulakore.Components.SKoreLabelBox FurnitureIDTxt;
         private System.Windows.Forms.CheckBox StoreFurniIDOnFileChbx;
+        private Sulakore.Components.SKoreButton PickSelectedTypeSSBtn;
+        private Sulakore.Components.SKoreButton GrabTypeIdBtn;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown SelectedFurniTypeNbx;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown PickerSpeedNbx;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Sulakore.Components.SKoreButton PickSelectedTypeCSBtn;
+        private Sulakore.Components.SKoreButton RemoveRoomBGCSBtn;
     }
 }

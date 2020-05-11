@@ -191,6 +191,17 @@ namespace RetroFun.Pages
         public void InRemoveWallItem(DataInterceptedEventArgs e)
         {
         }
+
+        public void OnToggleFloorItem(DataInterceptedEventArgs e)
+        { }
+
+        public void InWallItemUpdate(DataInterceptedEventArgs e)
+        { }
+        public void OnToggleWallItem(DataInterceptedEventArgs e)
+        { }
+
+        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
+        { }
     }
 
     public class PartColor

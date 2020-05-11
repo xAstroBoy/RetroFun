@@ -45,6 +45,10 @@
             this.IrregularFurnisCountLbl = new System.Windows.Forms.Label();
             this.RegularFurnisCountLbl = new System.Windows.Forms.Label();
             this.RoomScannerGroupbox = new System.Windows.Forms.GroupBox();
+            this.AutomaticAnalyzeBtn = new Sulakore.Components.SKoreButton();
+            this.HiddenRegularFurnisLbl = new System.Windows.Forms.Label();
+            this.HiddenIrregularFurnisLbl = new System.Windows.Forms.Label();
+            this.WhitelistedFurniLbl = new System.Windows.Forms.Label();
             this.RemovedFloorFurnisLbl = new System.Windows.Forms.Label();
             this.RemovedWallFurnisLbl = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -55,12 +59,22 @@
             this.ClearWhiteListBtn = new Sulakore.Components.SKoreButton();
             this.RemoveFalsePositivesBtn = new Sulakore.Components.SKoreButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.WhitelistedFurniLbl = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.sKoreButton1 = new Sulakore.Components.SKoreButton();
+            this.HideRegisteredFurnituresBtn = new Sulakore.Components.SKoreButton();
+            this.RemoveRemovedFurnisBtn = new Sulakore.Components.SKoreButton();
+            this.ShowRemovedFurnisBtn = new Sulakore.Components.SKoreButton();
+            this.RestoreRegisteredFurnisBtn = new Sulakore.Components.SKoreButton();
+            this.HideIrregularFurnisBtn = new Sulakore.Components.SKoreButton();
+            this.RestoreUnregisteredFurnisBtn = new Sulakore.Components.SKoreButton();
+            this.HideRegisteredFurnisBtn = new Sulakore.Components.SKoreButton();
+            this.SilencedScannerBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.FurniIDToCheckNbx)).BeginInit();
             this.RoomScannerGroupbox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // SelectRareListBtn
@@ -126,7 +140,7 @@
             // 
             // AnalyzeRooMFurnisBtn
             // 
-            this.AnalyzeRooMFurnisBtn.Location = new System.Drawing.Point(33, 494);
+            this.AnalyzeRooMFurnisBtn.Location = new System.Drawing.Point(17, 427);
             this.AnalyzeRooMFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AnalyzeRooMFurnisBtn.Name = "AnalyzeRooMFurnisBtn";
             this.AnalyzeRooMFurnisBtn.Size = new System.Drawing.Size(165, 31);
@@ -136,7 +150,7 @@
             // 
             // PickRegisteredFurnisBtn
             // 
-            this.PickRegisteredFurnisBtn.Location = new System.Drawing.Point(7, 97);
+            this.PickRegisteredFurnisBtn.Location = new System.Drawing.Point(7, 79);
             this.PickRegisteredFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PickRegisteredFurnisBtn.Name = "PickRegisteredFurnisBtn";
             this.PickRegisteredFurnisBtn.Size = new System.Drawing.Size(191, 27);
@@ -177,55 +191,63 @@
             // TotFurnisinroomLbl
             // 
             this.TotFurnisinroomLbl.AutoSize = true;
-            this.TotFurnisinroomLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotFurnisinroomLbl.BackColor = System.Drawing.Color.White;
+            this.TotFurnisinroomLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TotFurnisinroomLbl.Location = new System.Drawing.Point(12, 17);
             this.TotFurnisinroomLbl.Name = "TotFurnisinroomLbl";
-            this.TotFurnisinroomLbl.Size = new System.Drawing.Size(292, 36);
+            this.TotFurnisinroomLbl.Size = new System.Drawing.Size(234, 29);
             this.TotFurnisinroomLbl.TabIndex = 26;
             this.TotFurnisinroomLbl.Text = "Tot Furni In room  : 0";
             // 
             // FloorFurniCountLbl
             // 
             this.FloorFurniCountLbl.AutoSize = true;
-            this.FloorFurniCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FloorFurniCountLbl.Location = new System.Drawing.Point(12, 70);
+            this.FloorFurniCountLbl.BackColor = System.Drawing.Color.White;
+            this.FloorFurniCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FloorFurniCountLbl.Location = new System.Drawing.Point(12, 56);
             this.FloorFurniCountLbl.Name = "FloorFurniCountLbl";
-            this.FloorFurniCountLbl.Size = new System.Drawing.Size(369, 36);
+            this.FloorFurniCountLbl.Size = new System.Drawing.Size(297, 29);
             this.FloorFurniCountLbl.TabIndex = 27;
             this.FloorFurniCountLbl.Text = "Tot Floor Furni In room  : 0";
             // 
             // WallFurniCountLbl
             // 
             this.WallFurniCountLbl.AutoSize = true;
-            this.WallFurniCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WallFurniCountLbl.Location = new System.Drawing.Point(12, 131);
+            this.WallFurniCountLbl.BackColor = System.Drawing.Color.White;
+            this.WallFurniCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WallFurniCountLbl.Location = new System.Drawing.Point(12, 95);
             this.WallFurniCountLbl.Name = "WallFurniCountLbl";
-            this.WallFurniCountLbl.Size = new System.Drawing.Size(343, 36);
+            this.WallFurniCountLbl.Size = new System.Drawing.Size(275, 29);
             this.WallFurniCountLbl.TabIndex = 28;
             this.WallFurniCountLbl.Text = "Tot WallFurni In room : 0";
             // 
             // IrregularFurnisCountLbl
             // 
             this.IrregularFurnisCountLbl.AutoSize = true;
-            this.IrregularFurnisCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IrregularFurnisCountLbl.Location = new System.Drawing.Point(12, 186);
+            this.IrregularFurnisCountLbl.BackColor = System.Drawing.Color.White;
+            this.IrregularFurnisCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.IrregularFurnisCountLbl.Location = new System.Drawing.Point(12, 133);
             this.IrregularFurnisCountLbl.Name = "IrregularFurnisCountLbl";
-            this.IrregularFurnisCountLbl.Size = new System.Drawing.Size(310, 36);
+            this.IrregularFurnisCountLbl.Size = new System.Drawing.Size(249, 29);
             this.IrregularFurnisCountLbl.TabIndex = 29;
             this.IrregularFurnisCountLbl.Text = "Tot Irregular Furnis : 0";
             // 
             // RegularFurnisCountLbl
             // 
             this.RegularFurnisCountLbl.AutoSize = true;
-            this.RegularFurnisCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegularFurnisCountLbl.Location = new System.Drawing.Point(12, 241);
+            this.RegularFurnisCountLbl.BackColor = System.Drawing.Color.White;
+            this.RegularFurnisCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RegularFurnisCountLbl.Location = new System.Drawing.Point(12, 176);
             this.RegularFurnisCountLbl.Name = "RegularFurnisCountLbl";
-            this.RegularFurnisCountLbl.Size = new System.Drawing.Size(304, 36);
+            this.RegularFurnisCountLbl.Size = new System.Drawing.Size(244, 29);
             this.RegularFurnisCountLbl.TabIndex = 30;
             this.RegularFurnisCountLbl.Text = "Tot Regular Furnis : 0";
             // 
             // RoomScannerGroupbox
             // 
+            this.RoomScannerGroupbox.Controls.Add(this.AutomaticAnalyzeBtn);
+            this.RoomScannerGroupbox.Controls.Add(this.HiddenRegularFurnisLbl);
+            this.RoomScannerGroupbox.Controls.Add(this.HiddenIrregularFurnisLbl);
             this.RoomScannerGroupbox.Controls.Add(this.WhitelistedFurniLbl);
             this.RoomScannerGroupbox.Controls.Add(this.RemovedFloorFurnisLbl);
             this.RoomScannerGroupbox.Controls.Add(this.RemovedWallFurnisLbl);
@@ -235,30 +257,75 @@
             this.RoomScannerGroupbox.Controls.Add(this.FloorFurniCountLbl);
             this.RoomScannerGroupbox.Controls.Add(this.TotFurnisinroomLbl);
             this.RoomScannerGroupbox.Controls.Add(this.AnalyzeRooMFurnisBtn);
-            this.RoomScannerGroupbox.Location = new System.Drawing.Point(662, 10);
+            this.RoomScannerGroupbox.Location = new System.Drawing.Point(711, 10);
             this.RoomScannerGroupbox.Name = "RoomScannerGroupbox";
-            this.RoomScannerGroupbox.Size = new System.Drawing.Size(648, 542);
+            this.RoomScannerGroupbox.Size = new System.Drawing.Size(369, 473);
             this.RoomScannerGroupbox.TabIndex = 31;
             this.RoomScannerGroupbox.TabStop = false;
             this.RoomScannerGroupbox.Text = "Room Scanner";
             // 
+            // AutomaticAnalyzeBtn
+            // 
+            this.AutomaticAnalyzeBtn.Location = new System.Drawing.Point(197, 427);
+            this.AutomaticAnalyzeBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AutomaticAnalyzeBtn.Name = "AutomaticAnalyzeBtn";
+            this.AutomaticAnalyzeBtn.Size = new System.Drawing.Size(165, 31);
+            this.AutomaticAnalyzeBtn.TabIndex = 36;
+            this.AutomaticAnalyzeBtn.Text = "Automatic Scan : ON";
+            this.AutomaticAnalyzeBtn.Click += new System.EventHandler(this.AutomaticAnalyzeBtn_Click);
+            // 
+            // HiddenRegularFurnisLbl
+            // 
+            this.HiddenRegularFurnisLbl.AutoSize = true;
+            this.HiddenRegularFurnisLbl.BackColor = System.Drawing.Color.White;
+            this.HiddenRegularFurnisLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HiddenRegularFurnisLbl.Location = new System.Drawing.Point(12, 376);
+            this.HiddenRegularFurnisLbl.Name = "HiddenRegularFurnisLbl";
+            this.HiddenRegularFurnisLbl.Size = new System.Drawing.Size(286, 29);
+            this.HiddenRegularFurnisLbl.TabIndex = 35;
+            this.HiddenRegularFurnisLbl.Text = "Hidden Regular Furnis : 0";
+            // 
+            // HiddenIrregularFurnisLbl
+            // 
+            this.HiddenIrregularFurnisLbl.AutoSize = true;
+            this.HiddenIrregularFurnisLbl.BackColor = System.Drawing.Color.White;
+            this.HiddenIrregularFurnisLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HiddenIrregularFurnisLbl.Location = new System.Drawing.Point(12, 341);
+            this.HiddenIrregularFurnisLbl.Name = "HiddenIrregularFurnisLbl";
+            this.HiddenIrregularFurnisLbl.Size = new System.Drawing.Size(291, 29);
+            this.HiddenIrregularFurnisLbl.TabIndex = 34;
+            this.HiddenIrregularFurnisLbl.Text = "Hidden Irregular Furnis : 0";
+            // 
+            // WhitelistedFurniLbl
+            // 
+            this.WhitelistedFurniLbl.AutoSize = true;
+            this.WhitelistedFurniLbl.BackColor = System.Drawing.Color.White;
+            this.WhitelistedFurniLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WhitelistedFurniLbl.Location = new System.Drawing.Point(10, 295);
+            this.WhitelistedFurniLbl.Name = "WhitelistedFurniLbl";
+            this.WhitelistedFurniLbl.Size = new System.Drawing.Size(236, 29);
+            this.WhitelistedFurniLbl.TabIndex = 33;
+            this.WhitelistedFurniLbl.Text = "Whitelisted Furnis : 0";
+            // 
             // RemovedFloorFurnisLbl
             // 
             this.RemovedFloorFurnisLbl.AutoSize = true;
-            this.RemovedFloorFurnisLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemovedFloorFurnisLbl.Location = new System.Drawing.Point(12, 354);
+            this.RemovedFloorFurnisLbl.BackColor = System.Drawing.Color.White;
+            this.RemovedFloorFurnisLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemovedFloorFurnisLbl.Location = new System.Drawing.Point(12, 257);
             this.RemovedFloorFurnisLbl.Name = "RemovedFloorFurnisLbl";
-            this.RemovedFloorFurnisLbl.Size = new System.Drawing.Size(351, 36);
+            this.RemovedFloorFurnisLbl.Size = new System.Drawing.Size(284, 29);
             this.RemovedFloorFurnisLbl.TabIndex = 32;
             this.RemovedFloorFurnisLbl.Text = "Removed Floor Furnis : 0";
             // 
             // RemovedWallFurnisLbl
             // 
             this.RemovedWallFurnisLbl.AutoSize = true;
-            this.RemovedWallFurnisLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemovedWallFurnisLbl.Location = new System.Drawing.Point(12, 301);
+            this.RemovedWallFurnisLbl.BackColor = System.Drawing.Color.White;
+            this.RemovedWallFurnisLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RemovedWallFurnisLbl.Location = new System.Drawing.Point(12, 217);
             this.RemovedWallFurnisLbl.Name = "RemovedWallFurnisLbl";
-            this.RemovedWallFurnisLbl.Size = new System.Drawing.Size(333, 36);
+            this.RemovedWallFurnisLbl.Size = new System.Drawing.Size(268, 29);
             this.RemovedWallFurnisLbl.TabIndex = 31;
             this.RemovedWallFurnisLbl.Text = "Removed WallFurnis : 0";
             // 
@@ -272,7 +339,7 @@
             this.groupBox1.Controls.Add(this.SelectRareListBtn);
             this.groupBox1.Location = new System.Drawing.Point(287, 16);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(359, 260);
+            this.groupBox1.Size = new System.Drawing.Size(359, 156);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Files";
@@ -292,7 +359,7 @@
             // UpdateListConstantlyBtn
             // 
             this.UpdateListConstantlyBtn.Enabled = false;
-            this.UpdateListConstantlyBtn.Location = new System.Drawing.Point(7, 168);
+            this.UpdateListConstantlyBtn.Location = new System.Drawing.Point(6, 168);
             this.UpdateListConstantlyBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.UpdateListConstantlyBtn.Name = "UpdateListConstantlyBtn";
             this.UpdateListConstantlyBtn.Size = new System.Drawing.Size(223, 31);
@@ -353,32 +420,131 @@
             this.groupBox4.Controls.Add(this.PickRegisteredFurnisBtn);
             this.groupBox4.Location = new System.Drawing.Point(26, 386);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(507, 149);
+            this.groupBox4.Size = new System.Drawing.Size(215, 136);
             this.groupBox4.TabIndex = 35;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Furni Picker / Hider";
+            this.groupBox4.Text = "Furni Picker ";
             // 
-            // WhitelistedFurniLbl
+            // groupBox3
             // 
-            this.WhitelistedFurniLbl.AutoSize = true;
-            this.WhitelistedFurniLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WhitelistedFurniLbl.Location = new System.Drawing.Point(12, 418);
-            this.WhitelistedFurniLbl.Name = "WhitelistedFurniLbl";
-            this.WhitelistedFurniLbl.Size = new System.Drawing.Size(295, 36);
-            this.WhitelistedFurniLbl.TabIndex = 33;
-            this.WhitelistedFurniLbl.Text = "Whitelisted Furnis : 0";
+            this.groupBox3.Controls.Add(this.sKoreButton1);
+            this.groupBox3.Controls.Add(this.HideRegisteredFurnituresBtn);
+            this.groupBox3.Controls.Add(this.RemoveRemovedFurnisBtn);
+            this.groupBox3.Controls.Add(this.ShowRemovedFurnisBtn);
+            this.groupBox3.Controls.Add(this.RestoreRegisteredFurnisBtn);
+            this.groupBox3.Controls.Add(this.HideIrregularFurnisBtn);
+            this.groupBox3.Controls.Add(this.RestoreUnregisteredFurnisBtn);
+            this.groupBox3.Controls.Add(this.HideRegisteredFurnisBtn);
+            this.groupBox3.Location = new System.Drawing.Point(465, 186);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(252, 413);
+            this.groupBox3.TabIndex = 36;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Furni Hider  / Unhider";
+            // 
+            // sKoreButton1
+            // 
+            this.sKoreButton1.Location = new System.Drawing.Point(8, 172);
+            this.sKoreButton1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.sKoreButton1.Name = "sKoreButton1";
+            this.sKoreButton1.Size = new System.Drawing.Size(193, 27);
+            this.sKoreButton1.TabIndex = 26;
+            this.sKoreButton1.Text = "Hide Unregistered Furnis";
+            this.sKoreButton1.Click += new System.EventHandler(this.HideUnregisteredFurnitures_Click);
+            // 
+            // HideRegisteredFurnituresBtn
+            // 
+            this.HideRegisteredFurnituresBtn.Location = new System.Drawing.Point(8, 130);
+            this.HideRegisteredFurnituresBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HideRegisteredFurnituresBtn.Name = "HideRegisteredFurnituresBtn";
+            this.HideRegisteredFurnituresBtn.Size = new System.Drawing.Size(193, 27);
+            this.HideRegisteredFurnituresBtn.TabIndex = 25;
+            this.HideRegisteredFurnituresBtn.Text = "Hide Registered Furnis";
+            this.HideRegisteredFurnituresBtn.Click += new System.EventHandler(this.HIDEREGISTEREDFURNITURES_Click);
+            // 
+            // RemoveRemovedFurnisBtn
+            // 
+            this.RemoveRemovedFurnisBtn.Location = new System.Drawing.Point(7, 243);
+            this.RemoveRemovedFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RemoveRemovedFurnisBtn.Name = "RemoveRemovedFurnisBtn";
+            this.RemoveRemovedFurnisBtn.Size = new System.Drawing.Size(183, 27);
+            this.RemoveRemovedFurnisBtn.TabIndex = 23;
+            this.RemoveRemovedFurnisBtn.Text = "Remove Removed Furnis";
+            this.RemoveRemovedFurnisBtn.Click += new System.EventHandler(this.RemoveRemovedFurnisBtn_Click);
+            // 
+            // ShowRemovedFurnisBtn
+            // 
+            this.ShowRemovedFurnisBtn.Location = new System.Drawing.Point(8, 280);
+            this.ShowRemovedFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ShowRemovedFurnisBtn.Name = "ShowRemovedFurnisBtn";
+            this.ShowRemovedFurnisBtn.Size = new System.Drawing.Size(210, 27);
+            this.ShowRemovedFurnisBtn.TabIndex = 24;
+            this.ShowRemovedFurnisBtn.Text = "Show Removed Furnis";
+            this.ShowRemovedFurnisBtn.Click += new System.EventHandler(this.ShowRemovedFurnisBtn_Click);
+            // 
+            // RestoreRegisteredFurnisBtn
+            // 
+            this.RestoreRegisteredFurnisBtn.Location = new System.Drawing.Point(5, 42);
+            this.RestoreRegisteredFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RestoreRegisteredFurnisBtn.Name = "RestoreRegisteredFurnisBtn";
+            this.RestoreRegisteredFurnisBtn.Size = new System.Drawing.Size(211, 27);
+            this.RestoreRegisteredFurnisBtn.TabIndex = 21;
+            this.RestoreRegisteredFurnisBtn.Text = "Restore Registered Furnis";
+            this.RestoreRegisteredFurnisBtn.Click += new System.EventHandler(this.RestoreRegisteredFurnisBtn_Click);
+            // 
+            // HideIrregularFurnisBtn
+            // 
+            this.HideIrregularFurnisBtn.Location = new System.Drawing.Point(7, 376);
+            this.HideIrregularFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HideIrregularFurnisBtn.Name = "HideIrregularFurnisBtn";
+            this.HideIrregularFurnisBtn.Size = new System.Drawing.Size(232, 27);
+            this.HideIrregularFurnisBtn.TabIndex = 22;
+            this.HideIrregularFurnisBtn.Text = "Hide Unregistered Furnis : OFF";
+            this.HideIrregularFurnisBtn.Click += new System.EventHandler(this.HideIrregularFurnisBtn_Click);
+            // 
+            // RestoreUnregisteredFurnisBtn
+            // 
+            this.RestoreUnregisteredFurnisBtn.Location = new System.Drawing.Point(7, 79);
+            this.RestoreUnregisteredFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RestoreUnregisteredFurnisBtn.Name = "RestoreUnregisteredFurnisBtn";
+            this.RestoreUnregisteredFurnisBtn.Size = new System.Drawing.Size(210, 27);
+            this.RestoreUnregisteredFurnisBtn.TabIndex = 22;
+            this.RestoreUnregisteredFurnisBtn.Text = "Restore Unregistered Furnis";
+            this.RestoreUnregisteredFurnisBtn.Click += new System.EventHandler(this.RestoreUnregisteredFurnisBtn_Click);
+            // 
+            // HideRegisteredFurnisBtn
+            // 
+            this.HideRegisteredFurnisBtn.Location = new System.Drawing.Point(7, 339);
+            this.HideRegisteredFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HideRegisteredFurnisBtn.Name = "HideRegisteredFurnisBtn";
+            this.HideRegisteredFurnisBtn.Size = new System.Drawing.Size(232, 27);
+            this.HideRegisteredFurnisBtn.TabIndex = 21;
+            this.HideRegisteredFurnisBtn.Text = "Hide Registered Furnis : OFF";
+            this.HideRegisteredFurnisBtn.Click += new System.EventHandler(this.HideRegisteredFurnisBtn_Click);
+            // 
+            // SilencedScannerBtn
+            // 
+            this.SilencedScannerBtn.Location = new System.Drawing.Point(726, 491);
+            this.SilencedScannerBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SilencedScannerBtn.Name = "SilencedScannerBtn";
+            this.SilencedScannerBtn.Size = new System.Drawing.Size(165, 31);
+            this.SilencedScannerBtn.TabIndex = 37;
+            this.SilencedScannerBtn.Text = "Silenced : OFF";
+            this.SilencedScannerBtn.Click += new System.EventHandler(this.SilencedScannerBtn_Click);
             // 
             // FurnitureChecker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.SilencedScannerBtn);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.RoomScannerGroupbox);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FurnitureChecker";
-            this.Size = new System.Drawing.Size(1310, 567);
+            this.Size = new System.Drawing.Size(1109, 623);
             ((System.ComponentModel.ISupportInitialize)(this.FurniIDToCheckNbx)).EndInit();
             this.RoomScannerGroupbox.ResumeLayout(false);
             this.RoomScannerGroupbox.PerformLayout();
@@ -387,6 +553,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -420,5 +587,18 @@
         private Sulakore.Components.SKoreButton RemoveFalsePositivesBtn;
         private Sulakore.Components.SKoreButton ClearWhiteListBtn;
         private System.Windows.Forms.Label WhitelistedFurniLbl;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private Sulakore.Components.SKoreButton HideIrregularFurnisBtn;
+        private Sulakore.Components.SKoreButton HideRegisteredFurnisBtn;
+        private System.Windows.Forms.Label HiddenRegularFurnisLbl;
+        private System.Windows.Forms.Label HiddenIrregularFurnisLbl;
+        private Sulakore.Components.SKoreButton RestoreUnregisteredFurnisBtn;
+        private Sulakore.Components.SKoreButton RestoreRegisteredFurnisBtn;
+        private Sulakore.Components.SKoreButton RemoveRemovedFurnisBtn;
+        private Sulakore.Components.SKoreButton ShowRemovedFurnisBtn;
+        private Sulakore.Components.SKoreButton AutomaticAnalyzeBtn;
+        private Sulakore.Components.SKoreButton sKoreButton1;
+        private Sulakore.Components.SKoreButton HideRegisteredFurnituresBtn;
+        private Sulakore.Components.SKoreButton SilencedScannerBtn;
     }
 }

@@ -22,7 +22,9 @@ namespace RetroFun.Subscribers
         void OnRoomPickupItem(DataInterceptedEventArgs e);
         void OnRotateMoveItem(DataInterceptedEventArgs e);
         void OnMoveWallItem(DataInterceptedEventArgs e);
-
+        void OnToggleFloorItem(DataInterceptedEventArgs e);
+        void OnToggleWallItem(DataInterceptedEventArgs e);
+        void OnRequestRoomHeightmap(DataInterceptedEventArgs e);
 
         //Incoming events shared by multiple pages
         void InPurchaseOk(DataInterceptedEventArgs e);
@@ -41,7 +43,7 @@ namespace RetroFun.Subscribers
         void InAddWallItem(DataInterceptedEventArgs e);
         void InRemoveFloorItem(DataInterceptedEventArgs e);
         void InRemoveWallItem(DataInterceptedEventArgs e);
-
+        void InWallItemUpdate(DataInterceptedEventArgs e);
 
     }
 }

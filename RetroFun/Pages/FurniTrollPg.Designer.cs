@@ -78,9 +78,8 @@
             this.ClearFurniIDsBtn = new Sulakore.Components.SKoreButton();
             this.CheckAllBtn = new Sulakore.Components.SKoreButton();
             this.UncheckAllBtn = new Sulakore.Components.SKoreButton();
-            this.StopAllThreadsBtn = new Sulakore.Components.SKoreButton();
+            this.ToggleThreadsBtn = new Sulakore.Components.SKoreButton();
             this.ResetAllBtn = new Sulakore.Components.SKoreButton();
-            this.StartThreadsBtn = new Sulakore.Components.SKoreButton();
             this.AddfiftyBtn = new Sulakore.Components.SKoreButton();
             this.MinusFiftyBtn = new Sulakore.Components.SKoreButton();
             this.MinusTenBtn = new Sulakore.Components.SKoreButton();
@@ -89,6 +88,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.CooldownHanditemGiverNbx = new System.Windows.Forms.NumericUpDown();
             this.GiveFurniHanditemBtn = new Sulakore.Components.SKoreButton();
+            this.HaltThreadsBtn = new Sulakore.Components.SKoreButton();
             this.FurnIDGroupbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FurniNbx10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FurniNbx9)).BeginInit();
@@ -830,13 +830,13 @@
             // 
             // StopAllThreadsBtn
             // 
-            this.StopAllThreadsBtn.Location = new System.Drawing.Point(621, 224);
-            this.StopAllThreadsBtn.Margin = new System.Windows.Forms.Padding(1);
-            this.StopAllThreadsBtn.Name = "StopAllThreadsBtn";
-            this.StopAllThreadsBtn.Size = new System.Drawing.Size(185, 30);
-            this.StopAllThreadsBtn.TabIndex = 37;
-            this.StopAllThreadsBtn.Text = "Stop all Threads";
-            this.StopAllThreadsBtn.Click += new System.EventHandler(this.StopAllThreadsBtn_Click);
+            this.ToggleThreadsBtn.Location = new System.Drawing.Point(621, 224);
+            this.ToggleThreadsBtn.Margin = new System.Windows.Forms.Padding(1);
+            this.ToggleThreadsBtn.Name = "StopAllThreadsBtn";
+            this.ToggleThreadsBtn.Size = new System.Drawing.Size(185, 30);
+            this.ToggleThreadsBtn.TabIndex = 37;
+            this.ToggleThreadsBtn.Text = "Toggle Threads";
+            this.ToggleThreadsBtn.Click += new System.EventHandler(this.StopAllThreadsBtn_Click);
             // 
             // ResetAllBtn
             // 
@@ -847,16 +847,6 @@
             this.ResetAllBtn.TabIndex = 38;
             this.ResetAllBtn.Text = "Reset All";
             this.ResetAllBtn.Click += new System.EventHandler(this.ResetAllBtn_Click);
-            // 
-            // StartThreadsBtn
-            // 
-            this.StartThreadsBtn.Location = new System.Drawing.Point(621, 267);
-            this.StartThreadsBtn.Margin = new System.Windows.Forms.Padding(1);
-            this.StartThreadsBtn.Name = "StartThreadsBtn";
-            this.StartThreadsBtn.Size = new System.Drawing.Size(185, 30);
-            this.StartThreadsBtn.TabIndex = 39;
-            this.StartThreadsBtn.Text = "Start All Threads";
-            this.StartThreadsBtn.Click += new System.EventHandler(this.StartThreadsBtn_Click);
             // 
             // AddfiftyBtn
             // 
@@ -952,10 +942,21 @@
             this.GiveFurniHanditemBtn.Text = "Give Furni handitem to user : OFF";
             this.GiveFurniHanditemBtn.Click += new System.EventHandler(this.GiveFurniHanditemBtn_Click);
             // 
+            // HaltThreadsBtn
+            // 
+            this.HaltThreadsBtn.Location = new System.Drawing.Point(621, 291);
+            this.HaltThreadsBtn.Margin = new System.Windows.Forms.Padding(1);
+            this.HaltThreadsBtn.Name = "HaltThreadsBtn";
+            this.HaltThreadsBtn.Size = new System.Drawing.Size(185, 30);
+            this.HaltThreadsBtn.TabIndex = 87;
+            this.HaltThreadsBtn.Text = "Stop Threads";
+            this.HaltThreadsBtn.Click += new System.EventHandler(this.HaltThreadsBtn_Click);
+            // 
             // FurniTrollPg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.HaltThreadsBtn);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.CooldownHanditemGiverNbx);
             this.Controls.Add(this.GiveFurniHanditemBtn);
@@ -964,9 +965,8 @@
             this.Controls.Add(this.AddtenBtn);
             this.Controls.Add(this.MinusFiftyBtn);
             this.Controls.Add(this.AddfiftyBtn);
-            this.Controls.Add(this.StartThreadsBtn);
             this.Controls.Add(this.ResetAllBtn);
-            this.Controls.Add(this.StopAllThreadsBtn);
+            this.Controls.Add(this.ToggleThreadsBtn);
             this.Controls.Add(this.UncheckAllBtn);
             this.Controls.Add(this.CheckAllBtn);
             this.Controls.Add(this.ClearFurniIDsBtn);
@@ -1063,9 +1063,8 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private Sulakore.Components.SKoreButton CheckAllBtn;
         private Sulakore.Components.SKoreButton UncheckAllBtn;
-        private Sulakore.Components.SKoreButton StopAllThreadsBtn;
+        private Sulakore.Components.SKoreButton ToggleThreadsBtn;
         private Sulakore.Components.SKoreButton ResetAllBtn;
-        private Sulakore.Components.SKoreButton StartThreadsBtn;
         private Sulakore.Components.SKoreButton AddfiftyBtn;
         private Sulakore.Components.SKoreButton MinusFiftyBtn;
         private Sulakore.Components.SKoreButton MinusTenBtn;
@@ -1074,5 +1073,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown CooldownHanditemGiverNbx;
         private Sulakore.Components.SKoreButton GiveFurniHanditemBtn;
+        private Sulakore.Components.SKoreButton HaltThreadsBtn;
     }
 }

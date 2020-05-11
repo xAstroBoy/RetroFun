@@ -15,6 +15,8 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class DiceBotPage : ObservablePage, ISubscriber
     {
+
+        private bool USEARCTURUS = false;
         public bool ShouldRollFirst => DiceSelected1 && DiceHostResult != DiceResult1;
         public bool ShouldRollSecond => DiceSelected2 && DiceHostResult != DiceResult2;
         public bool ShouldRollThird => DiceSelected3 && DiceHostResult != DiceResult3;
@@ -435,198 +437,205 @@ namespace RetroFun.Pages
 
         public void InItemExtraData(DataInterceptedEventArgs e)
         {
-            try
+            if(USEARCTURUS)
             {
-                int id = int.Parse(e.Packet.ReadString());
-                e.Packet.ReadInteger();
-                string data = e.Packet.ReadString();
-                
-                e.Continue();
-
-                if (!int.TryParse(data, out int diceState) || diceState == -1) return;
-
-
-                if (id == _diceHostId)
+                try
                 {
-                    DiceHostResult = diceState;
+                    int id = int.Parse(e.Packet.ReadString());
+                    e.Packet.ReadInteger();
+                    string data = e.Packet.ReadString();
+                    e.Packet.Position = 0;
+                    e.Continue();
 
-                    if (isTargetMode)
+                    if (!int.TryParse(data, out int diceState) || diceState == -1) return;
+
+
+                    if (id == _diceHostId)
                     {
+                        DiceHostResult = diceState;
+
+                        if (isTargetMode)
+                        {
+                            if (IsBotActive)
+                            {
+                                if (diceState == 0)
+                                {
+                                    CloseDice(_diceOneId);
+                                    CloseDice(_diceTwoId);
+                                    CloseDice(_diceThreeId);
+                                    CloseDice(_diceFourID);
+                                    CloseDice(_diceFifthID);
+                                    CloseDice(_diceSixthID);
+
+                                }
+                            }
+                        }
+
+
                         if (IsBotActive)
                         {
-                            if (diceState == 0)
+                            if (isManualMode)
                             {
-                                CloseDice(_diceOneId);
-                                CloseDice(_diceTwoId);
-                                CloseDice(_diceThreeId);
-                                CloseDice(_diceFourID);
-                                CloseDice(_diceFifthID);
-                                CloseDice(_diceSixthID);
-
+                                if (DiceSelectedResult1 == 0)
+                                {
+                                    CloseDice(_diceOneId);
+                                }
+                                if (DiceSelectedResult2 == 0)
+                                {
+                                    CloseDice(_diceTwoId);
+                                }
+                                if (DiceSelectedResult3 == 0)
+                                {
+                                    CloseDice(_diceThreeId);
+                                }
+                                if (DiceSelectedResult4 == 0)
+                                {
+                                    CloseDice(_diceFourID);
+                                }
+                                if (DiceSelectedResult5 == 0)
+                                {
+                                    CloseDice(_diceFifthID);
+                                }
+                                if (DiceSelectedResult6 == 0)
+                                {
+                                    CloseDice(_diceSixthID);
+                                }
                             }
                         }
                     }
 
+
+                    else if (id == _diceOneId) DiceResult1 = diceState;
+                    else if (id == _diceTwoId) DiceResult2 = diceState;
+                    else if (id == _diceThreeId) DiceResult3 = diceState;
+                    else if (id == _diceFourID) DiceResult4 = diceState;
+                    else if (id == _diceFifthID) DiceResult5 = diceState;
+                    else if (id == _diceSixthID) DiceResult6 = diceState;
+
+                    else return;
+
+                    if (diceState < 1) return;
 
                     if (IsBotActive)
                     {
+                        // FOLLOWS HOST DICE
+                        if (isTargetMode)
+                        {
+                            if ((!ShouldRollFirst && !DiceSelected2 && !DiceSelected3 && !DiceSelected4 && !DiceSelected5 && !DiceSelected6) ||
+                                (!ShouldRollFirst && !ShouldRollSecond && !DiceSelected3 && !DiceSelected4 && !DiceSelected5 && !DiceSelected6) ||
+                                (!ShouldRollFirst && !ShouldRollSecond && !ShouldRollThird && !DiceSelected4 && !DiceSelected5 && !DiceSelected6) ||
+                                (!ShouldRollFirst && !ShouldRollSecond && !ShouldRollThird && !ShouldRollFourth && !DiceSelected5 && !DiceSelected6) ||
+                                (!ShouldRollFirst && !ShouldRollSecond && !ShouldRollThird && !ShouldRollFourth && !ShouldRollFifth && !DiceSelected6) ||
+                                (!ShouldRollFirst && !ShouldRollSecond && !ShouldRollThird && !ShouldRollFourth && !ShouldRollFifth && !ShouldRollSixth))
+                            {
+                                //WON! Do the victory procedure here.
+
+                                if (Connection.Remote.IsConnected)
+                                {
+                                    if (ShouldShoutPhrase)
+                                    {
+                                        if (Connection.Remote.IsConnected)
+                                        {
+                                            Connection.SendToServerAsync(Out.RoomUserShout, ShoutPhrase, 0);
+                                        }
+                                    }
+                                }
+
+                                // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!
+
+                                if (shouldKillBot)
+                                {
+                                    IsBotActive = false;
+                                    WriteToButton(EnableBotBtn, "Bot : OFF");
+                                }
+                            }
+                            else
+                            {
+                                if (ShouldRollFirst)
+                                    RollDice(_diceOneId);
+
+                                if (ShouldRollSecond)
+                                    RollDice(_diceTwoId);
+
+                                if (ShouldRollThird)
+                                    RollDice(_diceThreeId);
+
+                                if (ShouldRollFourth)
+                                    RollDice(_diceFourID);
+
+                                if (ShouldRollFifth)
+                                    RollDice(_diceFifthID);
+
+                                if (ShouldRollSixth)
+                                    RollDice(_diceSixthID);
+                            }
+                        }
+
+                        // FOLLOWS MANUAL CONTROLS
                         if (isManualMode)
                         {
-                            if (DiceSelectedResult1 == 0)
+                            if ((!ShouldRollTargetFirst && !DiceSelected2 && !DiceSelected3 && !DiceSelected4 && !DiceSelected5 && !DiceSelected6) ||
+                                (!ShouldRollTargetFirst && !ShouldRollTargetSecond && !DiceSelected3 && !DiceSelected4 && !DiceSelected5 && !DiceSelected6) ||
+                                (!ShouldRollTargetFirst && !ShouldRollTargetSecond && !ShouldRollTargetThird && !DiceSelected4 && !DiceSelected5 && !DiceSelected6) ||
+                                (!ShouldRollTargetFirst && !ShouldRollTargetSecond && !ShouldRollTargetThird && !ShouldRollTargetFourth && !DiceSelected5 && !DiceSelected6) ||
+                                (!ShouldRollTargetFirst && !ShouldRollTargetSecond && !ShouldRollTargetThird && !ShouldRollTargetFourth && !ShouldRollTargetFifth && !DiceSelected6) ||
+                                (!ShouldRollTargetFirst && !ShouldRollTargetSecond && !ShouldRollTargetThird && !ShouldRollTargetFourth && !ShouldRollTargetFifth && !ShouldRollTargetSixth))
                             {
-                                CloseDice(_diceOneId);
+                                //WON! Do the victory procedure here.
+
+                                if (Connection.Remote.IsConnected)
+                                {
+                                    if (ShouldShoutPhrase)
+
+                                    {
+                                        if (Connection.Remote.IsConnected)
+                                        {
+                                            Connection.SendToServerAsync(Out.RoomUserShout, ShoutPhrase, 0);
+                                        }
+                                    }
+                                }
+
+                                // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!
+                                if (shouldKillBot)
+                                {
+                                    IsBotActive = false;
+                                    WriteToButton(EnableBotBtn, "Bot : OFF");
+                                }
                             }
-                            if (DiceSelectedResult2 == 0)
+                            else
                             {
-                                CloseDice(_diceTwoId);
-                            }
-                            if (DiceSelectedResult3 == 0)
-                            {
-                                CloseDice(_diceThreeId);
-                            }
-                            if (DiceSelectedResult4 == 0)
-                            {
-                                CloseDice(_diceFourID);
-                            }
-                            if (DiceSelectedResult5 == 0)
-                            {
-                                CloseDice(_diceFifthID);
-                            }
-                            if (DiceSelectedResult6 == 0)
-                            {
-                                CloseDice(_diceSixthID);
+                                if (ShouldRollTargetFirst)
+                                    RollDice(_diceOneId);
+
+                                if (ShouldRollTargetSecond)
+                                    RollDice(_diceTwoId);
+
+                                if (ShouldRollTargetThird)
+                                    RollDice(_diceThreeId);
+
+                                if (ShouldRollTargetFourth)
+                                    RollDice(_diceFourID);
+
+                                if (ShouldRollTargetFifth)
+                                    RollDice(_diceFifthID);
+
+                                if (ShouldRollTargetSixth)
+                                    RollDice(_diceSixthID);
                             }
                         }
+
                     }
                 }
-
-
-                else if (id == _diceOneId) DiceResult1 = diceState;
-                else if (id == _diceTwoId) DiceResult2 = diceState;
-                else if (id == _diceThreeId) DiceResult3 = diceState;
-                else if (id == _diceFourID) DiceResult4 = diceState;
-                else if (id == _diceFifthID) DiceResult5 = diceState;
-                else if (id == _diceSixthID) DiceResult6 = diceState;
-
-                else return;
-
-                if (diceState < 1) return;
-
-                if (IsBotActive)
+                catch (Exception exc)
                 {
-                    // FOLLOWS HOST DICE
-                    if (isTargetMode)
-                    {
-                        if ((!ShouldRollFirst && !DiceSelected2 && !DiceSelected3 && !DiceSelected4 && !DiceSelected5 && !DiceSelected6) ||
-                            (!ShouldRollFirst && !ShouldRollSecond && !DiceSelected3 && !DiceSelected4 && !DiceSelected5 && !DiceSelected6) ||
-                            (!ShouldRollFirst && !ShouldRollSecond && !ShouldRollThird && !DiceSelected4 && !DiceSelected5 && !DiceSelected6) ||
-                            (!ShouldRollFirst && !ShouldRollSecond && !ShouldRollThird && !ShouldRollFourth && !DiceSelected5 && !DiceSelected6) ||
-                            (!ShouldRollFirst && !ShouldRollSecond && !ShouldRollThird && !ShouldRollFourth && !ShouldRollFifth && !DiceSelected6) ||
-                            (!ShouldRollFirst && !ShouldRollSecond && !ShouldRollThird && !ShouldRollFourth && !ShouldRollFifth && !ShouldRollSixth))
-                        {
-                            //WON! Do the victory procedure here.
-
-                            if (Connection.Remote.IsConnected)
-                            {
-                                if (ShouldShoutPhrase)
-                                {
-                                    if (Connection.Remote.IsConnected)
-                                    {
-                                        Connection.SendToServerAsync(Out.RoomUserShout, ShoutPhrase, 0);
-                                    }
-                                }
-                            }
-
-                            // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!
-
-                            if (shouldKillBot)
-                            {
-                                IsBotActive = false;
-                                WriteToButton(EnableBotBtn, "Bot : OFF");
-                            }
-                        }
-                        else
-                        {
-                            if (ShouldRollFirst)
-                                RollDice(_diceOneId);
-
-                            if (ShouldRollSecond)
-                                RollDice(_diceTwoId);
-
-                            if (ShouldRollThird)
-                                RollDice(_diceThreeId);
-
-                            if (ShouldRollFourth)
-                                RollDice(_diceFourID);
-
-                            if (ShouldRollFifth)
-                                RollDice(_diceFifthID);
-
-                            if (ShouldRollSixth)
-                                RollDice(_diceSixthID);
-                        }
-                    }
-
-                    // FOLLOWS MANUAL CONTROLS
-                    if (isManualMode)
-                    {
-                        if ((!ShouldRollTargetFirst && !DiceSelected2 && !DiceSelected3 && !DiceSelected4 && !DiceSelected5 && !DiceSelected6) ||
-                            (!ShouldRollTargetFirst && !ShouldRollTargetSecond && !DiceSelected3 && !DiceSelected4 && !DiceSelected5 && !DiceSelected6) ||
-                            (!ShouldRollTargetFirst && !ShouldRollTargetSecond && !ShouldRollTargetThird && !DiceSelected4 && !DiceSelected5 && !DiceSelected6) ||
-                            (!ShouldRollTargetFirst && !ShouldRollTargetSecond && !ShouldRollTargetThird && !ShouldRollTargetFourth && !DiceSelected5 && !DiceSelected6) ||
-                            (!ShouldRollTargetFirst && !ShouldRollTargetSecond && !ShouldRollTargetThird && !ShouldRollTargetFourth && !ShouldRollTargetFifth && !DiceSelected6) ||
-                            (!ShouldRollTargetFirst && !ShouldRollTargetSecond && !ShouldRollTargetThird && !ShouldRollTargetFourth && !ShouldRollTargetFifth && !ShouldRollTargetSixth))
-                        {
-                            //WON! Do the victory procedure here.
-
-                            if (Connection.Remote.IsConnected)
-                            {
-                                if (ShouldShoutPhrase)
-
-                                {
-                                    if (Connection.Remote.IsConnected)
-                                    {
-                                        Connection.SendToServerAsync(Out.RoomUserShout, ShoutPhrase, 0);
-                                    }
-                                }
-                            }
-
-                            // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!
-                            if (shouldKillBot)
-                            {
-                                IsBotActive = false;
-                                WriteToButton(EnableBotBtn, "Bot : OFF");
-                            }
-                        }
-                        else
-                        {
-                            if (ShouldRollTargetFirst)
-                                RollDice(_diceOneId);
-
-                            if (ShouldRollTargetSecond)
-                                RollDice(_diceTwoId);
-
-                            if (ShouldRollTargetThird)
-                                RollDice(_diceThreeId);
-
-                            if (ShouldRollTargetFourth)
-                                RollDice(_diceFourID);
-
-                            if (ShouldRollTargetFifth)
-                                RollDice(_diceFifthID);
-
-                            if (ShouldRollTargetSixth)
-                                RollDice(_diceSixthID);
-                        }
-                    }
 
                 }
             }
-            catch (Exception exc)
+            else
             {
-
+                e.Packet.Position = 0;
+                e.Continue();
             }
-
         }
 
 
@@ -1187,6 +1196,18 @@ namespace RetroFun.Pages
         { }
 
         public void InRemoveWallItem(DataInterceptedEventArgs e)
+        { }
+
+        public void OnToggleFloorItem(DataInterceptedEventArgs e)
+        { }
+
+
+        public void OnToggleWallItem(DataInterceptedEventArgs e)
+        { }
+
+        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
+        { }
+        public void InWallItemUpdate(DataInterceptedEventArgs e)
         { }
     }
 }

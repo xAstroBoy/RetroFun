@@ -139,6 +139,18 @@ namespace RetroFun
                 {
                     sub.OnMoveWallItem(e);
                 }
+                else if (Out.ToggleFloorItem == id)
+                {
+                    sub.OnToggleFloorItem(e);
+                }
+                else if (Out.ToggleWallItem == id)
+                {
+                    sub.OnToggleWallItem(e);
+                }
+                else if (Out.RequestRoomHeightmap == id)
+                {
+                    sub.OnRequestRoomHeightmap(e);
+                }
             }
         }
 
@@ -213,6 +225,10 @@ namespace RetroFun
                 else if (In.RemoveFloorItem == id)
                 {
                     sub.InRemoveFloorItem(e);
+                }
+                else if (In.WallItemUpdate == id)
+                {
+                    sub.InWallItemUpdate(e);
                 }
             }
         }

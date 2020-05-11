@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -550,10 +551,20 @@ namespace RetroFun.Pages
 
         #endregion
 
+        private List<int> Wallitems;
+        private List<int> flooritems;
+        private List<int> wheelitems;
+        private List<int> Diceitems;
+
 
         public FurniTrollPg()
         {
             InitializeComponent();
+
+            Wallitems = new List<int>();
+            flooritems = new List<int>();
+            wheelitems = new List<int>();
+            Diceitems = new List<int>();
 
             #region checkboxes
             Bind(checkBox1, "Checked", nameof(isFurniBoxChecked1));
@@ -605,7 +616,7 @@ namespace RetroFun.Pages
             #endregion
             if (Program.Master != null)
             {
-                Triggers.OutAttach(Out.ToggleFloorItem, HandleFurniTrigger);
+                Triggers.OutAttach(Out.TriggerColorWheel, handlewheelitem);
             }
         }
 
@@ -863,19 +874,48 @@ namespace RetroFun.Pages
 
         #region interception
 
-        private void HandleFurniTrigger(DataInterceptedEventArgs e)
+        public void OnToggleFloorItem(DataInterceptedEventArgs e)
         {
             int furniid = e.Packet.ReadInteger();
 
             if(IsRegistrationMode)
             {
                 RegisterFurni(furniid);
+                if (!flooritems.Contains(furniid))
+                {
+                    flooritems.Add(furniid);
+                }
                 e.IsBlocked = true;
             }
         }
 
+        public void OnToggleWallItem(DataInterceptedEventArgs e)
+        {
+            int furniid = e.Packet.ReadInteger();
+            if (IsRegistrationMode)
+            {
+                RegisterFurni(furniid);
+                if (!Wallitems.Contains(furniid))
+                {
+                    Wallitems.Add(furniid);
+                }
+                e.IsBlocked = true;
+            }
+        }
 
-
+        public void handlewheelitem(DataInterceptedEventArgs e)
+        {
+            int furniid = e.Packet.ReadInteger();
+            if (IsRegistrationMode)
+            {
+                RegisterFurni(furniid);
+                if (!wheelitems.Contains(furniid))
+                {
+                    wheelitems.Add(furniid);
+                }
+                e.IsBlocked = true;
+            }
+        }
 
         #endregion
 
@@ -895,7 +935,22 @@ namespace RetroFun.Pages
         {
             if (Connection.Remote.IsConnected)
             {
-                await Connection.SendToServerAsync(Out.ToggleFloorItem, FurnID);
+                if(flooritems.Contains(FurnID))
+                {
+                    await Connection.SendToServerAsync(Out.ToggleFloorItem, FurnID);
+                }
+                if(Wallitems.Contains(FurnID))
+                {
+                    await Connection.SendToServerAsync(Out.ToggleWallItem, FurnID);
+                }
+                if(wheelitems.Contains(FurnID))
+                {
+                    await Connection.SendToServerAsync(Out.TriggerColorWheel, FurnID);
+                }
+                if (Diceitems.Contains(FurnID))
+                {
+                    await Connection.SendToServerAsync(Out.TriggerDice, FurnID);
+                }
             }
         }
         public void RegisterFurni(int FurnID)
@@ -1102,7 +1157,7 @@ namespace RetroFun.Pages
             Checker(checkBox1, false);
         }
 
-        public void HaltThreads()
+        public void StopThreads()
         {
             StartFurniThread1 = false;
             StartFurniThread2 = false;
@@ -1144,6 +1199,10 @@ namespace RetroFun.Pages
             FurniIDInt8 = 0;
             FurniIDInt9 = 0;
             FurniIDInt10 = 0;
+            wheelitems.Clear();
+            flooritems.Clear();
+            Wallitems.Clear();
+            Diceitems.Clear();
             FurniIDRegistered1 = false;
             FurniIDRegistered2 = false;
             FurniIDRegistered3 = false;
@@ -1460,7 +1519,7 @@ namespace RetroFun.Pages
 
         private void ClearFurniIDsBtn_Click(object sender, EventArgs e)
         {
-            HaltThreads();
+            StopThreads();
             ResetFurniIDs();
         }
 
@@ -1531,7 +1590,7 @@ namespace RetroFun.Pages
             {
 
                 ResetFurniIDs();
-                HaltThreads();
+                StopThreads();
                 RegisterFurniSpeak("Registration has been activated.");
                 RegisterFurniAsk(1);
                 IsRegistrationMode = true;
@@ -1559,12 +1618,6 @@ namespace RetroFun.Pages
 
         private void StopAllThreadsBtn_Click(object sender, EventArgs e)
         {
-            HaltThreads();
-        }
-
-
-        private void StartThreadsBtn_Click(object sender, EventArgs e)
-        {
             ToggleThread1();
             ToggleThread2();
             ToggleThread3();
@@ -1576,6 +1629,7 @@ namespace RetroFun.Pages
             ToggleThread9();
             ToggleThread10();
         }
+
 
         private void AddfiftyBtn_Click(object sender, EventArgs e)
         {
@@ -1792,7 +1846,7 @@ namespace RetroFun.Pages
         {
             ResetCooldowns();
             ResetFurniIDs();
-            HaltThreads();
+            StopThreads();
         }
 
     
@@ -1856,7 +1910,16 @@ namespace RetroFun.Pages
 
         public void OnOutDiceTrigger(DataInterceptedEventArgs e)
         {
-
+            int furniid = e.Packet.ReadInteger();
+            if (IsRegistrationMode)
+            {
+                RegisterFurni(furniid);
+                if (!Diceitems.Contains(furniid))
+                {
+                    Diceitems.Add(furniid);
+                }
+                e.IsBlocked = true;
+            }
         }
 
         public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
@@ -1957,9 +2020,18 @@ namespace RetroFun.Pages
 
         public void InRemoveWallItem(DataInterceptedEventArgs e)
         { }
+
+
         #endregion
 
+        private void HaltThreadsBtn_Click(object sender, EventArgs e)
+        {
+            StopThreads();
+        }
 
-
+        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
+        { }
+        public void InWallItemUpdate(DataInterceptedEventArgs e)
+        { }
     }
 }

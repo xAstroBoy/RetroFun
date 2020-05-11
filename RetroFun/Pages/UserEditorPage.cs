@@ -738,23 +738,6 @@ namespace RetroFun.Pages
             //}
         }
 
-        private async void executeantispam()
-        {
-            if (UserNickname != OwnUsername)
-            {
-                await Connection.SendToServerAsync(Out.RoomUserTalk, ":ban " + UserNickname + " 360000000 SPAM");
-            }
-        }
-
-
-        private async void StartFlood()
-        {
-            for (int i = 0; i < 26; i++)
-            {
-                await Task.Delay(50);
-               await Connection.SendToServerAsync(Out.RoomUserTalk, " ", 23);
-            }
-        }
 
         public void OnRoomPickupItem(DataInterceptedEventArgs e)
         {
@@ -790,6 +773,18 @@ namespace RetroFun.Pages
         public void InRemoveWallItem(DataInterceptedEventArgs e)
         {
         }
+
+        public void OnToggleFloorItem(DataInterceptedEventArgs e)
+        { }
+
+
+        public void OnToggleWallItem(DataInterceptedEventArgs e)
+        { }
+
+        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
+        { }
+        public void InWallItemUpdate(DataInterceptedEventArgs e)
+        { }
     }
 }
 

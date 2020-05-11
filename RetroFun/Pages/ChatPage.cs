@@ -28,15 +28,19 @@ namespace RetroFun.Pages
         private HMessage replacement;
         private HMessage ChatMessageBuild;
         private HMessage FloodMessageBuild;
+        private HMessage PyramidChatBuild;
+
+        private string OldPyramidString = string.Empty;
+        private string actualpyramidstring;
 
         private int LocalIndex;
         private Dictionary<int, HEntity> users = new Dictionary<int, HEntity>();
 
-        private bool isRaidMode;
+        private bool isCloneChatUser;
         private bool IsRaidModeAlertDone;
 
         private int[] rainbowlist = new int[] { 3, 4, 5, 6, 7, 11, 12, 13, 14, 15, 18 };
-
+        private int Bubbleused = 0;
         //private int oldrainbowbubble;
         //private int newrainbowselected;
 
@@ -44,12 +48,14 @@ namespace RetroFun.Pages
 
         public bool IsReceiving => true;
 
-
+        private bool isLiveEditChat;
         private bool _FlooderEnabled;
 
         private int ChatMessageBubble;
 
         private int FloodMessageBubble;
+
+        private int PyramidMessageBubble;
 
         public bool FlooderEnabled
         {
@@ -124,6 +130,20 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+
+        private bool _EditPacketChat;
+
+        public bool EditPacketChat
+        {
+            get => _EditPacketChat;
+            set
+            {
+                _EditPacketChat = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
         private bool _useSelectedBubble;
 
@@ -279,6 +299,7 @@ namespace RetroFun.Pages
             Bind(ShoutTalkBox, "Checked", nameof(ForceShoutChat));
             Bind(WhisperChatBox, "Checked", nameof(ForceWhisperChat));
             Bind(RainbowChatChbx, "Checked", nameof(RainbowChatEnabled));
+            Bind(EditChatPacketsChbx, "Checked", nameof(EditPacketChat));
 
             Bind(TextFloodPhraseBox, "Text", nameof(FlooderText));
             Bind(CooldownFloodNbx, "Value", nameof(FlooderCooldown));
@@ -500,17 +521,17 @@ namespace RetroFun.Pages
 
         public void OnRoomUserTalk(DataInterceptedEventArgs e)
         {
-            RoomUserStartSpeaking(e);
+                RoomUserStartSpeaking(e);
         }
 
         public void OnRoomUserShout(DataInterceptedEventArgs e)
         {
-            RoomUserStartSpeaking(e);
+                RoomUserStartSpeaking(e);
         }
 
         public void OnRoomUserWhisper(DataInterceptedEventArgs e)
         {
-            RoomUserStartSpeaking(e);
+                RoomUserStartSpeaking(e);
         }
 
 
@@ -528,7 +549,7 @@ namespace RetroFun.Pages
                     Connection.SendToClientAsync(In.RoomUserTalk, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
-            if (isRaidMode)
+            if (isCloneChatUser)
             {
                 if (index == MainUserIndex)
                 {
@@ -573,7 +594,7 @@ namespace RetroFun.Pages
                 }
             }
 
-            if (isRaidMode)
+            if (isCloneChatUser)
             {
                 if (index == MainUserIndex)
                 {
@@ -609,6 +630,12 @@ namespace RetroFun.Pages
             int bubbleId = Packet.Packet.ReadInteger();
 
             string whisperTarget = null;
+
+            if (Bubbleused != bubbleId)
+            {
+                Bubbleused = bubbleId;
+            }
+
             if (Packet.Packet.Header == Out.RoomUserWhisper)
             {
                 whisperTarget = message.Split(' ')[0];
@@ -668,6 +695,8 @@ namespace RetroFun.Pages
             }
         }
 
+        
+
         private string BypassFilter(string message)
         {
             var builder = new StringBuilder(message.Length * 5);
@@ -679,55 +708,128 @@ namespace RetroFun.Pages
         }
 
 
+        private HMessage PyramidChatBuilder()
+        {
+            string PyramidChatText;
+            if (FlooderText != null)
+            {
+                if (AntiBobbaFilter)
+                {
+                    PyramidChatText = BypassFilter(FlooderText);
+                }
+                else
+                {
+                    PyramidChatText = FlooderText;
+                }
+
+                if (UseSelectedBubbleServerSide)
+                {
+                    PyramidMessageBubble = SelectedSSBubbleId;
+                }
+                else
+                {
+                    PyramidMessageBubble = Bubbleused;
+                }
+
+                if (RainbowChatEnabled)
+                {
+                    int Debug = GetRainbowBubbleint();
+                    PyramidMessageBubble = Debug;
+                }
+
+                if (!ForceChatSpeak)
+                {
+
+                    PyramidChatBuild = new HMessage(Out.RoomUserTalk, PyramidChatText, PyramidMessageBubble);
+
+                }
+                else
+                {
+                    if (ForceNormalSpeak)
+                    {
+
+                        PyramidChatBuild = new HMessage(Out.RoomUserTalk, PyramidChatText, PyramidMessageBubble);
+
+                    }
+                    else if (ForceShoutChat)
+                    {
+
+                        PyramidChatBuild = new HMessage(Out.RoomUserShout, PyramidChatText, PyramidMessageBubble);
+
+                    }
+                    else if (ForceWhisperChat)
+                    {
+
+                        PyramidChatBuild = new HMessage(Out.RoomUserWhisper, PyramidChatText, PyramidMessageBubble);
+                    }
+                }
+                return PyramidChatBuild;
+            }
+            return null;
+        }
+
+
         private HMessage FloodMessageBuilder()
         {
             string FloodMessage;
 
-            if (AntiBobbaFilter)
+            if (FlooderText != null)
             {
-                FloodMessage = BypassFilter(FlooderText);
-            }
-            else
-            {
-                FloodMessage = FlooderText;
-            }
-
-            if (UseSelectedBubbleServerSide)
-            {
-                FloodMessageBubble = SelectedSSBubbleId;
-            }
-            else
-            {
-                FloodMessageBubble = 18;
-            }
-
-            if (RainbowChatEnabled)
-            {
-                int Debug = GetRainbowBubbleint();
-                FloodMessageBubble = Debug;
-            }
-            if (!ForceChatSpeak)
-            {
-                FloodMessageBuild = new HMessage(Out.RoomUserTalk, FloodMessage, ChatMessageBubble);
-            }
-            else
-            {
-                if (ForceNormalSpeak)
+                if (AntiBobbaFilter)
                 {
-                    FloodMessageBuild = new HMessage(Out.RoomUserTalk, FloodMessage, ChatMessageBubble);
+                    FloodMessage = BypassFilter(FlooderText);
                 }
-                else if (ForceShoutChat)
+                else
                 {
-                    FloodMessageBuild = new HMessage(Out.RoomUserShout, FloodMessage, ChatMessageBubble);
+                    FloodMessage = FlooderText;
                 }
-                else if (ForceWhisperChat)
-                {
-                    FloodMessageBuild = new HMessage(Out.RoomUserWhisper, FloodMessage, ChatMessageBubble);
-                }
-            }
 
-            return FloodMessageBuild;
+                if (UseSelectedBubbleServerSide)
+                {
+                    FloodMessageBubble = SelectedSSBubbleId;
+                }
+                else
+                {
+                    FloodMessageBubble = Bubbleused;
+                }
+
+                if (RainbowChatEnabled)
+                {
+                    int Debug = GetRainbowBubbleint();
+                    FloodMessageBubble = Debug;
+                }
+
+                if (!ForceChatSpeak)
+                {
+
+                    FloodMessageBuild = new HMessage(Out.RoomUserTalk, FloodMessage, FloodMessageBubble);
+
+                }
+                else
+                {
+                    if (ForceNormalSpeak)
+                    {
+
+                        FloodMessageBuild = new HMessage(Out.RoomUserTalk, FloodMessage, FloodMessageBubble);
+
+                    }
+                    else if (ForceShoutChat)
+                    {
+
+                        FloodMessageBuild = new HMessage(Out.RoomUserShout, FloodMessage, FloodMessageBubble);
+
+                    }
+                    else if (ForceWhisperChat)
+                    {
+
+                        FloodMessageBuild = new HMessage(Out.RoomUserWhisper, FloodMessage, FloodMessageBubble);
+                    }
+                }
+                return FloodMessageBuild;
+            }
+            return null;
         }
+        
 
 
         private HMessage ChatMessageBuilder()
@@ -749,7 +851,7 @@ namespace RetroFun.Pages
             }
             else
             {
-                ChatMessageBubble = 18;
+                ChatMessageBubble = Bubbleused;
             }
 
             if (RainbowChatEnabled)
@@ -803,6 +905,33 @@ namespace RetroFun.Pages
         }
 
 
+        private void StartPyramidThread()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    if (isLiveEditChat)
+                    {
+                        Thread.Sleep(FlooderCooldown);
+                        if (Connection.Remote.IsConnected)
+                        {
+                            if(OldPyramidString != FlooderText)
+                            {
+                                OldPyramidString = FlooderText;
+                                if(PyramidChatBuilder() != null)
+                                {
+                                    Connection.SendToServerAsync(PyramidChatBuilder());
+                                }
+                            }
+                        }
+                        Thread.Sleep(100);
+                    }
+
+                } while (isLiveEditChat);
+            }).Start();
+        }
 
 
         private void FloodBtn_Click(object sender, EventArgs e)
@@ -824,16 +953,16 @@ namespace RetroFun.Pages
 
         private void CloneUserSpeakBtn_Click(object sender, EventArgs e)
         {
-            if (isRaidMode)
+            if (isCloneChatUser)
             {
                 WriteToButton(CloneUserSpeakBtn, "Clone User Speak : OFF");
-                isRaidMode = false;
+                isCloneChatUser = false;
             }
             else
             {
 
                 WriteToButton(CloneUserSpeakBtn, "Clone User Speak : ON");
-                isRaidMode = true;
+                isCloneChatUser = true;
                 if(!IsRaidModeAlertDone)
                 {
                     Connection.SendToClientAsync(In.RoomUserWhisper, 0, "CAUTION: This can result in a ban of the account! Use with caution!", 0, 34, 0, -1);
@@ -918,5 +1047,29 @@ namespace RetroFun.Pages
         public void InRemoveWallItem(DataInterceptedEventArgs e)
         {
         }
+        public void OnToggleFloorItem(DataInterceptedEventArgs e)
+        { }
+
+
+        public void OnToggleWallItem(DataInterceptedEventArgs e)
+        { }
+        public void InWallItemUpdate(DataInterceptedEventArgs e)
+        { }
+        private void LiveEditChatBtn_Click(object sender, EventArgs e)
+        {
+            if(isLiveEditChat)
+            {
+                WriteToButton(LiveEditChatBtn, "Live Edit : OFF");
+                isLiveEditChat = false;
+            }
+            else
+            {
+                WriteToButton(LiveEditChatBtn, "Live Edit : ON");
+                isLiveEditChat = true;
+                StartPyramidThread();
+            }
+        }
+        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
+        { }
     }
 }

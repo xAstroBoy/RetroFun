@@ -79,6 +79,10 @@ namespace RetroFun.Controls
             {
 
             }
+            catch(System.ArgumentOutOfRangeException)
+            {
+
+            }
         }
 
         protected void RaiseOnPropertyChanged([CallerMemberName]string propertyName = "")
