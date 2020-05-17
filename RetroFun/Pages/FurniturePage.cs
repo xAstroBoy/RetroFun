@@ -922,6 +922,8 @@ namespace RetroFun.Pages
             if (IsPickerGrabMode)
             {
                 FindTypeId(furnitureId);
+                e.IsBlocked = true;
+
             }
         }
 
@@ -941,6 +943,7 @@ namespace RetroFun.Pages
             if(IsPickerGrabMode)
             {
                 FindTypeId(FloorFurni);
+                e.IsBlocked = true;
             }
         }
 
@@ -1181,6 +1184,7 @@ namespace RetroFun.Pages
             if (IsPickerGrabMode)
             {
                 FindTypeId(FurniID);
+                e.IsBlocked = true;
             }
         }
 

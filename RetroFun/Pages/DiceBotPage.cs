@@ -15,8 +15,6 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class DiceBotPage : ObservablePage, ISubscriber
     {
-
-        private bool USEARCTURUS = false;
         public bool ShouldRollFirst => DiceSelected1 && DiceHostResult != DiceResult1;
         public bool ShouldRollSecond => DiceSelected2 && DiceHostResult != DiceResult2;
         public bool ShouldRollThird => DiceSelected3 && DiceHostResult != DiceResult3;
@@ -437,8 +435,7 @@ namespace RetroFun.Pages
 
         public void InItemExtraData(DataInterceptedEventArgs e)
         {
-            if(USEARCTURUS)
-            {
+
                 try
                 {
                     int id = int.Parse(e.Packet.ReadString());
@@ -630,12 +627,6 @@ namespace RetroFun.Pages
                 {
 
                 }
-            }
-            else
-            {
-                e.Packet.Position = 0;
-                e.Continue();
-            }
         }
 
 

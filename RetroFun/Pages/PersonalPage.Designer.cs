@@ -65,9 +65,9 @@
             this.EnableSub1Btn = new Sulakore.Components.SKoreButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.SetEnableBtn = new Sulakore.Components.SKoreButton();
             this.CooldownEffectNbx = new System.Windows.Forms.NumericUpDown();
             this.LiveEditBtn = new Sulakore.Components.SKoreButton();
-            this.SetEnableBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).BeginInit();
@@ -350,10 +350,10 @@
             // 
             this.HanditemCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.HanditemCmbx.FormattingEnabled = true;
-            this.HanditemCmbx.Location = new System.Drawing.Point(24, 27);
+            this.HanditemCmbx.Location = new System.Drawing.Point(9, 27);
             this.HanditemCmbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HanditemCmbx.Name = "HanditemCmbx";
-            this.HanditemCmbx.Size = new System.Drawing.Size(289, 28);
+            this.HanditemCmbx.Size = new System.Drawing.Size(404, 28);
             this.HanditemCmbx.TabIndex = 88;
             // 
             // GiveallUserHanditemBtn
@@ -394,7 +394,7 @@
             this.groupBox3.Controls.Add(this.GiveallUserHanditemBtn);
             this.groupBox3.Location = new System.Drawing.Point(708, 20);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(344, 233);
+            this.groupBox3.Size = new System.Drawing.Size(420, 233);
             this.groupBox3.TabIndex = 93;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Handitems";
@@ -485,6 +485,16 @@
             this.label5.TabIndex = 100;
             this.label5.Text = "Cooldown";
             // 
+            // SetEnableBtn
+            // 
+            this.SetEnableBtn.Location = new System.Drawing.Point(16, 36);
+            this.SetEnableBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SetEnableBtn.Name = "SetEnableBtn";
+            this.SetEnableBtn.Size = new System.Drawing.Size(199, 31);
+            this.SetEnableBtn.TabIndex = 97;
+            this.SetEnableBtn.Text = "Set Enable";
+            this.SetEnableBtn.Click += new System.EventHandler(this.SetEnableBtn_Click);
+            // 
             // CooldownEffectNbx
             // 
             this.CooldownEffectNbx.Location = new System.Drawing.Point(459, 95);
@@ -516,16 +526,6 @@
             this.LiveEditBtn.TabIndex = 98;
             this.LiveEditBtn.Text = "Live Edit : OFF";
             this.LiveEditBtn.Click += new System.EventHandler(this.LiveEditBtn_Click);
-            // 
-            // SetEnableBtn
-            // 
-            this.SetEnableBtn.Location = new System.Drawing.Point(16, 36);
-            this.SetEnableBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.SetEnableBtn.Name = "SetEnableBtn";
-            this.SetEnableBtn.Size = new System.Drawing.Size(199, 31);
-            this.SetEnableBtn.TabIndex = 97;
-            this.SetEnableBtn.Text = "Set Enable";
-            this.SetEnableBtn.Click += new System.EventHandler(this.SetEnableBtn_Click);
             // 
             // PersonalPage
             // 

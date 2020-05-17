@@ -1191,5 +1191,6 @@ namespace RetroFun.Pages
         { }
         public void InWallItemUpdate(DataInterceptedEventArgs e)
         { }
+
     }
 }

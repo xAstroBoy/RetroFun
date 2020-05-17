@@ -13,8 +13,6 @@ namespace RetroFun.Pages
     public partial class DicePage : ObservablePage, ISubscriber
     {
 
-        private bool USEARCUTURS = false;
-
         private bool _IsRegistrationMode;
 
         public bool IsRegistrationMode
@@ -626,71 +624,65 @@ namespace RetroFun.Pages
 
         public void InItemExtraData(DataInterceptedEventArgs e)
         {
-            if (USEARCUTURS)
+            try
             {
-                try
-                {
-                    int id = int.Parse(e.Packet.ReadString());
-                    e.Packet.ReadInteger();
-                    string data = e.Packet.ReadString();
-                    e.Packet.Position = 0;
-                    e.Continue();
-
-                    if (!int.TryParse(data, out int diceState) || diceState == -1) return;
-
-                    if (id == DiceID1)
-                    {
-                        DiceResult1 = diceState;
-                        CalculateResults();
-
-                    }
-
-                    if (id == DiceID2)
-                    {
-                        DiceResult2 = diceState;
-                        CalculateResults();
-
-                    }
-
-                    if (id == DiceID3)
-                    {
-                        DiceResult3 = diceState;
-                        CalculateResults();
-
-                    }
-
-                    if (id == DiceID4)
-                    {
-                        DiceResult4 = diceState;
-                        CalculateResults();
-
-                    }
-
-                    if (id == DiceID5)
-                    {
-                        DiceResult5 = diceState;
-                        CalculateResults();
-
-                    }
-
-                    if (id == DiceID6)
-                    {
-                        DiceResult6 = diceState;
-                        CalculateResults();
-                    }
-                }
-                catch (Exception exc)
-                {
-
-                }
-
-            }
-            else
-            {
+                int id = int.Parse(e.Packet.ReadString());
+                e.Packet.ReadInteger();
+                string data = e.Packet.ReadString();
                 e.Packet.Position = 0;
                 e.Continue();
+
+                if (!int.TryParse(data, out int diceState) || diceState == -1) return;
+
+                if (id == DiceID1)
+                {
+                    DiceResult1 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID2)
+                {
+                    DiceResult2 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID3)
+                {
+                    DiceResult3 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID4)
+                {
+                    DiceResult4 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID5)
+                {
+                    DiceResult5 = diceState;
+                    CalculateResults();
+
+                }
+
+                if (id == DiceID6)
+                {
+                    DiceResult6 = diceState;
+                    CalculateResults();
+                }
+            }
+            catch (Exception exc)
+            {
+
             }
         }
+
+
+        
 
 
         private void CalculateResults()

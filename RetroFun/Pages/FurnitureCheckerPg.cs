@@ -2091,7 +2091,8 @@ namespace RetroFun.Pages
                             {
                                 Speak("Scanned all Wall Furnis!", 30);
                             }
-                                IS_SCANNING_WALLFURNIS = false;
+                                
+                           IS_SCANNING_WALLFURNIS = false;
                         }
                         IS_SCANNING_WALLFURNIS = false;
                     }

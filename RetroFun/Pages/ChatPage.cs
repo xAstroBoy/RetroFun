@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
@@ -39,11 +40,13 @@ namespace RetroFun.Pages
         private bool isCloneChatUser;
         private bool IsRaidModeAlertDone;
 
-        private int[] rainbowlist = new int[] { 3, 4, 5, 6, 7, 11, 12, 13, 14, 15, 18 };
+        private readonly int[] rainbowlist = new int[] { 3, 4, 5, 6, 7, 11, 12, 13, 14, 15, 18 };
+        private readonly string[] knowncommands = new string[] { "pickall", "setspeed", "reload", "disablediagonal", "setmax", "override", "tele", "teleport", "tp", "refresh_catalogue", "refreshcata", "roomalert", "coords", "coins", "credits", "givecoins", "pixels ", "givepixels ", "handitem ", "ha", "hotelalert", "freeze", "buyx", "enable", "roommute", "masscredits", "globalcredits", "openroom", "roombadge", "massbadge", "language", "userinfo", "halbug", "dumpmaps", "givebadge", "invisible", "ban", "disconnect", "dc", "superban", "langban", "roomkick", "mutam", "unmute", "alert", "cacciam", "unban", "geefbelcredits", "givecrystals", "deletemission", "hai", "hal", "setchatlog", "aprilpt", "inisondaggio", "discomode", "ghal", "gpok", "apripok", "comeall", "commands", "faq", "info", "about", "enablestatus", "disablefriends", "enablefriends", "disabletrade", "enabletrade", "mordi", "wheresmypet", "wheresmypets", "whereismypets", "powerlevels", "forcerot", "seteffect", "empty", "whosonline", "stalk", "follow", "warp", "lay", "sit", "come", "moonwalk", "push", "pull", "copylook", "fly", "placex", "placecircle", "placesquare", "staffalert", "smallban", "danceid", "domanda", "chiudidadi", "vota", "terminavoto" };
         private int Bubbleused = 0;
         //private int oldrainbowbubble;
         //private int newrainbowselected;
 
+        private string SelectedColorChat = "@red@";
         private Random rand = new Random();
 
         public bool IsReceiving => true;
@@ -67,7 +70,14 @@ namespace RetroFun.Pages
             }
         }
 
-
+        private readonly ChatColors[] _ComicTextColor = new[]
+{
+           new ChatColors(Color.Red, "Red" , "@red@"),
+           new ChatColors(Color.Green, "Green" , "@green@"),
+           new ChatColors(Color.Purple, "Purple" , "@purple@"),
+           new ChatColors(Color.Blue, "Blue" , "@blue@"),
+           new ChatColors(Color.Cyan, "Cyan" , "@cyan@"),
+        };
 
         private string _FlooderText;
 
@@ -194,6 +204,21 @@ namespace RetroFun.Pages
             }
         }
 
+
+        private bool _ColorizeText;
+
+        public bool ColorizeText
+        {
+            get => _ColorizeText;
+            set
+            {
+                _ColorizeText = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+
         private bool _ForceNormalSpeak = true;
 
         public bool ForceNormalSpeak
@@ -283,9 +308,15 @@ namespace RetroFun.Pages
         public int SelectedSSBubbleId { get; private set; }
         public int SelectedCSBubbleId { get; private set; }
 
+
+
+        
         public ChatPage()
         {
             InitializeComponent();
+
+            ChatColorComboBox.Items.AddRange(_ComicTextColor);
+            ChatColorComboBox.SelectedIndex = 0;
 
             Bind(AntiBobbaFilterChbx, "Checked", nameof(AntiBobbaFilter));
             Bind(UseSelectedBubbleSSChbx, "Checked", nameof(UseSelectedBubbleServerSide));
@@ -307,8 +338,8 @@ namespace RetroFun.Pages
             Bind(IndexNbx, "Value", nameof(MainUserIndex));
             Bind(CooldownCloneUserChatNbx, "Value", nameof(RaidUserCooldownCooldown));
             Bind(ChatMsgTxb, "Text", nameof(ChatMessageText));
+            Bind(SetTextColorChbx, "Checked", nameof(ColorizeText));
 
-            
 
             var imageType = typeof(Image);
 
@@ -521,17 +552,17 @@ namespace RetroFun.Pages
 
         public void OnRoomUserTalk(DataInterceptedEventArgs e)
         {
-                RoomUserStartSpeaking(e);
+            RoomUserStartSpeaking(e);
         }
 
         public void OnRoomUserShout(DataInterceptedEventArgs e)
         {
-                RoomUserStartSpeaking(e);
+            RoomUserStartSpeaking(e);
         }
 
         public void OnRoomUserWhisper(DataInterceptedEventArgs e)
         {
-                RoomUserStartSpeaking(e);
+            RoomUserStartSpeaking(e);
         }
 
 
@@ -638,6 +669,7 @@ namespace RetroFun.Pages
 
             if (Packet.Packet.Header == Out.RoomUserWhisper)
             {
+                
                 whisperTarget = message.Split(' ')[0];
                 message = message.Substring(whisperTarget.Length);
             }
@@ -649,7 +681,14 @@ namespace RetroFun.Pages
 
             if (!string.IsNullOrWhiteSpace(whisperTarget))
             {
-                message = whisperTarget + " " + message;
+                if(!ColorizeText)
+                {
+                    message = whisperTarget + " " + message;
+                }
+                else
+                {
+                    message = whisperTarget + " " + SelectedColorChat + " " + message;
+                }
             }
 
             if (UseSelectedBubbleServerSide)
@@ -664,23 +703,64 @@ namespace RetroFun.Pages
             }
 
             Packet.IsBlocked = true;
+
+
             if (!ForceChatSpeak)
             {
-                replacement = new HMessage(Packet.Packet.Header, message, bubbleId);
+                if (!ColorizeText)
+                {
+                    replacement = new HMessage(Packet.Packet.Header, message, bubbleId);
+                }
+                else
+                {
+                    if (!(Packet.Packet.Header == Out.RoomUserWhisper))
+                    {
+                        if (!knowncommands.Any(s => message.StartsWith(":" + s)))
+                        {
+                            replacement = new HMessage(Packet.Packet.Header, SelectedColorChat + " " + message, bubbleId);
+                        }
+                        else
+                        {
+                            replacement = new HMessage(Packet.Packet.Header, message, bubbleId);
+                        }
+                    }
+                    else
+                    {
+                        replacement = new HMessage(Packet.Packet.Header,  message, bubbleId);
+                    }
+                }
             }
             else
             {
-                if (ForceNormalSpeak)
+                if (!ColorizeText)
                 {
-                    replacement = new HMessage(Out.RoomUserTalk, " " + message, bubbleId);
+                    if (ForceNormalSpeak)
+                    {
+                        replacement = new HMessage(Out.RoomUserTalk, " " + message, bubbleId);
+                    }
+                    else if (ForceShoutChat)
+                    {
+                        replacement = new HMessage(Out.RoomUserShout, " " + message, bubbleId);
+                    }
+                    else if (ForceWhisperChat)
+                    {
+                        replacement = new HMessage(Out.RoomUserWhisper, " " + message, bubbleId);
+                    }
                 }
-                else if (ForceShoutChat)
+                else
                 {
-                    replacement = new HMessage(Out.RoomUserShout, " " + message, bubbleId);
-                }
-                else if (ForceWhisperChat)
-                {
-                    replacement = new HMessage(Out.RoomUserWhisper, " " + message, bubbleId);
+                    if (ForceNormalSpeak)
+                    {
+                        replacement = new HMessage(Out.RoomUserTalk, SelectedColorChat + " " + message, bubbleId);
+                    }
+                    else if (ForceShoutChat)
+                    {
+                        replacement = new HMessage(Out.RoomUserShout, SelectedColorChat + " " + message, bubbleId);
+                    }
+                    else if (ForceWhisperChat)
+                    {
+                        replacement = new HMessage(Out.RoomUserWhisper, SelectedColorChat + " " + message, bubbleId);
+                    }
                 }
             }
 
@@ -695,7 +775,7 @@ namespace RetroFun.Pages
             }
         }
 
-        
+
 
         private string BypassFilter(string message)
         {
@@ -737,31 +817,51 @@ namespace RetroFun.Pages
                     PyramidMessageBubble = Debug;
                 }
 
+
                 if (!ForceChatSpeak)
                 {
-
-                    PyramidChatBuild = new HMessage(Out.RoomUserTalk, PyramidChatText, PyramidMessageBubble);
-
+                    if (!ColorizeText)
+                    {
+                        PyramidChatBuild = new HMessage(Out.RoomUserTalk, PyramidChatText, PyramidMessageBubble);
+                    }
+                    else
+                    {
+                        PyramidChatBuild = new HMessage(Out.RoomUserTalk, SelectedColorChat +  " " + PyramidChatText, PyramidMessageBubble);
+                    }
                 }
                 else
                 {
-                    if (ForceNormalSpeak)
+                    if (!ColorizeText)
                     {
-
-                        PyramidChatBuild = new HMessage(Out.RoomUserTalk, PyramidChatText, PyramidMessageBubble);
-
+                        if (ForceNormalSpeak)
+                        {
+                            PyramidChatBuild = new HMessage(Out.RoomUserTalk, PyramidChatText, ChatMessageBubble);
+                        }
+                        else if (ForceShoutChat)
+                        {
+                            PyramidChatBuild = new HMessage(Out.RoomUserShout, PyramidChatText, ChatMessageBubble);
+                        }
+                        else if (ForceWhisperChat)
+                        {
+                            PyramidChatBuild = new HMessage(Out.RoomUserWhisper, PyramidChatText, ChatMessageBubble);
+                        }
                     }
-                    else if (ForceShoutChat)
+                    else
                     {
-
-                        PyramidChatBuild = new HMessage(Out.RoomUserShout, PyramidChatText, PyramidMessageBubble);
-
+                        if (ForceNormalSpeak)
+                        {
+                            PyramidChatBuild = new HMessage(Out.RoomUserTalk, SelectedColorChat +  " " + PyramidChatText, ChatMessageBubble);
+                        }
+                        else if (ForceShoutChat)
+                        {
+                            PyramidChatBuild = new HMessage(Out.RoomUserShout, SelectedColorChat +  " " + PyramidChatText, ChatMessageBubble);
+                        }
+                        else if (ForceWhisperChat)
+                        {
+                            PyramidChatBuild = new HMessage(Out.RoomUserWhisper, SelectedColorChat +  " " + PyramidChatText, ChatMessageBubble);
+                        }
                     }
-                    else if (ForceWhisperChat)
-                    {
-
-                        PyramidChatBuild = new HMessage(Out.RoomUserWhisper, PyramidChatText, PyramidMessageBubble);
-                    }
+                    return PyramidChatBuild;
                 }
                 return PyramidChatBuild;
             }
@@ -801,35 +901,54 @@ namespace RetroFun.Pages
 
                 if (!ForceChatSpeak)
                 {
-
-                    FloodMessageBuild = new HMessage(Out.RoomUserTalk, FloodMessage, FloodMessageBubble);
-
+                    if (!ColorizeText)
+                    {
+                        FloodMessageBuild = new HMessage(Out.RoomUserTalk, FloodMessage, FloodMessageBubble);
+                    }
+                    else
+                    {
+                        FloodMessageBuild = new HMessage(Out.RoomUserTalk, SelectedColorChat +  " " + FloodMessage, FloodMessageBubble);
+                    }
                 }
                 else
                 {
-                    if (ForceNormalSpeak)
+                    if (!ColorizeText)
                     {
-
-                        FloodMessageBuild = new HMessage(Out.RoomUserTalk, FloodMessage, FloodMessageBubble);
-
+                        if (ForceNormalSpeak)
+                        {
+                            FloodMessageBuild = new HMessage(Out.RoomUserTalk, FloodMessage, FloodMessageBubble);
+                        }
+                        else if (ForceShoutChat)
+                        {
+                            FloodMessageBuild = new HMessage(Out.RoomUserShout, FloodMessage, FloodMessageBubble);
+                        }
+                        else if (ForceWhisperChat)
+                        {
+                            FloodMessageBuild = new HMessage(Out.RoomUserWhisper, FloodMessage, FloodMessageBubble);
+                        }
                     }
-                    else if (ForceShoutChat)
+                    else
                     {
-
-                        FloodMessageBuild = new HMessage(Out.RoomUserShout, FloodMessage, FloodMessageBubble);
-
+                        if (ForceNormalSpeak)
+                        {
+                            FloodMessageBuild = new HMessage(Out.RoomUserTalk, SelectedColorChat +  " " + FloodMessage, FloodMessageBubble);
+                        }
+                        else if (ForceShoutChat)
+                        {
+                            FloodMessageBuild = new HMessage(Out.RoomUserShout, SelectedColorChat +  " " + FloodMessage, FloodMessageBubble);
+                        }
+                        else if (ForceWhisperChat)
+                        {
+                            FloodMessageBuild = new HMessage(Out.RoomUserWhisper, SelectedColorChat +  " " + FloodMessage, FloodMessageBubble);
+                        }
                     }
-                    else if (ForceWhisperChat)
-                    {
-
-                        FloodMessageBuild = new HMessage(Out.RoomUserWhisper, FloodMessage, FloodMessageBubble);
-                    }
+                    return FloodMessageBuild;
                 }
                 return FloodMessageBuild;
             }
             return null;
         }
-        
+
 
 
         private HMessage ChatMessageBuilder()
@@ -861,27 +980,66 @@ namespace RetroFun.Pages
             }
             if (!ForceChatSpeak)
             {
-                ChatMessageBuild = new HMessage(Out.RoomUserTalk, ChatMessage, ChatMessageBubble);
-            }
-            else
-            {
-                if (ForceNormalSpeak)
+                if (!ColorizeText)
                 {
                     ChatMessageBuild = new HMessage(Out.RoomUserTalk, ChatMessage, ChatMessageBubble);
                 }
-                else if (ForceShoutChat)
+                else
                 {
-                    ChatMessageBuild = new HMessage(Out.RoomUserShout, ChatMessage, ChatMessageBubble);
+                    ChatMessageBuild = new HMessage(Out.RoomUserTalk, SelectedColorChat +  " " + ChatMessage, ChatMessageBubble);
                 }
-                else if (ForceWhisperChat)
+            }
+            else
+            {
+                if (!ColorizeText)
                 {
-                    ChatMessageBuild = new HMessage(Out.RoomUserWhisper, ChatMessage, ChatMessageBubble);
+                    if (ForceNormalSpeak)
+                    {
+                        ChatMessageBuild = new HMessage(Out.RoomUserTalk, ChatMessage, ChatMessageBubble);
+                    }
+                    else if (ForceShoutChat)
+                    {
+                        ChatMessageBuild = new HMessage(Out.RoomUserShout, ChatMessage, ChatMessageBubble);
+                    }
+                    else if (ForceWhisperChat)
+                    {
+                        ChatMessageBuild = new HMessage(Out.RoomUserWhisper, ChatMessage, ChatMessageBubble);
+                    }
+                }
+                else
+                {
+                    if (ForceNormalSpeak)
+                    {
+                        ChatMessageBuild = new HMessage(Out.RoomUserTalk, SelectedColorChat +  " " + ChatMessage, ChatMessageBubble);
+                    }
+                    else if (ForceShoutChat)
+                    {
+                        ChatMessageBuild = new HMessage(Out.RoomUserShout, SelectedColorChat +  " " + ChatMessage, ChatMessageBubble);
+                    }
+                    else if (ForceWhisperChat)
+                    {
+                        ChatMessageBuild = new HMessage(Out.RoomUserWhisper, SelectedColorChat +  " " + ChatMessage, ChatMessageBubble);
+                    }
                 }
             }
             return ChatMessageBuild;
         }
+    
 
+        private class ChatColors
+        {
+            public string Color { get; }
+            public Color SelectedTextColor { get; }
+            public string selectedchatcolor { get; }
 
+            public ChatColors(Color TextColor , string color, string selectedchat)
+            {
+                SelectedTextColor = TextColor;
+                Color = color;
+                selectedchatcolor = selectedchat;
+            }
+            public override string ToString() => SelectedTextColor + $"{Color}";
+        }
         private void StartFloodThread()
         {
             new Thread(() =>
@@ -1071,5 +1229,10 @@ namespace RetroFun.Pages
         }
         public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
         { }
+
+        private void ColorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedColorChat = ((ChatColors)ChatColorComboBox.SelectedItem).selectedchatcolor;
+        }
     }
 }
