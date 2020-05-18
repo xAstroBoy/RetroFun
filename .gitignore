@@ -1,3 +1,5 @@
+.vs
+.vs/*.*
 .vs/RetroFun/v16/Server/sqlite3/db.lock
 .vs/RetroFun/v16/Server/sqlite3/storage.ide-wal
 .vs/RetroFun/v16/Server/sqlite3/storage.ide-shm
