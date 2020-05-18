@@ -75,7 +75,7 @@
     <Compile Include="Controls\FurniComposer.cs" />
     <Compile Include="Controls\ImageComboBox.cs" />
     <Compile Include="Controls\ObservableExtensionForm.cs" />
-    <Compile Include="Controls\ObservablePage.cs" />
+    <Compile Include="Controls\PageUtils.cs" />
     <Compile Include="Converter\IntToStringConverter.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\EnumerableExtensions.cs" />
@@ -233,7 +233,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PacketHandlers\SubscriberPackets.cs" />
+    <Compile Include="PacketHandlers\ObservablePage.cs" />
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </EmbeddedResource>

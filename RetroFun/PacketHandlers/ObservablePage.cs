@@ -3,7 +3,7 @@ using Sulakore.Communication;
 
 namespace RetroFun.Subscribers
 {
-    public class SubscriberPackets : ObservablePage 
+    public class ObservablePage : PageUtils 
     {
         //Outgoing events shared by multiple pages
         public virtual void Out_DiceTrigger(DataInterceptedEventArgs e) { }

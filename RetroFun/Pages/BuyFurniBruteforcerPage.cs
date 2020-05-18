@@ -16,7 +16,7 @@ namespace RetroFun.Pages
 
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class BuyFurniBruteforcerPage:  SubscriberPackets
+    public partial class BuyFurniBruteforcerPage:  ObservablePage
     {
 
 

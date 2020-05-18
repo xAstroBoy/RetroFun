@@ -27,7 +27,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class FurnitureChecker:  SubscriberPackets
+    public partial class FurnitureChecker:  ObservablePage
     {
         private HMessage FurniDataStored;
 

@@ -21,7 +21,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class FurniturePage:  SubscriberPackets
+    public partial class FurniturePage:  ObservablePage
     {
 
         List<HFloorItem> SnapshotFloorItems;

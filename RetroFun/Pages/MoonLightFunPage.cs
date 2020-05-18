@@ -10,7 +10,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class MoonLightFunPage : SubscriberPackets
+    public partial class MoonLightFunPage : ObservablePage
     {
         #region Ints and stuff
 

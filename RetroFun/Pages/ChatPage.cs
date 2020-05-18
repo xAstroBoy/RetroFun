@@ -24,7 +24,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class ChatPage:  SubscriberPackets
+    public partial class ChatPage:  ObservablePage
     {
         private HMessage replacement;
         private HMessage ChatMessageBuild;

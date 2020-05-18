@@ -15,7 +15,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class BottomPage:  SubscriberPackets
+    public partial class BottomPage:  ObservablePage
     {
         private bool _FreezeUserMovement;
         public bool FreezeUserMovement

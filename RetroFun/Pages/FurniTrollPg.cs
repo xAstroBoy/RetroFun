@@ -15,7 +15,7 @@ namespace RetroFun.Pages
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
 
-    public partial class FurniTrollPg : SubscriberPackets
+    public partial class FurniTrollPg : ObservablePage
     {
 
         #region vars

@@ -13,7 +13,7 @@ namespace RetroFun.Controls
 {
     [ToolboxItem(false)]
     [DesignerCategory("Code")]
-    public class ObservablePage : UserControl, INotifyPropertyChanged
+    public class PageUtils : UserControl, INotifyPropertyChanged
     {
         private readonly Dictionary<string, Binding> _bindings;
 
@@ -29,7 +29,7 @@ namespace RetroFun.Controls
         protected IHConnection Connection => Module?.Connection;
         protected HHotel Hotel => Module?.Hotel ?? HHotel.Unknown;
 
-        public ObservablePage()
+        public PageUtils()
         {
             _bindings = new Dictionary<string, Binding>();
 

@@ -11,7 +11,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class RoomBackFun : SubscriberPackets
+    public partial class RoomBackFun : ObservablePage
     {
         private int OldTonality;
         private int OldSaturation;

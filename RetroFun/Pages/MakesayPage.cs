@@ -17,7 +17,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class MakeSayPage:  SubscriberPackets
+    public partial class MakeSayPage:  ObservablePage
     {
         public int SelectedBubbleId { get; private set; }
 

@@ -9,7 +9,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class SpeechzPage : SubscriberPackets
+    public partial class SpeechzPage : ObservablePage
     {
         private string speechtext_with_id = "";
         private HMessage packet;

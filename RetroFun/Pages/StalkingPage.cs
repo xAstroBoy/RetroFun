@@ -12,7 +12,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class StalkingPage:  SubscriberPackets
+    public partial class StalkingPage:  ObservablePage
     {
         private readonly Victim[] _victims = new[]
         {

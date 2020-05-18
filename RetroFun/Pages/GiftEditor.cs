@@ -11,7 +11,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class GiftEditor:  SubscriberPackets
+    public partial class GiftEditor:  ObservablePage
     {
         #region miscvars
 

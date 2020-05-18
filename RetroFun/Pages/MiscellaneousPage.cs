@@ -19,7 +19,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class MiscellaneousPage:  SubscriberPackets
+    public partial class MiscellaneousPage:  ObservablePage
     {
         private Random Randomizer = new Random();
 

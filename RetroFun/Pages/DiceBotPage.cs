@@ -13,7 +13,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class DiceBotPage:  SubscriberPackets
+    public partial class DiceBotPage:  ObservablePage
     {
         public bool ShouldRollFirst => DiceSelected1 && DiceHostResult != DiceResult1;
         public bool ShouldRollSecond => DiceSelected2 && DiceHostResult != DiceResult2;

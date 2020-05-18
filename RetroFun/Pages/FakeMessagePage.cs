@@ -13,7 +13,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class FakeMessagePage : SubscriberPackets
+    public partial class FakeMessagePage : ObservablePage
     {
         private int SelectedUserID;
         private string SelectedUsername;

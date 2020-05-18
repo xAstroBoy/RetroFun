@@ -12,7 +12,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class AvatarEditorPg : SubscriberPackets
+    public partial class AvatarEditorPg : ObservablePage
     {
         private const string FIGURE_DATA_PATH = "Bobba_look.xml";
 

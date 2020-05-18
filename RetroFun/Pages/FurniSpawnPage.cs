@@ -17,7 +17,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class FurniSpawnPage:  SubscriberPackets
+    public partial class FurniSpawnPage:  ObservablePage
     {
         private Random rand = new Random();
         private int _InventoryFurniID;

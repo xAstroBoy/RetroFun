@@ -16,7 +16,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class PetPage:  SubscriberPackets
+    public partial class PetPage:  ObservablePage
     {
 
 

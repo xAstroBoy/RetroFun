@@ -18,7 +18,7 @@ namespace RetroFun.Pages
 
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class UtilitiesPage : SubscriberPackets
+    public partial class UtilitiesPage : ObservablePage
     {
 
         private bool IsBGInterceptor;

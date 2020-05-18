@@ -19,7 +19,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class PersonalPage : SubscriberPackets
+    public partial class PersonalPage : ObservablePage
     {
         HMessage Permissions;
 

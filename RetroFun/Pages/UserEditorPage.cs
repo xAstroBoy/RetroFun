@@ -20,7 +20,7 @@ namespace RetroFun.Pages
 
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class UserEditorPage:  SubscriberPackets
+    public partial class UserEditorPage:  ObservablePage
     {
         private int _selectedUserId;
         private bool _isBlacklistActive = false;

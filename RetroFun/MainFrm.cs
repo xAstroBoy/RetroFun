@@ -34,7 +34,7 @@ namespace RetroFun
         }
 
 
-        private List<SubscriberPackets> _subscribers = new List<SubscriberPackets>();
+        private List<ObservablePage> _subscribers = new List<ObservablePage>();
 
         public MainFrm()
         {
@@ -43,7 +43,7 @@ namespace RetroFun
             InitializeComponent();
 
             //Pages sharing events
-            _subscribers = new List<SubscriberPackets>
+            _subscribers = new List<ObservablePage>
             {
                 ChatPg,
                 DicePg,

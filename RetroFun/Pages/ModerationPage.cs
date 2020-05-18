@@ -21,7 +21,7 @@ namespace RetroFun.Pages
 
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class ModerationPage : SubscriberPackets
+    public partial class ModerationPage : ObservablePage
     {
         private int _selectedUserId;
         public int LocalIndex;

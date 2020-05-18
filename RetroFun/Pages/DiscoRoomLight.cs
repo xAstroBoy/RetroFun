@@ -10,7 +10,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class DiscoRoomLight : SubscriberPackets
+    public partial class DiscoRoomLight : ObservablePage
     {
         public MoonLightFunPage LightController;
         private Random Randomizer2 = new Random();

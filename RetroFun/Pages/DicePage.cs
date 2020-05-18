@@ -10,7 +10,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class DicePage:  SubscriberPackets
+    public partial class DicePage:  ObservablePage
     {
 
         private bool _IsRegistrationMode;
