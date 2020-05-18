@@ -1318,7 +1318,7 @@ namespace RetroFun.Pages
             int index = e.Packet.ReadInteger();
             string text = e.Packet.ReadString();
             var entity = FindEntity(index);
-            SaveChatlog(text, "TALKING", FindUsername(entity));
+            SaveChatlog(text, "SHOUT", FindUsername(entity));
         }
 
 
@@ -1327,7 +1327,7 @@ namespace RetroFun.Pages
             int index = e.Packet.ReadInteger();
             string text = e.Packet.ReadString();
             var entity = FindEntity(index);
-            SaveChatlog(text, "TALKING", FindUsername(entity));
+            SaveChatlog(text, "WHISPERING", FindUsername(entity));
         }
 
         private void SendFriendRequest(string username)
@@ -1414,8 +1414,8 @@ namespace RetroFun.Pages
             {
                 if (entityname != "NOT_LOGGED_USER")
                 {
-                    string Filepath = "../RetroFunLogs/" + GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
-                    string FolderName = "RetroFunLogs";
+                    string Filepath = "../RetroFun_Chatlog/" + GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                    string FolderName = "RetroFun_Chatlog";
 
                     Directory.CreateDirectory("../" + FolderName);
 

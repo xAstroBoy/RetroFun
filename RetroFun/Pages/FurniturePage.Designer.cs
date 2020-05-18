@@ -115,7 +115,7 @@
             this.PickWallItemCSBtn.Size = new System.Drawing.Size(165, 31);
             this.PickWallItemCSBtn.TabIndex = 8;
             this.PickWallItemCSBtn.Text = "Remove Wall Item SS";
-            this.PickWallItemCSBtn.Click += new System.EventHandler(this.PickWallItemCSBtn_Click);
+            this.PickWallItemCSBtn.Click += new System.EventHandler(this.PickWallItemSSBtn_Click);
             // 
             // PickFloorFurniSSBtn
             // 
@@ -182,7 +182,7 @@
             this.RemoveWallItemBtn.Size = new System.Drawing.Size(165, 31);
             this.RemoveWallItemBtn.TabIndex = 2;
             this.RemoveWallItemBtn.Text = "Remove Wall Item CS";
-            this.RemoveWallItemBtn.Click += new System.EventHandler(this.RemoveWallItemBtn_Click);
+            this.RemoveWallItemBtn.Click += new System.EventHandler(this.RemoveWallItemCSBtn_Click);
             // 
             // RemoveFloorItemBtn
             // 
@@ -192,7 +192,7 @@
             this.RemoveFloorItemBtn.Size = new System.Drawing.Size(165, 31);
             this.RemoveFloorItemBtn.TabIndex = 1;
             this.RemoveFloorItemBtn.Text = "Remove Floor Item CS";
-            this.RemoveFloorItemBtn.Click += new System.EventHandler(this.RemoveFloorItemBtn_Click);
+            this.RemoveFloorItemBtn.Click += new System.EventHandler(this.RemoveFloorItemCSBtn_Click);
             // 
             // FloorFurniIDNbx
             // 
