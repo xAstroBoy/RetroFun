@@ -14,14 +14,9 @@ using Sulakore.Habbo;
 using System.Linq;
 using Microsoft.Office.Interop.Excel;
 using Label = System.Windows.Forms.Label;
-using System.Deployment.Internal;
-using System.Text;
 using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Timers;
-using System.Linq.Expressions;
-using System.Drawing;
-using System.Globalization;
 
 namespace RetroFun.Pages
 {
@@ -76,7 +71,6 @@ namespace RetroFun.Pages
         private bool REM_IRR_WALL_FURNI;
         private bool REM_REG_WALL_FURNI;
         private bool REM_REG_FLOOR_FURNI;
-        private bool IS_PICKING_FURNITYPE;
 
         private bool SHOULD_UPDATE_FILES;
 
@@ -87,7 +81,6 @@ namespace RetroFun.Pages
 
         #region hideshit
         private bool _doubleClickFurnitureRemoval;
-        private bool ConvertWalkinFurniMovement;
         private bool ShouldIRemoveIrregolar;
         private bool FurniIDToCheckMode;
         private bool IS_REMOVE_FALSE_POSITIVE_MODE;
@@ -1435,93 +1428,6 @@ namespace RetroFun.Pages
 
 
 
-        public async void TeleportfurniToCoord(int X, int Y)
-        {
-            if (Connection.Remote.IsConnected)
-            {
-                await Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
-            }
-        }
-
-        private async void WalkFurniToCoordX(int X)
-        {
-            if (ConvertWalkinFurniMovement)
-            {
-                while (FloorFurniX != X)
-                {
-                    if (FloorFurniX < X)
-                    {
-                        FloorFurniX++;
-                        await Task.Delay(FurniWalkingSpeed);
-                        SendWalkingFurniPacket(FloorFurniX, FloorFurniY);
-                    }
-                    if (FloorFurniX > X)
-                    {
-                        FloorFurniX--;
-                        await Task.Delay(FurniWalkingSpeed);
-                        SendWalkingFurniPacket(FloorFurniX, FloorFurniY);
-
-                    }
-                }
-            }
-            else
-            {
-                return;
-            }
-        }
-
-        private async void WalkFurniToCoordY(int Y)
-        {
-            if (ConvertWalkinFurniMovement)
-            {
-                while (FloorFurniY != Y)
-                {
-                    if (FloorFurniY < Y)
-                    {
-                        FloorFurniY++;
-                        await Task.Delay(FurniWalkingSpeed);
-                        SendWalkingFurniPacket(FloorFurniX, FloorFurniY);
-
-                    }
-                    if (FloorFurniY > Y)
-                    {
-                        FloorFurniY--;
-                        await Task.Delay(FurniWalkingSpeed);
-                        SendWalkingFurniPacket(FloorFurniX, FloorFurniY);
-                    }
-                }
-            }
-            else
-            {
-                return;
-            }
-        }
-
-        private void SendWalkingFurniPacket(int X, int Y)
-        {
-            if (ConvertWalkinFurniMovement)
-            {
-                if (Connection.Remote.IsConnected)
-                {
-                    Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
-                }
-            }
-        }
-        private void FloorFurniXNbx_ValueChanged(object sender, EventArgs e)
-        {
-            if (ConvertWalkinFurniMovement)
-            {
-                Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
-            }
-        }
-
-        private void FloorFurniYNbx_ValueChanged(object sender, EventArgs e)
-        {
-            if (ConvertWalkinFurniMovement)
-            {
-                Connection.SendToServerAsync(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
-            }
-        }
 
 
 
@@ -1606,27 +1512,6 @@ namespace RetroFun.Pages
             UpdateAllLabels();
         }
 
-        public override void Out_RoomUserWalk(DataInterceptedEventArgs e)
-        {
-            int coordX = e.Packet.ReadInteger();
-            int coordY = e.Packet.ReadInteger();
-
-            if (ConvertWalkinFurniMovement)
-            {
-                if (isTeleportFurni)
-                {
-                    TeleportfurniToCoord(coordX, coordY);
-                    e.IsBlocked = true;
-                }
-                else if (IsWalkingFurni)
-                {
-
-                    WalkFurniToCoord(coordX, coordY);
-                    e.IsBlocked = true;
-                }
-            }
-        }
-
         public static List<HWallItem> BobbaParser(HMessage packet)
         {
             int ownersCount = packet.ReadInteger();
@@ -1644,14 +1529,6 @@ namespace RetroFun.Pages
             return wallItems.ToList();
         }
 
-
-        private async void WalkFurniToCoord(int X, int Y)
-        {
-            WalkFurniToCoordX(X);
-            await Task.Delay(10);
-            WalkFurniToCoordY(Y);
-            await Task.Delay(10);
-        }
 
 
         private void PickWallItemCSBtn_Click(object sender, EventArgs e)

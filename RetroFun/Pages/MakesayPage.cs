@@ -1,5 +1,4 @@
-﻿using RetroFun.Controls;
-using RetroFun.Properties;
+﻿using RetroFun.Properties;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Habbo;
@@ -56,7 +55,7 @@ namespace RetroFun.Pages
             SelectedBubbleId = (int)BubblesCmbx1.SelectedTag;
         }
 
-        public override void In_UserEnterRoom(DataInterceptedEventArgs obj)
+        public override void In_RoomUsers(DataInterceptedEventArgs obj)
         {
             try
             {
@@ -79,7 +78,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public override void Out_UserRequestBadge(DataInterceptedEventArgs e)
+        public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
             int userId = e.Packet.ReadInteger();
             var entity = users.Find(u => u.Id == userId);
@@ -100,7 +99,7 @@ namespace RetroFun.Pages
             WriteRegistrationUsers(users.Count);
         }
 
-        public override void In_RoomUserLeft(DataInterceptedEventArgs e)
+        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
             var UserLeaveEntity = FindEntity(index);

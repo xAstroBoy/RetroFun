@@ -1,15 +1,12 @@
-﻿using RetroFun.Controls;
-using RetroFun.Subscribers;
+﻿using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Components;
 using Sulakore.Habbo;
-using Sulakore.Protocol;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -1009,7 +1006,7 @@ namespace RetroFun.Pages
         }
 
 
-        public override void In_RoomUserLeft(DataInterceptedEventArgs e)
+        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
             var entity = FindEntity(index);
@@ -1030,7 +1027,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public override void In_UserEnterRoom(DataInterceptedEventArgs obj)
+        public override void In_RoomUsers(DataInterceptedEventArgs obj)
         {
             try
             {
@@ -1057,7 +1054,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public override void Out_UserFriendRemoval(DataInterceptedEventArgs e)
+        public override void Out_RemoveFriend(DataInterceptedEventArgs e)
         {
             if (AntiFriendRemove)
                 e.IsBlocked = true;

@@ -1,5 +1,4 @@
-﻿using RetroFun.Controls;
-using RetroFun.Subscribers;
+﻿using RetroFun.Subscribers;
 using Sulakore.Protocol;
 using System;
 using System.ComponentModel;

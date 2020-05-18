@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RetroFun.Controls;
 using Sulakore.Communication;
 using RetroFun.Subscribers;
-using Sulakore.Habbo;
 using Sulakore.Components;
+using Sulakore.Habbo.Messages;
+
 
 namespace RetroFun.Pages
 {
@@ -21,6 +17,11 @@ namespace RetroFun.Pages
     public partial class UtilitiesPage : ObservablePage
     {
 
+
+        // TEMP
+
+
+        List<Outgoing> outg = new List<Outgoing>();
         private bool IsBGInterceptor;
         private bool isLiveBGEditor;
 
@@ -231,7 +232,7 @@ namespace RetroFun.Pages
                 WriteToButton(CaptureRoomBGBtn, "Capture RoomBG : OFF");
                 IsBGInterceptor = false;
             }
-        } 
+        }
         public override void Out_RoomPlaceItem(DataInterceptedEventArgs e)
         {
             if (CreditExchangeMode)
@@ -316,7 +317,7 @@ namespace RetroFun.Pages
 
         private void CaptureRoomBGBtn_Click(object sender, EventArgs e)
         {
-            if(IsBGInterceptor)
+            if (IsBGInterceptor)
             {
                 WriteToButton(CaptureRoomBGBtn, "Capture RoomBG : OFF");
                 IsBGInterceptor = false;
@@ -349,7 +350,7 @@ namespace RetroFun.Pages
 
         private void OffsetZNbx_ValueChanged(object sender, EventArgs e)
         {
-            if(isLiveBGEditor)
+            if (isLiveBGEditor)
             {
                 SendRoomBGPacket(RoomBGID, RoomBGX, OffsetX, OffsetY, OffsetZ, RoomBGURL);
 
@@ -381,5 +382,6 @@ namespace RetroFun.Pages
                 SendRoomBGPacket(RoomBGID, RoomBGX, OffsetX, OffsetY, OffsetZ, RoomBGURL);
             }
         }
+
     }
 }

@@ -1,5 +1,4 @@
-﻿using RetroFun.Controls;
-using RetroFun.Subscribers;
+﻿using RetroFun.Subscribers;
 using Sulakore.Communication;
 using System;
 using System.ComponentModel;
@@ -276,7 +275,7 @@ namespace RetroFun.Pages
 
         }
 
-        public override void Out_DiceTrigger(DataInterceptedEventArgs e)
+        public override void Out_TriggerDice(DataInterceptedEventArgs e)
         {
             if (_IsRegistrationMode)
             {

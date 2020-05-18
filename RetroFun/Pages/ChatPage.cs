@@ -1,18 +1,15 @@
 ﻿using RetroFun.Controls;
-using RetroFun.Helpers;
 using RetroFun.Properties;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Components;
 using Sulakore.Habbo;
-using Sulakore.Modules;
 using Sulakore.Protocol;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
@@ -451,7 +448,7 @@ namespace RetroFun.Pages
             });
         }
 
-        public override void In_UserEnterRoom(DataInterceptedEventArgs obj)
+        public override void In_RoomUsers(DataInterceptedEventArgs obj)
         {
             try
             {
@@ -488,7 +485,7 @@ namespace RetroFun.Pages
 
         }
 
-        public override void In_RoomUserLeft(DataInterceptedEventArgs e)
+        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
             var entity = FindEntity(index);

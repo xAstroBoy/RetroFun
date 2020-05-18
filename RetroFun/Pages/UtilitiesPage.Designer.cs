@@ -76,54 +76,48 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.GiftExchangerIDNBx);
             this.groupBox3.Controls.Add(this.AutoGiftExchangerBtn);
-            this.groupBox3.Location = new System.Drawing.Point(336, 14);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox3.Location = new System.Drawing.Point(224, 9);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox3.Size = new System.Drawing.Size(282, 363);
+            this.groupBox3.Size = new System.Drawing.Size(188, 236);
             this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Gift Exchanger";
             // 
             // ReedemGiftBtn
             // 
-            this.ReedemGiftBtn.Location = new System.Drawing.Point(34, 185);
-            this.ReedemGiftBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ReedemGiftBtn.Location = new System.Drawing.Point(23, 120);
             this.ReedemGiftBtn.Name = "ReedemGiftBtn";
-            this.ReedemGiftBtn.Size = new System.Drawing.Size(195, 31);
+            this.ReedemGiftBtn.Size = new System.Drawing.Size(130, 20);
             this.ReedemGiftBtn.TabIndex = 12;
             this.ReedemGiftBtn.Text = "Redeem Gift.";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 102);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(20, 66);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 20);
+            this.label3.Size = new System.Drawing.Size(37, 13);
             this.label3.TabIndex = 11;
             this.label3.Text = "Gift ID";
             // 
             // GiftExchangerIDNBx
             // 
-            this.GiftExchangerIDNBx.Location = new System.Drawing.Point(34, 131);
-            this.GiftExchangerIDNBx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GiftExchangerIDNBx.Location = new System.Drawing.Point(23, 85);
             this.GiftExchangerIDNBx.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.GiftExchangerIDNBx.Name = "GiftExchangerIDNBx";
-            this.GiftExchangerIDNBx.Size = new System.Drawing.Size(222, 26);
+            this.GiftExchangerIDNBx.Size = new System.Drawing.Size(148, 20);
             this.GiftExchangerIDNBx.TabIndex = 10;
             // 
             // AutoGiftExchangerBtn
             // 
             this.AutoGiftExchangerBtn.AutoSize = true;
-            this.AutoGiftExchangerBtn.Location = new System.Drawing.Point(34, 57);
-            this.AutoGiftExchangerBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AutoGiftExchangerBtn.Location = new System.Drawing.Point(23, 37);
             this.AutoGiftExchangerBtn.Name = "AutoGiftExchangerBtn";
-            this.AutoGiftExchangerBtn.Size = new System.Drawing.Size(217, 24);
+            this.AutoGiftExchangerBtn.Size = new System.Drawing.Size(153, 21);
             this.AutoGiftExchangerBtn.TabIndex = 6;
             this.AutoGiftExchangerBtn.Text = "Automatic Gift Exchanger";
             this.AutoGiftExchangerBtn.UseVisualStyleBackColor = true;
@@ -137,77 +131,69 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.ExchangeMPChbx);
             this.groupBox2.Controls.Add(this.ExchangeCreditChbx);
-            this.groupBox2.Location = new System.Drawing.Point(24, 14);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Location = new System.Drawing.Point(16, 9);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(282, 363);
+            this.groupBox2.Size = new System.Drawing.Size(188, 236);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Credits Reedemer";
             // 
             // RedeemCreditsBtn
             // 
-            this.RedeemCreditsBtn.Location = new System.Drawing.Point(34, 309);
-            this.RedeemCreditsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RedeemCreditsBtn.Location = new System.Drawing.Point(23, 201);
             this.RedeemCreditsBtn.Name = "RedeemCreditsBtn";
-            this.RedeemCreditsBtn.Size = new System.Drawing.Size(195, 31);
+            this.RedeemCreditsBtn.Size = new System.Drawing.Size(130, 20);
             this.RedeemCreditsBtn.TabIndex = 12;
             this.RedeemCreditsBtn.Text = "Redeem Credit.";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 102);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(20, 66);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 20);
+            this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 11;
             this.label2.Text = "Credit ID";
             // 
             // CreditsIDNbx
             // 
-            this.CreditsIDNbx.Location = new System.Drawing.Point(34, 131);
-            this.CreditsIDNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CreditsIDNbx.Location = new System.Drawing.Point(23, 85);
             this.CreditsIDNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.CreditsIDNbx.Name = "CreditsIDNbx";
-            this.CreditsIDNbx.Size = new System.Drawing.Size(222, 26);
+            this.CreditsIDNbx.Size = new System.Drawing.Size(148, 20);
             this.CreditsIDNbx.TabIndex = 10;
             // 
             // MultiplierNbx
             // 
-            this.MultiplierNbx.Location = new System.Drawing.Point(34, 242);
-            this.MultiplierNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MultiplierNbx.Location = new System.Drawing.Point(23, 157);
             this.MultiplierNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.MultiplierNbx.Name = "MultiplierNbx";
-            this.MultiplierNbx.Size = new System.Drawing.Size(222, 26);
+            this.MultiplierNbx.Size = new System.Drawing.Size(148, 20);
             this.MultiplierNbx.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 215);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(20, 140);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 20);
+            this.label1.Size = new System.Drawing.Size(48, 13);
             this.label1.TabIndex = 8;
             this.label1.Text = "Multiplier";
             // 
             // ExchangeMPChbx
             // 
             this.ExchangeMPChbx.AutoSize = true;
-            this.ExchangeMPChbx.Location = new System.Drawing.Point(34, 185);
-            this.ExchangeMPChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ExchangeMPChbx.Location = new System.Drawing.Point(23, 120);
             this.ExchangeMPChbx.Name = "ExchangeMPChbx";
-            this.ExchangeMPChbx.Size = new System.Drawing.Size(218, 24);
+            this.ExchangeMPChbx.Size = new System.Drawing.Size(155, 21);
             this.ExchangeMPChbx.TabIndex = 7;
             this.ExchangeMPChbx.Text = "Exchange Credit Multiplier";
             this.ExchangeMPChbx.UseVisualStyleBackColor = true;
@@ -215,40 +201,36 @@
             // ExchangeCreditChbx
             // 
             this.ExchangeCreditChbx.AutoSize = true;
-            this.ExchangeCreditChbx.Location = new System.Drawing.Point(34, 57);
-            this.ExchangeCreditChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ExchangeCreditChbx.Location = new System.Drawing.Point(23, 37);
             this.ExchangeCreditChbx.Name = "ExchangeCreditChbx";
-            this.ExchangeCreditChbx.Size = new System.Drawing.Size(233, 24);
+            this.ExchangeCreditChbx.Size = new System.Drawing.Size(164, 21);
             this.ExchangeCreditChbx.TabIndex = 6;
             this.ExchangeCreditChbx.Text = "Automatic Credit Exchanger";
             this.ExchangeCreditChbx.UseVisualStyleBackColor = true;
             // 
             // CaptureRoomBGBtn
             // 
-            this.CaptureRoomBGBtn.Location = new System.Drawing.Point(269, 259);
-            this.CaptureRoomBGBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CaptureRoomBGBtn.Location = new System.Drawing.Point(179, 168);
             this.CaptureRoomBGBtn.Name = "CaptureRoomBGBtn";
-            this.CaptureRoomBGBtn.Size = new System.Drawing.Size(214, 31);
+            this.CaptureRoomBGBtn.Size = new System.Drawing.Size(143, 20);
             this.CaptureRoomBGBtn.TabIndex = 66;
             this.CaptureRoomBGBtn.Text = "Capture RoomBG : OFF";
             this.CaptureRoomBGBtn.Click += new System.EventHandler(this.CaptureRoomBGBtn_Click);
             // 
             // SetRoomBGBtn
             // 
-            this.SetRoomBGBtn.Location = new System.Drawing.Point(301, 401);
-            this.SetRoomBGBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SetRoomBGBtn.Location = new System.Drawing.Point(201, 261);
             this.SetRoomBGBtn.Name = "SetRoomBGBtn";
-            this.SetRoomBGBtn.Size = new System.Drawing.Size(214, 31);
+            this.SetRoomBGBtn.Size = new System.Drawing.Size(143, 20);
             this.SetRoomBGBtn.TabIndex = 65;
             this.SetRoomBGBtn.Text = "Set RoomBG";
             this.SetRoomBGBtn.Click += new System.EventHandler(this.SetRoomBGBtn_Click);
             // 
             // LiveEditBtn
             // 
-            this.LiveEditBtn.Location = new System.Drawing.Point(36, 401);
-            this.LiveEditBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LiveEditBtn.Location = new System.Drawing.Point(24, 261);
             this.LiveEditBtn.Name = "LiveEditBtn";
-            this.LiveEditBtn.Size = new System.Drawing.Size(214, 31);
+            this.LiveEditBtn.Size = new System.Drawing.Size(143, 20);
             this.LiveEditBtn.TabIndex = 64;
             this.LiveEditBtn.Text = "Live Edit : OFF";
             this.LiveEditBtn.Click += new System.EventHandler(this.LiveEditBtn_Click);
@@ -256,16 +238,16 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(32, 18);
+            this.label5.Location = new System.Drawing.Point(21, 12);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 20);
+            this.label5.Size = new System.Drawing.Size(64, 13);
             this.label5.TabIndex = 54;
             this.label5.Text = "RoomBG ID";
             // 
             // RoomBGNBx
             // 
-            this.RoomBGNBx.Location = new System.Drawing.Point(36, 43);
-            this.RoomBGNBx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RoomBGNBx.Location = new System.Drawing.Point(24, 28);
             this.RoomBGNBx.Maximum = new decimal(new int[] {
             2147483647,
             2,
@@ -277,57 +259,61 @@
             0,
             -2147483648});
             this.RoomBGNBx.Name = "RoomBGNBx";
-            this.RoomBGNBx.Size = new System.Drawing.Size(180, 26);
+            this.RoomBGNBx.Size = new System.Drawing.Size(120, 20);
             this.RoomBGNBx.TabIndex = 53;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(32, 314);
+            this.label4.Location = new System.Drawing.Point(21, 204);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 20);
+            this.label4.Size = new System.Drawing.Size(61, 13);
             this.label4.TabIndex = 52;
             this.label4.Text = "Image URL";
             // 
             // RoomBGurlTxb
             // 
-            this.RoomBGurlTxb.Location = new System.Drawing.Point(36, 337);
+            this.RoomBGurlTxb.Location = new System.Drawing.Point(24, 219);
+            this.RoomBGurlTxb.Margin = new System.Windows.Forms.Padding(2);
             this.RoomBGurlTxb.Name = "RoomBGurlTxb";
-            this.RoomBGurlTxb.Size = new System.Drawing.Size(427, 26);
+            this.RoomBGurlTxb.Size = new System.Drawing.Size(286, 20);
             this.RoomBGurlTxb.TabIndex = 51;
             this.RoomBGurlTxb.TextChanged += new System.EventHandler(this.RoomBGUrlTxb_TextChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(32, 234);
+            this.label6.Location = new System.Drawing.Point(21, 152);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 20);
+            this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 50;
             this.label6.Text = "Offset Z";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(32, 163);
+            this.label7.Location = new System.Drawing.Point(21, 106);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(68, 20);
+            this.label7.Size = new System.Drawing.Size(45, 13);
             this.label7.TabIndex = 49;
             this.label7.Text = "Offset Y";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(32, 90);
+            this.label8.Location = new System.Drawing.Point(21, 58);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 20);
+            this.label8.Size = new System.Drawing.Size(45, 13);
             this.label8.TabIndex = 48;
             this.label8.Text = "Offset X";
             // 
             // OffsetZNbx
             // 
-            this.OffsetZNbx.Location = new System.Drawing.Point(36, 259);
-            this.OffsetZNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.OffsetZNbx.Location = new System.Drawing.Point(24, 168);
             this.OffsetZNbx.Maximum = new decimal(new int[] {
             2147483647,
             2,
@@ -339,14 +325,13 @@
             0,
             -2147483648});
             this.OffsetZNbx.Name = "OffsetZNbx";
-            this.OffsetZNbx.Size = new System.Drawing.Size(180, 26);
+            this.OffsetZNbx.Size = new System.Drawing.Size(120, 20);
             this.OffsetZNbx.TabIndex = 47;
             this.OffsetZNbx.ValueChanged += new System.EventHandler(this.OffsetZNbx_ValueChanged);
             // 
             // OffsetYNbx
             // 
-            this.OffsetYNbx.Location = new System.Drawing.Point(36, 188);
-            this.OffsetYNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.OffsetYNbx.Location = new System.Drawing.Point(24, 122);
             this.OffsetYNbx.Maximum = new decimal(new int[] {
             2147483647,
             2,
@@ -358,14 +343,13 @@
             0,
             -2147483648});
             this.OffsetYNbx.Name = "OffsetYNbx";
-            this.OffsetYNbx.Size = new System.Drawing.Size(180, 26);
+            this.OffsetYNbx.Size = new System.Drawing.Size(120, 20);
             this.OffsetYNbx.TabIndex = 46;
             this.OffsetYNbx.ValueChanged += new System.EventHandler(this.OffsetYNbx_ValueChanged);
             // 
             // OffsetXNbx
             // 
-            this.OffsetXNbx.Location = new System.Drawing.Point(36, 115);
-            this.OffsetXNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.OffsetXNbx.Location = new System.Drawing.Point(24, 75);
             this.OffsetXNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -377,7 +361,7 @@
             0,
             -2147483648});
             this.OffsetXNbx.Name = "OffsetXNbx";
-            this.OffsetXNbx.Size = new System.Drawing.Size(180, 26);
+            this.OffsetXNbx.Size = new System.Drawing.Size(120, 20);
             this.OffsetXNbx.TabIndex = 45;
             this.OffsetXNbx.ValueChanged += new System.EventHandler(this.OffsetXNbx_ValueChanged);
             // 
@@ -398,9 +382,11 @@
             this.groupBox1.Controls.Add(this.OffsetZNbx);
             this.groupBox1.Controls.Add(this.OffsetYNbx);
             this.groupBox1.Controls.Add(this.OffsetXNbx);
-            this.groupBox1.Location = new System.Drawing.Point(635, 14);
+            this.groupBox1.Location = new System.Drawing.Point(423, 9);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(522, 460);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(348, 299);
             this.groupBox1.TabIndex = 69;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Room Background Editor";
@@ -408,17 +394,17 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(275, 43);
+            this.label9.Location = new System.Drawing.Point(183, 28);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(204, 20);
+            this.label9.Size = new System.Drawing.Size(137, 13);
             this.label9.TabIndex = 68;
             this.label9.Text = "Room BG x (NOT OFFSET)";
             this.label9.Visible = false;
             // 
             // RoomBGXNbx
             // 
-            this.RoomBGXNbx.Location = new System.Drawing.Point(279, 68);
-            this.RoomBGXNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RoomBGXNbx.Location = new System.Drawing.Point(186, 44);
             this.RoomBGXNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -430,19 +416,20 @@
             0,
             -2147483648});
             this.RoomBGXNbx.Name = "RoomBGXNbx";
-            this.RoomBGXNbx.Size = new System.Drawing.Size(180, 26);
+            this.RoomBGXNbx.Size = new System.Drawing.Size(120, 20);
             this.RoomBGXNbx.TabIndex = 67;
             this.RoomBGXNbx.Visible = false;
             // 
             // UtilitiesPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UtilitiesPage";
-            this.Size = new System.Drawing.Size(1184, 533);
+            this.Size = new System.Drawing.Size(789, 346);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GiftExchangerIDNBx)).EndInit();

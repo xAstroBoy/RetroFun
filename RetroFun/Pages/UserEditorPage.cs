@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using RetroFun.Controls;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Habbo;
-using Sulakore.Protocol;
 using Sulakore.Components;
 using System.Threading;
 
@@ -271,7 +265,7 @@ namespace RetroFun.Pages
         }
 
 
-        public override void In_RoomUserLeft(DataInterceptedEventArgs e)
+        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
             var entity = _users.Values.FirstOrDefault(ent => ent.Index == index);
@@ -283,7 +277,7 @@ namespace RetroFun.Pages
             CountUserInRoomBlacklist();
         }
 
-        public override void In_UserEnterRoom(DataInterceptedEventArgs obj)
+        public override void In_RoomUsers(DataInterceptedEventArgs obj)
         {
             var removedEntities = new List<HEntity>(); //these need to be removed, they cant be removed inside this method because the clietn doesnt have those users => cant remove either
             try
@@ -339,7 +333,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public override void Out_UserRequestBadge(DataInterceptedEventArgs e)
+        public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
             _selectedUserId = e.Packet.ReadInteger();
 

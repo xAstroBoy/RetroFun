@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sulakore.Communication;
 using Sulakore.Habbo;
-using Sulakore.Protocol;
 using Sulakore.Components;
-using System.Threading;
 using System.IO;
-using RetroFun.Controls;
 using RetroFun.Subscribers;
 
 namespace RetroFun.Pages
@@ -322,7 +317,7 @@ namespace RetroFun.Pages
         }
 
 
-        public override void In_RoomUserLeft(DataInterceptedEventArgs e)
+        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
             var entity = FindEntity(index);
@@ -375,7 +370,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public override void In_UserEnterRoom(DataInterceptedEventArgs obj)
+        public override void In_RoomUsers(DataInterceptedEventArgs obj)
         {
             try
             {
@@ -405,7 +400,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public override void Out_UserRequestBadge(DataInterceptedEventArgs e)
+        public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
             _selectedUserId = e.Packet.ReadInteger();
             var entity = _users.Find(f => f.Id == _selectedUserId);

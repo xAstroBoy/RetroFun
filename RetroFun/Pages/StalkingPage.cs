@@ -1,10 +1,7 @@
-﻿using RetroFun.Controls;
-using RetroFun.Subscribers;
+﻿using RetroFun.Subscribers;
 using Sulakore.Communication;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -209,7 +206,7 @@ namespace RetroFun.Pages
             isUserManualWalking = true;
         }
 
-        public override void Out_UserRequestBadge(DataInterceptedEventArgs e)
+        public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
             if (ShouldCaptureIDMode)
             {

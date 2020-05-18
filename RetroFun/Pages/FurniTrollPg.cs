@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using RetroFun.Controls;
 using RetroFun.Subscribers;
-using Sulakore;
 using Sulakore.Communication;
 using Sulakore.Components;
 
@@ -1863,7 +1860,7 @@ namespace RetroFun.Pages
         #endregion
 
 
-        public override void Out_UserRequestBadge(DataInterceptedEventArgs e)
+        public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
             UserID = e.Packet.ReadInteger();
         }

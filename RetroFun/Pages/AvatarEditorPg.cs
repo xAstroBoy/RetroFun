@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using RetroFun.Controls;
 using RetroFun.Subscribers;
 
 namespace RetroFun.Pages

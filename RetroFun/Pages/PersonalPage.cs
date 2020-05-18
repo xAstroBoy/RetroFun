@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using RetroFun.Controls;
 using Sulakore.Protocol;
 using Sulakore.Communication;
 using Sulakore.Components;
@@ -788,7 +783,7 @@ namespace RetroFun.Pages
 
 
 
-        public override void Out_UserRequestBadge(DataInterceptedEventArgs e)
+        public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
             _selectedUserId = e.Packet.ReadInteger();
             if(giveHanditemToselecteduser)
@@ -847,7 +842,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public override void In_RoomUserLeft(DataInterceptedEventArgs e)
+        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
             var entity = FindEntity(index);
@@ -855,7 +850,7 @@ namespace RetroFun.Pages
             _users.Remove(entity);
         }
 
-        public override void In_UserEnterRoom(DataInterceptedEventArgs e)
+        public override void In_RoomUsers(DataInterceptedEventArgs e)
         {
             try
             {

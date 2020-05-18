@@ -1,6 +1,4 @@
-﻿using RetroFun.Controls;
-using RetroFun.Converter;
-using RetroFun.Subscribers;
+﻿using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Components;
 using System;
@@ -370,7 +368,7 @@ namespace RetroFun.Pages
             _registrationButtons.ForEach(b => b.Enabled = false);
         }
 
-        public override void Out_DiceTrigger(DataInterceptedEventArgs e)
+        public override void Out_TriggerDice(DataInterceptedEventArgs e)
         {
             if (_currentDiceTargetIndex < 0) return;
 

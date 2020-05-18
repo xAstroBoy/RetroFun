@@ -1,5 +1,4 @@
-﻿using RetroFun.Controls;
-using RetroFun.Subscribers;
+﻿using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Components;
 using System;
@@ -404,7 +403,7 @@ namespace RetroFun.Pages
 
 
 
-        public override void In_PurchaseOk(DataInterceptedEventArgs e)
+        public override void In_PurchaseOK(DataInterceptedEventArgs e)
         {
             Purchased = true;
         }

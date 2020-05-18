@@ -1,5 +1,4 @@
-﻿using RetroFun.Controls;
-using RetroFun.Subscribers;
+﻿using RetroFun.Subscribers;
 using Sulakore.Components;
 using System;
 using System.ComponentModel;
@@ -99,13 +98,6 @@ namespace RetroFun.Pages
             Bind(CustomBtx, "checked", nameof(SelectedCustom));
         }
 
-        // MoodLightSaveSettings Structure
-        // {u:1330} Header
-        //{i:1} Presets (use 3)
-        //{i:2} Just Wallpapers  ( use Checkbox)
-        //{s:#82F349} Colors (String , skip #, HTML Colors.)
-        //{i:76} ( Density , use numberupanddown)
-        //{b:True} ???
 
         public void DeactivateAll()
         {
