@@ -2732,7 +2732,7 @@ namespace RetroFun.Pages
         public override void In_RoomWallItems(DataInterceptedEventArgs e)
         {
             RoomWallFurni = BobbaParser(e.Packet);
-            if (!IS_SCANNING_FLOORFURNIS)
+            if (!IS_SCANNING_WALLFURNIS)
             {
                 IS_SCANNING_WALLFURNIS = true;
                 RoomWallChecker(isQuietMode);

@@ -82,14 +82,14 @@ namespace RetroFun
         public override void HandleOutgoing(DataInterceptedEventArgs e)
         {
             int id = e.Packet.Header;
-            e.Packet.Position = 0;
             foreach (var sub in _subscribers)
             {
-               if (Out.AdvertisingSave == id)
+                e.Packet.Position = 0;
+                if (Out.AdvertisingSave == id)
                 {
                     sub.Out_AdvertisingSave(e);
                 }
-                //if (Out.AcceptFriendRequest == id)
+                //else if (Out.AcceptFriendRequest == id)
                 //{
                 //    sub.Out_AcceptFriendRequest(e);
                 //}
@@ -1363,26 +1363,6 @@ namespace RetroFun
             foreach (var sub in _subscribers)
             {
                 e.Packet.Position = 0;
-                //if (In.AchievementList == id)
-                //{
-                //    sub.In_AchievementList(e);
-                //}
-                //else if (In.AchievementProgress == id)
-                //{
-                //    sub.In_AchievementProgress(e);
-                //}
-                //else if (In.AchievementUnlocked == id)
-                //{
-                //    sub.In_AchievementUnlocked(e);
-                //}
-                //else if (In.AchievementsConfiguration == id)
-                //{
-                //    sub.In_AchievementsConfiguration(e);
-                //}
-                //else if (In.AddBot == id)
-                //{
-                //    sub.In_AddBot(e);
-                //}
                 if (In.AddFloorItem == id)
                 {
                     sub.In_AddFloorItem(e);
@@ -1403,6 +1383,26 @@ namespace RetroFun
                 {
                     sub.In_AddWallItem(e);
                 }
+                //else (In.AchievementList == id)
+                //{
+                //    sub.In_AchievementList(e);
+                //}
+                //else if (In.AchievementProgress == id)
+                //{
+                //    sub.In_AchievementProgress(e);
+                //}
+                //else if (In.AchievementUnlocked == id)
+                //{
+                //    sub.In_AchievementUnlocked(e);
+                //}
+                //else if (In.AchievementsConfiguration == id)
+                //{
+                //    sub.In_AchievementsConfiguration(e);
+                //}
+                //else if (In.AddBot == id)
+                //{
+                //    sub.In_AddBot(e);
+                //}
                 //else if (In.AdventCalendarData == id)
                 //{
                 //    sub.In_AdventCalendarData(e);
