@@ -21,7 +21,7 @@ namespace RetroFun.Pages
 
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class ModerationPage : ObservablePage, ISubscriber
+    public partial class ModerationPage : SubscriberPackets
     {
         private int _selectedUserId;
         public int LocalIndex;
@@ -31,10 +31,10 @@ namespace RetroFun.Pages
         private string OwnerName = "NOT INITIATED";
         private string roomname = "NOT INITIATED";
         private bool newroom = true;
-        private bool isStalkingModeEnabled;
-        private string StalkingUserName;
 
-        private Dictionary<int, HEntity> _users = new Dictionary<int, HEntity>();
+
+        private List<HEntity> _users = new List<HEntity>();
+
         private  RegisteredUsers[] _registeredUsers;
         private readonly BanTime[] _BanTime = new[]
         {
@@ -172,7 +172,7 @@ namespace RetroFun.Pages
         }
 
 
-        public bool IsReceiving => true;
+
 
         public ModerationPage()
         {
@@ -218,17 +218,8 @@ namespace RetroFun.Pages
             });
         }
 
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
-        {
 
-        }
-
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             _users.Clear();
 
@@ -239,7 +230,7 @@ namespace RetroFun.Pages
             });
         }
 
-        public void OnLatencyTest(DataInterceptedEventArgs obj)
+        public override void Out_LatencyTest(DataInterceptedEventArgs obj)
         {
             if (OwnUsername == null)
             {
@@ -247,7 +238,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnUsername(DataInterceptedEventArgs obj)
+        public override void Out_Username(DataInterceptedEventArgs obj)
         {
             string username = obj.Packet.ReadString();
 
@@ -257,29 +248,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void InPurchaseOk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomData(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void InItemExtraData(DataInterceptedEventArgs e)
-        {
-        }
-
-
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
+        public override void Out_RoomUserTalk(DataInterceptedEventArgs e)
         {
             e.Packet.ReadString();
             int Bubble = e.Packet.ReadInteger();
@@ -288,7 +257,7 @@ namespace RetroFun.Pages
                 Bubbleused = Bubble;
             }
         }
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
+        public override void In_RoomUserShout(DataInterceptedEventArgs e)
         {
             e.Packet.ReadString();
             int Bubble = e.Packet.ReadInteger();
@@ -297,22 +266,6 @@ namespace RetroFun.Pages
                 Bubbleused = Bubble;
             }
         }
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
-        { }
-
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserShout(DataInterceptedEventArgs e)
-        {
-        }
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-        }
-
-
         private class RegisteredUsers
         {
             public string Name { get; set; }
@@ -369,13 +322,13 @@ namespace RetroFun.Pages
         }
 
 
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        public override void In_RoomUserLeft(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
-            var entity = _users.Values.FirstOrDefault(ent => ent.Index == index);
+            var entity = FindEntity(index);
             if (entity == null) return;
 
-            _users.Remove(entity.Id);
+            _users.Remove(entity);
 
             WriteRegistrationUsers(_users.Count);
 
@@ -385,16 +338,22 @@ namespace RetroFun.Pages
             {
                 AddUserInCmbx(entity);
             }
-
-
-            //if (isStalkingModeEnabled)
-            //{
-            //    if (entity.Name == StalkingUserName)
-            //    {
-            //        Connection.SendToServerAsync(Out.RoomUserTalk, ":follow " + entity.Name, 18);
-            //    }
-            //}
         }
+
+
+        private HEntity FindEntity(int index)
+        {
+            var entity = _users.Find(f => f.Index == index);
+            if (entity != null)
+            {
+                return entity;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
         private void AddUserInCmbx(HEntity entity)
         {
@@ -408,26 +367,6 @@ namespace RetroFun.Pages
             });
         }
 
-
-        //private void GotoUserCmbx(HEntity entity)
-        //{
-        //    Invoke((MethodInvoker)delegate
-        //    {
-        //        UsersCmbx.
-        //    });
-        //}
-
-
-        //private void UpdateUserCmbx(HEntity entity)
-        //{
-        //    var user = new RegisteredUsers(entity.Id, entity.Name, entity.Motto, entity.FigureId);
-        //    Invoke((MethodInvoker)delegate
-        //    {
-        //        UsersCmbx.Items.Add(user);
-        //    });
-        //}
-
-
         private void RemoveUserInCmbx(string username)
         {
             if (_registeredUsers.Where(x => x.Name == username).Any())
@@ -436,7 +375,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void InUserEnterRoom(DataInterceptedEventArgs obj)
+        public override void In_UserEnterRoom(DataInterceptedEventArgs obj)
         {
             try
             {
@@ -447,9 +386,9 @@ namespace RetroFun.Pages
                     {
 
 
-                        if (!_users.ContainsKey(entity.Id))
+                        if (!_users.Contains(entity))
                         {
-                            _users.Add(entity.Id, entity);
+                            _users.Add(entity);
                         }
 
                         if (entity.Name == OwnUsername)
@@ -466,23 +405,17 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        public override void Out_UserRequestBadge(DataInterceptedEventArgs e)
         {
             _selectedUserId = e.Packet.ReadInteger();
+            var entity = _users.Find(f => f.Id == _selectedUserId);
 
-            if (_users.TryGetValue(_selectedUserId, out HEntity entity))
+            if (entity != null)
             {
-
                 SelectedIndex = entity.Index;
-                
-
                 UserNickname = entity.Name;
-
                 UserMotto = entity.Motto;
-
                 UserLook = entity.FigureId;
-
-
                 SelectUserLabel.Invoke((MethodInvoker)delegate
                 {
                     SelectUserLabel.Text = entity.Name;
@@ -490,23 +423,6 @@ namespace RetroFun.Pages
 
             }
         }
-
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-
-        }
-
-
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
-        {
-        }
-   
-
-
 
         private async void StartFlood()
         {
@@ -524,7 +440,6 @@ namespace RetroFun.Pages
                 Connection.SendToServerAsync(Out.RoomUserTalk, ":ban " + username + " " + time + " " + reason);
                 RecordModeration("BAN", username, reason, time);
             }
-            //RemoveUserInCmbx()
         }
 
         private void RecordedMute(string username, int time)
@@ -996,51 +911,6 @@ namespace RetroFun.Pages
             Connection.SendToServerAsync(Out.RoomUserAction, 7);
             Connection.SendToServerAsync(Out.RoomUserTalk, "Stanno inviando rispetti a " + UserNickname + "!", 1);
         }
-
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomWallItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
-        { }
-
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
-        { }
-
-
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
-        { }
-        public void InWallItemUpdate(DataInterceptedEventArgs e)
-        { }
     }
 }
 

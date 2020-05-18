@@ -17,7 +17,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class FurniSpawnPage : ObservablePage, ISubscriber
+    public partial class FurniSpawnPage:  SubscriberPackets
     {
         private Random rand = new Random();
         private int _InventoryFurniID;
@@ -307,51 +307,8 @@ namespace RetroFun.Pages
 
             LocalFurniID = rand.Next(1498128, 9999999);
         }
-        public bool IsReceiving => true;
 
-        public void InPurchaseOk(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomData(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnLatencyTest(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserEnterRoom(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        public override void Out_RoomUserWalk(DataInterceptedEventArgs e)
         {
             int coordX = e.Packet.ReadInteger();
             int coordY = e.Packet.ReadInteger();
@@ -371,7 +328,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnUsername(DataInterceptedEventArgs e)
+        public override void Out_Username(DataInterceptedEventArgs e)
         {
             HMessage packet = e.Packet;
             string username = packet.ReadString();
@@ -379,10 +336,6 @@ namespace RetroFun.Pages
             FurniOwnerName = username;
         }
 
-
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
-        {
-        }
 
         private void RotationUp_CheckedChanged(object sender, EventArgs e)
         {
@@ -710,89 +663,5 @@ namespace RetroFun.Pages
                 SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, FurniOwnerName);
             }
         }
-        public void InItemExtraData(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomWallItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
-        { }
-
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
-        { }
-
-
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
-        { }
-        public void InWallItemUpdate(DataInterceptedEventArgs e)
-        { }
     }
 }

@@ -19,7 +19,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class PersonalPage : ObservablePage, ISubscriber
+    public partial class PersonalPage : SubscriberPackets
     {
         HMessage Permissions;
 
@@ -31,7 +31,7 @@ namespace RetroFun.Pages
         private string OwnUsername;
         private bool isLiveEnableEdit;
         private bool isStaticThreadStarted;
-        private Dictionary<int, HEntity> _users = new Dictionary<int, HEntity>();
+        private List<HEntity> _users = new List<HEntity>();
 
         private readonly Handitems[] _Handitems = new[]
         {
@@ -480,7 +480,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public bool IsReceiving => true;
+
         #endregion
         public PersonalPage()
         {
@@ -504,34 +504,25 @@ namespace RetroFun.Pages
 
             Bind(BadgeTxbx, "Text", nameof(badgecode));
 
-            
-
-            if (Program.Master != null)
-            {
-                Triggers.InAttach(In.UserPermissions, CloneDefaultUserPermissions);
-                Triggers.InAttach(In.TradeStopped, PreventCrashOnTrade);
-
-                Triggers.OutAttach(Out.TradeStart, InterceptTradeUser);
-
-                Triggers.InAttach(In.GenericErrorMessages, AntiRoomUnload);
-                Triggers.InAttach(In.RoomAccessDenied, AntiRoomUnload);
-                Triggers.InAttach(In.HotelView, AntiRoomUnload);
-                Triggers.InAttach(In.RoomOpen, DoorbellBypasser);
-                Triggers.InAttach(In.RoomEnterError, AntiRoomUnload);
-            }
-
-
         }
 
+        public override void In_GenericErrorMessages(DataInterceptedEventArgs e)
+        {
+            e.IsBlocked = BlockBypassers;
+        }
 
+        public override void In_RoomAccessDenied(DataInterceptedEventArgs e)
+        {
+            e.IsBlocked = BlockBypassers;
+        }
 
-        public void AntiRoomUnload(DataInterceptedEventArgs e)
+        public override void In_HotelView(DataInterceptedEventArgs e)
         {
             e.IsBlocked = BlockBypassers;
         }
 
 
-        public void DoorbellBypasser(DataInterceptedEventArgs e)
+        public override void In_RoomOpen(DataInterceptedEventArgs e)
         {
             if (AutomaticAttempt)
             {
@@ -539,7 +530,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private void CloneDefaultUserPermissions(DataInterceptedEventArgs e)
+        public override void In_UserPermissions(DataInterceptedEventArgs e)
         {
             if (!HasUserPermissionsMessage)
             {
@@ -548,7 +539,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private void InterceptTradeUser(DataInterceptedEventArgs e)
+        public override void Out_TradeStart(DataInterceptedEventArgs e)
         {
             if (IsInterceptTradeUserOn)
             {
@@ -557,15 +548,13 @@ namespace RetroFun.Pages
                 IsInterceptTradeUserOn = false;
                 e.IsBlocked = true;
             }
-
         }
 
 
-        private void PreventCrashOnTrade(DataInterceptedEventArgs e)
+        public override void In_TradeStopped(DataInterceptedEventArgs e)
         {
-                e.IsBlocked = TradeSpammerActivated;
+            e.IsBlocked = TradeSpammerActivated;
         }
-
 
         private void EnableModToolsBtn_Click(object sender, EventArgs e)
         {
@@ -797,13 +786,9 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
-        {
-
-        }
 
 
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        public override void Out_UserRequestBadge(DataInterceptedEventArgs e)
         {
             _selectedUserId = e.Packet.ReadInteger();
             if(giveHanditemToselecteduser)
@@ -816,17 +801,8 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
-        {
 
-        }
-
-        public void InRoomData(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             _users.Clear();
         }
@@ -840,7 +816,7 @@ namespace RetroFun.Pages
             AutomaticAttempt = false;
         }
 
-        public void OnLatencyTest(DataInterceptedEventArgs e)
+        public override void Out_LatencyTest(DataInterceptedEventArgs e)
         {
             if (OwnUsername == null)
             {
@@ -848,7 +824,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnUsername(DataInterceptedEventArgs e)
+        public override void Out_Username(DataInterceptedEventArgs e)
         {
             string username = e.Packet.ReadString();
 
@@ -858,51 +834,28 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        private HEntity FindEntity(int index)
         {
-
+            var entity = _users.Find(f => f.Index == index);
+            if (entity != null)
+            {
+                return entity;
+            }
+            else
+            {
+                return null;
+            }
         }
 
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InPurchaseOk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        public override void In_RoomUserLeft(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
-            var entity = _users.Values.FirstOrDefault(ent => ent.Index == index);
+            var entity = FindEntity(index);
             if (entity == null) return;
-
-            _users.Remove(entity.Id);
+            _users.Remove(entity);
         }
 
-        public void InUserEnterRoom(DataInterceptedEventArgs e)
+        public override void In_UserEnterRoom(DataInterceptedEventArgs e)
         {
             try
             {
@@ -911,9 +864,9 @@ namespace RetroFun.Pages
                 {
                     foreach (HEntity entity in array)
                     {
-                        if (!_users.ContainsKey(entity.Id))
+                        if (!_users.Contains(entity))
                         {
-                            _users.Add(entity.Id, entity);
+                            _users.Add(entity);
                         }
 
                     }
@@ -923,35 +876,6 @@ namespace RetroFun.Pages
             {
 
             }
-        }
-
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InItemExtraData(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
-        {
         }
 
         private void BlockRestrictionsBtn_Click(object sender, EventArgs e)
@@ -984,15 +908,10 @@ namespace RetroFun.Pages
         {
             try
             {
-                if (_users.Values != null && _users != null)
+                if (_users.Count != 0 && _users != null)
                 {
-                    foreach (KeyValuePair<int, HEntity> entity in _users)
+                    foreach (HEntity user in _users)
                     {
-                        if (!_users.TryGetValue(entity.Key, out var user))
-                        {
-                            //ouch
-                            return;
-                        }
                         Thread.Sleep(50);
                         await Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
                         await Connection.SendToServerAsync(Out.RoomUserGiveHandItem, user.Id);
@@ -1146,51 +1065,5 @@ namespace RetroFun.Pages
         {
             Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + EffectNumbers, 18);
         }
-
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomWallItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
-        { }
-
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
-        { }
-
-
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
-        { }
-        public void InWallItemUpdate(DataInterceptedEventArgs e)
-        { }
-
     }
 }

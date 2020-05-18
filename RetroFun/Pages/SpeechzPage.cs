@@ -1,4 +1,5 @@
 ﻿using RetroFun.Controls;
+using RetroFun.Subscribers;
 using Sulakore.Protocol;
 using System;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class SpeechzPage : ObservablePage
+    public partial class SpeechzPage : SubscriberPackets
     {
         private string speechtext_with_id = "";
         private HMessage packet;

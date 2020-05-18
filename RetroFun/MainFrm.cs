@@ -34,7 +34,7 @@ namespace RetroFun
         }
 
 
-        private List<ISubscriber> _subscribers = new List<ISubscriber>();
+        private List<SubscriberPackets> _subscribers = new List<SubscriberPackets>();
 
         public MainFrm()
         {
@@ -43,29 +43,34 @@ namespace RetroFun
             InitializeComponent();
 
             //Pages sharing events
-            _subscribers = new List<ISubscriber>
+            _subscribers = new List<SubscriberPackets>
             {
                 ChatPg,
                 DicePg,
-                AutoHoloDicePg,
-                BuyFurniBruteforcerPg,
-                GiftEditorPg,
-                MakeSayPg,
-                StalkingPg,
-                FakeMessagePg,
-                MiscellaneousPg,
-                furniSpawnPg,
-                BottomPg,
                 FurniPg,
+                MakeSayPg,
+                SpeechzPg,
+                GiftEditorPg,
+                StalkingPg,
+                AutoHoloDicePg,
+                AvatarEditorPg,
+                MiscellaneousPg,
+                BuyFurniBruteforcerPg,
+                FakeMessagePg,
+                RoomBackFunPg,
+                furniSpawnPg,
+                MoonLightFunPg,
+                DiscoRoomFunPg,
+                BottomPg,
+                FurniTrollPg,
+                UtilitiesPg,
                 PetPg,
                 UserEditorPg,
-                AvatarEditorPg,
-                FurniTrollPg,
                 PersonalPg,
                 ModerationPg,
-                FurnitureCheckerPg
-            };
-
+                FurnitureCheckerPg,
+             };
+                
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));
         }
 
@@ -76,80 +81,107 @@ namespace RetroFun
             int id = e.Packet.Header;
             foreach (var sub in _subscribers)
             {
-                if (!sub.IsReceiving) continue;
                 e.Packet.Position = 0;
 
-                if (Out.TriggerDice == id || Out.CloseDice == id)
+                if (Out.TriggerDice == id)
                 {
-                    sub.OnOutDiceTrigger(e);
+                    sub.Out_DiceTrigger(e);
+                }
+                else if (Out.CloseDice == id)
+                {
+                    sub.Out_CloseDice(e);
                 }
                 else if (Out.RequestWearingBadges == id)
                 {
-                    sub.OnOutUserRequestBadge(e);
+                    sub.Out_UserRequestBadge(e);
                 }
                 else if (Out.RemoveFriend == id)
                 {
-                    sub.OnUserFriendRemoval(e);
+                    sub.Out_UserFriendRemoval(e);
                 }
                 else if (Out.RequestRoomLoad == id)
                 {
-                    sub.OnRequestRoomLoad(e);
+                    sub.Out_RequestRoomLoad(e);
                 }
                 else if (Out.LatencyTest == id)
                 {
-                    sub.OnLatencyTest(e);
+                    sub.Out_LatencyTest(e);
                 }
                 else if (Out.Username == id)
                 {
-                    sub.OnUsername(e);
+                    sub.Out_Username(e);
                 }
                 else if (Out.RoomUserWalk == id)
                 {
-                    sub.OnRoomUserWalk(e);
+                    sub.Out_RoomUserWalk(e);
                 }
                 else if (Out.CatalogBuyItem == id)
                 {
-                    sub.OnCatalogBuyItem(e);
+                    sub.Out_CatalogBuyItem(e);
                 }
                 else if (Out.RoomUserTalk == id)
                 {
-                    sub.OnRoomUserTalk(e);
+                    sub.Out_RoomUserTalk(e);
                 }
                 else if (Out.RoomUserShout == id)
                 {
-                    sub.OnRoomUserShout(e);
+                    sub.Out_RoomUserShout(e);
                 }
                 else if (Out.RoomUserWhisper == id)
                 {
-                    sub.OnRoomUserWhisper(e);
+                    sub.Out_RoomUserWhisper(e);
                 }
                 else if(Out.RoomUserStartTyping == id)
                 {
-                    sub.OnRoomUserStartTyping(e);
+                    sub.Out_RoomUserStartTyping(e);
                 }
                 else if (Out.RoomPickupItem == id)
                 {
-                    sub.OnRoomPickupItem(e);
+                    sub.Out_RoomPickupItem(e);
                 }
                 else if (Out.RotateMoveItem == id)
                 {
-                    sub.OnRotateMoveItem(e);
+                    sub.Out_RotateMoveItem(e);
                 }
                 else if (Out.MoveWallItem == id)
                 {
-                    sub.OnMoveWallItem(e);
+                    sub.Out_MoveWallItem(e);
                 }
                 else if (Out.ToggleFloorItem == id)
                 {
-                    sub.OnToggleFloorItem(e);
+                    sub.Out_ToggleFloorItem(e);
                 }
                 else if (Out.ToggleWallItem == id)
                 {
-                    sub.OnToggleWallItem(e);
+                    sub.Out_ToggleWallItem(e);
                 }
                 else if (Out.RequestRoomHeightmap == id)
                 {
-                    sub.OnRequestRoomHeightmap(e);
+                    sub.Out_RequestRoomHeightmap(e);
+                }
+                else if (Out.TriggerColorWheel == id)
+                {
+                    sub.Out_TriggerColorWheel(e);
+                }
+                else if (Out.TradeStart == id)
+                {
+                    sub.Out_TradeStart(e);
+                }
+                else if (Out.RoomBackground == id)
+                {
+                    sub.Out_RoomBackground(e);
+                }
+                else if (Out.RequestRoomData == id)
+                {
+                    sub.Out_RequestRoomData(e);
+                }
+                else if (Out.RoomPlaceItem == id)
+                {
+                    sub.Out_RoomPlaceItem(e);
+                }
+                else if (Out.AdvertisingSave == id)
+                {
+                    sub.Out_AdvertisingSave(e);
                 }
             }
         }
@@ -159,76 +191,111 @@ namespace RetroFun
             int id = e.Packet.Header;
             foreach (var sub in _subscribers)
             {
-                if (!sub.IsReceiving) continue;
                 e.Packet.Position = 0;
 
                 if (In.PurchaseOK == id)
                 {
-                    sub.InPurchaseOk(e);
+                    sub.In_PurchaseOk(e);
                 }
                 else if (In.RoomUsers == id)
                 {
-                    sub.InUserEnterRoom(e);
+                    sub.In_UserEnterRoom(e);
                 }
                 else if (In.RoomUserRemove == id)
                 {
-                    sub.InRoomUserLeft(e);
+                    sub.In_RoomUserLeft(e);
                 }
                 else if (In.UserProfile == id)
                 {
-                    sub.InUserProfile(e);
+                    sub.In_UserProfile(e);
                 }
                 else if(In.ItemExtraData == id)
                 {
-                    sub.InItemExtraData(e);
+                    sub.In_ItemExtraData(e);
                 }
                 else if (In.RoomUserTalk == id)
                 {
-                    sub.InRoomUserTalk(e);
+                    sub.In_RoomUserTalk(e);
                 }
                 else if (In.RoomUserShout == id)
                 {
-                    sub.InRoomUserShout(e);
+                    sub.In_RoomUserShout(e);
                 }
                 else if (In.RoomUserWhisper == id)
                 {
-                    sub.InRoomUserWhisper(e);
+                    sub.In_RoomUserWhisper(e);
                 }
                 else if (In.FloorItemUpdate == id)
                 {
-                    sub.InFloorItemUpdate(e);
+                    sub.In_FloorItemUpdate(e);
                 }
                 else if (In.RoomData == id)
                 {
-                    sub.InRoomData(e);
+                    sub.In_RoomData(e);
                 }
                 else if (In.RoomFloorItems == id)
                 {
-                    sub.InRoomFloorItems(e);
+                    sub.In_RoomFloorItems(e);
                 }
                 else if (In.RoomWallItems == id)
                 {
-                    sub.InRoomWallItems(e);
+                    sub.In_RoomWallItems(e);
                 }
                 else if (In.AddFloorItem == id)
                 {
-                    sub.InAddFloorItem(e);
+                    sub.In_AddFloorItem(e);
                 }
                 else if (In.AddWallItem == id)
                 {
-                    sub.InAddWallItem(e);
+                    sub.In_AddWallItem(e);
                 }
                 else if (In.RemoveWallItem == id)
                 {
-                    sub.InRemoveWallItem(e);
+                    sub.In_RemoveWallItem(e);
                 }
                 else if (In.RemoveFloorItem == id)
                 {
-                    sub.InRemoveFloorItem(e);
+                    sub.In_RemoveFloorItem(e);
                 }
                 else if (In.WallItemUpdate == id)
                 {
-                    sub.InWallItemUpdate(e);
+                    sub.In_WallItemUpdate(e);
+                }
+                else if (In.UserPermissions == id)
+                {
+                    sub.In_UserPermissions(e);
+                }
+                else if (In.TradeStopped == id)
+                {
+                    sub.In_TradeStopped(e);
+                }
+                else if (In.GenericErrorMessages == id)
+                {
+                    sub.In_GenericErrorMessages(e);
+                }
+                else if (In.RoomAccessDenied == id)
+                {
+                    sub.In_RoomAccessDenied(e);
+                }
+                else if (In.HotelView == id)
+                {
+                    sub.In_HotelView(e);
+                }
+                else if (In.RoomOpen == id)
+                {
+                    sub.In_RoomOpen(e);
+                }
+                else if (In.RoomEnterError == id)
+                {
+                    sub.In_RoomEnterError(e);
+                }
+                else if (In.ReceivePrivateMessage == id)
+                {
+                    sub.In_ReceivePrivateMessage(e);
+                }
+                else if (In.MessagesForYou == id)
+                {
+                    sub.In_MessagesForYou(e);
                 }
             }
         }

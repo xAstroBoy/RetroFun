@@ -106,7 +106,6 @@
             this.StoreFurniIDOnFileChbx.TabIndex = 9;
             this.StoreFurniIDOnFileChbx.Text = "Store FurniID On File";
             this.StoreFurniIDOnFileChbx.UseVisualStyleBackColor = true;
-            this.StoreFurniIDOnFileChbx.CheckedChanged += new System.EventHandler(this.StoreFurniIDOnFileChbx_CheckedChanged);
             // 
             // PickWallItemCSBtn
             // 

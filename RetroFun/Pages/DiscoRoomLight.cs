@@ -1,4 +1,5 @@
 ﻿using RetroFun.Controls;
+using RetroFun.Subscribers;
 using Sulakore.Components;
 using System;
 using System.ComponentModel;
@@ -9,7 +10,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class DiscoRoomLight : ObservablePage
+    public partial class DiscoRoomLight : SubscriberPackets
     {
         public MoonLightFunPage LightController;
         private Random Randomizer2 = new Random();

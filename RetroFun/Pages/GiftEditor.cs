@@ -11,7 +11,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class GiftEditor : ObservablePage, ISubscriber
+    public partial class GiftEditor:  SubscriberPackets
     {
         #region miscvars
 
@@ -402,23 +402,14 @@ namespace RetroFun.Pages
             });
         }
 
-        public bool IsReceiving => true;
 
-        public void InPurchaseOk(DataInterceptedEventArgs e)
+
+        public override void In_PurchaseOk(DataInterceptedEventArgs e)
         {
             Purchased = true;
         }
-        public void OnLatencyTest(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnUsername(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
-        {
-        }
 
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
+        public override void Out_CatalogBuyItem(DataInterceptedEventArgs e)
         {
             if (GiftCaptureModeCatalog)
             {
@@ -432,42 +423,6 @@ namespace RetroFun.Pages
             }
         }
 
-
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserEnterRoom(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InItemExtraData(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomData(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
-        {
-        }
 
         private async void SendPacket()
         {
@@ -927,87 +882,5 @@ namespace RetroFun.Pages
             }
 
         }
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomWallItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
-        { }
-
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
-        { }
-
-
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
-        { }
-        public void InWallItemUpdate(DataInterceptedEventArgs e)
-        { }
     }
 }

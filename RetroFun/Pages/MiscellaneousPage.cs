@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class MiscellaneousPage : ObservablePage, ISubscriber
+    public partial class MiscellaneousPage:  SubscriberPackets
     {
         private Random Randomizer = new Random();
 
@@ -44,7 +45,7 @@ namespace RetroFun.Pages
         private readonly string TrollLook1 = "hr-155-42.ea-1333-33.ha-3786-62.ch-201410-89.sh-3333-3333.ca-3333-33-33.lg-44689-82.wa-3333-333.hd-209-1";
         private readonly string TrollLook2 = "hr-893-42.ea-1333-33.ha-3786-62.sh-6298462-82.wa-3333-333.ca-3333-33-33.lg-5772038-82-62.ch-987462876-89.hd-209-1";
         private readonly string TrollLook3 = "hr-893-42.cc-156282-77.ea-1333-33.ha-3786-62.ch-9784419-82.sh-3035-82.ca-3333-33-33.lg-6050208-78.wa-3333-333.hd-209-1";
-        private Dictionary<int, HEntity> users = new Dictionary<int, HEntity>();
+        private List<HEntity> users;
 
 
         private string OriginalLook = " ";
@@ -629,13 +630,7 @@ namespace RetroFun.Pages
             Bind(BlockMessageForYouChbx, "Checked", nameof(BlockMessageForYou));
             Bind(BlockStaffAlertsChbx, "Checked", nameof(BlockStaffAlerts));
             Bind(ConvertMessageForyouFileChbx, "Checked", nameof(ConvertMessageForYouToFile));
-            users = new Dictionary<int, HEntity>();
-
-            if (Program.Master != null)
-            {
-                Triggers.InAttach(In.MessagesForYou, HandleMessageForYou);
-            }
-
+            users = new List<HEntity>();
         }
 
         private void SignCountBtn_Click(object sender, EventArgs e)
@@ -744,9 +739,6 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-        }
 
         private async void SendGesturePacket(HGesture Gesture)
         {
@@ -990,9 +982,9 @@ namespace RetroFun.Pages
             await Connection.SendToServerAsync(Out.RoomUserSign, Sign);
         }
 
-        public bool IsReceiving => true;
 
-        public void OnLatencyTest(DataInterceptedEventArgs obj)
+
+        public override void Out_LatencyTest(DataInterceptedEventArgs obj)
         {
             if (UsernameFilter == null)
             {
@@ -1000,7 +992,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnUsername(DataInterceptedEventArgs obj)
+        public override void Out_Username(DataInterceptedEventArgs obj)
         {
             string username = obj.Packet.ReadString();
 
@@ -1010,23 +1002,35 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             users.Clear();
             newroom = true;
         }
 
 
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        public override void In_RoomUserLeft(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
-            var UserLeaveEntity = users.Values.FirstOrDefault(ent => ent.Index == index);
-            if (UserLeaveEntity == null) return;
-
-            users.Remove(UserLeaveEntity.Id);
+            var entity = FindEntity(index);
+            if (entity == null) return;
+            users.Remove(entity);
         }
 
-        public void InUserEnterRoom(DataInterceptedEventArgs obj)
+        private HEntity FindEntity(int index)
+        {
+            var entity = users.Find(f => f.Index == index);
+            if(entity != null)
+            {
+                return entity;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public override void In_UserEnterRoom(DataInterceptedEventArgs obj)
         {
             try
             {
@@ -1035,9 +1039,9 @@ namespace RetroFun.Pages
                 {
                     foreach (HEntity hentity in array)
                     {
-                        if (!users.ContainsKey(hentity.Id))
+                        if (!users.Contains(hentity))
                         {
-                            users.Add(hentity.Id, hentity);
+                            users.Add(hentity);
                         }
                         if (hentity.Name == UsernameFilter)
                         {
@@ -1053,27 +1057,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void InPurchaseOk(DataInterceptedEventArgs e)
-        {
-        }
-
-
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
+        public override void Out_UserFriendRemoval(DataInterceptedEventArgs e)
         {
             if (AntiFriendRemove)
                 e.IsBlocked = true;
@@ -1132,58 +1116,6 @@ namespace RetroFun.Pages
         {
             SitCheck();
         }
-
-        //public string GenInt()
-        //{
-        //    int Random = Randomizer.Next(0, 9);
-
-        //    //if(!(OldRandom == Random))
-        //    //{
-        //    //    OldRandom = Random;
-        //    return Random.ToString();
-        //    //}
-        //    //return GenInt();
-        //}
-
-        //private void GenerateMaleLook()
-        //{
-        //    string Look = "ca-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ch-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".lg-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".sh-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + GenInt() + ".wa-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + ".hd-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + ".hr-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ha-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ea-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "";
-        //    if (Look != OldLook)
-        //    {
-        //        OldLook = Look;
-        //        Console.WriteLine("USer Look set to : " + Look);
-        //        if (Connection.Remote.IsConnected)
-        //        {
-        //            Connection.SendToServerAsync(Out.UserSaveLook, "M", Look);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Found Duplicated look!");
-        //        GenerateMaleLook();
-        //    }
-        //}
-
-        //private void GenerateFemaleLook()
-        //{
-        //    if (Connection.Remote.IsConnected)
-        //    {
-        //        Connection.SendToServerAsync(Out.UserSaveLook, "F", "ca-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ch-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".lg-" + GenInt() + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".sh-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + GenInt() + ".wa-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + GenInt() + ".hd-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + ".hr-" + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ha-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + ".ea-" + GenInt() + GenInt() + GenInt() + GenInt() + "-" + GenInt() + GenInt() + "");
-        //    }
-        //}
-
-        ////private void GenLookGenThreadBtn_Click(object sender, EventArgs e)
-        ////{
-        ////}
-
-        ////private void ToggleLookGen()
-        ////{
-        ////}
-
-
-
-
-
 
         private void DanceLoopBtn_Click(object sender, EventArgs e)
         {
@@ -1253,9 +1185,6 @@ namespace RetroFun.Pages
             }
         }
 
-        private void EffectLoopBtn_Click(object sender, EventArgs e)
-        {
-        }
 
         private void TrollLookBtn_Click(object sender, EventArgs e)
         {
@@ -1284,7 +1213,7 @@ namespace RetroFun.Pages
             return new string(process1.Where(c => char.IsLetter(c) || char.IsDigit(c) || char.IsSymbol(c)).ToArray());
         }
 
-        public void InRoomData(DataInterceptedEventArgs e)
+        public override void In_RoomData(DataInterceptedEventArgs e)
         {
             try
             {
@@ -1308,7 +1237,7 @@ namespace RetroFun.Pages
         }
 
 
-        private void HandleMessageForYou(DataInterceptedEventArgs e)
+        public override void In_MessagesForYou(DataInterceptedEventArgs e)
         {
             e.Packet.ReadInteger();
             string message = e.Packet.ReadString();
@@ -1376,51 +1305,29 @@ namespace RetroFun.Pages
 
 
 
-        public void InItemExtraData(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
+        public override void In_RoomUserTalk(DataInterceptedEventArgs e)
         {
             int index = e.Packet.ReadInteger();
             string text = e.Packet.ReadString();
-            SaveChatlog(text, "TALKING", FindUsername(index));
+            var entity = FindEntity(index);
+            SaveChatlog(text, "TALKING", FindUsername(entity));
         }
 
-        public void InRoomUserShout(DataInterceptedEventArgs e)
+        public override void  In_RoomUserShout(DataInterceptedEventArgs e)
         {
             int index = e.Packet.ReadInteger();
             string text = e.Packet.ReadString();
-            SaveChatlog(text, "SHOUTING", FindUsername(index));
+            var entity = FindEntity(index);
+            SaveChatlog(text, "TALKING", FindUsername(entity));
         }
 
 
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
+        public override void In_RoomUserWhisper(DataInterceptedEventArgs e)
         {
             int index = e.Packet.ReadInteger();
             string text = e.Packet.ReadString();
-            SaveChatlog(text, "WHISPERING", FindUsername(index));
+            var entity = FindEntity(index);
+            SaveChatlog(text, "TALKING", FindUsername(entity));
         }
 
         private void SendFriendRequest(string username)
@@ -1436,11 +1343,12 @@ namespace RetroFun.Pages
             }
         }
 
-        private string FindUsername(int index)
+        private string FindUsername(HEntity entity)
         {
-            if (users != null)
+
+            if (entity != null)
             {
-                return users.Where(x => x.Value.Id == index).Select(x => x.Value.Name).DefaultIfEmpty("NOT_LOGGED_USER").First();
+                return entity.Name;
             }
             else
             {
@@ -1552,51 +1460,5 @@ namespace RetroFun.Pages
 
             }
         }
-
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomWallItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
-        { }
-
-
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
-        { }
-        public void InWallItemUpdate(DataInterceptedEventArgs e)
-        { }
     }
 }

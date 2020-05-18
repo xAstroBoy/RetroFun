@@ -15,7 +15,7 @@ namespace RetroFun.Pages
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
 
-    public partial class FurniTrollPg : ObservablePage , ISubscriber
+    public partial class FurniTrollPg : SubscriberPackets
     {
 
         #region vars
@@ -543,7 +543,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-        public bool IsReceiving => true;
+
 
 
         #endregion
@@ -605,19 +605,11 @@ namespace RetroFun.Pages
             Bind(CooldownNbx8, "Value", nameof(CooldownThread8));
             Bind(CooldownNbx9, "Value", nameof(CooldownThread9));
             Bind(CooldownNbx10, "Value", nameof(CooldownThread10));
-
-
             Bind(GlobalCooldownNbx, "Value", nameof(GlobalCooldown));
-
             Bind(CooldownHanditemGiverNbx, "Value", nameof(CooldownHanditemGiver));
-
-            
-
             #endregion
-            if (Program.Master != null)
-            {
-                Triggers.OutAttach(Out.TriggerColorWheel, handlewheelitem);
-            }
+
+
         }
 
 
@@ -874,7 +866,7 @@ namespace RetroFun.Pages
 
         #region interception
 
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
+        public override void Out_ToggleFloorItem(DataInterceptedEventArgs e)
         {
             int furniid = e.Packet.ReadInteger();
 
@@ -889,7 +881,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
+        public override void Out_ToggleWallItem(DataInterceptedEventArgs e)
         {
             int furniid = e.Packet.ReadInteger();
             if (IsRegistrationMode)
@@ -903,7 +895,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void handlewheelitem(DataInterceptedEventArgs e)
+        public override void Out_TriggerColorWheel(DataInterceptedEventArgs e)
         {
             int furniid = e.Packet.ReadInteger();
             if (IsRegistrationMode)
@@ -1870,168 +1862,19 @@ namespace RetroFun.Pages
         }
         #endregion
 
-        #region Subscribers
 
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomWallItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomData(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
-        {
-            int furniid = e.Packet.ReadInteger();
-            if (IsRegistrationMode)
-            {
-                RegisterFurni(furniid);
-                if (!Diceitems.Contains(furniid))
-                {
-                    Diceitems.Add(furniid);
-                }
-                e.IsBlocked = true;
-            }
-        }
-
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        public override void Out_UserRequestBadge(DataInterceptedEventArgs e)
         {
             UserID = e.Packet.ReadInteger();
         }
 
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
-        {
 
-        }
-
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnLatencyTest(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnUsername(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InPurchaseOk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InUserEnterRoom(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InItemExtraData(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
-        {
-        }
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
-        { }
-
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
-        { }
-
-
-        #endregion
 
         private void HaltThreadsBtn_Click(object sender, EventArgs e)
         {
             StopThreads();
         }
 
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
-        { }
-        public void InWallItemUpdate(DataInterceptedEventArgs e)
-        { }
     }
+
 }

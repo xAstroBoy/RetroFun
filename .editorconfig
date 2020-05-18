@@ -2,3 +2,9 @@
 
 # CS0168: Variable is declared but never used
 dotnet_diagnostic.CS0168.severity = silent
+
+# CS0219: Variable is assigned but its value is never used
+dotnet_diagnostic.CS0219.severity = none
+
+# IDE0044: Add readonly modifier
+dotnet_style_readonly_field = true:none

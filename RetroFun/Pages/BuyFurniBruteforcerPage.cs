@@ -16,7 +16,7 @@ namespace RetroFun.Pages
 
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class BuyFurniBruteforcerPage : ObservablePage, ISubscriber
+    public partial class BuyFurniBruteforcerPage:  SubscriberPackets
     {
 
 
@@ -279,13 +279,6 @@ namespace RetroFun.Pages
             }
         }
 
-        //public static string getDNSName(string HostIP)
-        //{
-        //    IPHostEntry entry = Dns.GetHostEntry(HostIP);
-        //    return entry.HostName;
-        //}
-
-
         private void SendPurchaseBtn_Click(object sender, EventArgs e)
         {
             SendPacket(PageIDInt1, FurniIDint1);
@@ -305,69 +298,7 @@ namespace RetroFun.Pages
         {
             CheckFurniIDBruteforcer();
         }
-        public void OnLatencyTest(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void InRoomData(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void OnUsername(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserEnterRoom(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
-        {
-        }
+     
         private void CatalogueBruteForceBtn_Click(object sender, EventArgs e)
         {
             CheckBruteForcer();
@@ -498,21 +429,8 @@ namespace RetroFun.Pages
             });
         }
 
-        public bool IsReceiving => true;
 
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InItemExtraData(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
+        public override void Out_CatalogBuyItem(DataInterceptedEventArgs e)
         {
             if(CaptureModeCatalog)
             {
@@ -525,7 +443,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void InPurchaseOk(DataInterceptedEventArgs e)
+        public override void In_PurchaseOk(DataInterceptedEventArgs e)
         {
             try {
                 FurniName = e.Packet.ReadString(4);
@@ -1020,9 +938,6 @@ namespace RetroFun.Pages
             FileNameSave = GetHost(Connection.Host);
         }
 
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
-        {
-        }
 
         private void BuyWithPreviousPageIDBtn_Click(object sender, EventArgs e)
         {
@@ -1036,53 +951,5 @@ namespace RetroFun.Pages
             SendPacket(PageIDInt1, FurniIDint1);
         }
 
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomWallItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
-        { }
-
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
-        { }
-
-
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
-        { }
-
-        public void InWallItemUpdate(DataInterceptedEventArgs e)
-        { }
     }
 }

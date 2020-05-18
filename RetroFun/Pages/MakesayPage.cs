@@ -17,11 +17,11 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class MakeSayPage : ObservablePage, ISubscriber
+    public partial class MakeSayPage:  SubscriberPackets
     {
         public int SelectedBubbleId { get; private set; }
 
-        private Dictionary<int, HEntity> users = new Dictionary<int, HEntity>();
+        private List<HEntity> users = new List<HEntity>();
 
         private int selectedIndex;
 
@@ -56,7 +56,7 @@ namespace RetroFun.Pages
             SelectedBubbleId = (int)BubblesCmbx1.SelectedTag;
         }
 
-        public void InUserEnterRoom(DataInterceptedEventArgs obj)
+        public override void In_UserEnterRoom(DataInterceptedEventArgs obj)
         {
             try
             {
@@ -64,11 +64,10 @@ namespace RetroFun.Pages
                 if (array.Length != 0)
                 {
                     foreach (HEntity hentity in array)
-                    {
-                        hentity.Motto = String.Empty;
-                        if (!users.ContainsKey(hentity.Id))
+                    { 
+                        if (!users.Contains(hentity))
                         {
-                            users.Add(hentity.Id, hentity);
+                            users.Add(hentity);
                         }
                     }
                 }
@@ -80,49 +79,13 @@ namespace RetroFun.Pages
             }
         }
 
-        public bool IsReceiving => true;
-
-        public void InPurchaseOk(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnLatencyTest(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnUsername(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InItemExtraData(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomData(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        public override void Out_UserRequestBadge(DataInterceptedEventArgs e)
         {
             int userId = e.Packet.ReadInteger();
-            if (users.TryGetValue(userId, out var entity))
+            var entity = users.Find(u => u.Id == userId);
+            if (entity != null)
             {
+            
                 selectedIndex = entity.Index;
                 SelectUserLabel.Invoke((MethodInvoker)delegate
                 {
@@ -131,21 +94,36 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnRequestRoomLoad(DataInterceptedEventArgs obj)
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs obj)
         {
             users.Clear();
             WriteRegistrationUsers(users.Count);
         }
 
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        public override void In_RoomUserLeft(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
-            var UserLeaveEntity = users.Values.FirstOrDefault(ent => ent.Index == index);
+            var UserLeaveEntity = FindEntity(index);
             if (UserLeaveEntity == null) return;
-
-            users.Remove(UserLeaveEntity.Id);
+            users.Remove(UserLeaveEntity);
             WriteRegistrationUsers(users.Count);
         }
+
+
+
+        private HEntity FindEntity(int index)
+        {
+            var entity = users.Find(f => f.Index == index);
+            if (entity != null)
+            {
+                return entity;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
         private void WriteRegistrationUsers(int count)
         {
@@ -176,86 +154,5 @@ namespace RetroFun.Pages
                 Connection.SendToClientAsync(id, selectedIndex, MakeTextBox.Text, 0, bubble, 0, -1);
             }
         }
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomWallItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
-        { }
-
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
-        { }
-
-
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
-        { }
-
-        public void InWallItemUpdate(DataInterceptedEventArgs e)
-        { }
     }
 }

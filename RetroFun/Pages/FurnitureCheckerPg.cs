@@ -27,7 +27,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class FurnitureChecker : ObservablePage, ISubscriber
+    public partial class FurnitureChecker:  SubscriberPackets
     {
         private HMessage FurniDataStored;
 
@@ -312,7 +312,7 @@ namespace RetroFun.Pages
 
         public int FurnitureId { get; private set; }
 
-        public bool IsReceiving => true;
+
         #endregion
         public FurnitureChecker()
         {
@@ -1258,9 +1258,6 @@ namespace RetroFun.Pages
             });
         }
 
-        private void RoomPickupItem(DataInterceptedEventArgs obj)
-        {
-        }
 
         private string GetHost(string host)
         {
@@ -1526,13 +1523,9 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
-        {
-
-        }
 
 
-        public void InWallItemUpdate(DataInterceptedEventArgs e )
+        public override void In_WallItemUpdate(DataInterceptedEventArgs e )
         {
             string furniid = e.Packet.ReadString();
             int typeIdIguess = e.Packet.ReadInteger();
@@ -1546,7 +1539,7 @@ namespace RetroFun.Pages
         }
 
 
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
+        public override void In_FloorItemUpdate(DataInterceptedEventArgs e)
         {
             int uniqueId = e.Packet.ReadInteger();
             int typeId = e.Packet.ReadInteger();
@@ -1564,23 +1557,15 @@ namespace RetroFun.Pages
 
         }
 
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
-        {
 
-        }
 
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             ResetAll();
         }
 
 
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
+        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
             ResetAll();
         }
@@ -1620,29 +1605,8 @@ namespace RetroFun.Pages
             ResetRareWallScanner();
             UpdateAllLabels();
         }
-        public void OnLatencyTest(DataInterceptedEventArgs e)
-        {
 
-        }
-
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnUsername(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomData(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InItemExtraData(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        public override void Out_RoomUserWalk(DataInterceptedEventArgs e)
         {
             int coordX = e.Packet.ReadInteger();
             int coordY = e.Packet.ReadInteger();
@@ -1689,56 +1653,6 @@ namespace RetroFun.Pages
             await Task.Delay(10);
         }
 
-        public void InPurchaseOk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserEnterRoom(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
-        {
-        }
 
         private void PickWallItemCSBtn_Click(object sender, EventArgs e)
         {
@@ -2502,11 +2416,8 @@ namespace RetroFun.Pages
 
 
 
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
 
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
+        public override void Out_RotateMoveItem(DataInterceptedEventArgs e)
         {
             int FurniID = e.Packet.ReadInteger();
             int x = e.Packet.ReadInteger();
@@ -2913,7 +2824,7 @@ namespace RetroFun.Pages
         }
 
 
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
+        public override void Out_MoveWallItem(DataInterceptedEventArgs e)
         {
             int WallFurni = e.Packet.ReadInteger();
             string wallfurnicoord = e.Packet.ReadString();
@@ -2925,7 +2836,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
+        public override void In_RoomFloorItems(DataInterceptedEventArgs e)
         {
             RoomFloorFurni = HFloorItem.Parse(e.Packet).ToList(); //All Floor Objects
             UpdateFloorFurnisLabel();
@@ -2941,7 +2852,7 @@ namespace RetroFun.Pages
             e.Continue();
         }
 
-        public void InRoomWallItems(DataInterceptedEventArgs e)
+        public override void In_RoomWallItems(DataInterceptedEventArgs e)
         {
             RoomWallFurni = BobbaParser(e.Packet);
             if (!IS_SCANNING_FLOORFURNIS)
@@ -2954,7 +2865,7 @@ namespace RetroFun.Pages
             e.Continue();
         }
 
-        public void InAddFloorItem(DataInterceptedEventArgs e)
+        public override void In_AddFloorItem(DataInterceptedEventArgs e)
         {
             try
             {
@@ -2992,7 +2903,7 @@ namespace RetroFun.Pages
             catch (Exception) { }
         }
 
-        public void InAddWallItem(DataInterceptedEventArgs e)
+        public override void In_AddWallItem(DataInterceptedEventArgs e)
         {
             try
             {
@@ -3028,13 +2939,13 @@ namespace RetroFun.Pages
         }
 
 
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
+        public override void In_RemoveWallItem(DataInterceptedEventArgs e)
         {
             HandleRemovedFurni(e.Packet.ReadString());
             e.Continue();
         }
 
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
+        public override void In_RemoveFloorItem(DataInterceptedEventArgs e)
         {
             HandleRemovedFurni(e.Packet.ReadString());
             e.Continue();
@@ -3181,7 +3092,7 @@ namespace RetroFun.Pages
             UpdateWhitelistFurniLabel();
         }
 
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
+        public override void Out_ToggleFloorItem(DataInterceptedEventArgs e)
         {
             int FurniID = e.Packet.ReadInteger();
             if (FurniIDToCheckMode)
@@ -3201,7 +3112,7 @@ namespace RetroFun.Pages
         }
 
 
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
+        public override void Out_ToggleWallItem(DataInterceptedEventArgs e)
         {
             int FurniID = e.Packet.ReadInteger();
             if (FurniIDToCheckMode)

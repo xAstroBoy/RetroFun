@@ -703,7 +703,6 @@ namespace RetroFun
             this.FakeMessagePg.Location = new System.Drawing.Point(195, 69);
             this.FakeMessagePg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.FakeMessagePg.Name = "FakeMessagePg";
-            this.FakeMessagePg.PrivateMessageAlert = ((ushort)(0));
             this.FakeMessagePg.ShouldBlockReminders = true;
             this.FakeMessagePg.Size = new System.Drawing.Size(726, 460);
             this.FakeMessagePg.TabIndex = 0;

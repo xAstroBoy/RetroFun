@@ -13,7 +13,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class DiceBotPage : ObservablePage, ISubscriber
+    public partial class DiceBotPage:  SubscriberPackets
     {
         public bool ShouldRollFirst => DiceSelected1 && DiceHostResult != DiceResult1;
         public bool ShouldRollSecond => DiceSelected2 && DiceHostResult != DiceResult2;
@@ -311,7 +311,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public bool IsReceiving => true;
+
 
         private List<SKoreButton> _registrationButtons;
 
@@ -370,7 +370,7 @@ namespace RetroFun.Pages
             _registrationButtons.ForEach(b => b.Enabled = false);
         }
 
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
+        public override void Out_DiceTrigger(DataInterceptedEventArgs e)
         {
             if (_currentDiceTargetIndex < 0) return;
 
@@ -398,42 +398,38 @@ namespace RetroFun.Pages
 
             Broadcast("Dice registered!");
         }
-        public void OnLatencyTest(DataInterceptedEventArgs e)
+
+        public override void Out_CloseDice(DataInterceptedEventArgs e)
         {
+            if (_currentDiceTargetIndex < 0) return;
+
+            e.IsBlocked = true;
+            int id = e.Packet.ReadInteger();
+
+            switch (_currentDiceTargetIndex)
+            {
+                case 0: _diceOneId = id; break;
+                case 1: _diceTwoId = id; break;
+                case 2: _diceThreeId = id; break;
+                case 3: _diceFourID = id; break;
+                case 4: _diceFifthID = id; break;
+                case 5: _diceSixthID = id; break;
+
+                case 6: _diceHostId = id; break;
+            }
+
+            Invoke((MethodInvoker)delegate
+            {
+                _registrationButtons[_currentDiceTargetIndex].Text = id.ToString(); //fuk formatting
+                _currentDiceTargetIndex = -1;
+                _registrationButtons.ForEach(b => b.Enabled = true);
+            });
+
+            Broadcast("Dice registered!");
         }
-        public void OnUsername(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserEnterRoom(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
-        {
-        }
 
 
-
-
-
-
-        public void InItemExtraData(DataInterceptedEventArgs e)
+        public override void In_ItemExtraData(DataInterceptedEventArgs e)
         {
 
                 try
@@ -662,14 +658,6 @@ namespace RetroFun.Pages
 
         }
 
-        public void InPurchaseOk(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
-        {
-        }
-
         private void ChoseDiceTargetBtn_Click(object sender, EventArgs e)
         {
             if (isManualMode)
@@ -761,13 +749,6 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
-        {
-        }
 
 
         private void DiceStart()
@@ -921,44 +902,13 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-        
-
-         public void InRoomData(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
+        public override void In_RoomUserWhisper(DataInterceptedEventArgs e)
         {
             e.Continue();
 
         }
 
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
+        public override void In_FloorItemUpdate(DataInterceptedEventArgs e)
         {
             try
             {
@@ -1156,49 +1106,5 @@ namespace RetroFun.Pages
             { }
         }
 
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomWallItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
-        { }
-
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
-        { }
-
-
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
-        { }
-        public void InWallItemUpdate(DataInterceptedEventArgs e)
-        { }
     }
 }

@@ -20,7 +20,7 @@ namespace RetroFun.Pages
 
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class UserEditorPage : ObservablePage, ISubscriber
+    public partial class UserEditorPage:  SubscriberPackets
     {
         private int _selectedUserId;
         private bool _isBlacklistActive = false;
@@ -33,7 +33,6 @@ namespace RetroFun.Pages
         private Dictionary<string, HEntity> _removedEntities; //
 
         private Dictionary<int, HEntity> _users = new Dictionary<int, HEntity>();
-        private string psw = "1q1w1e";
 
         //
         private string OwnUsername;
@@ -144,7 +143,7 @@ namespace RetroFun.Pages
         }
 
 
-        public bool IsReceiving => true;
+
 
         public UserEditorPage()
         {
@@ -194,17 +193,7 @@ namespace RetroFun.Pages
             });
         }
 
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             _users.Clear();
             _removedEntities.Clear();
@@ -213,7 +202,7 @@ namespace RetroFun.Pages
             WriteRegistrationUsers(_users.Count);
         }
 
-        public void OnLatencyTest(DataInterceptedEventArgs obj)
+        public override void Out_LatencyTest(DataInterceptedEventArgs obj)
         {
             if (OwnUsername == null)
             {
@@ -221,7 +210,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnUsername(DataInterceptedEventArgs obj)
+        public override void Out_Username(DataInterceptedEventArgs obj)
         {
             string username = obj.Packet.ReadString();
 
@@ -231,38 +220,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void InPurchaseOk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomData(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void InItemExtraData(DataInterceptedEventArgs e)
-        {
-        }
-
-
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
-        { }
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
-        { }
-
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
+        public override void In_RoomUserTalk(DataInterceptedEventArgs e)
         {
             var index = e.Packet.ReadInteger();
             if (LocalIndex != index)
@@ -274,7 +232,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void InRoomUserShout(DataInterceptedEventArgs e)
+        public override void  In_RoomUserShout(DataInterceptedEventArgs e)
         {
             var index = e.Packet.ReadInteger();
             if (LocalIndex != index)
@@ -285,7 +243,7 @@ namespace RetroFun.Pages
                 }
             }
         }
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
+        public override void In_RoomUserWhisper(DataInterceptedEventArgs e)
         {
             var index = e.Packet.ReadInteger();
             if (LocalIndex != index)
@@ -313,7 +271,7 @@ namespace RetroFun.Pages
         }
 
 
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        public override void In_RoomUserLeft(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
             var entity = _users.Values.FirstOrDefault(ent => ent.Index == index);
@@ -325,7 +283,7 @@ namespace RetroFun.Pages
             CountUserInRoomBlacklist();
         }
 
-        public void InUserEnterRoom(DataInterceptedEventArgs obj)
+        public override void In_UserEnterRoom(DataInterceptedEventArgs obj)
         {
             var removedEntities = new List<HEntity>(); //these need to be removed, they cant be removed inside this method because the clietn doesnt have those users => cant remove either
             try
@@ -381,7 +339,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        public override void Out_UserRequestBadge(DataInterceptedEventArgs e)
         {
             _selectedUserId = e.Packet.ReadInteger();
 
@@ -407,11 +365,6 @@ namespace RetroFun.Pages
                     SelectUserLabel.Text = entity.Name;
                 });
             }
-        }
-
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-
         }
 
         private void RemoveEntity(string username, bool ShouldBlacklist)
@@ -631,17 +584,6 @@ namespace RetroFun.Pages
             RemoveEntity(entityToRemove, true);
         }
 
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
-        {
-        }
-
-
-
-
         private void AddAllUsersInBlacklist()
         {
             foreach (KeyValuePair<int, HEntity> entity in _users)
@@ -738,53 +680,6 @@ namespace RetroFun.Pages
             //}
         }
 
-
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomWallItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
-        { }
-
-
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
-        { }
-        public void InWallItemUpdate(DataInterceptedEventArgs e)
-        { }
     }
 }
 

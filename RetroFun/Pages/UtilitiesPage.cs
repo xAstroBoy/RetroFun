@@ -18,7 +18,7 @@ namespace RetroFun.Pages
 
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class UtilitiesPage : ObservablePage
+    public partial class UtilitiesPage : SubscriberPackets
     {
 
         private bool IsBGInterceptor;
@@ -197,12 +197,7 @@ namespace RetroFun.Pages
 
             Bind(RoomBGurlTxb, "Text", nameof(RoomBGURL));
 
-            if (Program.Master != null)
-            {
-                Triggers.OutAttach(Out.RoomPlaceItem, RoomPlaceItemsHandler);
-                Triggers.OutAttach(Out.AdvertisingSave, RoomBGDataInterceptor);
 
-            }
 
 
         }
@@ -218,9 +213,9 @@ namespace RetroFun.Pages
             }
             await Task.Delay(50);
         }
-        private void RoomBGDataInterceptor(DataInterceptedEventArgs e)
+
+        public override void Out_AdvertisingSave(DataInterceptedEventArgs e)
         {
-            
             if (IsBGInterceptor)
             {
                 RoomBGID = e.Packet.ReadInteger();
@@ -236,11 +231,8 @@ namespace RetroFun.Pages
                 WriteToButton(CaptureRoomBGBtn, "Capture RoomBG : OFF");
                 IsBGInterceptor = false;
             }
-        }
-
-
-
-        private void RoomPlaceItemsHandler(DataInterceptedEventArgs e)
+        } 
+        public override void Out_RoomPlaceItem(DataInterceptedEventArgs e)
         {
             if (CreditExchangeMode)
             {
@@ -253,6 +245,7 @@ namespace RetroFun.Pages
                 HandleGiftExchanger(GiftInt);
             }
         }
+
 
         private void HandleGiftExchanger(int furniid)
         {

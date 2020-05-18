@@ -24,7 +24,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class ChatPage : ObservablePage, ISubscriber
+    public partial class ChatPage:  SubscriberPackets
     {
         private HMessage replacement;
         private HMessage ChatMessageBuild;
@@ -32,10 +32,9 @@ namespace RetroFun.Pages
         private HMessage PyramidChatBuild;
 
         private string OldPyramidString = string.Empty;
-        private string actualpyramidstring;
 
         private int LocalIndex;
-        private Dictionary<int, HEntity> users = new Dictionary<int, HEntity>();
+        private List<HEntity> users = new List<HEntity>();
 
         private bool isCloneChatUser;
         private bool IsRaidModeAlertDone;
@@ -49,7 +48,7 @@ namespace RetroFun.Pages
         private string SelectedColorChat = "@red@";
         private Random rand = new Random();
 
-        public bool IsReceiving => true;
+
 
         private bool isLiveEditChat;
         private bool _FlooderEnabled;
@@ -367,7 +366,7 @@ namespace RetroFun.Pages
         }
 
 
-        public async void OnLatencyTest(DataInterceptedEventArgs obj)
+        public override async void Out_LatencyTest(DataInterceptedEventArgs obj)
         {
             if (UsernameFilter == null)
             {
@@ -379,11 +378,9 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnUsername(DataInterceptedEventArgs obj)
+        public override void Out_Username(DataInterceptedEventArgs obj)
         {
             string username = obj.Packet.ReadString();
-
-
             if (UsernameFilter == null)
             {
                 UsernameFilter = username;
@@ -454,7 +451,7 @@ namespace RetroFun.Pages
             });
         }
 
-        public void InUserEnterRoom(DataInterceptedEventArgs obj)
+        public override void In_UserEnterRoom(DataInterceptedEventArgs obj)
         {
             try
             {
@@ -465,9 +462,9 @@ namespace RetroFun.Pages
                     {
                         foreach (HEntity hentity in array)
                         {
-                            if (!users.ContainsKey(hentity.Id))
+                            if (!users.Contains(hentity))
                             {
-                                users.Add(hentity.Id, hentity);
+                                users.Add(hentity);
                             }
                             if (hentity.Name == UsernameFilter)
                             {
@@ -485,56 +482,31 @@ namespace RetroFun.Pages
             {
             }
         }
-
-
-        public void InPurchaseOk(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             users.Clear();
 
         }
 
-        public void InRoomData(DataInterceptedEventArgs e)
-        {
-
-        }
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
+        public override void In_RoomUserLeft(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
-            var UserLeaveEntity = users.Values.FirstOrDefault(ent => ent.Index == index);
-            if (UserLeaveEntity == null) return;
-
-            users.Remove(UserLeaveEntity.Id);
+            var entity = FindEntity(index);
+            if (entity == null) return;
+            users.Remove(entity);
         }
 
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        private HEntity FindEntity(int index)
         {
-        }
-
-        public void InItemExtraData(DataInterceptedEventArgs e)
-        {
+            var entity = users.Find(f => f.Index == index);
+            if (entity != null)
+            {
+                return entity;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private void BubblesCmbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -550,23 +522,23 @@ namespace RetroFun.Pages
         }
 
 
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
+        public override void Out_RoomUserTalk(DataInterceptedEventArgs e)
         {
-            RoomUserStartSpeaking(e);
+            EditUserChatPacket(e);
         }
 
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
+        public override void Out_RoomUserShout(DataInterceptedEventArgs e)
         {
-            RoomUserStartSpeaking(e);
+            EditUserChatPacket(e);
         }
 
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
+        public override void Out_RoomUserWhisper(DataInterceptedEventArgs e)
         {
-            RoomUserStartSpeaking(e);
+            EditUserChatPacket(e);
         }
 
 
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
+        public override void In_RoomUserTalk(DataInterceptedEventArgs e)
         {
             int index = e.Packet.ReadInteger();
             string msg = e.Packet.ReadString();
@@ -609,7 +581,7 @@ namespace RetroFun.Pages
         }
 
 
-        public void InRoomUserShout(DataInterceptedEventArgs e)
+        public override void  In_RoomUserShout(DataInterceptedEventArgs e)
         {
             int index = e.Packet.ReadInteger();
             string msg = e.Packet.ReadString();
@@ -634,7 +606,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
+        public override void In_RoomUserWhisper(DataInterceptedEventArgs e)
         {
             int index = e.Packet.ReadInteger();
             string msg = e.Packet.ReadString();
@@ -655,7 +627,7 @@ namespace RetroFun.Pages
 
 
 
-        private void RoomUserStartSpeaking(DataInterceptedEventArgs Packet)
+        private void EditUserChatPacket(DataInterceptedEventArgs Packet)
         {
             string message = Packet.Packet.ReadString();
             int bubbleId = Packet.Packet.ReadInteger();
@@ -1038,7 +1010,7 @@ namespace RetroFun.Pages
                 Color = color;
                 selectedchatcolor = selectedchat;
             }
-            public override string ToString() => SelectedTextColor + $"{Color}";
+            public override string ToString() => $"{Color}";
         }
         private void StartFloodThread()
         {
@@ -1131,10 +1103,9 @@ namespace RetroFun.Pages
 
         }
 
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
+        public override void Out_RoomUserStartTyping(DataInterceptedEventArgs e)
         {
             e.IsBlocked = HideSpeakingBubble;
-
         }
 
 
@@ -1142,9 +1113,9 @@ namespace RetroFun.Pages
         {
             if (!String.IsNullOrEmpty(username))
             {
-                if(users.Values != null)
+                if(users.Count != 0)
                 {
-                    MainUserIndex = users.Values.FirstOrDefault(e => e.Name == username).Index;
+                    MainUserIndex = users.Find(e => e.Name == username).Index;
                 }
             }
         }
@@ -1153,16 +1124,14 @@ namespace RetroFun.Pages
         {
             if (!String.IsNullOrEmpty(CloneUsernameFilter))
             {
-                if (users != null && users.Values != null)
+                if (users != null && users.Count != 0)
                 {
                     FindUserIndex(CloneUsernameFilter);
                 }
             }
         }
 
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
-        {
-        }
+
 
         private void SendMessageBtn_Click(object sender, EventArgs e)
         {
@@ -1171,48 +1140,7 @@ namespace RetroFun.Pages
                 Connection.SendToServerAsync(ChatMessageBuilder());
             }
         }
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
 
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomWallItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
-        { }
-
-
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
-        { }
-        public void InWallItemUpdate(DataInterceptedEventArgs e)
-        { }
         private void LiveEditChatBtn_Click(object sender, EventArgs e)
         {
             if(isLiveEditChat)
@@ -1227,8 +1155,6 @@ namespace RetroFun.Pages
                 StartPyramidThread();
             }
         }
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
-        { }
 
         private void ColorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {

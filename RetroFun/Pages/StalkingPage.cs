@@ -12,7 +12,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class StalkingPage : ObservablePage, ISubscriber
+    public partial class StalkingPage:  SubscriberPackets
     {
         private readonly Victim[] _victims = new[]
         {
@@ -129,15 +129,9 @@ namespace RetroFun.Pages
             
             Bind(IdOfVictimNbx, "Value", nameof(UserIDCapture));
             Bind(CooldownFloodNbx, "Value", nameof(CooldownWalking));
-
-            if (Program.Master != null)
-            {
-                Triggers.InAttach(In.ReceivePrivateMessage, CheckifIsBotGiochi);
-                Triggers.OutAttach(Out.RequestRoomData, RoomDataRequest);
-            }
         }
 
-        public bool IsReceiving => true;
+
 
 
 
@@ -181,27 +175,25 @@ namespace RetroFun.Pages
 
 
 
-        public void InRoomData(DataInterceptedEventArgs e)
+        public override void In_RoomData(DataInterceptedEventArgs e)
         {
             isUserRandomWalking();
         }
 
-        public void RoomDataRequest(DataInterceptedEventArgs e)
-        {
-            isUserSpectatorMode();
-        }
-
-        private async void isUserSpectatorMode()
+        public override void Out_RequestRoomData(DataInterceptedEventArgs e)
         {
             if (ShouldExitDirectlyOnGames)
             {
                 if (isSpectatorModeActive)
                 {
-                   await  Connection.SendToServerAsync(Out.RoomUserTalk, "exit", 18);
+                    Connection.SendToServerAsync(Out.RoomUserTalk, "exit", 18);
                     isSpectatorModeActive = false;
                 }
             }
         }
+
+
+
 
         private void isUserRandomWalking()
         {
@@ -212,60 +204,12 @@ namespace RetroFun.Pages
             }
         }
 
-        public void OnRequestRoomLoad(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomUserLeft(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnCatalogBuyItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InUserEnterRoom(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InPurchaseOk(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnLatencyTest(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnUsername(DataInterceptedEventArgs e)
-        {
-        }
-        public void InUserProfile(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnOutDiceTrigger(DataInterceptedEventArgs e)
-        {
-        }
-        public void OnRoomUserStartTyping(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnUserFriendRemoval(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRoomUserWalk(DataInterceptedEventArgs e)
+        public override void Out_RoomUserWalk(DataInterceptedEventArgs e)
         {
             isUserManualWalking = true;
         }
 
-        public void InItemExtraData(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InFloorItemUpdate(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnOutUserRequestBadge(DataInterceptedEventArgs e)
+        public override void Out_UserRequestBadge(DataInterceptedEventArgs e)
         {
             if (ShouldCaptureIDMode)
             {
@@ -275,11 +219,11 @@ namespace RetroFun.Pages
             }
         }
 
-        private void CheckifIsBotGiochi(DataInterceptedEventArgs obj)
+        public override void In_ReceivePrivateMessage(DataInterceptedEventArgs e)
         {
             if (ShouldStalkBotGiochi)
             {
-                int UserID = obj.Packet.ReadInteger();
+                int UserID = e.Packet.ReadInteger();
                 if (UserID == 1442790)
                 {
                     if (ShouldExitDirectlyOnGames)
@@ -323,84 +267,5 @@ namespace RetroFun.Pages
                 Connection.SendToServerAsync(Out.StalkFriend, UserIDCapture);
             }
         }
-
-        public void OnRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserTalk(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserShout(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void InRoomUserWhisper(DataInterceptedEventArgs e)
-        {
-
-        }
-
-        public void OnRoomPickupItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnRotateMoveItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnMoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomFloorItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRoomWallItems(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InAddWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRemoveFloorItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void InRemoveWallItem(DataInterceptedEventArgs e)
-        {
-        }
-
-        public void OnToggleFloorItem(DataInterceptedEventArgs e)
-        { }
-
-
-        public void OnToggleWallItem(DataInterceptedEventArgs e)
-        { }
-
-        public void OnRequestRoomHeightmap(DataInterceptedEventArgs e)
-        { }
-        public void InWallItemUpdate(DataInterceptedEventArgs e)
-        { }
-
     }
 }

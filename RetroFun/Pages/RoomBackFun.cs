@@ -1,4 +1,5 @@
 ﻿using RetroFun.Controls;
+using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Components;
 using System;
@@ -10,7 +11,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class RoomBackFun : ObservablePage
+    public partial class RoomBackFun : SubscriberPackets
     {
         private int OldTonality;
         private int OldSaturation;
@@ -166,14 +167,10 @@ namespace RetroFun.Pages
             Bind(FurniIDnb, "Value", nameof(FurniID));
             Bind(CaptureBtn, "Checked", nameof(CaptureMode));
             Bind(GlobalSpeedChbx, "Checked", nameof(GlobalSpeedSwitch));
-
-            if (Program.Master != null)
-            {
-                Triggers.OutAttach(Out.RoomBackground, CaptureCurrent);
-            }
         }
 
-        public void CaptureCurrent(DataInterceptedEventArgs e)
+
+        public override void Out_RoomBackground(DataInterceptedEventArgs e)
         {
             if (CaptureMode)
             {
