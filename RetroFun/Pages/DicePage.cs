@@ -674,34 +674,34 @@ namespace RetroFun.Pages
                     {
                         if (DiceSelected1)
                         {
-                            Thread.Sleep(150);
+                            Thread.Sleep(550);
                             RollDice(DiceID1);
                         }
                         if (DiceSelected2)
                         {
-                            Thread.Sleep(150);
+                            Thread.Sleep(550);
                             RollDice(DiceID2);
                         }
                         if (DiceSelected3)
                         {
-                            Thread.Sleep(150);
+                            Thread.Sleep(550);
                             RollDice(DiceID3);
 
                         }
                         if (DiceSelected4)
                         {
-                            Thread.Sleep(150);
+                            Thread.Sleep(550);
                             RollDice(DiceID4);
                         }
                         if (DiceSelected5)
                         {
-                            Thread.Sleep(150);
+                            Thread.Sleep(550);
                             RollDice(DiceID5);
                         }
 
                         if (DiceSelected6)
                         {
-                            Thread.Sleep(150);
+                            Thread.Sleep(550);
                             RollDice(DiceID6);
                         }
                         StartDiceRoll = false;
@@ -723,34 +723,34 @@ namespace RetroFun.Pages
                     {
                         if (DiceSelected1)
                         {
-                            Thread.Sleep(150);
+                            Thread.Sleep(550);
                             CloseDice(DiceID1);
                         }
                         if (DiceSelected2)
                         {
-                            Thread.Sleep(150);
+                            Thread.Sleep(550);
                             CloseDice(DiceID2);
                         }
                         if (DiceSelected3)
                         {
-                            Thread.Sleep(150);
+                            Thread.Sleep(550);
                             CloseDice(DiceID3);
 
                         }
                         if (DiceSelected4)
                         {
-                            Thread.Sleep(150);
+                            Thread.Sleep(550);
                             CloseDice(DiceID4);
                         }
                         if (DiceSelected5)
                         {
-                            Thread.Sleep(150);
+                            Thread.Sleep(550);
                             CloseDice(DiceID5);
                         }
 
                         if (DiceSelected6)
                         {
-                            Thread.Sleep(150);
+                            Thread.Sleep(550);
                             CloseDice(DiceID6);
                         }
                         StartDiceCloseRoll = false;

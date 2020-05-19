@@ -1015,7 +1015,7 @@ namespace RetroFun.Pages
                 FindTypeId(furniid);
                 e.IsBlocked = true;
             }
-            if (StoreFurniDetailsToFile)
+            if (StoreFurniDetailsToFile || ShowFurniDetailsInChat)
             {
                 FindFurniDetals(furniid);
                 e.IsBlocked = true;
