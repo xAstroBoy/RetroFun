@@ -1561,12 +1561,17 @@ namespace RetroFun.Pages
             }
             else
             {
+                DisableWhitelistMode();
                 WriteToButton(FileCheckBtn, "Rare Check : ON");
                 FurniIDToCheckMode = true;
-                WriteToButton(RemoveFalsePositivesBtn, "Mark False Positives : OFF");
-                IS_REMOVE_FALSE_POSITIVE_MODE = false;
                 Speak("Rotate Furni / Rare To check if is a irregular or not!", 30);
             }
+        }
+
+        private void DisableWhitelistMode()
+        {
+            WriteToButton(RemoveFalsePositivesBtn, "Mark False Positives : OFF");
+            IS_REMOVE_FALSE_POSITIVE_MODE = false;
         }
 
         private void SelectRareListBtn_Click(object sender, EventArgs e)
@@ -2972,17 +2977,22 @@ namespace RetroFun.Pages
             }
         }
 
+
+        private void DisableRareCheck()
+        {
+            WriteToButton(FileCheckBtn, "Rare Check : OFF");
+            FurniIDToCheckMode = false;
+        }
         private void RemoveFalsePositivesBtn_Click(object sender, EventArgs e)
         {
             if (IS_REMOVE_FALSE_POSITIVE_MODE)
             {
-                WriteToButton(FileCheckBtn, "Rare Check : OFF");
                 WriteToButton(RemoveFalsePositivesBtn, "Mark False Positives : OFF");
                 IS_REMOVE_FALSE_POSITIVE_MODE = false;
             }
             else
             {
-                FurniIDToCheckMode = false;
+                DisableRareCheck();
                 IS_REMOVE_FALSE_POSITIVE_MODE = true;
                 WriteToButton(RemoveFalsePositivesBtn, "Mark False Positives : ON");
             }
