@@ -435,16 +435,16 @@
             this.groupBox3.Controls.Add(this.HideIrregularFurnisBtn);
             this.groupBox3.Controls.Add(this.RestoreUnregisteredFurnisBtn);
             this.groupBox3.Controls.Add(this.HideRegisteredFurnisBtn);
-            this.groupBox3.Location = new System.Drawing.Point(465, 186);
+            this.groupBox3.Location = new System.Drawing.Point(275, 186);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(252, 413);
+            this.groupBox3.Size = new System.Drawing.Size(430, 306);
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Furni Hider  / Unhider";
             // 
             // sKoreButton1
             // 
-            this.sKoreButton1.Location = new System.Drawing.Point(8, 172);
+            this.sKoreButton1.Location = new System.Drawing.Point(12, 101);
             this.sKoreButton1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.sKoreButton1.Name = "sKoreButton1";
             this.sKoreButton1.Size = new System.Drawing.Size(193, 27);
@@ -454,7 +454,7 @@
             // 
             // HideRegisteredFurnituresBtn
             // 
-            this.HideRegisteredFurnituresBtn.Location = new System.Drawing.Point(8, 130);
+            this.HideRegisteredFurnituresBtn.Location = new System.Drawing.Point(12, 39);
             this.HideRegisteredFurnituresBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HideRegisteredFurnituresBtn.Name = "HideRegisteredFurnituresBtn";
             this.HideRegisteredFurnituresBtn.Size = new System.Drawing.Size(193, 27);
@@ -464,7 +464,7 @@
             // 
             // RemoveRemovedFurnisBtn
             // 
-            this.RemoveRemovedFurnisBtn.Location = new System.Drawing.Point(7, 243);
+            this.RemoveRemovedFurnisBtn.Location = new System.Drawing.Point(12, 165);
             this.RemoveRemovedFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RemoveRemovedFurnisBtn.Name = "RemoveRemovedFurnisBtn";
             this.RemoveRemovedFurnisBtn.Size = new System.Drawing.Size(183, 27);
@@ -474,7 +474,7 @@
             // 
             // ShowRemovedFurnisBtn
             // 
-            this.ShowRemovedFurnisBtn.Location = new System.Drawing.Point(8, 280);
+            this.ShowRemovedFurnisBtn.Location = new System.Drawing.Point(213, 165);
             this.ShowRemovedFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ShowRemovedFurnisBtn.Name = "ShowRemovedFurnisBtn";
             this.ShowRemovedFurnisBtn.Size = new System.Drawing.Size(210, 27);
@@ -484,7 +484,7 @@
             // 
             // RestoreRegisteredFurnisBtn
             // 
-            this.RestoreRegisteredFurnisBtn.Location = new System.Drawing.Point(5, 42);
+            this.RestoreRegisteredFurnisBtn.Location = new System.Drawing.Point(213, 41);
             this.RestoreRegisteredFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RestoreRegisteredFurnisBtn.Name = "RestoreRegisteredFurnisBtn";
             this.RestoreRegisteredFurnisBtn.Size = new System.Drawing.Size(211, 27);
@@ -494,7 +494,7 @@
             // 
             // HideIrregularFurnisBtn
             // 
-            this.HideIrregularFurnisBtn.Location = new System.Drawing.Point(7, 376);
+            this.HideIrregularFurnisBtn.Location = new System.Drawing.Point(10, 255);
             this.HideIrregularFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HideIrregularFurnisBtn.Name = "HideIrregularFurnisBtn";
             this.HideIrregularFurnisBtn.Size = new System.Drawing.Size(232, 27);
@@ -504,7 +504,7 @@
             // 
             // RestoreUnregisteredFurnisBtn
             // 
-            this.RestoreUnregisteredFurnisBtn.Location = new System.Drawing.Point(7, 79);
+            this.RestoreUnregisteredFurnisBtn.Location = new System.Drawing.Point(213, 101);
             this.RestoreUnregisteredFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RestoreUnregisteredFurnisBtn.Name = "RestoreUnregisteredFurnisBtn";
             this.RestoreUnregisteredFurnisBtn.Size = new System.Drawing.Size(210, 27);
@@ -514,7 +514,7 @@
             // 
             // HideRegisteredFurnisBtn
             // 
-            this.HideRegisteredFurnisBtn.Location = new System.Drawing.Point(7, 339);
+            this.HideRegisteredFurnisBtn.Location = new System.Drawing.Point(12, 221);
             this.HideRegisteredFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HideRegisteredFurnisBtn.Name = "HideRegisteredFurnisBtn";
             this.HideRegisteredFurnisBtn.Size = new System.Drawing.Size(232, 27);

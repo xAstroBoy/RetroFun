@@ -2791,20 +2791,6 @@ namespace RetroFun.Pages
                 {
                     CheckForRares(NewFloorFurnis, true);
                 }
-                //Speak("Furni Details [ID]: " + NewFloorFurnis.Id, 30);
-                //Speak("Furni Details [TypeId]: " + NewFloorFurnis.TypeId, 30);
-                //Speak("Furni Details [Tile]: " + NewFloorFurnis.Tile, 30);
-                //Speak("Furni Details [Facing]: " + NewFloorFurnis.Facing, 30);
-                //Speak("Furni Details [Category]: " + NewFloorFurnis.Category, 30);
-                //Speak("Furni Details [SecondsToExpiration]: " + NewFloorFurnis.SecondsToExpiration, 30);
-                //Speak("Furni Details [UsagePolicy]: " + NewFloorFurnis.UsagePolicy, 30);
-                //Speak("Furni Details [OwnerId]: " + NewFloorFurnis.OwnerId, 30);
-                //Speak("Furni Details [OwnerName]: " + NewFloorFurnis.OwnerName, 30);
-
-                //// TODO : DELETE IT AFTER GENERATING LIST
-                //GenerateList(NewFloorFurnis);
-
-
                 UpdateRemovedFloorFurniLbl();
                 UpdateFloorFurnisLabel();
                 UpdateAllLabels();
@@ -3133,7 +3119,7 @@ namespace RetroFun.Pages
 
         private void RestoreRegisteredFurnisBtn_Click(object sender, EventArgs e)
         {
-            IS_HIDING_IRREGULAR_FLOORFURNIS = false;
+            IS_HIDING_REGULAR_FLOORFURNIS = false;
             if (HIDDEN_REGULAR_FLOORFURNIS.Count != 0)
             {
                 Connection.SendToClientAsync(FurniComposer.composer(HIDDEN_REGULAR_FLOORFURNIS, In.RoomFloorItems));
@@ -3146,6 +3132,7 @@ namespace RetroFun.Pages
             {
                 Speak("[CLIENT]:I Can't detect any Regular Hidden Floor Furni to Unhide!", 30);
             }
+            IS_HIDING_REGULAR_WALLFURNIS = false;
             if (HIDDEN_REGULAR_WALLFURNIS.Count != 0)
             {
                 Connection.SendToClientAsync(FurniComposer.composer(HIDDEN_REGULAR_WALLFURNIS, In.RoomWallItems));
@@ -3162,6 +3149,7 @@ namespace RetroFun.Pages
 
         private void RestoreUnregisteredFurnisBtn_Click(object sender, EventArgs e)
         {
+            IS_HIDING_IRREGULAR_FLOORFURNIS = false;
             if (HIDDEN_IRREGULAR_FLOORFURNIS.Count != 0)
             {
                 Connection.SendToClientAsync(FurniComposer.composer(HIDDEN_IRREGULAR_FLOORFURNIS, In.RoomFloorItems));
@@ -3173,6 +3161,7 @@ namespace RetroFun.Pages
             {
                 Speak("[CLIENT]:I Can't detect any Irregular Hidden Floor Furni to Unhide!", 30);
             }
+            IS_HIDING_IRREGULAR_WALLFURNIS = false;
             if (HIDDEN_IRREGULAR_WALLFURNIS.Count != 0)
             {
                 Connection.SendToClientAsync(FurniComposer.composer(HIDDEN_IRREGULAR_WALLFURNIS, In.RoomWallItems));
@@ -3217,13 +3206,13 @@ namespace RetroFun.Pages
         private void SetRemovedFurnisSnapshot()
         {
             SnapshotRemovedFloorItems = RemovedFloorFurnis.ToList();
-            SnapshotRegularWallItems = RemovedWallFurnis.ToList();
+            SnapshotRemovedWallItems = RemovedWallFurnis.ToList();
         }
 
         private void ClearRemovedFurnisSnapshot()
         {
             SnapshotRemovedFloorItems.Clear();
-            SnapshotRegularWallItems.Clear();
+            SnapshotRemovedWallItems.Clear();
         }
         private void ShowRemovedFurnisBtn_Click(object sender, EventArgs e)
         {
@@ -3267,28 +3256,14 @@ namespace RetroFun.Pages
 
         private void HIDEREGISTEREDFURNITURES_Click(object sender, EventArgs e)
         {
-            if (FilePathList.Count != 0 && FilePathList != null)
-            {
                 HideRegularFloorFurnis();
                 HideRegularWallFurnis();
-            }
-            else
-            {
-                Speak("[CLIENT]:Please add some files!!", 30);
-            }
         }
 
         private void HideUnregisteredFurnitures_Click(object sender, EventArgs e)
         {
-            if (FilePathList.Count != 0 && FilePathList != null)
-            {
                 HideIrregularWallFurnis();
                 HideIrregularFloorFurnis();
-            }
-            else
-            {
-                Speak("[CLIENT]:Please add some files!!", 30);
-            }
         }
 
 
