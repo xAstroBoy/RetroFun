@@ -49,6 +49,8 @@ namespace RetroFun
             this.UtilitiesPg = new RetroFun.Pages.UtilitiesPage();
             this.ModerationTab = new System.Windows.Forms.TabPage();
             this.ModerationPg = new RetroFun.Pages.ModerationPage();
+            this.FurnitureCheckPg = new System.Windows.Forms.TabPage();
+            this.FurnitureCheckerPg = new RetroFun.Pages.FurnitureChecker();
             this.FurnitureTab = new System.Windows.Forms.TabPage();
             this.FurnitureSpawnerTab = new System.Windows.Forms.TabPage();
             this.furniSpawnPg = new RetroFun.Pages.FurniSpawnPage();
@@ -79,12 +81,11 @@ namespace RetroFun
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
             this.BottomPg = new RetroFun.Pages.BottomPage();
-            this.FurnitureCheckPg = new System.Windows.Forms.TabPage();
-            this.FurnitureCheckerPg = new RetroFun.Pages.FurnitureChecker();
             this.RetroFunTabs.SuspendLayout();
             this.PersonalTab.SuspendLayout();
             this.UtiliesTab.SuspendLayout();
             this.ModerationTab.SuspendLayout();
+            this.FurnitureCheckPg.SuspendLayout();
             this.FurnitureTab.SuspendLayout();
             this.FurnitureSpawnerTab.SuspendLayout();
             this.FurnitureSpamTab.SuspendLayout();
@@ -105,7 +106,6 @@ namespace RetroFun
             this.GiftPageTab.SuspendLayout();
             this.SpeechzTab.SuspendLayout();
             this.MiscellaneousTab.SuspendLayout();
-            this.FurnitureCheckPg.SuspendLayout();
             this.SuspendLayout();
             // 
             // ChatPg
@@ -114,6 +114,8 @@ namespace RetroFun
             this.ChatPg.BackColor = System.Drawing.Color.White;
             this.ChatPg.ChatMessageText = null;
             this.ChatPg.CloneUsernameFilter = "";
+            this.ChatPg.ColorizeText = false;
+            this.ChatPg.EditPacketChat = false;
             this.ChatPg.FlooderCooldown = 50;
             this.ChatPg.FlooderEnabled = false;
             this.ChatPg.FlooderText = null;
@@ -168,6 +170,7 @@ namespace RetroFun
             // FurniPg
             // 
             this.FurniPg.BackColor = System.Drawing.Color.White;
+            this.FurniPg.BadgeCodeInHolder = null;
             this.FurniPg.ControlledFloorFurni = 0;
             this.FurniPg.DoubleClickFurnitureRemoval = false;
             this.FurniPg.FloorFurniID = 0;
@@ -179,13 +182,17 @@ namespace RetroFun
             this.FurniPg.FurniPickedOutput = false;
             this.FurniPg.FurnitureIdText = null;
             this.FurniPg.FurniWalkingSpeed = 15;
-            this.FurniPg.Location = new System.Drawing.Point(8, 8);
+            this.FurniPg.Location = new System.Drawing.Point(2, 8);
             this.FurniPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.FurniPg.Name = "FurniPg";
-            this.FurniPg.Size = new System.Drawing.Size(1262, 608);
+            this.FurniPg.StoreFurniDetailsToFile = false;
+            this.FurniPg.ShowFurniDetailsInChat = false;
+            this.FurniPg.Size = new System.Drawing.Size(1225, 608);
             this.FurniPg.StoreFurniID = false;
             this.FurniPg.TabIndex = 0;
             this.FurniPg.TabStop = false;
+            this.FurniPg.TargetFurniType = 0;
+            this.FurniPg.TypeIDPickerSpeed = 5;
             // 
             // MakeSayPg
             // 
@@ -504,6 +511,42 @@ namespace RetroFun
             this.ModerationPg.UserLook = null;
             this.ModerationPg.UserMotto = null;
             this.ModerationPg.UserNickname = null;
+            // 
+            // FurnitureCheckPg
+            // 
+            this.FurnitureCheckPg.Controls.Add(this.FurnitureCheckerPg);
+            this.FurnitureCheckPg.Location = new System.Drawing.Point(4, 28);
+            this.FurnitureCheckPg.Name = "FurnitureCheckPg";
+            this.FurnitureCheckPg.Size = new System.Drawing.Size(1233, 643);
+            this.FurnitureCheckPg.TabIndex = 21;
+            this.FurnitureCheckPg.Text = "Furniture Checker";
+            this.FurnitureCheckPg.UseVisualStyleBackColor = true;
+            // 
+            // FurnitureCheckerPg
+            // 
+            this.FurnitureCheckerPg.AUTOMATIC_IRREGULAR_HIDER = false;
+            this.FurnitureCheckerPg.AUTOMATIC_REGULAR_HIDER = false;
+            this.FurnitureCheckerPg.AutomaticScanMode = true;
+            this.FurnitureCheckerPg.BackColor = System.Drawing.Color.White;
+            this.FurnitureCheckerPg.ControlledFloorFurni = 0;
+            this.FurnitureCheckerPg.DoubleClickFurnitureRemoval = false;
+            this.FurnitureCheckerPg.FloorFurniID = 0;
+            this.FurnitureCheckerPg.FloorFurniLiveEditCooldown = 0;
+            this.FurnitureCheckerPg.FloorFurniRotation = 0;
+            this.FurnitureCheckerPg.FloorFurniX = 0;
+            this.FurnitureCheckerPg.FloorFurniY = 0;
+            this.FurnitureCheckerPg.FurniIDToCheck = 0;
+            this.FurnitureCheckerPg.FurniPickedOutput = false;
+            this.FurnitureCheckerPg.FurnitureIdText = null;
+            this.FurnitureCheckerPg.FurniWalkingSpeed = 15;
+            this.FurnitureCheckerPg.isQuietMode = false;
+            this.FurnitureCheckerPg.Location = new System.Drawing.Point(9, 14);
+            this.FurnitureCheckerPg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.FurnitureCheckerPg.Name = "FurnitureCheckerPg";
+            this.FurnitureCheckerPg.Size = new System.Drawing.Size(1228, 629);
+            this.FurnitureCheckerPg.StoreFurniID = false;
+            this.FurnitureCheckerPg.TabIndex = 0;
+            this.FurnitureCheckerPg.TabStop = false;
             // 
             // FurnitureTab
             // 
@@ -951,38 +994,6 @@ namespace RetroFun
             this.BottomPg.TabStop = false;
             this.BottomPg.UsernameFilter = null;
             // 
-            // FurnitureCheckPg
-            // 
-            this.FurnitureCheckPg.Controls.Add(this.FurnitureCheckerPg);
-            this.FurnitureCheckPg.Location = new System.Drawing.Point(4, 28);
-            this.FurnitureCheckPg.Name = "FurnitureCheckPg";
-            this.FurnitureCheckPg.Size = new System.Drawing.Size(1233, 643);
-            this.FurnitureCheckPg.TabIndex = 21;
-            this.FurnitureCheckPg.Text = "Furniture Checker";
-            this.FurnitureCheckPg.UseVisualStyleBackColor = true;
-            // 
-            // furnitureChecker1
-            // 
-            this.FurnitureCheckerPg.BackColor = System.Drawing.Color.White;
-            this.FurnitureCheckerPg.ControlledFloorFurni = 0;
-            this.FurnitureCheckerPg.DoubleClickFurnitureRemoval = false;
-            this.FurnitureCheckerPg.FloorFurniID = 0;
-            this.FurnitureCheckerPg.FloorFurniLiveEditCooldown = 0;
-            this.FurnitureCheckerPg.FloorFurniRotation = 0;
-            this.FurnitureCheckerPg.FloorFurniX = 0;
-            this.FurnitureCheckerPg.FloorFurniY = 0;
-            this.FurnitureCheckerPg.FurniIDToCheck = 0;
-            this.FurnitureCheckerPg.FurniPickedOutput = false;
-            this.FurnitureCheckerPg.FurnitureIdText = null;
-            this.FurnitureCheckerPg.FurniWalkingSpeed = 15;
-            this.FurnitureCheckerPg.Location = new System.Drawing.Point(9, 14);
-            this.FurnitureCheckerPg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.FurnitureCheckerPg.Name = "furnitureChecker1";
-            this.FurnitureCheckerPg.Size = new System.Drawing.Size(1228, 629);
-            this.FurnitureCheckerPg.StoreFurniID = false;
-            this.FurnitureCheckerPg.TabIndex = 0;
-            this.FurnitureCheckerPg.TabStop = false;
-            // 
             // MainFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1002,6 +1013,7 @@ namespace RetroFun
             this.PersonalTab.ResumeLayout(false);
             this.UtiliesTab.ResumeLayout(false);
             this.ModerationTab.ResumeLayout(false);
+            this.FurnitureCheckPg.ResumeLayout(false);
             this.FurnitureTab.ResumeLayout(false);
             this.FurnitureSpawnerTab.ResumeLayout(false);
             this.FurnitureSpamTab.ResumeLayout(false);
@@ -1022,7 +1034,6 @@ namespace RetroFun
             this.GiftPageTab.ResumeLayout(false);
             this.SpeechzTab.ResumeLayout(false);
             this.MiscellaneousTab.ResumeLayout(false);
-            this.FurnitureCheckPg.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
