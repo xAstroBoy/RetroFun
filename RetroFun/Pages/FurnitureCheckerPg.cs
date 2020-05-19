@@ -1865,7 +1865,7 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-        private void StartWallFurniAnalyzer(bool isQuiet)
+        private void StartWallFurniAnalyzer()
         {
             new Thread(() =>
             {
@@ -1882,7 +1882,7 @@ namespace RetroFun.Pages
                                 UpdateIrregolarFurniLabel();
                                 UpdateRegularFurniLabel();
                             }
-                            if (!isQuiet)
+                            if (!isQuietMode)
                             {
                                 Speak("Scanned all Wall Furnis!", 30);
                             }
@@ -1903,7 +1903,7 @@ namespace RetroFun.Pages
         }
 
 
-        private void StartFloorFurnIAnalyzer(bool isquiet)
+        private void StartFloorFurnIAnalyzer()
         {
             new Thread(() =>
             {
@@ -1921,7 +1921,7 @@ namespace RetroFun.Pages
                                 UpdateIrregolarFurniLabel();
                                 UpdateRegularFurniLabel();
                             }
-                            if (!isquiet)
+                            if (!isQuietMode)
                             {
                                 Speak("Scanned all Floor Furnis!", 30);
                             }
@@ -1982,7 +1982,7 @@ namespace RetroFun.Pages
 
         }
 
-        private void RoomFloorChecker(bool isQuiet)
+        private void RoomFloorChecker()
         {
             new Thread(() =>
             {
@@ -1990,15 +1990,15 @@ namespace RetroFun.Pages
                 SetRoomFloorSnapshot();
                 if (RoomSnapshotFloorFurni != null && !(RoomSnapshotFloorFurni.Count == 0))
                 {
-                    if (!isQuiet)
+                    if (!isQuietMode)
                     {
                     Speak("Scanning Room Floor Furnis....", 30);
                     }
-                    StartFloorFurnIAnalyzer(isQuiet);
+                    StartFloorFurnIAnalyzer();
                 }
                 else
                 {
-                    if (!isQuiet)
+                    if (!isQuietMode)
                     {
                         Speak("No Floor Furnis Detected.", 30);
                     }
@@ -2008,7 +2008,7 @@ namespace RetroFun.Pages
         }
 
 
-        private void RoomWallChecker(bool isQuiet)
+        private void RoomWallChecker()
         {
             new Thread(() =>
             {
@@ -2016,15 +2016,15 @@ namespace RetroFun.Pages
                 SetRoomWallSnapshot();
                 if (RoomSnapshotWallFurni != null && !(RoomSnapshotWallFurni.Count == 0))
                 {
-                    if (!isQuiet)
+                    if (!isQuietMode)
                     {
                         Speak("Scanning Room Wall Furnis....", 30);
                     }
-                    StartWallFurniAnalyzer(isQuiet);
+                    StartWallFurniAnalyzer();
                 }
                 else
                 {
-                    if (!isQuiet)
+                    if (!isQuietMode)
                     {
                         Speak("No Wall Furnis Detected.", 30);
                     }
@@ -2069,10 +2069,10 @@ namespace RetroFun.Pages
 
         private void AnalyzeRooMFurnisBtn_Click(object sender, EventArgs e)
         {
-            StartRoomAnalizzator(false);
+            StartRoomAnalizzator();
         }
 
-        private void StartRoomAnalizzator(bool isQuiet)
+        private void StartRoomAnalizzator()
         {
             ClearRoomSnapshots();
             if (FilePathList != null && FilePathList.Count != 0)
@@ -2081,7 +2081,7 @@ namespace RetroFun.Pages
                 {
                     IS_SCANNING_FLOORFURNIS = true;
                     ResetRareFloorScanner();
-                    RoomFloorChecker(isQuiet);
+                    RoomFloorChecker();
 
                 }
                 else
@@ -2092,7 +2092,7 @@ namespace RetroFun.Pages
                 {
                     IS_SCANNING_WALLFURNIS = true;
                     ResetRareWallScanner();
-                    RoomWallChecker(isQuiet);
+                    RoomWallChecker();
                 }
                 else
                 {
@@ -2754,7 +2754,7 @@ namespace RetroFun.Pages
                 if (!IS_SCANNING_FLOORFURNIS)
                 {
                     IS_SCANNING_FLOORFURNIS = true;
-                    RoomFloorChecker(isQuietMode);
+                    RoomFloorChecker();
 
                 }
             }
@@ -2767,7 +2767,7 @@ namespace RetroFun.Pages
             if (!IS_SCANNING_WALLFURNIS)
             {
                 IS_SCANNING_WALLFURNIS = true;
-                RoomWallChecker(isQuietMode);
+                RoomWallChecker();
 
             }
             UpdateWallFurnisLabel();
