@@ -225,6 +225,17 @@ namespace RetroFun.Pages
             });
         }
 
+        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
+        {
+            _users.Clear();
+
+            WriteRegistrationUsers(_users.Count);
+            Invoke((MethodInvoker)delegate
+            {
+                UsersCmbx.Items.Clear();
+            });
+        }
+
         public override void Out_LatencyTest(DataInterceptedEventArgs obj)
         {
             if (OwnUsername == null)

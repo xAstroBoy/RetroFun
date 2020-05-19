@@ -81,6 +81,7 @@
             this.SitCoolDownNbx = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.ConvertMessageForyouFileChbx = new System.Windows.Forms.CheckBox();
+            this.DeleteRoomBtn = new Sulakore.Components.SKoreButton();
             this.SignCountGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SignCountCoolDown)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -490,6 +491,8 @@
             // ConvertMessageForYouChbx
             // 
             resources.ApplyResources(this.ConvertMessageForYouChbx, "ConvertMessageForYouChbx");
+            this.ConvertMessageForYouChbx.Checked = true;
+            this.ConvertMessageForYouChbx.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ConvertMessageForYouChbx.Name = "ConvertMessageForYouChbx";
             this.ConvertMessageForYouChbx.UseVisualStyleBackColor = true;
             // 
@@ -547,10 +550,17 @@
             this.ConvertMessageForyouFileChbx.Name = "ConvertMessageForyouFileChbx";
             this.ConvertMessageForyouFileChbx.UseVisualStyleBackColor = true;
             // 
+            // DeleteRoomBtn
+            // 
+            resources.ApplyResources(this.DeleteRoomBtn, "DeleteRoomBtn");
+            this.DeleteRoomBtn.Name = "DeleteRoomBtn";
+            this.DeleteRoomBtn.Click += new System.EventHandler(this.DeleteRoomBtn_Click);
+            // 
             // MiscellaneousPage
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.DeleteRoomBtn);
             this.Controls.Add(this.ConvertMessageForyouFileChbx);
             this.Controls.Add(this.AddYourselfAsFriendBtn);
             this.Controls.Add(this.StartPollBtn);
@@ -644,5 +654,6 @@
         private System.Windows.Forms.NumericUpDown SitCoolDownNbx;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox ConvertMessageForyouFileChbx;
+        private Sulakore.Components.SKoreButton DeleteRoomBtn;
     }
 }

@@ -801,8 +801,11 @@ namespace RetroFun.Pages
         {
             _users.Clear();
         }
-
-
+        
+        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
+        {
+            _users.Clear();
+        }
         private async void RoomBypass()
         {
             await Task.Delay(200);

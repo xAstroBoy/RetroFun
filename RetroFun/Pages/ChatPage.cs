@@ -482,7 +482,12 @@ namespace RetroFun.Pages
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             users.Clear();
+        }
 
+
+        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
+        {
+            users.Clear();
         }
 
         public override void In_RoomUserRemove(DataInterceptedEventArgs e)

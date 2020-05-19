@@ -109,8 +109,7 @@ namespace RetroFun.Pages
 
 
 
-        private bool isTeleportFurni = true;
-        private bool IsWalkingFurni;
+
 
         private int _FurniWalkingSpeed = 15;
 
@@ -496,9 +495,9 @@ namespace RetroFun.Pages
                         {
                             if (!HIDDEN_IRREGULAR_WALLFURNIS.Contains(wall))
                             {
-                                HideFurnisClient(wall);
                                 HIDDEN_IRREGULAR_WALLFURNIS.Add(wall);
                             }
+                            HideFurnisClient(wall);
                             UpdateHiddenIrregolarFurniLabel();
                         }
                             if (ShouldIRemoveIrregolar)
@@ -516,9 +515,9 @@ namespace RetroFun.Pages
                         {
                             if (!HIDDEN_REGULAR_WALLFURNIS.Contains(wall))
                             {
-                                HideFurnisClient(wall);
                                 HIDDEN_REGULAR_WALLFURNIS.Add(wall);
                             }
+                            HideFurnisClient(wall);
                             UpdateHiddenRegularFurniLabel();
                         }
                         if (!isQuiet)
@@ -560,9 +559,9 @@ namespace RetroFun.Pages
                                 {
                                     if (!HIDDEN_IRREGULAR_FLOORFURNIS.Contains(furni))
                                     {
-                                        HideFurnisClient(furni);
                                         HIDDEN_IRREGULAR_FLOORFURNIS.Add(furni);
                                     }
+                                    HideFurnisClient(furni);
                                     UpdateHiddenIrregolarFurniLabel();
                                 }
                                 if (ShouldIRemoveIrregolar)
@@ -593,9 +592,9 @@ namespace RetroFun.Pages
                         {
                             if (!HIDDEN_REGULAR_FLOORFURNIS.Contains(furni))
                             {
-                                HideFurnisClient(furni);
                                 HIDDEN_REGULAR_FLOORFURNIS.Add(furni);
                             }
+                            HideFurnisClient(furni);
                             UpdateHiddenIrregolarFurniLabel();
                         }
                         if (!isQuiet)
@@ -614,9 +613,9 @@ namespace RetroFun.Pages
                     {
                         if (!HIDDEN_REGULAR_FLOORFURNIS.Contains(furni))
                         {
-                            HideFurnisClient(furni);
                             HIDDEN_REGULAR_FLOORFURNIS.Add(furni);
                         }
+                        HideFurnisClient(furni);
                         UpdateHiddenIrregolarFurniLabel();
                     }
                     if (!isQuiet)
@@ -781,10 +780,10 @@ namespace RetroFun.Pages
                         {
                             if (!HIDDEN_REGULAR_FLOORFURNIS.Contains(flooritem))
                             {
-                                HideFurnisClient(flooritem);
                                 HIDDEN_REGULAR_FLOORFURNIS.Add(flooritem);
                             }
-                            UpdateHiddenRegularFurniLabel();
+                            HideFurnisClient(flooritem);
+                        UpdateHiddenRegularFurniLabel();
                         }
                         return true;
                     }
@@ -823,9 +822,9 @@ namespace RetroFun.Pages
                                     {
                                         if (!HIDDEN_REGULAR_FLOORFURNIS.Contains(flooritem))
                                         {
-                                            HideFurnisClient(flooritem);
                                             HIDDEN_REGULAR_FLOORFURNIS.Add(flooritem);
                                         }
+                                        HideFurnisClient(flooritem);
                                         UpdateHiddenRegularFurniLabel();
                                     }
                                 }
@@ -840,10 +839,10 @@ namespace RetroFun.Pages
                 {
                     if (!HIDDEN_IRREGULAR_FLOORFURNIS.Contains(flooritem))
                     {
-                        HideFurnisClient(flooritem);
                         HIDDEN_IRREGULAR_FLOORFURNIS.Add(flooritem);
                         UpdateHiddenRegularFurniLabel();
                     }
+                    HideFurnisClient(flooritem);
                     UpdateHiddenIrregolarFurniLabel();
                 }
                 return false;
@@ -882,9 +881,9 @@ namespace RetroFun.Pages
                                 {
                                     if (!HIDDEN_REGULAR_WALLFURNIS.Contains(wallitem))
                                     {
-                                        HideFurnisClient(wallitem);
                                         HIDDEN_REGULAR_WALLFURNIS.Add(wallitem);
                                     }
+                                    HideFurnisClient(wallitem);
                                     UpdateHiddenRegularFurniLabel();
                                 }
                             }
@@ -898,9 +897,9 @@ namespace RetroFun.Pages
             {
                 if (!HIDDEN_IRREGULAR_WALLFURNIS.Contains(wallitem))
                 {
-                    HideFurnisClient(wallitem);
                     HIDDEN_IRREGULAR_WALLFURNIS.Add(wallitem);
                 }
+                HideFurnisClient(wallitem);
                 UpdateHiddenIrregolarFurniLabel();
             }
             return false;
@@ -1619,10 +1618,10 @@ namespace RetroFun.Pages
                                     {
                                         if (!HIDDEN_REGULAR_WALLFURNIS.Contains(item))
                                         {
-                                            HideFurnisClient(item);
                                             HIDDEN_REGULAR_WALLFURNIS.Add(item);
                                             UpdateHiddenRegularFurniLabel();
                                         }
+                                        HideFurnisClient(item);
                                     }
                                     IS_HIDING_REGULAR_WALLFURNIS = false;
                                 }
@@ -1661,10 +1660,10 @@ namespace RetroFun.Pages
                                     {
                                         if (!HIDDEN_REGULAR_FLOORFURNIS.Contains(flooritem))
                                         {
-                                            HideFurnisClient(flooritem);
                                             HIDDEN_REGULAR_FLOORFURNIS.Add(flooritem);
                                             UpdateHiddenRegularFurniLabel();
                                         }
+                                        HideFurnisClient(flooritem);
                                     }
                                     IS_HIDING_REGULAR_FLOORFURNIS = false;
                                 }
@@ -1706,10 +1705,10 @@ namespace RetroFun.Pages
                                     {
                                         if (!HIDDEN_IRREGULAR_WALLFURNIS.Contains(item))
                                         {
-                                            HideFurnisClient(item);
                                             HIDDEN_IRREGULAR_WALLFURNIS.Add(item);
                                             UpdateHiddenIrregolarFurniLabel();
                                         }
+                                        HideFurnisClient(item);
                                     }
 
                                 }
@@ -1756,10 +1755,10 @@ namespace RetroFun.Pages
                                     {
                                         if (!HIDDEN_IRREGULAR_FLOORFURNIS.Contains(flooritem))
                                         {
-                                            HideFurnisClient(flooritem);
                                             HIDDEN_IRREGULAR_FLOORFURNIS.Add(flooritem);
                                             UpdateHiddenIrregolarFurniLabel();
                                         }
+                                        HideFurnisClient(flooritem);
                                     }
                                 }
                                 else
@@ -2117,7 +2116,8 @@ namespace RetroFun.Pages
             REM_IRR_WALL_FURNI = false;
             REM_IRR_FLOOR_FURNI = false;
             SetRareSnapshots();
-            RemoveIrregolarFurni();
+            RemoveIrregolarFloorFurni();
+            RemoveIrregolarWallFurni();
         }
 
 
@@ -2235,7 +2235,7 @@ namespace RetroFun.Pages
 
 
 
-        private void RemoveIrregolarFurni()
+        private void RemoveIrregolarFloorFurni()
         {
             new Thread(() =>
             {
@@ -2246,9 +2246,13 @@ namespace RetroFun.Pages
                     {
                         if (SnapShotIrregularFloorFurni != null && SnapShotIrregularFloorFurni.Count() != 0 && !REM_IRR_FLOOR_FURNI)
                         {
+                            if (SnapShotIrregularFloorFurni.Count() == 0)
+                            {
+                                REM_IRR_WALL_FURNI = true;
+                            }
                             foreach (HFloorItem floorfurni in SnapShotIrregularFloorFurni)
                             {
-                                Task.Delay(8000);
+                                Task.Delay(250);
                                 Connection.SendToServerAsync(Out.RoomPickupItem, 2, floorfurni.Id);
                                 if (IrregularFloorFurni.Contains(floorfurni))
                                 {
@@ -2258,9 +2262,32 @@ namespace RetroFun.Pages
                                 {
                                     RemovedFloorFurnis.Add(floorfurni);
                                 }
+                                UpdateIrregolarFurniLabel();
+                                UpdateRemovedFloorFurniLbl();
                             }
+                            REM_IRR_FLOOR_FURNI = true;
                         }
-                        if (IrregularWallFurni.Count() == 0)
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                } while (!REM_IRR_FLOOR_FURNI);
+            }).Start();
+        }
+
+
+
+        private void RemoveIrregolarWallFurni()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    try
+                    {
+                        if (SnapShotIrregularWallFurni.Count() == 0)
                         {
                             REM_IRR_WALL_FURNI = true;
                         }
@@ -2268,7 +2295,7 @@ namespace RetroFun.Pages
                         {
                             foreach (HWallItem wallitem in SnapShotIrregularWallFurni)
                             {
-                                Task.Delay(8000);
+                                Task.Delay(250);
                                 Connection.SendToServerAsync(Out.RoomPickupItem, 2, wallitem.Id);
 
                                 if (IrregularWallFurni.Contains(wallitem))
@@ -2279,19 +2306,19 @@ namespace RetroFun.Pages
                                 {
                                     RemovedWallFurnis.Add(wallitem);
                                 }
-                                UpdateRegularFurniLabel();
+                                UpdateIrregolarFurniLabel();
+                                UpdateRemovedWallFurniLbl();
                             }
+                            REM_IRR_WALL_FURNI = true;
                         }
                     }
                     catch (Exception)
                     {
 
                     }
-                } while (!REM_IRR_FLOOR_FURNI && !REM_IRR_WALL_FURNI);
+                } while (REM_IRR_WALL_FURNI);
             }).Start();
         }
-
-
 
 
         public override void Out_RotateMoveItem(DataInterceptedEventArgs e)
@@ -2650,10 +2677,10 @@ namespace RetroFun.Pages
                 {
                     if (!HIDDEN_REGULAR_FLOORFURNIS.Contains(furni))
                     {
-                        HideFurnisClient(furni);
                         HIDDEN_REGULAR_FLOORFURNIS.Add(furni);
                         UpdateHiddenRegularFurniLabel();
                     }
+                    HideFurnisClient(furni);
                 }
                 else
                 {
@@ -2688,10 +2715,10 @@ namespace RetroFun.Pages
                 {
                     if (!HIDDEN_REGULAR_WALLFURNIS.Contains(furni))
                     {
-                        HideFurnisClient(furni);
                         HIDDEN_REGULAR_WALLFURNIS.Add(furni);
                         UpdateHiddenRegularFurniLabel();
                     }
+                    HideFurnisClient(furni);
                 }
                 else
                 {

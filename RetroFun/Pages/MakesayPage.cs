@@ -93,7 +93,14 @@ namespace RetroFun.Pages
             }
         }
 
-        public override void Out_RequestRoomLoad(DataInterceptedEventArgs obj)
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
+        {
+            users.Clear();
+            WriteRegistrationUsers(users.Count);
+        }
+
+
+        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
             users.Clear();
             WriteRegistrationUsers(users.Count);

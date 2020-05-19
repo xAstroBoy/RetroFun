@@ -196,6 +196,16 @@ namespace RetroFun.Pages
             WriteRegistrationUsers(_users.Count);
         }
 
+        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
+        {
+            _users.Clear();
+            _removedEntities.Clear();
+
+            CountUserInRoomBlacklist();
+            WriteRegistrationUsers(_users.Count);
+        }
+
+
         public override void Out_LatencyTest(DataInterceptedEventArgs obj)
         {
             if (OwnUsername == null)

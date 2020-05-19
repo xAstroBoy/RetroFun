@@ -2,6 +2,7 @@
 using Sulakore.Communication;
 using Sulakore.Components;
 using Sulakore.Habbo;
+using Sulakore.Habbo.Web;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,6 @@ namespace RetroFun.Pages
         private Random Randomizer = new Random();
 
         //private string OldLook = "";
-
         private int RoomID = 0;
         private string OwnerName = "NOT INITIATED";
         private string roomname = "NOT INITIATED";
@@ -495,7 +495,7 @@ namespace RetroFun.Pages
 
         #region miscvars
 
-        private string _UsernameFilter;
+        private string _UsernameFilter ="NOT_INITIATED";
 
         public string UsernameFilter
         {
@@ -508,7 +508,7 @@ namespace RetroFun.Pages
         }
 
 
-        private bool _ConvertMessageForYou;
+        private bool _ConvertMessageForYou = true;
 
         public bool ConvertMessageForYou
         {
@@ -1006,6 +1006,13 @@ namespace RetroFun.Pages
         }
 
 
+        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
+        {
+            users.Clear();
+            newroom = true;
+        }
+
+
         public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
@@ -1203,34 +1210,21 @@ namespace RetroFun.Pages
             }
         }
 
-
-        private string StripUnicode(string name)
-        {
-            string process1 = Regex.Replace(name, @"\p{C}+", String.Empty);
-            return new string(process1.Where(c => char.IsLetter(c) || char.IsDigit(c) || char.IsSymbol(c)).ToArray());
-        }
-
         public override void In_RoomData(DataInterceptedEventArgs e)
         {
-            try
-            {
+                
                 e.Packet.ReadBoolean();
                 RoomID = e.Packet.ReadInteger();
                 roomname = e.Packet.ReadString();
-                OwnerName = StripUnicode(e.Packet.ReadString());
+                e.Packet.ReadInteger();
+                OwnerName = e.Packet.ReadString();
+                e.Packet.ReadString();
                 e.Packet.ReadInteger();
                 e.Packet.ReadInteger();
                 e.Packet.ReadInteger();
                 e.Packet.ReadInteger();
                 e.Packet.ReadInteger();
                 e.Packet.ReadInteger();
-            }
-
-
-            catch (Exception _)
-            {
-
-            }
         }
 
 
@@ -1423,9 +1417,28 @@ namespace RetroFun.Pages
                             txtFile.WriteLine("RetroFun Chatlog stored at :" + DateTime.Now.ToString());
                             if (newroom)
                             {
+                                if (UsernameFilter == "NOT_INITIATED")
+                                {
+                                    txtFile.WriteLine("");
+                                    txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                                }
+                                else
+                                {
+                                    txtFile.WriteLine(" " + UsernameFilter + "  left the room at : " + DateTime.Now.ToString());
+                                }
                                 txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
                                 txtFile.WriteLine("");
-                                txtFile.WriteLine("Room : " + RoomID + " Room Owner : " + OwnerName + " Room Name : " + roomname);
+                                if (UsernameFilter == "NOT_INITIATED")
+                                {
+                                    txtFile.WriteLine("[User Joined this room at : " + DateTime.Now.ToString() + " ]");
+                                }
+                                else
+                                {
+                                    txtFile.WriteLine("[ " + UsernameFilter + " Joined this room at : " + DateTime.Now.ToString() + " ]");
+                                }
+                                txtFile.WriteLine("[Room ID: " + RoomID + " ]");
+                                txtFile.WriteLine("[Room Owner : " + OwnerName + " ]");
+                                txtFile.WriteLine("[Room Name : " + roomname + " ]");
                                 txtFile.WriteLine("----------------------------------------------------");
                                 newroom = false;
                             }
@@ -1438,9 +1451,25 @@ namespace RetroFun.Pages
                         {
                             if (newroom)
                             {
-                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
-                                txtFile.WriteLine("");
-                                txtFile.WriteLine("Room : " + RoomID + " Room Owner : " + OwnerName + " Room Name : " + roomname);
+                                if (UsernameFilter == "NOT_INITIATED")
+                                {
+                                    txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                                }
+                                else
+                                {
+                                    txtFile.WriteLine(" " + UsernameFilter + "  left the room at : " + DateTime.Now.ToString());
+                                }
+                                 if (UsernameFilter == "NOT_INITIATED")
+                                {
+                                    txtFile.WriteLine("[You Joined this room at : " + DateTime.Now.ToString() + " ]");
+                                }
+                                else
+                                {
+                                    txtFile.WriteLine("[ " + UsernameFilter + " Joined this room at : " + DateTime.Now.ToString() + " ]");
+                                }
+                                txtFile.WriteLine("[Room ID: " + RoomID + " ]");
+                                txtFile.WriteLine("[Room Owner : " + OwnerName + " ]");
+                                txtFile.WriteLine("[Room Name : " + roomname + " ]");
                                 txtFile.WriteLine("----------------------------------------------------");
                                 newroom = false;
                             }
@@ -1457,5 +1486,11 @@ namespace RetroFun.Pages
 
             }
         }
+
+        private void DeleteRoomBtn_Click(object sender, EventArgs e)
+        {
+            Connection.SendToServerAsync(Out.RequestDeleteRoom, RoomID);
+        }
+
     }
 }
