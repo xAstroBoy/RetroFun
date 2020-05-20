@@ -103,7 +103,7 @@ namespace RetroFun.Pages
         }
 
 
-        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
+        public  override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
             var entity1 = HentityUtils.FindEntityByIndex(index);
@@ -114,7 +114,7 @@ namespace RetroFun.Pages
             }
             if (entity2 != null)
             {
-                CurrentRoomUsers.Remove(entity2);
+                Dictionaryusers.Remove(entity2.Id);
             }
         }
 

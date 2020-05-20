@@ -61,7 +61,6 @@ namespace RetroFun
                 furniSpawnPg,
                 MoonLightFunPg,
                 DiscoRoomFunPg,
-                BottomPg,
                 FurniTrollPg,
                 UtilitiesPg,
                 PetPg,
@@ -69,6 +68,10 @@ namespace RetroFun
                 PersonalPg,
                 ModerationPg,
                 FurnitureCheckerPg,
+
+
+                // ADD HANDLER EVENTS AT LAST!
+                BottomPg,
                 furniHandlerEvent,
              };
                 

@@ -12,48 +12,24 @@ namespace RetroFun
 {
     public class HentityUtils
     {
+
         public static HEntity FindEntityByIndex(int index)
         {
-            var entity = GlobalLists.UsersInRoom.Find(f => f.Index == index);
-            if (entity != null)
-            {
-                return entity;
-            }
-            else
-            {
-                return null;
-            }
+            return  GlobalLists.UsersInRoom.Find(f => f.Index == index);
         }
 
         public static HEntity FindEntityByUserID(int userid)
         {
-            var entity = GlobalLists.UsersInRoom.Find(f => f.Index == userid);
-            if (entity != null)
-            {
-                return entity;
-            }
-            else
-            {
-                return null;
-            }
+            return  GlobalLists.UsersInRoom.Find(f => f.Id == userid);
         }
 
         public static HEntity FindEntityByUsername(string name)
         {
-            var entity = GlobalLists.UsersInRoom.Find(f => f.Name == name);
-            if (entity != null)
-            {
-                return entity;
-            }
-            else
-            {
-                return null;
-            }
+            return GlobalLists.UsersInRoom.Find(f => f.Name == name);
         }
 
         public static string FindUsernameByEntity(HEntity entity)
         {
-
             if (entity != null)
             {
                 return entity.Name;

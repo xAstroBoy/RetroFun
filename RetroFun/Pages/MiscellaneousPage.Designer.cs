@@ -271,13 +271,13 @@
             0,
             0});
             this.SignCountCoolDown.Minimum = new decimal(new int[] {
-            500,
+            250,
             0,
             0,
             0});
             this.SignCountCoolDown.Name = "SignCountCoolDown";
             this.SignCountCoolDown.Value = new decimal(new int[] {
-            500,
+            1000,
             0,
             0,
             0});

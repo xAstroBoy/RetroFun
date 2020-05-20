@@ -260,7 +260,6 @@ namespace RetroFun.Pages
                 Motto = motto;
                 Look = look;
             }
-
             public override string ToString() => $"{Name} [UserID: {ID}]";
         }
 
@@ -303,16 +302,22 @@ namespace RetroFun.Pages
 
         public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
-            int index = int.Parse(e.Packet.ReadString());
-            var entity = HentityUtils.FindEntityByIndex(index);
-            if (entity == null) return;
-            WriteRegistrationUsers();
-            //int id, string name, string motto, string look
+            var entity = HentityUtils.FindEntityByIndex(int.Parse(e.Packet.ReadString()));
+            if (entity != null)
+            {
+                RegisterRemovedUser(entity);
+            }
+        }
+
+
+        private  void RegisterRemovedUser(HEntity entity)
+        {
             if (!_registeredUsers.Where(x => x.ID == entity.Id).Any())
             {
                 AddUserInCmbx(entity);
             }
         }
+
 
         private void AddUserInCmbx(HEntity entity)
         {
@@ -321,7 +326,7 @@ namespace RetroFun.Pages
             {
                 if (!UsersCmbx.Items.Contains(user))
                 {
-                    UsersCmbx.Items.Add(user);
+                     UsersCmbx.Items.Add(user);
                 }
             });
         }
@@ -343,7 +348,6 @@ namespace RetroFun.Pages
         {
             _selectedUserId = e.Packet.ReadInteger();
             var entity = HentityUtils.FindEntityByUserID(_selectedUserId);
-
             if (entity != null)
             {
                 SelectedIndex = entity.Index;

@@ -44,6 +44,7 @@ namespace RetroFun
             this.RoomBackFunPg = new RetroFun.Pages.RoomBackFun();
             this.RetroFunTabs = new Sulakore.Components.SKoreTabControl();
             this.PersonalTab = new System.Windows.Forms.TabPage();
+            this.furniHandlerEvent = new RetroFun.Handlers.FurniHandlerEventPage();
             this.PersonalPg = new RetroFun.Pages.PersonalPage();
             this.UtiliesTab = new System.Windows.Forms.TabPage();
             this.UtilitiesPg = new RetroFun.Pages.UtilitiesPage();
@@ -81,7 +82,6 @@ namespace RetroFun
             this.MiscellaneousTab = new System.Windows.Forms.TabPage();
             this.AlwaysOnTopChbx = new System.Windows.Forms.CheckBox();
             this.BottomPg = new RetroFun.Pages.BottomPage();
-            this.furniHandlerEvent = new RetroFun.Handlers.FurniHandlerEventPage();
             this.RetroFunTabs.SuspendLayout();
             this.PersonalTab.SuspendLayout();
             this.UtiliesTab.SuspendLayout();
@@ -341,7 +341,7 @@ namespace RetroFun
             this.MiscellaneousPg.PogoHopSelected = false;
             this.MiscellaneousPg.RedcardSelected = false;
             this.MiscellaneousPg.SevenSelected = false;
-            this.MiscellaneousPg.SignCounterCoolDown = 0;
+            this.MiscellaneousPg.SignCounterCoolDown = 1000;
             this.MiscellaneousPg.SitsCooldown = 250;
             this.MiscellaneousPg.SixSelected = false;
             this.MiscellaneousPg.Size = new System.Drawing.Size(1190, 617);
@@ -426,6 +426,17 @@ namespace RetroFun
             this.PersonalTab.TabIndex = 15;
             this.PersonalTab.Text = "Personal";
             this.PersonalTab.UseVisualStyleBackColor = true;
+            // 
+            // furniHandlerEvent
+            // 
+            this.furniHandlerEvent.BackColor = System.Drawing.Color.White;
+            this.furniHandlerEvent.Enabled = false;
+            this.furniHandlerEvent.Location = new System.Drawing.Point(1272, 605);
+            this.furniHandlerEvent.Name = "furniHandlerEvent";
+            this.furniHandlerEvent.Size = new System.Drawing.Size(10, 34);
+            this.furniHandlerEvent.TabIndex = 1;
+            this.furniHandlerEvent.TabStop = false;
+            this.furniHandlerEvent.Visible = false;
             // 
             // PersonalPg
             // 
@@ -538,6 +549,7 @@ namespace RetroFun
             this.FurnitureCheckerPg.FloorFurniY = 0;
             this.FurnitureCheckerPg.FurniIDToCheck = 0;
             this.FurnitureCheckerPg.FurniPickedOutput = false;
+            this.FurnitureCheckerPg.FurnitureIdText = null;
             this.FurnitureCheckerPg.FurniWalkingSpeed = 15;
             this.FurnitureCheckerPg.isQuietMode = false;
             this.FurnitureCheckerPg.Location = new System.Drawing.Point(9, 14);
@@ -995,17 +1007,6 @@ namespace RetroFun
             this.BottomPg.Size = new System.Drawing.Size(1045, 37);
             this.BottomPg.TabIndex = 1;
             this.BottomPg.TabStop = false;
-            // 
-            // furniHandlerEventPage1
-            // 
-            this.furniHandlerEvent.BackColor = System.Drawing.Color.White;
-            this.furniHandlerEvent.Enabled = false;
-            this.furniHandlerEvent.Location = new System.Drawing.Point(1272, 605);
-            this.furniHandlerEvent.Name = "furniHandlerEventPage1";
-            this.furniHandlerEvent.Size = new System.Drawing.Size(10, 34);
-            this.furniHandlerEvent.TabIndex = 1;
-            this.furniHandlerEvent.TabStop = false;
-            this.furniHandlerEvent.Visible = false;
             // 
             // MainFrm
             // 

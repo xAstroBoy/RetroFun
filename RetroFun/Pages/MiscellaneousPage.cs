@@ -454,7 +454,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private int _SignCounterCoolDown;
+        private int _SignCounterCoolDown = 1000;
 
         public int SignCounterCoolDown
         {
@@ -858,7 +858,7 @@ namespace RetroFun.Pages
                         if (!IncreasingMode)
                         {
                             if (YellowcardSelected)
-                            {
+                            {      
                                 SendRoomSign(HSign.Yellowcard);
                                 Thread.Sleep(SignCounterCoolDown);
                             }
@@ -961,8 +961,11 @@ namespace RetroFun.Pages
 
         private async void SendRoomSign(HSign Sign)
         {
-            await Task.Delay(150);
-            await Connection.SendToServerAsync(Out.RoomUserSign, Sign);
+            if (SignCountEnabled)
+            {
+                await Task.Delay(250);
+                await Connection.SendToServerAsync(Out.RoomUserSign, Sign);
+            }
         }
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
