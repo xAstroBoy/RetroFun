@@ -356,7 +356,7 @@ namespace RetroFun.Pages
 
                     if (FilePathList.Contains(file))
                     {
-                        Speak("Not Adding : " + file + " Because is already in the list", 30);
+                        Speak("Not Adding : " + file + " Because is already in the list", 34);
                     }
                     else
                     {
@@ -457,7 +457,7 @@ namespace RetroFun.Pages
 
                     if (!isQuiet)
                     {
-                            Speak("This Furni is Irregular!", 30);
+                            Speak("This Furni is Irregular!", 34);
                     }
                     RecordRareControl(false, "[IRREGOLARE] : " + itemid);
                 }
@@ -479,7 +479,7 @@ namespace RetroFun.Pages
                     {
                         if (!isQuiet)
                         {
-                                Speak("This Furni is Irregular!", 30);
+                                Speak("This Furni is Irregular!", 34);
                         }
                         RecordRareControl(false, "[IRREGOLARE] : " + wall.Id);
 
@@ -520,7 +520,7 @@ namespace RetroFun.Pages
                         }
                         if (!isQuiet)
                         {
-                            Speak("This Furni is whitelisted!", 30);
+                            Speak("This Furni is whitelisted!", 34);
                         }
      
                     }
@@ -544,7 +544,7 @@ namespace RetroFun.Pages
                             {
                                 if (!isQuiet)
                                 {
-                                    Speak("This Furni is Irregular!", 30);
+                                    Speak("This Furni is Irregular!", 34);
                                 }
                                 RecordRareControl(false, "[IRREGOLARE] : " + furni.Id);
 
@@ -575,7 +575,7 @@ namespace RetroFun.Pages
                                 }
                                 if (!isQuiet)
                                 {
-                                    Speak("This Furni is whitelisted!", 30);
+                                    Speak("This Furni is whitelisted!", 34);
                                 }
                             }
                         }
@@ -597,7 +597,7 @@ namespace RetroFun.Pages
                         }
                         if (!isQuiet)
                         {
-                            Speak("This Furni is Regular, Is available in public catalogue!", 30);
+                            Speak("This Furni is Regular, Is available in public catalogue!", 34);
                         }
                     }
                 }
@@ -618,7 +618,7 @@ namespace RetroFun.Pages
                     }
                     if (!isQuiet)
                     {
-                        Speak("This Furni is Regular, matches conditions set!!", 30);
+                        Speak("This Furni is Regular, matches conditions set!!", 34);
                     }
                 }
             }
@@ -757,7 +757,7 @@ namespace RetroFun.Pages
                         {
                             if (!isQuiet)
                             {
-                                Speak(line, 30);
+                                Speak(line, 34);
                             }
                             RecordRareControl(true, "[REGOLARE] : " + id);
                             return true;
@@ -810,7 +810,7 @@ namespace RetroFun.Pages
                             {
                                 if (!isQuiet)
                                 {
-                                    Speak(line, 30);
+                                    Speak(line, 34);
                                 }
                                 if (!RegularFloorFurni.Contains(flooritem))
                                 {
@@ -869,7 +869,7 @@ namespace RetroFun.Pages
                         {
                             if (!isQuiet)
                             {
-                                Speak(line, 30);
+                                Speak(line, 34);
                             }
                             if (!RegularWallFurni.Contains(wallitem))
                             {
@@ -1471,7 +1471,7 @@ namespace RetroFun.Pages
                 DisableWhitelistMode();
                 WriteToButton(FileCheckBtn, "Rare Check : ON");
                 FurniIDToCheckMode = true;
-                Speak("Rotate Furni / Rare To check if is a irregular or not!", 30);
+                Speak("Rotate Furni / Rare To check if is a irregular or not!", 34);
             }
         }
 
@@ -1791,7 +1791,7 @@ namespace RetroFun.Pages
                             }
                             if (!isQuietMode)
                             {
-                                Speak("Scanned all Wall Furnis!", 30);
+                                Speak("Scanned all Wall Furnis!", 34);
                             }
                                 
                            IS_SCANNING_WALLFURNIS = false;
@@ -1830,7 +1830,7 @@ namespace RetroFun.Pages
                             }
                             if (!isQuietMode)
                             {
-                                Speak("Scanned all Floor Furnis!", 30);
+                                Speak("Scanned all Floor Furnis!", 34);
                             }
                             IS_SCANNING_FLOORFURNIS = false;
                         }
@@ -1899,7 +1899,7 @@ namespace RetroFun.Pages
                 {
                     if (!isQuietMode)
                     {
-                    Speak("Scanning Room Floor Furnis....", 30);
+                    Speak("Scanning Room Floor Furnis....", 34);
                     }
                     StartFloorFurnIAnalyzer();
                 }
@@ -1907,7 +1907,7 @@ namespace RetroFun.Pages
                 {
                     if (!isQuietMode)
                     {
-                        Speak("No Floor Furnis Detected.", 30);
+                        Speak("No Floor Furnis Detected.", 34);
                     }
                     IS_SCANNING_FLOORFURNIS = false;
                 }
@@ -1925,7 +1925,7 @@ namespace RetroFun.Pages
                 {
                     if (!isQuietMode)
                     {
-                        Speak("Scanning Room Wall Furnis....", 30);
+                        Speak("Scanning Room Wall Furnis....", 34);
                     }
                     StartWallFurniAnalyzer();
                 }
@@ -1933,7 +1933,7 @@ namespace RetroFun.Pages
                 {
                     if (!isQuietMode)
                     {
-                        Speak("No Wall Furnis Detected.", 30);
+                        Speak("No Wall Furnis Detected.", 34);
                     }
                     IS_SCANNING_WALLFURNIS = false;
                 }
@@ -1993,7 +1993,7 @@ namespace RetroFun.Pages
                 }
                 else
                 {
-                    Speak("Wait, im still scanning All Floor Furnis in room!", 30);
+                    Speak("Wait, im still scanning All Floor Furnis in room!", 34);
                 }
                 if (!IS_SCANNING_WALLFURNIS)
                 {
@@ -2003,13 +2003,13 @@ namespace RetroFun.Pages
                 }
                 else
                 {
-                    Speak("Wait, im still scanning All Wall Furnis in room!", 30);
+                    Speak("Wait, im still scanning All Wall Furnis in room!", 34);
                 }
 
             }
             else
             {
-                Speak("Please add some files!", 30);
+                Speak("Please add some files!", 34);
 
             }
         }
@@ -2916,11 +2916,11 @@ namespace RetroFun.Pages
             {
                 IS_HIDING_IRREGULAR_WALLFURNIS = true;
                 THREAD_HIDE_IRREGULAR_WALLFURNIS();
-                Speak("[AUTOMATIC HIDER CLIENT]: Hiding all irregular Wall Furnis...", 30);
+                Speak("[AUTOMATIC HIDER CLIENT]: Hiding all irregular Wall Furnis...", 34);
             }
             else
             {
-                Speak("[AUTOMATIC HIDER CLIENT]: Can't find any irregular wall furnis to hide!", 30);
+                Speak("[AUTOMATIC HIDER CLIENT]: Can't find any irregular wall furnis to hide!", 34);
             }
         }
 
@@ -2930,11 +2930,11 @@ namespace RetroFun.Pages
             {
                 IS_HIDING_IRREGULAR_FLOORFURNIS = true;
                 THREAD_HIDE_IRREGULAR_FLOORFURNIS();
-                Speak("[AUTOMATIC HIDER CLIENT]: Hiding all irregular floor Furnis...", 30);
+                Speak("[AUTOMATIC HIDER CLIENT]: Hiding all irregular floor Furnis...", 34);
             }
             else
             {
-                Speak("[AUTOMATIC HIDER CLIENT]: Can't find any irregular floor floor to hide!", 30);
+                Speak("[AUTOMATIC HIDER CLIENT]: Can't find any irregular floor floor to hide!", 34);
             }
         }
 
@@ -2945,11 +2945,11 @@ namespace RetroFun.Pages
             {
                 IS_HIDING_REGULAR_WALLFURNIS = true;
                 THREAD_HIDE_REGULAR_WALLFURNIS();
-                Speak("[AUTOMATIC HIDER CLIENT]: Hiding all regular Wall Furnis...", 30);
+                Speak("[AUTOMATIC HIDER CLIENT]: Hiding all regular Wall Furnis...", 34);
             }
             else
             {
-                Speak("[AUTOMATIC HIDER CLIENT]: Can't find any regular wall furnis to hide!", 30);
+                Speak("[AUTOMATIC HIDER CLIENT]: Can't find any regular wall furnis to hide!", 34);
             }
         }
 
@@ -2959,11 +2959,11 @@ namespace RetroFun.Pages
             {
                 IS_HIDING_REGULAR_FLOORFURNIS = true;
                 THREAD_HIDE_REGULAR_FLOORFURNIS();
-                Speak("[AUTOMATIC HIDER CLIENT]: Hiding all regular floor Furnis...", 30);
+                Speak("[AUTOMATIC HIDER CLIENT]: Hiding all regular floor Furnis...", 34);
             }
             else
             {
-                Speak("[AUTOMATIC HIDER CLIENT]: Can't find any regular wall floor to hide!", 30);
+                Speak("[AUTOMATIC HIDER CLIENT]: Can't find any regular wall floor to hide!", 34);
             }
         }
 
@@ -2989,12 +2989,12 @@ namespace RetroFun.Pages
                 Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(HIDDEN_REGULAR_FLOORFURNIS, In.RoomFloorItems));
                 HIDDEN_REGULAR_FLOORFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
-                Speak("[CLIENT]:All Regular Floor Furnis are unhidden!", 30);
+                Speak("[CLIENT]:All Regular Floor Furnis are unhidden!", 34);
 
             }
             else
             {
-                Speak("[CLIENT]:I Can't detect any Regular Hidden Floor Furni to Unhide!", 30);
+                Speak("[CLIENT]:I Can't detect any Regular Hidden Floor Furni to Unhide!", 34);
             }
             IS_HIDING_REGULAR_WALLFURNIS = false;
             if (HIDDEN_REGULAR_WALLFURNIS.Count != 0)
@@ -3002,12 +3002,12 @@ namespace RetroFun.Pages
                 Connection.SendToClientAsync(WallFurnitures.PacketBuilder(HIDDEN_REGULAR_WALLFURNIS, In.RoomWallItems));
                 HIDDEN_REGULAR_WALLFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
-                Speak("[CLIENT]:All Regular Wall Furnis are unhidden!", 30);
+                Speak("[CLIENT]:All Regular Wall Furnis are unhidden!", 34);
 
             }
             else
             {
-                Speak("[CLIENT]:I Can't detect any Regular Hidden Wall Furni to Unhide!", 30);
+                Speak("[CLIENT]:I Can't detect any Regular Hidden Wall Furni to Unhide!", 34);
             }
         }
 
@@ -3019,11 +3019,11 @@ namespace RetroFun.Pages
                 Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(HIDDEN_IRREGULAR_FLOORFURNIS, In.RoomFloorItems));
                 HIDDEN_IRREGULAR_FLOORFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
-                Speak("[CLIENT]:All Irregular Floor Furnis are unhidden!", 30);
+                Speak("[CLIENT]:All Irregular Floor Furnis are unhidden!", 34);
             }
             else
             {
-                Speak("[CLIENT]:I Can't detect any Irregular Hidden Floor Furni to Unhide!", 30);
+                Speak("[CLIENT]:I Can't detect any Irregular Hidden Floor Furni to Unhide!", 34);
             }
             IS_HIDING_IRREGULAR_WALLFURNIS = false;
             if (HIDDEN_IRREGULAR_WALLFURNIS.Count != 0)
@@ -3031,11 +3031,11 @@ namespace RetroFun.Pages
                 Connection.SendToClientAsync(WallFurnitures.PacketBuilder(HIDDEN_IRREGULAR_WALLFURNIS, In.RoomWallItems));
                 HIDDEN_IRREGULAR_WALLFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
-                Speak("[CLIENT]:All Irregular Wall Furnis are unhidden!", 30);
+                Speak("[CLIENT]:All Irregular Wall Furnis are unhidden!", 34);
             }
             else
             {
-                Speak("[CLIENT]:I Can't detect any Irregular Hidden Wall Furni to Unhide!", 30);
+                Speak("[CLIENT]:I Can't detect any Irregular Hidden Wall Furni to Unhide!", 34);
             }
         }
 
@@ -3050,7 +3050,7 @@ namespace RetroFun.Pages
             }
             else
             {
-                Speak("[CLIENT]:Can't find any removed Floor Furnis to remove!", 30);
+                Speak("[CLIENT]:Can't find any removed Floor Furnis to remove!", 34);
             }
 
             if (SnapshotRegularWallItems != null && !(SnapshotRegularWallItems.Count == 0))
@@ -3060,7 +3060,7 @@ namespace RetroFun.Pages
             }
             else
             {
-                Speak("[CLIENT]:Can't find any removed Wall Furnis to remove!", 30);
+                Speak("[CLIENT]:Can't find any removed Wall Furnis to remove!", 34);
             }
 
 
@@ -3086,21 +3086,21 @@ namespace RetroFun.Pages
             {
                 Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(SnapshotRemovedFloorItems, In.RoomFloorItems));
                 UpdateHiddenRegularFurniLabel();
-                Speak("[CLIENT]:All removed Floor Furnis are unhidden!", 30);
+                Speak("[CLIENT]:All removed Floor Furnis are unhidden!", 34);
             }
             else
             {
-                Speak("[CLIENT]:I Can't detect any removed Hidden Floor Furni to Unhide!", 30);
+                Speak("[CLIENT]:I Can't detect any removed Hidden Floor Furni to Unhide!", 34);
             }
             if (SnapshotRemovedWallItems.Count != 0)
             {
                 Connection.SendToClientAsync(WallFurnitures.PacketBuilder(SnapshotRemovedWallItems, In.RoomWallItems));
                 UpdateHiddenRegularFurniLabel();
-                Speak("[CLIENT]:All removed Wall Furnis are unhidden!", 30);
+                Speak("[CLIENT]:All removed Wall Furnis are unhidden!", 34);
             }
             else
             {
-                Speak("[CLIENT]:I Can't detect any removed Hidden Wall Furni to Unhide!", 30);
+                Speak("[CLIENT]:I Can't detect any removed Hidden Wall Furni to Unhide!", 34);
             }
         }
 

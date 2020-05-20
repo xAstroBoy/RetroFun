@@ -12,6 +12,7 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\ExcelDataReader.xm
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\ExcelDataReader.DataSet.pdb
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\ExcelDataReader.DataSet.xml
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\ExcelNumberFormat.xml
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csprojAssemblyReference.cache
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Handlers.FurniHandlerEventPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.MainFrm.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.Pages.DiceBotPage.resources
@@ -43,4 +44,3 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csproj.Co
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csproj.CopyComplete
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.exe
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.pdb
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.csprojAssemblyReference.cache
