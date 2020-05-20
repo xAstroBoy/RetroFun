@@ -71,15 +71,15 @@ namespace RetroFun.Controls
                 {
                     FindForm()?.Invoke(handler, this, e);
                 }
-                if (DesignMode)
-                {
-                    _bindings[e.PropertyName].ReadValue();
-                }
             } catch(System.ObjectDisposedException)
             {
 
             }
             catch(System.ArgumentOutOfRangeException)
+            {
+
+            }
+            catch(System.Collections.Generic.KeyNotFoundException)
             {
 
             }

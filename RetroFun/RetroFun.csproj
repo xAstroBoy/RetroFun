@@ -72,17 +72,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\BindableToolStripMenuItem.cs" />
-    <Compile Include="Utils\Furnitures\FurniComposer.cs" />
+    <Compile Include="Handlers\FurniHandlerEventPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Handlers\FurniHandlerEventPage.Designer.cs">
+      <DependentUpon>FurniHandlerEventPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Furnitures\Tools\FloorFurniTools.cs" />
+    <Compile Include="Utils\Furnitures\Tools\WallFurniTools.cs" />
+    <Compile Include="Utils\Furnitures\WallFurni\WallFurnitures.cs" />
+    <Compile Include="Utils\Furnitures\Tools\FurniComposer.cs" />
     <Compile Include="Controls\ImageComboBox.cs" />
     <Compile Include="Controls\ObservableExtensionForm.cs" />
     <Compile Include="Controls\PageUtils.cs" />
     <Compile Include="Converter\IntToStringConverter.cs" />
+    <Compile Include="Utils\Furnitures\FloorFurni\FloorFurnitures.cs" />
     <Compile Include="Utils\Globals\GlobalDictionaries.cs" />
     <Compile Include="Utils\Globals\GlobalInts.cs" />
     <Compile Include="Utils\Globals\GlobalLists.cs" />
     <Compile Include="Utils\Globals\GlobalStrings.cs" />
     <Compile Include="Utils\Globals\GlobalBools.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Utils\HostFinder\RecognizeDomain.cs" />
     <Compile Include="Helpers\EnumerableExtensions.cs" />
     <Compile Include="Helpers\CustomBinding.cs" />
@@ -241,6 +250,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\ObservablePage.cs" />
+    <EmbeddedResource Include="Handlers\FurniHandlerEventPage.resx">
+      <DependentUpon>FurniHandlerEventPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainFrm.resx">
       <DependentUpon>MainFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -341,10 +353,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\Furnitures\FloorFurni\" />
-    <Folder Include="Utils\Furnitures\WallFurni\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Libraries\Flazzy.dll" />
     <Content Include="Libraries\Tangine.dll" />
