@@ -1217,7 +1217,7 @@ namespace RetroFun.Pages
             int index = e.Packet.ReadInteger();
             string text = e.Packet.ReadString();
             var entity = HentityUtils.FindEntityByIndex(index);
-            SaveChatlog(text, "TALKING", FindUsername(entity));
+            SaveChatlog(text, "TALKING", HentityUtils.FindUsernameByEntity(entity));
         }
 
         public override void  In_RoomUserShout(DataInterceptedEventArgs e)
@@ -1225,7 +1225,7 @@ namespace RetroFun.Pages
             int index = e.Packet.ReadInteger();
             string text = e.Packet.ReadString();
             var entity = HentityUtils.FindEntityByIndex(index);
-            SaveChatlog(text, "SHOUT", FindUsername(entity));
+            SaveChatlog(text, "SHOUT", HentityUtils.FindUsernameByEntity(entity));
         }
 
 
@@ -1234,7 +1234,7 @@ namespace RetroFun.Pages
             int index = e.Packet.ReadInteger();
             string text = e.Packet.ReadString();
             var entity = HentityUtils.FindEntityByIndex(index);
-            SaveChatlog(text, "WHISPERING", FindUsername(entity));
+            SaveChatlog(text, "WHISPERING", HentityUtils.FindUsernameByEntity(entity));
         }
 
         private void SendFriendRequest(string username)
@@ -1250,18 +1250,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private string FindUsername(HEntity entity)
-        {
 
-            if (entity != null)
-            {
-                return entity.Name;
-            }
-            else
-            {
-                return "NOT_LOGGED_USER";
-            }
-        }
 
 
         private void StoreToInput(string text)
@@ -1309,7 +1298,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                if (entityname != "NOT_LOGGED_USER")
+                if (entityname != null)
                 {
                     string Filepath = "../RetroFun_Chatlog/" + RecognizeDomain.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                     string FolderName = "RetroFun_Chatlog";

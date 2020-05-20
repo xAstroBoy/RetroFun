@@ -30,13 +30,13 @@ namespace RetroFun.Pages
 
         private string OldPyramidString = string.Empty;
 
-        private int LocalIndex;
         private bool isCloneChatUser;
         private bool isCloneChatAlertDone;
 
         private readonly int[] rainbowlist = new int[] { 3, 4, 5, 6, 7, 11, 12, 13, 14, 15, 18 };
         private readonly string[] knowncommands = new string[] { "pickall", "setspeed", "reload", "disablediagonal", "setmax", "override", "tele", "teleport", "tp", "refresh_catalogue", "refreshcata", "roomalert", "coords", "coins", "credits", "givecoins", "pixels ", "givepixels ", "handitem ", "ha", "hotelalert", "freeze", "buyx", "enable", "roommute", "masscredits", "globalcredits", "openroom", "roombadge", "massbadge", "language", "userinfo", "halbug", "dumpmaps", "givebadge", "invisible", "ban", "disconnect", "dc", "superban", "langban", "roomkick", "mutam", "unmute", "alert", "cacciam", "unban", "geefbelcredits", "givecrystals", "deletemission", "hai", "hal", "setchatlog", "aprilpt", "inisondaggio", "discomode", "ghal", "gpok", "apripok", "comeall", "commands", "faq", "info", "about", "enablestatus", "disablefriends", "enablefriends", "disabletrade", "enabletrade", "mordi", "wheresmypet", "wheresmypets", "whereismypets", "powerlevels", "forcerot", "seteffect", "empty", "whosonline", "stalk", "follow", "warp", "lay", "sit", "come", "moonwalk", "push", "pull", "copylook", "fly", "placex", "placecircle", "placesquare", "staffalert", "smallban", "danceid", "domanda", "chiudidadi", "vota", "terminavoto" };
-        private int Bubbleused = 0;
+        public int Bubbleused { get => GlobalInts.Selected_bubble_ID; set { GlobalInts.Selected_bubble_ID = value; RaiseOnPropertyChanged(); } }
+
         //private int oldrainbowbubble;
         //private int newrainbowselected;
 
@@ -453,10 +453,10 @@ namespace RetroFun.Pages
             int bubbleid = e.Packet.ReadInteger();
             if (UseSelectedBubbleClientSide)
             {
-                if (index == LocalIndex)
+                if (index == GlobalInts.OwnUser_index)
                 {
                     e.IsBlocked = true;
-                    Connection.SendToClientAsync(In.RoomUserTalk, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
+                    Connection.SendToClientAsync(In.RoomUserTalk, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
             if (isCloneChatUser)
@@ -497,10 +497,10 @@ namespace RetroFun.Pages
 
             if (UseSelectedBubbleClientSide)
             {
-                if (index == LocalIndex)
+                if (index == GlobalInts.OwnUser_index)
                 {
                     e.IsBlocked = true;
-                    Connection.SendToClientAsync(In.RoomUserShout, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
+                    Connection.SendToClientAsync(In.RoomUserShout, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
 
@@ -522,10 +522,10 @@ namespace RetroFun.Pages
 
             if (UseSelectedBubbleClientSide)
             {
-                if (index == LocalIndex)
+                if (index == GlobalInts.OwnUser_index)
                 {
                     e.IsBlocked = true;
-                    Connection.SendToClientAsync(In.RoomUserWhisper, LocalIndex, msg, 0, SelectedCSBubbleId, 0, -1);
+                    Connection.SendToClientAsync(In.RoomUserWhisper, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
         }

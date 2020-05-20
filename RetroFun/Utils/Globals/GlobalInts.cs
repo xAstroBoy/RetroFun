@@ -14,6 +14,8 @@ namespace RetroFun
     public class GlobalInts
     {
         public static int OwnUser_index{ get; set; } = 0;
+        public static int Selected_bubble_ID { get; set; } = 18;
+
     }
 }
 

@@ -51,6 +51,18 @@ namespace RetroFun
             }
         }
 
+        public static string FindUsernameByEntity(HEntity entity)
+        {
+
+            if (entity != null)
+            {
+                return entity.Name;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public static int FindUserIndexByUsername(string username)
         {

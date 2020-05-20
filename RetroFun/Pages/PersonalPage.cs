@@ -789,21 +789,19 @@ namespace RetroFun.Pages
             _selectedUserId = e.Packet.ReadInteger();
             if(giveHanditemToselecteduser)
             {
-                Invoke((MethodInvoker)delegate ()
-                {
-                    Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + ((Handitems)HanditemCmbx.SelectedItem).ID, 18);
-                });
-                Connection.SendToServerAsync(Out.RoomUserGiveHandItem, _selectedUserId);
+                    Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + HanditemID, GlobalInts.Selected_bubble_ID);
+                    Connection.SendToServerAsync(Out.RoomUserGiveHandItem, _selectedUserId);
             }
         }
 
-        private void RemoveEnableOnlyBobba()
+        private async void RemoveEnableOnlyBobba()
         {
             if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
             {
                 if (isTalkAvailable)
                 {
-                    Connection.SendToServerAsync(Out.RoomUserTalk, ":enable 0", 18);
+                    await Task.Delay(500);
+                    await Connection.SendToServerAsync(Out.RoomUserTalk, ":enable 0", GlobalInts.Selected_bubble_ID);
                     isTalkAvailable = false;
                 }
             }
@@ -855,7 +853,7 @@ namespace RetroFun.Pages
 
         private void GiveHanditemToMyself_Click(object sender, EventArgs e)
         {
-           Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + ((Handitems)HanditemCmbx.SelectedItem).ID, 18);
+           Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + HanditemID, 18);
         }
 
 
