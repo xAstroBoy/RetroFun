@@ -40,10 +40,6 @@ namespace RetroFun.Pages
             }
         }
 
-
-        private List<HEntity> users = new List<HEntity>();
-
-
         public FakeMessagePage()
         {
             InitializeComponent();
@@ -62,15 +58,10 @@ namespace RetroFun.Pages
             e.IsBlocked = ShouldBlockReminders;
         }
 
-        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
-        {
-            users.Clear();
-        }
-
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
             SelectedUserID = e.Packet.ReadInteger();
-            var entity = users.Find(u => u.Id == SelectedUserID);
+            var entity = HentityUtils.FindEntityByUserID(SelectedUserID);
             if (entity != null)
             {
                 SelectUserLabel.Invoke((MethodInvoker)delegate
@@ -82,51 +73,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public override void In_RoomUsers(DataInterceptedEventArgs obj)
-        {
 
-            try
-            {
-                HEntity[] array = HEntity.Parse(obj.Packet);
-                if (array.Length != 0)
-                {
-                    foreach (HEntity hentity in array)
-                    {
-                        if (!users.Contains(hentity))
-                        {
-                            users.Add(hentity);
-                        }
-                    }
-                }
-            }
-            catch (IndexOutOfRangeException)
-            {
-
-            }
-        }
-
-
-
-        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
-        {
-            int index = int.Parse(e.Packet.ReadString());
-            var entity = FindEntity(index);
-            if (entity == null) return;
-            users.Remove(entity);
-        }
-
-        private HEntity FindEntity(int index)
-        {
-            var entity = users.Find(f => f.Index == index);
-            if (entity != null)
-            {
-                return entity;
-            }
-            else
-            {
-                return null;
-            }
-        }
 
         public override void In_UserProfile(DataInterceptedEventArgs e)
         {

@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using Sulakore.Habbo;
 using System.Linq;
+using RetroFun.Helpers;
 
 namespace RetroFun.Pages
 {
@@ -339,23 +340,12 @@ namespace RetroFun.Pages
             }
         }
 
-        private string GetHost(string host)
-        {
-            if (host == "217.182.58.18")
-            {
-                return "bobbaitalia.it";
-            }
-            else
-            {
-                return host;
-            }
-        }
 
         private void RecordPlacedRare(int FurniID)
         {
             try
             {
-                string Filepath = "../PlacedFurnis/" + GetHost(Connection.Host) + "_FURNI" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../PlacedFurnis/" + RecognizeDomain.GetHost(Connection.Host) + "_FURNI" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "PlacedFurnis";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -388,7 +378,7 @@ namespace RetroFun.Pages
             try
             {
                 int i = 0;
-                string Filepath = "../FurniDetails/" + GetHost(Connection.Host) + "_FloorFurni" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../FurniDetails/" + RecognizeDomain.GetHost(Connection.Host) + "_FloorFurni" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "FurniDetails";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -450,7 +440,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../FurniDetails/" + GetHost(Connection.Host) + "_WallFurni" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../FurniDetails/" + RecognizeDomain.GetHost(Connection.Host) + "_WallFurni" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "FurniDetails";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -1170,7 +1160,7 @@ namespace RetroFun.Pages
         {
             if (Connection.Remote.IsConnected)
             {
-                if (In.RemoveFloorItem == 0 && GetHost(Connection.Host) == "bobbaitalia.it")
+                if (In.RemoveFloorItem == 0 && RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
                 {
                     await Task.Delay(250);
                     await Connection.SendToClientAsync(2411, item.Id.ToString(), false, 0, 0);

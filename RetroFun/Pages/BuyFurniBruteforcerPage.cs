@@ -1,4 +1,5 @@
 ﻿using RetroFun.Controls;
+using RetroFun.Helpers;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Components;
@@ -263,20 +264,6 @@ namespace RetroFun.Pages
             Bind(furnITextBox, "Text", nameof(TextBox));
         }
 
-
-
-
-        private string GetHost(string host)
-        {
-            if(host == "217.182.58.18")
-            {
-                return "bobbaitalia.it";
-            }
-            else
-            {
-                return host;
-            }
-        }
 
         private void SendPurchaseBtn_Click(object sender, EventArgs e)
         {
@@ -934,7 +921,7 @@ namespace RetroFun.Pages
 
         private void FindHostNameBtn_Click(object sender, EventArgs e)
         {
-            FileNameSave = GetHost(Connection.Host);
+            FileNameSave = RecognizeDomain.GetHost(Connection.Host);
         }
 
 

@@ -321,15 +321,6 @@ namespace RetroFun.Pages
             }
         }
 
-        public override void Out_Username(DataInterceptedEventArgs e)
-        {
-            HMessage packet = e.Packet;
-            string username = packet.ReadString();
-
-            FurniOwnerName = username;
-        }
-
-
         private void RotationUp_CheckedChanged(object sender, EventArgs e)
         {
             FurniRotation = 6;
@@ -382,10 +373,7 @@ namespace RetroFun.Pages
 
         private void SetOwnUsernameBtn_Click(object sender, EventArgs e)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(Out.RequestUserData);
-            }
+            FurniOwnerName = GlobalStrings.UserDetails_Username;
         }
 
 

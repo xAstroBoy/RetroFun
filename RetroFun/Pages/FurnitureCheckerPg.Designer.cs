@@ -544,7 +544,7 @@
             this.Controls.Add(this.RoomScannerGroupbox);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FurnitureChecker";
-            this.Size = new System.Drawing.Size(1109, 623);
+            this.Size = new System.Drawing.Size(1112, 612);
             ((System.ComponentModel.ISupportInitialize)(this.FurniIDToCheckNbx)).EndInit();
             this.RoomScannerGroupbox.ResumeLayout(false);
             this.RoomScannerGroupbox.PerformLayout();

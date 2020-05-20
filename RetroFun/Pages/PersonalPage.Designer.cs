@@ -353,8 +353,9 @@
             this.HanditemCmbx.Location = new System.Drawing.Point(7, 27);
             this.HanditemCmbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HanditemCmbx.Name = "HanditemCmbx";
-            this.HanditemCmbx.Size = new System.Drawing.Size(526, 28);
+            this.HanditemCmbx.Size = new System.Drawing.Size(470, 28);
             this.HanditemCmbx.TabIndex = 88;
+            this.HanditemCmbx.SelectedIndexChanged += new System.EventHandler(this.HanditemCmbx_SelectedIndexChanged);
             // 
             // GiveallUserHanditemBtn
             // 
@@ -394,7 +395,7 @@
             this.groupBox3.Controls.Add(this.GiveallUserHanditemBtn);
             this.groupBox3.Location = new System.Drawing.Point(708, 20);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(551, 233);
+            this.groupBox3.Size = new System.Drawing.Size(498, 233);
             this.groupBox3.TabIndex = 93;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Handitems";

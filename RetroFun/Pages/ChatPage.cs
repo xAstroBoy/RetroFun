@@ -21,7 +21,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class ChatPage:  ObservablePage
+    public partial class ChatPage : ObservablePage
     {
         private HMessage replacement;
         private HMessage ChatMessageBuild;
@@ -31,10 +31,8 @@ namespace RetroFun.Pages
         private string OldPyramidString = string.Empty;
 
         private int LocalIndex;
-        private List<HEntity> users = new List<HEntity>();
-
         private bool isCloneChatUser;
-        private bool IsRaidModeAlertDone;
+        private bool isCloneChatAlertDone;
 
         private readonly int[] rainbowlist = new int[] { 3, 4, 5, 6, 7, 11, 12, 13, 14, 15, 18 };
         private readonly string[] knowncommands = new string[] { "pickall", "setspeed", "reload", "disablediagonal", "setmax", "override", "tele", "teleport", "tp", "refresh_catalogue", "refreshcata", "roomalert", "coords", "coins", "credits", "givecoins", "pixels ", "givepixels ", "handitem ", "ha", "hotelalert", "freeze", "buyx", "enable", "roommute", "masscredits", "globalcredits", "openroom", "roombadge", "massbadge", "language", "userinfo", "halbug", "dumpmaps", "givebadge", "invisible", "ban", "disconnect", "dc", "superban", "langban", "roomkick", "mutam", "unmute", "alert", "cacciam", "unban", "geefbelcredits", "givecrystals", "deletemission", "hai", "hal", "setchatlog", "aprilpt", "inisondaggio", "discomode", "ghal", "gpok", "apripok", "comeall", "commands", "faq", "info", "about", "enablestatus", "disablefriends", "enablefriends", "disabletrade", "enabletrade", "mordi", "wheresmypet", "wheresmypets", "whereismypets", "powerlevels", "forcerot", "seteffect", "empty", "whosonline", "stalk", "follow", "warp", "lay", "sit", "come", "moonwalk", "push", "pull", "copylook", "fly", "placex", "placecircle", "placesquare", "staffalert", "smallban", "danceid", "domanda", "chiudidadi", "vota", "terminavoto" };
@@ -111,6 +109,20 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+
+        private int _TargetUserIndex = 0;
+
+        public int TargetUserIndex
+        {
+            get => _TargetUserIndex;
+            set
+            {
+                _TargetUserIndex = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
 
         private int _RaidUserCooldownCooldown = 50;
@@ -263,17 +275,9 @@ namespace RetroFun.Pages
             }
         }
 
-        private string _UsernameFilter;
+        public string UsernameFilter { get => GlobalStrings.UserDetails_Username; }
 
-        public string UsernameFilter
-        {
-            get => _UsernameFilter;
-            set
-            {
-                _UsernameFilter = value;
-                RaiseOnPropertyChanged();
-            }
-        }
+
 
 
         private string _CloneUsernameFilter;
@@ -287,19 +291,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
-        private int _MainUserIndex;
-
-        public int MainUserIndex
-        {
-            get => _MainUserIndex;
-            set
-            {
-                _MainUserIndex = value;
-                RaiseOnPropertyChanged();
-            }
-        }
-
 
         public int SelectedSSBubbleId { get; private set; }
         public int SelectedCSBubbleId { get; private set; }
@@ -331,7 +322,7 @@ namespace RetroFun.Pages
             Bind(TextFloodPhraseBox, "Text", nameof(FlooderText));
             Bind(CooldownFloodNbx, "Value", nameof(FlooderCooldown));
             Bind(TargetUserTxb, "Text", nameof(CloneUsernameFilter));
-            Bind(IndexNbx, "Value", nameof(MainUserIndex));
+            Bind(IndexNbx, "Value", nameof(TargetUserIndex));
             Bind(CooldownCloneUserChatNbx, "Value", nameof(RaidUserCooldownCooldown));
             Bind(ChatMsgTxb, "Text", nameof(ChatMessageText));
             Bind(SetTextColorChbx, "Checked", nameof(ColorizeText));
@@ -361,29 +352,6 @@ namespace RetroFun.Pages
             BubblesCSCmbx.SelectedIndex = 17;
 
         }
-
-
-        public override async void Out_LatencyTest(DataInterceptedEventArgs obj)
-        {
-            if (UsernameFilter == null)
-            {
-                if (Connection.Remote.IsConnected)
-                {
-
-                    await Connection.SendToServerAsync(Out.RequestUserData);
-                }
-            }
-        }
-
-        public override void Out_Username(DataInterceptedEventArgs obj)
-        {
-            string username = obj.Packet.ReadString();
-            if (UsernameFilter == null)
-            {
-                UsernameFilter = username;
-            }
-        }
-
 
         private void WriteToButton(SKoreButton Button, string text)
         {
@@ -448,69 +416,6 @@ namespace RetroFun.Pages
             });
         }
 
-        public override void In_RoomUsers(DataInterceptedEventArgs obj)
-        {
-            try
-            {
-                if (UsernameFilter != null)
-                {
-                    HEntity[] array = HEntity.Parse(obj.Packet);
-                    if (array.Length != 0)
-                    {
-                        foreach (HEntity hentity in array)
-                        {
-                            if (!users.Contains(hentity))
-                            {
-                                users.Add(hentity);
-                            }
-                            if (hentity.Name == UsernameFilter)
-                            {
-                                LocalIndex = hentity.Index;
-                            }
-                            if (hentity.Name == CloneUsernameFilter)
-                            {
-                                MainUserIndex = hentity.Index;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (IndexOutOfRangeException)
-            {
-            }
-        }
-        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
-        {
-            users.Clear();
-        }
-
-
-        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
-        {
-            users.Clear();
-        }
-
-        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
-        {
-            int index = int.Parse(e.Packet.ReadString());
-            var entity = FindEntity(index);
-            if (entity == null) return;
-            users.Remove(entity);
-        }
-
-        private HEntity FindEntity(int index)
-        {
-            var entity = users.Find(f => f.Index == index);
-            if (entity != null)
-            {
-                return entity;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         private void BubblesCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Avoid cross-thread exceptions by waiting for an event in the UI thread to update this property.
@@ -556,7 +461,7 @@ namespace RetroFun.Pages
             }
             if (isCloneChatUser)
             {
-                if (index == MainUserIndex)
+                if (index == TargetUserIndex)
                 {
                     ConvertCSChatTalk(msg, bubbleid);
                 }
@@ -601,7 +506,7 @@ namespace RetroFun.Pages
 
             if (isCloneChatUser)
             {
-                if (index == MainUserIndex)
+                if (index == TargetUserIndex)
                 {
                     ConvertCSChatShout(msg, bubbleid);
                 }
@@ -1095,10 +1000,10 @@ namespace RetroFun.Pages
 
                 WriteToButton(CloneUserSpeakBtn, "Clone User Speak : ON");
                 isCloneChatUser = true;
-                if(!IsRaidModeAlertDone)
+                if(!isCloneChatAlertDone)
                 {
                     Connection.SendToClientAsync(In.RoomUserWhisper, 0, "CAUTION: This can result in a ban of the account! Use with caution!", 0, 34, 0, -1);
-                    IsRaidModeAlertDone = true;
+                    isCloneChatAlertDone = true;
                 }
 
             }
@@ -1111,25 +1016,13 @@ namespace RetroFun.Pages
         }
 
 
-        private void FindUserIndex(string username)
-        {
-            if (!String.IsNullOrEmpty(username))
-            {
-                if(users.Count != 0)
-                {
-                    MainUserIndex = users.Find(e => e.Name == username).Index;
-                }
-            }
-        }
+
 
         private void FindIndexBtn_click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(CloneUsernameFilter))
             {
-                if (users != null && users.Count != 0)
-                {
-                    FindUserIndex(CloneUsernameFilter);
-                }
+                TargetUserIndex = HentityUtils.FindUserIndexByUsername(CloneUsernameFilter);
             }
         }
 

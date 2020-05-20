@@ -72,15 +72,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\BindableToolStripMenuItem.cs" />
-    <Compile Include="Controls\FurniComposer.cs" />
+    <Compile Include="Utils\Furnitures\FurniComposer.cs" />
     <Compile Include="Controls\ImageComboBox.cs" />
     <Compile Include="Controls\ObservableExtensionForm.cs" />
     <Compile Include="Controls\PageUtils.cs" />
     <Compile Include="Converter\IntToStringConverter.cs" />
+    <Compile Include="Utils\Globals\GlobalDictionaries.cs" />
+    <Compile Include="Utils\Globals\GlobalInts.cs" />
+    <Compile Include="Utils\Globals\GlobalLists.cs" />
+    <Compile Include="Utils\Globals\GlobalStrings.cs" />
+    <Compile Include="Utils\Globals\GlobalBools.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Utils\HostFinder\RecognizeDomain.cs" />
     <Compile Include="Helpers\EnumerableExtensions.cs" />
     <Compile Include="Helpers\CustomBinding.cs" />
     <Compile Include="Helpers\IValueConverter.cs" />
+    <Compile Include="Utils\entity\HentityUtils.cs" />
     <Compile Include="MainFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -334,7 +341,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Utils\Furnitures\FloorFurni\" />
+    <Folder Include="Utils\Furnitures\WallFurni\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Libraries\Flazzy.dll" />
     <Content Include="Libraries\Tangine.dll" />

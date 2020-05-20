@@ -1,4 +1,5 @@
-﻿using RetroFun.Subscribers;
+﻿using RetroFun.Helpers;
+using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Components;
 using Sulakore.Habbo;
@@ -37,15 +38,13 @@ namespace RetroFun.Pages
         private bool SitModeEnabled;
         private bool DanceLoopEnabled;
         private bool TrollLookMode;
-        private int LocalIndex;
 
         private readonly string TrollLook1 = "hr-155-42.ea-1333-33.ha-3786-62.ch-201410-89.sh-3333-3333.ca-3333-33-33.lg-44689-82.wa-3333-333.hd-209-1";
         private readonly string TrollLook2 = "hr-893-42.ea-1333-33.ha-3786-62.sh-6298462-82.wa-3333-333.ca-3333-33-33.lg-5772038-82-62.ch-987462876-89.hd-209-1";
         private readonly string TrollLook3 = "hr-893-42.cc-156282-77.ea-1333-33.ha-3786-62.ch-9784419-82.sh-3035-82.ca-3333-33-33.lg-6050208-78.wa-3333-333.hd-209-1";
-        private List<HEntity> users;
 
 
-        private string OriginalLook = " ";
+        public string OriginalLook { get => GlobalStrings.UserDetails_Look; }
 
         #region DanceBools
 
@@ -495,18 +494,6 @@ namespace RetroFun.Pages
 
         #region miscvars
 
-        private string _UsernameFilter ="NOT_INITIATED";
-
-        public string UsernameFilter
-        {
-            get => _UsernameFilter;
-            set
-            {
-                _UsernameFilter = value;
-                RaiseOnPropertyChanged();
-            }
-        }
-
 
         private bool _ConvertMessageForYou = true;
 
@@ -627,7 +614,6 @@ namespace RetroFun.Pages
             Bind(BlockMessageForYouChbx, "Checked", nameof(BlockMessageForYou));
             Bind(BlockStaffAlertsChbx, "Checked", nameof(BlockStaffAlerts));
             Bind(ConvertMessageForyouFileChbx, "Checked", nameof(ConvertMessageForYouToFile));
-            users = new List<HEntity>();
         }
 
         private void SignCountBtn_Click(object sender, EventArgs e)
@@ -979,87 +965,17 @@ namespace RetroFun.Pages
             await Connection.SendToServerAsync(Out.RoomUserSign, Sign);
         }
 
-
-
-        public override void Out_LatencyTest(DataInterceptedEventArgs obj)
-        {
-            if (UsernameFilter == null)
-            {
-                Connection.SendToServerAsync(Out.RequestUserData);
-            }
-        }
-
-        public override void Out_Username(DataInterceptedEventArgs obj)
-        {
-            string username = obj.Packet.ReadString();
-
-            if (UsernameFilter == null)
-            {
-                UsernameFilter = username;
-            }
-        }
-
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
-            users.Clear();
             newroom = true;
         }
 
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
-            users.Clear();
             newroom = true;
         }
 
-
-        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
-        {
-            int index = int.Parse(e.Packet.ReadString());
-            var entity = FindEntity(index);
-            if (entity == null) return;
-            users.Remove(entity);
-        }
-
-        private HEntity FindEntity(int index)
-        {
-            var entity = users.Find(f => f.Index == index);
-            if(entity != null)
-            {
-                return entity;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public override void In_RoomUsers(DataInterceptedEventArgs obj)
-        {
-            try
-            {
-                HEntity[] array = HEntity.Parse(obj.Packet);
-                if (array.Length != 0)
-                {
-                    foreach (HEntity hentity in array)
-                    {
-                        if (!users.Contains(hentity))
-                        {
-                            users.Add(hentity);
-                        }
-                        if (hentity.Name == UsernameFilter)
-                        {
-                            OriginalLook = hentity.FigureId;
-                            LocalIndex = hentity.Index;
-                        }
-                    }
-                }
-
-            }
-            catch (IndexOutOfRangeException)
-            {
-            }
-        }
 
         public override void Out_RemoveFriend(DataInterceptedEventArgs e)
         {
@@ -1300,7 +1216,7 @@ namespace RetroFun.Pages
         {
             int index = e.Packet.ReadInteger();
             string text = e.Packet.ReadString();
-            var entity = FindEntity(index);
+            var entity = HentityUtils.FindEntityByIndex(index);
             SaveChatlog(text, "TALKING", FindUsername(entity));
         }
 
@@ -1308,7 +1224,7 @@ namespace RetroFun.Pages
         {
             int index = e.Packet.ReadInteger();
             string text = e.Packet.ReadString();
-            var entity = FindEntity(index);
+            var entity = HentityUtils.FindEntityByIndex(index);
             SaveChatlog(text, "SHOUT", FindUsername(entity));
         }
 
@@ -1317,7 +1233,7 @@ namespace RetroFun.Pages
         {
             int index = e.Packet.ReadInteger();
             string text = e.Packet.ReadString();
-            var entity = FindEntity(index);
+            var entity = HentityUtils.FindEntityByIndex(index);
             SaveChatlog(text, "WHISPERING", FindUsername(entity));
         }
 
@@ -1328,9 +1244,9 @@ namespace RetroFun.Pages
 
         private void AddYourselfAsFriendBtn_Click(object sender, EventArgs e)
         {
-            if(UsernameFilter != null)
+            if(GlobalStrings.UserDetails_Username != null)
             {
-                SendFriendRequest(UsernameFilter);
+                SendFriendRequest(GlobalStrings.UserDetails_Username);
             }
         }
 
@@ -1387,17 +1303,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private string GetHost(string host)
-        {
-            if (host == "217.182.58.18")
-            {
-                return "bobbaitalia.it";
-            }
-            else
-            {
-                return host;
-            }
-        }
+
 
         private void SaveChatlog(string text, string TalkType, string entityname)
         {
@@ -1405,7 +1311,7 @@ namespace RetroFun.Pages
             {
                 if (entityname != "NOT_LOGGED_USER")
                 {
-                    string Filepath = "../RetroFun_Chatlog/" + GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                    string Filepath = "../RetroFun_Chatlog/" + RecognizeDomain.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                     string FolderName = "RetroFun_Chatlog";
 
                     Directory.CreateDirectory("../" + FolderName);
@@ -1417,24 +1323,24 @@ namespace RetroFun.Pages
                             txtFile.WriteLine("RetroFun Chatlog stored at :" + DateTime.Now.ToString());
                             if (newroom)
                             {
-                                if (UsernameFilter == "NOT_INITIATED")
+                                 if (GlobalStrings.UserDetails_Username == null)
                                 {
                                     txtFile.WriteLine("");
                                     txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
                                 }
                                 else
                                 {
-                                    txtFile.WriteLine(" " + UsernameFilter + "  left the room at : " + DateTime.Now.ToString());
+                                    txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
                                 }
                                 txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
                                 txtFile.WriteLine("");
-                                if (UsernameFilter == "NOT_INITIATED")
+                                 if (GlobalStrings.UserDetails_Username == null)
                                 {
                                     txtFile.WriteLine("[User Joined this room at : " + DateTime.Now.ToString() + " ]");
                                 }
                                 else
                                 {
-                                    txtFile.WriteLine("[ " + UsernameFilter + " Joined this room at : " + DateTime.Now.ToString() + " ]");
+                                    txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
                                 }
                                 txtFile.WriteLine("[Room ID: " + RoomID + " ]");
                                 txtFile.WriteLine("[Room Owner : " + OwnerName + " ]");
@@ -1451,21 +1357,21 @@ namespace RetroFun.Pages
                         {
                             if (newroom)
                             {
-                                if (UsernameFilter == "NOT_INITIATED")
+                                 if (GlobalStrings.UserDetails_Username == null)
                                 {
                                     txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
                                 }
                                 else
                                 {
-                                    txtFile.WriteLine(" " + UsernameFilter + "  left the room at : " + DateTime.Now.ToString());
+                                    txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
                                 }
-                                 if (UsernameFilter == "NOT_INITIATED")
+                                 if (GlobalStrings.UserDetails_Username == null)
                                 {
                                     txtFile.WriteLine("[You Joined this room at : " + DateTime.Now.ToString() + " ]");
                                 }
                                 else
                                 {
-                                    txtFile.WriteLine("[ " + UsernameFilter + " Joined this room at : " + DateTime.Now.ToString() + " ]");
+                                    txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
                                 }
                                 txtFile.WriteLine("[Room ID: " + RoomID + " ]");
                                 txtFile.WriteLine("[Room Owner : " + OwnerName + " ]");

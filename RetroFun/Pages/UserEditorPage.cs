@@ -8,6 +8,7 @@ using Sulakore.Communication;
 using Sulakore.Habbo;
 using Sulakore.Components;
 using System.Threading;
+using RetroFun.Utils.Globals;
 
 namespace RetroFun.Pages
 {
@@ -18,18 +19,12 @@ namespace RetroFun.Pages
     {
         private int _selectedUserId;
         private bool _isBlacklistActive = false;
-        private Dictionary<string, bool> _blacklistedEntities;
-        public int LocalIndex;
 
         private bool _IsAddAllUsersInBlacklist;
 
-        //username => Removed entity
-        private Dictionary<string, HEntity> _removedEntities; //
-
-        private Dictionary<int, HEntity> _users = new Dictionary<int, HEntity>();
-
-        //
-        private string OwnUsername;
+        private Dictionary<string, HEntity> _removedEntities { get => GlobalDictionaries.removedEntities; }
+        private Dictionary<int, HEntity> _users { get => GlobalDictionaries.Dictionary_UsersPresentInRoom; }
+        private Dictionary<string, bool> _blacklistedEntities { get => GlobalDictionaries.blacklistedEntities; }
 
 
         private bool _LockNickname;
@@ -149,17 +144,13 @@ namespace RetroFun.Pages
             Bind(LockNicknameBoxChbx, "Checked", nameof(LockNickname));
             Bind(LockMottoBoxChbx, "Checked", nameof(LockMotto));
             Bind(lockLookChbx, "Checked", nameof(LockLook));
-
-
-            _removedEntities = new Dictionary<string, HEntity>();
-            _blacklistedEntities = new Dictionary<string, bool>();
         }
 
-        private void WriteRegistrationUsers(int count)
+        private void UpdateRoomUsersLabel()
         {
             Invoke((MethodInvoker)delegate
             {
-                TotUserRegistered.Text = count.ToString();
+                TotUserRegistered.Text = GlobalDictionaries.Dictionary_UsersPresentInRoom.Count.ToString();
             });
         }
 
@@ -189,45 +180,22 @@ namespace RetroFun.Pages
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
-            _users.Clear();
-            _removedEntities.Clear();
-
             CountUserInRoomBlacklist();
-            WriteRegistrationUsers(_users.Count);
+            UpdateRoomUsersLabel();
         }
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
-            _users.Clear();
-            _removedEntities.Clear();
-
             CountUserInRoomBlacklist();
-            WriteRegistrationUsers(_users.Count);
+            UpdateRoomUsersLabel();
         }
 
 
-        public override void Out_LatencyTest(DataInterceptedEventArgs obj)
-        {
-            if (OwnUsername == null)
-            {
-                Connection.SendToServerAsync(Out.RequestUserData);
-            }
-        }
-
-        public override void Out_Username(DataInterceptedEventArgs obj)
-        {
-            string username = obj.Packet.ReadString();
-
-            if (OwnUsername == null)
-            {
-                OwnUsername = username;
-            }
-        }
 
         public override void In_RoomUserTalk(DataInterceptedEventArgs e)
         {
             var index = e.Packet.ReadInteger();
-            if (LocalIndex != index)
+            if (GlobalInts.OwnUser_index != index)
             {
                 if (_isBlacklistActive)
                 {
@@ -239,7 +207,7 @@ namespace RetroFun.Pages
         public override void  In_RoomUserShout(DataInterceptedEventArgs e)
         {
             var index = e.Packet.ReadInteger();
-            if (LocalIndex != index)
+            if (GlobalInts.OwnUser_index != index)
             {
                 if (_isBlacklistActive)
                 {
@@ -250,7 +218,7 @@ namespace RetroFun.Pages
         public override void In_RoomUserWhisper(DataInterceptedEventArgs e)
         {
             var index = e.Packet.ReadInteger();
-            if (LocalIndex != index)
+            if (GlobalInts.OwnUser_index != index)
             {
                 if (_isBlacklistActive)
                 {
@@ -277,13 +245,7 @@ namespace RetroFun.Pages
 
         public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
-            int index = int.Parse(e.Packet.ReadString());
-            var entity = _users.Values.FirstOrDefault(ent => ent.Index == index);
-            if (entity == null) return;
-
-            _users.Remove(entity.Id);
-
-            WriteRegistrationUsers(_users.Count);
+            UpdateRoomUsersLabel();
             CountUserInRoomBlacklist();
         }
 
@@ -297,41 +259,22 @@ namespace RetroFun.Pages
                 {
                     foreach (HEntity entity in array)
                     {
-
-
-                        if (!_users.ContainsKey(entity.Id))
-                        {
-                            _users.Add(entity.Id, entity);
-                        }
-
-                        if (entity.Name == OwnUsername)
-                        {
-                            LocalIndex = entity.Index;
-                        }
-
                         if (_isBlacklistActive && IsActiveAndBlacklisted(entity.Name))
                         {
                             removedEntities.Add(entity);
                         }
                         if (_IsAddAllUsersInBlacklist)
                         {
-                            if (entity.Name != OwnUsername)
+                            if (entity.Name != GlobalStrings.UserDetails_Username)
                             {
                                 removedEntities.Add(entity);
                             }
                         }
                     }
                 }
-                WriteRegistrationUsers(_users.Count);
+                UpdateRoomUsersLabel();
                 CountUserInRoomBlacklist();
 
-                //obj.Continue(); //hopefully 
-                //
-                ////Before we can remove them using RemoveEntity, the RoomUsers packet has to be received by our client. Otherwise this call below doesnt do anything because theres no users to remove yet.
-                //foreach (var entity in removedEntities)
-                //{
-                //    RemoveEntity(entity);
-                //}
                 if (_isBlacklistActive)
                 {
                     DeleteBlacklistedUsers();
@@ -549,7 +492,7 @@ namespace RetroFun.Pages
                 return;
             }
 
-            if (entityToBlacklist.Name == OwnUsername)
+            if (entityToBlacklist.Name == GlobalStrings.UserDetails_Username)
             {
                 Connection.SendToClientAsync(In.RoomUserTalk, entityToBlacklist.Index, "[User Blacklist] :Hey, you can't blacklist yourself!", 0, 30, 0, -1);
                 return; //ouchie
@@ -580,7 +523,7 @@ namespace RetroFun.Pages
 
             if (_users.TryGetValue(_selectedUserId, out var entityToRemove))
 
-                if (entityToRemove.Name == OwnUsername)
+                if (entityToRemove.Name == GlobalStrings.UserDetails_Username)
                 {
                     Connection.SendToClientAsync(In.RoomUserTalk, entityToRemove.Index, "[User Blacklist] :Hey, you can't blacklist yourself!", 0, 30, 0, -1);
                     return; //ouchie
@@ -598,15 +541,14 @@ namespace RetroFun.Pages
                     return;
                 }
 
-                if (entityToBlacklist.Name == OwnUsername)
+                if (entityToBlacklist.Name == GlobalStrings.UserDetails_Username)
                 {
                     return; //ouchie
                 }
 
-                if (_blacklistedEntities.ContainsKey(OwnUsername))
+                if (_blacklistedEntities.ContainsKey(GlobalStrings.UserDetails_Username))
                 {
-                    //Blacklist it, add blacklist entry
-                    _blacklistedEntities.Remove(OwnUsername);
+                    _blacklistedEntities.Remove(GlobalStrings.UserDetails_Username);
 
                 }
 

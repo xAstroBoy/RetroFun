@@ -37,7 +37,7 @@ namespace RetroFun.Controls
             BackColor = Color.White;
         }
 
-        protected void Bind(IBindableComponent component, string propertyName, string dataMember, IValueConverter converter = null, DataSourceUpdateMode dataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged)
+        internal void Bind(IBindableComponent component, string propertyName, string dataMember, IValueConverter converter = null, DataSourceUpdateMode dataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged)
         {
             var binding = new CustomBinding(propertyName, this, dataMember, converter)
             {
@@ -62,7 +62,7 @@ namespace RetroFun.Controls
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
+        internal virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             try
             {
@@ -85,10 +85,12 @@ namespace RetroFun.Controls
             }
         }
 
-        protected void RaiseOnPropertyChanged([CallerMemberName]string propertyName = "")
+        internal void RaiseOnPropertyChanged([CallerMemberName]string propertyName = "")
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }
+
+
 
         #endregion INotifyPropertyChanged Implementation
     }

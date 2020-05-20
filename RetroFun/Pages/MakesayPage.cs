@@ -1,4 +1,5 @@
-﻿using RetroFun.Properties;
+﻿using RetroFun.Globals;
+using RetroFun.Properties;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Habbo;
@@ -19,8 +20,6 @@ namespace RetroFun.Pages
     public partial class MakeSayPage:  ObservablePage
     {
         public int SelectedBubbleId { get; private set; }
-
-        private List<HEntity> users = new List<HEntity>();
 
         private int selectedIndex;
 
@@ -57,31 +56,13 @@ namespace RetroFun.Pages
 
         public override void In_RoomUsers(DataInterceptedEventArgs obj)
         {
-            try
-            {
-                HEntity[] array = HEntity.Parse(obj.Packet);
-                if (array.Length != 0)
-                {
-                    foreach (HEntity hentity in array)
-                    { 
-                        if (!users.Contains(hentity))
-                        {
-                            users.Add(hentity);
-                        }
-                    }
-                }
-                WriteRegistrationUsers(users.Count);
-            }
-            catch(IndexOutOfRangeException)
-            {
-
-            }
+         WriteRegistrationUsers();
         }
 
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
             int userId = e.Packet.ReadInteger();
-            var entity = users.Find(u => u.Id == userId);
+            var entity = HentityUtils.FindEntityByUserID(userId);
             if (entity != null)
             {
             
@@ -93,49 +74,12 @@ namespace RetroFun.Pages
             }
         }
 
-        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
-        {
-            users.Clear();
-            WriteRegistrationUsers(users.Count);
-        }
 
-
-        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
-        {
-            users.Clear();
-            WriteRegistrationUsers(users.Count);
-        }
-
-        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
-        {
-            int index = int.Parse(e.Packet.ReadString());
-            var UserLeaveEntity = FindEntity(index);
-            if (UserLeaveEntity == null) return;
-            users.Remove(UserLeaveEntity);
-            WriteRegistrationUsers(users.Count);
-        }
-
-
-
-        private HEntity FindEntity(int index)
-        {
-            var entity = users.Find(f => f.Index == index);
-            if (entity != null)
-            {
-                return entity;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-
-        private void WriteRegistrationUsers(int count)
+        private void WriteRegistrationUsers()
         {
             Invoke((MethodInvoker)delegate
             {
-                TotUserRegistered.Text = count.ToString();
+                TotUserRegistered.Text = GlobalLists.UsersInRoom.Count().ToString();
             });
         }
 

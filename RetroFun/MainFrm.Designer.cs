@@ -125,7 +125,7 @@ namespace RetroFun
             this.ChatPg.ForceWhisperChat = false;
             this.ChatPg.HideSpeakingBubble = false;
             this.ChatPg.Location = new System.Drawing.Point(4, 8);
-            this.ChatPg.MainUserIndex = 0;
+            this.ChatPg.TargetUserIndex = 0;
             this.ChatPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.ChatPg.Name = "ChatPg";
             this.ChatPg.RaidUserCooldownCooldown = 50;
@@ -133,7 +133,6 @@ namespace RetroFun
             this.ChatPg.Size = new System.Drawing.Size(1180, 612);
             this.ChatPg.TabIndex = 0;
             this.ChatPg.TabStop = false;
-            this.ChatPg.UsernameFilter = null;
             this.ChatPg.UseSelectedBubbleClientSide = false;
             this.ChatPg.UseSelectedBubbleServerSide = false;
             // 
@@ -355,7 +354,6 @@ namespace RetroFun
             this.MiscellaneousPg.ThumbsUpSelected = false;
             this.MiscellaneousPg.TrollLookCooldown = 500;
             this.MiscellaneousPg.TwoSelected = false;
-            this.MiscellaneousPg.UsernameFilter = null;
             this.MiscellaneousPg.WaveSelected = false;
             this.MiscellaneousPg.YellowcardSelected = false;
             this.MiscellaneousPg.ZeroSelected = false;
@@ -986,13 +984,12 @@ namespace RetroFun
             // BottomPg
             // 
             this.BottomPg.BackColor = System.Drawing.Color.White;
-            this.BottomPg.FreezeUserMovement = false;
             this.BottomPg.Location = new System.Drawing.Point(155, 678);
             this.BottomPg.Name = "BottomPg";
             this.BottomPg.Size = new System.Drawing.Size(1045, 37);
             this.BottomPg.TabIndex = 1;
             this.BottomPg.TabStop = false;
-            this.BottomPg.UsernameFilter = null;
+            this.BottomPg.OwnUsername = null;
             // 
             // MainFrm
             // 

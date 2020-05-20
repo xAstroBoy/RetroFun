@@ -10,6 +10,8 @@ using Sulakore.Habbo;
 using Sulakore.Components;
 using System.IO;
 using RetroFun.Subscribers;
+using RetroFun.Helpers;
+using RetroFun.Globals;
 
 namespace RetroFun.Pages
 {
@@ -19,16 +21,12 @@ namespace RetroFun.Pages
     public partial class ModerationPage : ObservablePage
     {
         private int _selectedUserId;
-        public int LocalIndex;
         private int Bubbleused = 0;
         private readonly string psw = "1q1w1e";
         private int RoomID = 0;
         private string OwnerName = "NOT INITIATED";
         private string roomname = "NOT INITIATED";
         private bool newroom = true;
-
-
-        private List<HEntity> _users = new List<HEntity>();
 
         private  RegisteredUsers[] _registeredUsers;
         private readonly BanTime[] _BanTime = new[]
@@ -84,9 +82,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
-
-        private string OwnUsername;
 
 
         private int _selectedIndex;
@@ -195,11 +190,11 @@ namespace RetroFun.Pages
 
         }
 
-        private void WriteRegistrationUsers(int count)
+        private void WriteRegistrationUsers()
         {
             Invoke((MethodInvoker)delegate
             {
-                TotUserRegistered.Text = count.ToString();
+                TotUserRegistered.Text = GlobalLists.UsersInRoom.Count().ToString();
             });
         }
 
@@ -216,9 +211,7 @@ namespace RetroFun.Pages
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
-            _users.Clear();
-
-            WriteRegistrationUsers(_users.Count);
+            GlobalLists.UsersInRoom.Count().ToString();
             Invoke((MethodInvoker)delegate
             {
                 UsersCmbx.Items.Clear();
@@ -227,32 +220,12 @@ namespace RetroFun.Pages
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
-            _users.Clear();
-
-            WriteRegistrationUsers(_users.Count);
             Invoke((MethodInvoker)delegate
             {
                 UsersCmbx.Items.Clear();
             });
         }
 
-        public override void Out_LatencyTest(DataInterceptedEventArgs obj)
-        {
-            if (OwnUsername == null)
-            {
-                Connection.SendToServerAsync(Out.RequestUserData);
-            }
-        }
-
-        public override void Out_Username(DataInterceptedEventArgs obj)
-        {
-            string username = obj.Packet.ReadString();
-
-            if (OwnUsername == null)
-            {
-                OwnUsername = username;
-            }
-        }
 
         public override void Out_RoomUserTalk(DataInterceptedEventArgs e)
         {
@@ -331,35 +304,15 @@ namespace RetroFun.Pages
         public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
             int index = int.Parse(e.Packet.ReadString());
-            var entity = FindEntity(index);
+            var entity = HentityUtils.FindEntityByIndex(index);
             if (entity == null) return;
-
-            _users.Remove(entity);
-
-            WriteRegistrationUsers(_users.Count);
-
-
+            WriteRegistrationUsers();
             //int id, string name, string motto, string look
             if (!_registeredUsers.Where(x => x.ID == entity.Id).Any())
             {
                 AddUserInCmbx(entity);
             }
         }
-
-
-        private HEntity FindEntity(int index)
-        {
-            var entity = _users.Find(f => f.Index == index);
-            if (entity != null)
-            {
-                return entity;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
 
         private void AddUserInCmbx(HEntity entity)
         {
@@ -383,38 +336,13 @@ namespace RetroFun.Pages
 
         public override void In_RoomUsers(DataInterceptedEventArgs obj)
         {
-            try
-            {
-                HEntity[] array = HEntity.Parse(obj.Packet);
-                if (array.Length > 0)
-                {
-                    foreach (HEntity entity in array)
-                    {
-
-
-                        if (!_users.Contains(entity))
-                        {
-                            _users.Add(entity);
-                        }
-
-                        if (entity.Name == OwnUsername)
-                        {
-                            LocalIndex = entity.Index;
-                        }
-                    }
-                }
-                WriteRegistrationUsers(_users.Count);
-            }
-            catch (IndexOutOfRangeException)
-            {
-
-            }
+          WriteRegistrationUsers();
         }
 
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
             _selectedUserId = e.Packet.ReadInteger();
-            var entity = _users.Find(f => f.Id == _selectedUserId);
+            var entity = HentityUtils.FindEntityByUserID(_selectedUserId);
 
             if (entity != null)
             {
@@ -441,7 +369,7 @@ namespace RetroFun.Pages
 
         private void RecordedBan(string username, int time , string reason)
         {
-            if (UserNickname != OwnUsername)
+            if (UserNickname != GlobalStrings.UserDetails_Username)
             {
                 Connection.SendToServerAsync(Out.RoomUserTalk, ":ban " + username + " " + time + " " + reason);
                 RecordModeration("BAN", username, reason, time);
@@ -450,7 +378,7 @@ namespace RetroFun.Pages
 
         private void RecordedMute(string username, int time)
         {
-            if (UserNickname != OwnUsername)
+            if (UserNickname != GlobalStrings.UserDetails_Username)
             {
                 Connection.SendToServerAsync(Out.RoomUserTalk, ":mutam " + username + " " + time);
                 RecordModeration("MUTE", username, "" , time);
@@ -459,7 +387,7 @@ namespace RetroFun.Pages
         }
         private void RecordedUnmute(string username)
         {
-            if (UserNickname != OwnUsername)
+            if (UserNickname != GlobalStrings.UserDetails_Username)
             {
                 Connection.SendToServerAsync(Out.RoomUserTalk, ":unmute " + username);
                 RecordModeration("UNMUTE", username, "");
@@ -469,7 +397,7 @@ namespace RetroFun.Pages
 
         private void RecordedAlert(string username, string reason)
         {
-            if (UserNickname != OwnUsername)
+            if (UserNickname != GlobalStrings.UserDetails_Username)
             {
                 Connection.SendToServerAsync(Out.RoomUserTalk, ":alert " + username + " " + reason);
                 RecordModeration("ALERT", username, reason);
@@ -480,7 +408,7 @@ namespace RetroFun.Pages
 
         private void RecordedKickUser(string username, string reason)
         {
-            if (UserNickname != OwnUsername)
+            if (UserNickname != GlobalStrings.UserDetails_Username)
             {
                 Connection.SendToServerAsync(Out.RoomUserTalk, ":cacciam " + username + " " + reason);
                 RecordModeration("KICK CON ALERT", username, reason);
@@ -488,24 +416,13 @@ namespace RetroFun.Pages
             }
         }
 
-        private string GetHost(string host)
-        {
-            if (host == "217.182.58.18")
-            {
-                return "bobbaitalia.it";
-            }
-            else
-            {
-                return host;
-            }
-        }
 
 
         private void RecordModeration(string ACTION, string entityname, string dettagli)
         {
             try
             {
-                string Filepath = "../ModerationUtils/" + GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../ModerationUtils/" + RecognizeDomain.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "ModerationUtils";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -599,7 +516,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../ModerationUtils/" + GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../ModerationUtils/" + RecognizeDomain.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "ModerationUtils";
 
                 Directory.CreateDirectory("../" + FolderName);

@@ -17,6 +17,7 @@ using Label = System.Windows.Forms.Label;
 using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Timers;
+using RetroFun.Helpers;
 
 namespace RetroFun.Pages
 {
@@ -435,7 +436,7 @@ namespace RetroFun.Pages
             if (Connection.Remote.IsConnected)
             {
                 await Task.Delay(250);
-                if (In.RemoveFloorItem == 0 && GetHost(Connection.Host) == "bobbaitalia.it")
+                if (In.RemoveFloorItem == 0 && RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
                 {
                     await Connection.SendToClientAsync(2411, item.Id.ToString(), false, 0, 0);
                     return;
@@ -1250,24 +1251,11 @@ namespace RetroFun.Pages
             });
         }
 
-
-        private string GetHost(string host)
-        {
-            if (host == "217.182.58.18")
-            {
-                return "bobbaitalia.it";
-            }
-            else
-            {
-                return host;
-            }
-        }
-
         private void RecordPlacedRare(int rareid)
         {
             try
             {
-                string Filepath = "../PlacedRares/" + GetHost(Connection.Host) + "_rari" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../PlacedRares/" + RecognizeDomain.GetHost(Connection.Host) + "_rari" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "PlacedRares";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -1310,7 +1298,7 @@ namespace RetroFun.Pages
                     raretype = "_rari_irregolari";
                 }
 
-                string Filepath = "../RareControls/" + GetHost(Connection.Host) + raretype + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../RareControls/" + RecognizeDomain.GetHost(Connection.Host) + raretype + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "RareControls";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -1338,41 +1326,6 @@ namespace RetroFun.Pages
 
             }
         }
-
-
-
-        //private void GenerateList(HFloorItem furni)
-        //{
-        //    try
-        //    {
-        //        string Filepath = "../Whitelistfurnis/" + GetHost(Connection.Host) + "_Whitelistlistgenerator" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
-        //        string FolderName = "Whitelistfurnis";
-
-        //        Directory.CreateDirectory("../" + FolderName);
-
-        //        if (!File.Exists(Filepath))
-        //        {
-        //            using (var txtFile = File.AppendText(Filepath))
-        //            {
-        //                txtFile.WriteLine(furni.TypeId + ",");
-        //            }
-        //        }
-        //        else if (File.Exists(Filepath))
-        //        {
-        //            using (var txtFile = File.AppendText(Filepath))
-        //            {
-        //                txtFile.WriteLine(furni.TypeId + ",");
-        //            }
-
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //    }
-        //}
-
-
 
         private void NoticePickup(string FurniID)
         {

@@ -9,6 +9,9 @@ using Sulakore.Components;
 using System.Threading;
 using RetroFun.Subscribers;
 using Sulakore.Habbo;
+using RetroFun.Helpers;
+using System.Runtime.CompilerServices;
+using RetroFun.Globals;
 
 namespace RetroFun.Pages
 {
@@ -23,11 +26,8 @@ namespace RetroFun.Pages
         private bool IsInterceptTradeUserOn;
         private bool TradeSpammerActivated;
         private int _selectedUserId;
-        private string OwnUsername;
         private bool isLiveEnableEdit;
         private bool isStaticThreadStarted;
-        private List<HEntity> _users = new List<HEntity>();
-
         private readonly Handitems[] _Handitems = new[]
         {
             #region handitemlist
@@ -370,7 +370,7 @@ namespace RetroFun.Pages
         }
 
 
-        private int _EffectNumbers;
+        private int _EffectNumbers = 0;
         public int EffectNumbers
         {
             get => _EffectNumbers;
@@ -475,7 +475,7 @@ namespace RetroFun.Pages
             }
         }
 
-
+        private bool isTalkAvailable = false;
         #endregion
         public PersonalPage()
         {
@@ -496,6 +496,7 @@ namespace RetroFun.Pages
             Bind(TradeSpammerCooldownNbx, "Value", nameof(TradeSpammerCooldown));
             Bind(EnableNbx, "Value", nameof(EffectNumbers));
             Bind(CooldownEffectNbx, "Value", nameof(CooldownEffectLoop));
+            //Bind(CooldownEffectNbx, "Value", nameof(EffectNumbers));
 
             Bind(BadgeTxbx, "Text", nameof(badgecode));
 
@@ -796,16 +797,33 @@ namespace RetroFun.Pages
             }
         }
 
-
-        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
+        private void RemoveEnableOnlyBobba()
         {
-            _users.Clear();
+            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+            {
+                if (isTalkAvailable)
+                {
+                    Connection.SendToServerAsync(Out.RoomUserTalk, ":enable 0", 18);
+                    isTalkAvailable = false;
+                }
+            }
         }
         
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
+        {
+            isTalkAvailable = true;
+        }
+
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
-            _users.Clear();
+            isTalkAvailable = true;
         }
+
+        public override void In_RoomUserTalk(DataInterceptedEventArgs e)
+        {
+            RemoveEnableOnlyBobba();
+        }
+
         private async void RoomBypass()
         {
             await Task.Delay(200);
@@ -814,67 +832,11 @@ namespace RetroFun.Pages
             AutomaticAttempt = false;
         }
 
-        public override void Out_LatencyTest(DataInterceptedEventArgs e)
-        {
-            if (OwnUsername == null)
-            {
-                Connection.SendToServerAsync(Out.RequestUserData);
-            }
-        }
 
-        public override void Out_Username(DataInterceptedEventArgs e)
-        {
-            string username = e.Packet.ReadString();
 
-            if (OwnUsername == null)
-            {
-                OwnUsername = username;
-            }
-        }
 
-        private HEntity FindEntity(int index)
-        {
-            var entity = _users.Find(f => f.Index == index);
-            if (entity != null)
-            {
-                return entity;
-            }
-            else
-            {
-                return null;
-            }
-        }
 
-        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
-        {
-            int index = int.Parse(e.Packet.ReadString());
-            var entity = FindEntity(index);
-            if (entity == null) return;
-            _users.Remove(entity);
-        }
 
-        public override void In_RoomUsers(DataInterceptedEventArgs e)
-        {
-            try
-            {
-                HEntity[] array = HEntity.Parse(e.Packet);
-                if (array.Length > 0)
-                {
-                    foreach (HEntity entity in array)
-                    {
-                        if (!_users.Contains(entity))
-                        {
-                            _users.Add(entity);
-                        }
-
-                    }
-                }
-            }
-            catch (IndexOutOfRangeException)
-            {
-
-            }
-        }
 
         private void BlockRestrictionsBtn_Click(object sender, EventArgs e)
         {
@@ -899,16 +861,16 @@ namespace RetroFun.Pages
 
         private void GiveallUserHanditemBtn_Click(object sender, EventArgs e)
         {
-            GiveAllUserHanditem(((Handitems)HanditemCmbx.SelectedItem).ID);
+            GiveAllUserHanditem(HanditemID);
         }
 
         private async void GiveAllUserHanditem(int handitem)
         {
             try
             {
-                if (_users.Count != 0 && _users != null)
+                if (GlobalLists.UsersInRoom.Count != 0 && GlobalLists.UsersInRoom != null)
                 {
-                    foreach (HEntity user in _users)
+                    foreach (HEntity user in GlobalLists.UsersInRoom)
                     {
                         Thread.Sleep(50);
                         await Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
@@ -918,7 +880,7 @@ namespace RetroFun.Pages
 
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
 
             }
@@ -975,7 +937,7 @@ namespace RetroFun.Pages
 
         private void GibeBadgeToYoutselfBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RoomUserTalk, ":givebadge " + OwnUsername +  " " + badgecode, 18);
+            Connection.SendToServerAsync(Out.RoomUserTalk, ":givebadge " + GlobalStrings.UserDetails_Username +  " " + badgecode, 18);
         }
 
         private void LiveEditBtn_Click(object sender, EventArgs e)
@@ -1062,6 +1024,11 @@ namespace RetroFun.Pages
         private void SetEnableBtn_Click(object sender, EventArgs e)
         {
             Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + EffectNumbers, 18);
+        }
+
+        private void HanditemCmbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            HanditemID = ((Handitems)HanditemCmbx.SelectedItem).ID;
         }
     }
 }

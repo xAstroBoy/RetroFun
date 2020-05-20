@@ -1,5 +1,7 @@
 ﻿using RetroFun.Controls;
 using System;
+using System.Diagnostics;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace RetroFun
@@ -9,8 +11,16 @@ namespace RetroFun
         public static ObservableExtensionForm Master { get; set; }
 
         [STAThread]
+
+
         public static void Main()
         {
+
+            if (Debugger.IsAttached)
+            {
+                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo("en-US");
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainFrm());
