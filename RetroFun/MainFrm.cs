@@ -45,6 +45,9 @@ namespace RetroFun
             //Pages sharing events
             _subscribers = new List<ObservablePage>
             {
+               furniHandlerEvent,
+
+
                 ChatPg,
                 DicePg,
                 FurniPg,
@@ -70,9 +73,7 @@ namespace RetroFun
                 FurnitureCheckerPg,
 
 
-                // ADD HANDLER EVENTS AT LAST!
                 BottomPg,
-                furniHandlerEvent,
              };
                 
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));

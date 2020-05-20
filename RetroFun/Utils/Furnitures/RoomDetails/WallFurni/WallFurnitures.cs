@@ -11,6 +11,8 @@ namespace RetroFun.Utils.Furnitures.FloorFurni
     public class WallFurnitures
     {
         public static List<HWallItem> Furni = new List<HWallItem>();
+        public static List<HWallItem> RemFurni = new List<HWallItem>();
+
         public static List<HWallItem> Snapshot_Wall_furnis_In_room = new List<HWallItem>();
 
         public static List<HWallItem> GetWallFurnis()

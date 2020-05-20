@@ -469,8 +469,8 @@
             this.RemoveRemovedFurnisBtn.Name = "RemoveRemovedFurnisBtn";
             this.RemoveRemovedFurnisBtn.Size = new System.Drawing.Size(183, 27);
             this.RemoveRemovedFurnisBtn.TabIndex = 23;
-            this.RemoveRemovedFurnisBtn.Text = "Remove Removed Furnis";
-            this.RemoveRemovedFurnisBtn.Click += new System.EventHandler(this.RemoveRemovedFurnisBtn_Click);
+            this.RemoveRemovedFurnisBtn.Text = "Hide Removed Furnis";
+            this.RemoveRemovedFurnisBtn.Click += new System.EventHandler(this.HideRemovedFurnisBtn_Click);
             // 
             // ShowRemovedFurnisBtn
             // 

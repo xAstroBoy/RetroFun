@@ -33,6 +33,26 @@ namespace RetroFun.Handlers
             }
         }
 
+        private List<HFloorItem> RemFloorFurni
+        {
+            get => FloorFurnitures.RemFurni;
+            set
+            {
+                FloorFurnitures.RemFurni = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private List<HWallItem> RemWallFurni
+        {
+            get => WallFurnitures.RemFurni;
+            set
+            {
+                WallFurnitures.RemFurni = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
         private List<HWallItem> RoomWallFurni
         {
             get => WallFurnitures.Furni;
@@ -95,14 +115,22 @@ namespace RetroFun.Handlers
             {
                 RoomWallFurni.Remove(item);
             }
+            if (!RemWallFurni.Contains(item))
+            {
+                RemWallFurni.Add(item);
+            }
         }
 
         private void HandleRemovedFurni(HFloorItem item)
         {
-                if (RoomFloorFurni.Contains(item))
-                {
-                    RoomFloorFurni.Remove(item);
-                }
+            if (RoomFloorFurni.Contains(item))
+            {
+                RoomFloorFurni.Remove(item);
+            }
+            if (!RemFloorFurni.Contains(item))
+            {
+                RemFloorFurni.Add(item);
+            }
         }
 
 
@@ -135,6 +163,8 @@ namespace RetroFun.Handlers
         private void UpdateFurniMovement(HFloorItem furni, int Coord_x, int Coord_y, string Coord_z)
         {
             var roomfurni = RoomFloorFurni.Find(x => x == furni);
+            var remfoundfurni = RemFloorFurni.Find(x => x == furni);
+
             if (roomfurni != null)
             {
                 roomfurni.Tile.X = Coord_x;
@@ -143,16 +173,33 @@ namespace RetroFun.Handlers
                 {
                     roomfurni.Tile.Z = res;
                 }
-            }       
+            }
+            if (remfoundfurni != null)
+            {
+                remfoundfurni.Tile.X = Coord_x;
+                remfoundfurni.Tile.Y = Coord_y;
+                if (Double.TryParse(Coord_z, out Double res))
+                {
+                    remfoundfurni.Tile.Z = res;
+                }
+            }
+
         }
 
         private void UpdateFurniMovement(HFloorItem furni, int Coord_x, int Coord_y)
         {
             var roomfurni = RoomFloorFurni.Find(x => x == furni);
+            var remfoundfurni = RemFloorFurni.Find(x => x == furni);
+
             if (roomfurni != null)
             {
                 roomfurni.Tile.X = Coord_x;
                 roomfurni.Tile.Y = Coord_y;
+            }
+            if (remfoundfurni != null)
+            {
+                remfoundfurni.Tile.X = Coord_x;
+                remfoundfurni.Tile.Y = Coord_y;
             }
         }
         private void HandleRemovedFurni(string item)
@@ -161,7 +208,8 @@ namespace RetroFun.Handlers
             {
                 var foundfurni = RoomFloorFurni.Find(f => f.Id == furni);
                 var wallfurni = RoomWallFurni.Find(f => f.Id == furni);
-
+                var remfoundfurni = RemFloorFurni.Find(f => f.Id == furni);
+                var remwallfurni = RemWallFurni.Find(f => f.Id == furni);
                 if (foundfurni != null)
                 {
                     HandleRemovedFurni(foundfurni);
@@ -172,9 +220,16 @@ namespace RetroFun.Handlers
                     HandleRemovedFurni(wallfurni);
                     return;
                 }
-            }
-            else
-            {
+                if (remfoundfurni != null)
+                {
+                    HandleRemovedFurni(remfoundfurni);
+                    return;
+                }
+                if (remwallfurni != null)
+                {
+                    HandleRemovedFurni(remwallfurni);
+                    return;
+                }
                 return;
             }
         }
@@ -201,38 +256,63 @@ namespace RetroFun.Handlers
         private void UpdateFurniMovement(HFloorItem furni, int Coord_x, int Coord_y, int Coord_z)
         {
             var roomfurni = RoomFloorFurni.Find(x => x == furni);
+            var wallremitem = RemFloorFurni.Find(x => x == furni);
             if (roomfurni != null)
             {
                 roomfurni.Tile.X = Coord_x;
                 roomfurni.Tile.Y = Coord_y;
                 roomfurni.Tile.Z = Coord_z;
             }
+            if (wallremitem != null)
+            {
+                wallremitem.Tile.X = Coord_x;
+                wallremitem.Tile.Y = Coord_y;
+                wallremitem.Tile.Z = Coord_z;
+            }
         }
+
+
         private void UpdateFurniMovement(int furni, string wallcoord)
         {
-            var roomfurni = RoomWallFurni.Find(x => x.Id == furni);
-            if (roomfurni != null)
+            var WallFurni = RoomWallFurni.Find(x => x.Id == furni);
+            var wallremitem = RemWallFurni.Find(x => x.Id == furni);
+
+            if (WallFurni != null)
             {
-                UpdateFurniMovement(roomfurni, wallcoord);
+                UpdateFurniMovement(WallFurni, wallcoord);
+                return;
+            }
+            if (wallremitem != null)
+            {
+                UpdateFurniMovement(wallremitem, wallcoord);
                 return;
             }
         }
 
         private void UpdateFurniMovement(HWallItem furni, string wallcoord)
         {
-            var roomfurni = RoomWallFurni.Find(x => x == furni);
+            var wallitem = RoomWallFurni.Find(x => x == furni);
+            var wallremitem = RemWallFurni.Find(x => x == furni);
 
-            if (roomfurni != null)
+            if (wallitem != null)
             {
-                roomfurni.Location = wallcoord;
+                wallitem.Location = wallcoord;
             }
+
+            if (wallremitem != null)
+            {
+                wallremitem.Location = wallcoord;
+            }
+
+
         }
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             RoomFloorFurni.Clear();
             RoomWallFurni.Clear();
-
+            RemWallFurni.Clear();
+            RemWallFurni.Clear();
         }
 
 
@@ -240,6 +320,8 @@ namespace RetroFun.Handlers
         {
             RoomFloorFurni.Clear();
             RoomWallFurni.Clear();
+            RemWallFurni.Clear();
+            RemWallFurni.Clear();
         }
 
         public override void In_RemoveFloorItem(DataInterceptedEventArgs e)
