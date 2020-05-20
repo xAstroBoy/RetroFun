@@ -19,9 +19,6 @@ namespace RetroFun
     public partial class MainFrm : ObservableExtensionForm
     {
         public override bool IsRemoteModule => true;
-
-
-
         
         public bool IsAlwaysOnTop
         {
@@ -72,6 +69,7 @@ namespace RetroFun
                 PersonalPg,
                 ModerationPg,
                 FurnitureCheckerPg,
+                furniHandlerEvent,
              };
                 
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));

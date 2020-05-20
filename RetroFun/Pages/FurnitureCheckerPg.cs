@@ -18,6 +18,8 @@ using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Timers;
 using RetroFun.Helpers;
+using RetroFun.Utils.Furnitures.WallFurni;
+using RetroFun.Utils.Furnitures.FloorFurni;
 
 namespace RetroFun.Pages
 {
@@ -25,11 +27,8 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class FurnitureChecker:  ObservablePage
     {
-        private HMessage FurniDataStored;
-
-        List<HFloorItem> RoomFloorFurni;
-        List<HWallItem> RoomWallFurni;
-
+        private List<HFloorItem> RoomFloorFurni { get => FloorFurnitures.Furni; }
+        private List<HWallItem> RoomWallFurni { get => WallFurnitures.Furni; }
 
         List<HWallItem> IrregularWallFurni;
         List<HFloorItem> IrregularFloorFurni;
@@ -319,8 +318,6 @@ namespace RetroFun.Pages
 
 
             FilePathList = new List<string>();
-            RoomFloorFurni = new List<HFloorItem>();
-            RoomWallFurni = new List<HWallItem>();
             IrregularWallFurni = new List<HWallItem>();
             IrregularFloorFurni = new List<HFloorItem>();
             RegularWallFurni = new List<HWallItem>();
@@ -1340,23 +1337,6 @@ namespace RetroFun.Pages
             });
         }
 
-
-
-        private void RestoreFurnisBtn_Click(object sender, EventArgs e)
-        {
-            if (FurniDataStored != null)
-            {
-                if (Connection.Remote.IsConnected)
-                {
-                    Connection.SendToClientAsync(FurniDataStored);
-                }
-            }
-            else
-            {
-                Speak("Stored Furnidata is empty! Try refreshing the room!");
-            }
-        }
-
         private async void Speak(string text)
         {
             if (Connection.Remote.IsConnected)
@@ -1431,8 +1411,6 @@ namespace RetroFun.Pages
 
         private void ResetAll()
         {
-            RoomFloorFurni.Clear();
-            RoomWallFurni.Clear();
             IrregularWallFurni.Clear();
             IrregularFloorFurni.Clear();
             RegularWallFurni.Clear();
@@ -1455,7 +1433,6 @@ namespace RetroFun.Pages
             SnapshotRegularWallItems.Clear();
             IS_SCANNING_FLOORFURNIS = false;
             IS_SCANNING_WALLFURNIS = false;
-            FurniDataStored = null;
             IS_HIDING_REGULAR_WALLFURNIS = false;
             IS_HIDING_REGULAR_FLOORFURNIS = false;
             ResetRoomScannerLabels();
@@ -1464,22 +1441,7 @@ namespace RetroFun.Pages
             UpdateAllLabels();
         }
 
-        public static List<HWallItem> BobbaParser(HMessage packet)
-        {
-            int ownersCount = packet.ReadInteger();
-            for (int i = 0; i < ownersCount; i++)
-            {
-                packet.ReadInteger();
-                packet.ReadString();
-            }
 
-            var wallItems = new HWallItem[packet.ReadInteger()];
-            for (int i = 0; i < wallItems.Length; i++)
-            {
-                wallItems[i] = new HWallItem(packet);
-            }
-            return wallItems.ToList();
-        }
 
 
 
@@ -2370,18 +2332,12 @@ namespace RetroFun.Pages
 
         private void UpdateFurniMovement(HFloorItem furni, int Coord_x, int Coord_y)
         {
-            var roomfurni = RoomFloorFurni.Find(x => x == furni);
             var hiddenregular = HIDDEN_REGULAR_FLOORFURNIS.Find(x => x == furni);
             var hiddenirregular = HIDDEN_IRREGULAR_FLOORFURNIS.Find(x => x == furni);
             var whitelist = WhiteListedFloorFurni.Find(x => x == furni);
             var regular = RegularFloorFurni.Find(x => x == furni);
             var irregular = IrregularFloorFurni.Find(x => x == furni);
             var removedfloorfurni = RemovedFloorFurnis.Find(x => x == furni);
-            if (roomfurni != null)
-            {
-                roomfurni.Tile.X = Coord_x;
-                roomfurni.Tile.Y = Coord_y;
-            }
             if (hiddenregular != null)
             {
                 hiddenregular.Tile.X = Coord_x;
@@ -2416,20 +2372,12 @@ namespace RetroFun.Pages
 
         private void UpdateFurniMovement(HFloorItem furni, int Coord_x, int Coord_y, int Coord_z)
         {
-            var roomfurni = RoomFloorFurni.Find(x => x == furni);
             var hiddenregular = HIDDEN_REGULAR_FLOORFURNIS.Find(x => x == furni);
             var hiddenirregular = HIDDEN_IRREGULAR_FLOORFURNIS.Find(x => x == furni);
             var whitelist = WhiteListedFloorFurni.Find(x => x == furni);
             var regular = RegularFloorFurni.Find(x => x == furni);
             var irregular = IrregularFloorFurni.Find(x => x == furni);
             var removedfloorfurni = RemovedFloorFurnis.Find(x => x == furni);
-            if (roomfurni != null)
-            {
-                roomfurni.Tile.X = Coord_x;
-                roomfurni.Tile.Y = Coord_y;
-               roomfurni.Tile.Z = Coord_z;
-                
-            }
             if (hiddenregular != null)
             {
                 hiddenregular.Tile.X = Coord_x;
@@ -2481,22 +2429,12 @@ namespace RetroFun.Pages
 
         private void UpdateFurniMovement(HFloorItem furni, int Coord_x, int Coord_y, string Coord_z)
         {
-            var roomfurni = RoomFloorFurni.Find(x => x == furni);
             var hiddenregular = HIDDEN_REGULAR_FLOORFURNIS.Find(x => x == furni);
             var hiddenirregular = HIDDEN_IRREGULAR_FLOORFURNIS.Find(x => x == furni);
             var whitelist = WhiteListedFloorFurni.Find(x => x == furni);
             var regular = RegularFloorFurni.Find(x => x == furni);
             var irregular = IrregularFloorFurni.Find(x => x == furni);
             var removedfloorfurni = RemovedFloorFurnis.Find(x => x == furni);
-            if (roomfurni != null)
-            {
-                roomfurni.Tile.X = Coord_x;
-                roomfurni.Tile.Y = Coord_y;
-                if (Double.TryParse(Coord_z, out Double res))
-                {
-                    roomfurni.Tile.Z = res;
-                }
-            }
             if (hiddenregular != null)
             {
                 hiddenregular.Tile.X = Coord_x;
@@ -2700,28 +2638,22 @@ namespace RetroFun.Pages
 
         public override void In_RoomFloorItems(DataInterceptedEventArgs e)
         {
-            RoomFloorFurni = HFloorItem.Parse(e.Packet).ToList(); //All Floor Objects
-            UpdateFloorFurnisLabel();
             if (AutomaticScanMode)
             {
                 if (!IS_SCANNING_FLOORFURNIS)
                 {
                     IS_SCANNING_FLOORFURNIS = true;
                     RoomFloorChecker();
-
                 }
             }
-            e.Continue();
         }
 
         public override void In_RoomWallItems(DataInterceptedEventArgs e)
         {
-            RoomWallFurni = BobbaParser(e.Packet);
             if (!IS_SCANNING_WALLFURNIS)
             {
                 IS_SCANNING_WALLFURNIS = true;
                 RoomWallChecker();
-
             }
             UpdateWallFurnisLabel();
             e.Continue();
@@ -2760,10 +2692,6 @@ namespace RetroFun.Pages
                 if (RemovedWallFurnis.Contains(NewPlacedWallFurni))
                 {
                     RemovedWallFurnis.Remove(NewPlacedWallFurni);
-                }
-                if (!RoomWallFurni.Contains(NewPlacedWallFurni))
-                {
-                    RoomWallFurni.Add(NewPlacedWallFurni);
                 }
                 if (AutomaticScanMode)
                 {
@@ -2827,10 +2755,6 @@ namespace RetroFun.Pages
 
         private void HandleRemovedFurni(HWallItem item)
         {
-            if (RoomWallFurni.Contains(item))
-            {
-                RoomWallFurni.Remove(item);
-            }
             if (!RemovedWallFurnis.Contains(item))
             {
                 RemovedWallFurnis.Add(item);
@@ -2851,11 +2775,6 @@ namespace RetroFun.Pages
         {
             try
             {
-
-                if (RoomFloorFurni.Contains(item))
-                {
-                    RoomFloorFurni.Remove(item);
-                }
                 if (IrregularFloorFurni.Contains(item))
                 {
                     IrregularFloorFurni.Remove(item);
@@ -3075,7 +2994,7 @@ namespace RetroFun.Pages
             IS_HIDING_REGULAR_FLOORFURNIS = false;
             if (HIDDEN_REGULAR_FLOORFURNIS.Count != 0)
             {
-                Connection.SendToClientAsync(FurniComposer.composer(HIDDEN_REGULAR_FLOORFURNIS, In.RoomFloorItems));
+                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(HIDDEN_REGULAR_FLOORFURNIS, In.RoomFloorItems));
                 HIDDEN_REGULAR_FLOORFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
                 Speak("[CLIENT]:All Regular Floor Furnis are unhidden!", 30);
@@ -3088,7 +3007,7 @@ namespace RetroFun.Pages
             IS_HIDING_REGULAR_WALLFURNIS = false;
             if (HIDDEN_REGULAR_WALLFURNIS.Count != 0)
             {
-                Connection.SendToClientAsync(FurniComposer.composer(HIDDEN_REGULAR_WALLFURNIS, In.RoomWallItems));
+                Connection.SendToClientAsync(WallFurnitures.PacketBuilder(HIDDEN_REGULAR_WALLFURNIS, In.RoomWallItems));
                 HIDDEN_REGULAR_WALLFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
                 Speak("[CLIENT]:All Regular Wall Furnis are unhidden!", 30);
@@ -3105,7 +3024,7 @@ namespace RetroFun.Pages
             IS_HIDING_IRREGULAR_FLOORFURNIS = false;
             if (HIDDEN_IRREGULAR_FLOORFURNIS.Count != 0)
             {
-                Connection.SendToClientAsync(FurniComposer.composer(HIDDEN_IRREGULAR_FLOORFURNIS, In.RoomFloorItems));
+                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(HIDDEN_IRREGULAR_FLOORFURNIS, In.RoomFloorItems));
                 HIDDEN_IRREGULAR_FLOORFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
                 Speak("[CLIENT]:All Irregular Floor Furnis are unhidden!", 30);
@@ -3117,7 +3036,7 @@ namespace RetroFun.Pages
             IS_HIDING_IRREGULAR_WALLFURNIS = false;
             if (HIDDEN_IRREGULAR_WALLFURNIS.Count != 0)
             {
-                Connection.SendToClientAsync(FurniComposer.composer(HIDDEN_IRREGULAR_WALLFURNIS, In.RoomWallItems));
+                Connection.SendToClientAsync(WallFurnitures.PacketBuilder(HIDDEN_IRREGULAR_WALLFURNIS, In.RoomWallItems));
                 HIDDEN_IRREGULAR_WALLFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
                 Speak("[CLIENT]:All Irregular Wall Furnis are unhidden!", 30);
@@ -3173,7 +3092,7 @@ namespace RetroFun.Pages
             SetRemovedFurnisSnapshot();
             if (SnapshotRemovedFloorItems.Count != 0)
             {
-                Connection.SendToClientAsync(FurniComposer.composer(SnapshotRemovedFloorItems, In.RoomFloorItems));
+                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(SnapshotRemovedFloorItems, In.RoomFloorItems));
                 UpdateHiddenRegularFurniLabel();
                 Speak("[CLIENT]:All removed Floor Furnis are unhidden!", 30);
             }
@@ -3183,7 +3102,7 @@ namespace RetroFun.Pages
             }
             if (SnapshotRemovedWallItems.Count != 0)
             {
-                Connection.SendToClientAsync(FurniComposer.composer(SnapshotRemovedWallItems, In.RoomWallItems));
+                Connection.SendToClientAsync(WallFurnitures.PacketBuilder(SnapshotRemovedWallItems, In.RoomWallItems));
                 UpdateHiddenRegularFurniLabel();
                 Speak("[CLIENT]:All removed Wall Furnis are unhidden!", 30);
             }
@@ -3236,9 +3155,6 @@ namespace RetroFun.Pages
             }
         }
 
-        private void sKoreButton2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
+
 }

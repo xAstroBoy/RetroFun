@@ -78,15 +78,12 @@
     <Compile Include="Handlers\FurniHandlerEventPage.Designer.cs">
       <DependentUpon>FurniHandlerEventPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\Furnitures\Tools\FloorFurniTools.cs" />
-    <Compile Include="Utils\Furnitures\Tools\WallFurniTools.cs" />
-    <Compile Include="Utils\Furnitures\WallFurni\WallFurnitures.cs" />
-    <Compile Include="Utils\Furnitures\Tools\FurniComposer.cs" />
+    <Compile Include="Utils\Furnitures\RoomDetails\WallFurni\WallFurnitures.cs" />
     <Compile Include="Controls\ImageComboBox.cs" />
     <Compile Include="Controls\ObservableExtensionForm.cs" />
     <Compile Include="Controls\PageUtils.cs" />
     <Compile Include="Converter\IntToStringConverter.cs" />
-    <Compile Include="Utils\Furnitures\FloorFurni\FloorFurnitures.cs" />
+    <Compile Include="Utils\Furnitures\RoomDetails\FloorFurni\FloorFurnitures.cs" />
     <Compile Include="Utils\Globals\GlobalDictionaries.cs" />
     <Compile Include="Utils\Globals\GlobalInts.cs" />
     <Compile Include="Utils\Globals\GlobalLists.cs" />
@@ -353,7 +350,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Utils\Chatlogger\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Libraries\Flazzy.dll" />
     <Content Include="Libraries\Tangine.dll" />

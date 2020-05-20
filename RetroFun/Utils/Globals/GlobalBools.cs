@@ -14,6 +14,9 @@ namespace RetroFun
     public class Global_bools
     {
         public static bool FreezeUserMovement { get; set; } = false;
+
+
+        
     }
 }
 
