@@ -1342,7 +1342,7 @@ namespace RetroFun.Pages
             if (Connection.Remote.IsConnected)
             {
                 await Task.Delay(150);
-                await Connection.SendToClientAsync(In.RoomUserTalk, 0, text, 0, 1, 0, -1);
+                await Connection.SendToClientAsync(In.RoomUserTalk, 0, text, 0, 34, 0, -1);
             }
         }
 
@@ -1354,14 +1354,6 @@ namespace RetroFun.Pages
                 await Connection.SendToClientAsync(In.RoomUserTalk, 0, text, 0, bubble, 0, -1);
             }
         }
-
-
-
-
-
-
-
-
 
         public override void In_WallItemUpdate(DataInterceptedEventArgs e )
         {

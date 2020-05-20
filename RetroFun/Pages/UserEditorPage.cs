@@ -326,7 +326,6 @@ namespace RetroFun.Pages
         }
         private void RemoveEntity(HEntity entity, bool shouldblacklist)
         {
-            //Connection.SendToClientAsync(In.RoomUserWhisper, 0, $"[User Blacklist] : DEBUG - RemoveEntity(entity.. {{ name: {entity.Name}, entity.index: {entity.Index} }}) ", 0, 34, 0, -1);
 
             //Cache the og entity we removed 
             if (shouldblacklist)
@@ -382,7 +381,6 @@ namespace RetroFun.Pages
 
                     _blacklistedEntities[entity.Name] = false;
                 }
-                //Connection.SendToClientAsync(In.RoomUserWhisper, 0, $"[User Blacklist] : DEBUG - ReplaceUser(index: {entity.Index}, {entity.Name}=>{newName}, {entity.Motto}=>{motto}..)", 0, 34, 0, -1);
             }
 
             //remove it

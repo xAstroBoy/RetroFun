@@ -15,6 +15,7 @@ using System.Linq;
 using RetroFun.Helpers;
 using RetroFun.Utils.Furnitures.FloorFurni;
 using RetroFun.Utils.Furnitures.WallFurni;
+using System.Text;
 
 namespace RetroFun.Pages
 {
@@ -25,7 +26,6 @@ namespace RetroFun.Pages
 
         List<HFloorItem> SnapshotFloorItems;
         List<HWallItem> SnapshotWallItems;
-
         private List<HFloorItem> RoomFloorFurni { get => FloorFurnitures.Furni; }
         private List<HWallItem> RoomWallFurni { get => WallFurnitures.Furni; }
         private bool _doubleClickFurnitureRemoval;
@@ -389,20 +389,20 @@ namespace RetroFun.Pages
                     {
                         txtFile.WriteLine("furni ID stored at :" + DateTime.Now.ToString());
                         txtFile.WriteLine(" ");
-                        txtFile.WriteLine("[Furni Id ] : " + furni.Id);
-                        txtFile.WriteLine("[Furni TypeId ] : " + furni.TypeId);
-                        txtFile.WriteLine("[Furni Tile ] : " + furni.Tile);
-                        txtFile.WriteLine("[Furni Facing ] : " + furni.Facing);
-                        txtFile.WriteLine("[Furni Category ] : " + furni.Category);
+                        txtFile.WriteLine("[Furni Id] : " + furni.Id);
+                        txtFile.WriteLine("[Furni TypeId] : " + furni.TypeId);
+                        txtFile.WriteLine("[Furni Tile] : " + furni.Tile);
+                        txtFile.WriteLine("[Furni Facing] : " + furni.Facing);
+                        txtFile.WriteLine("[Furni Category] : " + furni.Category);
                         foreach (object obj in furni.Stuff)
                         {
-                            txtFile.WriteLine("[Furni Stuff [ " + i + " ] : " + obj);
+                            txtFile.WriteLine("[Furni Stuff [" + i + "] : " + obj);
                             i++;
                         }
-                        txtFile.WriteLine("[Furni SecondsToExpiration ] : " + furni.SecondsToExpiration);
-                        txtFile.WriteLine("[Furni UsagePolicy ] : " + furni.UsagePolicy);
-                        txtFile.WriteLine("[Furni OwnerId ] : " + furni.OwnerId);
-                        txtFile.WriteLine("[Furni OwnerName ] : " + furni.OwnerName);
+                        txtFile.WriteLine("[Furni SecondsToExpiration] : " + furni.SecondsToExpiration);
+                        txtFile.WriteLine("[Furni UsagePolicy] : " + furni.UsagePolicy);
+                        txtFile.WriteLine("[Furni OwnerId] : " + furni.OwnerId);
+                        txtFile.WriteLine("[Furni OwnerName] : " + furni.OwnerName);
 
                     }
                 }
@@ -411,20 +411,20 @@ namespace RetroFun.Pages
                     using (var txtFile = File.AppendText(Filepath))
                     {
                         txtFile.WriteLine(" ");
-                        txtFile.WriteLine("[Furni Id ] : " + furni.Id);
-                        txtFile.WriteLine("[Furni TypeId ] : " + furni.TypeId);
-                        txtFile.WriteLine("[Furni Tile ] : " + furni.Tile);
-                        txtFile.WriteLine("[Furni Facing ] : " + furni.Facing);
-                        txtFile.WriteLine("[Furni Category ] : " + furni.Category);
+                        txtFile.WriteLine("[Furni Id] : " + furni.Id);
+                        txtFile.WriteLine("[Furni TypeId] : " + furni.TypeId);
+                        txtFile.WriteLine("[Furni Tile] : " + furni.Tile);
+                        txtFile.WriteLine("[Furni Facing] : " + furni.Facing);
+                        txtFile.WriteLine("[Furni Category] : " + furni.Category);
                         foreach (object obj in furni.Stuff)
                         {
-                            txtFile.WriteLine("[Furni Stuff [ " + i + "] ] : " + obj);
+                            txtFile.WriteLine("[Furni Stuff [" + i + "] : " + obj);
                             i++;
                         }
-                        txtFile.WriteLine("[Furni SecondsToExpiration ] : " + furni.SecondsToExpiration);
-                        txtFile.WriteLine("[Furni UsagePolicy ] : " + furni.UsagePolicy);
-                        txtFile.WriteLine("[Furni OwnerId ] : " + furni.OwnerId);
-                        txtFile.WriteLine("[Furni OwnerName ] : " + furni.OwnerName);
+                        txtFile.WriteLine("[Furni SecondsToExpiration] : " + furni.SecondsToExpiration);
+                        txtFile.WriteLine("[Furni UsagePolicy] : " + furni.UsagePolicy);
+                        txtFile.WriteLine("[Furni OwnerId] : " + furni.OwnerId);
+                        txtFile.WriteLine("[Furni OwnerName] : " + furni.OwnerName);
                     }
                 }
             }
@@ -451,14 +451,14 @@ namespace RetroFun.Pages
                     {
                         txtFile.WriteLine("furni ID stored at :" + DateTime.Now.ToString());
                         txtFile.WriteLine(" ");
-                        txtFile.WriteLine("[Furni Id ] : " + furni.Id);
-                        txtFile.WriteLine("[Furni TypeId ] : " + furni.TypeId);
-                        txtFile.WriteLine("[Furni Location ] : " + furni.Location);
-                        txtFile.WriteLine("[Furni State ] : " + furni.State);
-                        txtFile.WriteLine("[Furni SecondsToExpiration ] : " + furni.SecondsToExpiration);
-                        txtFile.WriteLine("[Furni UsagePolicy ] : " + furni.UsagePolicy);
-                        txtFile.WriteLine("[Furni OwnerId ] : " + furni.OwnerId);
-                        txtFile.WriteLine("[Furni OwnerName ] : " + furni.OwnerName);
+                        txtFile.WriteLine("[Furni Id] : " + furni.Id);
+                        txtFile.WriteLine("[Furni TypeId] : " + furni.TypeId);
+                        txtFile.WriteLine("[Furni Location] : " + furni.Location);
+                        txtFile.WriteLine("[Furni State] : " + furni.State);
+                        txtFile.WriteLine("[Furni SecondsToExpiration] : " + furni.SecondsToExpiration);
+                        txtFile.WriteLine("[Furni UsagePolicy] : " + furni.UsagePolicy);
+                        txtFile.WriteLine("[Furni OwnerId] : " + furni.OwnerId);
+                        txtFile.WriteLine("[Furni OwnerName] : " + furni.OwnerName);
 
                     }
                 }
@@ -613,7 +613,7 @@ namespace RetroFun.Pages
             if (Connection.Remote.IsConnected)
             {
                 await Task.Delay(150);
-                await Connection.SendToClientAsync(In.RoomUserTalk, 0, text, 0, 1, 0, -1);
+                await Connection.SendToClientAsync(In.RoomUserTalk, 0, text, 0, 34, 0, -1);
             }
         }
 
@@ -996,35 +996,50 @@ namespace RetroFun.Pages
         }
         private void ShowFurniDetails(HFloorItem furni)
         {
+            Speak(CreateOneBigString(furni), 34);
+        }
 
+        private string CreateOneBigString(HFloorItem furni)
+        {
+            var FurniString = new StringBuilder();
             int i = 0;
-            Speak("[Furni Id ] : " + furni.Id, 30);
-            Speak("[Furni TypeId ] : " + furni.TypeId, 30);
-            Speak("[Furni Tile ] : " + furni.Tile, 30);
-            Speak("[Furni Facing ] : " + furni.Facing, 30);
-            Speak("[Furni Category ] : " + furni.Category, 30);
+            FurniString.Append("[Furni Id] : " + furni.Id + "\n");
+            FurniString.Append("[Furni TypeId] : " + furni.TypeId+ "\n");
+            FurniString.Append("[Furni Tile] : " + furni.Tile+ "\n");
+            FurniString.Append("[Furni Facing] : " + furni.Facing+ "\n");
+            FurniString.Append("[Furni Category] : " + furni.Category+ "\n");
             foreach (object obj in furni.Stuff)
             {
-                Speak("[Furni Stuff [ " + i + " ] : " + obj, 30);
+                FurniString.Append("[Furni Stuff [" + i + "] : " + obj + "\n");
                 i++;
             }
-            Speak("[Furni SecondsToExpiration ] : " + furni.SecondsToExpiration, 30);
-            Speak("[Furni UsagePolicy ] : " + furni.UsagePolicy, 30);
-            Speak("[Furni OwnerId ] : " + furni.OwnerId, 30);
-            Speak("[Furni OwnerName ] : " + furni.OwnerName, 30);
+            FurniString.Append("[Furni SecondsToExpiration] : " + furni.SecondsToExpiration+ "\n");
+            FurniString.Append("[Furni UsagePolicy] : " + furni.UsagePolicy+ "\n");
+            FurniString.Append("[Furni OwnerId] : " + furni.OwnerId+ "\n");
+            FurniString.Append("[Furni OwnerName] : " + furni.OwnerName+ "\n");
+
+            return FurniString.ToString();
         }
+
+
+        private string CreateOneBigString(HWallItem furni)
+        {
+            var FurniString = new StringBuilder();
+            FurniString.Append("[Furni Id] : " + furni.Id + "\n");
+            FurniString.Append("[Furni TypeId ] : " + furni.TypeId + "\n");
+            FurniString.Append("[Furni Location ] : " + furni.Location + "\n");
+            FurniString.Append("[Furni State ] : " + furni.State + "\n");
+            FurniString.Append("[Furni SecondsToExpiration ] : " + furni.SecondsToExpiration + "\n");
+            FurniString.Append("[Furni UsagePolicy ] : " + furni.UsagePolicy + "\n");
+            FurniString.Append("[Furni OwnerId ] : " + furni.OwnerId + "\n");
+            FurniString.Append("[Furni OwnerName ] : " + furni.OwnerName + "\n");
+            return FurniString.ToString();
+        }
+
 
         private void PrintFurniDetailsInChat(HWallItem furni)
         {
-            Speak("[Furni Id ] : " + furni.Id, 30);
-            Speak("[Furni TypeId ] : " + furni.TypeId, 30);
-            Speak("[Furni Location ] : " + furni.Location, 30);
-            Speak("[Furni State ] : " + furni.State, 30);
-            Speak("[Furni SecondsToExpiration ] : " + furni.SecondsToExpiration, 30);
-            Speak("[Furni UsagePolicy ] : " + furni.UsagePolicy, 30);
-            Speak("[Furni OwnerId ] : " + furni.OwnerId, 30);
-            Speak("[Furni OwnerName ] : " + furni.OwnerName, 30);
-            return;
+            Speak(CreateOneBigString(furni), 34);
         }
 
         private void FindTypeId(HFloorItem furni)

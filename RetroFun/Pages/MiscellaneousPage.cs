@@ -1321,16 +1321,18 @@ namespace RetroFun.Pages
                                 {
                                     txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
                                 }
-                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
                                 txtFile.WriteLine("");
+                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
                                  if (GlobalStrings.UserDetails_Username == null)
                                 {
+                                    txtFile.WriteLine("");
                                     txtFile.WriteLine("[User Joined this room at : " + DateTime.Now.ToString() + " ]");
                                 }
                                 else
                                 {
                                     txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
                                 }
+                                txtFile.WriteLine("");
                                 txtFile.WriteLine("[Room ID: " + RoomID + " ]");
                                 txtFile.WriteLine("[Room Owner : " + OwnerName + " ]");
                                 txtFile.WriteLine("[Room Name : " + roomname + " ]");
@@ -1348,20 +1350,25 @@ namespace RetroFun.Pages
                             {
                                  if (GlobalStrings.UserDetails_Username == null)
                                 {
+                                    txtFile.WriteLine("");
                                     txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
                                 }
                                 else
                                 {
+                                    txtFile.WriteLine("");
                                     txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
                                 }
                                  if (GlobalStrings.UserDetails_Username == null)
                                 {
+                                    txtFile.WriteLine("");
                                     txtFile.WriteLine("[You Joined this room at : " + DateTime.Now.ToString() + " ]");
                                 }
                                 else
                                 {
+                                    txtFile.WriteLine("");
                                     txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
                                 }
+                                txtFile.WriteLine("");
                                 txtFile.WriteLine("[Room ID: " + RoomID + " ]");
                                 txtFile.WriteLine("[Room Owner : " + OwnerName + " ]");
                                 txtFile.WriteLine("[Room Name : " + roomname + " ]");
