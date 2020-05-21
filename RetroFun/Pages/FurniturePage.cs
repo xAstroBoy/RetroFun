@@ -814,18 +814,17 @@ namespace RetroFun.Pages
 
             if (ConvertWalkinFurniMovement)
             {
+                e.IsBlocked = true;
                 if (isTeleportFurni)
                 {
                     TeleportfurniToCoord(coordX, coordY);
-                    e.IsBlocked = true;
                 }
                 else if (IsWalkingFurni)
                 {
-
                     WalkFurniToCoord(coordX, coordY);
-                    e.IsBlocked = true;
                 }
             }
+
         }
 
         public static List<HWallItem> BobbaParser(HMessage packet)

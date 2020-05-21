@@ -135,7 +135,10 @@ namespace RetroFun.Pages
         }
         public override void Out_RoomUserWalk(DataInterceptedEventArgs e)
         {
+            if(FreezeUser)
+            {
                 e.IsBlocked = FreezeUser;
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ namespace RetroFun.Pages
         private string OwnerName = "NOT INITIATED";
         private string roomname = "NOT INITIATED";
         private bool newroom = true;
-
+        private List<HEntity> UserLeftRoom = new List<HEntity>(); 
         private  RegisteredUsers[] _registeredUsers;
         private readonly BanTime[] _BanTime = new[]
         {
@@ -211,7 +211,7 @@ namespace RetroFun.Pages
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
-            GlobalLists.UsersInRoom.Count().ToString();
+            UserLeftRoom.Clear();
             Invoke((MethodInvoker)delegate
             {
                 UsersCmbx.Items.Clear();
@@ -220,6 +220,7 @@ namespace RetroFun.Pages
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
+            UserLeftRoom.Clear();
             Invoke((MethodInvoker)delegate
             {
                 UsersCmbx.Items.Clear();
@@ -305,7 +306,11 @@ namespace RetroFun.Pages
             var entity = HentityUtils.FindEntityByIndex(int.Parse(e.Packet.ReadString()));
             if (entity != null)
             {
-                RegisterRemovedUser(entity);
+                if (!UserLeftRoom.Contains(entity))
+                {
+                    UserLeftRoom.Add(entity);
+                    RegisterRemovedUser(entity);
+                }
             }
         }
 

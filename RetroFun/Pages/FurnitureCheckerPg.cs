@@ -95,9 +95,6 @@ namespace RetroFun.Pages
 
 
         private string ExcelFilePath;
-
-        private Random ran = new Random();
-
         #region hideshit
         private bool _doubleClickFurnitureRemoval;
         private bool ShouldIRemoveIrregolar;
@@ -329,13 +326,6 @@ namespace RetroFun.Pages
         {
             InitializeComponent();
             Bind(FurniIDToCheckNbx, "Value", nameof(ControlledFloorFurni));
-
-            //System.Timers.Timer timer = new System.Timers.Timer(TimeSpan.FromMinutes(3).TotalMilliseconds);
-            //timer.AutoReset = true;
-            //timer.Elapsed += new System.Timers.ElapsedEventHandler(UpdateExcelFilesThread);
-            //timer.Start();
-
-
             FilePathList = new List<string>();
             IrregularWallFurni = new List<HWallItem>();
             IrregularFloorFurni = new List<HFloorItem>();
@@ -934,7 +924,7 @@ namespace RetroFun.Pages
 
         private bool HandleNullList(string message)
         {
-            Speak(message, 30);
+            Speak(message, 34);
             return true;
         }
 
@@ -2701,6 +2691,14 @@ namespace RetroFun.Pages
 
         private void HandleRemovedFurni(HWallItem item)
         {
+            if (IrregularWallFurni.Contains(item))
+            {
+                IrregularWallFurni.Remove(item);
+            }
+            if (RegularWallFurni.Contains(item))
+            {
+                RegularWallFurni.Remove(item);
+            }
             if (HIDDEN_IRREGULAR_WALLFURNIS.Contains(item))
             {
                 HIDDEN_IRREGULAR_WALLFURNIS.Remove(item);
@@ -2709,34 +2707,61 @@ namespace RetroFun.Pages
             {
                 HIDDEN_REGULAR_WALLFURNIS.Remove(item);
             }
+            if (RoomSnapshotWallFurni.Contains(item))
+            {
+                RoomSnapshotWallFurni.Remove(item);
+            }
+            if (SnapshotRegularWallItems.Contains(item))
+            {
+                SnapshotRegularWallItems.Remove(item);
+            }
+            if (SnapShotIrregularWallFurni.Contains(item))
+            {
+                SnapShotIrregularWallFurni.Remove(item);
+            }
+            if (SnapshotRemovedWallItems.Contains(item))
+            {
+                SnapshotRemovedWallItems.Remove(item);
+            }
             UpdateAllLabels();
         }
 
 
         private void HandleRemovedFurni(HFloorItem item)
         {
-            try
+            if (IrregularFloorFurni.Contains(item))
             {
-                if (IrregularFloorFurni.Contains(item))
-                {
-                    IrregularFloorFurni.Remove(item);
-                }
-                if (RegularFloorFurni.Contains(item))
-                {
-                    RegularFloorFurni.Remove(item);
-                }
-                if (HIDDEN_IRREGULAR_FLOORFURNIS.Contains(item))
-                {
-                    HIDDEN_IRREGULAR_FLOORFURNIS.Remove(item);
-                }
-                if (HIDDEN_REGULAR_FLOORFURNIS.Contains(item))
-                {
-                    HIDDEN_REGULAR_FLOORFURNIS.Remove(item);
-                }
-                UpdateAllLabels();
+                IrregularFloorFurni.Remove(item);
             }
-
-            catch (Exception) { }
+            if (RegularFloorFurni.Contains(item))
+            {
+                RegularFloorFurni.Remove(item);
+            }
+            if (HIDDEN_IRREGULAR_FLOORFURNIS.Contains(item))
+            {
+                HIDDEN_IRREGULAR_FLOORFURNIS.Remove(item);
+            }
+            if (HIDDEN_REGULAR_FLOORFURNIS.Contains(item))
+            {
+                HIDDEN_REGULAR_FLOORFURNIS.Remove(item);
+            }
+            if (RoomSnapshotFloorFurni.Contains(item))
+            {
+                RoomSnapshotFloorFurni.Remove(item);
+            }
+            if (SnapshotRegularFloorItems.Contains(item))
+            {
+                SnapshotRegularFloorItems.Remove(item);
+            }
+            if (SnapShotIrregularFloorFurni.Contains(item))
+            {
+                SnapShotIrregularFloorFurni.Remove(item);
+            }
+            if (SnapshotRemovedFloorItems.Contains(item))
+            {
+                SnapshotRemovedFloorItems.Remove(item);
+            }
+            UpdateAllLabels();
         }
 
         private void UpdateListConstantlyBtn_Click(object sender, EventArgs e)
@@ -2808,7 +2833,7 @@ namespace RetroFun.Pages
             if (FurniIDToCheckMode)
             {
                 ControlledFloorFurni = FurniID;
-                Speak("Checking ID : " + FurniID, 30);
+                Speak("Checking ID : " + FurniID, 34);
                 RareCheck(ControlledFloorFurni, false);
                 e.IsBlocked = true;
             }
