@@ -12,7 +12,6 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\ExcelDataReader.xml
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\ExcelDataReader.DataSet.pdb
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\ExcelDataReader.DataSet.xml
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\ExcelNumberFormat.xml
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Handlers.FurniHandlerEventPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.MainFrm.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.DiceBotPage.resources
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.Pages.BottomPage.resources

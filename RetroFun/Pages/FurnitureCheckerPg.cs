@@ -2254,7 +2254,7 @@ namespace RetroFun.Pages
             if (FurniIDToCheckMode)
             {
                 ControlledFloorFurni = FurniID;
-                Speak("Checking ID : " + FurniID, 30);
+                Speak("Checking ID : " + FurniID, 34);
                 RareCheck(ControlledFloorFurni, false);
             }
             if (IS_REMOVE_FALSE_POSITIVE_MODE)
@@ -2580,7 +2580,7 @@ namespace RetroFun.Pages
             if (FurniIDToCheckMode)
             {
                 ControlledFloorFurni = WallFurni;
-                Speak("Checking ID : " + WallFurni, 30);
+                Speak("Checking ID : " + WallFurni, 34);
                 RareCheck(ControlledFloorFurni, false);
             }
         }
@@ -2853,7 +2853,7 @@ namespace RetroFun.Pages
             if (FurniIDToCheckMode)
             {
                 ControlledFloorFurni = FurniID;
-                Speak("Checking ID : " + FurniID, 30);
+                Speak("Checking ID : " + FurniID, 34);
                 RareCheck(ControlledFloorFurni, false);
                 e.IsBlocked = true;
             }

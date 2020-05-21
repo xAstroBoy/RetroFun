@@ -13,14 +13,11 @@ using System.Linq;
 
 namespace RetroFun.Handlers
 {
-    [ToolboxItem(true)]
-    [DesignerCategory("UserControl")]
     public partial class FurniHandlerEventPage :  ObservablePage
     {
       
         public FurniHandlerEventPage()
         {
-            InitializeComponent();
         }
 
         private List<HFloorItem> RoomFloorFurni
@@ -312,7 +309,7 @@ namespace RetroFun.Handlers
             RoomFloorFurni.Clear();
             RoomWallFurni.Clear();
             RemWallFurni.Clear();
-            RemWallFurni.Clear();
+            RemFloorFurni.Clear();
         }
 
 
@@ -321,7 +318,7 @@ namespace RetroFun.Handlers
             RoomFloorFurni.Clear();
             RoomWallFurni.Clear();
             RemWallFurni.Clear();
-            RemWallFurni.Clear();
+            RemFloorFurni.Clear();
         }
 
         public override void In_RemoveFloorItem(DataInterceptedEventArgs e)
