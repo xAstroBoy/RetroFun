@@ -20,6 +20,8 @@ using System.Timers;
 using RetroFun.Helpers;
 using RetroFun.Utils.Furnitures.WallFurni;
 using RetroFun.Utils.Furnitures.FloorFurni;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace RetroFun.Pages
 {
@@ -631,7 +633,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private void FixExcel(string path, bool isQuiet, bool isManualUpdate)
+        private void FixExcel(string path, bool isManualUpdate)
         {
             string newpath = string.Empty;
             Missing missing = Missing.Value;
@@ -667,11 +669,11 @@ namespace RetroFun.Pages
             System.Runtime.InteropServices.Marshal.ReleaseComObject(workbook);
             excel.Quit();
             System.Runtime.InteropServices.Marshal.ReleaseComObject(excel);
-            ConvertExcelSheetsToTexts(newpath, isQuiet, isManualUpdate);
+            ConvertExcelSheetsToTexts(newpath, isManualUpdate);
         }
 
 
-        private void ConvertExcelSheetsToTexts(string path, bool isQuiet, bool isManualUpdate)
+        private void ConvertExcelSheetsToTexts(string path, bool isManualUpdate)
         {
             try
             {
@@ -708,7 +710,7 @@ namespace RetroFun.Pages
                     );
 
                     AddToFilePathLists(SaveLocation);
-                    if (!isQuiet)
+                    if (!isQuietMode)
                     {
                         Speak("Converted " + sheet.Name + " into a txt file!");
                     }
@@ -764,7 +766,7 @@ namespace RetroFun.Pages
                         {
                             if (!isQuiet)
                             {
-                                Speak(line, 34);
+                                Speak(FixLineSpaces(line), 34);
                             }
                             RecordRareControl(true, "[REGOLARE] : " + id);
                             return true;
@@ -797,6 +799,30 @@ namespace RetroFun.Pages
                 return false;
             }
 
+
+        private string FixLineSpaces(string value)
+        {
+            if (value == null) { return null; }
+            var sb = new StringBuilder();
+
+            var lastCharWs = false;
+            foreach (var c in value)
+            {
+                if (char.IsWhiteSpace(c))
+                {
+                    if (lastCharWs) { continue; }
+                    sb.Append(' ');
+                    lastCharWs = true;
+                }
+                else
+                {
+                    sb.Append(c);
+                    lastCharWs = false;
+                }
+            }
+            return sb.ToString();
+        }
+        
         private bool SearchPaymentRare(HFloorItem flooritem, bool isQuiet)
         {
             try
@@ -817,7 +843,8 @@ namespace RetroFun.Pages
                             {
                                 if (!isQuiet)
                                 {
-                                    Speak(line, 34);
+
+                                    Speak(FixLineSpaces(line), 34);
                                 }
                                 if (!RegularFloorFurni.Contains(flooritem))
                                 {
@@ -876,7 +903,7 @@ namespace RetroFun.Pages
                         {
                             if (!isQuiet)
                             {
-                                Speak(line, 34);
+                                Speak(FixLineSpaces(line), 34);
                             }
                             if (!RegularWallFurni.Contains(wallitem))
                             {
@@ -1864,7 +1891,7 @@ namespace RetroFun.Pages
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                FixExcel(ExcelFilePath, false, false);
+                FixExcel(ExcelFilePath, false);
             }).Start();
         }
 
@@ -2058,7 +2085,7 @@ namespace RetroFun.Pages
                         if (ExcelFilePath != null && ExcelFilePath != "")
                         {
 
-                            FixExcel(ExcelFilePath, true, true);
+                            FixExcel(ExcelFilePath,  true);
                         }
                     }
 
@@ -2081,7 +2108,7 @@ namespace RetroFun.Pages
                     {
                         if (ExcelFilePath != null && ExcelFilePath != "")
                         {
-                            FixExcel(ExcelFilePath, true, false);
+                            FixExcel(ExcelFilePath, false);
                         }
                     }
 
@@ -2887,11 +2914,11 @@ namespace RetroFun.Pages
             {
                 IS_HIDING_IRREGULAR_WALLFURNIS = true;
                 THREAD_HIDE_IRREGULAR_WALLFURNIS();
-                Speak("[AUTOMATIC HIDER CLIENT]: Hiding all irregular Wall Furnis...", 34);
+                Speak("[HIDER]: Hiding all irregular Wall Furnis...", 34);
             }
             else
             {
-                Speak("[AUTOMATIC HIDER CLIENT]: Can't find any irregular wall furnis to hide!", 34);
+                Speak("[HIDER]: Can't find any irregular wall furnis to hide!", 34);
             }
         }
 
@@ -2901,11 +2928,11 @@ namespace RetroFun.Pages
             {
                 IS_HIDING_IRREGULAR_FLOORFURNIS = true;
                 THREAD_HIDE_IRREGULAR_FLOORFURNIS();
-                Speak("[AUTOMATIC HIDER CLIENT]: Hiding all irregular floor Furnis...", 34);
+                Speak("[HIDER]: Hiding all irregular floor Furnis...", 34);
             }
             else
             {
-                Speak("[AUTOMATIC HIDER CLIENT]: Can't find any irregular floor Furnis to hide!", 34);
+                Speak("[HIDER]: Can't find any irregular floor Furnis to hide!", 34);
             }
         }
 
@@ -2916,11 +2943,11 @@ namespace RetroFun.Pages
             {
                 IS_HIDING_REGULAR_WALLFURNIS = true;
                 THREAD_HIDE_REGULAR_WALLFURNIS();
-                Speak("[AUTOMATIC HIDER CLIENT]: Hiding all regular Wall Furnis...", 34);
+                Speak("[HIDER]: Hiding all regular Wall Furnis...", 34);
             }
             else
             {
-                Speak("[AUTOMATIC HIDER CLIENT]: Can't find any regular wall furnis to hide!", 34);
+                Speak("[HIDER]: Can't find any regular wall furnis to hide!", 34);
             }
         }
 
@@ -2930,11 +2957,11 @@ namespace RetroFun.Pages
             {
                 IS_HIDING_REGULAR_FLOORFURNIS = true;
                 THREAD_HIDE_REGULAR_FLOORFURNIS();
-                Speak("[AUTOMATIC HIDER CLIENT]: Hiding all regular floor Furnis...", 34);
+                Speak("[HIDER]: Hiding all regular floor Furnis...", 34);
             }
             else
             {
-                Speak("[AUTOMATIC HIDER CLIENT]: Can't find any regular wall floor to hide!", 34);
+                Speak("[HIDER]: Can't find any regular wall floor to hide!", 34);
             }
         }
 
@@ -2960,12 +2987,12 @@ namespace RetroFun.Pages
                 Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(HIDDEN_REGULAR_FLOORFURNIS, In.RoomFloorItems));
                 HIDDEN_REGULAR_FLOORFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
-                Speak("[CLIENT]:All Regular Floor Furnis are unhidden!", 34);
+                Speak("[HIDER]:All Regular Floor Furnis are unhidden!", 34);
 
             }
             else
             {
-                Speak("[CLIENT]:I Can't detect any Regular Hidden Floor Furni to Unhide!", 34);
+                Speak("[HIDER]:I Can't detect any Regular Hidden Floor Furni to Unhide!", 34);
             }
             IS_HIDING_REGULAR_WALLFURNIS = false;
             if (HIDDEN_REGULAR_WALLFURNIS.Count != 0)
@@ -2973,12 +3000,12 @@ namespace RetroFun.Pages
                 Connection.SendToClientAsync(WallFurnitures.PacketBuilder(HIDDEN_REGULAR_WALLFURNIS, In.RoomWallItems));
                 HIDDEN_REGULAR_WALLFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
-                Speak("[CLIENT]:All Regular Wall Furnis are unhidden!", 34);
+                Speak("[HIDER]:All Regular Wall Furnis are unhidden!", 34);
 
             }
             else
             {
-                Speak("[CLIENT]:I Can't detect any Regular Hidden Wall Furni to Unhide!", 34);
+                Speak("[HIDER]:I Can't detect any Regular Hidden Wall Furni to Unhide!", 34);
             }
         }
 
@@ -2990,11 +3017,11 @@ namespace RetroFun.Pages
                 Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(HIDDEN_IRREGULAR_FLOORFURNIS, In.RoomFloorItems));
                 HIDDEN_IRREGULAR_FLOORFURNIS.Clear();
                 UpdateHiddenIrregolarFurniLabel();
-                Speak("[CLIENT]:All Irregular Floor Furnis are unhidden!", 34);
+                Speak("[HIDER]:All Irregular Floor Furnis are unhidden!", 34);
             }
             else
             {
-                Speak("[CLIENT]:I Can't detect any Irregular Hidden Floor Furni to Unhide!", 34);
+                Speak("[HIDER]:I Can't detect any Irregular Hidden Floor Furni to Unhide!", 34);
             }
             IS_HIDING_IRREGULAR_WALLFURNIS = false;
             if (HIDDEN_IRREGULAR_WALLFURNIS.Count != 0)
@@ -3002,11 +3029,11 @@ namespace RetroFun.Pages
                 Connection.SendToClientAsync(WallFurnitures.PacketBuilder(HIDDEN_IRREGULAR_WALLFURNIS, In.RoomWallItems));
                 HIDDEN_IRREGULAR_WALLFURNIS.Clear();
                 UpdateHiddenIrregolarFurniLabel();
-                Speak("[CLIENT]:All Irregular Wall Furnis are unhidden!", 34);
+                Speak("[HIDER]:All Irregular Wall Furnis are unhidden!", 34);
             }
             else
             {
-                Speak("[CLIENT]:I Can't detect any Irregular Hidden Wall Furni to Unhide!", 34);
+                Speak("[HIDER]:I Can't detect any Irregular Hidden Wall Furni to Unhide!", 34);
             }
         }
 
@@ -3021,7 +3048,7 @@ namespace RetroFun.Pages
             }
             else
             {
-                Speak("[CLIENT]:Can't find any removed Floor Furnis to hide!", 34);
+                Speak("[HIDER]:Can't find any removed Floor Furnis to hide!", 34);
             }
 
             if (SnapshotRegularWallItems != null && !(SnapshotRegularWallItems.Count == 0))
@@ -3031,7 +3058,7 @@ namespace RetroFun.Pages
             }
             else
             {
-                Speak("[CLIENT]:Can't find any removed Wall Furnis to hide!", 34);
+                Speak("[HIDER]:Can't find any removed Wall Furnis to hide!", 34);
             }
 
 
@@ -3057,21 +3084,21 @@ namespace RetroFun.Pages
             {
                 Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(SnapshotRemovedFloorItems, In.RoomFloorItems));
                 UpdateRemovedFurnisLabel();
-                 Speak("[CLIENT]:All removed Floor Furnis are unhidden!", 34);
+                 Speak("[HIDER]:All removed Floor Furnis are unhidden!", 34);
             }
             else
             {
-                Speak("[CLIENT]:I Can't detect any removed Hidden Floor Furni to Unhide!", 34);
+                Speak("[HIDER]:I Can't detect any removed Hidden Floor Furni to Unhide!", 34);
             }
             if (SnapshotRemovedWallItems.Count != 0)
             {
                 Connection.SendToClientAsync(WallFurnitures.PacketBuilder(SnapshotRemovedWallItems, In.RoomWallItems));
                 UpdateRemovedFurnisLabel();
-                Speak("[CLIENT]:All removed Wall Furnis are unhidden!", 34);
+                Speak("[HIDER]:All removed Wall Furnis are unhidden!", 34);
             }
             else
             {
-                Speak("[CLIENT]:I Can't detect any removed Hidden Wall Furni to Unhide!", 34);
+                Speak("[HIDER]:I Can't detect any removed Hidden Wall Furni to Unhide!", 34);
             }
         }
 
