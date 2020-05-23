@@ -46,6 +46,7 @@ namespace RetroFun
             _subscribers = new List<ObservablePage>
             {
                furniHandlerEvent,
+               BottomPg,
 
 
                 ChatPg,
@@ -72,8 +73,9 @@ namespace RetroFun
                 ModerationPg,
                 FurnitureCheckerPg,
 
+                
+                FunPg,
 
-                BottomPg,
              };
                 
             Bind(AlwaysOnTopChbx, "Checked", nameof(IsAlwaysOnTop));
@@ -291,7 +293,7 @@ namespace RetroFun
                 //else if (Out.RequestOwnGuilds == id){sub.Out_RequestOwnGuilds(e);}
                 //else if (Out.RequestOwnItems == id){sub.Out_RequestOwnItems(e);}
                 //else if (Out.RequestPetBreeds == id){sub.Out_RequestPetBreeds(e);}
-                //else if (Out.RequestPetInfo == id){sub.Out_RequestPetInfo(e);}
+                else if (Out.RequestPetInfo == id){sub.Out_RequestPetInfo(e);}
                 //else if (Out.RequestPetTrainingPanel == id){sub.Out_RequestPetTrainingPanel(e);}
                 //else if (Out.RequestPopularRooms == id){sub.Out_RequestPopularRooms(e);}
                 //else if (Out.RequestProfileFriends == id){sub.Out_RequestProfileFriends(e);}
@@ -416,7 +418,6 @@ namespace RetroFun
             foreach (var sub in _subscribers)
             {
                 e.Packet.Position = 0;
-                e.Packet.Position = 0;
                 if (In.AddFloorItem == id) { sub.In_AddFloorItem(e); }
                 //else if (In.AddHabboItem == id){sub.In_AddHabboItem(e);}
                 //else if (In.AddPet == id){sub.In_AddPet(e);}
@@ -455,8 +456,8 @@ namespace RetroFun
                 //else if (In.CanCreateRoom == id){sub.In_CanCreateRoom(e);}
                 //else if (In.CantScratchPetNotOldEnough == id){sub.In_CantScratchPetNotOldEnough(e);}
                 //else if (In.CatalogMode == id){sub.In_CatalogMode(e);}
-                //else if (In.CatalogPage == id){sub.In_CatalogPage(e);}
-                //else if (In.CatalogPagesList == id){sub.In_CatalogPagesList(e);}
+                else if (In.CatalogPage == id){sub.In_CatalogPage(e);}
+                else if (In.CatalogPagesList == id){sub.In_CatalogPagesList(e);}
                 //else if (In.CatalogSearchResult == id){sub.In_CatalogSearchResult(e);}
                 //else if (In.CatalogUpdated == id){sub.In_CatalogUpdated(e);}
                 //else if (In.CfhTopicsMessage == id){sub.In_CfhTopicsMessage(e);}
@@ -742,7 +743,7 @@ namespace RetroFun
                 //else if (In.RoomUserAction == id){sub.In_RoomUserAction(e);}
                 //else if (In.RoomUserDance == id){sub.In_RoomUserDance(e);}
                 //else if (In.RoomUserData == id){sub.In_RoomUserData(e);}
-                //else if (In.RoomUserEffect == id){sub.In_RoomUserEffect(e);}
+                else if (In.RoomUserEffect == id){sub.In_RoomUserEffect(e);}
                 //else if (In.RoomUserHandItem == id){sub.In_RoomUserHandItem(e);}
                 //else if (In.RoomUserIgnored == id){sub.In_RoomUserIgnored(e);}
                 //else if (In.RoomUserNameChanged == id){sub.In_RoomUserNameChanged(e);}
@@ -751,7 +752,7 @@ namespace RetroFun
                 //else if (In.RoomUserRemoveRights == id){sub.In_RoomUserRemoveRights(e);}
                 //else if (In.RoomUserRespect == id){sub.In_RoomUserRespect(e);}
                 else if (In.RoomUserShout == id) { sub.In_RoomUserShout(e); }
-                //else if (In.RoomUserStatus == id){sub.In_RoomUserStatus(e);}
+                else if (In.RoomUserStatus == id){sub.In_RoomUserStatus(e);}
                 //else if (In.RoomUserTags == id){sub.In_RoomUserTags(e);}
                 else if (In.RoomUserTalk == id) { sub.In_RoomUserTalk(e); }
                 //else if (In.RoomUserTyping == id){sub.In_RoomUserTyping(e);}

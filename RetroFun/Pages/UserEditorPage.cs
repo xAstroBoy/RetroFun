@@ -180,6 +180,7 @@ namespace RetroFun.Pages
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
+
             CountUserInRoomBlacklist();
             UpdateRoomUsersLabel();
         }
@@ -411,6 +412,11 @@ namespace RetroFun.Pages
                 1,
                 false
             );
+        }
+
+        public override void Out_RequestPetInfo(DataInterceptedEventArgs e)
+        {
+            base.Out_RequestPetInfo(e);
         }
 
         private void EditUserBtn_Click(object sender, EventArgs e)

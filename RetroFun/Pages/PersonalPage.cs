@@ -26,8 +26,6 @@ namespace RetroFun.Pages
         private bool IsInterceptTradeUserOn;
         private bool TradeSpammerActivated;
         private int _selectedUserId;
-        private bool isLiveEnableEdit;
-        private bool isStaticThreadStarted;
         private readonly Handitems[] _Handitems = new[]
         {
             #region handitemlist
@@ -369,19 +367,6 @@ namespace RetroFun.Pages
             }
         }
 
-
-        private int _EffectNumbers = 0;
-        public int EffectNumbers
-        {
-            get => _EffectNumbers;
-            set
-            {
-                _EffectNumbers = value;
-                RaiseOnPropertyChanged();
-            }
-        }
-
-
         private int _TradeSpammerUserID;
         public int TradeSpammerUserID
         {
@@ -438,18 +423,6 @@ namespace RetroFun.Pages
             }
         }
 
-        private int _CooldownEffectLoop;
-
-        public int CooldownEffectLoop
-        {
-            get => _CooldownEffectLoop;
-            set
-            {
-                _CooldownEffectLoop = value;
-                RaiseOnPropertyChanged();
-            }
-        }
-
 
         private bool _BlockBypassers;
 
@@ -476,6 +449,7 @@ namespace RetroFun.Pages
         }
 
         private bool isTalkAvailable = false;
+        private bool HasEffectBeenRemoved = false;
         #endregion
         public PersonalPage()
         {
@@ -494,10 +468,6 @@ namespace RetroFun.Pages
             Bind(DucketsNbx, "Value", nameof(DucketsValue));
             Bind(UserIntUpDwn, "Value", nameof(TradeSpammerUserID));
             Bind(TradeSpammerCooldownNbx, "Value", nameof(TradeSpammerCooldown));
-            Bind(EnableNbx, "Value", nameof(EffectNumbers));
-            Bind(CooldownEffectNbx, "Value", nameof(CooldownEffectLoop));
-            //Bind(CooldownEffectNbx, "Value", nameof(EffectNumbers));
-
             Bind(BadgeTxbx, "Text", nameof(badgecode));
 
         }
@@ -782,8 +752,14 @@ namespace RetroFun.Pages
             }
         }
 
-
-
+        public override void In_RoomUserEffect(DataInterceptedEventArgs e)
+        {
+            int UserIndex = e.Packet.ReadInteger();
+            if (UserIndex == GlobalInts.OwnUser_index && !HasEffectBeenRemoved)
+            {
+                HasEffectBeenRemoved = true;
+            }
+        }
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
             _selectedUserId = e.Packet.ReadInteger();
@@ -798,7 +774,7 @@ namespace RetroFun.Pages
         {
             if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
             {
-                if (isTalkAvailable)
+                if (isTalkAvailable && !HasEffectBeenRemoved)
                 {
                     await Task.Delay(500);
                     await Connection.SendToServerAsync(Out.RoomUserTalk, ":enable 0", GlobalInts.Selected_bubble_ID);
@@ -810,14 +786,16 @@ namespace RetroFun.Pages
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             isTalkAvailable = true;
+            HasEffectBeenRemoved = false;
         }
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
             isTalkAvailable = true;
+            HasEffectBeenRemoved = false;
         }
 
-        public override void In_RoomUserTalk(DataInterceptedEventArgs e)
+        public override void In_RoomUserStatus(DataInterceptedEventArgs e)
         {
             RemoveEnableOnlyBobba();
         }
@@ -933,95 +911,9 @@ namespace RetroFun.Pages
 
         }
 
-        private void GibeBadgeToYoutselfBtn_Click(object sender, EventArgs e)
+        private void GiveBadgeToYourselfBtn_Click(object sender, EventArgs e)
         {
             Connection.SendToServerAsync(Out.RoomUserTalk, ":givebadge " + GlobalStrings.UserDetails_Username +  " " + badgecode, 18);
-        }
-
-        private void LiveEditBtn_Click(object sender, EventArgs e)
-        {
-            if(isLiveEnableEdit)
-            {
-                WriteToButton(LiveEditBtn, "Live Edit : OFF");
-                isLiveEnableEdit = false;
-            }
-            else
-            {
-                WriteToButton(LiveEditBtn, "Live Edit : ON");
-                isLiveEnableEdit = true;
-            }
-        }
-
-        // USE CooldownEffectLoop FOR COOLDOWN
-        private void StartStaticEffectThread()
-        {
-            new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                do
-                {
-                    try
-                    {
-                        if (isStaticThreadStarted)
-                        {
-                            Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + EffectNumbers, 18);
-                            Thread.Sleep(CooldownEffectLoop);
-                            Connection.SendToServerAsync(Out.RoomUserTalk, ":enable 0" , 18);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-
-                    }
-
-                } while (isStaticThreadStarted);
-            }).Start();
-        }
-
-        private void EnableOnLoopBtn_Click(object sender, EventArgs e)
-        {
-            if (isStaticThreadStarted)
-            {
-                WriteToButton(EnableOnLoopBtn, "Enable Effect On loop : OFF");
-                isStaticThreadStarted = false;
-            }
-            else
-            {
-                WriteToButton(EnableOnLoopBtn, "Enable Effect On loop : ON");
-                isStaticThreadStarted = true;
-                StartStaticEffectThread();
-            }
-        }
-
-        private void EnableNbx_ValueChanged(object sender, EventArgs e)
-        {
-            if(isLiveEnableEdit)
-            {
-                Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + EffectNumbers, 18);
-            }
-        }
-
-        private void EnableSub1Btn_Click(object sender, EventArgs e)
-        {
-            EffectNumbers--;
-            if (isLiveEnableEdit)
-            {
-                Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + EffectNumbers, 18);
-            }
-        }
-
-        private void EnableAdd1Btn_Click(object sender, EventArgs e)
-        {
-            EffectNumbers++;
-            if (isLiveEnableEdit)
-            {
-                Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + EffectNumbers, 18);
-            }
-        }
-
-        private void SetEnableBtn_Click(object sender, EventArgs e)
-        {
-            Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + EffectNumbers, 18);
         }
 
         private void HanditemCmbx_SelectedIndexChanged(object sender, EventArgs e)

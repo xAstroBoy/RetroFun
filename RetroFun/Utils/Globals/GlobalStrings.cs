@@ -15,6 +15,7 @@ namespace RetroFun
     {
         public static string UserDetails_Username { get; set; } = null;
         public static string UserDetails_Look { get; set; } = null;
+        public readonly static string DeveloperDiscord = "xAstroBoy#1337";
 
     }
 }

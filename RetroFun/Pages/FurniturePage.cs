@@ -487,7 +487,7 @@ namespace RetroFun.Pages
 
         private void NoticePickup(int FurniID)
         {
-            Speak("You are picking a furni ClientSide with ID : " + FurniID, 30);
+            Speak("You are picking a furni ClientSide with ID : " + FurniID, 34);
         }
 
         private void ControlRotation(int Rotation)
@@ -1044,13 +1044,13 @@ namespace RetroFun.Pages
         private void FindTypeId(HFloorItem furni)
         {
             TargetFurniType = furni.TypeId;
-            Speak("[FurniType Picker] I will pick furnis containing this Typeid ( " + TargetFurniType + " )", 30);
+            Speak("[FurniType Picker] I will pick furnis containing this Typeid ( " + TargetFurniType + " )", 34);
             return;
         }
         private void FindTypeId(HWallItem furni)
         {
             TargetFurniType = furni.TypeId;
-            Speak("[FurniType Picker] I will pick furnis containing this Typeid ( " + TargetFurniType + " )", 30);
+            Speak("[FurniType Picker] I will pick furnis containing this Typeid ( " + TargetFurniType + " )", 34);
             return;
         }
 
@@ -1360,7 +1360,7 @@ namespace RetroFun.Pages
 
         private void PickRegisteredFurniTypes_Click(object sender, EventArgs e)
         {
-            Speak("Picking Furnis in Server Side!", 30);
+            Speak("Picking Furnis in Server Side!", 34);
             if (IS_TARGET_FLOORFURNI)
             {
                 IS_PICKING_FLOOR_FURNITYPE_SS = true;
@@ -1395,7 +1395,7 @@ namespace RetroFun.Pages
         {
             SnapshotFloorItems.Clear();
             SnapshotWallItems.Clear();
-            Speak("Picking Furnis in Client Side!", 30);
+            Speak("Picking Furnis in Client Side!", 34);
             if (IS_TARGET_FLOORFURNI)
             {
                 IS_PICKING_FLOOR_FURNITYPE_CS = true;
@@ -1416,7 +1416,7 @@ namespace RetroFun.Pages
         {
             SnapshotFloorItems.Clear();
             SnapshotWallItems.Clear();
-            Speak("Hiding Room BG In Client Side!", 30);
+            Speak("Hiding Room BG In Client Side!", 34);
             IS_PICKING_FLOOR_FURNITYPE_CS = true;
             IS_TARGET_FLOORFURNI = true;
             IS_TARGET_WALLFURNI = false;
@@ -1441,7 +1441,7 @@ namespace RetroFun.Pages
             }
             else
             {
-                Speak("Please Put a target badge to find!", 30);
+                Speak("Please Put a target badge to find!", 34);
             }
 
         }
@@ -1460,7 +1460,7 @@ namespace RetroFun.Pages
             }
             else
             {
-                Speak("Please Put a target badge to find!", 30);
+                Speak("Please Put a target badge to find!", 34);
             }
         }
     }

@@ -31,6 +31,7 @@
             this.FreezeMovementCheck = new System.Windows.Forms.CheckBox();
             this.UsernameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.UsersInRoomLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // FreezeMovementCheck
@@ -49,7 +50,7 @@
             this.UsernameTextBox.Location = new System.Drawing.Point(403, 3);
             this.UsernameTextBox.Name = "UsernameTextBox";
             this.UsernameTextBox.ReadOnly = true;
-            this.UsernameTextBox.Size = new System.Drawing.Size(463, 26);
+            this.UsernameTextBox.Size = new System.Drawing.Size(363, 26);
             this.UsernameTextBox.TabIndex = 10;
             this.UsernameTextBox.Text = "Finding Username...";
             // 
@@ -62,15 +63,26 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Your Username: ";
             // 
+            // UsersInRoomLbl
+            // 
+            this.UsersInRoomLbl.AutoSize = true;
+            this.UsersInRoomLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsersInRoomLbl.Location = new System.Drawing.Point(837, 2);
+            this.UsersInRoomLbl.Name = "UsersInRoomLbl";
+            this.UsersInRoomLbl.Size = new System.Drawing.Size(203, 29);
+            this.UsersInRoomLbl.TabIndex = 12;
+            this.UsersInRoomLbl.Text = "Users In Room : 0";
+            // 
             // BottomPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.UsersInRoomLbl);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.UsernameTextBox);
             this.Controls.Add(this.FreezeMovementCheck);
             this.Name = "BottomPage";
-            this.Size = new System.Drawing.Size(894, 34);
+            this.Size = new System.Drawing.Size(1203, 34);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,5 +93,6 @@
         private System.Windows.Forms.CheckBox FreezeMovementCheck;
         private System.Windows.Forms.TextBox UsernameTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label UsersInRoomLbl;
     }
 }

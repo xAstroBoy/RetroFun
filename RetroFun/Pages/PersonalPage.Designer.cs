@@ -58,16 +58,7 @@
             this.GiveHanditemToClickedUserbtn = new Sulakore.Components.SKoreButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.BadgeTxbx = new System.Windows.Forms.TextBox();
-            this.GibeBadgeToYoutselfBtn = new Sulakore.Components.SKoreButton();
-            this.EnableOnLoopBtn = new Sulakore.Components.SKoreButton();
-            this.EnableNbx = new System.Windows.Forms.NumericUpDown();
-            this.EnableAdd1Btn = new Sulakore.Components.SKoreButton();
-            this.EnableSub1Btn = new Sulakore.Components.SKoreButton();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.SetEnableBtn = new Sulakore.Components.SKoreButton();
-            this.CooldownEffectNbx = new System.Windows.Forms.NumericUpDown();
-            this.LiveEditBtn = new Sulakore.Components.SKoreButton();
+            this.GiveBadgeToYourSelfBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).BeginInit();
@@ -78,9 +69,6 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.EnableNbx)).BeginInit();
-            this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CooldownEffectNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // EnableModToolsBtn
@@ -407,133 +395,21 @@
             this.BadgeTxbx.Size = new System.Drawing.Size(160, 26);
             this.BadgeTxbx.TabIndex = 94;
             // 
-            // GibeBadgeToYoutselfBtn
+            // GiveBadgeToYourSelfBtn
             // 
-            this.GibeBadgeToYoutselfBtn.Location = new System.Drawing.Point(848, 380);
-            this.GibeBadgeToYoutselfBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.GibeBadgeToYoutselfBtn.Name = "GibeBadgeToYoutselfBtn";
-            this.GibeBadgeToYoutselfBtn.Size = new System.Drawing.Size(182, 38);
-            this.GibeBadgeToYoutselfBtn.TabIndex = 86;
-            this.GibeBadgeToYoutselfBtn.Text = "Give Badge To Yourself";
-            this.GibeBadgeToYoutselfBtn.Click += new System.EventHandler(this.GibeBadgeToYoutselfBtn_Click);
-            // 
-            // EnableOnLoopBtn
-            // 
-            this.EnableOnLoopBtn.Location = new System.Drawing.Point(459, 36);
-            this.EnableOnLoopBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.EnableOnLoopBtn.Name = "EnableOnLoopBtn";
-            this.EnableOnLoopBtn.Size = new System.Drawing.Size(199, 31);
-            this.EnableOnLoopBtn.TabIndex = 77;
-            this.EnableOnLoopBtn.Text = "Enable Effect On loop : OFF";
-            this.EnableOnLoopBtn.Click += new System.EventHandler(this.EnableOnLoopBtn_Click);
-            // 
-            // EnableNbx
-            // 
-            this.EnableNbx.Location = new System.Drawing.Point(24, 75);
-            this.EnableNbx.Maximum = new decimal(new int[] {
-            -402653185,
-            -1613725636,
-            54210108,
-            0});
-            this.EnableNbx.Name = "EnableNbx";
-            this.EnableNbx.Size = new System.Drawing.Size(172, 26);
-            this.EnableNbx.TabIndex = 10;
-            this.EnableNbx.ValueChanged += new System.EventHandler(this.EnableNbx_ValueChanged);
-            // 
-            // EnableAdd1Btn
-            // 
-            this.EnableAdd1Btn.Location = new System.Drawing.Point(24, 108);
-            this.EnableAdd1Btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.EnableAdd1Btn.Name = "EnableAdd1Btn";
-            this.EnableAdd1Btn.Size = new System.Drawing.Size(41, 31);
-            this.EnableAdd1Btn.TabIndex = 95;
-            this.EnableAdd1Btn.Text = " + 1";
-            this.EnableAdd1Btn.Click += new System.EventHandler(this.EnableAdd1Btn_Click);
-            // 
-            // EnableSub1Btn
-            // 
-            this.EnableSub1Btn.Location = new System.Drawing.Point(92, 108);
-            this.EnableSub1Btn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.EnableSub1Btn.Name = "EnableSub1Btn";
-            this.EnableSub1Btn.Size = new System.Drawing.Size(42, 31);
-            this.EnableSub1Btn.TabIndex = 96;
-            this.EnableSub1Btn.Text = " - 1";
-            this.EnableSub1Btn.Click += new System.EventHandler(this.EnableSub1Btn_Click);
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.SetEnableBtn);
-            this.groupBox5.Controls.Add(this.EnableSub1Btn);
-            this.groupBox5.Controls.Add(this.CooldownEffectNbx);
-            this.groupBox5.Controls.Add(this.EnableAdd1Btn);
-            this.groupBox5.Controls.Add(this.EnableNbx);
-            this.groupBox5.Controls.Add(this.LiveEditBtn);
-            this.groupBox5.Controls.Add(this.EnableOnLoopBtn);
-            this.groupBox5.Location = new System.Drawing.Point(22, 483);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(754, 141);
-            this.groupBox5.TabIndex = 97;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Enables";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(455, 72);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 20);
-            this.label5.TabIndex = 100;
-            this.label5.Text = "Cooldown";
-            // 
-            // SetEnableBtn
-            // 
-            this.SetEnableBtn.Location = new System.Drawing.Point(16, 36);
-            this.SetEnableBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.SetEnableBtn.Name = "SetEnableBtn";
-            this.SetEnableBtn.Size = new System.Drawing.Size(199, 31);
-            this.SetEnableBtn.TabIndex = 97;
-            this.SetEnableBtn.Text = "Set Enable";
-            this.SetEnableBtn.Click += new System.EventHandler(this.SetEnableBtn_Click);
-            // 
-            // CooldownEffectNbx
-            // 
-            this.CooldownEffectNbx.Location = new System.Drawing.Point(459, 95);
-            this.CooldownEffectNbx.Maximum = new decimal(new int[] {
-            -402653185,
-            -1613725636,
-            54210108,
-            0});
-            this.CooldownEffectNbx.Minimum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.CooldownEffectNbx.Name = "CooldownEffectNbx";
-            this.CooldownEffectNbx.Size = new System.Drawing.Size(199, 26);
-            this.CooldownEffectNbx.TabIndex = 99;
-            this.CooldownEffectNbx.Value = new decimal(new int[] {
-            150,
-            0,
-            0,
-            0});
-            // 
-            // LiveEditBtn
-            // 
-            this.LiveEditBtn.Location = new System.Drawing.Point(234, 36);
-            this.LiveEditBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.LiveEditBtn.Name = "LiveEditBtn";
-            this.LiveEditBtn.Size = new System.Drawing.Size(199, 31);
-            this.LiveEditBtn.TabIndex = 98;
-            this.LiveEditBtn.Text = "Live Edit : OFF";
-            this.LiveEditBtn.Click += new System.EventHandler(this.LiveEditBtn_Click);
+            this.GiveBadgeToYourSelfBtn.Location = new System.Drawing.Point(848, 380);
+            this.GiveBadgeToYourSelfBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GiveBadgeToYourSelfBtn.Name = "GiveBadgeToYourSelfBtn";
+            this.GiveBadgeToYourSelfBtn.Size = new System.Drawing.Size(182, 38);
+            this.GiveBadgeToYourSelfBtn.TabIndex = 86;
+            this.GiveBadgeToYourSelfBtn.Text = "Give Badge To Yourself";
+            this.GiveBadgeToYourSelfBtn.Click += new System.EventHandler(this.GiveBadgeToYourselfBtn_Click);
             // 
             // PersonalPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.GibeBadgeToYoutselfBtn);
+            this.Controls.Add(this.GiveBadgeToYourSelfBtn);
             this.Controls.Add(this.BadgeTxbx);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -542,7 +418,7 @@
             this.Controls.Add(this.SetCurrencyBtn);
             this.Controls.Add(this.Currency);
             this.Name = "PersonalPage";
-            this.Size = new System.Drawing.Size(1300, 627);
+            this.Size = new System.Drawing.Size(1218, 497);
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).EndInit();
@@ -555,10 +431,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.EnableNbx)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CooldownEffectNbx)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -596,15 +468,6 @@
         private Sulakore.Components.SKoreButton GiveHanditemToClickedUserbtn;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox BadgeTxbx;
-        private Sulakore.Components.SKoreButton GibeBadgeToYoutselfBtn;
-        private Sulakore.Components.SKoreButton EnableOnLoopBtn;
-        private System.Windows.Forms.NumericUpDown EnableNbx;
-        private Sulakore.Components.SKoreButton EnableAdd1Btn;
-        private Sulakore.Components.SKoreButton EnableSub1Btn;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private Sulakore.Components.SKoreButton LiveEditBtn;
-        private Sulakore.Components.SKoreButton SetEnableBtn;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown CooldownEffectNbx;
+        private Sulakore.Components.SKoreButton GiveBadgeToYourSelfBtn;
     }
 }

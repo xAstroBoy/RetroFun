@@ -1,6 +1,8 @@
 ﻿using RetroFun.Globals;
 using RetroFun.Utils.Globals;
+using Sulakore.Communication;
 using Sulakore.Habbo;
+using Sulakore.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +17,12 @@ namespace RetroFun
 
         public static HEntity FindEntityByIndex(int index)
         {
-            return  GlobalLists.UsersInRoom.Find(f => f.Index == index);
+            return GlobalLists.UsersInRoom.Find(f => f.Index == index);
         }
 
         public static HEntity FindEntityByUserID(int userid)
         {
-            return  GlobalLists.UsersInRoom.Find(f => f.Id == userid);
+            return GlobalLists.UsersInRoom.Find(f => f.Id == userid);
         }
 
         public static HEntity FindEntityByUsername(string name)
@@ -63,6 +65,86 @@ namespace RetroFun
             {
                 return null;
             }
+        }
+
+
+        public static HMessage PacketBuilder(IList<HEntity> Users, ushort header)
+        {
+            var ret = new HMessage(header);
+            ret.WriteInteger(Users.Count());
+
+            foreach (var obj in Users)
+            {
+                ret.WriteInteger(obj.Id);
+                ret.WriteInteger(obj.Index);
+                ret.WriteInteger(obj.Tile.X);
+                ret.WriteInteger(obj.Tile.Y);
+                ret.WriteInteger(0);
+                ret.WriteString(obj.Name);
+                ret.WriteString(obj.Motto);
+                ret.WriteInteger((int)obj.Gender);
+                ret.WriteInteger(obj.EntityType);
+                ret.WriteString(obj.FigureId);
+                ret.WriteString(obj.FavoriteGroup);
+                return ret;
+            }
+            return null;
+        }
+
+
+        public static HMessage MakeEntity(int Id, int Index, int X, int Y, int Z, string name, string motto, HGender gender, int entitytype, string figureid, string FavouriteGroup, ushort header)
+        {
+            var ret = new HMessage(header);
+            ret.WriteInteger(1);
+            ret.WriteInteger(Id);
+            ret.WriteInteger(Index);
+            ret.WriteInteger(X);
+            ret.WriteInteger(Y);
+            ret.WriteInteger(Z);
+            ret.WriteString(name);
+            ret.WriteString(motto);
+            ret.WriteInteger((int)gender);
+            ret.WriteInteger(entitytype);
+            ret.WriteString(figureid);
+            ret.WriteString(FavouriteGroup);
+            return ret;
+        }
+
+
+
+
+
+        public static HMessage TurnEntityToPet(HEntity entity, int petid, int pettypeid, string petcolor, ushort header)
+        {
+            var ret = new HMessage(header);
+            ret.WriteInteger(1);
+            ret.WriteInteger(entity.Id);
+            ret.WriteString(entity.Name);
+            ret.WriteString(entity.Motto);
+            ret.WriteString(string.Concat(new object[]
+            {
+                                petid,
+                                " ",
+                                pettypeid,
+                                " ",
+                                petcolor
+            }));
+            ret.WriteInteger(entity.Index);
+            ret.WriteInteger(entity.Tile.X);
+            ret.WriteInteger(entity.Tile.Y);
+            ret.WriteString("0.0");
+            ret.WriteInteger(0);
+            ret.WriteInteger(2);
+            ret.WriteInteger(0);
+            ret.WriteInteger(entity.Id);
+            ret.WriteString(entity.Name);
+            ret.WriteBoolean(false);
+            ret.WriteInteger(0);
+            ret.WriteInteger(0);
+            ret.WriteBoolean(false);
+            ret.WriteInteger(0);
+            ret.WriteString("std");
+            return ret;
         }
 
     }

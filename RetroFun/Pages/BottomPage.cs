@@ -1,4 +1,5 @@
-﻿using RetroFun.Globals;
+﻿using Microsoft.Office.Interop.Excel;
+using RetroFun.Globals;
 using RetroFun.Subscribers;
 using RetroFun.Utils.Globals;
 using Sulakore.Communication;
@@ -6,6 +7,7 @@ using Sulakore.Habbo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace RetroFun.Pages
 {
@@ -14,10 +16,10 @@ namespace RetroFun.Pages
     public partial class BottomPage:  ObservablePage
     {
 
-        private Dictionary<int, HEntity> Dictionaryusers { get => GlobalDictionaries.Dictionary_UsersPresentInRoom; }
-        private Dictionary<string, HEntity> removedEntities { get => GlobalDictionaries.removedEntities; }
+        private Dictionary<int, HEntity> Dictionaryusers { get => GlobalDictionaries.Dictionary_UsersPresentInRoom; set { GlobalDictionaries.Dictionary_UsersPresentInRoom = value; } }
+        private Dictionary<string, HEntity> removedEntities { get => GlobalDictionaries.removedEntities; set { GlobalDictionaries.removedEntities = value; } }
 
-        public List<HEntity> CurrentRoomUsers { get => GlobalLists.UsersInRoom; }
+        public List<HEntity> CurrentRoomUsers { get => GlobalLists.UsersInRoom; set { GlobalLists.UsersInRoom = value; } }
         public string Own_look { get => GlobalStrings.UserDetails_Look; set { GlobalStrings.UserDetails_Look = value; RaiseOnPropertyChanged(); } }
 
         public int Own_index { get => GlobalInts.OwnUser_index; set { GlobalInts.OwnUser_index = value; RaiseOnPropertyChanged(); } }
@@ -68,10 +70,6 @@ namespace RetroFun.Pages
 
         public override void In_RoomUsers(DataInterceptedEventArgs obj)
         {
-            try
-            {
-                if (OwnUsername != null)
-                {
                     HEntity[] array = HEntity.Parse(obj.Packet);
                     if (array.Length != 0)
                     {
@@ -95,13 +93,21 @@ namespace RetroFun.Pages
                             }
                         }
                     }
-                }
-            }
-            catch (IndexOutOfRangeException)
-            {
-            }
+
+
+            UpdateUsersInRoom();
         }
 
+
+
+        private void UpdateUsersInRoom()
+        {
+            Invoke((MethodInvoker)delegate
+            {
+                UsersInRoomLbl.Text = "Users In Room : " + CurrentRoomUsers.Count;
+            });
+        }
+        
 
         public  override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
@@ -116,6 +122,7 @@ namespace RetroFun.Pages
             {
                 Dictionaryusers.Remove(entity2.Id);
             }
+            UpdateUsersInRoom();
         }
 
 
@@ -124,6 +131,7 @@ namespace RetroFun.Pages
             Dictionaryusers.Clear();
             removedEntities.Clear();
             CurrentRoomUsers.Clear();
+            UpdateUsersInRoom();
         }
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
@@ -131,13 +139,15 @@ namespace RetroFun.Pages
             Dictionaryusers.Clear();
             removedEntities.Clear();
             CurrentRoomUsers.Clear();
+            UpdateUsersInRoom();
+
 
         }
         public override void Out_RoomUserWalk(DataInterceptedEventArgs e)
         {
             if(FreezeUser)
             {
-                e.IsBlocked = FreezeUser;
+                e.IsBlocked = true;
             }
         }
     }
