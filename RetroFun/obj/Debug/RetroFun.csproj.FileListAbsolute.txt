@@ -36,4 +36,3 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\System.Xml.Linq.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Tangine.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.CopyComplete
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Flazzy.dll
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csprojAssemblyReference.cache

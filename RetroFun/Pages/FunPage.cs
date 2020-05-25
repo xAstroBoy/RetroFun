@@ -293,9 +293,13 @@ private void WriteToButton(SKoreButton button, string text)
 
         private async void SendServerEnableBobba(int effect)
         {
-            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia || RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.hartico)
+            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
             {
                 await Task.Delay(500);
+                await Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
+            }
+            else if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.hartico)
+            {
                 await Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
             }
         }
@@ -383,9 +387,18 @@ private void WriteToButton(SKoreButton button, string text)
                         {
                             if (isServerSideEffect)
                             {
+                                if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia || RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.hartico)
+                                { 
                                 SendServerEnableBobba(EffectNumber);
                                 Thread.Sleep(CooldownEffectLoop);
                                 SendServerEnableBobba(0);
+                                }
+                                else
+                                {
+                                    WriteToButton(IsServerSideBtn, "Server Side : OFF");
+                                    isServerSideEffect = false;
+                                    Speak("This host is not known, please contact The developer on discord : " + GlobalStrings.DeveloperDiscord);
+                                }
                             }
                             else
                             {
@@ -406,8 +419,6 @@ private void WriteToButton(SKoreButton button, string text)
 
         private void EnableOnLoopBtn_Click(object sender, EventArgs e)
         {
-            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
-            {
                 if (isStaticEffectThreadStarted)
                 {
                     WriteToButton(EnableOnLoopBtn, "Enable Effect On loop : OFF");
@@ -419,11 +430,6 @@ private void WriteToButton(SKoreButton button, string text)
                     isStaticEffectThreadStarted = true;
                     StartStaticEffectThread();
                 }
-            }
-            else
-            {
-                Speak("This host is not known, please contact The developer on discord : " + GlobalStrings.DeveloperDiscord);
-            }
         }
 
         private void EnableNbx_ValueChanged(object sender, EventArgs e)
@@ -485,7 +491,7 @@ private void WriteToButton(SKoreButton button, string text)
 
         private void IsServerSideBtn_Click(object sender, EventArgs e)
         {
-            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia || RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.hartico)
             {
                 if (isServerSideEffect)
                 {
