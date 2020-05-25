@@ -101,8 +101,10 @@
     <Compile Include="Utils\Globals\GlobalStrings.cs" />
     <Compile Include="Utils\Globals\GlobalBools.cs" />
     <Compile Include="Utils\HostFinder\BobbaItalia\KnownCurrency.cs" />
-    <Compile Include="Utils\HostFinder\BobbaItalia\PublicFurnis.cs" />
-    <Compile Include="Utils\HostFinder\BobbaItalia\StaffCatalogueRares.cs" />
+    <Compile Include="Utils\HostFinder\BobbaItalia\PublicFurnis\PublicWallFurnis.cs" />
+    <Compile Include="Utils\HostFinder\BobbaItalia\PublicFurnis\PublicFLoorFurnis.cs" />
+    <Compile Include="Utils\HostFinder\BobbaItalia\StaffRares\StaffRaresFloor.cs" />
+    <Compile Include="Utils\HostFinder\BobbaItalia\StaffRares\StaffRaresWallItems.cs" />
     <Compile Include="Utils\HostFinder\RecognizeDomain.cs" />
     <Compile Include="Helpers\EnumerableExtensions.cs" />
     <Compile Include="Helpers\CustomBinding.cs" />

@@ -14,6 +14,10 @@ namespace RetroFun.Helpers
             {
                 return bobbaitalia;
             }
+            else if (host == "192.95.19.75")
+            {
+                return hartico;
+            }
             else
             {
                 return host;
@@ -23,6 +27,7 @@ namespace RetroFun.Helpers
 
         public static readonly string bobbaitalia = "bobbaitalia.it";
 
+        public static readonly string hartico = "hartico.com";
 
     }
 }

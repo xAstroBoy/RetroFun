@@ -293,7 +293,7 @@ private void WriteToButton(SKoreButton button, string text)
 
         private async void SendServerEnableBobba(int effect)
         {
-            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia || RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.hartico)
             {
                 await Task.Delay(500);
                 await Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);

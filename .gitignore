@@ -1,5 +1,7 @@
 .vs
 .vs/*.*
+packages
+packages/*.*
 .vs/RetroFun/v16/Server/sqlite3/db.lock
 .vs/RetroFun/v16/Server/sqlite3/storage.ide-wal
 .vs/RetroFun/v16/Server/sqlite3/storage.ide-shm
@@ -19,3 +21,5 @@ RetroFun/bin/ConvertedSheets/*.*
 *.txt
 *.txt
 *.txt
+packages/ExcelDataReader.3.6.0/*.*
+packages/*.*/*.dll

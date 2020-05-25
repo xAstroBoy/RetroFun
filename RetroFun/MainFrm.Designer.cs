@@ -561,8 +561,7 @@ namespace RetroFun
             // 
             // FurnitureCheckerPg
             // 
-            this.FurnitureCheckerPg.AUTOMATIC_IRREGULAR_HIDER = false;
-            this.FurnitureCheckerPg.AUTOMATIC_REGULAR_HIDER = false;
+
             this.FurnitureCheckerPg.AutomaticScanMode = true;
             this.FurnitureCheckerPg.BackColor = System.Drawing.Color.White;
             this.FurnitureCheckerPg.ControlledFloorFurni = 0;
