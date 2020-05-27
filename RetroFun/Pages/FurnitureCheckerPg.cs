@@ -367,149 +367,150 @@ namespace RetroFun.Pages
 
         private void RecognizeFurnitureType(HWallItem item, bool isQuiet)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
-            {
-                if (StaffRaresWallItems.isRareFurni(item))
-                {
-                    if (!RaresWallFurnis.Contains(item))
+                    if (StaffRaresWallItems.isRareFurni(item))
                     {
-                        WallFurniCheck.RaresWallFurnis.Add(item);
-                    }
-                    UpdateRaresLbl();
-                    CheckForRares(item, isQuiet);
-                }
-                else if (PublicWallFurnis.IsCatalogueFurni(item))
-                {
-                    if (!CatalogueWallFurnis.Contains(item))
-                    {
-                        CatalogueWallFurnis.Add(item);
-                    }
-                    if(AreCataloguesFurnisHidden)
-                    {
-                        HideFurnisClient(item);
-                    }
-                    if (!isQuiet)
-                    {
-                        SpeakAnyways("This furni is in catalogue as Public furni");
-                    }
-                    UpdateCatalogFurnisLbl();
-
-                }
-                else if (KnownCurrency.isCrystals(item))
-                {
-                    if (!CrystalsWallItems.Contains(item))
-                    {
-                        CrystalsWallItems.Add(item);
-                    }
-                    if (AreCrystalsFurnisHidden)
-                    {
-                        HideFurnisClient(item);
-                    }
-                    if (!isQuiet)
-                    {
-                        SpeakAnyways("This furni is a Crystal Furni");
-                    }
-                    UpdateCatalogFurnisLbl();
-
-                }
-                else
-                {
-
-                    if (!UnknownWallItems.Contains(item))
-                    {
-                        UnknownWallItems.Add(item);
-                    }
-                    if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
-                    {
+                        if (!RaresWallFurnis.Contains(item))
+                        {
+                            WallFurniCheck.RaresWallFurnis.Add(item);
+                        }
+                        UpdateRaresLbl();
                         CheckForRares(item, isQuiet);
                     }
-                    UpdateUnknownFurnisLbl();
-                    if (!isQuiet)
+                    else if (PublicWallFurnis.IsCatalogueFurni(item))
                     {
-                        Speak("This furni is not Identified Yet! , contact the developer on discord :" + GlobalStrings.DeveloperDiscord);
-                    }
+                        if (!CatalogueWallFurnis.Contains(item))
+                        {
+                            CatalogueWallFurnis.Add(item);
+                        }
+                        if (AreCataloguesFurnisHidden)
+                        {
+                            HideFurnisClient(item);
+                        }
+                        if (!isQuiet)
+                        {
+                            SpeakAnyways("This furni is in catalogue as Public furni");
+                        }
+                        UpdateCatalogFurnisLbl();
 
-                }
-            }
+                    }
+                    else if (KnownCurrency.isCrystals(item))
+                    {
+                        if (!CrystalsWallItems.Contains(item))
+                        {
+                            CrystalsWallItems.Add(item);
+                        }
+                        if (AreCrystalsFurnisHidden)
+                        {
+                            HideFurnisClient(item);
+                        }
+                        if (!isQuiet)
+                        {
+                            SpeakAnyways("This furni is a Crystal Furni");
+                        }
+                        UpdateCatalogFurnisLbl();
+
+                    }
+                    else
+                    {
+
+                        if (!UnknownWallItems.Contains(item))
+                        {
+                            UnknownWallItems.Add(item);
+                        }
+
+                            CheckForRares(item, isQuiet);
+                        
+                        UpdateUnknownFurnisLbl();
+                        if (!isQuiet)
+                        {
+                    SpeakAnyways("This furni is not Identified Yet! , contact the developer on discord :" + GlobalStrings.DeveloperDiscord);
+                        }
+
+                    }
+               
+
         }
 
 
         private void RecognizeFurnitureType(HFloorItem item, bool isQuiet)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
-            {
-                if (StaffRaresFloorItems.isRareFurni(item))
-                {
-                    if (!RaresFloorFurnis.Contains(item))
-                    {
-                        RaresFloorFurnis.Add(item);
-                    }
-                    UpdateRaresLbl();
-                    CheckForRares(item, isQuiet);
-                }
 
-                else if (PublicFloorFurnis.IsCatalogueFurni(item))
-                {
-                    if (!CatalogueFloorFurnis.Contains(item))
+                    if (StaffRaresFloorItems.isRareFurni(item))
                     {
-                        CatalogueFloorFurnis.Add(item);
-                    }
-                    if (!isQuiet)
-                    {
-                        Speak("This furni is in catalogue as Public furni");
-                    }
-                    UpdateCatalogFurnisLbl();
-                }
-                else if (KnownCurrency.isCredits(item))
-                {
-                    if (!CreditsFloorFurnis.Contains(item))
-                    {
-                        CreditsFloorFurnis.Add(item);
-                    }
-                    if(AreCreditsFurnisHidden)
-                    {
-                        HideFurnisClient(item);
-                    }
-                    if (!isQuiet)
-                    {
-                        Speak("This furni is in catalogue as Credits Currency");
-                    }
-                    UpdateCreditsLbl();
-                }
-                else if (KnownCurrency.isCrystals(item))
-                {
-                    if (!CrystalsFloorFurnis.Contains(item))
-                    {
-                        CrystalsFloorFurnis.Add(item);
-                    }
-                    if(AreCrystalsFurnisHidden)
-                    {
-                        HideFurnisClient(item);
-                    }
-                    if (!isQuiet)
-                    {
-                        SpeakAnyways("This furni is a Crystal Furni");
-                    }
-                    UpdateCrystalsLbl();
-                    SyncCreditsCount();
-                }
-                else
-                {
-                    if (!UnknownFloorItems.Contains(item))
-                    {
-                        UnknownFloorItems.Add(item);
-                    }
-                    UpdateUnknownFurnisLbl();
-                    if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
-                    {
+                        if (!RaresFloorFurnis.Contains(item))
+                        {
+                            RaresFloorFurnis.Add(item);
+                        }
+                        UpdateRaresLbl();
                         CheckForRares(item, isQuiet);
                     }
-                    if (!isQuiet)
+
+                    else if (PublicFloorFurnis.IsCatalogueFurni(item))
                     {
-                        Speak("This furni is not Identified Yet! , contact the developer on discord :" + GlobalStrings.DeveloperDiscord);
-                    }
+                        if (!CatalogueFloorFurnis.Contains(item))
+                        {
+                            CatalogueFloorFurnis.Add(item);
+                        }
+
+                if (AreCataloguesFurnisHidden)
+                {
+                    HideFurnisClient(item);
                 }
-            }
+                if (!isQuiet)
+                        {
+                    SpeakAnyways("This furni is in catalogue as Public furni");
+                        }
+                        UpdateCatalogFurnisLbl();
+                    }
+                    else if (KnownCurrency.isCredits(item))
+                    {
+                        if (!CreditsFloorFurnis.Contains(item))
+                        {
+                            CreditsFloorFurnis.Add(item);
+                        }
+                        if (AreCreditsFurnisHidden)
+                        {
+                            HideFurnisClient(item);
+                        }
+                        if (!isQuiet)
+                        {
+                    SpeakAnyways("This furni is in catalogue as Credits Currency");
+                        }
+                        UpdateCreditsLbl();
+                    }
+                    else if (KnownCurrency.isCrystals(item))
+                    {
+                        if (!CrystalsFloorFurnis.Contains(item))
+                        {
+                            CrystalsFloorFurnis.Add(item);
+                        }
+                        if (AreCrystalsFurnisHidden)
+                        {
+                            HideFurnisClient(item);
+                        }
+                        if (!isQuiet)
+                        {
+                            SpeakAnyways("This furni is a Crystal Furni");
+                        }
+                        UpdateCrystalsLbl();
+                        SyncCreditsCount();
+                    }
+                    else
+                    {
+                        if (!UnknownFloorItems.Contains(item))
+                        {
+                            UnknownFloorItems.Add(item);
+                        }
+                        UpdateUnknownFurnisLbl();
+
+                            CheckForRares(item, isQuiet);
+                        
+                        if (!isQuiet)
+                        {
+                    SpeakAnyways("This furni is not Identified Yet! , contact the developer on discord :" + GlobalStrings.DeveloperDiscord);
+                        }
+                    }
+
         }
 
 
@@ -626,11 +627,8 @@ namespace RetroFun.Pages
                     {
                         Speak("This Furni is Irregular!", 34);
                     }
-                    if(!RegisteredIDs.Contains(itemid))
-                    {
-                        RecordRareControl(false, "[IRREGOLARE] : " + itemid);
-                        RegisteredIDs.Add(itemid);
-                    }
+
+                        RecordRareControl(false, "[IRREGOLARE] : " , itemid);
                 }
             }
         }
@@ -654,7 +652,7 @@ namespace RetroFun.Pages
                         }
                         if (!RegisteredIDs.Contains(wall.Id))
                         {
-                            RecordRareControl(false, "[IRREGOLARE] : " + wall.Id);
+                            RecordRareControl(false, "[IRREGOLARE] : " , wall.Id);
                             RegisteredIDs.Add(wall.Id);
                         }
 
@@ -722,7 +720,7 @@ namespace RetroFun.Pages
                                 }
                                 if (!RegisteredIDs.Contains(furni.Id))
                                 {
-                                    RecordRareControl(false, "[IRREGOLARE] : " + furni.Id);
+                                    RecordRareControl(false, "[IRREGOLARE] : " , furni.Id);
                                     RegisteredIDs.Add(furni.Id);
                                 }
 
@@ -930,7 +928,7 @@ namespace RetroFun.Pages
                             }
                             if (!RegisteredIDs.Contains(id))
                             {
-                               RecordRareControl(true, "[REGOLARE] : " + id);
+                               RecordRareControl(true, "[REGOLARE] : " , id);
                                 RegisteredIDs.Add(id);
                             }
                             return true;
@@ -1025,7 +1023,7 @@ namespace RetroFun.Pages
                                 }
                                 if (!RegisteredIDs.Contains(flooritem.Id))
                                 {
-                                    RecordRareControl(true, "[REGOLARE] : " + flooritem.Id);
+                                    RecordRareControl(true, "[REGOLARE] : " , flooritem.Id);
                                     RegisteredIDs.Add(flooritem.Id);
                                 }
                                 return true;
@@ -1089,7 +1087,7 @@ namespace RetroFun.Pages
                             }
                             if (!RegisteredIDs.Contains(wallitem.Id))
                             {
-                                RecordRareControl(true, "[REGOLARE] : " + wallitem.Id);
+                                RecordRareControl(true, "[REGOLARE] : " , wallitem.Id);
                                 RegisteredIDs.Add(wallitem.Id);
                             }
                             return true;
@@ -1930,6 +1928,10 @@ namespace RetroFun.Pages
             WallFurniCheck.ClearAll();
             FloorFurniCheck.ClearAll();
             RegisteredIDs.Clear();
+            REM_IRR_FLOOR_FURNI = false;
+            REM_IRR_WALL_FURNI = false;
+            REM_REG_WALL_FURNI = false;
+            REM_REG_FLOOR_FURNI = false;
             IS_HIDING_IRREGULAR_WALLFURNIS = false;
             IS_HIDING_IRREGULAR_FLOORFURNIS = false;
             IS_HIDING_REGULAR_WALLFURNIS = false;
@@ -2718,16 +2720,17 @@ namespace RetroFun.Pages
 
         private void PickRegisteredFurnisBtn_Click(object sender, EventArgs e)
         {
-            REM_REG_WALL_FURNI = false;
-            REM_REG_FLOOR_FURNI = false;
+            REM_REG_WALL_FURNI = true;
+            REM_REG_FLOOR_FURNI = true;
             SetRareSnapshots();
-            RemoveRegolarFurni();
+            RemoveRegolarWallFurni();
+            RemoveRegolarFloorFurni();
         }
 
         private void PickUnregisteredFurniBtn_Click(object sender, EventArgs e)
         {
-            REM_IRR_WALL_FURNI = false;
-            REM_IRR_FLOOR_FURNI = false;
+            REM_IRR_WALL_FURNI = true;
+            REM_IRR_FLOOR_FURNI = true;
             SetRareSnapshots();
             RemoveIrregolarFloorFurni();
             RemoveIrregolarWallFurni();
@@ -2781,8 +2784,7 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-
-        private void RemoveRegolarFurni()
+        private void RemoveRegolarFloorFurni()
         {
             new Thread(() =>
             {
@@ -2793,13 +2795,13 @@ namespace RetroFun.Pages
                     {
                         if (SnapshotRegularFloorItems.Count() == 0)
                         {
-                            REM_REG_FLOOR_FURNI = true;
+                            REM_REG_FLOOR_FURNI = false;
                         }
-                        if (SnapshotRegularFloorItems != null && SnapshotRegularFloorItems.Count() != 0 && !REM_REG_FLOOR_FURNI)
+                        if (SnapshotRegularFloorItems != null && SnapshotRegularFloorItems.Count() != 0 && REM_REG_FLOOR_FURNI)
                         {
                             foreach (HFloorItem floorfurni in SnapshotRegularFloorItems)
                             {
-                                Task.Delay(8000);
+                                Task.Delay(250);
                                 Connection.SendToServerAsync(Out.RoomPickupItem, 2, floorfurni.Id);
 
                                 if (RegularFloorFurni.Contains(floorfurni))
@@ -2812,18 +2814,36 @@ namespace RetroFun.Pages
                                 }
                                 UpdateRegularFurniLabel();
                             }
+                            REM_REG_FLOOR_FURNI = false;
                         }
+                        REM_REG_FLOOR_FURNI = false;
+                    }
+                    catch (Exception)
+                    { }
+                } while (REM_REG_FLOOR_FURNI);
+            }).Start();
+        }
 
+
+
+        private void RemoveRegolarWallFurni()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    try
+                    {
                         if (SnapshotRegularWallItems.Count() == 0)
                         {
-                            REM_REG_WALL_FURNI = true;
-
+                            REM_REG_WALL_FURNI = false;
                         }
-                        if (SnapshotRegularWallItems != null && SnapshotRegularWallItems.Count() != 0 && !REM_REG_WALL_FURNI)
+                        if (SnapshotRegularWallItems != null && SnapshotRegularWallItems.Count() != 0 && REM_REG_WALL_FURNI)
                         {
                             foreach (HWallItem wallitem in SnapshotRegularWallItems)
                             {
-                                Task.Delay(8000);
+                                Task.Delay(250);
                                 Connection.SendToServerAsync(Out.RoomPickupItem, 2, wallitem.Id);
 
                                 if (RegularWallFurni.Contains(wallitem))
@@ -2836,12 +2856,14 @@ namespace RetroFun.Pages
                                 }
                                 UpdateRegularFurniLabel();
                             }
+                            REM_REG_WALL_FURNI = false;
                         }
+                        REM_REG_WALL_FURNI = false;
                     }
 
                     catch (Exception)
                     { }
-                } while (!REM_REG_FLOOR_FURNI && !REM_REG_WALL_FURNI);
+                } while (REM_REG_WALL_FURNI);
             }).Start();
         }
 
@@ -2857,11 +2879,11 @@ namespace RetroFun.Pages
                 {
                     try
                     {
-                        if (SnapShotIrregularFloorFurni != null && SnapShotIrregularFloorFurni.Count() != 0 && !REM_IRR_FLOOR_FURNI)
+                        if (SnapShotIrregularFloorFurni != null && SnapShotIrregularFloorFurni.Count() != 0 && REM_IRR_FLOOR_FURNI)
                         {
                             if (SnapShotIrregularFloorFurni.Count() == 0)
                             {
-                                REM_IRR_WALL_FURNI = true;
+                                REM_IRR_WALL_FURNI = false;
                             }
                             foreach (HFloorItem floorfurni in SnapShotIrregularFloorFurni)
                             {
@@ -2878,7 +2900,11 @@ namespace RetroFun.Pages
                                 UpdateIrregolarFurniLabel();
                                 UpdateRemovedFloorFurniLbl();
                             }
-                            REM_IRR_FLOOR_FURNI = true;
+                            REM_IRR_FLOOR_FURNI = false;
+                        }
+                        else
+                        {
+                            REM_IRR_FLOOR_FURNI = false;
                         }
                     }
                     catch (Exception)
@@ -2902,9 +2928,9 @@ namespace RetroFun.Pages
                     {
                         if (SnapShotIrregularWallFurni.Count() == 0)
                         {
-                            REM_IRR_WALL_FURNI = true;
+                            REM_IRR_WALL_FURNI = false;
                         }
-                        if (SnapShotIrregularWallFurni != null && SnapShotIrregularWallFurni.Count() != 0 && !REM_IRR_WALL_FURNI)
+                        if (SnapShotIrregularWallFurni != null && SnapShotIrregularWallFurni.Count() != 0 && REM_IRR_WALL_FURNI)
                         {
                             foreach (HWallItem wallitem in SnapShotIrregularWallFurni)
                             {
@@ -2922,7 +2948,11 @@ namespace RetroFun.Pages
                                 UpdateIrregolarFurniLabel();
                                 UpdateRemovedWallFurniLbl();
                             }
-                            REM_IRR_WALL_FURNI = true;
+                            REM_IRR_WALL_FURNI = false;
+                        }
+                        else
+                        {
+                            REM_IRR_WALL_FURNI = false;
                         }
                     }
                     catch (Exception)
@@ -4171,8 +4201,9 @@ namespace RetroFun.Pages
 
 
 
-        private void RecordRareControl(bool isRegolar, string text)
+        private void RecordRareControl(bool isRegolar, string text, int id)
         {
+
             string raretype;
             try
             {
@@ -4226,7 +4257,11 @@ namespace RetroFun.Pages
                             txtFile.WriteLine("----------------------------------------------------");
                             newroom = false;
                         }
-                        txtFile.WriteLine(text);
+                        if (!RegisteredIDs.Contains(id))
+                        {
+                            RegisteredIDs.Add(id);
+                            txtFile.WriteLine(text + id);
+                        }
                     }
                 }
                 else if (File.Exists(Filepath))
@@ -4263,7 +4298,11 @@ namespace RetroFun.Pages
                             txtFile.WriteLine("----------------------------------------------------");
                             newroom = false;
                         }
-                        txtFile.WriteLine(text);
+                        if (!RegisteredIDs.Contains(id))
+                        {
+                            RegisteredIDs.Add(id);
+                            txtFile.WriteLine(text + id);
+                        }
                     }
 
                 }
