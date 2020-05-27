@@ -9,7 +9,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class StalkingPage:  ObservablePage
+    public partial class StalkingPage : ObservablePage
     {
         private readonly Victim[] _victims = new[]
         {
@@ -72,7 +72,7 @@ namespace RetroFun.Pages
         }
 
 
-        private bool _ShouldStalkBotGiochi;
+        private bool _ShouldStalkBotGiochi = true;
 
         public bool ShouldStalkBotGiochi
         {
@@ -95,7 +95,7 @@ namespace RetroFun.Pages
             }
         }
 
-            private bool _ShouldSpamRandomCoords;
+        private bool _ShouldSpamRandomCoords;
 
         public bool ShouldSpamRandomCoords
         {
@@ -103,6 +103,19 @@ namespace RetroFun.Pages
             set
             {
                 _ShouldSpamRandomCoords = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        private bool _MuteBotGames;
+
+        public bool MuteBotGames
+        {
+            get => _MuteBotGames;
+            set
+            {
+                _MuteBotGames = value;
                 RaiseOnPropertyChanged();
             }
         }
@@ -122,8 +135,8 @@ namespace RetroFun.Pages
             Bind(SpamWalkChb, "Checked", nameof(ShouldSpamRandomCoords));
 
             Bind(SpectatorChbx, "Checked", nameof(ShouldExitDirectlyOnGames));
+            Bind(MuteBotGamesChbx, "Checked", nameof(MuteBotGames));
 
-            
             Bind(IdOfVictimNbx, "Value", nameof(UserIDCapture));
             Bind(CooldownFloodNbx, "Value", nameof(CooldownWalking));
         }
@@ -218,22 +231,30 @@ namespace RetroFun.Pages
 
         public override void In_ReceivePrivateMessage(DataInterceptedEventArgs e)
         {
-            if (ShouldStalkBotGiochi)
+
+            int UserID = e.Packet.ReadInteger();
+            if (UserID == 1442790)
             {
-                int UserID = e.Packet.ReadInteger();
-                if (UserID == 1442790)
+                if (ShouldStalkBotGiochi)
                 {
-                    if (ShouldExitDirectlyOnGames)
-                    {
-                        isSpectatorModeActive = true;
-                    }
                     if (Connection.Remote.IsConnected)
                     {
                         Connection.SendToServerAsync(Out.StalkFriend, 1442790);
                     }
                 }
+                if (MuteBotGames)
+                {
+                    e.IsBlocked = true;
+                }
+                if (ShouldExitDirectlyOnGames)
+                {
+                    isSpectatorModeActive = true;
+                }
+
             }
         }
+    
+        
 
         private void StalkVictimBtn_Click(object sender, EventArgs e)
         {

@@ -25,6 +25,7 @@ using System.Text;
 using RetroFun.Globals;
 using RetroFun.Utils.Globals;
 using RetroFun.Utils.HostFinder.BobbaItalia;
+using System.Runtime.CompilerServices;
 
 namespace RetroFun.Pages
 {
@@ -32,6 +33,47 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class FurnitureChecker : ObservablePage
     {
+
+        private bool newroom = true;
+
+        private List<HFloorItem> IrregularFloorFurni { get => FloorFurniCheck.IrregularFloorFurni; set { FloorFurniCheck.IrregularFloorFurni = value; } }
+        private List<HFloorItem> CreditsFloorFurnis { get => FloorFurniCheck.CreditsFloorFurnis; set { FloorFurniCheck.CreditsFloorFurnis = value; } }
+        private List<HFloorItem> CrystalsFloorFurnis { get => FloorFurniCheck.CrystalsFloorFurnis; set { FloorFurniCheck.CrystalsFloorFurnis = value; } }
+        private List<HFloorItem> CatalogueFloorFurnis { get => FloorFurniCheck.CatalogueFloorFurnis; set { FloorFurniCheck.CatalogueFloorFurnis = value; } }
+        private List<HFloorItem> RaresFloorFurnis { get => FloorFurniCheck.RaresFloorFurnis; set { FloorFurniCheck.RaresFloorFurnis = value; } }
+        private List<HFloorItem> RegularFloorFurni { get => FloorFurniCheck.RegularFloorFurni; set { FloorFurniCheck.RegularFloorFurni = value; } }
+        private List<HFloorItem> WhiteListedFloorFurni { get => FloorFurniCheck.WhiteListedFloorFurni; set { FloorFurniCheck.WhiteListedFloorFurni = value; } }
+        private List<HFloorItem> HIDDEN_IRREGULAR_FLOORFURNIS { get => FloorFurniCheck.HIDDEN_IRREGULAR_FLOORFURNIS; set { FloorFurniCheck.HIDDEN_IRREGULAR_FLOORFURNIS = value; } }
+        private List<HFloorItem> HIDDEN_REGULAR_FLOORFURNIS { get => FloorFurniCheck.HIDDEN_REGULAR_FLOORFURNIS; set { FloorFurniCheck.HIDDEN_REGULAR_FLOORFURNIS = value; } }
+        private List<HFloorItem> FloorRaresSnapShotCount { get => FloorFurniCheck.FloorRaresSnapShotCount; set { FloorFurniCheck.FloorRaresSnapShotCount = value; } }
+        private List<HFloorItem> RoomFloorItemsSnapshot { get => FloorFurniCheck.RoomFloorItemsSnapshot; set { FloorFurniCheck.RoomFloorItemsSnapshot = value; } }
+        private List<HFloorItem> SnapShotIrregularFloorFurni { get => FloorFurniCheck.SnapShotIrregularFloorFurni; set { FloorFurniCheck.SnapShotIrregularFloorFurni = value; } }
+        private List<HFloorItem> SnapshotRegularFloorItems { get => FloorFurniCheck.SnapshotRegularFloorItems; set { FloorFurniCheck.SnapshotRegularFloorItems = value; } }
+        private List<HFloorItem> SnapshotRemovedFloorItems { get => FloorFurniCheck.SnapshotRemovedFloorItems; set { FloorFurniCheck.SnapshotRemovedFloorItems = value; } }
+        private List<HFloorItem> SnapshotCatalogueFloorItems { get => FloorFurniCheck.SnapshotCatalogueFloorItems; set { FloorFurniCheck.SnapshotCatalogueFloorItems = value; } }
+        private List<HFloorItem> UnknownFloorItems { get => FloorFurniCheck.UnknownFloorItems; set { FloorFurniCheck.UnknownFloorItems = value; } }
+        private List<HFloorItem> SnapshotCreditsFloorFurnis { get => FloorFurniCheck.SnapshotCreditsFloorFurnis; set { FloorFurniCheck.SnapshotCreditsFloorFurnis = value; } }
+        private List<HFloorItem> SnapshotCrystalsFloorFurnis { get => FloorFurniCheck.SnapshotCrystalsFloorFurnis; set { FloorFurniCheck.SnapshotCrystalsFloorFurnis = value; } }
+
+
+        private List<HWallItem> IrregularWallFurni { get => WallFurniCheck.IrregularWallFurni; set { WallFurniCheck.IrregularWallFurni = value; } }
+        private List<HWallItem> CrystalsWallItems { get => WallFurniCheck.CrystalsWallItems; set { WallFurniCheck.CrystalsWallItems = value; } }
+        private List<HWallItem> CatalogueWallFurnis { get => WallFurniCheck.CatalogueWallFurnis; set { WallFurniCheck.CatalogueWallFurnis = value; } }
+        private List<HWallItem> RaresWallFurnis { get => WallFurniCheck.RaresWallFurnis; set { WallFurniCheck.RaresWallFurnis = value; } }
+        private List<HWallItem> RegularWallFurni { get => WallFurniCheck.RegularWallFurni; set { WallFurniCheck.RegularWallFurni = value; } }
+        private List<HWallItem> WhitelistedWallFurni { get => WallFurniCheck.WhitelistedWallFurni; set { WallFurniCheck.WhitelistedWallFurni = value; } }
+        private List<HWallItem> HIDDEN_IRREGULAR_WALLFURNIS { get => WallFurniCheck.HIDDEN_IRREGULAR_WALLFURNIS; set { WallFurniCheck.HIDDEN_IRREGULAR_WALLFURNIS = value; } }
+        private List<HWallItem> HIDDEN_REGULAR_WALLFURNIS { get => WallFurniCheck.HIDDEN_REGULAR_WALLFURNIS; set { WallFurniCheck.HIDDEN_REGULAR_WALLFURNIS = value; } }
+        private List<HWallItem> WallRaresSnapshotCount { get => WallFurniCheck.WallRaresSnapshotCount; set { WallFurniCheck.WallRaresSnapshotCount = value; } }
+        private List<HWallItem> RoomWallItemsSnapshot { get => WallFurniCheck.RoomWallItemsSnapshot; set { WallFurniCheck.RoomWallItemsSnapshot = value; } }
+        private List<HWallItem> SnapShotIrregularWallFurni { get => WallFurniCheck.SnapShotIrregularWallFurni; set { WallFurniCheck.SnapShotIrregularWallFurni = value; } }
+        private List<HWallItem> SnapshotRegularWallItems { get => WallFurniCheck.SnapshotRegularWallItems; set { WallFurniCheck.SnapshotRegularWallItems = value; } }
+        private List<HWallItem> SnapshotRemovedWallItems { get => WallFurniCheck.SnapshotRemovedWallItems; set { WallFurniCheck.SnapshotRemovedWallItems = value; } }
+        private List<HWallItem> SnapshotCatalogueWallItems { get => WallFurniCheck.SnapshotCatalogueWallItems; set { WallFurniCheck.SnapshotCatalogueWallItems = value; } }
+        private List<HWallItem> UnknownWallItems { get => WallFurniCheck.UnknownWallItems; set { WallFurniCheck.UnknownWallItems = value; } }
+        private List<HWallItem> SnapshotCrystalsWallFurnis { get => WallFurniCheck.SnapshotCrystalsWallFurnis; set { WallFurniCheck.SnapshotCrystalsWallFurnis = value; } }
+
+
         private List<HCatalogNode> PageNode = new List<HCatalogNode>();
 
 
@@ -77,63 +119,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
-
-        List<HWallItem> IrregularWallFurni;
-        List<HFloorItem> IrregularFloorFurni;
-
-        List<HFloorItem> CreditsFloorFurnis;
-        List<HFloorItem> CrystalsFloorFurnis;
-        List<HWallItem> CrystalsWallItems;
-
-        List<HFloorItem> CatalogueFloorFurnis;
-        List<HWallItem> CatalogueWallFurnis;
-
-        List<HFloorItem> RaresFloorFurnis;
-        List<HWallItem> RaresWallFurnis;
-
-        List<HWallItem> RegularWallFurni;
-        List<HFloorItem> RegularFloorFurni;
-
-
-
-        List<HWallItem> WhitelistedWallFurni;
-        List<HFloorItem> WhiteListedFloorFurni;
-
-
-        List<HWallItem> HIDDEN_IRREGULAR_WALLFURNIS;
-        List<HFloorItem> HIDDEN_IRREGULAR_FLOORFURNIS;
-
-        List<HWallItem> HIDDEN_REGULAR_WALLFURNIS;
-        List<HFloorItem> HIDDEN_REGULAR_FLOORFURNIS;
-
-        List<HFloorItem> FloorRaresSnapShotCount;
-        List<HWallItem> WallRaresSnapshotCount;
-
-
-        List<HFloorItem> RoomFloorItemsSnapshot;
-        List<HWallItem> RoomWallItemsSnapshot;
-
-
-        List<HFloorItem> SnapShotIrregularFloorFurni;
-        List<HWallItem> SnapShotIrregularWallFurni;
-
-        List<HFloorItem> SnapshotRegularFloorItems;
-        List<HWallItem> SnapshotRegularWallItems;
-
-
-        List<HFloorItem> SnapshotRemovedFloorItems;
-        List<HWallItem> SnapshotRemovedWallItems;
-
-
-        List<HFloorItem> SnapshotCatalogueFloorItems;
-        List<HWallItem> SnapshotCatalogueWallItems;
-        List<HFloorItem> UnknownFloorItems;
-        List<HWallItem> UnknownWallItems;
-
-        List<HFloorItem> SnapshotCreditsFloorFurnis;
-        List<HFloorItem> SnapshotCrystalsFloorFurnis;
-        List<HWallItem> SnapshotCrystalsWallFurnis;
 
 
         List<int> SpriteIds = new List<int>();
@@ -373,52 +358,19 @@ namespace RetroFun.Pages
             InitializeComponent();
             Bind(FurniIDToCheckNbx, "Value", nameof(ControlledFloorFurni));
             FilePathList = new List<string>();
-            IrregularWallFurni = new List<HWallItem>();
-            IrregularFloorFurni = new List<HFloorItem>();
-            RegularWallFurni = new List<HWallItem>();
-            RegularFloorFurni = new List<HFloorItem>();
-            WhitelistedWallFurni = new List<HWallItem>();
-            WhiteListedFloorFurni = new List<HFloorItem>();
-            HIDDEN_IRREGULAR_WALLFURNIS = new List<HWallItem>();
-            HIDDEN_IRREGULAR_FLOORFURNIS = new List<HFloorItem>();
-            HIDDEN_REGULAR_WALLFURNIS = new List<HWallItem>();
-            HIDDEN_REGULAR_FLOORFURNIS = new List<HFloorItem>();
-            FloorRaresSnapShotCount = new List<HFloorItem>();
-            WallRaresSnapshotCount = new List<HWallItem>();
-            SnapshotRegularFloorItems = new List<HFloorItem>();
-            SnapshotRegularWallItems = new List<HWallItem>();
-            SnapShotIrregularFloorFurni = new List<HFloorItem>();
-            SnapShotIrregularWallFurni = new List<HWallItem>();
-            SnapshotRemovedFloorItems = new List<HFloorItem>();
-            SnapshotRemovedWallItems = new List<HWallItem>();
-            CreditsFloorFurnis = new List<HFloorItem>();
-            CrystalsFloorFurnis = new List<HFloorItem>();
-            CatalogueFloorFurnis = new List<HFloorItem>();
-            CatalogueWallFurnis = new List<HWallItem>();
-            RaresFloorFurnis = new List<HFloorItem>();
-            RaresWallFurnis = new List<HWallItem>();
-            RoomFloorItemsSnapshot = new List<HFloorItem>();
-            RoomWallItemsSnapshot = new List<HWallItem>();
-            SnapshotCatalogueFloorItems = new List<HFloorItem>();
-            SnapshotCatalogueWallItems = new List<HWallItem>();
-            SnapshotCreditsFloorFurnis = new List<HFloorItem>();
-            SnapshotCrystalsFloorFurnis = new List<HFloorItem>();
-            CrystalsWallItems = new List<HWallItem>();
-            UnknownFloorItems = new List<HFloorItem>();
-            UnknownWallItems = new List<HWallItem>();
-            SnapshotCrystalsWallFurnis = new List<HWallItem>();
+
         }
 
 
         private void RecognizeFurnitureType(HWallItem item, bool isQuiet)
         {
-            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
                 if (StaffRaresWallItems.isRareFurni(item))
                 {
                     if (!RaresWallFurnis.Contains(item))
                     {
-                        RaresWallFurnis.Add(item);
+                        WallFurniCheck.RaresWallFurnis.Add(item);
                     }
                     UpdateRaresLbl();
                     CheckForRares(item, isQuiet);
@@ -464,11 +416,16 @@ namespace RetroFun.Pages
                     {
                         UnknownWallItems.Add(item);
                     }
+                    if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+                    {
+                        CheckForRares(item, isQuiet);
+                    }
                     UpdateUnknownFurnisLbl();
                     if (!isQuiet)
                     {
                         Speak("This furni is not Identified Yet! , contact the developer on discord :" + GlobalStrings.DeveloperDiscord);
                     }
+
                 }
             }
         }
@@ -476,7 +433,7 @@ namespace RetroFun.Pages
 
         private void RecognizeFurnitureType(HFloorItem item, bool isQuiet)
         {
-            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
                 if (StaffRaresFloorItems.isRareFurni(item))
                 {
@@ -540,6 +497,10 @@ namespace RetroFun.Pages
                         UnknownFloorItems.Add(item);
                     }
                     UpdateUnknownFurnisLbl();
+                    if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+                    {
+                        CheckForRares(item, isQuiet);
+                    }
                     if (!isQuiet)
                     {
                         Speak("This furni is not Identified Yet! , contact the developer on discord :" + GlobalStrings.DeveloperDiscord);
@@ -588,7 +549,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private void RareCheck(int id, bool isQuiet)
+        private void FindFurni(int id, bool isQuiet)
         {
 
             if (FilePathList != null && FilePathList.Count != 0)
@@ -601,27 +562,22 @@ namespace RetroFun.Pages
                 if (wall != null)
                 {
                     RecognizeFurnitureType(wall, isQuiet);
-                    return;
                 }
                 else if (floor != null)
                 {
                     RecognizeFurnitureType(floor, isQuiet);
-                    return;
                 }
                 else if (remfloor != null)
                 {
                     RecognizeFurnitureType(remfloor, isQuiet);
-                    return;
                 }
                 else if (remwall != null)
                 {
                     RecognizeFurnitureType(remwall, isQuiet);
-                    return;
                 }
                 else
                 {
                     CheckForRares(id, isQuiet);
-                    return;
                 }
             }
         }
@@ -641,7 +597,7 @@ namespace RetroFun.Pages
             if (Connection.Remote.IsConnected)
             {
                 await Task.Delay(250);
-                if (In.RemoveFloorItem == 0 && RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+                if (In.RemoveFloorItem == 0 && KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
                 {
                     await Connection.SendToClientAsync(2411, item.Id.ToString(), false, 0, 0);
                     return;
@@ -743,7 +699,7 @@ namespace RetroFun.Pages
                 bool isParticularFurniture = isParticularFurni(furni, isQuiet);
                 if (!isParticularFurniture)
                 {
-                    if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+                    if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
                     {
                         bool isRegular = SearchPaymentRare(furni, isQuiet);
                         if (!isRegular)
@@ -969,7 +925,7 @@ namespace RetroFun.Pages
 
         private bool isParticularFurni(HFloorItem furni, bool IsQuiet)
         {
-            if (GlobalLists.BobbaParticularRares.Contains(furni.TypeId) && RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+            if (GlobalLists.BobbaParticularRares.Contains(furni.TypeId) && KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
                 if ((furni.Id > 684921524) && (furni.Id < 685173361))
                 {
@@ -1447,7 +1403,7 @@ namespace RetroFun.Pages
         {
             IrregularWallFurni.Clear();
             RegularWallFurni.Clear();
-            RaresWallFurnis.Clear();
+            WallFurniCheck.RaresWallFurnis.Clear();
             CatalogueWallFurnis.Clear();
         }
 
@@ -1538,9 +1494,9 @@ namespace RetroFun.Pages
 
         private int SyncRareWallCount()
         {
-            if (RaresWallFurnis != null)
+            if (WallFurniCheck.RaresWallFurnis != null)
             {
-                return RaresWallFurnis.Count();
+                return WallFurniCheck.RaresWallFurnis.Count();
             }
             else
             {
@@ -1657,7 +1613,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../PlacedRares/" + RecognizeDomain.GetHost(Connection.Host) + "_rari" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../PlacedRares/" + KnownDomains.GetHost(Connection.Host) + "_rari" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "PlacedRares";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -1686,48 +1642,6 @@ namespace RetroFun.Pages
         }
 
 
-        private void RecordRareControl(bool isRegolar, string text)
-        {
-            string raretype;
-            try
-            {
-                if (isRegolar)
-                {
-                    raretype = "_rari_regolari";
-                }
-                else
-                {
-                    raretype = "_rari_irregolari";
-                }
-
-                string Filepath = "../RareControls/" + RecognizeDomain.GetHost(Connection.Host) + raretype + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
-                string FolderName = "RareControls";
-
-                Directory.CreateDirectory("../" + FolderName);
-
-                if (!File.Exists(Filepath))
-                {
-                    using (var txtFile = File.AppendText(Filepath))
-                    {
-                        txtFile.WriteLine("Rares Control Done at :" + DateTime.Now.ToString());
-                        txtFile.WriteLine(text);
-                    }
-                }
-                else if (File.Exists(Filepath))
-                {
-                    using (var txtFile = File.AppendText(Filepath))
-                    {
-                        txtFile.WriteLine(text);
-                    }
-
-                }
-            }
-
-            catch (Exception)
-            {
-
-            }
-        }
 
         private void NoticePickup(string FurniID)
         {
@@ -1786,49 +1700,58 @@ namespace RetroFun.Pages
 
         public override void In_WallItemUpdate(DataInterceptedEventArgs e)
         {
-            string furniid = e.Packet.ReadString();
-            int typeIdIguess = e.Packet.ReadInteger();
-            string newLocation = e.Packet.ReadString();
-            if (int.TryParse(furniid, out int furni))
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                UpdateFurniMovement(furni, newLocation);
+                string furniid = e.Packet.ReadString();
+                int typeIdIguess = e.Packet.ReadInteger();
+                string newLocation = e.Packet.ReadString();
+                if (int.TryParse(furniid, out int furni))
+                {
+                    UpdateFurniMovement(furni, newLocation);
+                }
+                e.Packet.Position = 0;
+                e.Continue();
             }
-            e.Packet.Position = 0;
-            e.Continue();
         }
 
 
         public override void In_FloorItemUpdate(DataInterceptedEventArgs e)
         {
-            int uniqueId = e.Packet.ReadInteger();
-            int typeId = e.Packet.ReadInteger();
-            int x = e.Packet.ReadInteger();
-            int y = e.Packet.ReadInteger();
-            int facingprob = e.Packet.ReadInteger();
-            string z = e.Packet.ReadString();
-            string heightthingyprob = e.Packet.ReadString();
-            int stateprobidk = e.Packet.ReadInteger();
-            int newXProb = e.Packet.ReadInteger();
-            int newYProb = e.Packet.ReadInteger();
-            UpdateFurniMovement(uniqueId, x, y, z);
-            e.Packet.Position = 0;
-            e.Continue();
-            UpdateFloorFurnisLabel();
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            {
+                int uniqueId = e.Packet.ReadInteger();
+                int typeId = e.Packet.ReadInteger();
+                int x = e.Packet.ReadInteger();
+                int y = e.Packet.ReadInteger();
+                int facingprob = e.Packet.ReadInteger();
+                string z = e.Packet.ReadString();
+                string heightthingyprob = e.Packet.ReadString();
+                int stateprobidk = e.Packet.ReadInteger();
+                int newXProb = e.Packet.ReadInteger();
+                int newYProb = e.Packet.ReadInteger();
+                UpdateFurniMovement(uniqueId, x, y, z);
+                e.Packet.Position = 0;
+                e.Continue();
+                UpdateFloorFurnisLabel();
+            }
         }
 
 
         public override void Out_LatencyTest(DataInterceptedEventArgs e)
         {
-            if (pages.Values.Count == 0)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                RequestPageNode();
+                if (pages.Values.Count == 0)
+                {
+                    RequestPageNode();
+                }
             }
         }
 
         private void RequestPageNode()
         {
             pages.Clear();
-            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
                 Connection.SendToServerAsync(3566, "NORMAL");
             }
@@ -1856,32 +1779,35 @@ namespace RetroFun.Pages
 
         public override void In_CatalogPagesList(DataInterceptedEventArgs e)
         {
-            var node = new HCatalogNode(e.Packet);
-            foreach (HCatalogNode children in node.Children)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                foreach (HCatalogNode children2 in children.Children)
+                var node = new HCatalogNode(e.Packet);
+                foreach (HCatalogNode children in node.Children)
                 {
-                    if (!pages.ContainsKey(children2.PageId))
+                    foreach (HCatalogNode children2 in children.Children)
                     {
-                        pages.Add(children2.PageId, RemoveSpecialCharacters(children2.Localization));
-                    }
-                    foreach (HCatalogNode children3 in children2.Children)
-                    {
-                        if (!pages.ContainsKey(children3.PageId))
+                        if (!pages.ContainsKey(children2.PageId))
                         {
-                            pages.Add(children3.PageId, RemoveSpecialCharacters(children3.Localization));
+                            pages.Add(children2.PageId, RemoveSpecialCharacters(children2.Localization));
                         }
-                        foreach (HCatalogNode children4 in children3.Children)
+                        foreach (HCatalogNode children3 in children2.Children)
                         {
-                            if (!pages.ContainsKey(children4.PageId))
+                            if (!pages.ContainsKey(children3.PageId))
                             {
-                                pages.Add(children4.PageId, RemoveSpecialCharacters(children4.Localization));
+                                pages.Add(children3.PageId, RemoveSpecialCharacters(children3.Localization));
                             }
-                            foreach (HCatalogNode children5 in children4.Children)
+                            foreach (HCatalogNode children4 in children3.Children)
                             {
-                                if (!pages.ContainsKey(children5.PageId))
+                                if (!pages.ContainsKey(children4.PageId))
                                 {
-                                    pages.Add(children5.PageId, RemoveSpecialCharacters(children5.Localization));
+                                    pages.Add(children4.PageId, RemoveSpecialCharacters(children4.Localization));
+                                }
+                                foreach (HCatalogNode children5 in children4.Children)
+                                {
+                                    if (!pages.ContainsKey(children5.PageId))
+                                    {
+                                        pages.Add(children5.PageId, RemoveSpecialCharacters(children5.Localization));
+                                    }
                                 }
                             }
                         }
@@ -1891,33 +1817,35 @@ namespace RetroFun.Pages
         }
         public override void In_CatalogPage(DataInterceptedEventArgs e)
         {
-            if (IsLoggingPageStuff)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                isNewPage = true;
-                shouldaddnewchar = false;
-                shoudendline = true;
-                isNewPage1 = true;
-                shouldaddnewchar1 = false;
-                shoudendline1 = true;
-                SpriteIds.Clear();
-                var catalog = new HCatalogPage(e.Packet);
-                string pagename = FindPageNameByID(catalog.Id);
-
-                var CatalogOffers = catalog.Offers.ToList();
-                foreach (HCatalogOffer itemproduct in CatalogOffers)
+                if (IsLoggingPageStuff)
                 {
-                    foreach (HCatalogProduct item in itemproduct.Products)
+                    isNewPage = true;
+                    shouldaddnewchar = false;
+                    shoudendline = true;
+                    isNewPage1 = true;
+                    shouldaddnewchar1 = false;
+                    shoudendline1 = true;
+                    SpriteIds.Clear();
+                    var catalog = new HCatalogPage(e.Packet);
+                    string pagename = FindPageNameByID(catalog.Id);
+
+                    var CatalogOffers = catalog.Offers.ToList();
+                    foreach (HCatalogOffer itemproduct in CatalogOffers)
                     {
-                        var furnitype = item.Type;
-                        if (!SpriteIds.Contains(item.ClassId))
+                        foreach (HCatalogProduct item in itemproduct.Products)
                         {
-                            SpriteIds.Add(item.ClassId);
-                            if (pagename == "NOT_FOUND")
+                            var furnitype = item.Type;
+                            if (!SpriteIds.Contains(item.ClassId))
                             {
-                                RequestPageNode();
-                            }
-                            else
-                            {
+                                SpriteIds.Add(item.ClassId);
+                                if (pagename == "NOT_FOUND")
+                                {
+                                    RequestPageNode();
+                                }
+                                else
+                                {
                                     if (furnitype == HProductType.Stuff)
                                     {
                                         PrintClassFloorIDTOFile(item.ClassId, "Bobba_" + pagename);
@@ -1933,6 +1861,7 @@ namespace RetroFun.Pages
                     }
                 }
             }
+        }
         
 
 
@@ -1950,51 +1879,30 @@ namespace RetroFun.Pages
         }
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
-            ResetAll();
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            {
+                ResetAll();
+                newroom = true;
+            }
         }
 
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
-            ResetAll();
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            {
+                ResetAll();
+                newroom = true;
+            }
         }
+
+
 
 
         private void ResetAll()
         {
-            IrregularWallFurni.Clear();
-            IrregularFloorFurni.Clear();
-            RegularWallFurni.Clear();
-            RegularFloorFurni.Clear();
-            WhitelistedWallFurni.Clear();
-            WhiteListedFloorFurni.Clear();
-            HIDDEN_IRREGULAR_WALLFURNIS.Clear();
-            HIDDEN_IRREGULAR_FLOORFURNIS.Clear();
-            HIDDEN_REGULAR_WALLFURNIS.Clear();
-            HIDDEN_REGULAR_FLOORFURNIS.Clear();
-            FloorRaresSnapShotCount.Clear();
-            WallRaresSnapshotCount.Clear();
-            SnapshotRegularFloorItems.Clear();
-            SnapshotRegularWallItems.Clear();
-            SnapShotIrregularFloorFurni.Clear();
-            SnapShotIrregularWallFurni.Clear();
-            SnapshotRemovedFloorItems.Clear();
-            SnapshotRemovedWallItems.Clear();
-            CreditsFloorFurnis.Clear();
-            CrystalsFloorFurnis.Clear();
-            CrystalsWallItems.Clear();
-            CatalogueFloorFurnis.Clear();
-            CatalogueWallFurnis.Clear();
-            RaresFloorFurnis.Clear();
-            RaresWallFurnis.Clear();
-            RoomFloorItemsSnapshot.Clear();
-            RoomWallItemsSnapshot.Clear();
-            SnapshotCatalogueFloorItems.Clear();
-            SnapshotCatalogueWallItems.Clear();
-            SnapshotCreditsFloorFurnis.Clear();
-            SnapshotCrystalsFloorFurnis.Clear();
-            UnknownFloorItems.Clear();
-            UnknownWallItems.Clear();
+            WallFurniCheck.ClearAll();
+            FloorFurniCheck.ClearAll();
             IS_HIDING_IRREGULAR_WALLFURNIS = false;
             IS_HIDING_IRREGULAR_FLOORFURNIS = false;
             IS_HIDING_REGULAR_WALLFURNIS = false;
@@ -2084,7 +1992,7 @@ namespace RetroFun.Pages
 
         private void CheckRegolarBtn_Click(object sender, EventArgs e)
         {
-            RareCheck(ControlledFloorFurni, false);
+            FindFurni(ControlledFloorFurni, false);
         }
 
         private void RemoveIrregolarBtn_Click(object sender, EventArgs e)
@@ -3016,25 +2924,28 @@ namespace RetroFun.Pages
 
         public override void Out_RotateMoveItem(DataInterceptedEventArgs e)
         {
-            int FurniID = e.Packet.ReadInteger();
-            int x = e.Packet.ReadInteger();
-            int y = e.Packet.ReadInteger();
-            int z = e.Packet.ReadInteger();
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            {
+                int FurniID = e.Packet.ReadInteger();
+                int x = e.Packet.ReadInteger();
+                int y = e.Packet.ReadInteger();
+                int z = e.Packet.ReadInteger();
 
-            if (FurniIDToCheckMode)
-            {
-                ControlledFloorFurni = FurniID;
-                SpeakAnyways("Checking ID : " + FurniID, 34);
-                RareCheck(ControlledFloorFurni, false);
+                if (FurniIDToCheckMode)
+                {
+                    ControlledFloorFurni = FurniID;
+                    SpeakAnyways("Checking ID : " + FurniID, 34);
+                    FindFurni(ControlledFloorFurni, false);
+                }
+                if (IS_REMOVE_FALSE_POSITIVE_MODE)
+                {
+                    ControlledFloorFurni = FurniID;
+                    WhitelistFurni(ControlledFloorFurni);
+                }
+                UpdateFurniMovement(FurniID, x, y, z);
+                e.Packet.Position = 0;
+                e.Continue();
             }
-            if (IS_REMOVE_FALSE_POSITIVE_MODE)
-            {
-                ControlledFloorFurni = FurniID;
-                WhitelistFurni(ControlledFloorFurni);
-            }
-            UpdateFurniMovement(FurniID, x, y, z);
-            e.Packet.Position = 0;
-            e.Continue();
 
         }
 
@@ -3120,6 +3031,8 @@ namespace RetroFun.Pages
             var whitelist = WhiteListedFloorFurni.Find(x => x == furni);
             var regular = RegularFloorFurni.Find(x => x == furni);
             var irregular = IrregularFloorFurni.Find(x => x == furni);
+
+
             if (hiddenregular != null)
             {
                 hiddenregular.Tile.X = Coord_x;
@@ -3217,36 +3130,52 @@ namespace RetroFun.Pages
 
         private void UpdateFurniMovement(HWallItem furni, string wallcoord)
         {
-            var roomfurni = RoomWallFurni.Find(x => x == furni);
-            var hiddenregular = HIDDEN_REGULAR_WALLFURNIS.Find(x => x == furni);
-            var hiddenirregular = HIDDEN_IRREGULAR_WALLFURNIS.Find(x => x == furni);
-            var whitelist = WhitelistedWallFurni.Find(x => x == furni);
-            var regular = RegularWallFurni.Find(x => x == furni);
-            var irregular = IrregularWallFurni.Find(x => x == furni);
+            var a1 = IrregularWallFurni.Find(x => x == furni);
+            var a2 = RegularWallFurni.Find(x => x == furni);
+            var a3 = WhitelistedWallFurni.Find(x => x == furni);
+            var a4 = HIDDEN_IRREGULAR_WALLFURNIS.Find(x => x == furni);
+            var a5 = HIDDEN_REGULAR_WALLFURNIS.Find(x => x == furni);
+            var a6 = CatalogueWallFurnis.Find(x => x == furni);
+            var a7 = WallFurniCheck.RaresWallFurnis.Find(x => x == furni);
+            var a8 = CrystalsWallItems.Find(x => x == furni);
+            var a9 = UnknownWallItems.Find(x => x == furni);
 
-            if (roomfurni != null)
+
+            if (a1 != null)
             {
-                roomfurni.Location = wallcoord;
+                a1.Location = wallcoord;
             }
-            if (hiddenregular != null)
+            if (a2 != null)
             {
-                hiddenregular.Location = wallcoord;
+                a2.Location = wallcoord;
             }
-            if (hiddenirregular != null)
+            if (a3 != null)
             {
-                hiddenirregular.Location = wallcoord;
+                a3.Location = wallcoord;
             }
-            if (whitelist != null)
+            if (a4 != null)
             {
-                whitelist.Location = wallcoord;
+                a4.Location = wallcoord;
             }
-            if (regular != null)
+            if (a5 != null)
             {
-                regular.Location = wallcoord;
+                a5.Location = wallcoord;
             }
-            if (irregular != null)
+            if (a6 != null)
             {
-                irregular.Location = wallcoord;
+                a6.Location = wallcoord;
+            }
+            if (a7 != null)
+            {
+                a7.Location = wallcoord;
+            }
+            if (a8 != null)
+            {
+                a8.Location = wallcoord;
+            }
+            if (a9 != null)
+            {
+                a9.Location = wallcoord;
             }
 
         }
@@ -3345,69 +3274,84 @@ namespace RetroFun.Pages
 
         public override void Out_MoveWallItem(DataInterceptedEventArgs e)
         {
-            int WallFurni = e.Packet.ReadInteger();
-            string wallfurnicoord = e.Packet.ReadString();
-            if (FurniIDToCheckMode)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                ControlledFloorFurni = WallFurni;
-                SpeakAnyways("Checking ID : " + WallFurni, 34);
-                RareCheck(ControlledFloorFurni, false);
+                int WallFurni = e.Packet.ReadInteger();
+                string wallfurnicoord = e.Packet.ReadString();
+                if (FurniIDToCheckMode)
+                {
+                    ControlledFloorFurni = WallFurni;
+                    SpeakAnyways("Checking ID : " + WallFurni, 34);
+                    FindFurni(ControlledFloorFurni, false);
+                }
             }
         }
 
         public override void In_RoomFloorItems(DataInterceptedEventArgs e)
         {
-            if (AutomaticScanMode)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                if (!IS_SCANNING_FLOORFURNIS)
+                if (AutomaticScanMode)
                 {
-                    IS_SCANNING_FLOORFURNIS = true;
-                    RoomFloorChecker();
+                    if (!IS_SCANNING_FLOORFURNIS)
+                    {
+                        IS_SCANNING_FLOORFURNIS = true;
+                        RoomFloorChecker();
+                    }
                 }
+                UpdateFloorFurnisLabel();
             }
-            UpdateFloorFurnisLabel();
         }
 
         public override void In_RoomWallItems(DataInterceptedEventArgs e)
         {
-            if (!IS_SCANNING_WALLFURNIS)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                IS_SCANNING_WALLFURNIS = true;
-                RoomWallChecker();
+                if (!IS_SCANNING_WALLFURNIS)
+                {
+                    IS_SCANNING_WALLFURNIS = true;
+                    RoomWallChecker();
+                }
+                UpdateWallFurnisLabel();
+                e.Continue();
             }
-            UpdateWallFurnisLabel();
-            e.Continue();
         }
 
         public override void In_AddFloorItem(DataInterceptedEventArgs e)
         {
-            try
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                var NewFloorFurnis = new HFloorItem(e.Packet);
-                if (AutomaticScanMode)
+                try
                 {
-                    RecognizeFurnitureType(NewFloorFurnis, true);
+                    var NewFloorFurnis = new HFloorItem(e.Packet);
+                    if (AutomaticScanMode)
+                    {
+                        RecognizeFurnitureType(NewFloorFurnis, true);
+                    }
+                    UpdateRemovedFloorFurniLbl();
+                    UpdateFloorFurnisLabel();
+                    UpdateAllLabels();
                 }
-                UpdateRemovedFloorFurniLbl();
-                UpdateFloorFurnisLabel();
-                UpdateAllLabels();
+                catch (Exception) { }
             }
-            catch (Exception) { }
         }
 
         public override void In_AddWallItem(DataInterceptedEventArgs e)
         {
-            try
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                var NewPlacedWallFurni = new HWallItem(e.Packet);
-                if (AutomaticScanMode)
+                try
                 {
-                    RecognizeFurnitureType(NewPlacedWallFurni, true);
+                    var NewPlacedWallFurni = new HWallItem(e.Packet);
+                    if (AutomaticScanMode)
+                    {
+                        RecognizeFurnitureType(NewPlacedWallFurni, true);
+                    }
+                    UpdateWallFurnisLabel();
+                    UpdateRemovedWallFurniLbl();
                 }
-                UpdateWallFurnisLabel();
-                UpdateRemovedWallFurniLbl();
+                catch (Exception) { }
             }
-            catch (Exception) { }
         }
 
 
@@ -3425,93 +3369,26 @@ namespace RetroFun.Pages
 
         public override void In_RemoveWallItem(DataInterceptedEventArgs e)
         {
-            HandleRemovedFurni(e.Packet.ReadString());
-            if (!AreRemovedFurnisHidden)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                e.Continue();
-            }
-            else
-            {
-                e.IsBlocked = true;
+                UpdateAllLabels();
+                if (!AreRemovedFurnisHidden)
+                {
+                    e.IsBlocked = true;
+                }
             }
         }
 
         public override void In_RemoveFloorItem(DataInterceptedEventArgs e)
         {
-            HandleRemovedFurni(e.Packet.ReadString());
-            e.Continue();
-        }
-        private void HandleRemovedFurni(string item)
-        {
-            if (int.TryParse(item, out int furni))
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                var foundfurni = RoomFloorFurni.Find(f => f.Id == furni);
-                var wallfurni = RoomWallFurni.Find(f => f.Id == furni);
-
-                if (foundfurni != null)
+                UpdateAllLabels();                
+                if (!AreRemovedFurnisHidden)
                 {
-                    HandleRemovedFurni(foundfurni);
+                    e.IsBlocked = true;
                 }
-                if (wallfurni != null)
-                {
-                    HandleRemovedFurni(wallfurni);
-                }
-                UpdateRemovedFloorFurniLbl();
-                UpdateFloorFurnisLabel();
-                UpdateHiddenIrregolarFurniLabel();
-                UpdateHiddenRegularFurniLabel();
             }
-            else
-            {
-                return;
-            }
-        }
-
-
-        private void HandleRemovedFurni(HWallItem item)
-        {
-            if (IrregularWallFurni.Contains(item)) { IrregularWallFurni.Remove(item); }
-            if (RegularWallFurni.Contains(item)) { RegularWallFurni.Remove(item); }
-            if (WhitelistedWallFurni.Contains(item)) { WhitelistedWallFurni.Remove(item); }
-            if (HIDDEN_IRREGULAR_WALLFURNIS.Contains(item)) { HIDDEN_IRREGULAR_WALLFURNIS.Remove(item); }
-            if (HIDDEN_REGULAR_WALLFURNIS.Contains(item)) { HIDDEN_REGULAR_WALLFURNIS.Remove(item); }
-            if (WallRaresSnapshotCount.Contains(item)) { WallRaresSnapshotCount.Remove(item); }
-            if (SnapshotRegularWallItems.Contains(item)) { SnapshotRegularWallItems.Remove(item); }
-            if (SnapShotIrregularWallFurni.Contains(item)) { SnapShotIrregularWallFurni.Remove(item); }
-            if (SnapshotRemovedWallItems.Contains(item)) { SnapshotRemovedWallItems.Remove(item); }
-            if (CatalogueWallFurnis.Contains(item)) { CatalogueWallFurnis.Remove(item); }
-            if (RaresWallFurnis.Contains(item)) { RaresWallFurnis.Remove(item); }
-            if (RoomWallItemsSnapshot.Contains(item)) { RoomWallItemsSnapshot.Remove(item); }
-            if (SnapshotCatalogueWallItems.Contains(item)) { SnapshotCatalogueWallItems.Remove(item); }
-            if (CrystalsWallItems.Contains(item)) { CrystalsWallItems.Remove(item); }
-            if (SnapshotCrystalsWallFurnis.Contains(item)) { SnapshotCrystalsWallFurnis.Remove(item); }
-            if (UnknownWallItems.Contains(item)) { UnknownWallItems.Remove(item); }
-            UpdateAllLabels();
-        }
-
-
-        private void HandleRemovedFurni(HFloorItem item)
-        {
-            if (IrregularFloorFurni.Contains(item)) { IrregularFloorFurni.Remove(item); }
-            if (RegularFloorFurni.Contains(item)) { RegularFloorFurni.Remove(item); }
-            if (WhiteListedFloorFurni.Contains(item)) { WhiteListedFloorFurni.Remove(item); }
-            if (HIDDEN_IRREGULAR_FLOORFURNIS.Contains(item)) { HIDDEN_IRREGULAR_FLOORFURNIS.Remove(item); }
-            if (HIDDEN_REGULAR_FLOORFURNIS.Contains(item)) { HIDDEN_REGULAR_FLOORFURNIS.Remove(item); }
-            if (FloorRaresSnapShotCount.Contains(item)) { FloorRaresSnapShotCount.Remove(item); }
-            if (SnapshotRegularFloorItems.Contains(item)) { SnapshotRegularFloorItems.Remove(item); }
-            if (SnapShotIrregularFloorFurni.Contains(item)) { SnapShotIrregularFloorFurni.Remove(item); }
-            if (SnapshotRemovedFloorItems.Contains(item)) { SnapshotRemovedFloorItems.Remove(item); }
-            if (CreditsFloorFurnis.Contains(item)) { CreditsFloorFurnis.Remove(item); }
-            if (CrystalsFloorFurnis.Contains(item)) { CrystalsFloorFurnis.Remove(item); }
-            if (CatalogueFloorFurnis.Contains(item)) { CatalogueFloorFurnis.Remove(item); }
-            if (RaresFloorFurnis.Contains(item)) { RaresFloorFurnis.Remove(item); }
-            if (RoomFloorItemsSnapshot.Contains(item)) { RoomFloorItemsSnapshot.Remove(item); }
-            if (SnapshotCatalogueFloorItems.Contains(item)) { SnapshotCatalogueFloorItems.Remove(item); }
-            if (SnapshotCreditsFloorFurnis.Contains(item)) { SnapshotCreditsFloorFurnis.Remove(item); }
-            if (SnapshotCrystalsFloorFurnis.Contains(item)) { SnapshotCrystalsFloorFurnis.Remove(item); }
-
-            if (UnknownFloorItems.Contains(item)) { UnknownFloorItems.Remove(item); }
-            UpdateAllLabels();
         }
 
         private void UpdateListConstantlyBtn_Click(object sender, EventArgs e)
@@ -3579,39 +3456,45 @@ namespace RetroFun.Pages
 
         public override void Out_ToggleFloorItem(DataInterceptedEventArgs e)
         {
-            int FurniID = e.Packet.ReadInteger();
-            if (FurniIDToCheckMode)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                ControlledFloorFurni = FurniID;
-                SpeakAnyways("Checking ID : " + FurniID, 34);
-                RareCheck(ControlledFloorFurni, false);
-                e.IsBlocked = true;
-            }
-            if (IS_REMOVE_FALSE_POSITIVE_MODE)
-            {
-                ControlledFloorFurni = FurniID;
-                WhitelistFurni(ControlledFloorFurni);
-                e.IsBlocked = true;
+                int FurniID = e.Packet.ReadInteger();
+                if (FurniIDToCheckMode)
+                {
+                    ControlledFloorFurni = FurniID;
+                    SpeakAnyways("Checking ID : " + FurniID, 34);
+                    FindFurni(ControlledFloorFurni, false);
+                    e.IsBlocked = true;
+                }
+                if (IS_REMOVE_FALSE_POSITIVE_MODE)
+                {
+                    ControlledFloorFurni = FurniID;
+                    WhitelistFurni(ControlledFloorFurni);
+                    e.IsBlocked = true;
 
+                }
             }
         }
 
 
         public override void Out_ToggleWallItem(DataInterceptedEventArgs e)
         {
-            int FurniID = e.Packet.ReadInteger();
-            if (FurniIDToCheckMode)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
-                ControlledFloorFurni = FurniID;
-                SpeakAnyways("Checking ID : " + FurniID, 34);
-                RareCheck(ControlledFloorFurni, false);
-                e.IsBlocked = true;
-            }
-            if (IS_REMOVE_FALSE_POSITIVE_MODE)
-            {
-                ControlledFloorFurni = FurniID;
-                WhitelistFurni(ControlledFloorFurni);
-                e.IsBlocked = true;
+                int FurniID = e.Packet.ReadInteger();
+                if (FurniIDToCheckMode)
+                {
+                    ControlledFloorFurni = FurniID;
+                    SpeakAnyways("Checking ID : " + FurniID, 34);
+                    FindFurni(ControlledFloorFurni, false);
+                    e.IsBlocked = true;
+                }
+                if (IS_REMOVE_FALSE_POSITIVE_MODE)
+                {
+                    ControlledFloorFurni = FurniID;
+                    WhitelistFurni(ControlledFloorFurni);
+                    e.IsBlocked = true;
+                }
             }
         }
 
@@ -3680,7 +3563,7 @@ namespace RetroFun.Pages
             IS_HIDING_IRREGULAR_FLOORFURNIS = false;
             if (HIDDEN_IRREGULAR_FLOORFURNIS.Count != 0)
             {
-                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(HIDDEN_IRREGULAR_FLOORFURNIS, In.RoomFloorItems));
+                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(RemovedFurniFromList(HIDDEN_IRREGULAR_FLOORFURNIS), In.RoomFloorItems));
                 HIDDEN_IRREGULAR_FLOORFURNIS.Clear();
                 UpdateHiddenIrregolarFurniLabel();
                 Speak("[HIDER]:All Irregular Floor Furnis are unhidden!", 34);
@@ -3692,7 +3575,7 @@ namespace RetroFun.Pages
             IS_HIDING_IRREGULAR_WALLFURNIS = false;
             if (HIDDEN_IRREGULAR_WALLFURNIS.Count != 0)
             {
-                Connection.SendToClientAsync(WallFurnitures.PacketBuilder(HIDDEN_IRREGULAR_WALLFURNIS, In.RoomWallItems));
+                Connection.SendToClientAsync(WallFurnitures.PacketBuilder(RemovedFurniFromList(HIDDEN_IRREGULAR_WALLFURNIS), In.RoomWallItems));
                 HIDDEN_IRREGULAR_WALLFURNIS.Clear();
                 UpdateHiddenIrregolarFurniLabel();
                 Speak("[HIDER]:All Irregular Wall Furnis are unhidden!", 34);
@@ -3855,13 +3738,39 @@ namespace RetroFun.Pages
             }
         }
 
+        private List<HFloorItem> RemovedFurniFromList(List<HFloorItem> list)
+        {
+            var furniture = list;
+            foreach (HFloorItem item in list)
+            {
+                if(RemovedFloorFurnis.Contains(item))
+                {
+                    furniture.Remove(item);
+                }
+            }
+            return furniture;
+        }
+
+        private List<HWallItem> RemovedFurniFromList(List<HWallItem> list)
+        {
+            var furniture = list;
+            foreach (HWallItem item in list)
+            {
+                if (RemovedWallFurnis.Contains(item))
+                {
+                    furniture.Remove(item);
+                }
+            }
+            return furniture;
+        }
+
 
         private void ShowRegisteredFurnis()
         {
             IS_HIDING_REGULAR_FLOORFURNIS = false;
             if (HIDDEN_REGULAR_FLOORFURNIS.Count != 0)
             {
-                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(HIDDEN_REGULAR_FLOORFURNIS, In.RoomFloorItems));
+                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(RemovedFurniFromList(HIDDEN_REGULAR_FLOORFURNIS), In.RoomFloorItems));
                 HIDDEN_REGULAR_FLOORFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
                 if (isQuietMode)
@@ -3880,7 +3789,7 @@ namespace RetroFun.Pages
             IS_HIDING_REGULAR_WALLFURNIS = false;
             if (HIDDEN_REGULAR_WALLFURNIS.Count != 0)
             {
-                Connection.SendToClientAsync(WallFurnitures.PacketBuilder(HIDDEN_REGULAR_WALLFURNIS, In.RoomWallItems));
+                Connection.SendToClientAsync(WallFurnitures.PacketBuilder(RemovedFurniFromList(RemovedFurniFromList(HIDDEN_REGULAR_WALLFURNIS)), In.RoomWallItems));
                 HIDDEN_REGULAR_WALLFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
                 if (isQuietMode)
@@ -3951,7 +3860,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../TypeIDDump/" + RecognizeDomain.GetHost(Connection.Host) + "_Furni_Floor_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".cs";
+                string Filepath = "../TypeIDDump/" + KnownDomains.GetHost(Connection.Host) + "_Furni_Floor_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".cs";
                 string FolderName = "TypeIDDump";
                 Directory.CreateDirectory("../" + FolderName);
 
@@ -4017,7 +3926,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../TypeIDDump/" + RecognizeDomain.GetHost(Connection.Host) + "_Furni_Wall_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".cs";
+                string Filepath = "../TypeIDDump/" + KnownDomains.GetHost(Connection.Host) + "_Furni_Wall_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".cs";
                 string FolderName = "TypeIDDump";
                 Directory.CreateDirectory("../" + FolderName);
 
@@ -4082,7 +3991,7 @@ namespace RetroFun.Pages
             SetCatalogueFurnisSnapshot();
             if (SnapshotCatalogueFloorItems.Count != 0)
             {
-                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(SnapshotCatalogueFloorItems, In.RoomFloorItems));
+                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCatalogueFloorItems), In.RoomFloorItems));
                 Speak("[HIDER]:All catalogue Floor Furnis are unhidden!", 34);
             }
             else
@@ -4091,7 +4000,7 @@ namespace RetroFun.Pages
             }
             if (SnapshotCatalogueWallItems.Count != 0)
             {
-                Connection.SendToClientAsync(WallFurnitures.PacketBuilder(SnapshotCatalogueWallItems, In.RoomWallItems));
+                Connection.SendToClientAsync(WallFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCatalogueWallItems), In.RoomWallItems));
                 Speak("[HIDER]:All catalogue Wall Furnis are unhidden!", 34);
             }
             else
@@ -4170,7 +4079,7 @@ namespace RetroFun.Pages
             SetCrystalsSnapshots();
             if (SnapshotCrystalsFloorFurnis.Count != 0)
             {
-                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(SnapshotCrystalsFloorFurnis, In.RoomFloorItems));
+                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCrystalsFloorFurnis), In.RoomFloorItems));
                 Speak("[HIDER]:All Crystals Floor Furnis are unhidden!", 34);
             }
             else
@@ -4179,7 +4088,7 @@ namespace RetroFun.Pages
             }
             if (SnapshotCrystalsWallFurnis.Count != 0)
             {
-                Connection.SendToClientAsync(WallFurnitures.PacketBuilder(SnapshotCrystalsWallFurnis, In.RoomWallItems));
+                Connection.SendToClientAsync(WallFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCrystalsWallFurnis), In.RoomWallItems));
                 Speak("[HIDER]:All Crystals Wall Furnis are unhidden!", 34);
             }
             else
@@ -4225,7 +4134,7 @@ namespace RetroFun.Pages
             SetCreditsSnapshots();
             if (SnapshotCreditsFloorFurnis.Count != 0)
             {
-                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(SnapshotCreditsFloorFurnis, In.RoomFloorItems));
+                Connection.SendToClientAsync(FloorFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCreditsFloorFurnis), In.RoomFloorItems));
                 Speak("[HIDER]:All Credits Furnis are unhidden!", 34);
             }
             else
@@ -4248,5 +4157,113 @@ namespace RetroFun.Pages
                     AreCreditsFurnisHidden = true;
                 }
             }
-        } 
+
+
+
+        private void RecordRareControl(bool isRegolar, string text)
+        {
+            string raretype;
+            try
+            {
+                if (isRegolar)
+                {
+                    raretype = "_rari_regolari";
+                }
+                else
+                {
+                    raretype = "_rari_irregolari";
+                }
+
+                string Filepath = "../RareControls/" + KnownDomains.GetHost(Connection.Host) + raretype + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string FolderName = "RareControls";
+
+                Directory.CreateDirectory("../" + FolderName);
+
+                if (!File.Exists(Filepath))
+                {
+                    newroom = true;
+                    using (var txtFile = File.AppendText(Filepath))
+                    {
+                        txtFile.WriteLine("Rares Control Done at :" + DateTime.Now.ToString());
+
+                        if (newroom)
+                        {
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                            }
+                            else
+                            {
+                                txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
+                            }
+                            txtFile.WriteLine("");
+                            txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[User Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
+                            txtFile.WriteLine("");
+                            txtFile.WriteLine("[Room ID: " + GlobalInts.ROOM_ID + " ]");
+                            txtFile.WriteLine("[Room Owner : " + GlobalStrings.ROOM_OWNER + " ]");
+                            txtFile.WriteLine("[Room Name : " + GlobalStrings.ROOM_NAME + " ]");
+                            txtFile.WriteLine("----------------------------------------------------");
+                            newroom = false;
+                        }
+                        txtFile.WriteLine("");
+                        txtFile.WriteLine(text);
+                    }
+                }
+                else if (File.Exists(Filepath))
+                {
+                    using (var txtFile = File.AppendText(Filepath))
+                    {
+
+                        if (newroom)
+                        {
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                            }
+                            else
+                            {
+                                txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
+                            }
+                            txtFile.WriteLine("");
+                            txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[User Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
+                            txtFile.WriteLine("");
+                            txtFile.WriteLine("[Room ID: " + GlobalInts.ROOM_ID + " ]");
+                            txtFile.WriteLine("[Room Owner : " + GlobalStrings.ROOM_OWNER + " ]");
+                            txtFile.WriteLine("[Room Name : " + GlobalStrings.ROOM_NAME + " ]");
+                            txtFile.WriteLine("----------------------------------------------------");
+                            newroom = false;
+                        }
+                        txtFile.WriteLine("");
+                        txtFile.WriteLine(text);
+                    }
+
+                }
+            }
+
+            catch (Exception)
+            {
+
+            }
+        }
+    } 
     }

@@ -1,0 +1,10 @@
+            IrregularFloorFurni = new List<HFloorItem>();
+            RegularFloorFurni = new List<HFloorItem>();
+            WhiteListedFloorFurni = new List<HFloorItem>();
+            HIDDEN_IRREGULAR_FLOORFURNIS = new List<HFloorItem>();
+            HIDDEN_REGULAR_FLOORFURNIS = new List<HFloorItem>();
+            CreditsFloorFurnis = new List<HFloorItem>();
+            CrystalsFloorFurnis = new List<HFloorItem>();
+            CatalogueFloorFurnis = new List<HFloorItem>();
+            RaresFloorFurnis = new List<HFloorItem>();
+            UnknownFloorItems = new List<HFloorItem>();

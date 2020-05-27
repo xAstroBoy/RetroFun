@@ -772,7 +772,7 @@ namespace RetroFun.Pages
 
         private async void RemoveEnableOnlyBobba()
         {
-            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
                 if (isTalkAvailable && !HasEffectBeenRemoved)
                 {

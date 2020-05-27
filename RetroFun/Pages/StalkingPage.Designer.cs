@@ -38,6 +38,7 @@
             this.CooldownFloodNbx = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.SpectatorChbx = new System.Windows.Forms.CheckBox();
+            this.MuteBotGamesChbx = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.IdOfVictimNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CooldownFloodNbx)).BeginInit();
             this.SuspendLayout();
@@ -160,10 +161,24 @@
             this.SpectatorChbx.Text = "Should Spectate on Bot-Giochi games?";
             this.SpectatorChbx.UseVisualStyleBackColor = true;
             // 
+            // MuteBotGamesBtn
+            // 
+            this.MuteBotGamesChbx.AutoSize = true;
+            this.MuteBotGamesChbx.Checked = true;
+            this.MuteBotGamesChbx.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.MuteBotGamesChbx.Location = new System.Drawing.Point(268, 335);
+            this.MuteBotGamesChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MuteBotGamesChbx.Name = "MuteBotGamesBtn";
+            this.MuteBotGamesChbx.Size = new System.Drawing.Size(150, 24);
+            this.MuteBotGamesChbx.TabIndex = 18;
+            this.MuteBotGamesChbx.Text = "Mute Bot-Giochi";
+            this.MuteBotGamesChbx.UseVisualStyleBackColor = true;
+            // 
             // StalkingPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.MuteBotGamesChbx);
             this.Controls.Add(this.SpectatorChbx);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CooldownFloodNbx);
@@ -196,5 +211,6 @@
         private System.Windows.Forms.NumericUpDown CooldownFloodNbx;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox SpectatorChbx;
+        private System.Windows.Forms.CheckBox MuteBotGamesChbx;
     }
 }

@@ -46,6 +46,7 @@ namespace RetroFun
             _subscribers = new List<ObservablePage>
             {
                furniHandlerEvent,
+               FurnitureCheckerPg,
                BottomPg,
 
 
@@ -71,7 +72,6 @@ namespace RetroFun
                 UserEditorPg,
                 PersonalPg,
                 ModerationPg,
-                FurnitureCheckerPg,
 
                 
                 FunPg,

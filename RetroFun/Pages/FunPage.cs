@@ -293,13 +293,14 @@ private void WriteToButton(SKoreButton button, string text)
 
         private async void SendServerEnableBobba(int effect)
         {
-            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
             {
                 await Task.Delay(500);
                 await Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
             }
-            else if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.hartico)
+            else if (KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico)
             {
+                await Task.Delay(500);
                 await Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
             }
         }
@@ -387,7 +388,7 @@ private void WriteToButton(SKoreButton button, string text)
                         {
                             if (isServerSideEffect)
                             {
-                                if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia || RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.hartico)
+                                if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia || KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico)
                                 { 
                                 SendServerEnableBobba(EffectNumber);
                                 Thread.Sleep(CooldownEffectLoop);
@@ -491,7 +492,7 @@ private void WriteToButton(SKoreButton button, string text)
 
         private void IsServerSideBtn_Click(object sender, EventArgs e)
         {
-            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia || RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.hartico)
+            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia || KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico)
             {
                 if (isServerSideEffect)
                 {

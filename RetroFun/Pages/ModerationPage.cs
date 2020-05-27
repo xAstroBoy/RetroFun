@@ -431,7 +431,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../ModerationUtils/" + RecognizeDomain.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../ModerationUtils/" + KnownDomains.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "ModerationUtils";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -525,7 +525,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../ModerationUtils/" + RecognizeDomain.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../ModerationUtils/" + KnownDomains.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "ModerationUtils";
 
                 Directory.CreateDirectory("../" + FolderName);

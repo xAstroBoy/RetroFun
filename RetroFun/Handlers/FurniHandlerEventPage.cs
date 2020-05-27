@@ -1,9 +1,11 @@
 ﻿using RetroFun.Globals;
 using RetroFun.Helpers;
+using RetroFun.Pages;
 using RetroFun.Subscribers;
 using RetroFun.Utils.Furnitures.FloorFurni;
 using RetroFun.Utils.Furnitures.WallFurni;
 using RetroFun.Utils.Globals;
+using RetroFun.Utils.HostFinder.BobbaItalia;
 using Sulakore.Communication;
 using Sulakore.Habbo;
 using System;
@@ -15,10 +17,15 @@ namespace RetroFun.Handlers
 {
     public partial class FurniHandlerEventPage :  ObservablePage
     {
-      
+
         public FurniHandlerEventPage()
         {
         }
+
+        public int Room_ID { get => GlobalInts.ROOM_ID; set { GlobalInts.ROOM_ID = value; } }
+        public string Room_Owner { get => GlobalStrings.ROOM_OWNER; set { GlobalStrings.ROOM_OWNER = value; } }
+        public string Room_name { get => GlobalStrings.ROOM_NAME; set { GlobalStrings.ROOM_NAME = value; } }
+
 
         private List<HFloorItem> RoomFloorFurni
         {
@@ -62,47 +69,59 @@ namespace RetroFun.Handlers
 
         public override void In_RoomFloorItems(DataInterceptedEventArgs e)
         {
-            RoomFloorFurni = HFloorItem.Parse(e.Packet).ToList(); //All Floor Objects
-            e.Continue();
+            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            {
+                RoomFloorFurni = HFloorItem.Parse(e.Packet).ToList(); //All Floor Objects
+                e.Continue();
+            }
         }
 
 
         public override void In_AddFloorItem(DataInterceptedEventArgs e)
         {
-            try
+            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
             {
-                var NewFloorFurnis = new HFloorItem(e.Packet);
-                if (!RoomFloorFurni.Contains(NewFloorFurnis))
+                try
                 {
-                    RoomFloorFurni.Add(NewFloorFurnis);
+                    var NewFloorFurnis = new HFloorItem(e.Packet);
+                    if (!RoomFloorFurni.Contains(NewFloorFurnis))
+                    {
+                        RoomFloorFurni.Add(NewFloorFurnis);
+                    }
                 }
+                catch (Exception) { }
             }
-            catch (Exception) { }
         }
 
         public override void In_RoomWallItems(DataInterceptedEventArgs e)
         {
-            if (RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
             {
-                RoomWallFurni = WallFurnitures.BobbaParser(e.Packet);
-            }
-            else
-            {
-                RoomWallFurni = HWallItem.Parse(e.Packet).ToList();
+                if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+                {
+                    RoomWallFurni = WallFurnitures.BobbaParser(e.Packet);
+                }
+                else
+                {
+                    RoomWallFurni = HWallItem.Parse(e.Packet).ToList();
+                }
             }
         }
 
         public override void In_AddWallItem(DataInterceptedEventArgs e)
         {
-            try
+            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
             {
-                var NewPlacedWallFurni = new HWallItem(e.Packet);
-                if (!RoomWallFurni.Contains(NewPlacedWallFurni))
+                try
                 {
-                    RoomWallFurni.Add(NewPlacedWallFurni);
+                    var NewPlacedWallFurni = new HWallItem(e.Packet);
+                    if (!RoomWallFurni.Contains(NewPlacedWallFurni))
+                    {
+                        RoomWallFurni.Add(NewPlacedWallFurni);
+                    }
                 }
+                catch (Exception) { }
             }
-            catch (Exception) { }
         }
 
 
@@ -145,16 +164,28 @@ namespace RetroFun.Handlers
         }
 
 
+        public override void In_RoomData(DataInterceptedEventArgs e)
+        {
+            e.Packet.ReadBoolean();
+            Room_ID = e.Packet.ReadInteger();
+            Room_name = e.Packet.ReadString();
+            e.Packet.ReadInteger();
+            Room_Owner = e.Packet.ReadString();
+        }
+
+
         public override void Out_RotateMoveItem(DataInterceptedEventArgs e)
         {
-            int FurniID = e.Packet.ReadInteger();
-            int x = e.Packet.ReadInteger();
-            int y = e.Packet.ReadInteger();
-            int z = e.Packet.ReadInteger();
-            UpdateFurniMovement(FurniID, x, y, z);
-            e.Packet.Position = 0;
-            e.Continue();
-
+            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            {
+                int FurniID = e.Packet.ReadInteger();
+                int x = e.Packet.ReadInteger();
+                int y = e.Packet.ReadInteger();
+                int z = e.Packet.ReadInteger();
+                UpdateFurniMovement(FurniID, x, y, z);
+                e.Packet.Position = 0;
+                e.Continue();
+            }
         }
 
         private void UpdateFurniMovement(HFloorItem furni, int Coord_x, int Coord_y, string Coord_z)
@@ -210,11 +241,19 @@ namespace RetroFun.Handlers
                 if (foundfurni != null)
                 {
                     HandleRemovedFurni(foundfurni);
+                    if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+                    {
+                        FloorFurniCheck.HandleRemovedFurni(foundfurni);
+                    }
                     return;
                 }
                 if (wallfurni != null)
                 {
                     HandleRemovedFurni(wallfurni);
+                    if(KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+                    {
+                        WallFurniCheck.HandleRemovedFurni(wallfurni);
+                    }
                     return;
                 }
                 if (remfoundfurni != null)
@@ -306,31 +345,43 @@ namespace RetroFun.Handlers
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
-            RoomFloorFurni.Clear();
-            RoomWallFurni.Clear();
-            RemWallFurni.Clear();
-            RemFloorFurni.Clear();
+            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            {
+                RoomFloorFurni.Clear();
+                RoomWallFurni.Clear();
+                RemWallFurni.Clear();
+                RemFloorFurni.Clear();
+            }
         }
 
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
-            RoomFloorFurni.Clear();
-            RoomWallFurni.Clear();
-            RemWallFurni.Clear();
-            RemFloorFurni.Clear();
+            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            {
+                RoomFloorFurni.Clear();
+                RoomWallFurni.Clear();
+                RemWallFurni.Clear();
+                RemFloorFurni.Clear();
+            }
         }
 
         public override void In_RemoveFloorItem(DataInterceptedEventArgs e)
         {
-            HandleRemovedFurni(e.Packet.ReadString());
-            e.Continue();
+            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            {
+                HandleRemovedFurni(e.Packet.ReadString());
+                e.Continue();
+            }
         }
 
         public override void In_RemoveWallItem(DataInterceptedEventArgs e)
         {
-            HandleRemovedFurni(e.Packet.ReadString());
-            e.Continue();
+            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            {
+                HandleRemovedFurni(e.Packet.ReadString());
+                e.Continue();
+            }
         }
     }
 }

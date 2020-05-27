@@ -83,111 +83,106 @@
             // 
             // SelectRareListBtn
             // 
-            this.SelectRareListBtn.Location = new System.Drawing.Point(8, 86);
-            this.SelectRareListBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SelectRareListBtn.Location = new System.Drawing.Point(5, 56);
             this.SelectRareListBtn.Name = "SelectRareListBtn";
-            this.SelectRareListBtn.Size = new System.Drawing.Size(165, 31);
+            this.SelectRareListBtn.Size = new System.Drawing.Size(110, 20);
             this.SelectRareListBtn.TabIndex = 10;
             this.SelectRareListBtn.Text = "Select Rare List";
             this.SelectRareListBtn.Click += new System.EventHandler(this.SelectRareListBtn_Click);
             // 
             // FileCheckBtn
             // 
-            this.FileCheckBtn.Location = new System.Drawing.Point(38, 169);
-            this.FileCheckBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.FileCheckBtn.Location = new System.Drawing.Point(25, 110);
             this.FileCheckBtn.Name = "FileCheckBtn";
-            this.FileCheckBtn.Size = new System.Drawing.Size(165, 31);
+            this.FileCheckBtn.Size = new System.Drawing.Size(110, 20);
             this.FileCheckBtn.TabIndex = 13;
             this.FileCheckBtn.Text = "Rare Check : OFF";
             this.FileCheckBtn.Click += new System.EventHandler(this.FileCheckBtn_Click);
             // 
             // FurniIDToCheckNbx
             // 
-            this.FurniIDToCheckNbx.Location = new System.Drawing.Point(38, 97);
+            this.FurniIDToCheckNbx.Location = new System.Drawing.Point(25, 63);
+            this.FurniIDToCheckNbx.Margin = new System.Windows.Forms.Padding(2);
             this.FurniIDToCheckNbx.Maximum = new decimal(new int[] {
             1874919423,
             2328306,
             0,
             0});
             this.FurniIDToCheckNbx.Name = "FurniIDToCheckNbx";
-            this.FurniIDToCheckNbx.Size = new System.Drawing.Size(177, 26);
+            this.FurniIDToCheckNbx.Size = new System.Drawing.Size(118, 20);
             this.FurniIDToCheckNbx.TabIndex = 15;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(33, 74);
+            this.label4.Location = new System.Drawing.Point(22, 48);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(133, 20);
+            this.label4.Size = new System.Drawing.Size(91, 13);
             this.label4.TabIndex = 16;
             this.label4.Text = "FurniID To Check";
             // 
             // CheckRegolarBtn
             // 
-            this.CheckRegolarBtn.Location = new System.Drawing.Point(38, 38);
-            this.CheckRegolarBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CheckRegolarBtn.Location = new System.Drawing.Point(25, 25);
             this.CheckRegolarBtn.Name = "CheckRegolarBtn";
-            this.CheckRegolarBtn.Size = new System.Drawing.Size(165, 31);
+            this.CheckRegolarBtn.Size = new System.Drawing.Size(110, 20);
             this.CheckRegolarBtn.TabIndex = 17;
             this.CheckRegolarBtn.Text = "Check If Regular";
             this.CheckRegolarBtn.Click += new System.EventHandler(this.CheckRegolarBtn_Click);
             // 
             // RemoveIrregolarBtn
             // 
-            this.RemoveIrregolarBtn.Location = new System.Drawing.Point(38, 215);
-            this.RemoveIrregolarBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RemoveIrregolarBtn.Location = new System.Drawing.Point(25, 140);
             this.RemoveIrregolarBtn.Name = "RemoveIrregolarBtn";
-            this.RemoveIrregolarBtn.Size = new System.Drawing.Size(165, 31);
+            this.RemoveIrregolarBtn.Size = new System.Drawing.Size(110, 20);
             this.RemoveIrregolarBtn.TabIndex = 18;
             this.RemoveIrregolarBtn.Text = "Remove irregular: OFF";
             this.RemoveIrregolarBtn.Click += new System.EventHandler(this.RemoveIrregolarBtn_Click);
             // 
             // AnalyzeRooMFurnisBtn
             // 
-            this.AnalyzeRooMFurnisBtn.Location = new System.Drawing.Point(18, 518);
-            this.AnalyzeRooMFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AnalyzeRooMFurnisBtn.Location = new System.Drawing.Point(5, 351);
             this.AnalyzeRooMFurnisBtn.Name = "AnalyzeRooMFurnisBtn";
-            this.AnalyzeRooMFurnisBtn.Size = new System.Drawing.Size(171, 31);
+            this.AnalyzeRooMFurnisBtn.Size = new System.Drawing.Size(114, 20);
             this.AnalyzeRooMFurnisBtn.TabIndex = 20;
             this.AnalyzeRooMFurnisBtn.Text = "Analyze Room Furnis";
             this.AnalyzeRooMFurnisBtn.Click += new System.EventHandler(this.AnalyzeRooMFurnisBtn_Click);
             // 
             // PickRegisteredFurnisBtn
             // 
-            this.PickRegisteredFurnisBtn.Location = new System.Drawing.Point(18, 71);
-            this.PickRegisteredFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PickRegisteredFurnisBtn.Location = new System.Drawing.Point(12, 46);
             this.PickRegisteredFurnisBtn.Name = "PickRegisteredFurnisBtn";
-            this.PickRegisteredFurnisBtn.Size = new System.Drawing.Size(190, 28);
+            this.PickRegisteredFurnisBtn.Size = new System.Drawing.Size(127, 18);
             this.PickRegisteredFurnisBtn.TabIndex = 21;
-            this.PickRegisteredFurnisBtn.Text = "Pick Registered Furnis";
+            this.PickRegisteredFurnisBtn.Text = "Pick Registered Rares";
             this.PickRegisteredFurnisBtn.Click += new System.EventHandler(this.PickRegisteredFurnisBtn_Click);
             // 
             // PickUnregisteredFurniBtn
             // 
-            this.PickUnregisteredFurniBtn.Location = new System.Drawing.Point(18, 34);
-            this.PickUnregisteredFurniBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PickUnregisteredFurniBtn.Location = new System.Drawing.Point(12, 22);
             this.PickUnregisteredFurniBtn.Name = "PickUnregisteredFurniBtn";
-            this.PickUnregisteredFurniBtn.Size = new System.Drawing.Size(190, 28);
+            this.PickUnregisteredFurniBtn.Size = new System.Drawing.Size(127, 18);
             this.PickUnregisteredFurniBtn.TabIndex = 22;
-            this.PickUnregisteredFurniBtn.Text = "Pick Unregistered Furnis";
+            this.PickUnregisteredFurniBtn.Text = "Pick Unregistered Rares";
             this.PickUnregisteredFurniBtn.Click += new System.EventHandler(this.PickUnregisteredFurniBtn_Click);
             // 
             // SelectedFileLbl
             // 
             this.SelectedFileLbl.AutoSize = true;
             this.SelectedFileLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectedFileLbl.Location = new System.Drawing.Point(27, 17);
+            this.SelectedFileLbl.Location = new System.Drawing.Point(18, 11);
+            this.SelectedFileLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SelectedFileLbl.Name = "SelectedFileLbl";
-            this.SelectedFileLbl.Size = new System.Drawing.Size(193, 36);
+            this.SelectedFileLbl.Size = new System.Drawing.Size(129, 25);
             this.SelectedFileLbl.TabIndex = 24;
             this.SelectedFileLbl.Text = "Total Files : 0";
             // 
             // ClearSelectedFilesBtn
             // 
-            this.ClearSelectedFilesBtn.Location = new System.Drawing.Point(8, 128);
-            this.ClearSelectedFilesBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ClearSelectedFilesBtn.Location = new System.Drawing.Point(5, 83);
             this.ClearSelectedFilesBtn.Name = "ClearSelectedFilesBtn";
-            this.ClearSelectedFilesBtn.Size = new System.Drawing.Size(165, 31);
+            this.ClearSelectedFilesBtn.Size = new System.Drawing.Size(110, 20);
             this.ClearSelectedFilesBtn.TabIndex = 25;
             this.ClearSelectedFilesBtn.Text = "Clear Selected Files";
             this.ClearSelectedFilesBtn.Click += new System.EventHandler(this.ClearSelectedFilesBtn_Click);
@@ -197,9 +192,10 @@
             this.TotFurnisinroomLbl.AutoSize = true;
             this.TotFurnisinroomLbl.BackColor = System.Drawing.Color.White;
             this.TotFurnisinroomLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotFurnisinroomLbl.Location = new System.Drawing.Point(14, 32);
+            this.TotFurnisinroomLbl.Location = new System.Drawing.Point(4, 16);
+            this.TotFurnisinroomLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TotFurnisinroomLbl.Name = "TotFurnisinroomLbl";
-            this.TotFurnisinroomLbl.Size = new System.Drawing.Size(234, 29);
+            this.TotFurnisinroomLbl.Size = new System.Drawing.Size(155, 20);
             this.TotFurnisinroomLbl.TabIndex = 26;
             this.TotFurnisinroomLbl.Text = "Tot Furni In room  : 0";
             // 
@@ -208,9 +204,10 @@
             this.FloorFurniCountLbl.AutoSize = true;
             this.FloorFurniCountLbl.BackColor = System.Drawing.Color.White;
             this.FloorFurniCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FloorFurniCountLbl.Location = new System.Drawing.Point(14, 58);
+            this.FloorFurniCountLbl.Location = new System.Drawing.Point(4, 34);
+            this.FloorFurniCountLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.FloorFurniCountLbl.Name = "FloorFurniCountLbl";
-            this.FloorFurniCountLbl.Size = new System.Drawing.Size(297, 29);
+            this.FloorFurniCountLbl.Size = new System.Drawing.Size(195, 20);
             this.FloorFurniCountLbl.TabIndex = 27;
             this.FloorFurniCountLbl.Text = "Tot Floor Furni In room  : 0";
             // 
@@ -219,9 +216,10 @@
             this.WallFurniCountLbl.AutoSize = true;
             this.WallFurniCountLbl.BackColor = System.Drawing.Color.White;
             this.WallFurniCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WallFurniCountLbl.Location = new System.Drawing.Point(14, 85);
+            this.WallFurniCountLbl.Location = new System.Drawing.Point(4, 54);
+            this.WallFurniCountLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.WallFurniCountLbl.Name = "WallFurniCountLbl";
-            this.WallFurniCountLbl.Size = new System.Drawing.Size(275, 29);
+            this.WallFurniCountLbl.Size = new System.Drawing.Size(181, 20);
             this.WallFurniCountLbl.TabIndex = 28;
             this.WallFurniCountLbl.Text = "Tot WallFurni In room : 0";
             // 
@@ -230,9 +228,10 @@
             this.IrregularFurnisCountLbl.AutoSize = true;
             this.IrregularFurnisCountLbl.BackColor = System.Drawing.Color.White;
             this.IrregularFurnisCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.IrregularFurnisCountLbl.Location = new System.Drawing.Point(14, 191);
+            this.IrregularFurnisCountLbl.Location = new System.Drawing.Point(4, 134);
+            this.IrregularFurnisCountLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.IrregularFurnisCountLbl.Name = "IrregularFurnisCountLbl";
-            this.IrregularFurnisCountLbl.Size = new System.Drawing.Size(249, 29);
+            this.IrregularFurnisCountLbl.Size = new System.Drawing.Size(164, 20);
             this.IrregularFurnisCountLbl.TabIndex = 29;
             this.IrregularFurnisCountLbl.Text = "Tot Irregular Furnis : 0";
             // 
@@ -241,9 +240,10 @@
             this.RegularFurnisCountLbl.AutoSize = true;
             this.RegularFurnisCountLbl.BackColor = System.Drawing.Color.White;
             this.RegularFurnisCountLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegularFurnisCountLbl.Location = new System.Drawing.Point(14, 165);
+            this.RegularFurnisCountLbl.Location = new System.Drawing.Point(4, 114);
+            this.RegularFurnisCountLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.RegularFurnisCountLbl.Name = "RegularFurnisCountLbl";
-            this.RegularFurnisCountLbl.Size = new System.Drawing.Size(244, 29);
+            this.RegularFurnisCountLbl.Size = new System.Drawing.Size(161, 20);
             this.RegularFurnisCountLbl.TabIndex = 30;
             this.RegularFurnisCountLbl.Text = "Tot Regular Furnis : 0";
             // 
@@ -267,9 +267,11 @@
             this.RoomScannerGroupbox.Controls.Add(this.FloorFurniCountLbl);
             this.RoomScannerGroupbox.Controls.Add(this.TotFurnisinroomLbl);
             this.RoomScannerGroupbox.Controls.Add(this.AnalyzeRooMFurnisBtn);
-            this.RoomScannerGroupbox.Location = new System.Drawing.Point(1077, 15);
+            this.RoomScannerGroupbox.Location = new System.Drawing.Point(552, 10);
+            this.RoomScannerGroupbox.Margin = new System.Windows.Forms.Padding(2);
             this.RoomScannerGroupbox.Name = "RoomScannerGroupbox";
-            this.RoomScannerGroupbox.Size = new System.Drawing.Size(369, 578);
+            this.RoomScannerGroupbox.Padding = new System.Windows.Forms.Padding(2);
+            this.RoomScannerGroupbox.Size = new System.Drawing.Size(246, 376);
             this.RoomScannerGroupbox.TabIndex = 31;
             this.RoomScannerGroupbox.TabStop = false;
             this.RoomScannerGroupbox.Text = "Room Scanner";
@@ -279,9 +281,10 @@
             this.UnknownFurniLbl.AutoSize = true;
             this.UnknownFurniLbl.BackColor = System.Drawing.Color.White;
             this.UnknownFurniLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UnknownFurniLbl.Location = new System.Drawing.Point(14, 416);
+            this.UnknownFurniLbl.Location = new System.Drawing.Point(4, 294);
+            this.UnknownFurniLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.UnknownFurniLbl.Name = "UnknownFurniLbl";
-            this.UnknownFurniLbl.Size = new System.Drawing.Size(217, 29);
+            this.UnknownFurniLbl.Size = new System.Drawing.Size(145, 20);
             this.UnknownFurniLbl.TabIndex = 41;
             this.UnknownFurniLbl.Text = "Unknown Furnis : 0";
             // 
@@ -290,18 +293,18 @@
             this.CrystalsLbl.AutoSize = true;
             this.CrystalsLbl.BackColor = System.Drawing.Color.White;
             this.CrystalsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CrystalsLbl.Location = new System.Drawing.Point(14, 322);
+            this.CrystalsLbl.Location = new System.Drawing.Point(4, 234);
+            this.CrystalsLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CrystalsLbl.Name = "CrystalsLbl";
-            this.CrystalsLbl.Size = new System.Drawing.Size(129, 29);
+            this.CrystalsLbl.Size = new System.Drawing.Size(86, 20);
             this.CrystalsLbl.TabIndex = 40;
             this.CrystalsLbl.Text = "Crystals : 0";
             // 
             // SilencedScannerBtn
             // 
-            this.SilencedScannerBtn.Location = new System.Drawing.Point(196, 482);
-            this.SilencedScannerBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SilencedScannerBtn.Location = new System.Drawing.Point(125, 325);
             this.SilencedScannerBtn.Name = "SilencedScannerBtn";
-            this.SilencedScannerBtn.Size = new System.Drawing.Size(165, 31);
+            this.SilencedScannerBtn.Size = new System.Drawing.Size(110, 20);
             this.SilencedScannerBtn.TabIndex = 37;
             this.SilencedScannerBtn.Text = "Silenced : OFF";
             this.SilencedScannerBtn.Click += new System.EventHandler(this.SilencedScannerBtn_Click);
@@ -311,9 +314,10 @@
             this.RaresLbl.AutoSize = true;
             this.RaresLbl.BackColor = System.Drawing.Color.White;
             this.RaresLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RaresLbl.Location = new System.Drawing.Point(14, 377);
+            this.RaresLbl.Location = new System.Drawing.Point(4, 274);
+            this.RaresLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.RaresLbl.Name = "RaresLbl";
-            this.RaresLbl.Size = new System.Drawing.Size(108, 29);
+            this.RaresLbl.Size = new System.Drawing.Size(73, 20);
             this.RaresLbl.TabIndex = 39;
             this.RaresLbl.Text = "Rares : 0";
             // 
@@ -322,9 +326,10 @@
             this.CatalogueLbl.AutoSize = true;
             this.CatalogueLbl.BackColor = System.Drawing.Color.White;
             this.CatalogueLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CatalogueLbl.Location = new System.Drawing.Point(14, 348);
+            this.CatalogueLbl.Location = new System.Drawing.Point(4, 254);
+            this.CatalogueLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CatalogueLbl.Name = "CatalogueLbl";
-            this.CatalogueLbl.Size = new System.Drawing.Size(154, 29);
+            this.CatalogueLbl.Size = new System.Drawing.Size(103, 20);
             this.CatalogueLbl.TabIndex = 38;
             this.CatalogueLbl.Text = "Catalogue : 0";
             // 
@@ -333,18 +338,18 @@
             this.CreditsLbl.AutoSize = true;
             this.CreditsLbl.BackColor = System.Drawing.Color.White;
             this.CreditsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreditsLbl.Location = new System.Drawing.Point(14, 295);
+            this.CreditsLbl.Location = new System.Drawing.Point(4, 214);
+            this.CreditsLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.CreditsLbl.Name = "CreditsLbl";
-            this.CreditsLbl.Size = new System.Drawing.Size(121, 29);
+            this.CreditsLbl.Size = new System.Drawing.Size(80, 20);
             this.CreditsLbl.TabIndex = 37;
             this.CreditsLbl.Text = "Credits : 0";
             // 
             // AutomaticAnalyzeBtn
             // 
-            this.AutomaticAnalyzeBtn.Location = new System.Drawing.Point(196, 518);
-            this.AutomaticAnalyzeBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.AutomaticAnalyzeBtn.Location = new System.Drawing.Point(125, 351);
             this.AutomaticAnalyzeBtn.Name = "AutomaticAnalyzeBtn";
-            this.AutomaticAnalyzeBtn.Size = new System.Drawing.Size(165, 31);
+            this.AutomaticAnalyzeBtn.Size = new System.Drawing.Size(110, 20);
             this.AutomaticAnalyzeBtn.TabIndex = 36;
             this.AutomaticAnalyzeBtn.Text = "Automatic Scan : ON";
             this.AutomaticAnalyzeBtn.Click += new System.EventHandler(this.AutomaticAnalyzeBtn_Click);
@@ -354,9 +359,10 @@
             this.HiddenRegularFurnisLbl.AutoSize = true;
             this.HiddenRegularFurnisLbl.BackColor = System.Drawing.Color.White;
             this.HiddenRegularFurnisLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HiddenRegularFurnisLbl.Location = new System.Drawing.Point(14, 243);
+            this.HiddenRegularFurnisLbl.Location = new System.Drawing.Point(4, 174);
+            this.HiddenRegularFurnisLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.HiddenRegularFurnisLbl.Name = "HiddenRegularFurnisLbl";
-            this.HiddenRegularFurnisLbl.Size = new System.Drawing.Size(286, 29);
+            this.HiddenRegularFurnisLbl.Size = new System.Drawing.Size(189, 20);
             this.HiddenRegularFurnisLbl.TabIndex = 35;
             this.HiddenRegularFurnisLbl.Text = "Hidden Regular Furnis : 0";
             // 
@@ -365,9 +371,10 @@
             this.HiddenIrregularFurnisLbl.AutoSize = true;
             this.HiddenIrregularFurnisLbl.BackColor = System.Drawing.Color.White;
             this.HiddenIrregularFurnisLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HiddenIrregularFurnisLbl.Location = new System.Drawing.Point(14, 217);
+            this.HiddenIrregularFurnisLbl.Location = new System.Drawing.Point(4, 154);
+            this.HiddenIrregularFurnisLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.HiddenIrregularFurnisLbl.Name = "HiddenIrregularFurnisLbl";
-            this.HiddenIrregularFurnisLbl.Size = new System.Drawing.Size(291, 29);
+            this.HiddenIrregularFurnisLbl.Size = new System.Drawing.Size(192, 20);
             this.HiddenIrregularFurnisLbl.TabIndex = 34;
             this.HiddenIrregularFurnisLbl.Text = "Hidden Irregular Furnis : 0";
             // 
@@ -376,9 +383,10 @@
             this.WhitelistedFurniLbl.AutoSize = true;
             this.WhitelistedFurniLbl.BackColor = System.Drawing.Color.White;
             this.WhitelistedFurniLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WhitelistedFurniLbl.Location = new System.Drawing.Point(14, 269);
+            this.WhitelistedFurniLbl.Location = new System.Drawing.Point(4, 194);
+            this.WhitelistedFurniLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.WhitelistedFurniLbl.Name = "WhitelistedFurniLbl";
-            this.WhitelistedFurniLbl.Size = new System.Drawing.Size(236, 29);
+            this.WhitelistedFurniLbl.Size = new System.Drawing.Size(156, 20);
             this.WhitelistedFurniLbl.TabIndex = 33;
             this.WhitelistedFurniLbl.Text = "Whitelisted Furnis : 0";
             // 
@@ -387,9 +395,10 @@
             this.RemovedFloorFurnisLbl.AutoSize = true;
             this.RemovedFloorFurnisLbl.BackColor = System.Drawing.Color.White;
             this.RemovedFloorFurnisLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemovedFloorFurnisLbl.Location = new System.Drawing.Point(14, 138);
+            this.RemovedFloorFurnisLbl.Location = new System.Drawing.Point(4, 94);
+            this.RemovedFloorFurnisLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.RemovedFloorFurnisLbl.Name = "RemovedFloorFurnisLbl";
-            this.RemovedFloorFurnisLbl.Size = new System.Drawing.Size(284, 29);
+            this.RemovedFloorFurnisLbl.Size = new System.Drawing.Size(186, 20);
             this.RemovedFloorFurnisLbl.TabIndex = 32;
             this.RemovedFloorFurnisLbl.Text = "Removed Floor Furnis : 0";
             // 
@@ -398,9 +407,10 @@
             this.RemovedWallFurnisLbl.AutoSize = true;
             this.RemovedWallFurnisLbl.BackColor = System.Drawing.Color.White;
             this.RemovedWallFurnisLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RemovedWallFurnisLbl.Location = new System.Drawing.Point(14, 112);
+            this.RemovedWallFurnisLbl.Location = new System.Drawing.Point(4, 74);
+            this.RemovedWallFurnisLbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.RemovedWallFurnisLbl.Name = "RemovedWallFurnisLbl";
-            this.RemovedWallFurnisLbl.Size = new System.Drawing.Size(268, 29);
+            this.RemovedWallFurnisLbl.Size = new System.Drawing.Size(176, 20);
             this.RemovedWallFurnisLbl.TabIndex = 31;
             this.RemovedWallFurnisLbl.Text = "Removed WallFurnis : 0";
             // 
@@ -412,9 +422,11 @@
             this.groupBox1.Controls.Add(this.ClearSelectedFilesBtn);
             this.groupBox1.Controls.Add(this.SelectedFileLbl);
             this.groupBox1.Controls.Add(this.SelectRareListBtn);
-            this.groupBox1.Location = new System.Drawing.Point(286, 15);
+            this.groupBox1.Location = new System.Drawing.Point(191, 10);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(358, 155);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(239, 101);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Files";
@@ -422,10 +434,9 @@
             // RefreshExcelListBtn
             // 
             this.RefreshExcelListBtn.Enabled = false;
-            this.RefreshExcelListBtn.Location = new System.Drawing.Point(8, 209);
-            this.RefreshExcelListBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RefreshExcelListBtn.Location = new System.Drawing.Point(5, 136);
             this.RefreshExcelListBtn.Name = "RefreshExcelListBtn";
-            this.RefreshExcelListBtn.Size = new System.Drawing.Size(224, 31);
+            this.RefreshExcelListBtn.Size = new System.Drawing.Size(149, 20);
             this.RefreshExcelListBtn.TabIndex = 28;
             this.RefreshExcelListBtn.Text = "Refresh Excel List";
             this.RefreshExcelListBtn.Visible = false;
@@ -434,10 +445,9 @@
             // UpdateListConstantlyBtn
             // 
             this.UpdateListConstantlyBtn.Enabled = false;
-            this.UpdateListConstantlyBtn.Location = new System.Drawing.Point(6, 168);
-            this.UpdateListConstantlyBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.UpdateListConstantlyBtn.Location = new System.Drawing.Point(4, 109);
             this.UpdateListConstantlyBtn.Name = "UpdateListConstantlyBtn";
-            this.UpdateListConstantlyBtn.Size = new System.Drawing.Size(224, 31);
+            this.UpdateListConstantlyBtn.Size = new System.Drawing.Size(149, 20);
             this.UpdateListConstantlyBtn.TabIndex = 27;
             this.UpdateListConstantlyBtn.Text = "Update List Constantly : OFF";
             this.UpdateListConstantlyBtn.Visible = false;
@@ -445,10 +455,9 @@
             // 
             // ConvertExcelSheetsToTxtBtn
             // 
-            this.ConvertExcelSheetsToTxtBtn.Location = new System.Drawing.Point(188, 88);
-            this.ConvertExcelSheetsToTxtBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ConvertExcelSheetsToTxtBtn.Location = new System.Drawing.Point(125, 57);
             this.ConvertExcelSheetsToTxtBtn.Name = "ConvertExcelSheetsToTxtBtn";
-            this.ConvertExcelSheetsToTxtBtn.Size = new System.Drawing.Size(165, 31);
+            this.ConvertExcelSheetsToTxtBtn.Size = new System.Drawing.Size(110, 20);
             this.ConvertExcelSheetsToTxtBtn.TabIndex = 26;
             this.ConvertExcelSheetsToTxtBtn.Text = "Convert Excel to txt";
             this.ConvertExcelSheetsToTxtBtn.Click += new System.EventHandler(this.ConvertExcelSheetsToTxtBtn_Click);
@@ -462,29 +471,29 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.FurniIDToCheckNbx);
             this.groupBox2.Controls.Add(this.FileCheckBtn);
-            this.groupBox2.Location = new System.Drawing.Point(20, 9);
+            this.groupBox2.Location = new System.Drawing.Point(13, 6);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(249, 369);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Size = new System.Drawing.Size(166, 240);
             this.groupBox2.TabIndex = 33;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Rare Check (MANUAL)";
             // 
             // ClearWhiteListBtn
             // 
-            this.ClearWhiteListBtn.Location = new System.Drawing.Point(38, 314);
-            this.ClearWhiteListBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ClearWhiteListBtn.Location = new System.Drawing.Point(25, 204);
             this.ClearWhiteListBtn.Name = "ClearWhiteListBtn";
-            this.ClearWhiteListBtn.Size = new System.Drawing.Size(184, 31);
+            this.ClearWhiteListBtn.Size = new System.Drawing.Size(123, 20);
             this.ClearWhiteListBtn.TabIndex = 20;
             this.ClearWhiteListBtn.Text = "Reset False positives";
             this.ClearWhiteListBtn.Click += new System.EventHandler(this.ClearWhiteListBtn_click);
             // 
             // RemoveFalsePositivesBtn
             // 
-            this.RemoveFalsePositivesBtn.Location = new System.Drawing.Point(14, 272);
-            this.RemoveFalsePositivesBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RemoveFalsePositivesBtn.Location = new System.Drawing.Point(9, 177);
             this.RemoveFalsePositivesBtn.Name = "RemoveFalsePositivesBtn";
-            this.RemoveFalsePositivesBtn.Size = new System.Drawing.Size(230, 31);
+            this.RemoveFalsePositivesBtn.Size = new System.Drawing.Size(153, 20);
             this.RemoveFalsePositivesBtn.TabIndex = 19;
             this.RemoveFalsePositivesBtn.Text = "Mark False Positives : OFF";
             this.RemoveFalsePositivesBtn.Click += new System.EventHandler(this.RemoveFalsePositivesBtn_Click);
@@ -493,9 +502,11 @@
             // 
             this.groupBox4.Controls.Add(this.PickUnregisteredFurniBtn);
             this.groupBox4.Controls.Add(this.PickRegisteredFurnisBtn);
-            this.groupBox4.Location = new System.Drawing.Point(711, 83);
+            this.groupBox4.Location = new System.Drawing.Point(13, 264);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(336, 511);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox4.Size = new System.Drawing.Size(157, 82);
             this.groupBox4.TabIndex = 35;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Furni Picker ";
@@ -508,86 +519,81 @@
             this.groupBox3.Controls.Add(this.ToggleVisibilityUnregisteredRaresBtn);
             this.groupBox3.Controls.Add(this.ToggleVisibilityRegisteredRaresBtn);
             this.groupBox3.Controls.Add(this.ToggleVisibilityRemovedFurnisBtn);
-            this.groupBox3.Location = new System.Drawing.Point(274, 186);
+            this.groupBox3.Location = new System.Drawing.Point(196, 119);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(430, 274);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Size = new System.Drawing.Size(332, 100);
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Furni Hider  / Unhider";
             // 
             // ToggleVisibilityCreditsFurnisBtn
             // 
-            this.ToggleVisibilityCreditsFurnisBtn.Location = new System.Drawing.Point(12, 227);
-            this.ToggleVisibilityCreditsFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ToggleVisibilityCreditsFurnisBtn.Location = new System.Drawing.Point(8, 73);
             this.ToggleVisibilityCreditsFurnisBtn.Name = "ToggleVisibilityCreditsFurnisBtn";
-            this.ToggleVisibilityCreditsFurnisBtn.Size = new System.Drawing.Size(183, 28);
+            this.ToggleVisibilityCreditsFurnisBtn.Size = new System.Drawing.Size(129, 18);
             this.ToggleVisibilityCreditsFurnisBtn.TabIndex = 31;
             this.ToggleVisibilityCreditsFurnisBtn.Text = "Hide Credits Furnis ";
             this.ToggleVisibilityCreditsFurnisBtn.Click += new System.EventHandler(this.ToggleVisibilityCreditsFurnisBtn_Click);
             // 
             // ToggleVisibilityCrystalsFurnisBtn
             // 
-            this.ToggleVisibilityCrystalsFurnisBtn.Location = new System.Drawing.Point(12, 189);
-            this.ToggleVisibilityCrystalsFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ToggleVisibilityCrystalsFurnisBtn.Location = new System.Drawing.Point(158, 49);
             this.ToggleVisibilityCrystalsFurnisBtn.Name = "ToggleVisibilityCrystalsFurnisBtn";
-            this.ToggleVisibilityCrystalsFurnisBtn.Size = new System.Drawing.Size(183, 28);
+            this.ToggleVisibilityCrystalsFurnisBtn.Size = new System.Drawing.Size(129, 18);
             this.ToggleVisibilityCrystalsFurnisBtn.TabIndex = 29;
             this.ToggleVisibilityCrystalsFurnisBtn.Text = "Hide Crystals Furnis ";
             this.ToggleVisibilityCrystalsFurnisBtn.Click += new System.EventHandler(this.ToggleVisibilityCrystalsFurnisBtn_Click);
             // 
             // ToggleVisibilityCatalogFurnisBtn
             // 
-            this.ToggleVisibilityCatalogFurnisBtn.Location = new System.Drawing.Point(12, 151);
-            this.ToggleVisibilityCatalogFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ToggleVisibilityCatalogFurnisBtn.Location = new System.Drawing.Point(8, 49);
             this.ToggleVisibilityCatalogFurnisBtn.Name = "ToggleVisibilityCatalogFurnisBtn";
-            this.ToggleVisibilityCatalogFurnisBtn.Size = new System.Drawing.Size(183, 28);
+            this.ToggleVisibilityCatalogFurnisBtn.Size = new System.Drawing.Size(129, 18);
             this.ToggleVisibilityCatalogFurnisBtn.TabIndex = 27;
             this.ToggleVisibilityCatalogFurnisBtn.Text = "Hide Catalogue Furnis";
             this.ToggleVisibilityCatalogFurnisBtn.Click += new System.EventHandler(this.ToggleVisibilityCatalogFurnisBtn_Click);
             // 
             // ToggleVisibilityUnregisteredRaresBtn
             // 
-            this.ToggleVisibilityUnregisteredRaresBtn.Location = new System.Drawing.Point(12, 76);
-            this.ToggleVisibilityUnregisteredRaresBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ToggleVisibilityUnregisteredRaresBtn.Location = new System.Drawing.Point(158, 25);
             this.ToggleVisibilityUnregisteredRaresBtn.Name = "ToggleVisibilityUnregisteredRaresBtn";
-            this.ToggleVisibilityUnregisteredRaresBtn.Size = new System.Drawing.Size(194, 28);
+            this.ToggleVisibilityUnregisteredRaresBtn.Size = new System.Drawing.Size(129, 18);
             this.ToggleVisibilityUnregisteredRaresBtn.TabIndex = 26;
             this.ToggleVisibilityUnregisteredRaresBtn.Text = "Hide Unregistered Rares";
             this.ToggleVisibilityUnregisteredRaresBtn.Click += new System.EventHandler(this.ToggleUnregisteredFurnituresVisibility_Click);
             // 
             // ToggleVisibilityRegisteredRaresBtn
             // 
-            this.ToggleVisibilityRegisteredRaresBtn.Location = new System.Drawing.Point(12, 38);
-            this.ToggleVisibilityRegisteredRaresBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ToggleVisibilityRegisteredRaresBtn.Location = new System.Drawing.Point(8, 25);
             this.ToggleVisibilityRegisteredRaresBtn.Name = "ToggleVisibilityRegisteredRaresBtn";
-            this.ToggleVisibilityRegisteredRaresBtn.Size = new System.Drawing.Size(194, 28);
+            this.ToggleVisibilityRegisteredRaresBtn.Size = new System.Drawing.Size(129, 18);
             this.ToggleVisibilityRegisteredRaresBtn.TabIndex = 25;
             this.ToggleVisibilityRegisteredRaresBtn.Text = "Hide Registered Rares";
             this.ToggleVisibilityRegisteredRaresBtn.Click += new System.EventHandler(this.ToggleRegisteredFurnituresVisibility_Click);
             // 
             // ToggleVisibilityRemovedFurnisBtn
             // 
-            this.ToggleVisibilityRemovedFurnisBtn.Location = new System.Drawing.Point(12, 114);
-            this.ToggleVisibilityRemovedFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ToggleVisibilityRemovedFurnisBtn.Location = new System.Drawing.Point(158, 73);
             this.ToggleVisibilityRemovedFurnisBtn.Name = "ToggleVisibilityRemovedFurnisBtn";
-            this.ToggleVisibilityRemovedFurnisBtn.Size = new System.Drawing.Size(183, 28);
+            this.ToggleVisibilityRemovedFurnisBtn.Size = new System.Drawing.Size(129, 18);
             this.ToggleVisibilityRemovedFurnisBtn.TabIndex = 23;
             this.ToggleVisibilityRemovedFurnisBtn.Text = "Show Removed Furnis";
             this.ToggleVisibilityRemovedFurnisBtn.Click += new System.EventHandler(this.ToggleVisibilityRemovedFurnisBtn_Click);
             // 
             // LogPageFurnisBtn
             // 
-            this.LogPageFurnisBtn.Location = new System.Drawing.Point(666, 32);
-            this.LogPageFurnisBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.LogPageFurnisBtn.Location = new System.Drawing.Point(196, 228);
             this.LogPageFurnisBtn.Name = "LogPageFurnisBtn";
-            this.LogPageFurnisBtn.Size = new System.Drawing.Size(236, 28);
+            this.LogPageFurnisBtn.Size = new System.Drawing.Size(157, 18);
             this.LogPageFurnisBtn.TabIndex = 23;
             this.LogPageFurnisBtn.Text = "Catalog Page Furni Logger : OFF";
             this.LogPageFurnisBtn.Click += new System.EventHandler(this.LogPageFurnisBtn_Click);
             // 
             // FurnitureChecker
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.LogPageFurnisBtn);
             this.Controls.Add(this.groupBox3);
@@ -595,9 +601,8 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.RoomScannerGroupbox);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FurnitureChecker";
-            this.Size = new System.Drawing.Size(1492, 612);
+            this.Size = new System.Drawing.Size(823, 404);
             ((System.ComponentModel.ISupportInitialize)(this.FurniIDToCheckNbx)).EndInit();
             this.RoomScannerGroupbox.ResumeLayout(false);
             this.RoomScannerGroupbox.PerformLayout();

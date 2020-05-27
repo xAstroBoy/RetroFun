@@ -21,11 +21,6 @@ namespace RetroFun.Pages
     public partial class MiscellaneousPage:  ObservablePage
     {
         private Random Randomizer = new Random();
-
-        //private string OldLook = "";
-        private int RoomID = 0;
-        private string OwnerName = "NOT INITIATED";
-        private string roomname = "NOT INITIATED";
         private bool newroom = true;
 
 
@@ -1129,22 +1124,7 @@ namespace RetroFun.Pages
             }
         }
 
-        public override void In_RoomData(DataInterceptedEventArgs e)
-        {
-                
-                e.Packet.ReadBoolean();
-                RoomID = e.Packet.ReadInteger();
-                roomname = e.Packet.ReadString();
-                e.Packet.ReadInteger();
-                OwnerName = e.Packet.ReadString();
-                e.Packet.ReadString();
-                e.Packet.ReadInteger();
-                e.Packet.ReadInteger();
-                e.Packet.ReadInteger();
-                e.Packet.ReadInteger();
-                e.Packet.ReadInteger();
-                e.Packet.ReadInteger();
-        }
+
 
 
         public override void In_MessagesForYou(DataInterceptedEventArgs e)
@@ -1303,7 +1283,7 @@ namespace RetroFun.Pages
             {
                 if (entityname != null)
                 {
-                    string Filepath = "../RetroFun_Chatlog/" + RecognizeDomain.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                    string Filepath = "../RetroFun_Chatlog/" + KnownDomains.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                     string FolderName = "RetroFun_Chatlog";
 
                     Directory.CreateDirectory("../" + FolderName);
@@ -1336,9 +1316,9 @@ namespace RetroFun.Pages
                                     txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
                                 }
                                 txtFile.WriteLine("");
-                                txtFile.WriteLine("[Room ID: " + RoomID + " ]");
-                                txtFile.WriteLine("[Room Owner : " + OwnerName + " ]");
-                                txtFile.WriteLine("[Room Name : " + roomname + " ]");
+                                txtFile.WriteLine("[Room ID: " + GlobalInts.ROOM_ID + " ]");
+                                txtFile.WriteLine("[Room Owner : " + GlobalStrings.ROOM_OWNER + " ]");
+                                txtFile.WriteLine("[Room Name : " + GlobalStrings.ROOM_NAME + " ]");
                                 txtFile.WriteLine("----------------------------------------------------");
                                 newroom = false;
                             }
@@ -1372,9 +1352,9 @@ namespace RetroFun.Pages
                                     txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
                                 }
                                 txtFile.WriteLine("");
-                                txtFile.WriteLine("[Room ID: " + RoomID + " ]");
-                                txtFile.WriteLine("[Room Owner : " + OwnerName + " ]");
-                                txtFile.WriteLine("[Room Name : " + roomname + " ]");
+                                txtFile.WriteLine("[Room ID: " + GlobalInts.ROOM_ID + " ]");
+                                txtFile.WriteLine("[Room Owner : " + GlobalStrings.ROOM_OWNER + " ]");
+                                txtFile.WriteLine("[Room Name : " + GlobalStrings.ROOM_NAME + " ]");
                                 txtFile.WriteLine("----------------------------------------------------");
                                 newroom = false;
                             }
@@ -1394,7 +1374,7 @@ namespace RetroFun.Pages
 
         private void DeleteRoomBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RequestDeleteRoom, RoomID);
+            Connection.SendToServerAsync(Out.RequestDeleteRoom, GlobalInts.ROOM_ID);
         }
 
     }

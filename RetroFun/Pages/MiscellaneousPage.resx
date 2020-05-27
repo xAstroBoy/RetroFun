@@ -1005,7 +1005,7 @@
     <value>59</value>
   </data>
   <data name="GestureOnLoopBtn.Text" xml:space="preserve">
-    <value>Gestures On Loop : Off</value>
+    <value>Gestures Loop : Off</value>
   </data>
   <data name="&gt;&gt;GestureOnLoopBtn.Name" xml:space="preserve">
     <value>GestureOnLoopBtn</value>
@@ -1714,6 +1714,6 @@
     <value>MiscellaneousPage</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>RetroFun.Subscribers.ObservablePage, RetroFun, Version=6.0.7444.2700, Culture=neutral, PublicKeyToken=null</value>
+    <value>RetroFun.Subscribers.ObservablePage, RetroFun, Version=6.0.7452.26937, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

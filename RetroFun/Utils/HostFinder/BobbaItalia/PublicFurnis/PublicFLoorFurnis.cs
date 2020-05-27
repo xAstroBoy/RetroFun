@@ -249,7 +249,7 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
         public static readonly List<int> Bobba_IceCaf = new List<int> { 9185, 9184, 9183, 9182, 9181, 9180, 9179, 9178, 9177, 9176 };
         public static readonly List<int> Bobba_Infobus = new List<int> { 7949, 7903, 7902, 7901, 7900, 7899, 7898, 7897, 7896, 7895, 7894, 7893, 7892, 7891, 7890, 7889, 7888, 7887, 7886, 7885, 7884, 7883, 7882, 7881, 7880, 7879, 7878, 7877, 7876, 7875, 7874, 7873, 7872, 7871, 7870, 7869, 7868, 7867, 7866, 7865, 7864, 7863, 7795 };
         public static readonly List<int> Bobba_LoungeHC = new List<int> { 9788, 9784, 9783, 9782, 9779, 9777, 9775, 9773, 9801, 9799, 9796, 9794, 9793, 9792, 9791 };
-        public static readonly List<int> Bobba_Mall17 = new List<int> { 9284, 9283, 9282 };
+        public static readonly List<int> Bobba_Mall17 = new List<int> { 9284, 9283, 9282, 3045 };
         public static readonly List<int> Bobba_NoobRoom = new List<int> { 16804, 16803, 16802, 16801, 16800, 16799, 16798, 16796, 16795, 16794, 16793, 16792, 16791, 19758, 19757, 19756, 19755, 19754, 6000, 6032, 6031, 6030, 6029, 6028, 6027, 6026, 6025, 6024, 6023, 6022, 6021, 6020, 6019, 6018, 6017, 6016, 6015, 6014, 6013, 6012, 6011, 6010, 6009, 6008, 6007, 6006, 6005, 6004, 6003, 6002, 6001, 19904, 16809, 16808, 16807, 16806, 16805 };
         public static readonly List<int> Bobba_Picnic = new List<int> { 3807, 3813, 3805, 3812, 3816, 3804, 3806, 3811, 3803, 3808, 3817, 3810, 3815, 3809 };
         public static readonly List<int> Bobba_Picnic2016 = new List<int> { 8117, 8116, 8130, 8129, 8128, 8127, 8126, 8125, 8124, 8123, 8122, 8121, 8120, 8119, 8118 };

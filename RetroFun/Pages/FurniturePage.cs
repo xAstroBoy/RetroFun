@@ -345,7 +345,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../PlacedFurnis/" + RecognizeDomain.GetHost(Connection.Host) + "_FURNI" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../PlacedFurnis/" + KnownDomains.GetHost(Connection.Host) + "_FURNI" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "PlacedFurnis";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -378,7 +378,7 @@ namespace RetroFun.Pages
             try
             {
                 int i = 0;
-                string Filepath = "../FurniDetails/" + RecognizeDomain.GetHost(Connection.Host) + "_FloorFurni" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../FurniDetails/" + KnownDomains.GetHost(Connection.Host) + "_FloorFurni" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "FurniDetails";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -440,7 +440,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../FurniDetails/" + RecognizeDomain.GetHost(Connection.Host) + "_WallFurni" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../FurniDetails/" + KnownDomains.GetHost(Connection.Host) + "_WallFurni" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "FurniDetails";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -917,15 +917,17 @@ namespace RetroFun.Pages
         public override void Out_RotateMoveItem(DataInterceptedEventArgs e)
         {
             int furniid = e.Packet.ReadInteger();
-            int FurniX = e.Packet.ReadInteger();
-            int FurniY = e.Packet.ReadInteger();
-            int Rotation = e.Packet.ReadInteger();
             if (FloorFurniInterceptionMode)
             {
-                FloorFurniID = furniid;
-                FloorFurniX = FurniX;
-                FloorFurniY = FurniY;
-                ControlRotation(Rotation);
+                var furni = FindFloorFurni(furniid);
+                if (furni != null)
+                {
+                    FloorFurniID = furni.Id;
+                    FloorFurniX = furni.Tile.X;
+                    FloorFurniY = furni.Tile.Y;
+                    ControlRotation((int)furni.Facing);
+                    e.IsBlocked = true;
+                }
             }
             if (IsPickerGrabMode)
             {
@@ -962,7 +964,22 @@ namespace RetroFun.Pages
 
         }
 
-        private void FindFurniDetals(int FurniID)
+
+        private HFloorItem FindFloorFurni(int FurniID)
+        {
+            var floorfurni = RoomFloorFurni.Find(x => x.Id == FurniID);
+            if (floorfurni != null)
+            {
+                return floorfurni;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+            private void FindFurniDetals(int FurniID)
         {
             var floorfurni = RoomFloorFurni.Find(x => x.Id == FurniID);
             var wallfurni = RoomWallFurni.Find(x => x.Id == FurniID);
@@ -1098,7 +1115,7 @@ namespace RetroFun.Pages
         {
             if (Connection.Remote.IsConnected)
             {
-                if (In.RemoveFloorItem == 0 && RecognizeDomain.GetHost(Connection.Host) == RecognizeDomain.bobbaitalia)
+                if (In.RemoveFloorItem == 0 && KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
                 {
                     await Task.Delay(250);
                     await Connection.SendToClientAsync(2411, item.Id.ToString(), false, 0, 0);
@@ -1315,6 +1332,19 @@ namespace RetroFun.Pages
         public override void Out_ToggleFloorItem(DataInterceptedEventArgs e)
         {
             int FurniID = e.Packet.ReadInteger();
+
+            if (FloorFurniInterceptionMode)
+            {
+                var furni = FindFloorFurni(FurniID);
+                if (furni != null)
+                {
+                    FloorFurniID = furni.Id;
+                    FloorFurniX = furni.Tile.X;
+                    FloorFurniY = furni.Tile.Y;
+                    ControlRotation((int)furni.Facing);
+                    e.IsBlocked = true;
+                }
+            }
             if (IsPickerGrabMode)
             {
                 FindTypeId(FurniID);

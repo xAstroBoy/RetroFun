@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RetroFun.Helpers
 {
-    public static class RecognizeDomain
+    public static class KnownDomains
     {
         public static string GetHost(string host)
         {

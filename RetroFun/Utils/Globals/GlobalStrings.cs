@@ -17,6 +17,10 @@ namespace RetroFun
         public static string UserDetails_Look { get; set; } = null;
         public readonly static string DeveloperDiscord = "xAstroBoy#1337";
 
+        public static string ROOM_NAME { get; set; } = "NOT INITIATED";
+        public static string ROOM_OWNER { get; set; } = "NOT INITIATED";
+
+
     }
 }
 
