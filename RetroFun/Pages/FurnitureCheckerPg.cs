@@ -36,6 +36,9 @@ namespace RetroFun.Pages
 
         private bool newroom = true;
 
+
+        private List<int> RegisteredIDs = new List<int>();
+
         private List<HFloorItem> IrregularFloorFurni { get => FloorFurniCheck.IrregularFloorFurni; set { FloorFurniCheck.IrregularFloorFurni = value; } }
         private List<HFloorItem> CreditsFloorFurnis { get => FloorFurniCheck.CreditsFloorFurnis; set { FloorFurniCheck.CreditsFloorFurnis = value; } }
         private List<HFloorItem> CrystalsFloorFurnis { get => FloorFurniCheck.CrystalsFloorFurnis; set { FloorFurniCheck.CrystalsFloorFurnis = value; } }
@@ -623,7 +626,11 @@ namespace RetroFun.Pages
                     {
                         Speak("This Furni is Irregular!", 34);
                     }
-                    RecordRareControl(false, "[IRREGOLARE] : " + itemid);
+                    if(!RegisteredIDs.Contains(itemid))
+                    {
+                        RecordRareControl(false, "[IRREGOLARE] : " + itemid);
+                        RegisteredIDs.Add(itemid);
+                    }
                 }
             }
         }
@@ -645,8 +652,11 @@ namespace RetroFun.Pages
                         {
                             SpeakAnyways("This Furni is Irregular!", 34);
                         }
-                        RecordRareControl(false, "[IRREGOLARE] : " + wall.Id);
-
+                        if (!RegisteredIDs.Contains(wall.Id))
+                        {
+                            RecordRareControl(false, "[IRREGOLARE] : " + wall.Id);
+                            RegisteredIDs.Add(wall.Id);
+                        }
 
                         if (!IrregularWallFurni.Contains(wall))
                         {
@@ -710,7 +720,11 @@ namespace RetroFun.Pages
                                 {
                                     SpeakAnyways("This Furni is Irregular!", 34);
                                 }
-                                RecordRareControl(false, "[IRREGOLARE] : " + furni.Id);
+                                if (!RegisteredIDs.Contains(furni.Id))
+                                {
+                                    RecordRareControl(false, "[IRREGOLARE] : " + furni.Id);
+                                    RegisteredIDs.Add(furni.Id);
+                                }
 
                                 if (!IrregularFloorFurni.Contains(furni))
                                 {
@@ -914,7 +928,11 @@ namespace RetroFun.Pages
                             {
                                 SpeakAnyways(FixLineSpaces(line), 34);
                             }
-                            RecordRareControl(true, "[REGOLARE] : " + id);
+                            if (!RegisteredIDs.Contains(id))
+                            {
+                               RecordRareControl(true, "[REGOLARE] : " + id);
+                                RegisteredIDs.Add(id);
+                            }
                             return true;
                         }
                     }
@@ -1005,7 +1023,11 @@ namespace RetroFun.Pages
                                         UpdateHiddenRegularFurniLabel();
                                     }
                                 }
-                                RecordRareControl(true, "[REGOLARE] : " + flooritem.Id);
+                                if (!RegisteredIDs.Contains(flooritem.Id))
+                                {
+                                    RecordRareControl(true, "[REGOLARE] : " + flooritem.Id);
+                                    RegisteredIDs.Add(flooritem.Id);
+                                }
                                 return true;
                             }
                         }
@@ -1065,7 +1087,11 @@ namespace RetroFun.Pages
                                     UpdateHiddenRegularFurniLabel();
                                 }
                             }
-                            RecordRareControl(true, "[REGOLARE] : " + wallitem.Id);
+                            if (!RegisteredIDs.Contains(wallitem.Id))
+                            {
+                                RecordRareControl(true, "[REGOLARE] : " + wallitem.Id);
+                                RegisteredIDs.Add(wallitem.Id);
+                            }
                             return true;
                         }
                     }
@@ -1903,6 +1929,7 @@ namespace RetroFun.Pages
         {
             WallFurniCheck.ClearAll();
             FloorFurniCheck.ClearAll();
+            RegisteredIDs.Clear();
             IS_HIDING_IRREGULAR_WALLFURNIS = false;
             IS_HIDING_IRREGULAR_FLOORFURNIS = false;
             IS_HIDING_REGULAR_WALLFURNIS = false;
@@ -2087,7 +2114,6 @@ namespace RetroFun.Pages
 
                     catch (Exception e)
                     {
-                        IS_HIDING_REGULAR_FLOORFURNIS = false;
                     }
                 } while (IS_HIDING_REGULAR_FLOORFURNIS);
 
@@ -2133,7 +2159,7 @@ namespace RetroFun.Pages
 
                     catch (Exception e)
                     {
-                        IS_HIDING_IRREGULAR_WALLFURNIS = false;
+
 
                     }
                 } while (IS_HIDING_IRREGULAR_WALLFURNIS);
@@ -2182,7 +2208,7 @@ namespace RetroFun.Pages
                     }
                     catch (Exception e)
                     {
-                        IS_HIDING_IRREGULAR_FLOORFURNIS = false;
+
 
                     }
                 } while (IS_HIDING_IRREGULAR_FLOORFURNIS);
@@ -2220,7 +2246,7 @@ namespace RetroFun.Pages
                     }
                     catch (Exception e)
                     {
-                        IS_HIDING_CATALOGUE_FLOORFURNI = false;
+
 
                     }
                 } while (IS_HIDING_CATALOGUE_FLOORFURNI);
@@ -2258,8 +2284,6 @@ namespace RetroFun.Pages
                     }
                     catch (Exception e)
                     {
-                        IS_HIDING_CRYSTALS_FLOORFURNIS = false;
-
                     }
                 } while (IS_HIDING_CRYSTALS_FLOORFURNIS);
 
@@ -2293,8 +2317,6 @@ namespace RetroFun.Pages
                     }
                     catch (Exception e)
                     {
-                        IS_HIDING_CRYSTALS_WALLFURNIS = false;
-
                     }
                 } while (IS_HIDING_CRYSTALS_WALLFURNIS);
 
@@ -2332,8 +2354,6 @@ namespace RetroFun.Pages
                     }
                     catch (Exception e)
                     {
-                        IS_HIDING_CREDITS_FURNIS = false;
-
                     }
                 } while (IS_HIDING_CREDITS_FURNIS);
 
@@ -2371,8 +2391,6 @@ namespace RetroFun.Pages
                     }
                     catch (Exception e)
                     {
-                        IS_HIDING_CATALOGUE_WALLFURNI = false;
-
                     }
                 } while (IS_HIDING_CATALOGUE_WALLFURNI);
 
@@ -2412,8 +2430,6 @@ namespace RetroFun.Pages
                     }
                     catch (Exception e)
                     {
-                        IS_HIDING_REMOVED_FLOORFURNI = false;
-
                     }
                 } while (IS_HIDING_REMOVED_FLOORFURNI);
 
@@ -2452,8 +2468,6 @@ namespace RetroFun.Pages
                     }
                     catch (Exception e)
                     {
-                        IS_HIDING_REMOVED_WALLFURNI = false;
-
                     }
                 } while (IS_HIDING_REMOVED_WALLFURNI);
 
@@ -2491,7 +2505,6 @@ namespace RetroFun.Pages
                 }
                 catch (Exception e)
                 {
-                    IS_SCANNING_WALLFURNIS = false;
                 }
             }).Start();
 
@@ -2528,7 +2541,6 @@ namespace RetroFun.Pages
                 }
                 catch (Exception e)
                 {
-                    IS_SCANNING_FLOORFURNIS = false;
 
                 }
             }).Start();
@@ -3253,7 +3265,6 @@ namespace RetroFun.Pages
                 {
                     RegularWallFurni.Add(furni);
                     UpdateRegularFurniLabel();
-
                 }
                 if (AreRegisteredFurnisHidden)
                 {
@@ -4195,10 +4206,9 @@ namespace RetroFun.Pages
                             }
                             else
                             {
+                                txtFile.WriteLine("");
                                 txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
                             }
-                            txtFile.WriteLine("");
-                            txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
                             if (GlobalStrings.UserDetails_Username == null)
                             {
                                 txtFile.WriteLine("");
@@ -4206,6 +4216,7 @@ namespace RetroFun.Pages
                             }
                             else
                             {
+                                txtFile.WriteLine("");
                                 txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
                             }
                             txtFile.WriteLine("");
@@ -4215,7 +4226,6 @@ namespace RetroFun.Pages
                             txtFile.WriteLine("----------------------------------------------------");
                             newroom = false;
                         }
-                        txtFile.WriteLine("");
                         txtFile.WriteLine(text);
                     }
                 }
@@ -4233,10 +4243,9 @@ namespace RetroFun.Pages
                             }
                             else
                             {
+                                txtFile.WriteLine("");
                                 txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
                             }
-                            txtFile.WriteLine("");
-                            txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
                             if (GlobalStrings.UserDetails_Username == null)
                             {
                                 txtFile.WriteLine("");
@@ -4244,6 +4253,7 @@ namespace RetroFun.Pages
                             }
                             else
                             {
+                                txtFile.WriteLine("");
                                 txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
                             }
                             txtFile.WriteLine("");
@@ -4253,7 +4263,6 @@ namespace RetroFun.Pages
                             txtFile.WriteLine("----------------------------------------------------");
                             newroom = false;
                         }
-                        txtFile.WriteLine("");
                         txtFile.WriteLine(text);
                     }
 

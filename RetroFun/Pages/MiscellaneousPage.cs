@@ -1302,10 +1302,9 @@ namespace RetroFun.Pages
                                 }
                                 else
                                 {
+                                    txtFile.WriteLine("");
                                     txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
                                 }
-                                txtFile.WriteLine("");
-                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
                                  if (GlobalStrings.UserDetails_Username == null)
                                 {
                                     txtFile.WriteLine("");
@@ -1313,6 +1312,7 @@ namespace RetroFun.Pages
                                 }
                                 else
                                 {
+                                    txtFile.WriteLine("");
                                     txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
                                 }
                                 txtFile.WriteLine("");

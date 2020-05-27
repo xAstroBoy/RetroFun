@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace RetroFun
+namespace RetroFun 
 {
     [DesignerCategory("Form")]
     [Module("RetroFun", "All-in-one scripting tool!")]
