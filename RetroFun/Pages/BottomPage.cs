@@ -59,6 +59,13 @@ namespace RetroFun.Pages
 
         public override async void Out_LatencyTest(DataInterceptedEventArgs obj)
         {
+            if (OwnUsername == null)
+            {
+                if (Connection.Remote.IsConnected)
+                {
+                    await Connection.SendToServerAsync(Out.RequestUserData);
+                }
+            }
             if (!KnownDomains.isDomainRecognized)
             {
                 KnownDomains.RecognizeHostBool(Connection.Host);
@@ -70,16 +77,10 @@ namespace RetroFun.Pages
                 else
                 {
                     Speak("Setting RetroFun for Unknown Host!");
-                    Speak("Some features won't work here Server-side, please contact the developer on discord in case there's a problem with this host : " +  GlobalStrings.DeveloperDiscord);
+                    Speak("Some features won't work here Server-side, please contact the developer on discord in case there's a problem with this host : " + GlobalStrings.DeveloperDiscord);
                 }
-            }
-            if (OwnUsername == null)
-            {
-                if (Connection.Remote.IsConnected)
-                {
-                    await Connection.SendToServerAsync(Out.RequestUserData);
-                }
-            }
+                UpdateMainFrmTitle();
+                    }
         }
 
         public override void Out_Username(DataInterceptedEventArgs obj)
@@ -89,6 +90,7 @@ namespace RetroFun.Pages
             if (OwnUsername == null)
             {
                 OwnUsername = username;
+                UpdateMainFrmTitle();
             }
         }
 
@@ -132,7 +134,24 @@ namespace RetroFun.Pages
                 UsersInRoomLbl.Text = "Users In Room : " + CurrentRoomUsers.Count;
             });
         }
-        
+
+
+        private void UpdateMainFrmTitle()
+        {
+            try
+            {
+                Invoke((MethodInvoker)delegate
+                {
+                    MainFrm.ActiveForm.Text = "RetroFun  [Host : " + KnownDomains.GetHostName(Connection.Host) + " ]" +
+                    "  " +
+                    "[IsKnownHost : " + KnownDomains.isAKnownHost(Connection.Host).ToString() + " ]" +
+                    "  " +
+                    "[Username : " + OwnUsername + " ]";
+                });
+            }
+            catch (Exception) { }
+        }
+
 
         public  override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {

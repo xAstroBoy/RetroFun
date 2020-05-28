@@ -1899,25 +1899,18 @@ namespace RetroFun.Pages
             {
                 return "NOT_FOUND";
             }
-
         }
+
+
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.isBobbaHotel)
-            {
                 ResetAll();
-                newroom = true;
-            }
         }
 
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.isBobbaHotel)
-            {
                 ResetAll();
-                newroom = true;
-            }
         }
 
 
@@ -1925,6 +1918,7 @@ namespace RetroFun.Pages
 
         private void ResetAll()
         {
+            newroom = true;
             WallFurniCheck.ClearAll();
             FloorFurniCheck.ClearAll();
             RegisteredIDs.Clear();
@@ -4223,7 +4217,6 @@ namespace RetroFun.Pages
 
                 if (!File.Exists(Filepath))
                 {
-                    newroom = true;
                     using (var txtFile = File.AppendText(Filepath))
                     {
                         txtFile.WriteLine("Rares Control Done at :" + DateTime.Now.ToString());

@@ -2,7 +2,6 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\RetroFun.exe.confi
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\RetroFun.exe
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\RetroFun.pdb
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\Flazzy.dll
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\Sulakore.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\System.Xml.Linq.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Release\Tangine.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Release\RetroFun.MainFrm.resources

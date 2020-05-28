@@ -25,6 +25,12 @@ namespace RetroFun
             return GlobalLists.UsersInRoom.Find(f => f.Id == userid);
         }
 
+        public static HEntity FindConvertedUserToPetByID(int userid)
+        {
+            return GlobalLists.ConvertedUsersToPets.Find(f => f.Id == userid);
+        }
+
+
         public static HEntity FindEntityByUsername(string name)
         {
             return GlobalLists.UsersInRoom.Find(f => f.Name == name);

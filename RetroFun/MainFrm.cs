@@ -151,6 +151,7 @@ namespace RetroFun
                 //else if (Out.GuideCancelHelpRequest == id){sub.Out_GuideCancelHelpRequest(e);}
                 //else if (Out.GuideCloseHelpRequest == id){sub.Out_GuideCloseHelpRequest(e);}
                 //else if (Out.GuideHandleHelpRequest == id){sub.Out_GuideHandleHelpRequest(e);}
+
                 //else if (Out.GuideInviteUser == id){sub.Out_GuideInviteUser(e);}
                 //else if (Out.GuideRecommendHelper == id){sub.Out_GuideRecommendHelper(e);}
                 //else if (Out.GuideReportHelper == id){sub.Out_GuideReportHelper(e);}

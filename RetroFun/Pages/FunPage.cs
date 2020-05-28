@@ -24,7 +24,8 @@ namespace RetroFun.Pages
     {
         private ColorDialog CD;
         private bool isLiveEnableEdit;
-        private List<HEntity> ConvertedUsers = new List<HEntity>();
+        public List<HEntity> ConvertedUsersToPets { get => GlobalLists.ConvertedUsersToPets; set { GlobalLists.ConvertedUsersToPets = value; } }
+
         private bool isStaticEffectThreadStarted;
         private bool GiveEnableEffectToUser;
         private bool giveenableeffecttoallusersthread;
@@ -212,9 +213,9 @@ namespace RetroFun.Pages
                 HEntity[] array = HEntity.Parse(e.Packet);
                 foreach(HEntity entity in array)
                 {
-                    if(!ConvertedUsers.Contains(entity))
+                    if(!ConvertedUsersToPets.Contains(entity))
                     {
-                        ConvertedUsers.Add(entity);
+                        ConvertedUsersToPets.Add(entity);
                     }
                 }
                 int num = e.Packet.ReadInteger(0);
@@ -274,7 +275,7 @@ namespace RetroFun.Pages
 
 
 
-private void WriteToButton(SKoreButton button, string text)
+        private void WriteToButton(SKoreButton button, string text)
         {
             Invoke((MethodInvoker)delegate
             {
@@ -297,12 +298,12 @@ private void WriteToButton(SKoreButton button, string text)
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
-            ConvertedUsers.Clear();
+            ConvertedUsersToPets.Clear();
         }
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
-            ConvertedUsers.Clear();
+            ConvertedUsersToPets.Clear();
         }
 
 
@@ -533,6 +534,23 @@ private void WriteToButton(SKoreButton button, string text)
             GiveAllEffectsToUsers(EffectNumber);
         }
 
+        public override void Out_RequestPetInfo(DataInterceptedEventArgs e)
+        {
+            int userid = e.Packet.ReadInteger();
+            if (HentityUtils.FindConvertedUserToPetByID(userid) != null)
+            {
+                ReplaceUserPacketInfo(userid);
+                e.IsBlocked = true;
+            }
+        }
+
+        private async void ReplaceUserPacketInfo(int userid)
+        {
+            await Connection.SendToServerAsync(Out.RequestWearingBadges, userid);
+            await Task.Delay(150);
+            await Connection.SendToServerAsync(Out.RequestProfileFriends, userid);
+
+        }
 
         private void SetEffectToClickedUserbtn_Click(object sender, EventArgs e)
         {
@@ -589,15 +607,15 @@ private void WriteToButton(SKoreButton button, string text)
 
         private void RestoreUsersBtn_Click(object sender, EventArgs e)
         {
-            if(ConvertedUsers.Count != 0 && ConvertedUsers != null)
+            if(ConvertedUsersToPets.Count != 0 && ConvertedUsersToPets != null)
             {
-                foreach (HEntity user in ConvertedUsers)
+                foreach (HEntity user in ConvertedUsersToPets)
                 {
                     Thread.Sleep(50);
                     RemoveEntityFromRoom(user);
                 }
-                Connection.SendToClientAsync(HentityUtils.PacketBuilder(ConvertedUsers, In.RoomUsers));
-                ConvertedUsers.Clear();
+                Connection.SendToClientAsync(HentityUtils.PacketBuilder(ConvertedUsersToPets, In.RoomUsers));
+                ConvertedUsersToPets.Clear();
             }
         }
 

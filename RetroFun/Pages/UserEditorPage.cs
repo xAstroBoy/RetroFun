@@ -414,10 +414,7 @@ namespace RetroFun.Pages
             );
         }
 
-        public override void Out_RequestPetInfo(DataInterceptedEventArgs e)
-        {
-            base.Out_RequestPetInfo(e);
-        }
+
 
         private void EditUserBtn_Click(object sender, EventArgs e)
         {
