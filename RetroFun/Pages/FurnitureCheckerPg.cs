@@ -35,6 +35,7 @@ namespace RetroFun.Pages
     {
 
         private bool newroom = true;
+        private bool newroom2 = true;
 
 
         private List<int> RegisteredIDs = new List<int>();
@@ -628,7 +629,7 @@ namespace RetroFun.Pages
                         Speak("This Furni is Irregular!", 34);
                     }
 
-                        RecordRareControl(false, "[IRREGOLARE] : " , itemid);
+                        RecordIrregularControl(itemid);
                 }
             }
         }
@@ -652,7 +653,7 @@ namespace RetroFun.Pages
                         }
                         if (!RegisteredIDs.Contains(wall.Id))
                         {
-                            RecordRareControl(false, "[IRREGOLARE] : " , wall.Id);
+                            RecordIrregularControl(wall.Id);
                             RegisteredIDs.Add(wall.Id);
                         }
 
@@ -720,7 +721,7 @@ namespace RetroFun.Pages
                                 }
                                 if (!RegisteredIDs.Contains(furni.Id))
                                 {
-                                    RecordRareControl(false, "[IRREGOLARE] : " , furni.Id);
+                                    RecordIrregularControl(furni.Id);
                                     RegisteredIDs.Add(furni.Id);
                                 }
 
@@ -928,7 +929,7 @@ namespace RetroFun.Pages
                             }
                             if (!RegisteredIDs.Contains(id))
                             {
-                               RecordRareControl(true, "[REGOLARE] : " , id);
+                                RecordRegularControl(id);
                                 RegisteredIDs.Add(id);
                             }
                             return true;
@@ -1023,7 +1024,7 @@ namespace RetroFun.Pages
                                 }
                                 if (!RegisteredIDs.Contains(flooritem.Id))
                                 {
-                                    RecordRareControl(true, "[REGOLARE] : " , flooritem.Id);
+                                    RecordRegularControl(flooritem.Id);
                                     RegisteredIDs.Add(flooritem.Id);
                                 }
                                 return true;
@@ -1087,7 +1088,7 @@ namespace RetroFun.Pages
                             }
                             if (!RegisteredIDs.Contains(wallitem.Id))
                             {
-                                RecordRareControl(true, "[REGOLARE] : " , wallitem.Id);
+                                RecordRegularControl(wallitem.Id);
                                 RegisteredIDs.Add(wallitem.Id);
                             }
                             return true;
@@ -1919,6 +1920,7 @@ namespace RetroFun.Pages
         private void ResetAll()
         {
             newroom = true;
+            newroom2 = true;
             WallFurniCheck.ClearAll();
             FloorFurniCheck.ClearAll();
             RegisteredIDs.Clear();
@@ -4195,22 +4197,12 @@ namespace RetroFun.Pages
 
 
 
-        private void RecordRareControl(bool isRegolar, string text, int id)
+        private void RecordRegularControl(int id)
         {
 
-            string raretype;
             try
             {
-                if (isRegolar)
-                {
-                    raretype = "_rari_regolari";
-                }
-                else
-                {
-                    raretype = "_rari_irregolari";
-                }
-
-                string Filepath = "../RareControls/" + KnownDomains.GetHostName(Connection.Host) + raretype + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../RareControls/" + KnownDomains.GetHostName(Connection.Host) + "_rari_regolari" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "RareControls";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -4253,7 +4245,7 @@ namespace RetroFun.Pages
                         if (!RegisteredIDs.Contains(id))
                         {
                             RegisteredIDs.Add(id);
-                            txtFile.WriteLine(text + id);
+                            txtFile.WriteLine("[REGOLARE] " + id);
                         }
                     }
                 }
@@ -4294,7 +4286,7 @@ namespace RetroFun.Pages
                         if (!RegisteredIDs.Contains(id))
                         {
                             RegisteredIDs.Add(id);
-                            txtFile.WriteLine(text + id);
+                            txtFile.WriteLine("[REGOLARE] " + id);
                         }
                     }
 
@@ -4306,5 +4298,108 @@ namespace RetroFun.Pages
 
             }
         }
-    } 
+
+        private void RecordIrregularControl(int id)
+        {
+
+            try
+            {
+
+                string Filepath = "../RareControls/" + KnownDomains.GetHostName(Connection.Host) + "_rari_irregolari" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string FolderName = "RareControls";
+
+                Directory.CreateDirectory("../" + FolderName);
+
+                if (!File.Exists(Filepath))
+                {
+                    using (var txtFile = File.AppendText(Filepath))
+                    {
+                        txtFile.WriteLine("Rares Control Done at :" + DateTime.Now.ToString());
+                        if (newroom2)
+                        {
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
+                            }
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[User Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
+                            txtFile.WriteLine("");
+                            txtFile.WriteLine("[Room ID: " + GlobalInts.ROOM_ID + " ]");
+                            txtFile.WriteLine("[Room Owner : " + GlobalStrings.ROOM_OWNER + " ]");
+                            txtFile.WriteLine("[Room Name : " + GlobalStrings.ROOM_NAME + " ]");
+                            txtFile.WriteLine("----------------------------------------------------");
+                            newroom2 = false;
+                        }
+                        if (!RegisteredIDs.Contains(id))
+                        {
+                            RegisteredIDs.Add(id);
+                            txtFile.WriteLine("[IRREGOLARE] " + id);
+                        }
+                    }
+                }
+                else if (File.Exists(Filepath))
+                {
+                    using (var txtFile = File.AppendText(Filepath))
+                    {
+
+                        if (newroom2)
+                        {
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
+                            }
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[User Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
+                            txtFile.WriteLine("");
+                            txtFile.WriteLine("[Room ID: " + GlobalInts.ROOM_ID + " ]");
+                            txtFile.WriteLine("[Room Owner : " + GlobalStrings.ROOM_OWNER + " ]");
+                            txtFile.WriteLine("[Room Name : " + GlobalStrings.ROOM_NAME + " ]");
+                            txtFile.WriteLine("----------------------------------------------------");
+                            newroom2 = false;
+                        }
+                        if (!RegisteredIDs.Contains(id))
+                        {
+                            RegisteredIDs.Add(id);
+                            txtFile.WriteLine("[IRREGOLARE] " + id);
+                        }
+                    }
+
+                }
+            }
+
+            catch (Exception)
+            {
+
+            }
+        }
+
     }
+}
