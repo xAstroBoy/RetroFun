@@ -22,10 +22,6 @@ namespace RetroFun.Pages
     {
         private int _selectedUserId;
         private int Bubbleused = 0;
-        private readonly string psw = "1q1w1e";
-        private int RoomID = 0;
-        private string OwnerName = "NOT INITIATED";
-        private string roomname = "NOT INITIATED";
         private bool newroom = true;
         private List<HEntity> UserLeftRoom = new List<HEntity>(); 
         private  RegisteredUsers[] _registeredUsers;
@@ -149,17 +145,6 @@ namespace RetroFun.Pages
             }
         }
 
-        private string _UnlockPassword;
-
-        public string UnlockPassword
-        {
-            get => _UnlockPassword;
-            set
-            {
-                _UnlockPassword = value;
-                RaiseOnPropertyChanged();
-            }
-        }
 
 
 
@@ -179,8 +164,6 @@ namespace RetroFun.Pages
             Bind(UserNameTxbx, "Text", nameof(UserNickname));
             Bind(MottoTxbx, "Text", nameof(UserMotto));
             Bind(LookTxbx, "Text", nameof(UserLook));
-            Bind(passwordtxb, "Text", nameof(UnlockPassword));
-
 
             Bind(AlertBoxTxb, "Text", nameof(AlertMessage));
             Bind(BanManualReasonTxb, "Text", nameof(BanMessage));
@@ -431,7 +414,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../ModerationUtils/" + KnownDomains.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../ModerationUtils/" + KnownDomains.GetHostName(Connection.Host) + "_ACTION" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "ModerationUtils";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -440,12 +423,33 @@ namespace RetroFun.Pages
                 {
                     using (var txtFile = File.AppendText(Filepath))
                     {
-                        txtFile.WriteLine("Moderation Chatlog stored at :" + DateTime.Now.ToString());
+                        txtFile.WriteLine("Moderation Actions stored at :" + DateTime.Now.ToString());
                         if (newroom)
                         {
-                            txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
+                            }
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[You Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
                             txtFile.WriteLine("");
-                            txtFile.WriteLine("Room : " + RoomID + " Room Owner : " + OwnerName + " Room Name : " + roomname);
+                            txtFile.WriteLine("[Room ID: " + GlobalInts.ROOM_ID + " ]");
+                            txtFile.WriteLine("[Room Owner : " + GlobalStrings.ROOM_OWNER + " ]");
+                            txtFile.WriteLine("[Room Name : " + GlobalStrings.ROOM_NAME + " ]");
                             txtFile.WriteLine("----------------------------------------------------");
                             newroom = false;
                         }
@@ -481,9 +485,30 @@ namespace RetroFun.Pages
                     {
                         if (newroom)
                         {
-                            txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
+                            }
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[You Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
                             txtFile.WriteLine("");
-                            txtFile.WriteLine("Room : " + RoomID + " Room Owner : " + OwnerName + " Room Name : " + roomname);
+                            txtFile.WriteLine("[Room ID: " + GlobalInts.ROOM_ID + " ]");
+                            txtFile.WriteLine("[Room Owner : " + GlobalStrings.ROOM_OWNER + " ]");
+                            txtFile.WriteLine("[Room Name : " + GlobalStrings.ROOM_NAME + " ]");
                             txtFile.WriteLine("----------------------------------------------------");
                             newroom = false;
                         }
@@ -525,7 +550,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../ModerationUtils/" + KnownDomains.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../ModerationUtils/" + KnownDomains.GetHostName(Connection.Host) + "_ACTION" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "ModerationUtils";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -534,12 +559,33 @@ namespace RetroFun.Pages
                 {
                     using (var txtFile = File.AppendText(Filepath))
                     {
-                        txtFile.WriteLine("Moderation Chatlog stored at :" + DateTime.Now.ToString());
+                        txtFile.WriteLine("Moderation Actions stored at :" + DateTime.Now.ToString());
                         if (newroom)
                         {
-                            txtFile.WriteLine("Player left the room at : " + DateTime.Now.ToString());
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
+                            }
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[You Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
                             txtFile.WriteLine("");
-                            txtFile.WriteLine("Room : " + RoomID + " Room Owner : " + OwnerName + " Room Name : " + roomname);
+                            txtFile.WriteLine("[Room ID: " + GlobalInts.ROOM_ID + " ]");
+                            txtFile.WriteLine("[Room Owner : " + GlobalStrings.ROOM_OWNER + " ]");
+                            txtFile.WriteLine("[Room Name : " + GlobalStrings.ROOM_NAME + " ]");
                             txtFile.WriteLine("----------------------------------------------------");
                             newroom = false;
                         }
@@ -575,9 +621,30 @@ namespace RetroFun.Pages
                     {
                         if (newroom)
                         {
-                            txtFile.WriteLine("Player left the room at : " + DateTime.Now.ToString());
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("You left the room at : " + DateTime.Now.ToString());
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine(" " + GlobalStrings.UserDetails_Username + "  left the room at : " + DateTime.Now.ToString());
+                            }
+                            if (GlobalStrings.UserDetails_Username == null)
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[You Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
+                            else
+                            {
+                                txtFile.WriteLine("");
+                                txtFile.WriteLine("[ " + GlobalStrings.UserDetails_Username + " Joined this room at : " + DateTime.Now.ToString() + " ]");
+                            }
                             txtFile.WriteLine("");
-                            txtFile.WriteLine("Room : " + RoomID + " Room Owner : " + OwnerName + " Room Name : " + roomname);
+                            txtFile.WriteLine("[Room ID: " + GlobalInts.ROOM_ID + " ]");
+                            txtFile.WriteLine("[Room Owner : " + GlobalStrings.ROOM_OWNER + " ]");
+                            txtFile.WriteLine("[Room Name : " + GlobalStrings.ROOM_NAME + " ]");
                             txtFile.WriteLine("----------------------------------------------------");
                             newroom = false;
                         }
@@ -685,19 +752,6 @@ namespace RetroFun.Pages
             RecordedUnmute(UserNickname);
         }
 
-        private bool IsPasswordCorrect(string password)
-        {
-
-            if (password == psw)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
 
         private void isUnblocked(TextBox textbox, bool status)
         {
@@ -753,65 +807,6 @@ namespace RetroFun.Pages
             });
         }
 
-
-        private void UnlockStaffFeatures()
-        {
-            if (IsPasswordCorrect(UnlockPassword))
-            {
-                isUnblocked(UserNameTxbx, true);
-                isUnblocked(groupBox1, true);
-                isUnblocked(SelectUserLabel, true);
-                isUnblocked(groupBox4, true);
-                isUnblocked(TotUserRegistered, true);
-                isUnblocked(MottoTxbx, true);
-                isUnblocked(LookTxbx, true);
-                isUnblocked(label1, true);
-                isUnblocked(label2, true);
-                isUnblocked(Label3, true);
-                isUnblocked(BanUserForSpamBtn, true);
-                isUnblocked(FloodBtn, true);
-                isUnblocked(MuteUserBtn, true);
-                isUnblocked(groupBox2, true);
-                isUnblocked(UnmuteUserBtn, true);
-                isUnblocked(MuteTimeCmbx, true);
-                isUnblocked(label4, true);
-                isUnblocked(MutaUtenteTimerNbx, true);
-                isUnblocked(Utente, true);
-                isUnblocked(groupBox3, true);
-                isUnblocked(KickUserWithAlertBtn, true);
-                isUnblocked(AlertBoxTxb, true);
-                isUnblocked(AlertUserBtn, true);
-                isUnblocked(groupBox5, true);
-                isUnblocked(banForInfoLeakBtn, true);
-                isUnblocked(BanForNicknameNotAllowedBtn, true);
-                isUnblocked(BanForSecurityLockBtn, true);
-                isUnblocked(ManualBanBtn, true);
-                isUnblocked(groupBox6, true);
-                isUnblocked(label7, true);
-                isUnblocked(label5, true);
-                isUnblocked(BanTimeManualNbx, true);
-                isUnblocked(BantimeCmbx, true);
-                isUnblocked(BanManualReasonTxb, true);
-                isUnblocked(UsersCmbx, true);
-                isUnblocked(FakeRespectUserBtn, true);
-
-                isUnblocked(UnlockStaffUtilsBtn, false);
-                isUnblocked(passwordtxb, false);
-
-            }
-            else
-            {
-                UnlockPassword = "";
-            }
-        }
-
-
-        private void UnlockStaffUtilsBtn_Click(object sender, EventArgs e)
-        {
-            UnlockStaffFeatures();
-
-        }
-
         private void UsersCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -836,13 +831,6 @@ namespace RetroFun.Pages
             });
         }
 
-
-
-        private void FakeRespectThisUserBtn_click(object sender, EventArgs e)
-        {
-            Connection.SendToServerAsync(Out.RoomUserAction, 7);
-            Connection.SendToServerAsync(Out.RoomUserTalk, "Stanno inviando rispetti a " + UserNickname + "!", 1);
-        }
     }
 }
 

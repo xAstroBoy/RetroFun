@@ -557,7 +557,6 @@ namespace RetroFun
             this.ModerationPg.Size = new System.Drawing.Size(1443, 648);
             this.ModerationPg.TabIndex = 0;
             this.ModerationPg.TabStop = false;
-            this.ModerationPg.UnlockPassword = null;
             this.ModerationPg.UserLook = null;
             this.ModerationPg.UserMotto = null;
             this.ModerationPg.UserNickname = null;

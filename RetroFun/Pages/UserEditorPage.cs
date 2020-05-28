@@ -630,6 +630,11 @@ namespace RetroFun.Pages
             //}
         }
 
+        private void FakeRespectUserBtn_Click(object sender, EventArgs e)
+        {
+            Connection.SendToServerAsync(Out.RoomUserAction, 7);
+            Connection.SendToServerAsync(Out.RoomUserTalk, "Stanno inviando rispetti a " + UserNickname + "!", 1);
+        }
     }
 }
 

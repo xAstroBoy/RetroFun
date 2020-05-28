@@ -308,12 +308,12 @@ private void WriteToButton(SKoreButton button, string text)
 
         private async void SendServerEnableBobba(int effect)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 await Task.Delay(500);
                 await Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
             }
-            else if (KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico)
+            else if (KnownDomains.isHartico)
             {
                 await Task.Delay(500);
                 await Connection.SendToServerAsync(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
@@ -403,7 +403,7 @@ private void WriteToButton(SKoreButton button, string text)
                         {
                             if (isServerSideEffect)
                             {
-                                if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia || KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico)
+                                if (KnownDomains.isBobbaHotel || KnownDomains.isHartico)
                                 { 
                                 SendServerEnableBobba(EffectNumber);
                                 Thread.Sleep(CooldownEffectLoop);
@@ -507,7 +507,7 @@ private void WriteToButton(SKoreButton button, string text)
 
         private void IsServerSideBtn_Click(object sender, EventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia || KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico)
+            if (KnownDomains.isBobbaHotel || KnownDomains.isHartico)
             {
                 if (isServerSideEffect)
                 {

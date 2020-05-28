@@ -345,7 +345,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../PlacedFurnis/" + KnownDomains.GetHost(Connection.Host) + "_FURNI" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../PlacedFurnis/" + KnownDomains.GetHostName(Connection.Host) + "_FURNI" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "PlacedFurnis";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -378,7 +378,7 @@ namespace RetroFun.Pages
             try
             {
                 int i = 0;
-                string Filepath = "../FurniDetails/" + KnownDomains.GetHost(Connection.Host) + "_FloorFurni" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../FurniDetails/" + KnownDomains.GetHostName(Connection.Host) + "_FloorFurni" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "FurniDetails";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -440,7 +440,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../FurniDetails/" + KnownDomains.GetHost(Connection.Host) + "_WallFurni" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../FurniDetails/" + KnownDomains.GetHostName(Connection.Host) + "_WallFurni" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "FurniDetails";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -1115,7 +1115,7 @@ namespace RetroFun.Pages
         {
             if (Connection.Remote.IsConnected)
             {
-                if (In.RemoveFloorItem == 0 && KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+                if (In.RemoveFloorItem == 0 && KnownDomains.isBobbaHotel)
                 {
                     await Task.Delay(250);
                     await Connection.SendToClientAsync(2411, item.Id.ToString(), false, 0, 0);

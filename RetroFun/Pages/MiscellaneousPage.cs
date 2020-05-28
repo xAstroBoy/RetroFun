@@ -1283,7 +1283,7 @@ namespace RetroFun.Pages
             {
                 if (entityname != null)
                 {
-                    string Filepath = "../RetroFun_Chatlog/" + KnownDomains.GetHost(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                    string Filepath = "../RetroFun_Chatlog/" + KnownDomains.GetHostName(Connection.Host) + "_Chatlog" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                     string FolderName = "RetroFun_Chatlog";
 
                     Directory.CreateDirectory("../" + FolderName);

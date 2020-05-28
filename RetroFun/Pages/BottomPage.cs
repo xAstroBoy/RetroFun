@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using RetroFun.Globals;
+using RetroFun.Helpers;
 using RetroFun.Subscribers;
 using RetroFun.Utils.Globals;
 using Sulakore.Communication;
@@ -47,8 +48,31 @@ namespace RetroFun.Pages
             Bind(UsernameTextBox, "Text", nameof(OwnUsername));
         }
 
+        private void Speak(string text)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[RetroFun Init]: " + text, 0, 34, 0, -1);
+            }
+        }
+
+
         public override async void Out_LatencyTest(DataInterceptedEventArgs obj)
         {
+            if (!KnownDomains.isDomainRecognized)
+            {
+                KnownDomains.RecognizeHostBool(Connection.Host);
+                if (KnownDomains.isAKnownHost(Connection.Host))
+                {
+                    Speak("This is a Known host : " + KnownDomains.GetHostName(Connection.Host));
+                    Speak("Setting RetroFun for this known host!");
+                }
+                else
+                {
+                    Speak("Setting RetroFun for Unknown Host!");
+                    Speak("Some features won't work here Server-side, please contact the developer on discord in case there's a problem with this host : " +  GlobalStrings.DeveloperDiscord);
+                }
+            }
             if (OwnUsername == null)
             {
                 if (Connection.Remote.IsConnected)

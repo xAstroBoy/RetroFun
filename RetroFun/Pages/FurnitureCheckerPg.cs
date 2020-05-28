@@ -601,7 +601,7 @@ namespace RetroFun.Pages
             if (Connection.Remote.IsConnected)
             {
                 await Task.Delay(250);
-                if (In.RemoveFloorItem == 0 && KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+                if (In.RemoveFloorItem == 0 && KnownDomains.isBobbaHotel)
                 {
                     await Connection.SendToClientAsync(2411, item.Id.ToString(), false, 0, 0);
                     return;
@@ -707,7 +707,7 @@ namespace RetroFun.Pages
                 bool isParticularFurniture = isParticularFurni(furni, isQuiet);
                 if (!isParticularFurniture)
                 {
-                    if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+                    if (KnownDomains.isBobbaHotel)
                     {
                         bool isRegular = SearchPaymentRare(furni, isQuiet);
                         if (!isRegular)
@@ -941,7 +941,7 @@ namespace RetroFun.Pages
 
         private bool isParticularFurni(HFloorItem furni, bool IsQuiet)
         {
-            if (GlobalLists.BobbaParticularRares.Contains(furni.TypeId) && KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (GlobalLists.BobbaParticularRares.Contains(furni.TypeId) && KnownDomains.isBobbaHotel)
             {
                 if ((furni.Id > 684921524) && (furni.Id < 685173361))
                 {
@@ -1637,7 +1637,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../PlacedRares/" + KnownDomains.GetHost(Connection.Host) + "_rari" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../PlacedRares/" + KnownDomains.GetHostName(Connection.Host) + "_rari" + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "PlacedRares";
 
                 Directory.CreateDirectory("../" + FolderName);
@@ -1724,7 +1724,7 @@ namespace RetroFun.Pages
 
         public override void In_WallItemUpdate(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 string furniid = e.Packet.ReadString();
                 int typeIdIguess = e.Packet.ReadInteger();
@@ -1741,7 +1741,7 @@ namespace RetroFun.Pages
 
         public override void In_FloorItemUpdate(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 int uniqueId = e.Packet.ReadInteger();
                 int typeId = e.Packet.ReadInteger();
@@ -1763,7 +1763,7 @@ namespace RetroFun.Pages
 
         public override void Out_LatencyTest(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 if (pages.Values.Count == 0)
                 {
@@ -1775,7 +1775,7 @@ namespace RetroFun.Pages
         private void RequestPageNode()
         {
             pages.Clear();
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 Connection.SendToServerAsync(3566, "NORMAL");
             }
@@ -1803,7 +1803,7 @@ namespace RetroFun.Pages
 
         public override void In_CatalogPagesList(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 var node = new HCatalogNode(e.Packet);
                 foreach (HCatalogNode children in node.Children)
@@ -1841,7 +1841,7 @@ namespace RetroFun.Pages
         }
         public override void In_CatalogPage(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 if (IsLoggingPageStuff)
                 {
@@ -1903,7 +1903,7 @@ namespace RetroFun.Pages
         }
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 ResetAll();
                 newroom = true;
@@ -1913,7 +1913,7 @@ namespace RetroFun.Pages
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 ResetAll();
                 newroom = true;
@@ -2966,7 +2966,7 @@ namespace RetroFun.Pages
 
         public override void Out_RotateMoveItem(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 int FurniID = e.Packet.ReadInteger();
                 int x = e.Packet.ReadInteger();
@@ -3315,7 +3315,7 @@ namespace RetroFun.Pages
 
         public override void Out_MoveWallItem(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 int WallFurni = e.Packet.ReadInteger();
                 string wallfurnicoord = e.Packet.ReadString();
@@ -3330,7 +3330,7 @@ namespace RetroFun.Pages
 
         public override void In_RoomFloorItems(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 if (AutomaticScanMode)
                 {
@@ -3346,7 +3346,7 @@ namespace RetroFun.Pages
 
         public override void In_RoomWallItems(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 if (!IS_SCANNING_WALLFURNIS)
                 {
@@ -3360,7 +3360,7 @@ namespace RetroFun.Pages
 
         public override void In_AddFloorItem(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 try
                 {
@@ -3379,7 +3379,7 @@ namespace RetroFun.Pages
 
         public override void In_AddWallItem(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 try
                 {
@@ -3410,7 +3410,7 @@ namespace RetroFun.Pages
 
         public override void In_RemoveWallItem(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 UpdateAllLabels();
                 if (!AreRemovedFurnisHidden)
@@ -3422,7 +3422,7 @@ namespace RetroFun.Pages
 
         public override void In_RemoveFloorItem(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 UpdateAllLabels();                
                 if (!AreRemovedFurnisHidden)
@@ -3497,7 +3497,7 @@ namespace RetroFun.Pages
 
         public override void Out_ToggleFloorItem(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 int FurniID = e.Packet.ReadInteger();
                 if (FurniIDToCheckMode)
@@ -3520,7 +3520,7 @@ namespace RetroFun.Pages
 
         public override void Out_ToggleWallItem(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+            if (KnownDomains.isBobbaHotel)
             {
                 int FurniID = e.Packet.ReadInteger();
                 if (FurniIDToCheckMode)
@@ -3901,7 +3901,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../TypeIDDump/" + KnownDomains.GetHost(Connection.Host) + "_Furni_Floor_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".cs";
+                string Filepath = "../TypeIDDump/" + KnownDomains.GetHostName(Connection.Host) + "_Furni_Floor_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".cs";
                 string FolderName = "TypeIDDump";
                 Directory.CreateDirectory("../" + FolderName);
 
@@ -3967,7 +3967,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                string Filepath = "../TypeIDDump/" + KnownDomains.GetHost(Connection.Host) + "_Furni_Wall_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".cs";
+                string Filepath = "../TypeIDDump/" + KnownDomains.GetHostName(Connection.Host) + "_Furni_Wall_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".cs";
                 string FolderName = "TypeIDDump";
                 Directory.CreateDirectory("../" + FolderName);
 
@@ -4216,7 +4216,7 @@ namespace RetroFun.Pages
                     raretype = "_rari_irregolari";
                 }
 
-                string Filepath = "../RareControls/" + KnownDomains.GetHost(Connection.Host) + raretype + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
+                string Filepath = "../RareControls/" + KnownDomains.GetHostName(Connection.Host) + raretype + "_" + DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString() + ".log";
                 string FolderName = "RareControls";
 
                 Directory.CreateDirectory("../" + FolderName);

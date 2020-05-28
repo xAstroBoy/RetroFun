@@ -50,6 +50,7 @@
             this.BlackListUserRoomLbl = new System.Windows.Forms.Label();
             this.RestoreBlacklistBtn = new Sulakore.Components.SKoreButton();
             this.AddAllUsersOnBlacklistBtn = new Sulakore.Components.SKoreButton();
+            this.FakeRespectUserBtn = new Sulakore.Components.SKoreButton();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
@@ -283,10 +284,22 @@
             this.AddAllUsersOnBlacklistBtn.Text = "Add All Users in blacklist : OFF";
             this.AddAllUsersOnBlacklistBtn.Click += new System.EventHandler(this.AddAllUsersOnBlacklistBtn_Click);
             // 
+            // FakeRespectUserBtn
+            // 
+            this.FakeRespectUserBtn.Enabled = false;
+            this.FakeRespectUserBtn.Location = new System.Drawing.Point(21, 444);
+            this.FakeRespectUserBtn.Name = "FakeRespectUserBtn";
+            this.FakeRespectUserBtn.Size = new System.Drawing.Size(214, 37);
+            this.FakeRespectUserBtn.TabIndex = 45;
+            this.FakeRespectUserBtn.Text = "Fake Respect This User!";
+            this.FakeRespectUserBtn.Visible = false;
+            this.FakeRespectUserBtn.Click += new System.EventHandler(this.FakeRespectUserBtn_Click);
+            // 
             // UserEditorPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.FakeRespectUserBtn);
             this.Controls.Add(this.AddAllUsersOnBlacklistBtn);
             this.Controls.Add(this.RestoreBlacklistBtn);
             this.Controls.Add(this.BlackListUserRoomLbl);
@@ -341,5 +354,6 @@
         private System.Windows.Forms.Label BlackListUserRoomLbl;
         private Sulakore.Components.SKoreButton RestoreBlacklistBtn;
         private Sulakore.Components.SKoreButton AddAllUsersOnBlacklistBtn;
+        private Sulakore.Components.SKoreButton FakeRespectUserBtn;
     }
 }

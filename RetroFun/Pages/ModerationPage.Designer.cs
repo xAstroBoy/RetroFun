@@ -64,9 +64,6 @@
             this.BanTimeManualNbx = new System.Windows.Forms.NumericUpDown();
             this.BantimeCmbx = new System.Windows.Forms.ComboBox();
             this.BanManualReasonTxb = new System.Windows.Forms.TextBox();
-            this.UnlockStaffUtilsBtn = new Sulakore.Components.SKoreButton();
-            this.passwordtxb = new System.Windows.Forms.TextBox();
-            this.FakeRespectUserBtn = new Sulakore.Components.SKoreButton();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -86,13 +83,12 @@
             this.UserNameTxbx.Name = "UserNameTxbx";
             this.UserNameTxbx.Size = new System.Drawing.Size(234, 26);
             this.UserNameTxbx.TabIndex = 24;
-            this.UserNameTxbx.Visible = false;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.SelectUserLabel);
             this.groupBox1.Enabled = false;
-            this.groupBox1.Location = new System.Drawing.Point(197, 28);
+            this.groupBox1.Location = new System.Drawing.Point(192, 15);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -100,7 +96,6 @@
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected User";
-            this.groupBox1.Visible = false;
             // 
             // SelectUserLabel
             // 
@@ -120,7 +115,6 @@
             this.SelectUserLabel.TabIndex = 0;
             this.SelectUserLabel.Text = "?";
             this.SelectUserLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.SelectUserLabel.Visible = false;
             // 
             // groupBox4
             // 
@@ -134,7 +128,6 @@
             this.groupBox4.TabIndex = 23;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Logged Users.";
-            this.groupBox4.Visible = false;
             // 
             // TotUserRegistered
             // 
@@ -153,7 +146,6 @@
             this.TotUserRegistered.TabIndex = 0;
             this.TotUserRegistered.Text = "?";
             this.TotUserRegistered.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.TotUserRegistered.Visible = false;
             // 
             // MottoTxbx
             // 
@@ -163,7 +155,6 @@
             this.MottoTxbx.Name = "MottoTxbx";
             this.MottoTxbx.Size = new System.Drawing.Size(234, 26);
             this.MottoTxbx.TabIndex = 26;
-            this.MottoTxbx.Visible = false;
             // 
             // LookTxbx
             // 
@@ -173,7 +164,6 @@
             this.LookTxbx.Name = "LookTxbx";
             this.LookTxbx.Size = new System.Drawing.Size(234, 26);
             this.LookTxbx.TabIndex = 27;
-            this.LookTxbx.Visible = false;
             // 
             // label1
             // 
@@ -184,7 +174,6 @@
             this.label1.Size = new System.Drawing.Size(83, 20);
             this.label1.TabIndex = 28;
             this.label1.Text = "Username";
-            this.label1.Visible = false;
             // 
             // label2
             // 
@@ -195,7 +184,6 @@
             this.label2.Size = new System.Drawing.Size(50, 20);
             this.label2.TabIndex = 29;
             this.label2.Text = "Motto";
-            this.label2.Visible = false;
             // 
             // Label3
             // 
@@ -206,7 +194,6 @@
             this.Label3.Size = new System.Drawing.Size(44, 20);
             this.Label3.TabIndex = 30;
             this.Label3.Text = "Look";
-            this.Label3.Visible = false;
             // 
             // BanUserForSpamBtn
             // 
@@ -216,7 +203,6 @@
             this.BanUserForSpamBtn.Size = new System.Drawing.Size(189, 39);
             this.BanUserForSpamBtn.TabIndex = 1;
             this.BanUserForSpamBtn.Text = "Ban per SPAM";
-            this.BanUserForSpamBtn.Visible = false;
             this.BanUserForSpamBtn.Click += new System.EventHandler(this.BanUserForSpamBtn_Click);
             // 
             // FloodBtn
@@ -227,7 +213,6 @@
             this.FloodBtn.Size = new System.Drawing.Size(160, 37);
             this.FloodBtn.TabIndex = 0;
             this.FloodBtn.Text = "Flooda x25";
-            this.FloodBtn.Visible = false;
             this.FloodBtn.Click += new System.EventHandler(this.FloodBtn_Click);
             // 
             // MuteUserBtn
@@ -238,7 +223,6 @@
             this.MuteUserBtn.Size = new System.Drawing.Size(228, 40);
             this.MuteUserBtn.TabIndex = 31;
             this.MuteUserBtn.Text = "Muta Utente";
-            this.MuteUserBtn.Visible = false;
             this.MuteUserBtn.Click += new System.EventHandler(this.MuteUserBtn_click);
             // 
             // groupBox2
@@ -255,7 +239,6 @@
             this.groupBox2.TabIndex = 32;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Muta Utente";
-            this.groupBox2.Visible = false;
             // 
             // UnmuteUserBtn
             // 
@@ -265,7 +248,6 @@
             this.UnmuteUserBtn.Size = new System.Drawing.Size(228, 40);
             this.UnmuteUserBtn.TabIndex = 93;
             this.UnmuteUserBtn.Text = "Smuta Utente";
-            this.UnmuteUserBtn.Visible = false;
             this.UnmuteUserBtn.Click += new System.EventHandler(this.UnmuteUserBtn_Click);
             // 
             // MuteTimeCmbx
@@ -278,7 +260,6 @@
             this.MuteTimeCmbx.Name = "MuteTimeCmbx";
             this.MuteTimeCmbx.Size = new System.Drawing.Size(164, 28);
             this.MuteTimeCmbx.TabIndex = 92;
-            this.MuteTimeCmbx.Visible = false;
             this.MuteTimeCmbx.SelectedIndexChanged += new System.EventHandler(this.MuteTimeCmbx_SelectedIndexChanged);
             // 
             // label4
@@ -290,7 +271,6 @@
             this.label4.Size = new System.Drawing.Size(133, 20);
             this.label4.TabIndex = 37;
             this.label4.Text = "Tempo in secondi";
-            this.label4.Visible = false;
             // 
             // MutaUtenteTimerNbx
             // 
@@ -304,7 +284,6 @@
             this.MutaUtenteTimerNbx.Name = "MutaUtenteTimerNbx";
             this.MutaUtenteTimerNbx.Size = new System.Drawing.Size(228, 26);
             this.MutaUtenteTimerNbx.TabIndex = 33;
-            this.MutaUtenteTimerNbx.Visible = false;
             // 
             // Utente
             // 
@@ -317,13 +296,12 @@
             this.Utente.Controls.Add(this.MottoTxbx);
             this.Utente.Controls.Add(this.UserNameTxbx);
             this.Utente.Enabled = false;
-            this.Utente.Location = new System.Drawing.Point(22, 105);
+            this.Utente.Location = new System.Drawing.Point(22, 128);
             this.Utente.Name = "Utente";
             this.Utente.Size = new System.Drawing.Size(257, 276);
             this.Utente.TabIndex = 33;
             this.Utente.TabStop = false;
             this.Utente.Text = "Dettagli Utente";
-            this.Utente.Visible = false;
             // 
             // label6
             // 
@@ -344,7 +322,6 @@
             this.UsersCmbx.Name = "UsersCmbx";
             this.UsersCmbx.Size = new System.Drawing.Size(204, 28);
             this.UsersCmbx.TabIndex = 94;
-            this.UsersCmbx.Visible = false;
             this.UsersCmbx.SelectedIndexChanged += new System.EventHandler(this.UsersCmbx_SelectedIndexChanged);
             // 
             // groupBox3
@@ -359,7 +336,6 @@
             this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Alert Utente";
-            this.groupBox3.Visible = false;
             // 
             // KickUserWithAlertBtn
             // 
@@ -369,7 +345,6 @@
             this.KickUserWithAlertBtn.Size = new System.Drawing.Size(294, 40);
             this.KickUserWithAlertBtn.TabIndex = 33;
             this.KickUserWithAlertBtn.Text = "Caccia con alert";
-            this.KickUserWithAlertBtn.Visible = false;
             this.KickUserWithAlertBtn.Click += new System.EventHandler(this.KickUserWithAlertBtn_Click);
             // 
             // AlertBoxTxb
@@ -380,7 +355,6 @@
             this.AlertBoxTxb.Name = "AlertBoxTxb";
             this.AlertBoxTxb.Size = new System.Drawing.Size(294, 26);
             this.AlertBoxTxb.TabIndex = 32;
-            this.AlertBoxTxb.Visible = false;
             // 
             // AlertUserBtn
             // 
@@ -390,7 +364,6 @@
             this.AlertUserBtn.Size = new System.Drawing.Size(294, 40);
             this.AlertUserBtn.TabIndex = 31;
             this.AlertUserBtn.Text = "Alerta Utente";
-            this.AlertUserBtn.Visible = false;
             this.AlertUserBtn.Click += new System.EventHandler(this.AlertUserBtn_click);
             // 
             // groupBox5
@@ -406,7 +379,6 @@
             this.groupBox5.TabIndex = 39;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Preimpostati( Bannano utente al click)";
-            this.groupBox5.Visible = false;
             // 
             // banForInfoLeakBtn
             // 
@@ -416,7 +388,6 @@
             this.banForInfoLeakBtn.Size = new System.Drawing.Size(240, 41);
             this.banForInfoLeakBtn.TabIndex = 34;
             this.banForInfoLeakBtn.Text = "Rilascio di informazioni Personali";
-            this.banForInfoLeakBtn.Visible = false;
             this.banForInfoLeakBtn.Click += new System.EventHandler(this.banForInfoLeakBtn_Click);
             // 
             // BanForNicknameNotAllowedBtn
@@ -427,7 +398,6 @@
             this.BanForNicknameNotAllowedBtn.Size = new System.Drawing.Size(209, 41);
             this.BanForNicknameNotAllowedBtn.TabIndex = 33;
             this.BanForNicknameNotAllowedBtn.Text = "Username Non consentito";
-            this.BanForNicknameNotAllowedBtn.Visible = false;
             this.BanForNicknameNotAllowedBtn.Click += new System.EventHandler(this.BanForNicknameNotAllowedBtn_Click);
             // 
             // BanForSecurityLockBtn
@@ -438,7 +408,6 @@
             this.BanForSecurityLockBtn.Size = new System.Drawing.Size(209, 41);
             this.BanForSecurityLockBtn.TabIndex = 32;
             this.BanForSecurityLockBtn.Text = "Blocco Di sicurezza (SCAM)";
-            this.BanForSecurityLockBtn.Visible = false;
             this.BanForSecurityLockBtn.Click += new System.EventHandler(this.BanForSecurityLockBtn_Click);
             // 
             // ManualBanBtn
@@ -449,7 +418,6 @@
             this.ManualBanBtn.Size = new System.Drawing.Size(386, 40);
             this.ManualBanBtn.TabIndex = 31;
             this.ManualBanBtn.Text = "Ban Manuale ";
-            this.ManualBanBtn.Visible = false;
             this.ManualBanBtn.Click += new System.EventHandler(this.ManualBanBtn_Click);
             // 
             // groupBox6
@@ -467,7 +435,6 @@
             this.groupBox6.TabIndex = 40;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Ban Manuale";
-            this.groupBox6.Visible = false;
             // 
             // label7
             // 
@@ -478,7 +445,6 @@
             this.label7.Size = new System.Drawing.Size(55, 20);
             this.label7.TabIndex = 91;
             this.label7.Text = "Motivo";
-            this.label7.Visible = false;
             // 
             // label5
             // 
@@ -489,7 +455,6 @@
             this.label5.Size = new System.Drawing.Size(143, 20);
             this.label5.TabIndex = 90;
             this.label5.Text = "Tempo (in secondi)";
-            this.label5.Visible = false;
             // 
             // BanTimeManualNbx
             // 
@@ -503,7 +468,6 @@
             this.BanTimeManualNbx.Name = "BanTimeManualNbx";
             this.BanTimeManualNbx.Size = new System.Drawing.Size(386, 26);
             this.BanTimeManualNbx.TabIndex = 38;
-            this.BanTimeManualNbx.Visible = false;
             // 
             // BantimeCmbx
             // 
@@ -515,7 +479,6 @@
             this.BantimeCmbx.Name = "BantimeCmbx";
             this.BantimeCmbx.Size = new System.Drawing.Size(386, 28);
             this.BantimeCmbx.TabIndex = 89;
-            this.BantimeCmbx.Visible = false;
             this.BantimeCmbx.SelectedIndexChanged += new System.EventHandler(this.BantimeCmbx_SelectedIndexChanged);
             // 
             // BanManualReasonTxb
@@ -525,43 +488,11 @@
             this.BanManualReasonTxb.Name = "BanManualReasonTxb";
             this.BanManualReasonTxb.Size = new System.Drawing.Size(386, 26);
             this.BanManualReasonTxb.TabIndex = 32;
-            this.BanManualReasonTxb.Visible = false;
-            // 
-            // UnlockStaffUtilsBtn
-            // 
-            this.UnlockStaffUtilsBtn.Location = new System.Drawing.Point(381, 267);
-            this.UnlockStaffUtilsBtn.Name = "UnlockStaffUtilsBtn";
-            this.UnlockStaffUtilsBtn.Size = new System.Drawing.Size(176, 28);
-            this.UnlockStaffUtilsBtn.TabIndex = 43;
-            this.UnlockStaffUtilsBtn.Text = "Unlock staff utils";
-            this.UnlockStaffUtilsBtn.Click += new System.EventHandler(this.UnlockStaffUtilsBtn_Click);
-            // 
-            // passwordtxb
-            // 
-            this.passwordtxb.Location = new System.Drawing.Point(343, 235);
-            this.passwordtxb.MaxLength = 2147483647;
-            this.passwordtxb.Name = "passwordtxb";
-            this.passwordtxb.Size = new System.Drawing.Size(234, 26);
-            this.passwordtxb.TabIndex = 42;
-            // 
-            // StalkSelectedUserBtn
-            // 
-            this.FakeRespectUserBtn.Enabled = false;
-            this.FakeRespectUserBtn.Location = new System.Drawing.Point(362, 160);
-            this.FakeRespectUserBtn.Name = "StalkSelectedUserBtn";
-            this.FakeRespectUserBtn.Size = new System.Drawing.Size(214, 37);
-            this.FakeRespectUserBtn.TabIndex = 44;
-            this.FakeRespectUserBtn.Text = "Fake Respect This User!";
-            this.FakeRespectUserBtn.Visible = false;
-            this.FakeRespectUserBtn.Click += new System.EventHandler(this.FakeRespectThisUserBtn_click);
             // 
             // ModerationPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.FakeRespectUserBtn);
-            this.Controls.Add(this.UnlockStaffUtilsBtn);
-            this.Controls.Add(this.passwordtxb);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.FloodBtn);
             this.Controls.Add(this.groupBox5);
@@ -588,7 +519,6 @@
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BanTimeManualNbx)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -627,10 +557,7 @@
         private Sulakore.Components.SKoreButton KickUserWithAlertBtn;
         private System.Windows.Forms.ComboBox MuteTimeCmbx;
         private Sulakore.Components.SKoreButton UnmuteUserBtn;
-        private Sulakore.Components.SKoreButton UnlockStaffUtilsBtn;
-        private System.Windows.Forms.TextBox passwordtxb;
         private System.Windows.Forms.ComboBox UsersCmbx;
         private System.Windows.Forms.Label label6;
-        private Sulakore.Components.SKoreButton FakeRespectUserBtn;
     }
 }

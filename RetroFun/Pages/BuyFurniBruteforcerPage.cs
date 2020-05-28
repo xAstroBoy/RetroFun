@@ -921,7 +921,7 @@ namespace RetroFun.Pages
 
         private void FindHostNameBtn_Click(object sender, EventArgs e)
         {
-            FileNameSave = KnownDomains.GetHost(Connection.Host);
+            FileNameSave = KnownDomains.GetHostName(Connection.Host);
         }
 
 

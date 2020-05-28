@@ -69,7 +69,7 @@ namespace RetroFun.Handlers
 
         public override void In_RoomFloorItems(DataInterceptedEventArgs e)
         {
-            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            if (!KnownDomains.isHartico)
             {
                 RoomFloorFurni = HFloorItem.Parse(e.Packet).ToList(); //All Floor Objects
                 e.Continue();
@@ -79,7 +79,7 @@ namespace RetroFun.Handlers
 
         public override void In_AddFloorItem(DataInterceptedEventArgs e)
         {
-            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            if (!KnownDomains.isHartico)
             {
                 try
                 {
@@ -99,9 +99,9 @@ namespace RetroFun.Handlers
 
         public override void In_RoomWallItems(DataInterceptedEventArgs e)
         {
-            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            if (!KnownDomains.isHartico)
             {
-                if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+                if (KnownDomains.isBobbaHotel)
                 {
                     RoomWallFurni = WallFurnitures.BobbaParser(e.Packet);
                 }
@@ -114,7 +114,7 @@ namespace RetroFun.Handlers
 
         public override void In_AddWallItem(DataInterceptedEventArgs e)
         {
-            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            if (!KnownDomains.isHartico)
             {
                 try
                 {
@@ -184,7 +184,7 @@ namespace RetroFun.Handlers
 
         public override void Out_RotateMoveItem(DataInterceptedEventArgs e)
         {
-            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            if (!KnownDomains.isHartico)
             {
                 int FurniID = e.Packet.ReadInteger();
                 int x = e.Packet.ReadInteger();
@@ -249,7 +249,7 @@ namespace RetroFun.Handlers
                 if (foundfurni != null)
                 {
                     HandleRemovedFurni(foundfurni);
-                    if (KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+                    if (KnownDomains.isBobbaHotel)
                     {
                         FloorFurniCheck.HandleRemovedFurni(foundfurni);
                     }
@@ -258,7 +258,7 @@ namespace RetroFun.Handlers
                 if (wallfurni != null)
                 {
                     HandleRemovedFurni(wallfurni);
-                    if(KnownDomains.GetHost(Connection.Host) == KnownDomains.bobbaitalia)
+                    if (KnownDomains.isBobbaHotel)
                     {
                         WallFurniCheck.HandleRemovedFurni(wallfurni);
                     }
@@ -353,7 +353,7 @@ namespace RetroFun.Handlers
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
-            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            if (!KnownDomains.isHartico)
             {
                 RoomFloorFurni.Clear();
                 RoomWallFurni.Clear();
@@ -365,7 +365,7 @@ namespace RetroFun.Handlers
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
-            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            if (!KnownDomains.isHartico)
             {
                 RoomFloorFurni.Clear();
                 RoomWallFurni.Clear();
@@ -376,7 +376,7 @@ namespace RetroFun.Handlers
 
         public override void In_RemoveFloorItem(DataInterceptedEventArgs e)
         {
-            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            if (!KnownDomains.isHartico)
             {
                 HandleRemovedFurni(e.Packet.ReadString());
                 e.Continue();
@@ -385,7 +385,7 @@ namespace RetroFun.Handlers
 
         public override void In_RemoveWallItem(DataInterceptedEventArgs e)
         {
-            if (!(KnownDomains.GetHost(Connection.Host) == KnownDomains.hartico))
+            if (!KnownDomains.isHartico)
             {
                 HandleRemovedFurni(e.Packet.ReadString());
                 e.Continue();
