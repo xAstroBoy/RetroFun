@@ -84,6 +84,10 @@ namespace RetroFun.Handlers
                 try
                 {
                     var NewFloorFurnis = new HFloorItem(e.Packet);
+                    if (RemFloorFurni.Contains(NewFloorFurnis))
+                    {
+                        RemFloorFurni.Remove(NewFloorFurnis);
+                    }
                     if (!RoomFloorFurni.Contains(NewFloorFurnis))
                     {
                         RoomFloorFurni.Add(NewFloorFurnis);
@@ -115,6 +119,10 @@ namespace RetroFun.Handlers
                 try
                 {
                     var NewPlacedWallFurni = new HWallItem(e.Packet);
+                    if (RemWallFurni.Contains(NewPlacedWallFurni))
+                    {
+                        RemWallFurni.Remove(NewPlacedWallFurni);
+                    }
                     if (!RoomWallFurni.Contains(NewPlacedWallFurni))
                     {
                         RoomWallFurni.Add(NewPlacedWallFurni);

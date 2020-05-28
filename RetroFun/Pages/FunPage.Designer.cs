@@ -33,6 +33,7 @@
             this.EnableAdd1Btn = new Sulakore.Components.SKoreButton();
             this.EnableSub1Btn = new Sulakore.Components.SKoreButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.GiveAllEffectToUserBtn = new Sulakore.Components.SKoreButton();
             this.SetEffectToClickedUserbtn = new Sulakore.Components.SKoreButton();
             this.GiveEffectToAllUsersBtn = new Sulakore.Components.SKoreButton();
             this.IsServerSideBtn = new Sulakore.Components.SKoreButton();
@@ -53,6 +54,7 @@
             this.PetTypeIdNbx = new System.Windows.Forms.NumericUpDown();
             this.TransformAllUserIntoPetsBtn = new Sulakore.Components.SKoreButton();
             this.SetPetColorBtn = new Sulakore.Components.SKoreButton();
+            this.EnableTellerChbx = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.EnableNbx)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CooldownEffectNbx)).BeginInit();
@@ -106,6 +108,8 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.EnableTellerChbx);
+            this.groupBox5.Controls.Add(this.GiveAllEffectToUserBtn);
             this.groupBox5.Controls.Add(this.SetEffectToClickedUserbtn);
             this.groupBox5.Controls.Add(this.GiveEffectToAllUsersBtn);
             this.groupBox5.Controls.Add(this.IsServerSideBtn);
@@ -119,10 +123,20 @@
             this.groupBox5.Controls.Add(this.EnableOnLoopBtn);
             this.groupBox5.Location = new System.Drawing.Point(17, 23);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(517, 323);
+            this.groupBox5.Size = new System.Drawing.Size(517, 342);
             this.groupBox5.TabIndex = 97;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Effects";
+            // 
+            // GiveAllEffectToUserBtn
+            // 
+            this.GiveAllEffectToUserBtn.Location = new System.Drawing.Point(244, 253);
+            this.GiveAllEffectToUserBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GiveAllEffectToUserBtn.Name = "GiveAllEffectToUserBtn";
+            this.GiveAllEffectToUserBtn.Size = new System.Drawing.Size(237, 31);
+            this.GiveAllEffectToUserBtn.TabIndex = 104;
+            this.GiveAllEffectToUserBtn.Text = "Give Effect To All Users  : OFF";
+            this.GiveAllEffectToUserBtn.Click += new System.EventHandler(this.GiveAllEffectToUserBtn_Click);
             // 
             // SetEffectToClickedUserbtn
             // 
@@ -343,6 +357,16 @@
             this.SetPetColorBtn.Text = "Set Pet Color";
             this.SetPetColorBtn.Click += new System.EventHandler(this.SetPetColorBtn_Click);
             // 
+            // EnableTellerChbx
+            // 
+            this.EnableTellerChbx.AutoSize = true;
+            this.EnableTellerChbx.Location = new System.Drawing.Point(24, 312);
+            this.EnableTellerChbx.Name = "EnableTellerChbx";
+            this.EnableTellerChbx.Size = new System.Drawing.Size(274, 24);
+            this.EnableTellerChbx.TabIndex = 105;
+            this.EnableTellerChbx.Text = "Tell Enable Of User entering room";
+            this.EnableTellerChbx.UseVisualStyleBackColor = true;
+            // 
             // FunPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -389,5 +413,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private Sulakore.Components.SKoreButton RestoreUsersBtn;
+        private Sulakore.Components.SKoreButton GiveAllEffectToUserBtn;
+        private System.Windows.Forms.CheckBox EnableTellerChbx;
     }
 }

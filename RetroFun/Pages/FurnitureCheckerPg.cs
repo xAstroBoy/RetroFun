@@ -435,7 +435,7 @@ namespace RetroFun.Pages
         private void RecognizeFurnitureType(HFloorItem item, bool isQuiet)
         {
 
-                    if (StaffRaresFloorItems.isRareFurni(item))
+            if (StaffRaresFloorItems.isRareFurni(item))
                     {
                         if (!RaresFloorFurnis.Contains(item))
                         {

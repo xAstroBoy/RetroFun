@@ -31,11 +31,9 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
         public static readonly List<int> Bobba_Arcadev_1220 = new List<int> { 3091, 7678, 4832, 7675, 7673, 7672, 10382, 10354, 3094, 7681, 7680 };
         public static readonly List<int> Bobba_Raroniv_min_1250 = new List<int> { 9597, 230, 4304, 4531, 4803, 10568, 9622, 6089, 5001, 25084, 4300, 263, 3220, 3224, 9456, 4516, 4515, 22043 };
         public static readonly List<int> Bobba_UovaHabberge = new List<int> { 22574, 24518, 24517, 10581, 24515, 24514, 24513, 24512, 22573, 22605, 10215, 22596 };
-        public static readonly List<int> Bobba_TrofeiStaff = new List<int> { 4414, 4413, 4412, 3852, 3851, 3850, 4411, 4428, 4416, 5766, 0, 5765, 45819, 4438, 45818, 5764, 4415 };
         public static readonly List<int> Bobba_LimitedScaduti = new List<int> { 10714, 10777, 10776, 10775, 10774, 10773, 10772, 10632, 10631, 10630, 10629, 10628, 10627, 10626, 10625, 10624, 10623, 10622, 10621, 9299, 19965, 10620, 11204, 10615, 7615, 10609, 10601, 10659, 10649, 10654, 10651, 25125, 19524, 19760, 19759, 10555, 9814, 9225, 11189, 9219, 11275, 11270, 11277, 11283, 8388, 9166, 7617, 9718, 9672, 9690, 9665, 9671, 9716, 9684, 9661, 9708, 9662, 9728, 9707, 11167, 11103, 25133, 10756, 10723, 10762 };
         public static readonly List<int> Bobba_Habbo15Anni = new List<int> { 11320, 11319, 11318, 11332, 11331, 11330, 11329, 11328, 11327, 11326, 11325, 11324, 11323, 11322, 11321 };
         public static readonly List<int> Bobba_ScaricatidaHabbo = new List<int> { 25088, 19313, 19311, 19115, 19936, 19858, 19271, 19270, 22898, 15854, 19737, 19736, 25133, 19728, 20223, 19116, 22433, 22432, 25130, 25040, 25125, 20163, 25122, 25119, 25115, 20027, 19533, 21974, 19967, 17052, 25100, 25099, 19957, 23129, 25111 };
-        public static readonly List<int> Bobba_TrofeiMarzo2020 = new List<int> { 19043, 19042, 19041, 19040, 19039, 19038, 19037, 20224, 19726, 16726, 16725, 15914, 15913, 15912, 15911, 15910, 15909, 15907, 15906, 15905, 15904, 15903, 15902, 15900, 15899, 15898, 15897, 15896, 15895, 18853, 18852, 18851, 17719, 18259, 19051, 19727, 19049, 19725, 19724, 18398, 19722, 19970, 18397, 19971, 19050, 19969, 19723, 19676, 17432, 17349, 19054, 19053, 19052, 16925, 16924, 16923, 19048, 19047, 19046, 19045, 19044 };
         public static readonly List<int> Bobba_RariHarryPotter = new List<int> { 25979, 25978, 25960, 26078, 26026, 25974, 26081, 25970, 26086, 25984, 26051, 25999 };
         public static readonly List<int> Bobba_Vari1 = new List<int> { 11410, 11409, 11408, 11407, 11406, 11405, 11404, 11403, 11402, 11401, 11400, 11399, 11398, 11397, 11392, 11391, 11390, 11389, 11388, 11387, 11368, 11367, 11366, 11365, 11357, 11356, 11353, 11352, 11351, 11350, 11453, 11457, 11456, 11455, 11454, 5755, 11452, 11451, 11450, 11449, 11448, 11447, 11446, 11445, 11444, 11443, 11442, 11441, 11440, 11439, 11438, 11437, 11436, 11435, 11434, 11433, 11432, 11431, 11430, 11429, 11428, 11427, 11426, 11425, 11424, 11423, 11422, 11421, 11420, 11419, 11418, 11417, 11416, 11415, 11414, 11413, 11412, 11411 };
         public static readonly List<int> Bobba_RariCelesti = new List<int> { 23141, 23140, 23139, 23138, 23137, 23136, 23135, 23134, 23133, 23132, 23131, 23130, 23128, 23127, 23126 };
@@ -57,11 +55,12 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
         public static readonly List<int> Bobba_FurniCalippo = new List<int> { 2994, 2516, 3020, 2493, 3004, 2997 };
         public static readonly List<int> Bobba_Promozioni = new List<int> { 2841, 17601, 2600, 17824, 17823, 17544, 3085, 19269, 17535, 18284, 18689, 17302, 3096, 19739, 2749, 2981, 2977, 18022, 2959, 2958, 2956, 2950, 2943, 19942, 2908, 2907, 2906, 2905, 2899, 2896, 2895, 2884, 2879, 2878, 2877, 2876, 2874, 2872, 2846, 2845, 15874, 2758, 18473, 18410, 3009, 17586, 2960, 2961, 18365, 18364, 2998, 2480, 3015, 19740, 17554, 3895, 18268, 17610, 17498, 19114, 19113, 2733, 18553, 17676, 19102, 18147, 18089, 18088, 18087, 18086, 22899, 17616, 18021, 18020 };
         public static readonly List<int> Bobba_Rari = new List<int> { 2873, 4654, 2957, 2843, 3166, 3103, 3023, 3129, 3624, 3151, 44, 43, 2481, 24519, 4650, 24516, 3610, 2989, 2976, 2971, 2962, 1577, 1578, 1576, 1575, 4804, 1569, 2732 };
-        public static readonly List<int> Bobba_System = new List<int> { 205, 3178, 2847, 6088, 2937, 2936, 2935, 2933, 2932, 2931, 2382, 2881, 193, 192, 191, 190, 189, 188, 187, 2930, 2927, 2926, 2925, 2922,  2920, 2919, 2917, 2916, 2915, 2914, 2913, 2912, 2911, 2910, 2909 };
+        public static readonly List<int> Bobba_System = new List<int> { 205, 3178, 2847, 6088, 2937, 2936, 2935, 2933, 2932, 2931, 2382, 2881,    2930, 2927, 2926, 2925, 2922,  2920, 2919, 2917, 2916, 2915, 2914, 2913, 2912, 2911, 2910, 2909 };
         public static readonly List<int> Bobba_Trax = new List<int> { 2365, 2335, 2334, 2333, 2332, 2518, 2517, 2309, 2105, 2330, 2382, 2331, 2383, 2519 };
         public static readonly List<int> Bobba_NuoviWired = new List<int> { 10674, 10673, 10672, 10671, 10670, 10669, 10668, 10667, 10666, 10665, 10664, 19032, 3497 };
         public static readonly List<int> Bobba_Utility = new List<int> { 4409, 51807, 8843, 60095, 4203, 11107, 5761, 8826, 9110, 8702, 3222, 4301, 7850, 11087, 11082, 11079, 11098, 10344, 9722, 3054, 3024, 8695, 2492, 11094, 11210, 9048, 6164, 7589, 4479, 3333, 4477, 2944, 2923, 7803, 8213, 8212, 7567, 2898, 51911, 2886, 7561, 8759, 7854, 3182, 8192, 4429, 9004, 7763, 10346, 4424, 4410, 10343, 7757, 4303, 8003, 3638, 3643, 3645, 3637, 7748, 11165, 4298, 60096, 2482, 60094, 15427, 7996, 10347, 7660, 3250, 3246, 10345, 4457, 8216, 4460, 4590, 9165, 11160, 7935, 7623, 5340, 2515, 7802, 4419, 4541 };
         private static readonly List<int> Bobba_SeasonPass = new List<int> { 9619 };
+
         public static bool isRareFurni(HFloorItem item)
         {
             if (Bobba_PagineStaff.Contains(item.TypeId)) { return true; }
@@ -84,11 +83,9 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
             else if (Bobba_Arcadev_1220.Contains(item.TypeId)) { return true; }
             else if (Bobba_Raroniv_min_1250.Contains(item.TypeId)) { return true; }
             else if (Bobba_UovaHabberge.Contains(item.TypeId)) { return true; }
-            else if (Bobba_TrofeiStaff.Contains(item.TypeId)) { return true; }
             else if (Bobba_LimitedScaduti.Contains(item.TypeId)) { return true; }
             else if (Bobba_Habbo15Anni.Contains(item.TypeId)) { return true; }
             else if (Bobba_ScaricatidaHabbo.Contains(item.TypeId)) { return true; }
-            else if (Bobba_TrofeiMarzo2020.Contains(item.TypeId)) { return true; }
             else if (Bobba_RariHarryPotter.Contains(item.TypeId)) { return true; }
             else if (Bobba_Vari1.Contains(item.TypeId)) { return true; }
             else if (Bobba_RariCelesti.Contains(item.TypeId)) { return true; }

@@ -9,6 +9,8 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
 {
     public class PublicFloorFurnis
     {
+        public static readonly List<int> Bobba_TrofeiStaff = new List<int> { 4414, 4413, 4412, 3852, 3851, 3850, 4411, 4428, 4416, 5766, 0, 5765, 45819, 4438, 45818, 5764, 4415 };
+        public static readonly List<int> Bobba_TrofeiMarzo2020 = new List<int> { 19043, 19042, 19041, 19040, 19039, 19038, 19037, 20224, 19726, 16726, 16725, 15914, 15913, 15912, 15911, 15910, 15909, 15907, 15906, 15905, 15904, 15903, 15902, 15900, 15899, 15898, 15897, 15896, 15895, 18853, 18852, 18851, 17719, 18259, 19051, 19727, 19049, 19725, 19724, 18398, 19722, 19970, 18397, 19971, 19050, 19969, 19723, 19676, 17432, 17349, 19054, 19053, 19052, 16925, 16924, 16923, 19048, 19047, 19046, 19045, 19044 };
         public static readonly List<int> Bobba_Accessori = new List<int> { 18009, 18007, 18006, 2130, 18004, 20322, 18505, 1533, 17837, 17836, 22186, 20320, 1532, 22152, 22151, 22150, 17587, 1548, 1547, 1546, 1545, 1544, 1543, 1542, 1541, 1539, 17620, 17619, 1540, 1536, 3185, 3183, 3181, 3164, 3163, 3162, 3161, 3160, 3159, 18829, 18828, 18827, 18821, 18820, 18819, 18818, 18798, 18552, 21972, 3158, 3157, 3153, 3152, 3149, 3148, 3145, 3146, 3143, 3140, 3139, 3138, 3136, 3135, 3133, 3132, 18501, 18550, 20344, 18504, 1538, 20342, 18502, 18459, 17607, 18455, 18454, 18453, 18452, 18451, 18442, 17594, 18432, 20319, 3641, 3644, 3642, 20317, 1531, 18503, 20318, 20343, 17727, 18005, 18935, 1537, 18166, 1534, 18551, 18041, 18040, 1535, 18019, 18011 };
         public static readonly List<int> Bobba_FurniClub = new List<int> { 2076, 2075, 2074, 2069, 2068, 1530, 1527, 1528, 1529, 288, 287, 284, 276, 275, 1505, 6153, 5328, 277, 5326, 5324, 267, 5322, 5327, 5320, 6157, 5318, 6155, 4664, 4663, 4665, 4667, 4662, 4666, 4668, 5321, 6158, 5319, 6156, 6154, 6152, 5325, 5323, 6159, 3289, 3288, 3287, 3286, 3285, 3284, 3283, 3280, 3279, 3278, 3274, 3272, 3271, 3269, 3264, 3263, 3262, 3257, 3256, 3252, 3251, 2754, 2753, 2752, 2751, 2747, 2746, 2745, 2744, 2743, 2083, 2082, 2081, 2080, 2079, 2078, 2077 };
         public static readonly List<int> Bobba_VetrinaDistintivo = new List<int> { 4829, 4828, 4827, 4830, 4831 };
@@ -284,10 +286,12 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
         public static readonly List<int> Bobba_Pilastri = new List<int> { 25806, 25946, 25837, 25918, 25917, 26084, 25896, 25844 };
         public static readonly List<int> Bobba_RollersMinimal = new List<int> { 25752, 25751, 25750, 25749, 25748, 25747, 25746, 25745, 25744, 25743, 25742, 25741, 25740, 25739, 25738, 25737, 25736, 25735 };
         public static readonly List<int> Bobba_Musica = new List<int> { 2382, 17910, 2383 };
+        private static readonly List<int> Bobba_gifts = new List<int> { 187, 193, 188, 190, 191, 192, 189 };
 
         public static bool IsCatalogueFurni(HFloorItem item)
         {
                  if (Bobba_Accessori.Contains(item.TypeId)) { return true; }
+                 else if (Bobba_gifts.Contains(item.TypeId)) { return true; }
                 else if (Bobba_FurniClub.Contains(item.TypeId)) { return true; }
                 else if (Bobba_VetrinaDistintivo.Contains(item.TypeId)) { return true; }
                 else if (Bobba_FurniGruppi.Contains(item.TypeId)) { return true; }
@@ -562,7 +566,9 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
                 else if (Bobba_Pilastri.Contains(item.TypeId)) { return true; }
                 else if (Bobba_RollersMinimal.Contains(item.TypeId)) { return true; }
                 else if (Bobba_Musica.Contains(item.TypeId)) { return true; }
-                else { return false; }
+            else if (Bobba_TrofeiStaff.Contains(item.TypeId)) { return true; }
+            else if (Bobba_TrofeiMarzo2020.Contains(item.TypeId)) { return true; }
+            else { return false; }
         }
     }
 }

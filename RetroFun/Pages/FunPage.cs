@@ -27,6 +27,7 @@ namespace RetroFun.Pages
         private List<HEntity> ConvertedUsers = new List<HEntity>();
         private bool isStaticEffectThreadStarted;
         private bool GiveEnableEffectToUser;
+        private bool giveenableeffecttoallusersthread;
 
         private bool TransformAllUsersToPets = false;
 
@@ -92,6 +93,19 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+
+        private bool _tellWhatEnable;
+        public bool tellWhatEnable
+        {
+            get => _tellWhatEnable;
+            set
+            {
+                _tellWhatEnable = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
 
         private bool _UseSelectedPet;
@@ -162,6 +176,7 @@ namespace RetroFun.Pages
 
             Bind(PetIDChbx, "Checked", nameof(UseSelectedPet));
             Bind(PetColorChbx, "Checked", nameof(UseSelectedColor));
+            Bind(EnableTellerChbx, "Checked", nameof(tellWhatEnable));
 
 
             Bind(PetColorTxb, "Text", nameof(PetColor));
@@ -583,6 +598,63 @@ private void WriteToButton(SKoreButton button, string text)
                 }
                 Connection.SendToClientAsync(HentityUtils.PacketBuilder(ConvertedUsers, In.RoomUsers));
                 ConvertedUsers.Clear();
+            }
+        }
+
+        private void GiveAllEffectToUserBtn_Click(object sender, EventArgs e)
+        {
+            if(giveenableeffecttoallusersthread)
+            {
+                giveenableeffecttoallusersthread = false;
+                WriteToButton(GiveAllEffectToUserBtn, "Give Effect To All Users  : OFF");
+            }
+            else
+            {
+                WriteToButton(GiveAllEffectToUserBtn, "Give Effect To All Users  : ON");
+                giveenableeffecttoallusersthread = true;
+                GiveAllUsersEnableConstantly();
+            }
+
+        }
+
+        private void GiveAllUsersEnableConstantly()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    try
+                    {
+                        if (GlobalLists.UsersInRoom.Count != 0 && GlobalLists.UsersInRoom != null && giveenableeffecttoallusersthread)
+                        {
+                            foreach (HEntity user in GlobalLists.UsersInRoom)
+                            {
+                                Thread.Sleep(50);
+                                if (giveenableeffecttoallusersthread)
+                                {
+                                    AssignClientEffectToUser(user, EffectNumber);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+                } while (giveenableeffecttoallusersthread);
+            }).Start();
+        }
+
+        public override void In_RoomUserEffect(DataInterceptedEventArgs e)
+        {
+            int UserIndex = e.Packet.ReadInteger();
+            int enableeffect = e.Packet.ReadInteger();
+            if(tellWhatEnable)
+            {
+                Speak(HentityUtils.FindEntityByIndex(UserIndex).Name + " is using this effect : " + enableeffect);
+                EffectNumber = enableeffect;
             }
         }
     }
