@@ -77,7 +77,6 @@
             // 
             // UserNameTxbx
             // 
-            this.UserNameTxbx.Enabled = false;
             this.UserNameTxbx.Location = new System.Drawing.Point(10, 109);
             this.UserNameTxbx.MaxLength = 2147483647;
             this.UserNameTxbx.Name = "UserNameTxbx";
@@ -87,7 +86,6 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.SelectUserLabel);
-            this.groupBox1.Enabled = false;
             this.groupBox1.Location = new System.Drawing.Point(192, 15);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
@@ -104,7 +102,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectUserLabel.AutoSize = true;
             this.SelectUserLabel.BackColor = System.Drawing.Color.Transparent;
-            this.SelectUserLabel.Enabled = false;
             this.SelectUserLabel.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectUserLabel.ForeColor = System.Drawing.Color.MidnightBlue;
             this.SelectUserLabel.Location = new System.Drawing.Point(44, 38);
@@ -119,7 +116,6 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.TotUserRegistered);
-            this.groupBox4.Enabled = false;
             this.groupBox4.Location = new System.Drawing.Point(22, 15);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox4.Name = "groupBox4";
@@ -136,7 +132,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TotUserRegistered.AutoSize = true;
             this.TotUserRegistered.BackColor = System.Drawing.Color.Transparent;
-            this.TotUserRegistered.Enabled = false;
             this.TotUserRegistered.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TotUserRegistered.ForeColor = System.Drawing.Color.MidnightBlue;
             this.TotUserRegistered.Location = new System.Drawing.Point(58, 38);
@@ -149,7 +144,6 @@
             // 
             // MottoTxbx
             // 
-            this.MottoTxbx.Enabled = false;
             this.MottoTxbx.Location = new System.Drawing.Point(7, 168);
             this.MottoTxbx.MaxLength = 2147483647;
             this.MottoTxbx.Name = "MottoTxbx";
@@ -158,7 +152,6 @@
             // 
             // LookTxbx
             // 
-            this.LookTxbx.Enabled = false;
             this.LookTxbx.Location = new System.Drawing.Point(7, 233);
             this.LookTxbx.MaxLength = 2147483647;
             this.LookTxbx.Name = "LookTxbx";
@@ -168,7 +161,6 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Enabled = false;
             this.label1.Location = new System.Drawing.Point(6, 86);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 20);
@@ -178,7 +170,6 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Enabled = false;
             this.label2.Location = new System.Drawing.Point(3, 145);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 20);
@@ -188,7 +179,6 @@
             // Label3
             // 
             this.Label3.AutoSize = true;
-            this.Label3.Enabled = false;
             this.Label3.Location = new System.Drawing.Point(3, 210);
             this.Label3.Name = "Label3";
             this.Label3.Size = new System.Drawing.Size(44, 20);
@@ -197,7 +187,6 @@
             // 
             // BanUserForSpamBtn
             // 
-            this.BanUserForSpamBtn.Enabled = false;
             this.BanUserForSpamBtn.Location = new System.Drawing.Point(20, 36);
             this.BanUserForSpamBtn.Name = "BanUserForSpamBtn";
             this.BanUserForSpamBtn.Size = new System.Drawing.Size(189, 39);
@@ -207,7 +196,6 @@
             // 
             // FloodBtn
             // 
-            this.FloodBtn.Enabled = false;
             this.FloodBtn.Location = new System.Drawing.Point(925, 44);
             this.FloodBtn.Name = "FloodBtn";
             this.FloodBtn.Size = new System.Drawing.Size(160, 37);
@@ -217,7 +205,6 @@
             // 
             // MuteUserBtn
             // 
-            this.MuteUserBtn.Enabled = false;
             this.MuteUserBtn.Location = new System.Drawing.Point(6, 171);
             this.MuteUserBtn.Name = "MuteUserBtn";
             this.MuteUserBtn.Size = new System.Drawing.Size(228, 40);
@@ -232,7 +219,6 @@
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.MuteUserBtn);
             this.groupBox2.Controls.Add(this.MutaUtenteTimerNbx);
-            this.groupBox2.Enabled = false;
             this.groupBox2.Location = new System.Drawing.Point(362, 306);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(244, 282);
@@ -242,7 +228,6 @@
             // 
             // UnmuteUserBtn
             // 
-            this.UnmuteUserBtn.Enabled = false;
             this.UnmuteUserBtn.Location = new System.Drawing.Point(6, 233);
             this.UnmuteUserBtn.Name = "UnmuteUserBtn";
             this.UnmuteUserBtn.Size = new System.Drawing.Size(228, 40);
@@ -253,7 +238,6 @@
             // MuteTimeCmbx
             // 
             this.MuteTimeCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MuteTimeCmbx.Enabled = false;
             this.MuteTimeCmbx.FormattingEnabled = true;
             this.MuteTimeCmbx.Location = new System.Drawing.Point(10, 57);
             this.MuteTimeCmbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -265,7 +249,6 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Enabled = false;
             this.label4.Location = new System.Drawing.Point(6, 104);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(133, 20);
@@ -274,7 +257,6 @@
             // 
             // MutaUtenteTimerNbx
             // 
-            this.MutaUtenteTimerNbx.Enabled = false;
             this.MutaUtenteTimerNbx.Location = new System.Drawing.Point(6, 127);
             this.MutaUtenteTimerNbx.Maximum = new decimal(new int[] {
             2147483647,
@@ -295,7 +277,6 @@
             this.Utente.Controls.Add(this.LookTxbx);
             this.Utente.Controls.Add(this.MottoTxbx);
             this.Utente.Controls.Add(this.UserNameTxbx);
-            this.Utente.Enabled = false;
             this.Utente.Location = new System.Drawing.Point(22, 128);
             this.Utente.Name = "Utente";
             this.Utente.Size = new System.Drawing.Size(257, 276);
@@ -315,7 +296,6 @@
             // UsersCmbx
             // 
             this.UsersCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.UsersCmbx.Enabled = false;
             this.UsersCmbx.FormattingEnabled = true;
             this.UsersCmbx.Location = new System.Drawing.Point(10, 53);
             this.UsersCmbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -329,7 +309,6 @@
             this.groupBox3.Controls.Add(this.KickUserWithAlertBtn);
             this.groupBox3.Controls.Add(this.AlertBoxTxb);
             this.groupBox3.Controls.Add(this.AlertUserBtn);
-            this.groupBox3.Enabled = false;
             this.groupBox3.Location = new System.Drawing.Point(22, 407);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(317, 187);
@@ -339,7 +318,6 @@
             // 
             // KickUserWithAlertBtn
             // 
-            this.KickUserWithAlertBtn.Enabled = false;
             this.KickUserWithAlertBtn.Location = new System.Drawing.Point(6, 141);
             this.KickUserWithAlertBtn.Name = "KickUserWithAlertBtn";
             this.KickUserWithAlertBtn.Size = new System.Drawing.Size(294, 40);
@@ -349,7 +327,6 @@
             // 
             // AlertBoxTxb
             // 
-            this.AlertBoxTxb.Enabled = false;
             this.AlertBoxTxb.Location = new System.Drawing.Point(6, 41);
             this.AlertBoxTxb.MaxLength = 2147483647;
             this.AlertBoxTxb.Name = "AlertBoxTxb";
@@ -358,7 +335,6 @@
             // 
             // AlertUserBtn
             // 
-            this.AlertUserBtn.Enabled = false;
             this.AlertUserBtn.Location = new System.Drawing.Point(6, 82);
             this.AlertUserBtn.Name = "AlertUserBtn";
             this.AlertUserBtn.Size = new System.Drawing.Size(294, 40);
@@ -372,7 +348,6 @@
             this.groupBox5.Controls.Add(this.BanForNicknameNotAllowedBtn);
             this.groupBox5.Controls.Add(this.BanForSecurityLockBtn);
             this.groupBox5.Controls.Add(this.BanUserForSpamBtn);
-            this.groupBox5.Enabled = false;
             this.groupBox5.Location = new System.Drawing.Point(612, 8);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(284, 266);
@@ -382,7 +357,6 @@
             // 
             // banForInfoLeakBtn
             // 
-            this.banForInfoLeakBtn.Enabled = false;
             this.banForInfoLeakBtn.Location = new System.Drawing.Point(20, 216);
             this.banForInfoLeakBtn.Name = "banForInfoLeakBtn";
             this.banForInfoLeakBtn.Size = new System.Drawing.Size(240, 41);
@@ -392,7 +366,6 @@
             // 
             // BanForNicknameNotAllowedBtn
             // 
-            this.BanForNicknameNotAllowedBtn.Enabled = false;
             this.BanForNicknameNotAllowedBtn.Location = new System.Drawing.Point(20, 152);
             this.BanForNicknameNotAllowedBtn.Name = "BanForNicknameNotAllowedBtn";
             this.BanForNicknameNotAllowedBtn.Size = new System.Drawing.Size(209, 41);
@@ -402,7 +375,6 @@
             // 
             // BanForSecurityLockBtn
             // 
-            this.BanForSecurityLockBtn.Enabled = false;
             this.BanForSecurityLockBtn.Location = new System.Drawing.Point(20, 95);
             this.BanForSecurityLockBtn.Name = "BanForSecurityLockBtn";
             this.BanForSecurityLockBtn.Size = new System.Drawing.Size(209, 41);
@@ -412,7 +384,6 @@
             // 
             // ManualBanBtn
             // 
-            this.ManualBanBtn.Enabled = false;
             this.ManualBanBtn.Location = new System.Drawing.Point(27, 236);
             this.ManualBanBtn.Name = "ManualBanBtn";
             this.ManualBanBtn.Size = new System.Drawing.Size(386, 40);
@@ -428,7 +399,6 @@
             this.groupBox6.Controls.Add(this.BantimeCmbx);
             this.groupBox6.Controls.Add(this.BanManualReasonTxb);
             this.groupBox6.Controls.Add(this.ManualBanBtn);
-            this.groupBox6.Enabled = false;
             this.groupBox6.Location = new System.Drawing.Point(644, 289);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(441, 299);
@@ -439,7 +409,6 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Enabled = false;
             this.label7.Location = new System.Drawing.Point(23, 159);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(55, 20);
@@ -449,7 +418,6 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Enabled = false;
             this.label5.Location = new System.Drawing.Point(23, 89);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(143, 20);
@@ -458,7 +426,6 @@
             // 
             // BanTimeManualNbx
             // 
-            this.BanTimeManualNbx.Enabled = false;
             this.BanTimeManualNbx.Location = new System.Drawing.Point(27, 112);
             this.BanTimeManualNbx.Maximum = new decimal(new int[] {
             2147483647,
@@ -472,7 +439,6 @@
             // BantimeCmbx
             // 
             this.BantimeCmbx.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BantimeCmbx.Enabled = false;
             this.BantimeCmbx.FormattingEnabled = true;
             this.BantimeCmbx.Location = new System.Drawing.Point(27, 32);
             this.BantimeCmbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -483,7 +449,6 @@
             // 
             // BanManualReasonTxb
             // 
-            this.BanManualReasonTxb.Enabled = false;
             this.BanManualReasonTxb.Location = new System.Drawing.Point(27, 185);
             this.BanManualReasonTxb.Name = "BanManualReasonTxb";
             this.BanManualReasonTxb.Size = new System.Drawing.Size(386, 26);
