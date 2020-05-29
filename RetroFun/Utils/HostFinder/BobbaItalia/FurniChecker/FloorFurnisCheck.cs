@@ -37,32 +37,36 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
 
         public static void updateFloorFurniPosition(int id, int x, int y, string furniz)
         {
-            if (decimal.TryParse(furniz, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal decz))
+            try
             {
-                double z = (double)decz;
-                IrregularFloorFurni.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                CreditsFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                CrystalsFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                CatalogueFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                RaresFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                RegularFloorFurni.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                WhiteListedFloorFurni.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                HIDDEN_IRREGULAR_FLOORFURNIS.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                HIDDEN_REGULAR_FLOORFURNIS.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                FloorRaresSnapShotCount.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                RoomFloorItemsSnapshot.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                SnapShotIrregularFloorFurni.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                SnapshotRegularFloorItems.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                SnapshotRemovedFloorItems.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                SnapshotCatalogueFloorItems.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                UnknownFloorItems.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                SnapshotCreditsFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                SnapshotCrystalsFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                RemovedIrregularFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                RemovedRegularFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                SnapshotRemovedIrregularFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
-                SnapshotRemovedRegularFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                if (decimal.TryParse(furniz, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal decz))
+                {
+                    double z = (double)decz;
+                    IrregularFloorFurni.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    CreditsFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    CrystalsFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    CatalogueFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    RaresFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    RegularFloorFurni.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    WhiteListedFloorFurni.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    HIDDEN_IRREGULAR_FLOORFURNIS.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    HIDDEN_REGULAR_FLOORFURNIS.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    FloorRaresSnapShotCount.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    RoomFloorItemsSnapshot.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    SnapShotIrregularFloorFurni.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    SnapshotRegularFloorItems.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    SnapshotRemovedFloorItems.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    SnapshotCatalogueFloorItems.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    UnknownFloorItems.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    SnapshotCreditsFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    SnapshotCrystalsFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    RemovedIrregularFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    RemovedRegularFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    SnapshotRemovedIrregularFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                    SnapshotRemovedRegularFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z);
+                }
             }
+            catch (Exception) { }
         }
 
         public static void UpdateFloorFurniFacing(int id, int facing)
@@ -103,28 +107,33 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
 
         public static void UpdateFurniFacing(int id, HDirection direction)
         {
-            IrregularFloorFurni.Find(f => f.Id == id).Facing = direction;
-            CreditsFloorFurnis.Find(f => f.Id == id).Facing = direction;
-            CrystalsFloorFurnis.Find(f => f.Id == id).Facing = direction;
-            CatalogueFloorFurnis.Find(f => f.Id == id).Facing = direction;
-            RaresFloorFurnis.Find(f => f.Id == id).Facing = direction;
-            RegularFloorFurni.Find(f => f.Id == id).Facing = direction;
-            WhiteListedFloorFurni.Find(f => f.Id == id).Facing = direction;
-            HIDDEN_IRREGULAR_FLOORFURNIS.Find(f => f.Id == id).Facing = direction;
-            HIDDEN_REGULAR_FLOORFURNIS.Find(f => f.Id == id).Facing = direction;
-            FloorRaresSnapShotCount.Find(f => f.Id == id).Facing = direction;
-            RoomFloorItemsSnapshot.Find(f => f.Id == id).Facing = direction;
-            SnapShotIrregularFloorFurni.Find(f => f.Id == id).Facing = direction;
-            SnapshotRegularFloorItems.Find(f => f.Id == id).Facing = direction;
-            SnapshotRemovedFloorItems.Find(f => f.Id == id).Facing = direction;
-            SnapshotCatalogueFloorItems.Find(f => f.Id == id).Facing = direction;
-            UnknownFloorItems.Find(f => f.Id == id).Facing = direction;
-            SnapshotCreditsFloorFurnis.Find(f => f.Id == id).Facing = direction;
-            SnapshotCrystalsFloorFurnis.Find(f => f.Id == id).Facing = direction;
-            RemovedIrregularFloorFurnis.Find(f => f.Id == id).Facing = direction;
-            RemovedRegularFloorFurnis.Find(f => f.Id == id).Facing = direction;
-            SnapshotRemovedIrregularFloorFurnis.Find(f => f.Id == id).Facing = direction;
-            SnapshotRemovedRegularFloorFurnis.Find(f => f.Id == id).Facing = direction;
+            try
+            {
+                IrregularFloorFurni.Find(f => f.Id == id).Facing = direction;
+                CreditsFloorFurnis.Find(f => f.Id == id).Facing = direction;
+                CrystalsFloorFurnis.Find(f => f.Id == id).Facing = direction;
+                CatalogueFloorFurnis.Find(f => f.Id == id).Facing = direction;
+                RaresFloorFurnis.Find(f => f.Id == id).Facing = direction;
+                RegularFloorFurni.Find(f => f.Id == id).Facing = direction;
+                WhiteListedFloorFurni.Find(f => f.Id == id).Facing = direction;
+                HIDDEN_IRREGULAR_FLOORFURNIS.Find(f => f.Id == id).Facing = direction;
+                HIDDEN_REGULAR_FLOORFURNIS.Find(f => f.Id == id).Facing = direction;
+                FloorRaresSnapShotCount.Find(f => f.Id == id).Facing = direction;
+                RoomFloorItemsSnapshot.Find(f => f.Id == id).Facing = direction;
+                SnapShotIrregularFloorFurni.Find(f => f.Id == id).Facing = direction;
+                SnapshotRegularFloorItems.Find(f => f.Id == id).Facing = direction;
+                SnapshotRemovedFloorItems.Find(f => f.Id == id).Facing = direction;
+                SnapshotCatalogueFloorItems.Find(f => f.Id == id).Facing = direction;
+                UnknownFloorItems.Find(f => f.Id == id).Facing = direction;
+                SnapshotCreditsFloorFurnis.Find(f => f.Id == id).Facing = direction;
+                SnapshotCrystalsFloorFurnis.Find(f => f.Id == id).Facing = direction;
+                RemovedIrregularFloorFurnis.Find(f => f.Id == id).Facing = direction;
+                RemovedRegularFloorFurnis.Find(f => f.Id == id).Facing = direction;
+                SnapshotRemovedIrregularFloorFurnis.Find(f => f.Id == id).Facing = direction;
+                SnapshotRemovedRegularFloorFurnis.Find(f => f.Id == id).Facing = direction;
+            }
+            catch (Exception) { }
+
         }
 
 

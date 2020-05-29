@@ -64,26 +64,30 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
 
         public static void UpdateWallFurniPosition(int id, string newpos)
         {
-            IrregularWallFurni.Find(f => f.Id == id).Location = newpos;
-            CrystalsWallItems.Find(f => f.Id == id).Location = newpos;
-            CatalogueWallFurnis.Find(f => f.Id == id).Location = newpos;
-            RaresWallFurnis.Find(f => f.Id == id).Location = newpos;
-            RegularWallFurni.Find(f => f.Id == id).Location = newpos;
-            WhitelistedWallFurni.Find(f => f.Id == id).Location = newpos;
-            HIDDEN_IRREGULAR_WALLFURNIS.Find(f => f.Id == id).Location = newpos;
-            HIDDEN_REGULAR_WALLFURNIS.Find(f => f.Id == id).Location = newpos;
-            WallRaresSnapshotCount.Find(f => f.Id == id).Location = newpos;
-            RoomWallItemsSnapshot.Find(f => f.Id == id).Location = newpos;
-            SnapShotIrregularWallFurni.Find(f => f.Id == id).Location = newpos;
-            SnapshotRegularWallItems.Find(f => f.Id == id).Location = newpos;
-            SnapshotRemovedWallItems.Find(f => f.Id == id).Location = newpos;
-            SnapshotCatalogueWallItems.Find(f => f.Id == id).Location = newpos;
-            UnknownWallItems.Find(f => f.Id == id).Location = newpos;
-            SnapshotCrystalsWallFurnis.Find(f => f.Id == id).Location = newpos;
-            RemovedIrregularWallFurnis.Find(f => f.Id == id).Location = newpos;
-            RemovedRegularWallFurnis.Find(f => f.Id == id).Location = newpos;
-            SnapshotRemovedRegularWallFurnis.Find(f => f.Id == id).Location = newpos;
-            SnapshotRemovedIrregularWallFurnis.Find(f => f.Id == id).Location = newpos;
+            try
+            {
+                IrregularWallFurni.Find(f => f.Id == id).Location = newpos;
+                CrystalsWallItems.Find(f => f.Id == id).Location = newpos;
+                CatalogueWallFurnis.Find(f => f.Id == id).Location = newpos;
+                RaresWallFurnis.Find(f => f.Id == id).Location = newpos;
+                RegularWallFurni.Find(f => f.Id == id).Location = newpos;
+                WhitelistedWallFurni.Find(f => f.Id == id).Location = newpos;
+                HIDDEN_IRREGULAR_WALLFURNIS.Find(f => f.Id == id).Location = newpos;
+                HIDDEN_REGULAR_WALLFURNIS.Find(f => f.Id == id).Location = newpos;
+                WallRaresSnapshotCount.Find(f => f.Id == id).Location = newpos;
+                RoomWallItemsSnapshot.Find(f => f.Id == id).Location = newpos;
+                SnapShotIrregularWallFurni.Find(f => f.Id == id).Location = newpos;
+                SnapshotRegularWallItems.Find(f => f.Id == id).Location = newpos;
+                SnapshotRemovedWallItems.Find(f => f.Id == id).Location = newpos;
+                SnapshotCatalogueWallItems.Find(f => f.Id == id).Location = newpos;
+                UnknownWallItems.Find(f => f.Id == id).Location = newpos;
+                SnapshotCrystalsWallFurnis.Find(f => f.Id == id).Location = newpos;
+                RemovedIrregularWallFurnis.Find(f => f.Id == id).Location = newpos;
+                RemovedRegularWallFurnis.Find(f => f.Id == id).Location = newpos;
+                SnapshotRemovedRegularWallFurnis.Find(f => f.Id == id).Location = newpos;
+                SnapshotRemovedIrregularWallFurnis.Find(f => f.Id == id).Location = newpos;
+            }
+            catch (Exception) { }
 
         }
         public static void HandleRemovedFurni(HWallItem item)
