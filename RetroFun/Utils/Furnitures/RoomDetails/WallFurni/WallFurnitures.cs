@@ -26,9 +26,9 @@ namespace RetroFun.Utils.Furnitures.FloorFurni
         public static void UpdateWallFurniPosition(int id, string newpos)
         {
             try {
-                Furni.Find(f => f.Id == id).Location = newpos;
-                RemFurni.Find(f => f.Id == id).Location = newpos;
-                Snapshot_Wall_furnis_In_room.Find(f => f.Id == id).Location = newpos;
+                if (Furni.Find(f => f.Id == id) != null) { Furni.Find(f => f.Id == id).Location = newpos; }
+                if (RemFurni.Find(f => f.Id == id) != null) { RemFurni.Find(f => f.Id == id).Location = newpos; }
+                if (Snapshot_Wall_furnis_In_room.Find(f => f.Id == id) != null) { Snapshot_Wall_furnis_In_room.Find(f => f.Id == id).Location = newpos; }
             }
             catch (Exception) { }
         }           

@@ -45,11 +45,9 @@ namespace RetroFun
             //Pages sharing events
             _subscribers = new List<ObservablePage>
             {
-               furniHandlerEvent,
-               FurnitureCheckerPg,
                BottomPg,
-
-
+               furniHandlerEvent,
+                FurnitureCheckerPg,
                 ChatPg,
                 DicePg,
                 FurniPg,
@@ -72,8 +70,6 @@ namespace RetroFun
                 UserEditorPg,
                 PersonalPg,
                 ModerationPg,
-
-                
                 FunPg,
 
              };

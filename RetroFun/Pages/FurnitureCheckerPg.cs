@@ -161,7 +161,6 @@ namespace RetroFun.Pages
         private bool ShouldIRemoveIrregolar;
         private bool FurniIDToCheckMode;
         private bool IS_REMOVE_FALSE_POSITIVE_MODE;
-        private int _FloorFurniID;
         private bool IS_SCANNING_FLOORFURNIS;
         private bool IS_SCANNING_WALLFURNIS;
         private bool IS_HIDING_IRREGULAR_WALLFURNIS;
@@ -351,7 +350,7 @@ namespace RetroFun.Pages
                     {
                         if (!RaresWallFurnis.Contains(item))
                         {
-                            WallFurniCheck.RaresWallFurnis.Add(item);
+                            RaresWallFurnis.Add(item);
                         }
                         UpdateRaresLbl();
                         CheckForRares(item, isQuiet);
@@ -1407,7 +1406,7 @@ namespace RetroFun.Pages
         {
             IrregularWallFurni.Clear();
             RegularWallFurni.Clear();
-            WallFurniCheck.RaresWallFurnis.Clear();
+            RaresWallFurnis.Clear();
             CatalogueWallFurnis.Clear();
         }
 
@@ -1498,9 +1497,9 @@ namespace RetroFun.Pages
 
         private int SyncRareWallCount()
         {
-            if (WallFurniCheck.RaresWallFurnis != null)
+            if (RaresWallFurnis != null)
             {
-                return WallFurniCheck.RaresWallFurnis.Count();
+                return RaresWallFurnis.Count();
             }
             else
             {
@@ -3141,7 +3140,7 @@ namespace RetroFun.Pages
             var a4 = HIDDEN_IRREGULAR_WALLFURNIS.Find(x => x == furni);
             var a5 = HIDDEN_REGULAR_WALLFURNIS.Find(x => x == furni);
             var a6 = CatalogueWallFurnis.Find(x => x == furni);
-            var a7 = WallFurniCheck.RaresWallFurnis.Find(x => x == furni);
+            var a7 = RaresWallFurnis.Find(x => x == furni);
             var a8 = CrystalsWallItems.Find(x => x == furni);
             var a9 = UnknownWallItems.Find(x => x == furni);
 
