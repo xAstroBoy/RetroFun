@@ -577,15 +577,12 @@ namespace RetroFun
             this.FurnitureCheckerPg.BackColor = System.Drawing.Color.White;
             this.FurnitureCheckerPg.ControlledFloorFurni = 0;
             this.FurnitureCheckerPg.DoubleClickFurnitureRemoval = false;
-            this.FurnitureCheckerPg.FloorFurniID = 0;
             this.FurnitureCheckerPg.FloorFurniLiveEditCooldown = 0;
-            this.FurnitureCheckerPg.FloorFurniRotation = 0;
             this.FurnitureCheckerPg.FloorFurniX = 0;
             this.FurnitureCheckerPg.FloorFurniY = 0;
             this.FurnitureCheckerPg.FurniIDToCheck = 0;
             this.FurnitureCheckerPg.FurniPickedOutput = false;
             this.FurnitureCheckerPg.FurnitureIdText = null;
-            this.FurnitureCheckerPg.FurniWalkingSpeed = 15;
             this.FurnitureCheckerPg.isQuietMode = false;
             this.FurnitureCheckerPg.Location = new System.Drawing.Point(9, 14);
             this.FurnitureCheckerPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
