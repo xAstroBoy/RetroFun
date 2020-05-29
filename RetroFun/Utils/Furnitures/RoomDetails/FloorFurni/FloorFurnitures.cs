@@ -18,6 +18,93 @@ namespace RetroFun.Utils.Furnitures.WallFurni
         public static List<HFloorItem> Snapshot_Floor_Furnis_in_room = new List<HFloorItem>();
 
 
+        public static void ClearFurnis()
+        {
+            Furni.Clear();
+            RemFurni.Clear();
+            Snapshot_Floor_Furnis_in_room.Clear();
+        }
+
+        public static void HandleRemovedFurni(HFloorItem item)
+        {
+            if (Furni.Contains(item))
+            {
+                Furni.Remove(item);
+            }
+            if (!RemFurni.Contains(item))
+            {
+                RemFurni.Add(item);
+            }
+        }
+
+
+        public static HFloorItem FindFloorFurni(int id)
+        {
+            return Furni.Find(f => f.Id == id);
+        }
+
+
+        public static void UpdateFloorFurniFacing(int id, int facing)
+        {
+            if (facing == 0)
+            {
+                UpdateFurniFacing(id, HDirection.North);
+            }
+            else if (facing == 1)
+            {
+                UpdateFurniFacing(id, HDirection.NorthEast);
+            }
+            else if (facing == 2)
+            {
+                UpdateFurniFacing(id, HDirection.East);
+            }
+            else if (facing == 3)
+            {
+                UpdateFurniFacing(id, HDirection.SouthEast);
+            }
+            else if (facing == 4)
+            {
+                UpdateFurniFacing(id, HDirection.South);
+            }
+            else if (facing == 5)
+            {
+                UpdateFurniFacing(id, HDirection.SouthWest);
+            }
+            else if (facing == 6)
+            {
+                UpdateFurniFacing(id, HDirection.West);
+            }
+            else if (facing == 7)
+            {
+                UpdateFurniFacing(id, HDirection.NorthWest);
+            }
+        }
+
+        public static void UpdateFurniFacing(int id, HDirection direction)
+        {
+            Furni.Find(f => f.Id == id).Facing = direction;
+            RemFurni.Find(f => f.Id == id).Facing = direction;
+            Snapshot_Floor_Furnis_in_room.Find(f => f.Id == id).Facing = direction;
+        }
+
+
+
+
+
+
+        public static void updateFloorFurniPosition(int id, int x, int y, string z)
+        {
+            if (decimal.TryParse(z, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal value))
+            {
+                double dectodouble = (double)value;
+                Furni.Find(f => f.Id == id).Tile = new HPoint(x, y, dectodouble);
+                RemFurni.Find(f => f.Id == id).Tile = new HPoint(x, y, dectodouble);
+                Snapshot_Floor_Furnis_in_room.Find(f => f.Id == id).Tile = new HPoint(x, y, dectodouble);
+            }
+        }
+
+        
+
         public static List<HFloorItem> GetFloorFurnis()
         {
             return Furni;

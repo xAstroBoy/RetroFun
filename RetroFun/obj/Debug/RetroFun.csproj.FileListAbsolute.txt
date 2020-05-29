@@ -2,6 +2,7 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.exe.config
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.exe
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\RetroFun.pdb
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Flazzy.dll
+C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Sulakore.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\System.Xml.Linq.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Tangine.dll
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.MainFrm.resources
@@ -35,4 +36,3 @@ C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.Core
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.csproj.CopyComplete
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.exe
 C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\obj\Debug\RetroFun.pdb
-C:\Users\marco\Documents\GitHub\RetroFun\RetroFun\bin\Debug\Sulakore.dll
