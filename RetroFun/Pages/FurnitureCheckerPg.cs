@@ -3326,14 +3326,35 @@ namespace RetroFun.Pages
             {
                 try
                 {
-                    var NewFloorFurnis = new HFloorItem(e.Packet);
+                    var item = new HFloorItem(e.Packet);
+                    if (SnapshotRemovedFloorItems.Contains(item))
+                    {
+                        SnapshotRemovedFloorItems.Remove(item);
+                    }
+                    if (RemovedIrregularFloorFurnis.Contains(item))
+                    {
+                        RemovedIrregularFloorFurnis.Remove(item);
+                    }
+                    if (RemovedRegularFloorFurnis.Contains(item))
+                    {
+                        RemovedRegularFloorFurnis.Remove(item);
+                    }
+                    if (SnapshotRemovedIrregularFloorFurnis.Contains(item))
+                    {
+                        SnapshotRemovedIrregularFloorFurnis.Remove(item);
+                    }
+                    if (SnapshotRemovedRegularFloorFurnis.Contains(item))
+                    {
+                        SnapshotRemovedRegularFloorFurnis.Remove(item);
+                    }
                     if (AutomaticScanMode)
                     {
-                        RecognizeFurnitureType(NewFloorFurnis, true);
+                        RecognizeFurnitureType(item, true);
                     }
                     UpdateRemovedFloorFurniLbl();
                     UpdateFloorFurnisLabel();
                     UpdateAllLabels();
+                    UpdateRemovedFurnisLabel();
                 }
                 catch (Exception) { }
             }
@@ -3345,11 +3366,31 @@ namespace RetroFun.Pages
             {
                 try
                 {
-                    var NewPlacedWallFurni = new HWallItem(e.Packet);
+                    var item = new HWallItem(e.Packet);
+                    if (SnapshotRemovedWallItems.Contains(item))
+                    {
+                        SnapshotRemovedWallItems.Remove(item);
+                    }
+                    if (RemovedIrregularWallFurnis.Contains(item))
+                    {
+                        RemovedIrregularWallFurnis.Remove(item);
+                    }
+                    if (SnapshotRemovedIrregularWallFurnis.Contains(item))
+                    {
+                        SnapshotRemovedIrregularWallFurnis.Remove(item);
+                    }
+                    if (SnapshotRemovedRegularWallFurnis.Contains(item))
+                    {
+                        SnapshotRemovedRegularWallFurnis.Remove(item);
+                    }
                     if (AutomaticScanMode)
                     {
-                        RecognizeFurnitureType(NewPlacedWallFurni, true);
+                        RecognizeFurnitureType(item, true);
                     }
+                    UpdateRemovedFloorFurniLbl();
+                    UpdateFloorFurnisLabel();
+                    UpdateAllLabels();
+                    UpdateRemovedFurnisLabel();
                     UpdateWallFurnisLabel();
                     UpdateRemovedWallFurniLbl();
                 }

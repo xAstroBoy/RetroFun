@@ -920,5 +920,17 @@ namespace RetroFun.Pages
         {
             HanditemID = ((Handitems)HanditemCmbx.SelectedItem).ID;
         }
+
+        private void TeleportBtn_Click(object sender, EventArgs e)
+        {
+            Connection.SendToServerAsync(Out.RoomUserTalk, ":tp" , GlobalInts.Selected_bubble_ID);
+        }
+
+        private void OverrideBtn_Click(object sender, EventArgs e)
+        {
+            Connection.SendToServerAsync(Out.RoomUserTalk, ":override", GlobalInts.Selected_bubble_ID);
+        }
+
+        }
     }
-}
+

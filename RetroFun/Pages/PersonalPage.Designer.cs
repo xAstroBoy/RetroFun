@@ -59,6 +59,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.BadgeTxbx = new System.Windows.Forms.TextBox();
             this.GiveBadgeToYourSelfBtn = new Sulakore.Components.SKoreButton();
+            this.OverrideBtn = new Sulakore.Components.SKoreButton();
+            this.TeleportBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).BeginInit();
@@ -405,10 +407,32 @@
             this.GiveBadgeToYourSelfBtn.Text = "Give Badge To Yourself";
             this.GiveBadgeToYourSelfBtn.Click += new System.EventHandler(this.GiveBadgeToYourselfBtn_Click);
             // 
+            // OverrideBtn
+            // 
+            this.OverrideBtn.Location = new System.Drawing.Point(1081, 380);
+            this.OverrideBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.OverrideBtn.Name = "OverrideBtn";
+            this.OverrideBtn.Size = new System.Drawing.Size(182, 38);
+            this.OverrideBtn.TabIndex = 95;
+            this.OverrideBtn.Text = "Override";
+            this.OverrideBtn.Click += new System.EventHandler(this.OverrideBtn_Click);
+            // 
+            // TeleportBtn
+            // 
+            this.TeleportBtn.Location = new System.Drawing.Point(1081, 332);
+            this.TeleportBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TeleportBtn.Name = "TeleportBtn";
+            this.TeleportBtn.Size = new System.Drawing.Size(182, 38);
+            this.TeleportBtn.TabIndex = 96;
+            this.TeleportBtn.Text = "teleport";
+            this.TeleportBtn.Click += new System.EventHandler(this.TeleportBtn_Click);
+            // 
             // PersonalPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.TeleportBtn);
+            this.Controls.Add(this.OverrideBtn);
             this.Controls.Add(this.GiveBadgeToYourSelfBtn);
             this.Controls.Add(this.BadgeTxbx);
             this.Controls.Add(this.groupBox3);
@@ -418,7 +442,7 @@
             this.Controls.Add(this.SetCurrencyBtn);
             this.Controls.Add(this.Currency);
             this.Name = "PersonalPage";
-            this.Size = new System.Drawing.Size(1218, 497);
+            this.Size = new System.Drawing.Size(1290, 497);
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).EndInit();
@@ -469,5 +493,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox BadgeTxbx;
         private Sulakore.Components.SKoreButton GiveBadgeToYourSelfBtn;
+        private Sulakore.Components.SKoreButton OverrideBtn;
+        private Sulakore.Components.SKoreButton TeleportBtn;
     }
 }

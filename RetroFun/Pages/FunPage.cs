@@ -29,7 +29,7 @@ namespace RetroFun.Pages
         private bool isStaticEffectThreadStarted;
         private bool GiveEnableEffectToUser;
         private bool giveenableeffecttoallusersthread;
-
+        private bool RandomHeadTurnMode;
         private bool TransformAllUsersToPets = false;
 
         private readonly PetsIds[] _Pets = new[]
@@ -673,6 +673,65 @@ namespace RetroFun.Pages
             {
                 Speak(HentityUtils.FindEntityByIndex(UserIndex).Name + " is using this effect : " + enableeffect);
                 EffectNumber = enableeffect;
+            }
+        }
+
+
+        private void RandomHeadTurn()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    try
+                    {
+                        SendLookAtPoint(1000, -10000);   //NE
+                        Thread.Sleep(100);
+                        SendLookAtPoint(10000, -1000);   //E
+                        Thread.Sleep(150);
+                        SendLookAtPoint(10000, 1000);   //SE
+                        Thread.Sleep(200);
+                        SendLookAtPoint(1000, 10000);   //S
+                        Thread.Sleep(250);
+                        SendLookAtPoint(-1000, 10000);   //SW
+                        Thread.Sleep(300);
+                        SendLookAtPoint(-10000, 1000);   //W
+                        Thread.Sleep(350);
+                        SendLookAtPoint(-10000, -1000);   //NW
+                        Thread.Sleep(400);
+                        SendLookAtPoint(-1000, -10000);   //N
+
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                } while (RandomHeadTurnMode);
+
+            }).Start();
+        }
+
+
+        private void SendLookAtPoint(int one, int two)
+        {
+            if(RandomHeadTurnMode)
+            {
+                Connection.SendToServerAsync(Out.RoomUserLookAtPoint, one, two);  
+            }
+        }
+        private void HeadturnBtn_Click(object sender, EventArgs e)
+        {
+            if(RandomHeadTurnMode)
+            {
+                WriteToButton(HeadturnBtn, "Random Head Turn : OFF");
+                RandomHeadTurnMode = false;
+            }
+            else
+            {
+                WriteToButton(HeadturnBtn, "Random Head Turn : ON");
+                RandomHeadTurnMode = true;
+                RandomHeadTurn();
             }
         }
     }

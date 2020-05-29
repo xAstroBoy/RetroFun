@@ -64,6 +64,9 @@
             this.BanTimeManualNbx = new System.Windows.Forms.NumericUpDown();
             this.BantimeCmbx = new System.Windows.Forms.ComboBox();
             this.BanManualReasonTxb = new System.Windows.Forms.TextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.UsernameForUserinfoTxb = new System.Windows.Forms.TextBox();
+            this.GetUserInfoBtn = new Sulakore.Components.SKoreButton();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -73,6 +76,7 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BanTimeManualNbx)).BeginInit();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // UserNameTxbx
@@ -454,10 +458,39 @@
             this.BanManualReasonTxb.Size = new System.Drawing.Size(386, 26);
             this.BanManualReasonTxb.TabIndex = 32;
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.UsernameForUserinfoTxb);
+            this.groupBox7.Controls.Add(this.GetUserInfoBtn);
+            this.groupBox7.Location = new System.Drawing.Point(289, 128);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(317, 137);
+            this.groupBox7.TabIndex = 39;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Userinfo User";
+            // 
+            // UsernameForUserinfoTxb
+            // 
+            this.UsernameForUserinfoTxb.Location = new System.Drawing.Point(6, 41);
+            this.UsernameForUserinfoTxb.MaxLength = 2147483647;
+            this.UsernameForUserinfoTxb.Name = "UsernameForUserinfoTxb";
+            this.UsernameForUserinfoTxb.Size = new System.Drawing.Size(294, 26);
+            this.UsernameForUserinfoTxb.TabIndex = 32;
+            // 
+            // GetUserInfoBtn
+            // 
+            this.GetUserInfoBtn.Location = new System.Drawing.Point(6, 82);
+            this.GetUserInfoBtn.Name = "GetUserInfoBtn";
+            this.GetUserInfoBtn.Size = new System.Drawing.Size(294, 40);
+            this.GetUserInfoBtn.TabIndex = 31;
+            this.GetUserInfoBtn.Text = "Get Userinfo";
+            this.GetUserInfoBtn.Click += new System.EventHandler(this.GetUserInfoBtn_Click);
+            // 
             // ModerationPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.FloodBtn);
             this.Controls.Add(this.groupBox5);
@@ -483,6 +516,8 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BanTimeManualNbx)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -524,5 +559,8 @@
         private Sulakore.Components.SKoreButton UnmuteUserBtn;
         private System.Windows.Forms.ComboBox UsersCmbx;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TextBox UsernameForUserinfoTxb;
+        private Sulakore.Components.SKoreButton GetUserInfoBtn;
     }
 }

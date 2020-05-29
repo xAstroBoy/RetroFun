@@ -79,6 +79,17 @@ namespace RetroFun.Pages
             }
         }
 
+        private string _GetUserinfoTargetUser;
+        public string GetUserinfoTargetUser
+        {
+            get => _GetUserinfoTargetUser;
+            set
+            {
+                _GetUserinfoTargetUser = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
 
         private int _selectedIndex;
         public int SelectedIndex
@@ -164,6 +175,11 @@ namespace RetroFun.Pages
             Bind(UserNameTxbx, "Text", nameof(UserNickname));
             Bind(MottoTxbx, "Text", nameof(UserMotto));
             Bind(LookTxbx, "Text", nameof(UserLook));
+
+
+            Bind(UsernameForUserinfoTxb, "Text", nameof(GetUserinfoTargetUser));
+
+
 
             Bind(AlertBoxTxb, "Text", nameof(AlertMessage));
             Bind(BanManualReasonTxb, "Text", nameof(BanMessage));
@@ -339,14 +355,13 @@ namespace RetroFun.Pages
             if (entity != null)
             {
                 SelectedIndex = entity.Index;
-                UserNickname = entity.Name;
+                GetUserinfoTargetUser = UserNickname = entity.Name;
                 UserMotto = entity.Motto;
                 UserLook = entity.FigureId;
                 SelectUserLabel.Invoke((MethodInvoker)delegate
                 {
                     SelectUserLabel.Text = entity.Name;
                 });
-
             }
         }
 
@@ -811,7 +826,7 @@ namespace RetroFun.Pages
         {
             try
             {
-                UserNickname = ((RegisteredUsers)UsersCmbx.SelectedItem).Name;
+                GetUserinfoTargetUser = UserNickname = ((RegisteredUsers)UsersCmbx.SelectedItem).Name;
                 UserMotto = ((RegisteredUsers)UsersCmbx.SelectedItem).Motto;
                 UserLook = ((RegisteredUsers)UsersCmbx.SelectedItem).Look;
                 SelectUserLabel.Invoke((MethodInvoker)delegate
@@ -831,6 +846,10 @@ namespace RetroFun.Pages
             });
         }
 
+        private void GetUserInfoBtn_Click(object sender, EventArgs e)
+        {
+            Connection.SendToServerAsync(Out.RoomUserTalk, ":userinfo " + GetUserinfoTargetUser, GlobalInts.Selected_bubble_ID);
+        }
     }
 }
 

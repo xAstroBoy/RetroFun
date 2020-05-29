@@ -33,6 +33,7 @@
             this.EnableAdd1Btn = new Sulakore.Components.SKoreButton();
             this.EnableSub1Btn = new Sulakore.Components.SKoreButton();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.EnableTellerChbx = new System.Windows.Forms.CheckBox();
             this.GiveAllEffectToUserBtn = new Sulakore.Components.SKoreButton();
             this.SetEffectToClickedUserbtn = new Sulakore.Components.SKoreButton();
             this.GiveEffectToAllUsersBtn = new Sulakore.Components.SKoreButton();
@@ -54,7 +55,7 @@
             this.PetTypeIdNbx = new System.Windows.Forms.NumericUpDown();
             this.TransformAllUserIntoPetsBtn = new Sulakore.Components.SKoreButton();
             this.SetPetColorBtn = new Sulakore.Components.SKoreButton();
-            this.EnableTellerChbx = new System.Windows.Forms.CheckBox();
+            this.HeadturnBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.EnableNbx)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CooldownEffectNbx)).BeginInit();
@@ -127,6 +128,16 @@
             this.groupBox5.TabIndex = 97;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Effects";
+            // 
+            // EnableTellerChbx
+            // 
+            this.EnableTellerChbx.AutoSize = true;
+            this.EnableTellerChbx.Location = new System.Drawing.Point(24, 312);
+            this.EnableTellerChbx.Name = "EnableTellerChbx";
+            this.EnableTellerChbx.Size = new System.Drawing.Size(274, 24);
+            this.EnableTellerChbx.TabIndex = 105;
+            this.EnableTellerChbx.Text = "Tell Enable Of User entering room";
+            this.EnableTellerChbx.UseVisualStyleBackColor = true;
             // 
             // GiveAllEffectToUserBtn
             // 
@@ -357,20 +368,21 @@
             this.SetPetColorBtn.Text = "Set Pet Color";
             this.SetPetColorBtn.Click += new System.EventHandler(this.SetPetColorBtn_Click);
             // 
-            // EnableTellerChbx
+            // HeadturnBtn
             // 
-            this.EnableTellerChbx.AutoSize = true;
-            this.EnableTellerChbx.Location = new System.Drawing.Point(24, 312);
-            this.EnableTellerChbx.Name = "EnableTellerChbx";
-            this.EnableTellerChbx.Size = new System.Drawing.Size(274, 24);
-            this.EnableTellerChbx.TabIndex = 105;
-            this.EnableTellerChbx.Text = "Tell Enable Of User entering room";
-            this.EnableTellerChbx.UseVisualStyleBackColor = true;
+            this.HeadturnBtn.Location = new System.Drawing.Point(17, 457);
+            this.HeadturnBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HeadturnBtn.Name = "HeadturnBtn";
+            this.HeadturnBtn.Size = new System.Drawing.Size(199, 31);
+            this.HeadturnBtn.TabIndex = 115;
+            this.HeadturnBtn.Text = "Random Head Turn : OFF";
+            this.HeadturnBtn.Click += new System.EventHandler(this.HeadturnBtn_Click);
             // 
             // FunPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.HeadturnBtn);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox5);
             this.Name = "FunPage";
@@ -415,5 +427,6 @@
         private Sulakore.Components.SKoreButton RestoreUsersBtn;
         private Sulakore.Components.SKoreButton GiveAllEffectToUserBtn;
         private System.Windows.Forms.CheckBox EnableTellerChbx;
+        private Sulakore.Components.SKoreButton HeadturnBtn;
     }
 }
