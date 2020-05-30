@@ -375,7 +375,7 @@ namespace RetroFun
                 //else if (Out.SearchUser == id){sub.Out_SearchUser(e);}
                 //else if (Out.SellItem == id){sub.Out_SellItem(e);}
                 //else if (Out.SetHomeRoom == id){sub.Out_SetHomeRoom(e);}
-                //else if (Out.SetStackHelperHeight == id){sub.Out_SetStackHelperHeight(e);}
+                else if (Out.SetStackHelperHeight == id){sub.Out_SetStackHelperHeight(e);}
                 //else if (Out.StalkFriend == id){sub.Out_StalkFriend(e);}
                 //else if (Out.TakeBackItem == id){sub.Out_TakeBackItem(e);}
                 //else if (Out.TestInventory == id){sub.Out_TestInventory(e);}

@@ -71,6 +71,10 @@ namespace RetroFun.Controls
                 {
                     FindForm()?.Invoke(handler, this, e);
                 }
+                else
+                {
+                    return;
+                }
             } catch(System.ObjectDisposedException)
             {
 

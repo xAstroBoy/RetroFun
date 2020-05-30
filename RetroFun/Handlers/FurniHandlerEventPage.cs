@@ -177,7 +177,7 @@ namespace RetroFun.Handlers
                 int facingprob = e.Packet.ReadInteger();
                 string z = e.Packet.ReadString();
 
-                FloorFurnitures.updateFloorFurniPosition(FurniID, x, y, z);
+                FloorFurnitures.UpdateFloorFurniPosition(FurniID, x, y, z);
                 FloorFurnitures.UpdateFloorFurniFacing(FurniID, facingprob);
                 if (KnownDomains.isBobbaHotel)
                 {

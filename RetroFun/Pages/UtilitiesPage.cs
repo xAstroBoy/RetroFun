@@ -7,7 +7,11 @@ using Sulakore.Communication;
 using RetroFun.Subscribers;
 using Sulakore.Components;
 using Sulakore.Habbo.Messages;
-
+using RetroFun.Utils.HostFinder.BobbaItalia;
+using RetroFun.Utils.Furnitures.WallFurni;
+using RetroFun.Helpers;
+using Microsoft.Office.Interop.Excel;
+using System.Threading;
 
 namespace RetroFun.Pages
 {
@@ -19,9 +23,10 @@ namespace RetroFun.Pages
 
 
         // TEMP
+        private Random random = new Random();
 
-
-        List<Outgoing> outg = new List<Outgoing>();
+        private bool stackerrandomizeheight;
+        private bool RiseStackerMode;
         private bool IsBGInterceptor;
         private bool isLiveBGEditor;
 
@@ -180,6 +185,102 @@ namespace RetroFun.Pages
             }
         }
 
+
+        private int _StackerID;
+
+
+        public int StackerID
+        {
+            get => _StackerID;
+            set
+            {
+                _StackerID = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        private int _StackerSetHeight;
+
+
+        public int StackerSetHeight
+        {
+            get => _StackerSetHeight;
+            set
+            {
+                _StackerSetHeight = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _StackerRangeStartHeight;
+
+
+        public int StackerRangeStartHeight
+        {
+            get => _StackerRangeStartHeight;
+            set
+            {
+                _StackerRangeStartHeight = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _StackerRangeEndHeight = 50;
+
+
+        public int StackerRangeEndHeight
+        {
+            get => _StackerRangeEndHeight;
+            set
+            {
+                _StackerRangeEndHeight = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _StackerLiveEditMode;
+
+
+        public bool StackerLiveEditMode
+        {
+            get => _StackerLiveEditMode;
+            set
+            {
+                _StackerLiveEditMode = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private bool _CaptureStackerMode;
+
+
+        public bool CaptureStackerMode
+        {
+            get => _CaptureStackerMode;
+            set
+            {
+                _CaptureStackerMode = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _StackerThreadDelay = 150;
+
+
+
+        public int StackerThreadDelay
+        {
+            get => _StackerThreadDelay;
+            set
+            {
+                _StackerThreadDelay = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
+        
         public UtilitiesPage()
         {
             InitializeComponent();
@@ -189,14 +290,19 @@ namespace RetroFun.Pages
             Bind(MultiplierNbx, "Value", nameof(CreditMultiplierAmount));
             Bind(CreditsIDNbx, "Value", nameof(CreditIDInt));
             Bind(GiftExchangerIDNBx, "Value", nameof(GiftInt));
-
-
             Bind(OffsetXNbx, "Value", nameof(OffsetX));
             Bind(OffsetYNbx, "Value", nameof(OffsetY));
             Bind(OffsetZNbx, "Value", nameof(OffsetZ));
             Bind(RoomBGNBx, "Value", nameof(RoomBGID));
-
             Bind(RoomBGurlTxb, "Text", nameof(RoomBGURL));
+
+            Bind(StackerHeightNbx, "Value", nameof(StackerSetHeight));
+            Bind(StackerFurniIDNbx, "Value", nameof(StackerID));
+            Bind(StackerStartRangeNbx, "Value", nameof(StackerRangeStartHeight));
+            Bind(StackerEndRangeNbx, "Value", nameof(StackerRangeEndHeight));
+            Bind(StackerThreadDelayNbx, "Value", nameof(StackerThreadDelay));
+
+            
 
 
 
@@ -383,5 +489,254 @@ namespace RetroFun.Pages
             }
         }
 
+        private void SetStacker(int id, int height)
+        {
+            if(Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(Out.SetStackHelperHeight, id, height);
+            }
+        }
+
+        private async void SetStackerThread(int id, int height)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                await Task.Delay(150);
+                await Connection.SendToServerAsync(Out.SetStackHelperHeight, id, height);
+            }
+        }
+
+
+        private void StackerHeightNbx_ValueChanged(object sender, EventArgs e)
+        {
+            if(StackerLiveEditMode)
+            {
+                SetStacker(StackerID, StackerSetHeight);
+            }
+        }
+
+        private void StackerLiveEditBtn_Click(object sender, EventArgs e)
+        {
+            if(StackerLiveEditMode)
+            {
+                WriteToButton(StackerLiveEditBtn, "Live Edit : OFF");
+                StackerLiveEditMode = false;
+            }
+            else
+            {
+                WriteToButton(StackerLiveEditBtn, "Live Edit : ON");
+                StackerLiveEditMode = true;
+            }
+        }
+        private void Speak(string text)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Utilities]: " + text, 0, 34, 0, -1);
+            }
+        }
+
+
+        private void DeactivateCaptureStacker()
+        {
+            Speak("Stacker Found, Check RetroFun for settings!");
+            WriteToButton(CaptureStackerBtn, "Capture Stacker : OFF");
+            CaptureStackerMode = false;
+        }
+
+
+        public override void Out_SetStackHelperHeight(DataInterceptedEventArgs e)
+        {
+            if (CaptureStackerMode)
+            {
+                int Stacker = e.Packet.ReadInteger();
+                int StackerHeight = e.Packet.ReadInteger();
+                if (FloorFurnitures.FindFloorFurni(Stacker) != null)
+                {
+                    StackerID = FloorFurnitures.FindFloorFurni(Stacker).Id;
+                    StackerSetHeight = (int)FloorFurnitures.FindFloorFurni(Stacker).Tile.Z;
+                    e.IsBlocked = true;
+                    DeactivateCaptureStacker();
+                }
+                else
+                {
+                    StackerID = Stacker;
+                    StackerSetHeight = (int)StackerHeight;
+                    e.IsBlocked = true;
+                    DeactivateCaptureStacker();
+                }
+            }
+
+        }
+
+        public override void Out_ToggleFloorItem(DataInterceptedEventArgs e)
+        {
+
+            int FurniID = e.Packet.ReadInteger();
+            if (CaptureStackerMode)
+            {
+                if (FloorFurnitures.FindFloorFurni(FurniID) != null)
+                {
+                    StackerID = FloorFurnitures.FindFloorFurni(FurniID).Id;
+                    StackerSetHeight = (int)FloorFurnitures.FindFloorFurni(FurniID).Tile.Z;
+                    e.IsBlocked = true;
+                    DeactivateCaptureStacker();
+                }
+                else
+                {
+                    StackerID = FurniID;
+                    e.IsBlocked = true;
+                    DeactivateCaptureStacker();
+                }
+            }
+        }
+
+
+        public override void Out_RotateMoveItem(DataInterceptedEventArgs e)
+        {
+                int FurniID = e.Packet.ReadInteger();
+                if (CaptureStackerMode)
+                {
+                    if (FloorFurnitures.FindFloorFurni(FurniID) != null)
+                    {
+                        StackerID = FloorFurnitures.FindFloorFurni(FurniID).Id;
+                        StackerSetHeight = (int)FloorFurnitures.FindFloorFurni(FurniID).Tile.Z;
+                        e.IsBlocked = true;
+                        DeactivateCaptureStacker();
+                    }
+                    else
+                    {
+                        StackerID = FurniID;
+                        e.IsBlocked = true;
+                        DeactivateCaptureStacker();
+                    }
+                }
+            }
+
+
+
+        private void RandomHeightSettings()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    if (stackerrandomizeheight)
+                    {
+                        StackerSetHeight = random.Next(StackerRangeStartHeight, StackerRangeEndHeight);
+                        Thread.Sleep(StackerThreadDelay);
+                        if (StackerLiveEditMode)
+                        {
+                            SetStacker(StackerID, StackerSetHeight);
+                        }
+                    }
+                } while (stackerrandomizeheight);
+            }).Start();
+        }
+
+
+
+        private void RiseStackerModality()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                        for (int i = StackerRangeStartHeight; i < StackerRangeEndHeight; i++)
+                        {
+                        if (RiseStackerMode)
+                        {
+                            StackerSetHeight = i;
+                            Thread.Sleep(StackerThreadDelay);
+                            if (StackerLiveEditMode)
+                            {
+                                SetStacker(StackerID, StackerSetHeight);
+                            }
+                        }
+                    }
+                } while (RiseStackerMode);
+            }).Start();
+        }
+
+
+
+        private void CaptureStackerBtn_Click(object sender, EventArgs e)
+        {
+            if (CaptureStackerMode)
+            {
+                WriteToButton(CaptureStackerBtn, "Capture Stacker : OFF");
+                CaptureStackerMode = false;
+            }
+            else
+            {
+                WriteToButton(CaptureStackerBtn, "Capture Stacker : ON");
+                CaptureStackerMode = true;
+            }
+        }
+
+        private void DisableRandomizer()
+        {
+            WriteToButton(StackerRandomizerBtn, "Enable Randomizer : OFF");
+            stackerrandomizeheight = false;
+        }
+
+        private void StackerRandomizerBtn_Click(object sender, EventArgs e)
+        {
+            if (stackerrandomizeheight)
+            {
+                WriteToButton(StackerRandomizerBtn, "Enable Randomizer : OFF");
+                stackerrandomizeheight = false;
+            }
+            else
+            {
+                WriteToButton(StackerRandomizerBtn, "Enable Randomizer : ON");
+                DisableRiseStacker();
+                stackerrandomizeheight = true;
+                RandomHeightSettings();
+            }
+
+        }
+
+        private void DecOneStackerBtn_Click(object sender, EventArgs e)
+        {
+            StackerSetHeight = StackerSetHeight - (int)1.0;
+            if (StackerLiveEditMode)
+            {
+                SetStacker(StackerID, StackerSetHeight);
+            }
+        }
+
+        private void IncOneStackerBtn_Click(object sender, EventArgs e)
+        {
+            StackerSetHeight = StackerSetHeight + (int)1.0;
+            if (StackerLiveEditMode)
+            {
+                SetStacker(StackerID, StackerSetHeight);
+            }
+        }
+
+
+        private void DisableRiseStacker()
+        {
+            WriteToButton(CaptureStackerBtn, "Rise Stacker : OFF");
+            RiseStackerMode = false;
+        }
+        private void RiseStackerModeBtn_Click(object sender, EventArgs e)
+        {
+            if (RiseStackerMode)
+            {
+                WriteToButton(RiseStackerModeBtn, "Rise Stacker : OFF");
+                RiseStackerMode = false;
+            }
+            else
+            {
+                WriteToButton(RiseStackerModeBtn, "Rise Stacker : ON");
+                DisableRandomizer();
+                RiseStackerMode = true;
+                RiseStackerModality();
+            }
+        }
     }
 }

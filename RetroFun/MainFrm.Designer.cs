@@ -465,7 +465,7 @@ namespace RetroFun
             this.PersonalPg.HasModToolsUnlocked = false;
             this.PersonalPg.HasStaffPermissions = false;
             this.PersonalPg.Location = new System.Drawing.Point(3, 3);
-            this.PersonalPg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PersonalPg.Margin = new System.Windows.Forms.Padding(2);
             this.PersonalPg.Name = "PersonalPg";
             this.PersonalPg.Size = new System.Drawing.Size(1443, 635);
             this.PersonalPg.TabIndex = 0;
@@ -478,7 +478,7 @@ namespace RetroFun
             this.FunTab.Controls.Add(this.FunPg);
             this.FunTab.Location = new System.Drawing.Point(4, 52);
             this.FunTab.Name = "FunTab";
-            this.FunTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.FunTab.Padding = new System.Windows.Forms.Padding(3);
             this.FunTab.Size = new System.Drawing.Size(1454, 656);
             this.FunTab.TabIndex = 22;
             this.FunTab.Text = "Fun";
@@ -490,7 +490,7 @@ namespace RetroFun
             this.FunPg.CooldownEffectLoop = 0;
             this.FunPg.EffectNumber = 0;
             this.FunPg.Location = new System.Drawing.Point(3, 6);
-            this.FunPg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FunPg.Margin = new System.Windows.Forms.Padding(2);
             this.FunPg.Name = "FunPg";
             this.FunPg.PetColor = "FFFFFF";
             this.FunPg.PetID = 1;
@@ -498,6 +498,7 @@ namespace RetroFun
             this.FunPg.Size = new System.Drawing.Size(1455, 635);
             this.FunPg.TabIndex = 0;
             this.FunPg.TabStop = false;
+            this.FunPg.tellWhatEnable = false;
             this.FunPg.UseSelectedColor = false;
             this.FunPg.UseSelectedPet = false;
             // 
@@ -514,14 +515,15 @@ namespace RetroFun
             // UtilitiesPg
             // 
             this.UtilitiesPg.BackColor = System.Drawing.Color.White;
+            this.UtilitiesPg.CaptureStackerMode = false;
             this.UtilitiesPg.CreditExchangeMode = false;
             this.UtilitiesPg.CreditIDInt = 1;
             this.UtilitiesPg.CreditMultiplierAmount = 1;
             this.UtilitiesPg.CreditMultiplierEnabled = false;
             this.UtilitiesPg.GiftExchangeMode = false;
             this.UtilitiesPg.GiftInt = 1;
-            this.UtilitiesPg.Location = new System.Drawing.Point(8, 15);
-            this.UtilitiesPg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UtilitiesPg.Location = new System.Drawing.Point(0, 13);
+            this.UtilitiesPg.Margin = new System.Windows.Forms.Padding(2);
             this.UtilitiesPg.Name = "UtilitiesPg";
             this.UtilitiesPg.OffsetX = 0;
             this.UtilitiesPg.OffsetY = 0;
@@ -529,7 +531,13 @@ namespace RetroFun
             this.UtilitiesPg.RoomBGID = 0;
             this.UtilitiesPg.RoomBGURL = null;
             this.UtilitiesPg.RoomBGX = 0;
-            this.UtilitiesPg.Size = new System.Drawing.Size(1168, 615);
+            this.UtilitiesPg.Size = new System.Drawing.Size(1454, 648);
+            this.UtilitiesPg.StackerID = 0;
+            this.UtilitiesPg.StackerLiveEditMode = false;
+            this.UtilitiesPg.StackerRangeEndHeight = 250;
+            this.UtilitiesPg.StackerRangeStartHeight = 150;
+            this.UtilitiesPg.StackerSetHeight = 0;
+            this.UtilitiesPg.StackerThreadDelay = 150;
             this.UtilitiesPg.TabIndex = 0;
             this.UtilitiesPg.TabStop = false;
             // 
@@ -548,10 +556,11 @@ namespace RetroFun
             this.ModerationPg.AlertMessage = null;
             this.ModerationPg.BackColor = System.Drawing.Color.White;
             this.ModerationPg.BanMessage = null;
+            this.ModerationPg.GetUserinfoTargetUser = null;
             this.ModerationPg.Location = new System.Drawing.Point(8, 6);
             this.ModerationPg.ManualBanTime = 3600;
             this.ModerationPg.ManualMuteTime = 60;
-            this.ModerationPg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ModerationPg.Margin = new System.Windows.Forms.Padding(2);
             this.ModerationPg.Name = "ModerationPg";
             this.ModerationPg.SelectedIndex = 0;
             this.ModerationPg.Size = new System.Drawing.Size(1443, 648);
@@ -627,7 +636,7 @@ namespace RetroFun
             this.furniSpawnPg.FurniType = "I";
             this.furniSpawnPg.InventoryFurniID = 0;
             this.furniSpawnPg.Location = new System.Drawing.Point(3, 8);
-            this.furniSpawnPg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.furniSpawnPg.Margin = new System.Windows.Forms.Padding(2);
             this.furniSpawnPg.Name = "furniSpawnPg";
             this.furniSpawnPg.PosterID = "2005";
             this.furniSpawnPg.Size = new System.Drawing.Size(1443, 615);
@@ -739,7 +748,7 @@ namespace RetroFun
             this.UserEditorPg.LockLook = false;
             this.UserEditorPg.LockMotto = false;
             this.UserEditorPg.LockNickname = false;
-            this.UserEditorPg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.UserEditorPg.Margin = new System.Windows.Forms.Padding(2);
             this.UserEditorPg.Name = "UserEditorPg";
             this.UserEditorPg.SelectedIndex = 0;
             this.UserEditorPg.Size = new System.Drawing.Size(1192, 631);
@@ -812,7 +821,7 @@ namespace RetroFun
             // 
             this.PetPg.BackColor = System.Drawing.Color.White;
             this.PetPg.Location = new System.Drawing.Point(8, 3);
-            this.PetPg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PetPg.Margin = new System.Windows.Forms.Padding(2);
             this.PetPg.Name = "PetPg";
             this.PetPg.PageID = 0;
             this.PetPg.PetHTMLColor = null;
@@ -1035,7 +1044,7 @@ namespace RetroFun
             this.BottomPg.BackColor = System.Drawing.Color.White;
             this.BottomPg.FreezeUser = false;
             this.BottomPg.Location = new System.Drawing.Point(158, 720);
-            this.BottomPg.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BottomPg.Margin = new System.Windows.Forms.Padding(2);
             this.BottomPg.Name = "BottomPg";
             this.BottomPg.Own_index = 0;
             this.BottomPg.Own_look = null;

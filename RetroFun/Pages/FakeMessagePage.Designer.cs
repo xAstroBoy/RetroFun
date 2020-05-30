@@ -111,7 +111,7 @@
             this.NoClientMessageBlockerChbx.Text = "Block Offline / Unfriended messages";
             this.NoClientMessageBlockerChbx.UseVisualStyleBackColor = true;
             // 
-            // sKoreButton1
+            // RiseStackerModeBtn
             // 
             this.RemoveFriendBtn.Location = new System.Drawing.Point(25, 145);
             this.RemoveFriendBtn.Name = "RemoveFriendBtn";

@@ -16,12 +16,7 @@ namespace RetroFun.Utils.Furnitures.FloorFurni
         public static List<HWallItem> Snapshot_Wall_furnis_In_room = new List<HWallItem>();
 
 
-        public static void ClearFurnis()
-        {
-            Furni.Clear();
-            RemFurni.Clear();
-            Snapshot_Wall_furnis_In_room.Clear();
-        }
+        
 
         public static void UpdateWallFurniPosition(int id, string newpos)
         {
@@ -31,11 +26,16 @@ namespace RetroFun.Utils.Furnitures.FloorFurni
                 if (Snapshot_Wall_furnis_In_room.Find(f => f.Id == id) != null) { Snapshot_Wall_furnis_In_room.Find(f => f.Id == id).Location = newpos; }
             }
             catch (Exception) { }
-        }           
+        }
 
 
-
-    public static void HandleRemovedFurni(HWallItem item)
+        public static void ClearFurnis()
+        {
+            Furni.Clear();
+            RemFurni.Clear();
+            Snapshot_Wall_furnis_In_room.Clear();
+        }
+        public static void HandleRemovedFurni(HWallItem item)
         {
             if (Furni.Contains(item))
             {

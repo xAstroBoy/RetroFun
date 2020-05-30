@@ -98,7 +98,7 @@ namespace RetroFun.Utils.Furnitures.WallFurni
 
 
 
-        public static void updateFloorFurniPosition(int id, int x, int y, string z)
+        public static void UpdateFloorFurniPosition(int id, int x, int y, string z)
         {
             try
             {

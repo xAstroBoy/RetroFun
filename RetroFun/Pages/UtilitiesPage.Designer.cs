@@ -57,6 +57,22 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.RoomBGXNbx = new System.Windows.Forms.NumericUpDown();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.DecOneStackerBtn = new Sulakore.Components.SKoreButton();
+            this.IncOneStackerBtn = new Sulakore.Components.SKoreButton();
+            this.StackerLiveEditBtn = new Sulakore.Components.SKoreButton();
+            this.label12 = new System.Windows.Forms.Label();
+            this.StackerFurniIDNbx = new System.Windows.Forms.NumericUpDown();
+            this.StackerRandomizerBtn = new Sulakore.Components.SKoreButton();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.CaptureStackerBtn = new Sulakore.Components.SKoreButton();
+            this.StackerHeightNbx = new System.Windows.Forms.NumericUpDown();
+            this.StackerEndRangeNbx = new System.Windows.Forms.NumericUpDown();
+            this.StackerStartRangeNbx = new System.Windows.Forms.NumericUpDown();
+            this.RiseStackerModeBtn = new Sulakore.Components.SKoreButton();
+            this.StackerThreadDelayNbx = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GiftExchangerIDNBx)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -68,6 +84,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.OffsetXNbx)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RoomBGXNbx)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StackerFurniIDNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StackerHeightNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StackerEndRangeNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StackerStartRangeNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StackerThreadDelayNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -76,48 +98,54 @@
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.GiftExchangerIDNBx);
             this.groupBox3.Controls.Add(this.AutoGiftExchangerBtn);
-            this.groupBox3.Location = new System.Drawing.Point(224, 9);
+            this.groupBox3.Location = new System.Drawing.Point(336, 14);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(188, 236);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox3.Size = new System.Drawing.Size(282, 363);
             this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Gift Exchanger";
             // 
             // ReedemGiftBtn
             // 
-            this.ReedemGiftBtn.Location = new System.Drawing.Point(23, 120);
+            this.ReedemGiftBtn.Location = new System.Drawing.Point(34, 185);
+            this.ReedemGiftBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ReedemGiftBtn.Name = "ReedemGiftBtn";
-            this.ReedemGiftBtn.Size = new System.Drawing.Size(130, 20);
+            this.ReedemGiftBtn.Size = new System.Drawing.Size(195, 31);
             this.ReedemGiftBtn.TabIndex = 12;
             this.ReedemGiftBtn.Text = "Redeem Gift.";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(20, 66);
+            this.label3.Location = new System.Drawing.Point(30, 102);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 13);
+            this.label3.Size = new System.Drawing.Size(56, 20);
             this.label3.TabIndex = 11;
             this.label3.Text = "Gift ID";
             // 
             // GiftExchangerIDNBx
             // 
-            this.GiftExchangerIDNBx.Location = new System.Drawing.Point(23, 85);
+            this.GiftExchangerIDNBx.Location = new System.Drawing.Point(34, 131);
+            this.GiftExchangerIDNBx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GiftExchangerIDNBx.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.GiftExchangerIDNBx.Name = "GiftExchangerIDNBx";
-            this.GiftExchangerIDNBx.Size = new System.Drawing.Size(148, 20);
+            this.GiftExchangerIDNBx.Size = new System.Drawing.Size(222, 26);
             this.GiftExchangerIDNBx.TabIndex = 10;
             // 
             // AutoGiftExchangerBtn
             // 
             this.AutoGiftExchangerBtn.AutoSize = true;
-            this.AutoGiftExchangerBtn.Location = new System.Drawing.Point(23, 37);
+            this.AutoGiftExchangerBtn.Location = new System.Drawing.Point(34, 57);
+            this.AutoGiftExchangerBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AutoGiftExchangerBtn.Name = "AutoGiftExchangerBtn";
-            this.AutoGiftExchangerBtn.Size = new System.Drawing.Size(153, 21);
+            this.AutoGiftExchangerBtn.Size = new System.Drawing.Size(217, 24);
             this.AutoGiftExchangerBtn.TabIndex = 6;
             this.AutoGiftExchangerBtn.Text = "Automatic Gift Exchanger";
             this.AutoGiftExchangerBtn.UseVisualStyleBackColor = true;
@@ -131,69 +159,77 @@
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.ExchangeMPChbx);
             this.groupBox2.Controls.Add(this.ExchangeCreditChbx);
-            this.groupBox2.Location = new System.Drawing.Point(16, 9);
+            this.groupBox2.Location = new System.Drawing.Point(24, 14);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(188, 236);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Size = new System.Drawing.Size(282, 363);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Credits Reedemer";
             // 
             // RedeemCreditsBtn
             // 
-            this.RedeemCreditsBtn.Location = new System.Drawing.Point(23, 201);
+            this.RedeemCreditsBtn.Location = new System.Drawing.Point(34, 309);
+            this.RedeemCreditsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RedeemCreditsBtn.Name = "RedeemCreditsBtn";
-            this.RedeemCreditsBtn.Size = new System.Drawing.Size(130, 20);
+            this.RedeemCreditsBtn.Size = new System.Drawing.Size(195, 31);
             this.RedeemCreditsBtn.TabIndex = 12;
             this.RedeemCreditsBtn.Text = "Redeem Credit.";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 66);
+            this.label2.Location = new System.Drawing.Point(30, 102);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.Size = new System.Drawing.Size(72, 20);
             this.label2.TabIndex = 11;
             this.label2.Text = "Credit ID";
             // 
             // CreditsIDNbx
             // 
-            this.CreditsIDNbx.Location = new System.Drawing.Point(23, 85);
+            this.CreditsIDNbx.Location = new System.Drawing.Point(34, 131);
+            this.CreditsIDNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CreditsIDNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.CreditsIDNbx.Name = "CreditsIDNbx";
-            this.CreditsIDNbx.Size = new System.Drawing.Size(148, 20);
+            this.CreditsIDNbx.Size = new System.Drawing.Size(222, 26);
             this.CreditsIDNbx.TabIndex = 10;
             // 
             // MultiplierNbx
             // 
-            this.MultiplierNbx.Location = new System.Drawing.Point(23, 157);
+            this.MultiplierNbx.Location = new System.Drawing.Point(34, 242);
+            this.MultiplierNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MultiplierNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.MultiplierNbx.Name = "MultiplierNbx";
-            this.MultiplierNbx.Size = new System.Drawing.Size(148, 20);
+            this.MultiplierNbx.Size = new System.Drawing.Size(222, 26);
             this.MultiplierNbx.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 140);
+            this.label1.Location = new System.Drawing.Point(30, 215);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.Size = new System.Drawing.Size(71, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "Multiplier";
             // 
             // ExchangeMPChbx
             // 
             this.ExchangeMPChbx.AutoSize = true;
-            this.ExchangeMPChbx.Location = new System.Drawing.Point(23, 120);
+            this.ExchangeMPChbx.Location = new System.Drawing.Point(34, 185);
+            this.ExchangeMPChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExchangeMPChbx.Name = "ExchangeMPChbx";
-            this.ExchangeMPChbx.Size = new System.Drawing.Size(155, 21);
+            this.ExchangeMPChbx.Size = new System.Drawing.Size(218, 24);
             this.ExchangeMPChbx.TabIndex = 7;
             this.ExchangeMPChbx.Text = "Exchange Credit Multiplier";
             this.ExchangeMPChbx.UseVisualStyleBackColor = true;
@@ -201,36 +237,40 @@
             // ExchangeCreditChbx
             // 
             this.ExchangeCreditChbx.AutoSize = true;
-            this.ExchangeCreditChbx.Location = new System.Drawing.Point(23, 37);
+            this.ExchangeCreditChbx.Location = new System.Drawing.Point(34, 57);
+            this.ExchangeCreditChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExchangeCreditChbx.Name = "ExchangeCreditChbx";
-            this.ExchangeCreditChbx.Size = new System.Drawing.Size(164, 21);
+            this.ExchangeCreditChbx.Size = new System.Drawing.Size(233, 24);
             this.ExchangeCreditChbx.TabIndex = 6;
             this.ExchangeCreditChbx.Text = "Automatic Credit Exchanger";
             this.ExchangeCreditChbx.UseVisualStyleBackColor = true;
             // 
             // CaptureRoomBGBtn
             // 
-            this.CaptureRoomBGBtn.Location = new System.Drawing.Point(179, 168);
+            this.CaptureRoomBGBtn.Location = new System.Drawing.Point(268, 258);
+            this.CaptureRoomBGBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CaptureRoomBGBtn.Name = "CaptureRoomBGBtn";
-            this.CaptureRoomBGBtn.Size = new System.Drawing.Size(143, 20);
+            this.CaptureRoomBGBtn.Size = new System.Drawing.Size(214, 31);
             this.CaptureRoomBGBtn.TabIndex = 66;
             this.CaptureRoomBGBtn.Text = "Capture RoomBG : OFF";
             this.CaptureRoomBGBtn.Click += new System.EventHandler(this.CaptureRoomBGBtn_Click);
             // 
             // SetRoomBGBtn
             // 
-            this.SetRoomBGBtn.Location = new System.Drawing.Point(201, 261);
+            this.SetRoomBGBtn.Location = new System.Drawing.Point(302, 402);
+            this.SetRoomBGBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SetRoomBGBtn.Name = "SetRoomBGBtn";
-            this.SetRoomBGBtn.Size = new System.Drawing.Size(143, 20);
+            this.SetRoomBGBtn.Size = new System.Drawing.Size(214, 31);
             this.SetRoomBGBtn.TabIndex = 65;
             this.SetRoomBGBtn.Text = "Set RoomBG";
             this.SetRoomBGBtn.Click += new System.EventHandler(this.SetRoomBGBtn_Click);
             // 
             // LiveEditBtn
             // 
-            this.LiveEditBtn.Location = new System.Drawing.Point(24, 261);
+            this.LiveEditBtn.Location = new System.Drawing.Point(36, 402);
+            this.LiveEditBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LiveEditBtn.Name = "LiveEditBtn";
-            this.LiveEditBtn.Size = new System.Drawing.Size(143, 20);
+            this.LiveEditBtn.Size = new System.Drawing.Size(214, 31);
             this.LiveEditBtn.TabIndex = 64;
             this.LiveEditBtn.Text = "Live Edit : OFF";
             this.LiveEditBtn.Click += new System.EventHandler(this.LiveEditBtn_Click);
@@ -238,16 +278,16 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 12);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(32, 18);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(64, 13);
+            this.label5.Size = new System.Drawing.Size(97, 20);
             this.label5.TabIndex = 54;
             this.label5.Text = "RoomBG ID";
             // 
             // RoomBGNBx
             // 
-            this.RoomBGNBx.Location = new System.Drawing.Point(24, 28);
+            this.RoomBGNBx.Location = new System.Drawing.Point(36, 43);
+            this.RoomBGNBx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RoomBGNBx.Maximum = new decimal(new int[] {
             2147483647,
             2,
@@ -259,61 +299,57 @@
             0,
             -2147483648});
             this.RoomBGNBx.Name = "RoomBGNBx";
-            this.RoomBGNBx.Size = new System.Drawing.Size(120, 20);
+            this.RoomBGNBx.Size = new System.Drawing.Size(180, 26);
             this.RoomBGNBx.TabIndex = 53;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 204);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(32, 314);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 13);
+            this.label4.Size = new System.Drawing.Size(91, 20);
             this.label4.TabIndex = 52;
             this.label4.Text = "Image URL";
             // 
             // RoomBGurlTxb
             // 
-            this.RoomBGurlTxb.Location = new System.Drawing.Point(24, 219);
-            this.RoomBGurlTxb.Margin = new System.Windows.Forms.Padding(2);
+            this.RoomBGurlTxb.Location = new System.Drawing.Point(36, 337);
             this.RoomBGurlTxb.Name = "RoomBGurlTxb";
-            this.RoomBGurlTxb.Size = new System.Drawing.Size(286, 20);
+            this.RoomBGurlTxb.Size = new System.Drawing.Size(427, 26);
             this.RoomBGurlTxb.TabIndex = 51;
             this.RoomBGurlTxb.TextChanged += new System.EventHandler(this.RoomBGUrlTxb_TextChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 152);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(32, 234);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 13);
+            this.label6.Size = new System.Drawing.Size(67, 20);
             this.label6.TabIndex = 50;
             this.label6.Text = "Offset Z";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 106);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(32, 163);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 13);
+            this.label7.Size = new System.Drawing.Size(68, 20);
             this.label7.TabIndex = 49;
             this.label7.Text = "Offset Y";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(21, 58);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(32, 89);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 13);
+            this.label8.Size = new System.Drawing.Size(68, 20);
             this.label8.TabIndex = 48;
             this.label8.Text = "Offset X";
             // 
             // OffsetZNbx
             // 
-            this.OffsetZNbx.Location = new System.Drawing.Point(24, 168);
+            this.OffsetZNbx.Location = new System.Drawing.Point(36, 258);
+            this.OffsetZNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OffsetZNbx.Maximum = new decimal(new int[] {
             2147483647,
             2,
@@ -325,13 +361,14 @@
             0,
             -2147483648});
             this.OffsetZNbx.Name = "OffsetZNbx";
-            this.OffsetZNbx.Size = new System.Drawing.Size(120, 20);
+            this.OffsetZNbx.Size = new System.Drawing.Size(180, 26);
             this.OffsetZNbx.TabIndex = 47;
             this.OffsetZNbx.ValueChanged += new System.EventHandler(this.OffsetZNbx_ValueChanged);
             // 
             // OffsetYNbx
             // 
-            this.OffsetYNbx.Location = new System.Drawing.Point(24, 122);
+            this.OffsetYNbx.Location = new System.Drawing.Point(36, 188);
+            this.OffsetYNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OffsetYNbx.Maximum = new decimal(new int[] {
             2147483647,
             2,
@@ -343,13 +380,14 @@
             0,
             -2147483648});
             this.OffsetYNbx.Name = "OffsetYNbx";
-            this.OffsetYNbx.Size = new System.Drawing.Size(120, 20);
+            this.OffsetYNbx.Size = new System.Drawing.Size(180, 26);
             this.OffsetYNbx.TabIndex = 46;
             this.OffsetYNbx.ValueChanged += new System.EventHandler(this.OffsetYNbx_ValueChanged);
             // 
             // OffsetXNbx
             // 
-            this.OffsetXNbx.Location = new System.Drawing.Point(24, 75);
+            this.OffsetXNbx.Location = new System.Drawing.Point(36, 115);
+            this.OffsetXNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OffsetXNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -361,7 +399,7 @@
             0,
             -2147483648});
             this.OffsetXNbx.Name = "OffsetXNbx";
-            this.OffsetXNbx.Size = new System.Drawing.Size(120, 20);
+            this.OffsetXNbx.Size = new System.Drawing.Size(180, 26);
             this.OffsetXNbx.TabIndex = 45;
             this.OffsetXNbx.ValueChanged += new System.EventHandler(this.OffsetXNbx_ValueChanged);
             // 
@@ -382,11 +420,9 @@
             this.groupBox1.Controls.Add(this.OffsetZNbx);
             this.groupBox1.Controls.Add(this.OffsetYNbx);
             this.groupBox1.Controls.Add(this.OffsetXNbx);
-            this.groupBox1.Location = new System.Drawing.Point(423, 9);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(932, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(348, 299);
+            this.groupBox1.Size = new System.Drawing.Size(510, 470);
             this.groupBox1.TabIndex = 69;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Room Background Editor";
@@ -394,17 +430,17 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(183, 28);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(274, 43);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(137, 13);
+            this.label9.Size = new System.Drawing.Size(204, 20);
             this.label9.TabIndex = 68;
             this.label9.Text = "Room BG x (NOT OFFSET)";
             this.label9.Visible = false;
             // 
             // RoomBGXNbx
             // 
-            this.RoomBGXNbx.Location = new System.Drawing.Point(186, 44);
+            this.RoomBGXNbx.Location = new System.Drawing.Point(279, 68);
+            this.RoomBGXNbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RoomBGXNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -416,20 +452,213 @@
             0,
             -2147483648});
             this.RoomBGXNbx.Name = "RoomBGXNbx";
-            this.RoomBGXNbx.Size = new System.Drawing.Size(120, 20);
+            this.RoomBGXNbx.Size = new System.Drawing.Size(180, 26);
             this.RoomBGXNbx.TabIndex = 67;
             this.RoomBGXNbx.Visible = false;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.StackerThreadDelayNbx);
+            this.groupBox4.Controls.Add(this.RiseStackerModeBtn);
+            this.groupBox4.Controls.Add(this.DecOneStackerBtn);
+            this.groupBox4.Controls.Add(this.IncOneStackerBtn);
+            this.groupBox4.Controls.Add(this.StackerLiveEditBtn);
+            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.StackerFurniIDNbx);
+            this.groupBox4.Controls.Add(this.StackerRandomizerBtn);
+            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.CaptureStackerBtn);
+            this.groupBox4.Controls.Add(this.StackerHeightNbx);
+            this.groupBox4.Controls.Add(this.StackerEndRangeNbx);
+            this.groupBox4.Controls.Add(this.StackerStartRangeNbx);
+            this.groupBox4.Location = new System.Drawing.Point(24, 385);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(902, 231);
+            this.groupBox4.TabIndex = 70;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = " ";
+            // 
+            // DecOneStackerBtn
+            // 
+            this.DecOneStackerBtn.Location = new System.Drawing.Point(379, 42);
+            this.DecOneStackerBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DecOneStackerBtn.Name = "DecOneStackerBtn";
+            this.DecOneStackerBtn.Size = new System.Drawing.Size(43, 31);
+            this.DecOneStackerBtn.TabIndex = 78;
+            this.DecOneStackerBtn.Text = "- 1";
+            this.DecOneStackerBtn.Click += new System.EventHandler(this.DecOneStackerBtn_Click);
+            // 
+            // IncOneStackerBtn
+            // 
+            this.IncOneStackerBtn.Location = new System.Drawing.Point(306, 42);
+            this.IncOneStackerBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.IncOneStackerBtn.Name = "IncOneStackerBtn";
+            this.IncOneStackerBtn.Size = new System.Drawing.Size(43, 31);
+            this.IncOneStackerBtn.TabIndex = 69;
+            this.IncOneStackerBtn.Text = "+ 1";
+            this.IncOneStackerBtn.Click += new System.EventHandler(this.IncOneStackerBtn_Click);
+            // 
+            // StackerLiveEditBtn
+            // 
+            this.StackerLiveEditBtn.Location = new System.Drawing.Point(2, 81);
+            this.StackerLiveEditBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.StackerLiveEditBtn.Name = "StackerLiveEditBtn";
+            this.StackerLiveEditBtn.Size = new System.Drawing.Size(169, 31);
+            this.StackerLiveEditBtn.TabIndex = 77;
+            this.StackerLiveEditBtn.Text = "Live Edit : OFF";
+            this.StackerLiveEditBtn.Click += new System.EventHandler(this.StackerLiveEditBtn_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(-2, 125);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(89, 20);
+            this.label12.TabIndex = 76;
+            this.label12.Text = "Stacker ID ";
+            // 
+            // StackerFurniIDNbx
+            // 
+            this.StackerFurniIDNbx.Enabled = false;
+            this.StackerFurniIDNbx.Location = new System.Drawing.Point(2, 148);
+            this.StackerFurniIDNbx.Maximum = new decimal(new int[] {
+            -1304428545,
+            434162106,
+            542,
+            0});
+            this.StackerFurniIDNbx.Name = "StackerFurniIDNbx";
+            this.StackerFurniIDNbx.ReadOnly = true;
+            this.StackerFurniIDNbx.Size = new System.Drawing.Size(216, 26);
+            this.StackerFurniIDNbx.TabIndex = 75;
+            // 
+            // StackerRandomizerBtn
+            // 
+            this.StackerRandomizerBtn.Location = new System.Drawing.Point(546, 125);
+            this.StackerRandomizerBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.StackerRandomizerBtn.Name = "StackerRandomizerBtn";
+            this.StackerRandomizerBtn.Size = new System.Drawing.Size(304, 31);
+            this.StackerRandomizerBtn.TabIndex = 13;
+            this.StackerRandomizerBtn.Text = "Enable Randomizer : OFF";
+            this.StackerRandomizerBtn.Click += new System.EventHandler(this.StackerRandomizerBtn_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 22);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(159, 20);
+            this.label11.TabIndex = 74;
+            this.label11.Text = "Current Stack height ";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(542, 42);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(167, 20);
+            this.label10.TabIndex = 72;
+            this.label10.Text = "Random Range Stack";
+            // 
+            // CaptureStackerBtn
+            // 
+            this.CaptureStackerBtn.Location = new System.Drawing.Point(2, 182);
+            this.CaptureStackerBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.CaptureStackerBtn.Name = "CaptureStackerBtn";
+            this.CaptureStackerBtn.Size = new System.Drawing.Size(195, 31);
+            this.CaptureStackerBtn.TabIndex = 13;
+            this.CaptureStackerBtn.Text = "Capture Stacker : OFF";
+            this.CaptureStackerBtn.Click += new System.EventHandler(this.CaptureStackerBtn_Click);
+            // 
+            // StackerHeightNbx
+            // 
+            this.StackerHeightNbx.Location = new System.Drawing.Point(10, 47);
+            this.StackerHeightNbx.Maximum = new decimal(new int[] {
+            276447231,
+            23283,
+            0,
+            0});
+            this.StackerHeightNbx.Name = "StackerHeightNbx";
+            this.StackerHeightNbx.Size = new System.Drawing.Size(124, 26);
+            this.StackerHeightNbx.TabIndex = 73;
+            this.StackerHeightNbx.ValueChanged += new System.EventHandler(this.StackerHeightNbx_ValueChanged);
+            // 
+            // StackerEndRangeNbx
+            // 
+            this.StackerEndRangeNbx.Location = new System.Drawing.Point(701, 77);
+            this.StackerEndRangeNbx.Maximum = new decimal(new int[] {
+            276447231,
+            23283,
+            0,
+            0});
+            this.StackerEndRangeNbx.Name = "StackerEndRangeNbx";
+            this.StackerEndRangeNbx.Size = new System.Drawing.Size(144, 26);
+            this.StackerEndRangeNbx.TabIndex = 0;
+            this.StackerEndRangeNbx.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // StackerStartRangeNbx
+            // 
+            this.StackerStartRangeNbx.Location = new System.Drawing.Point(546, 77);
+            this.StackerStartRangeNbx.Maximum = new decimal(new int[] {
+            276447231,
+            23283,
+            0,
+            0});
+            this.StackerStartRangeNbx.Name = "StackerStartRangeNbx";
+            this.StackerStartRangeNbx.Size = new System.Drawing.Size(124, 26);
+            this.StackerStartRangeNbx.TabIndex = 71;
+            // 
+            // RiseStackerModeBtn
+            // 
+            this.RiseStackerModeBtn.Location = new System.Drawing.Point(546, 182);
+            this.RiseStackerModeBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RiseStackerModeBtn.Name = "RiseStackerModeBtn";
+            this.RiseStackerModeBtn.Size = new System.Drawing.Size(304, 31);
+            this.RiseStackerModeBtn.TabIndex = 79;
+            this.RiseStackerModeBtn.Text = "Rise Stacker : OFF";
+            this.RiseStackerModeBtn.Click += new System.EventHandler(this.RiseStackerModeBtn_Click);
+            // 
+            // StackerThreadDelayNbx
+            // 
+            this.StackerThreadDelayNbx.Location = new System.Drawing.Point(334, 182);
+            this.StackerThreadDelayNbx.Maximum = new decimal(new int[] {
+            276447231,
+            23283,
+            0,
+            0});
+            this.StackerThreadDelayNbx.Name = "StackerThreadDelayNbx";
+            this.StackerThreadDelayNbx.Size = new System.Drawing.Size(124, 26);
+            this.StackerThreadDelayNbx.TabIndex = 80;
+            this.StackerThreadDelayNbx.Value = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(330, 148);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(103, 20);
+            this.label13.TabIndex = 81;
+            this.label13.Text = "Thread Delay";
+            // 
             // UtilitiesPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UtilitiesPage";
-            this.Size = new System.Drawing.Size(789, 346);
+            this.Size = new System.Drawing.Size(1561, 689);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GiftExchangerIDNBx)).EndInit();
@@ -444,6 +673,13 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RoomBGXNbx)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StackerFurniIDNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StackerHeightNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StackerEndRangeNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StackerStartRangeNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StackerThreadDelayNbx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -479,5 +715,21 @@
         private System.Windows.Forms.TextBox RoomBGurlTxb;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown RoomBGXNbx;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.NumericUpDown StackerFurniIDNbx;
+        private Sulakore.Components.SKoreButton CaptureStackerBtn;
+        private Sulakore.Components.SKoreButton StackerRandomizerBtn;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown StackerHeightNbx;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown StackerStartRangeNbx;
+        private System.Windows.Forms.NumericUpDown StackerEndRangeNbx;
+        private Sulakore.Components.SKoreButton StackerLiveEditBtn;
+        private Sulakore.Components.SKoreButton DecOneStackerBtn;
+        private Sulakore.Components.SKoreButton IncOneStackerBtn;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.NumericUpDown StackerThreadDelayNbx;
+        private Sulakore.Components.SKoreButton RiseStackerModeBtn;
     }
 }

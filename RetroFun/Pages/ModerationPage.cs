@@ -838,13 +838,7 @@ namespace RetroFun.Pages
             catch (Exception) { }
         }
 
-        private void WriteToButton(SKoreButton button, string text)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                button.Text = text;
-            });
-        }
+
 
         private void GetUserInfoBtn_Click(object sender, EventArgs e)
         {

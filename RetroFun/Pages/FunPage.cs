@@ -24,6 +24,7 @@ namespace RetroFun.Pages
     {
         private ColorDialog CD;
         private bool isLiveEnableEdit;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<HEntity> ConvertedUsersToPets { get => GlobalLists.ConvertedUsersToPets; set { GlobalLists.ConvertedUsersToPets = value; } }
 
         private bool isStaticEffectThreadStarted;

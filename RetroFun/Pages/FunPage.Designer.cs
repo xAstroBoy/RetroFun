@@ -244,7 +244,7 @@
             this.groupBox1.Controls.Add(this.PetTypeIdNbx);
             this.groupBox1.Controls.Add(this.TransformAllUserIntoPetsBtn);
             this.groupBox1.Controls.Add(this.SetPetColorBtn);
-            this.groupBox1.Location = new System.Drawing.Point(597, 23);
+            this.groupBox1.Location = new System.Drawing.Point(613, 23);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(542, 381);
             this.groupBox1.TabIndex = 104;
@@ -370,7 +370,7 @@
             // 
             // HeadturnBtn
             // 
-            this.HeadturnBtn.Location = new System.Drawing.Point(17, 457);
+            this.HeadturnBtn.Location = new System.Drawing.Point(17, 421);
             this.HeadturnBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HeadturnBtn.Name = "HeadturnBtn";
             this.HeadturnBtn.Size = new System.Drawing.Size(199, 31);
