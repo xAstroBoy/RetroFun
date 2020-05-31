@@ -931,6 +931,19 @@ namespace RetroFun.Pages
             Connection.SendToServerAsync(Out.RoomUserTalk, ":override", GlobalInts.Selected_bubble_ID);
         }
 
+        private void RequestRoomBannedUsersBtn_Click(object sender, EventArgs e)
+        {
+            Connection.SendToServerAsync(Out.RoomRequestBannedUsers, GlobalInts.ROOM_ID);
         }
+
+        public override void Out_RoomRequestBannedUsers(DataInterceptedEventArgs e)
+        {
+           if(KnownDomains.isBobbaHotel)
+            {
+                e.IsBlocked = true;
+                Speak("Please use the button, since there's a bug that causes a crash , use the button in Personal Page");
+            }
+        }
+    }
     }
 

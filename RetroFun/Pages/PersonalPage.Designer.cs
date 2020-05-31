@@ -61,6 +61,7 @@
             this.GiveBadgeToYourSelfBtn = new Sulakore.Components.SKoreButton();
             this.OverrideBtn = new Sulakore.Components.SKoreButton();
             this.TeleportBtn = new Sulakore.Components.SKoreButton();
+            this.RequestRoomBannedUsersBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.CreditsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CrystalsNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DucketsNbx)).BeginInit();
@@ -427,10 +428,21 @@
             this.TeleportBtn.Text = "teleport";
             this.TeleportBtn.Click += new System.EventHandler(this.TeleportBtn_Click);
             // 
+            // sKoreButton1
+            // 
+            this.RequestRoomBannedUsersBtn.Location = new System.Drawing.Point(837, 319);
+            this.RequestRoomBannedUsersBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RequestRoomBannedUsersBtn.Name = "sKoreButton1";
+            this.RequestRoomBannedUsersBtn.Size = new System.Drawing.Size(227, 38);
+            this.RequestRoomBannedUsersBtn.TabIndex = 97;
+            this.RequestRoomBannedUsersBtn.Text = "Request Room Banned Users";
+            this.RequestRoomBannedUsersBtn.Click += new System.EventHandler(this.RequestRoomBannedUsersBtn_Click);
+            // 
             // PersonalPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.RequestRoomBannedUsersBtn);
             this.Controls.Add(this.TeleportBtn);
             this.Controls.Add(this.OverrideBtn);
             this.Controls.Add(this.GiveBadgeToYourSelfBtn);
@@ -495,5 +507,6 @@
         private Sulakore.Components.SKoreButton GiveBadgeToYourSelfBtn;
         private Sulakore.Components.SKoreButton OverrideBtn;
         private Sulakore.Components.SKoreButton TeleportBtn;
+        private Sulakore.Components.SKoreButton RequestRoomBannedUsersBtn;
     }
 }

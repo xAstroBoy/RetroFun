@@ -88,6 +88,7 @@
     <Compile Include="Pages\FunPage.Designer.cs">
       <DependentUpon>FunPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils\Chatlogger\HChatlineData.cs" />
     <Compile Include="Utils\Furnitures\RoomDetails\WallFurni\WallFurnitures.cs" />
     <Compile Include="Controls\ImageComboBox.cs" />
     <Compile Include="Controls\ObservableExtensionForm.cs" />
@@ -367,9 +368,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\Chatlogger\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Libraries\Flazzy.dll" />
     <Content Include="Libraries\Tangine.dll" />

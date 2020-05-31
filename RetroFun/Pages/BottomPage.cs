@@ -79,8 +79,8 @@ namespace RetroFun.Pages
                     Speak("Setting RetroFun for Unknown Host!");
                     Speak("Some features won't work here Server-side, please contact the developer on discord in case there's a problem with this host : " + GlobalStrings.DeveloperDiscord);
                 }
-                UpdateMainFrmTitle();
-                    }
+         }
+            UpdateMainFrmTitle();
         }
 
         public override void Out_Username(DataInterceptedEventArgs obj)
@@ -142,11 +142,14 @@ namespace RetroFun.Pages
             {
                 Invoke((MethodInvoker)delegate
                 {
-                    MainFrm.ActiveForm.Text = "RetroFun  [Host : " + KnownDomains.GetHostName(Connection.Host) + " ]" +
-                    "  " +
-                    "[IsKnownHost : " + KnownDomains.isAKnownHost(Connection.Host).ToString() + " ]" +
-                    "  " +
-                    "[Username : " + OwnUsername + " ]";
+                    if (MainFrm.ActiveForm != null)
+                    {
+                        MainFrm.ActiveForm.Text = "RetroFun  [Host : " + KnownDomains.GetHostName(Connection.Host) + " ]" +
+                        "  " +
+                        "[IsKnownHost : " + KnownDomains.isAKnownHost(Connection.Host).ToString() + " ]" +
+                        "  " +
+                        "[Username : " + OwnUsername + " ]";
+                    }
                 });
             }
             catch (Exception) { }

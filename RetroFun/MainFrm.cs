@@ -329,7 +329,7 @@ namespace RetroFun
                 //else if (Out.RoomPlacePaint == id){sub.Out_RoomPlacePaint(e);}
                 //else if (Out.RoomRemoveAllRights == id){sub.Out_RoomRemoveAllRights(e);}
                 //else if (Out.RoomRemoveRights == id){sub.Out_RoomRemoveRights(e);}
-                //else if (Out.RoomRequestBannedUsers == id){sub.Out_RoomRequestBannedUsers(e);}
+                else if (Out.RoomRequestBannedUsers == id){sub.Out_RoomRequestBannedUsers(e);}
                 //else if (Out.RoomSettingsSave == id){sub.Out_RoomSettingsSave(e);}
                 //else if (Out.RoomStaffPick == id){sub.Out_RoomStaffPick(e);}
                 //else if (Out.RoomUserAction == id){sub.Out_RoomUserAction(e);}
@@ -701,7 +701,7 @@ namespace RetroFun
                 else if (In.RoomAccessDenied == id) { sub.In_RoomAccessDenied(e); }
                 //else if (In.RoomAdError == id){sub.In_RoomAdError(e);}
                 //else if (In.RoomAddRightsList == id){sub.In_RoomAddRightsList(e);}
-                //else if (In.RoomBannedUsers == id){sub.In_RoomBannedUsers(e);}
+                else if (In.RoomBannedUsers == id){sub.In_RoomBannedUsers(e);}
                 //else if (In.RoomCategories == id){sub.In_RoomCategories(e);}
                 //else if (In.RoomCategoryUpdateMessage == id){sub.In_RoomCategoryUpdateMessage(e);}
                 //else if (In.RoomChatSettings == id){sub.In_RoomChatSettings(e);}
