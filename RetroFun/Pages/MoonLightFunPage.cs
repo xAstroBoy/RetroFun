@@ -1,4 +1,5 @@
 ﻿using RetroFun.Subscribers;
+using Sulakore.Communication;
 using Sulakore.Components;
 using System;
 using System.ComponentModel;
@@ -158,6 +159,22 @@ namespace RetroFun.Pages
             {
                 textbox.Enabled = enabled;
             });
+        }
+        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
+        {
+            DisableLiveEdit();
+        }
+
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
+        {
+            DisableLiveEdit();
+
+        }
+
+        private void DisableLiveEdit()
+        {
+            LiveEditing = false;
+            WriteToButton(LiveEditBtn, "Live editing: Deactivated");
         }
 
         private void CheckLiveEdit()

@@ -1,4 +1,5 @@
 ﻿using RetroFun.Subscribers;
+using Sulakore.Communication;
 using Sulakore.Components;
 using System;
 using System.ComponentModel;
@@ -391,6 +392,30 @@ namespace RetroFun.Pages
                 } while (DiscoLight);
             }).Start();
         }
+
+
+
+        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
+        {
+            DisableLiveEdit();
+        }
+
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
+        {
+            DisableLiveEdit();
+
+        }
+
+        private void DisableLiveEdit()
+        {
+            DiscoLight = false;
+            WriteToButton(SMoonDiscoBtn, "MoonLight Disco : Deactivated");
+            if (LightController != null)
+            {
+                LightController.EnableAll();
+            }
+        }
+
 
         private void SMoonDiscoBtn_Click_1(object sender, EventArgs e)
         {
