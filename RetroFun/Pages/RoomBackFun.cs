@@ -251,6 +251,24 @@ namespace RetroFun.Pages
             }
         }
 
+        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
+        {
+            DisableLiveEditMode();
+        }
+
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
+        {
+            DisableLiveEditMode();
+
+        }
+
+
+        private void DisableLiveEditMode()
+        {
+            isLiveEditing = false;
+            WriteToButton(LiveEditBtn, "Live Edit Mode : Off");
+        }
+
         private void CheckLiveEditModeStatus()
         {
             if (isLiveEditing)
