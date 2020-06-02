@@ -42,7 +42,10 @@ namespace RetroFun.Utils.Furnitures.WallFurni
         {
             return Furni.Find(f => f.Id == id);
         }
-
+        public static HFloorItem FindFloorFurniForTypeID(int typeid)
+        {
+            return Furni.Find(f => f.TypeId == typeid);
+        }
 
         public static void UpdateFloorFurniFacing(int id, int facing)
         {

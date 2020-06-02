@@ -1,4 +1,6 @@
-﻿using RetroFun.Subscribers;
+﻿using RetroFun.Helpers;
+using RetroFun.Subscribers;
+using RetroFun.Utils.Furnitures.WallFurni;
 using Sulakore.Communication;
 using Sulakore.Components;
 using System;
@@ -19,7 +21,7 @@ namespace RetroFun.Pages
         private bool SaturationFader;
         private bool LuminosityFader;
         private bool isLiveEditing;
-
+        //private bool isLockActive;
         private int _GlobalSpeed = 150;
 
         public int GlobalSpeed
@@ -32,26 +34,13 @@ namespace RetroFun.Pages
             }
         }
 
-        private int _LiveEditSpeed = 150;
-
-        public int LiveEditSpeed
-        {
-            get => _LiveEditSpeed;
-            set
-            {
-                _LiveEditSpeed = value;
-                RaiseOnPropertyChanged();
-            }
-        }
-
-        private int _Tonality = 0;
 
         public int Tonality
         {
-            get => _Tonality;
+            get => GlobalInts.RoomBackground_Tonality;
             set
             {
-                _Tonality = value;
+                GlobalInts.RoomBackground_Tonality = value;
                 RaiseOnPropertyChanged();
             }
         }
@@ -68,14 +57,13 @@ namespace RetroFun.Pages
             }
         }
 
-        private int _Saturation = 0;
 
         public int Saturation
         {
-            get => _Saturation;
+            get => GlobalInts.RoomBackground_Saturation;
             set
             {
-                _Saturation = value;
+                GlobalInts.RoomBackground_Saturation = value;
                 RaiseOnPropertyChanged();
             }
         }
@@ -92,14 +80,13 @@ namespace RetroFun.Pages
             }
         }
 
-        private int _Luminosity = 0;
 
         public int Luminosity
         {
-            get => _Luminosity;
+            get => GlobalInts.RoomBackground_Light;
             set
             {
-                _Luminosity = value;
+                GlobalInts.RoomBackground_Light = value;
                 RaiseOnPropertyChanged();
             }
         }
@@ -116,14 +103,13 @@ namespace RetroFun.Pages
             }
         }
 
-        private int _FurniID = 0;
 
         public int FurniID
         {
-            get => _FurniID;
+            get => GlobalInts.RoomBackground_FurniID;
             set
             {
-                _FurniID = value;
+                GlobalInts.RoomBackground_FurniID = value;
                 RaiseOnPropertyChanged();
             }
         }
@@ -162,7 +148,6 @@ namespace RetroFun.Pages
             Bind(LumSpeedNbx, "Value", nameof(SpeedLuminosity));
             Bind(SatSpeednbx, "Value", nameof(SpeedSaturation));
             Bind(TonSpeednbx, "Value", nameof(SpeedTonality));
-            Bind(LiveEditSpeedNBx, "Value", nameof(LiveEditSpeed));
             Bind(FurniIDnb, "Value", nameof(FurniID));
             Bind(CaptureBtn, "Checked", nameof(CaptureMode));
             Bind(GlobalSpeedChbx, "Checked", nameof(GlobalSpeedSwitch));
@@ -188,7 +173,7 @@ namespace RetroFun.Pages
         {
             if (Connection.Remote.IsConnected)
             {
-                base.Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[RoomBackGroundFun]: " + text + ".", 0, 34, 0, -1);
+                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[RoomBackGroundFun]: " + text + ".", 0, 34, 0, -1);
             }
         }
 
@@ -222,7 +207,15 @@ namespace RetroFun.Pages
             GlobalSpeedCheck();
         }
 
-        public async void SendFullPacket(int furnid, int Tonality, int saturation, int luminosity)
+        public async void SendLiveEditRoomBackgroundPacket(int furnid, int Tonality, int saturation, int luminosity)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
+            }
+        }
+
+        public async void SendRoomBackgroundPacket(int furnid, int Tonality, int saturation, int luminosity)
         {
             if (Connection.Remote.IsConnected)
             {
@@ -253,19 +246,58 @@ namespace RetroFun.Pages
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
-            DisableLiveEditMode();
+            ResetEdit();
         }
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
-            DisableLiveEditMode();
+            ResetEdit();
+        }
 
+        public override void In_RoomFloorItems(DataInterceptedEventArgs e)
+        {
+            if (KnownDomains.isBobbaHotel)
+            {
+                int i = 0;
+                var furni = FloorFurnitures.FindFloorFurniForTypeID(4514);
+                if (furni != null)
+                {
+                    FurniID = furni.Id;
+                    foreach (object obj in furni.Stuff)
+                    {
+                        if(i == 0 || i == 1)
+                        {
+                            i++;
+                        }
+                        else
+                        {
+                            if (i == 2)
+                            {
+                                Tonality = int.Parse(obj.ToString());
+                                i++;
+                            }
+                            else if (i == 3)
+                            {
+                                Saturation = int.Parse(obj.ToString());
+                                i++;
+                            }
+                            else if (i == 4)
+                            {
+                                Luminosity = int.Parse(obj.ToString());
+                                i++;
+                            }
+                        }
+                    }
+                    SaveSettings();
+                }
+            }
         }
 
 
-        private void DisableLiveEditMode()
+        private void ResetEdit()
         {
             isLiveEditing = false;
+            //isLockActive = false;
             WriteToButton(LiveEditBtn, "Live Edit Mode : Off");
         }
 
@@ -280,7 +312,6 @@ namespace RetroFun.Pages
             {
                 WriteToButton(LiveEditBtn, "Live Edit Mode : On");
                 isLiveEditing = true;
-                StartLiveEditMode();
             }
         }
 
@@ -298,18 +329,6 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-        private void StartLiveEditMode()
-        {
-            new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                do
-                {
-                    SendFullPacket(FurniID, Tonality, Saturation, Luminosity);
-                    Thread.Sleep(LiveEditSpeed);
-                } while (isLiveEditing);
-            }).Start();
-        }
 
         private void CheckLuminosityFadeStatus()
         {
@@ -344,7 +363,7 @@ namespace RetroFun.Pages
                         Luminosity++;
                     }
 
-                    SendFullPacket(FurniID, Tonality, Saturation, Luminosity);
+                    SendLiveEditRoomBackgroundPacket(FurniID, Tonality, Saturation, Luminosity);
                     Thread.Sleep(SpeedLuminosity);
                 } while (LuminosityFader);
             }).Start();
@@ -382,8 +401,7 @@ namespace RetroFun.Pages
                     {
                         Saturation++;
                     }
-
-                    SendFullPacket(FurniID, Tonality, Saturation, Luminosity);
+                    SendLiveEditRoomBackgroundPacket(FurniID, Tonality, Saturation, Luminosity);
                     Thread.Sleep(SpeedSaturation);
                 } while (SaturationFader);
             }).Start();
@@ -422,7 +440,7 @@ namespace RetroFun.Pages
                         Tonality++;
                     }
 
-                    SendFullPacket(FurniID, Tonality, Saturation, Luminosity);
+                    SendLiveEditRoomBackgroundPacket(FurniID, Tonality, Saturation, Luminosity);
                     Thread.Sleep(SpeedTonality);
                 } while (TonalityFader);
             }).Start();
@@ -456,7 +474,36 @@ namespace RetroFun.Pages
             Tonality = OldTonality;
             Saturation = OldSaturation;
             Luminosity = OldLuminosity;
-            SendFullPacket(FurniID, Tonality, Saturation, Luminosity);
+            SendRoomBackgroundPacket(FurniID, Tonality, Saturation, Luminosity);
+        }
+
+        private void TonNbx_ValueChanged(object sender, EventArgs e)
+        {
+            if(isLiveEditing)
+            {
+                SendLiveEditRoomBackgroundPacket(FurniID, Tonality, Saturation, Luminosity);
+            }
+        }
+
+        private void SatNbx_ValueChanged(object sender, EventArgs e)
+        {
+            if (isLiveEditing)
+            {
+                SendLiveEditRoomBackgroundPacket(FurniID, Tonality, Saturation, Luminosity);
+            }
+        }
+
+        private void LightNbx_ValueChanged(object sender, EventArgs e)
+        {
+            if (isLiveEditing)
+            {
+                SendLiveEditRoomBackgroundPacket(FurniID, Tonality, Saturation, Luminosity);
+            }
+        }
+
+        private void ApplyCurrentSettingsBtn_Click(object sender, EventArgs e)
+        {
+            SendRoomBackgroundPacket(FurniID, Tonality, Saturation, Luminosity);
         }
     }
 }

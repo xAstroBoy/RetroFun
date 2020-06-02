@@ -26,18 +26,6 @@ namespace RetroFun.Pages
 
         private bool LiveEditing;
 
-        private int _LiveEditCooldown = 150;
-
-        public int LiveEditCooldown
-        {
-            get => _LiveEditCooldown;
-            set
-            {
-                _LiveEditCooldown = value;
-                RaiseOnPropertyChanged();
-            }
-        }
-
         private int _Density = 79;
 
         public int Density
@@ -93,7 +81,6 @@ namespace RetroFun.Pages
             InitializeComponent();
             Bind(DensityNm, "Value", nameof(Density));
             Bind(OnlyWallChbx, "checked", nameof(JustWallpapers));
-            Bind(LiveEditCoolNb, "Value", nameof(LiveEditCooldown));
             Bind(ColorHTMLtxb, "Text", nameof(CustomColor));
 
             Bind(CustomBtx, "checked", nameof(SelectedCustom));
@@ -168,7 +155,6 @@ namespace RetroFun.Pages
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             DisableLiveEdit();
-
         }
 
         private void DisableLiveEdit()
@@ -188,7 +174,6 @@ namespace RetroFun.Pages
             {
                 LiveEditing = true;
                 WriteToButton(LiveEditBtn, "Live editing: Activated");
-                LiveEdit();
             }
         }
 
@@ -265,18 +250,6 @@ namespace RetroFun.Pages
             CheckLiveEdit();
         }
 
-        private void LiveEdit()
-        {
-            new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                do
-                {
-                    SendMoodLightPacket(2, CustomColor, Density);
-                    Thread.Sleep(LiveEditCooldown);
-                } while (LiveEditing);
-            }).Start();
-        }
 
         private async void SendMoodLightPacket(int preset, string color, int Density)
         {
@@ -290,6 +263,22 @@ namespace RetroFun.Pages
                 {
                     await Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
                 }
+            }
+        }
+
+        private void ColorHTMLtxb_TextChanged(object sender, EventArgs e)
+        {
+            if (LiveEditing)
+            {
+                SendMoodLightPacket(2, CustomColor, Density);
+            }
+        }
+
+        private void DensityNm_ValueChanged(object sender, EventArgs e)
+        {
+            if (LiveEditing)
+            {
+                SendMoodLightPacket(2, CustomColor, Density);
             }
         }
     }

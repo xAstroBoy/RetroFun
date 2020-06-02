@@ -16,6 +16,15 @@ namespace RetroFun
         public static int OwnUser_index{ get; set; } = 0;
         public static int Selected_bubble_ID { get; set; } = 18;
 
+
+
+        public static int RoomBackground_FurniID { get; set; } = 0;
+        public static int RoomBackground_Tonality { get; set; } = 0;
+        public static int RoomBackground_Saturation { get; set; } = 0;
+        public static int RoomBackground_Light { get; set; } = 0;
+
+
+
         public static int ROOM_ID { get; set; } = 0;
     }
 }

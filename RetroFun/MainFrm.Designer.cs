@@ -371,7 +371,6 @@ namespace RetroFun
             this.RoomBackFunPg.FurniID = 0;
             this.RoomBackFunPg.GlobalSpeed = 150;
             this.RoomBackFunPg.GlobalSpeedSwitch = false;
-            this.RoomBackFunPg.LiveEditSpeed = 150;
             this.RoomBackFunPg.Location = new System.Drawing.Point(0, 0);
             this.RoomBackFunPg.Luminosity = 0;
             this.RoomBackFunPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
@@ -899,7 +898,6 @@ namespace RetroFun
             this.MoonLightFunPg.CustomColor = null;
             this.MoonLightFunPg.Density = 79;
             this.MoonLightFunPg.JustWallpapers = false;
-            this.MoonLightFunPg.LiveEditCooldown = 150;
             this.MoonLightFunPg.Location = new System.Drawing.Point(6, 0);
             this.MoonLightFunPg.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.MoonLightFunPg.Name = "MoonLightFunPg";
