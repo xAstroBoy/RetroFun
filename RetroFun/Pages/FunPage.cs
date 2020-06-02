@@ -29,7 +29,7 @@ namespace RetroFun.Pages
 
         private bool isStaticEffectThreadStarted;
         private bool GiveEnableEffectToUser;
-        private bool giveenableeffecttoallusersthread;
+        private bool GiveAllUsersEnable;
         private bool RandomHeadTurnMode;
         private bool TransformAllUsersToPets = false;
 
@@ -452,6 +452,11 @@ namespace RetroFun.Pages
 
         private void EnableNbx_ValueChanged(object sender, EventArgs e)
         {
+            if (GiveAllUsersEnable)
+            {
+                GiveAllUsersEffect();
+            }
+
             if (isLiveEnableEdit && isServerSideEffect)
             {
                 SendServerEnableBobba(EffectNumber);
@@ -622,48 +627,29 @@ namespace RetroFun.Pages
 
         private void GiveAllEffectToUserBtn_Click(object sender, EventArgs e)
         {
-            if(giveenableeffecttoallusersthread)
+            if(GiveAllUsersEnable)
             {
-                giveenableeffecttoallusersthread = false;
+                GiveAllUsersEnable = false;
                 WriteToButton(GiveAllEffectToUserBtn, "Give Effect To All Users  : OFF");
             }
             else
             {
                 WriteToButton(GiveAllEffectToUserBtn, "Give Effect To All Users  : ON");
-                giveenableeffecttoallusersthread = true;
-                GiveAllUsersEnableConstantly();
+                GiveAllUsersEnable = true;
             }
 
         }
 
-        private void GiveAllUsersEnableConstantly()
+
+        private void GiveAllUsersEffect()
         {
-            new Thread(() =>
+            if (GlobalLists.UsersInRoom.Count != 0 && GlobalLists.UsersInRoom != null)
             {
-                Thread.CurrentThread.IsBackground = true;
-                do
+                foreach (HEntity user in GlobalLists.UsersInRoom)
                 {
-                    try
-                    {
-                        if (GlobalLists.UsersInRoom.Count != 0 && GlobalLists.UsersInRoom != null && giveenableeffecttoallusersthread)
-                        {
-                            foreach (HEntity user in GlobalLists.UsersInRoom)
-                            {
-                                Thread.Sleep(50);
-                                if (giveenableeffecttoallusersthread)
-                                {
-                                    AssignClientEffectToUser(user, EffectNumber);
-                                }
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
-
-                    }
-
-                } while (giveenableeffecttoallusersthread);
-            }).Start();
+                        AssignClientEffectToUser(user, EffectNumber);
+                }
+            }
         }
 
         public override void In_RoomUserEffect(DataInterceptedEventArgs e)

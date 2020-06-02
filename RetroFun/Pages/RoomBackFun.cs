@@ -211,7 +211,10 @@ namespace RetroFun.Pages
         {
             if (Connection.Remote.IsConnected)
             {
-                await Connection.SendToServerAsync(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
+                if (isLiveEditing)
+                {
+                    await Connection.SendToServerAsync(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
+                }
             }
         }
 
@@ -297,8 +300,17 @@ namespace RetroFun.Pages
         private void ResetEdit()
         {
             isLiveEditing = false;
-            //isLockActive = false;
             WriteToButton(LiveEditBtn, "Live Edit Mode : Off");
+            TonalityFader = false;
+            EnableButton(TonNbx, true);
+            WriteToButton(TonFadeBtn, "Tonality Fade : Deactivated");
+            SaturationFader = false;
+            EnableButton(SatNbx, true);
+            WriteToButton(SaturationFadeBtn, "Saturation Fade : Deactivated");
+            LuminosityFader = false;
+            EnableButton(LightNbx, true);
+            WriteToButton(LuminosityFadeBtn, "Luminosity Fade : Deactivated");
+
         }
 
         private void CheckLiveEditModeStatus()
