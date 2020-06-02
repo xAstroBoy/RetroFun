@@ -299,6 +299,10 @@ namespace RetroFun.Pages
 
         private void ResetEdit()
         {
+            OldTonality = Tonality = 0;
+            OldSaturation = Saturation = 0;
+            OldLuminosity = Luminosity = 0;
+            FurniID = 0;
             isLiveEditing = false;
             WriteToButton(LiveEditBtn, "Live Edit Mode : Off");
             TonalityFader = false;

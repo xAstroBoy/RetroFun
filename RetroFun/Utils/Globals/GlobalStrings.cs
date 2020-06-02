@@ -20,6 +20,8 @@ namespace RetroFun
         public static string ROOM_NAME { get; set; } = "NOT INITIATED";
         public static string ROOM_OWNER { get; set; } = "NOT INITIATED";
 
+        public readonly static string BOBBA_ROOMBG_STARTURL = "https://www.bobbaitalia.it/c_images/DEV_tests/";
+
 
     }
 }

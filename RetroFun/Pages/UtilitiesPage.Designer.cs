@@ -55,9 +55,13 @@
             this.OffsetYNbx = new System.Windows.Forms.NumericUpDown();
             this.OffsetXNbx = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GetStartUrlBtn = new Sulakore.Components.SKoreButton();
             this.label9 = new System.Windows.Forms.Label();
             this.RoomBGXNbx = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.StackerThreadDelayNbx = new System.Windows.Forms.NumericUpDown();
+            this.RiseStackerModeBtn = new Sulakore.Components.SKoreButton();
             this.DecOneStackerBtn = new Sulakore.Components.SKoreButton();
             this.IncOneStackerBtn = new Sulakore.Components.SKoreButton();
             this.StackerLiveEditBtn = new Sulakore.Components.SKoreButton();
@@ -70,9 +74,6 @@
             this.StackerHeightNbx = new System.Windows.Forms.NumericUpDown();
             this.StackerEndRangeNbx = new System.Windows.Forms.NumericUpDown();
             this.StackerStartRangeNbx = new System.Windows.Forms.NumericUpDown();
-            this.RiseStackerModeBtn = new Sulakore.Components.SKoreButton();
-            this.StackerThreadDelayNbx = new System.Windows.Forms.NumericUpDown();
-            this.label13 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GiftExchangerIDNBx)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -85,11 +86,11 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RoomBGXNbx)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StackerThreadDelayNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StackerFurniIDNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StackerHeightNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StackerEndRangeNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StackerStartRangeNbx)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StackerThreadDelayNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -405,6 +406,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.GetStartUrlBtn);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.RoomBGXNbx);
             this.groupBox1.Controls.Add(this.CaptureRoomBGBtn);
@@ -422,10 +424,20 @@
             this.groupBox1.Controls.Add(this.OffsetXNbx);
             this.groupBox1.Location = new System.Drawing.Point(932, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(510, 470);
+            this.groupBox1.Size = new System.Drawing.Size(510, 527);
             this.groupBox1.TabIndex = 69;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Room Background Editor";
+            // 
+            // GetStartUrlBtn
+            // 
+            this.GetStartUrlBtn.Location = new System.Drawing.Point(36, 452);
+            this.GetStartUrlBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GetStartUrlBtn.Name = "GetStartUrlBtn";
+            this.GetStartUrlBtn.Size = new System.Drawing.Size(259, 31);
+            this.GetStartUrlBtn.TabIndex = 69;
+            this.GetStartUrlBtn.Text = "Get Start Url For current domain";
+            this.GetStartUrlBtn.Click += new System.EventHandler(this.GetStartUrlBtn_Click);
             // 
             // label9
             // 
@@ -479,6 +491,42 @@
             this.groupBox4.TabIndex = 70;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = " ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(330, 148);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(103, 20);
+            this.label13.TabIndex = 81;
+            this.label13.Text = "Thread Delay";
+            // 
+            // StackerThreadDelayNbx
+            // 
+            this.StackerThreadDelayNbx.Location = new System.Drawing.Point(334, 182);
+            this.StackerThreadDelayNbx.Maximum = new decimal(new int[] {
+            276447231,
+            23283,
+            0,
+            0});
+            this.StackerThreadDelayNbx.Name = "StackerThreadDelayNbx";
+            this.StackerThreadDelayNbx.Size = new System.Drawing.Size(124, 26);
+            this.StackerThreadDelayNbx.TabIndex = 80;
+            this.StackerThreadDelayNbx.Value = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            // 
+            // RiseStackerModeBtn
+            // 
+            this.RiseStackerModeBtn.Location = new System.Drawing.Point(546, 182);
+            this.RiseStackerModeBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RiseStackerModeBtn.Name = "RiseStackerModeBtn";
+            this.RiseStackerModeBtn.Size = new System.Drawing.Size(304, 31);
+            this.RiseStackerModeBtn.TabIndex = 79;
+            this.RiseStackerModeBtn.Text = "Rise Stacker : OFF";
+            this.RiseStackerModeBtn.Click += new System.EventHandler(this.RiseStackerModeBtn_Click);
             // 
             // DecOneStackerBtn
             // 
@@ -613,42 +661,6 @@
             this.StackerStartRangeNbx.Size = new System.Drawing.Size(124, 26);
             this.StackerStartRangeNbx.TabIndex = 71;
             // 
-            // RiseStackerModeBtn
-            // 
-            this.RiseStackerModeBtn.Location = new System.Drawing.Point(546, 182);
-            this.RiseStackerModeBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RiseStackerModeBtn.Name = "RiseStackerModeBtn";
-            this.RiseStackerModeBtn.Size = new System.Drawing.Size(304, 31);
-            this.RiseStackerModeBtn.TabIndex = 79;
-            this.RiseStackerModeBtn.Text = "Rise Stacker : OFF";
-            this.RiseStackerModeBtn.Click += new System.EventHandler(this.RiseStackerModeBtn_Click);
-            // 
-            // StackerThreadDelayNbx
-            // 
-            this.StackerThreadDelayNbx.Location = new System.Drawing.Point(334, 182);
-            this.StackerThreadDelayNbx.Maximum = new decimal(new int[] {
-            276447231,
-            23283,
-            0,
-            0});
-            this.StackerThreadDelayNbx.Name = "StackerThreadDelayNbx";
-            this.StackerThreadDelayNbx.Size = new System.Drawing.Size(124, 26);
-            this.StackerThreadDelayNbx.TabIndex = 80;
-            this.StackerThreadDelayNbx.Value = new decimal(new int[] {
-            150,
-            0,
-            0,
-            0});
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(330, 148);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(103, 20);
-            this.label13.TabIndex = 81;
-            this.label13.Text = "Thread Delay";
-            // 
             // UtilitiesPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -675,11 +687,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.RoomBGXNbx)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StackerThreadDelayNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StackerFurniIDNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StackerHeightNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StackerEndRangeNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StackerStartRangeNbx)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.StackerThreadDelayNbx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -731,5 +743,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.NumericUpDown StackerThreadDelayNbx;
         private Sulakore.Components.SKoreButton RiseStackerModeBtn;
+        private Sulakore.Components.SKoreButton GetStartUrlBtn;
     }
 }

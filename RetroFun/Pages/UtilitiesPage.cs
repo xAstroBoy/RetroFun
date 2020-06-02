@@ -738,5 +738,17 @@ namespace RetroFun.Pages
                 RiseStackerModality();
             }
         }
+
+        private void GetStartUrlBtn_Click(object sender, EventArgs e)
+        {
+            if(KnownDomains.isBobbaHotel)
+            {
+                RoomBGURL = GlobalStrings.BOBBA_ROOMBG_STARTURL;
+            }
+            else
+            {
+                Speak("This host doesn't have a known BG start URL!");
+            }
+        }
     }
 }
