@@ -521,16 +521,10 @@ namespace RetroFun.Pages
                             {
                                 //WON! Do the victory procedure here.
 
-                                if (Connection.Remote.IsConnected)
-                                {
                                     if (ShouldShoutPhrase)
                                     {
-                                        if (Connection.Remote.IsConnected)
-                                        {
-                                            Connection.SendToServerAsync(Out.RoomUserShout, ShoutPhrase, 0);
-                                        }
+                                            SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
                                     }
-                                }
 
                                 // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!
 
@@ -574,17 +568,11 @@ namespace RetroFun.Pages
                             {
                                 //WON! Do the victory procedure here.
 
-                                if (Connection.Remote.IsConnected)
-                                {
-                                    if (ShouldShoutPhrase)
 
+                                    if (ShouldShoutPhrase)
                                     {
-                                        if (Connection.Remote.IsConnected)
-                                        {
-                                            Connection.SendToServerAsync(Out.RoomUserShout, ShoutPhrase, 0);
-                                        }
+                                            SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
                                     }
-                                }
 
                                 // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!
                                 if (shouldKillBot)
@@ -878,32 +866,23 @@ namespace RetroFun.Pages
 
         private void RollDice(int diceID)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(Out.TriggerDice, diceID);
-            }
+                SendToServer(Out.TriggerDice, diceID);
         }
 
         private void CloseDice(int diceID)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(Out.CloseDice, diceID);
-            }
+
+                SendToServer(Out.CloseDice, diceID);
         }
 
         private void Broadcast(string text)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[DICE BOT]: " + text, 0, 1, 0, -1);
-            }
+                SendToClient(In.RoomUserWhisper, 0, "[DICE BOT]: " + text, 0, 1, 0, -1);
         }
 
         public override void In_RoomUserWhisper(DataInterceptedEventArgs e)
         {
             e.Continue();
-
         }
 
         public override void In_FloorItemUpdate(DataInterceptedEventArgs e)
@@ -1009,13 +988,10 @@ namespace RetroFun.Pages
                         {
                             //WON! Do the victory procedure here.
 
-                            if (Connection.Remote.IsConnected)
-                            {
                                 if (ShouldShoutPhrase)
                                 {
-                                    Connection.SendToServerAsync(Out.RoomUserShout, ShoutPhrase, 0);
+                                    SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
                                 }
-                            }
 
                             // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!
 
@@ -1059,14 +1035,10 @@ namespace RetroFun.Pages
                         {
                             //WON! Do the victory procedure here.
 
-                            if (Connection.Remote.IsConnected)
-                            {
                                 if (ShouldShoutPhrase)
-
                                 {
-                                    Connection.SendToServerAsync(Out.RoomUserShout, ShoutPhrase, 0);
+                                    SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
                                 }
-                            }
 
                             // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!
                             if (shouldKillBot)

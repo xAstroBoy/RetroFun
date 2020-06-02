@@ -50,10 +50,7 @@ namespace RetroFun.Pages
 
         private void Speak(string text)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[RetroFun Init]: " + text, 0, 34, 0, -1);
-            }
+                SendToClient(In.RoomUserWhisper, 0, "[RetroFun Init]: " + text, 0, 34, 0, -1);
         }
 
 
@@ -61,10 +58,7 @@ namespace RetroFun.Pages
         {
             if (OwnUsername == null)
             {
-                if (Connection.Remote.IsConnected)
-                {
-                    await Connection.SendToServerAsync(Out.RequestUserData);
-                }
+                    await AwaitSendToServer(Out.RequestUserData);
             }
             if (!KnownDomains.isDomainRecognized)
             {

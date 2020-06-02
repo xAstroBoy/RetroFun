@@ -314,10 +314,7 @@ namespace RetroFun.Pages
         private async void SendExchangePacket(int furniid)
         {
             await Task.Delay(350);
-            if (Connection.Remote.IsConnected)
-            {
-                await Connection.SendToServerAsync(Out.RedeemItem, furniid);
-            }
+                await AwaitSendToServer(Out.RedeemItem, furniid);
             await Task.Delay(50);
         }
 
@@ -376,19 +373,16 @@ namespace RetroFun.Pages
             for (int i = 0; i < CreditMultiplierAmount; i++)
             {
                 await Task.Delay(50);
-                if (Connection.Remote.IsConnected)
-                {
-                    await Connection.SendToServerAsync(Out.RedeemItem, furniid);
-                }
+                    await AwaitSendToServer(Out.RedeemItem, furniid);
+                
             }
         }
         private async void SendOpenGiftPacket(int furniid)
         {
             await Task.Delay(350);
-            if (Connection.Remote.IsConnected)
-            {
-                await Connection.SendToServerAsync(Out.OpenRecycleBox, furniid);
-            }
+
+                await AwaitSendToServer(Out.OpenRecycleBox, furniid);
+            
             await Task.Delay(50);
         }
 
@@ -407,7 +401,7 @@ namespace RetroFun.Pages
         private async void SendRoomBGPacket(int FurnID, int RoomBG_X, int OffsetX, int OffsetY, int OffsetZ, string URL)
         {
             await Task.Delay(250);
-            await Connection.SendToServerAsync(Out.AdvertisingSave, FurnID, RoomBG_X, "imageUrl", URL, "offsetX", OffsetX.ToString(), "offsetY", OffsetY.ToString(), "offsetZ", OffsetZ.ToString());
+            await AwaitSendToServer(Out.AdvertisingSave, FurnID, RoomBG_X, "imageUrl", URL, "offsetX", OffsetX.ToString(), "offsetY", OffsetY.ToString(), "offsetZ", OffsetZ.ToString());
         }
 
 
@@ -491,19 +485,13 @@ namespace RetroFun.Pages
 
         private void SetStacker(int id, int height)
         {
-            if(Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(Out.SetStackHelperHeight, id, height);
-            }
+                SendToServer(Out.SetStackHelperHeight, id, height);
         }
 
         private async void SetStackerThread(int id, int height)
         {
-            if (Connection.Remote.IsConnected)
-            {
                 await Task.Delay(150);
-                await Connection.SendToServerAsync(Out.SetStackHelperHeight, id, height);
-            }
+                await AwaitSendToServer(Out.SetStackHelperHeight, id, height);
         }
 
 
@@ -530,10 +518,7 @@ namespace RetroFun.Pages
         }
         private void Speak(string text)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Utilities]: " + text, 0, 34, 0, -1);
-            }
+                SendToClient(In.RoomUserWhisper, 0, "[Utilities]: " + text, 0, 34, 0, -1);
         }
 
 

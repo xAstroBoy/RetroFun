@@ -171,10 +171,7 @@ namespace RetroFun.Pages
 
         private void Speak(string text)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[RoomBackGroundFun]: " + text + ".", 0, 34, 0, -1);
-            }
+                SendToClient(In.RoomUserWhisper, 0, "[RoomBackGroundFun]: " + text + ".", 0, 34, 0, -1);
         }
 
         private void RestoreSettingsBtn_Click(object sender, EventArgs e)
@@ -209,21 +206,15 @@ namespace RetroFun.Pages
 
         public async void SendLiveEditRoomBackgroundPacket(int furnid, int Tonality, int saturation, int luminosity)
         {
-            if (Connection.Remote.IsConnected)
-            {
                 if (isLiveEditing)
                 {
-                    await Connection.SendToServerAsync(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
+                    await AwaitSendToServer(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
                 }
-            }
         }
 
         public async void SendRoomBackgroundPacket(int furnid, int Tonality, int saturation, int luminosity)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                await Connection.SendToServerAsync(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
-            }
+                await AwaitSendToServer(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
         }
 
         private void GlobalSpeedCheck()

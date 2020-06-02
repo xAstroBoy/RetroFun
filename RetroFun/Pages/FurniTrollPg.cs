@@ -638,12 +638,8 @@ namespace RetroFun.Pages
                     {
                         if (isHanditemGiverActivated)
                         {
-                            if (Connection.Remote.IsConnected)
-                            {
-                                Connection.SendToServerAsync(Out.RoomUserGiveHandItem, UserID);
-
-                            }
-                            Thread.Sleep(ThreadCooldownSafe(CooldownHanditemGiver));
+                         SendToServer(Out.RoomUserGiveHandItem, UserID);
+                         Thread.Sleep(ThreadCooldownSafe(CooldownHanditemGiver));
                         }
                     }
                     catch (Exception e)
@@ -922,25 +918,22 @@ namespace RetroFun.Pages
 
         private async void SendToggleFloorItem(int FurnID)
         {
-            if (Connection.Remote.IsConnected)
-            {
                 if(flooritems.Contains(FurnID))
                 {
-                    await Connection.SendToServerAsync(Out.ToggleFloorItem, FurnID);
+                    await AwaitSendToServer(Out.ToggleFloorItem, FurnID);
                 }
                 if(Wallitems.Contains(FurnID))
                 {
-                    await Connection.SendToServerAsync(Out.ToggleWallItem, FurnID);
+                    await AwaitSendToServer(Out.ToggleWallItem, FurnID);
                 }
                 if(wheelitems.Contains(FurnID))
                 {
-                    await Connection.SendToServerAsync(Out.TriggerColorWheel, FurnID);
+                    await AwaitSendToServer(Out.TriggerColorWheel, FurnID);
                 }
                 if (Diceitems.Contains(FurnID))
                 {
-                    await Connection.SendToServerAsync(Out.TriggerDice, FurnID);
+                    await AwaitSendToServer(Out.TriggerDice, FurnID);
                 }
-            }
         }
         public void RegisterFurni(int FurnID)
         {
@@ -1247,18 +1240,14 @@ namespace RetroFun.Pages
 
         private void RegisterFurniAsk(int furni)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Furni Registration]: Please Select the furni nr " + furni.ToString() + ".", 0, 34, 0, -1);
-            }
+
+                SendToClient(In.RoomUserWhisper, 0, "[Furni Registration]: Please Select the furni nr " + furni.ToString() + ".", 0, 34, 0, -1);
         }
 
         private void RegisterFurniSpeak(string text)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Furni Registration]: " + text, 0, 34, 0, -1);
-            }
+
+                SendToClient(In.RoomUserWhisper, 0, "[Furni Registration]: " + text, 0, 34, 0, -1);
         }
 
 

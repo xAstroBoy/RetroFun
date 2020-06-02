@@ -539,12 +539,12 @@ namespace RetroFun.Pages
                 if (HasUserPermissionsMessage)
                 {
                     Speak("Your Normal permissions have been restored.");
-                    Connection.SendToClientAsync(Permissions);
+                    SendToClient(Permissions);
                 }
                 else
                 {
                     Speak("Default permissions have been restored.");
-                    Connection.SendToClientAsync(In.UserPermissions, 2, 4, false);
+                    SendToClient(In.UserPermissions, 2, 4, false);
                     WriteToButton(AcquireMODPermissionsBtn, "Acquire MOD Permissions (CS)");
                 }
                 HasStaffPermissions = false;
@@ -552,7 +552,7 @@ namespace RetroFun.Pages
             else
             {
                 Speak("Permissions set to Staff.");
-                Connection.SendToClientAsync(In.UserPermissions, int.MaxValue, int.MaxValue, false);
+                SendToClient(In.UserPermissions, int.MaxValue, int.MaxValue, false);
                 WriteToButton(AcquireMODPermissionsBtn, "Remove MOD Permissions (CS)");
                 HasStaffPermissions = true;
 
@@ -561,10 +561,7 @@ namespace RetroFun.Pages
 
         private void Speak(string text)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Personal]: " + text, 0, 34, 0, -1);
-            }
+                SendToClient(In.RoomUserWhisper, 0, "[Personal]: " + text, 0, 34, 0, -1);
         }
 
 
@@ -596,7 +593,7 @@ namespace RetroFun.Pages
 
         private void SendPacketModTools(bool value)
         {
-            Connection.SendToClientAsync(In.ModTool, new object[]
+            SendToClient(In.ModTool, new object[]
                 {
                 0,
                 0,
@@ -637,7 +634,7 @@ namespace RetroFun.Pages
 
         private void SetCrystals(int crystals, int duckets)
         {
-            Connection.SendToClientAsync(In.UserCurrency, new object[]
+            SendToClient(In.UserCurrency, new object[]
        {
                         11,
                         0,
@@ -667,12 +664,12 @@ namespace RetroFun.Pages
 
         private void SetDuckets(int Duckets)
         {
-            Connection.SendToClientAsync(In.UserPoints, Duckets + ".0");
+            SendToClient(In.UserPoints, Duckets + ".0");
         }
 
         private void SetCredits(int Credits)
         {
-            Connection.SendToClientAsync(In.UserCredits, CreditsValue + ".0");
+            SendToClient(In.UserCredits, CreditsValue + ".0");
         }
 
 
@@ -686,9 +683,9 @@ namespace RetroFun.Pages
                 {
                     if (TradeSpammerActivated)
                     {
-                        Connection.SendToServerAsync(Out.TradeStart, TradeSpammerUserID);
+                        SendToServer(Out.TradeStart, TradeSpammerUserID);
                         Thread.Sleep(TradeSpammerCooldown);
-                        Connection.SendToServerAsync(Out.TradeClose);
+                        SendToServer(Out.TradeClose);
                         Thread.Sleep(TradeSpammerCooldown);
                     }
                 } while (TradeSpammerActivated);
@@ -700,7 +697,7 @@ namespace RetroFun.Pages
 
         private void RequestRoomHeightmap()
         {
-            Connection.SendToServerAsync(Out.RequestRoomHeightmap);
+            SendToServer(Out.RequestRoomHeightmap);
         }
 
         private void CrashUserBtn_Click(object sender, EventArgs e)
@@ -726,10 +723,7 @@ namespace RetroFun.Pages
 
         private void TradeSpammerspeak(string text)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Trade Spammer]: " + text, 0, 34, 0, -1);
-            }
+                SendToClient(In.RoomUserWhisper, 0, "[Trade Spammer]: " + text, 0, 34, 0, -1);
         }
 
         private void EnterRoomBtn_Click(object sender, EventArgs e)
@@ -765,8 +759,8 @@ namespace RetroFun.Pages
             _selectedUserId = e.Packet.ReadInteger();
             if(giveHanditemToselecteduser)
             {
-                    Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + HanditemID, GlobalInts.Selected_bubble_ID);
-                    Connection.SendToServerAsync(Out.RoomUserGiveHandItem, _selectedUserId);
+                    SendToServer(Out.RoomUserTalk, ":handitem " + HanditemID, GlobalInts.Selected_bubble_ID);
+                    SendToServer(Out.RoomUserGiveHandItem, _selectedUserId);
             }
         }
 
@@ -777,7 +771,7 @@ namespace RetroFun.Pages
                 if (isTalkAvailable && !HasEffectBeenRemoved)
                 {
                     await Task.Delay(500);
-                    await Connection.SendToServerAsync(Out.RoomUserTalk, ":enable 0", GlobalInts.Selected_bubble_ID);
+                    await AwaitSendToServer(Out.RoomUserTalk, ":enable 0", GlobalInts.Selected_bubble_ID);
                     isTalkAvailable = false;
                 }
             }
@@ -803,7 +797,7 @@ namespace RetroFun.Pages
         private async void RoomBypass()
         {
             await Task.Delay(200);
-            await Connection.SendToServerAsync(Out.RequestRoomHeightmap);
+            await AwaitSendToServer(Out.RequestRoomHeightmap);
             WriteToButton(AutomaticBypassBtn, "Automatic: OFF");
             AutomaticAttempt = false;
         }
@@ -831,7 +825,7 @@ namespace RetroFun.Pages
 
         private void GiveHanditemToMyself_Click(object sender, EventArgs e)
         {
-           Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + HanditemID, 18);
+           SendToServer(Out.RoomUserTalk, ":handitem " + HanditemID, 18);
         }
 
 
@@ -849,10 +843,10 @@ namespace RetroFun.Pages
                     foreach (HEntity user in GlobalLists.UsersInRoom)
                     {
                         Thread.Sleep(50);
-                        await Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
-                        await Connection.SendToServerAsync(Out.RoomUserGiveHandItem, user.Id);
+                        await AwaitSendToServer(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
+                        await AwaitSendToServer(Out.RoomUserGiveHandItem, user.Id);
                     }
-                    await Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
+                    await AwaitSendToServer(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
 
                 }
             }
@@ -894,26 +888,26 @@ namespace RetroFun.Pages
         private void HanditemSubBtn_Click(object sender, EventArgs e)
         {
             HanditemHunter--;
-            Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + HanditemHunter, 18);
+            SendToServer(Out.RoomUserTalk, ":handitem " + HanditemHunter, 18);
 
         }
 
         private void HanditemAddBtn_Click(object sender, EventArgs e)
         {
             HanditemHunter++;
-            Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + HanditemHunter, 18);
+            SendToServer(Out.RoomUserTalk, ":handitem " + HanditemHunter, 18);
 
         }
 
         private void Handitemnbx_ValueChanged(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RoomUserTalk, ":handitem " + HanditemHunter, 18);
+            SendToServer(Out.RoomUserTalk, ":handitem " + HanditemHunter, 18);
 
         }
 
         private void GiveBadgeToYourselfBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RoomUserTalk, ":givebadge " + GlobalStrings.UserDetails_Username +  " " + badgecode, 18);
+            SendToServer(Out.RoomUserTalk, ":givebadge " + GlobalStrings.UserDetails_Username +  " " + badgecode, 18);
         }
 
         private void HanditemCmbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -923,17 +917,17 @@ namespace RetroFun.Pages
 
         private void TeleportBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RoomUserTalk, ":tp" , GlobalInts.Selected_bubble_ID);
+            SendToServer(Out.RoomUserTalk, ":tp" , GlobalInts.Selected_bubble_ID);
         }
 
         private void OverrideBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RoomUserTalk, ":override", GlobalInts.Selected_bubble_ID);
+            SendToServer(Out.RoomUserTalk, ":override", GlobalInts.Selected_bubble_ID);
         }
 
         private void RequestRoomBannedUsersBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RoomRequestBannedUsers, GlobalInts.ROOM_ID);
+            SendToServer(Out.RoomRequestBannedUsers, GlobalInts.ROOM_ID);
         }
 
         public override void Out_RoomRequestBannedUsers(DataInterceptedEventArgs e)

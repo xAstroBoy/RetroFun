@@ -658,11 +658,7 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
-                    if (Connection.Remote.IsConnected)
-                    {
-                        Connection.SendToServerAsync(Out.RoomUserSit);
-
-                    }
+                        SendToServer(Out.RoomUserSit);
                     Thread.Sleep(SitsCooldown);
                 } while (SitModeEnabled);
             }).Start();
@@ -720,20 +716,14 @@ namespace RetroFun.Pages
 
         private async void SendGesturePacket(HGesture Gesture)
         {
-            if (Connection.Remote.IsConnected)
-            {
                 await Task.Delay(150);
-                await Connection.SendToServerAsync(Out.RoomUserAction, Gesture);
-            }
+                await AwaitSendToServer(Out.RoomUserAction, Gesture);
         }
 
         private async void SendDancePacket(HDance Dance)
         {
-            if (Connection.Remote.IsConnected)
-            {
                 await Task.Delay(150);
-                await Connection.SendToServerAsync(Out.RoomUserDance, Dance);
-            }
+                await AwaitSendToServer(Out.RoomUserDance, Dance);
         }
 
         private void SignCountThread()
@@ -959,7 +949,7 @@ namespace RetroFun.Pages
             if (SignCountEnabled)
             {
                 await Task.Delay(250);
-                await Connection.SendToServerAsync(Out.RoomUserSign, Sign);
+                await AwaitSendToServer(Out.RoomUserSign, Sign);
             }
         }
 
@@ -1012,7 +1002,7 @@ namespace RetroFun.Pages
 
         private void UserSitBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RoomUserSit);
+            SendToServer(Out.RoomUserSit);
         }
 
         private void SitCheck()
@@ -1096,11 +1086,8 @@ namespace RetroFun.Pages
 
         private async void SendLookPacket(string look)
         {
-            if (Connection.Remote.IsConnected)
-            {
                 await Task.Delay(50);
-                await Connection.SendToServerAsync(Out.UserSaveLook, "M", look);
-            }
+                await AwaitSendToServer(Out.UserSaveLook, "M", look);
         }
 
 
@@ -1151,10 +1138,7 @@ namespace RetroFun.Pages
 
         private void Speak(string text)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[MessageForYou]: " + text, 0, 34, 0, -1);
-            }
+                SendToClient(In.RoomUserWhisper, 0, "[MessageForYou]: " + text, 0, 34, 0, -1);
         }
 
 
@@ -1190,7 +1174,7 @@ namespace RetroFun.Pages
 
         private void StartCSPoll()
         {
-            Connection.SendToClientAsync(In.SimplePollStart, "MATCHING_POLL", 2505, 8451, 15000, 8451, 3, 6, "RetroFun : Select your Answer to show SS", 0, 6, 0, 0);
+            SendToClient(In.SimplePollStart, "MATCHING_POLL", 2505, 8451, 15000, 8451, 3, 6, "RetroFun : Select your Answer to show SS", 0, 6, 0, 0);
         }
 
 
@@ -1222,7 +1206,7 @@ namespace RetroFun.Pages
 
         private void SendFriendRequest(string username)
         {
-            Connection.SendToServerAsync(Out.FriendRequest, username);
+            SendToServer(Out.FriendRequest, username);
         }
 
         private void AddYourselfAsFriendBtn_Click(object sender, EventArgs e)
@@ -1374,7 +1358,7 @@ namespace RetroFun.Pages
 
         private void DeleteRoomBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RequestDeleteRoom, GlobalInts.ROOM_ID);
+            SendToServer(Out.RequestDeleteRoom, GlobalInts.ROOM_ID);
         }
 
     }

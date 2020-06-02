@@ -351,7 +351,7 @@ namespace RetroFun.Pages
         private void SpawnFurni(int FurniID, int CoordX, int CoordY, int CoordZ, int FurniRotation, string Owner) 
         {
             LocalFurniID++;
-            Connection.SendToClientAsync(In.AddFloorItem, new object[]
+            SendToClient(In.AddFloorItem, new object[]
             {
                 LocalFurniID,
                 FurniID,
@@ -396,17 +396,11 @@ namespace RetroFun.Pages
 
         private void WallFurniSpeak(string text)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[WallFurni Spawner]: " + text, 0, 34, 0, -1);
-            }
+                SendToClient(In.RoomUserWhisper, 0, "[WallFurni Spawner]: " + text, 0, 34, 0, -1);
         }
         private void FloorFurniSpeak(string text)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[FloorFurni Spawner]: " + text, 0, 34, 0, -1);
-            }
+                SendToClient(In.RoomUserWhisper, 0, "[FloorFurni Spawner]: " + text, 0, 34, 0, -1);
         }
 
         private void WriteToButton(SKoreButton button, string text)
@@ -446,7 +440,7 @@ namespace RetroFun.Pages
         {
             FurniAmountInv++;
 
-            Connection.SendToClientAsync(In.InventoryItemUpdate, new object[]
+            SendToClient(In.InventoryItemUpdate, new object[]
                 {
                     FurniAmountInv,
                     furnitype,
@@ -469,7 +463,7 @@ namespace RetroFun.Pages
         private void SpawnFurniInventoryI(string furnitype, int furniIDinv)
         {
             FurniAmountInv++;
-            Connection.SendToClientAsync(In.InventoryItemUpdate, new object[]
+            SendToClient(In.InventoryItemUpdate, new object[]
                     {
                         FurniAmountInv,
                         furnitype,
@@ -492,7 +486,7 @@ namespace RetroFun.Pages
         private void SpawnWallFurni(int FurniID, decimal Coordw, decimal coordsl, string FurniRotation, string Owner)
         {
             LocalFurniID++;
-            Connection.SendToClientAsync(In.AddWallItem,
+            SendToClient(In.AddWallItem,
                 LocalFurniID.ToString(),
                 FurniID,
                 ":w=" + Coordw.ToString() + "," + Wallcoords2w.ToString() + " l=" + coordsl.ToString() + "," + Wallcoords2l.ToString() + " " + FurniRotation,

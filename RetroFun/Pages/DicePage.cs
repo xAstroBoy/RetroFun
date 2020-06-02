@@ -544,34 +544,22 @@ namespace RetroFun.Pages
 
         private void RollDice(int DiceID)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(Out.TriggerDice, DiceID);
-            }
+                SendToServer(Out.TriggerDice, DiceID);
         }
 
         private void CloseDice(int DiceID)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(Out.CloseDice, DiceID);
-            }
+                SendToServer(Out.CloseDice, DiceID);
         }
 
         private void RegisterDiceAsk(int DiceNumber)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Registration Dice]: Please Select the dice nr " + DiceNumber.ToString() + ".", 0, 34, 0, -1);
-            }
+                SendToClient(In.RoomUserWhisper, 0, "[Registration Dice]: Please Select the dice nr " + DiceNumber.ToString() + ".", 0, 34, 0, -1);
         }
 
         private void RegisterDiceSpeak(string text)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.RoomUserWhisper, 0, "[Registration Dice]: " + text, 0, 34, 0, -1);
-            }
+                SendToClient(In.RoomUserWhisper, 0, "[Registration Dice]: " + text, 0, 34, 0, -1);
         }
 
         private void CheckBoxToggler(CheckBox box, bool value)

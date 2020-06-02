@@ -456,7 +456,7 @@ namespace RetroFun.Pages
                 if (index == GlobalInts.OwnUser_index)
                 {
                     e.IsBlocked = true;
-                    Connection.SendToClientAsync(In.RoomUserTalk, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
+                    SendToClient(In.RoomUserTalk, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
             if (isCloneChatUser)
@@ -470,20 +470,16 @@ namespace RetroFun.Pages
         private async void ConvertCSChatTalk(string message, int bubbleid)
         {
             await Task.Delay(RaidUserCooldownCooldown);
-            if (Connection.Remote.IsConnected)
-            {
-                await Connection.SendToServerAsync(Out.RoomUserTalk, " " + message, bubbleid);
-            }
+
+                await AwaitSendToServer(Out.RoomUserTalk, " " + message, bubbleid);
             return;
         }
 
         private async void ConvertCSChatShout(string message, int bubbleid)
         {
             await Task.Delay(RaidUserCooldownCooldown);
-            if (Connection.Remote.IsConnected)
-            {
-                await Connection.SendToServerAsync(Out.RoomUserTalk, " " + message, bubbleid);
-            }
+
+                await AwaitSendToServer(Out.RoomUserTalk, " " + message, bubbleid);
             return;
         }
 
@@ -500,7 +496,7 @@ namespace RetroFun.Pages
                 if (index == GlobalInts.OwnUser_index)
                 {
                     e.IsBlocked = true;
-                    Connection.SendToClientAsync(In.RoomUserShout, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
+                    SendToClient(In.RoomUserShout, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
 
@@ -525,7 +521,7 @@ namespace RetroFun.Pages
                 if (index == GlobalInts.OwnUser_index)
                 {
                     e.IsBlocked = true;
-                    Connection.SendToClientAsync(In.RoomUserWhisper, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
+                    SendToClient(In.RoomUserWhisper, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
         }
@@ -648,10 +644,8 @@ namespace RetroFun.Pages
             {
                 replacement.WriteInteger(0);
             }
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(replacement);
-            }
+
+                SendToServer(replacement);
         }
 
 
@@ -929,11 +923,7 @@ namespace RetroFun.Pages
                     if (FlooderEnabled)
                     {
                         Thread.Sleep(FlooderCooldown);
-                        if (Connection.Remote.IsConnected)
-                        {
-                            Connection.SendToServerAsync(FloodMessageBuilder());
-
-                        }
+                            SendToServer(FloodMessageBuilder());
                         Thread.Sleep(100);
                     }
 
@@ -952,17 +942,14 @@ namespace RetroFun.Pages
                     if (isLiveEditChat)
                     {
                         Thread.Sleep(FlooderCooldown);
-                        if (Connection.Remote.IsConnected)
-                        {
                             if(OldPyramidString != FlooderText)
                             {
                                 OldPyramidString = FlooderText;
                                 if(PyramidChatBuilder() != null)
                                 {
-                                    Connection.SendToServerAsync(PyramidChatBuilder());
+                                    SendToServer(PyramidChatBuilder());
                                 }
                             }
-                        }
                         Thread.Sleep(100);
                     }
 
@@ -1002,7 +989,7 @@ namespace RetroFun.Pages
                 isCloneChatUser = true;
                 if(!isCloneChatAlertDone)
                 {
-                    Connection.SendToClientAsync(In.RoomUserWhisper, 0, "CAUTION: This can result in a ban of the account! Use with caution!", 0, 34, 0, -1);
+                    SendToClient(In.RoomUserWhisper, 0, "CAUTION: This can result in a ban of the account! Use with caution!", 0, 34, 0, -1);
                     isCloneChatAlertDone = true;
                 }
 
@@ -1030,10 +1017,7 @@ namespace RetroFun.Pages
 
         private void SendMessageBtn_Click(object sender, EventArgs e)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(ChatMessageBuilder());
-            }
+                SendToServer(ChatMessageBuilder());
         }
 
         private void LiveEditChatBtn_Click(object sender, EventArgs e)

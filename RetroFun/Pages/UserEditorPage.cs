@@ -344,7 +344,7 @@ namespace RetroFun.Pages
 
         private void RemoveRoomUser(int index)
         {
-            Connection.SendToClientAsync(In.RoomUserRemove, index.ToString());
+            SendToClient(In.RoomUserRemove, index.ToString());
         }
 
         private void RestoreEntity(string username)
@@ -393,7 +393,7 @@ namespace RetroFun.Pages
 
         private void AddUser(int id, int index, string name, string motto, string figureId, HPoint tile, HGender gender, string favoriteGroup)
         {
-            Connection.SendToClientAsync(In.RoomUsers,
+            SendToClient(In.RoomUsers,
                 1,
                 id,
                 name,
@@ -495,13 +495,13 @@ namespace RetroFun.Pages
 
             if (entityToBlacklist.Name == GlobalStrings.UserDetails_Username)
             {
-                Connection.SendToClientAsync(In.RoomUserTalk, entityToBlacklist.Index, "[User Blacklist] :Hey, you can't blacklist yourself!", 0, 30, 0, -1);
+                SendToClient(In.RoomUserTalk, entityToBlacklist.Index, "[User Blacklist] :Hey, you can't blacklist yourself!", 0, 30, 0, -1);
                 return; //ouchie
             }
 
             if (_blacklistedEntities.ContainsKey(entityToBlacklist.Name))
             {
-                Connection.SendToClientAsync(In.RoomUserTalk, entityToBlacklist.Index, "[User Blacklist] : Hey, im already added in your blacklist!", 0, 30, 0, -1);
+                SendToClient(In.RoomUserTalk, entityToBlacklist.Index, "[User Blacklist] : Hey, im already added in your blacklist!", 0, 30, 0, -1);
 
                 return; //ouchie
             }
@@ -526,7 +526,7 @@ namespace RetroFun.Pages
 
                 if (entityToRemove.Name == GlobalStrings.UserDetails_Username)
                 {
-                    Connection.SendToClientAsync(In.RoomUserTalk, entityToRemove.Index, "[User Blacklist] :Hey, you can't blacklist yourself!", 0, 30, 0, -1);
+                    SendToClient(In.RoomUserTalk, entityToRemove.Index, "[User Blacklist] :Hey, you can't blacklist yourself!", 0, 30, 0, -1);
                     return; //ouchie
                 }
             RemoveEntity(entityToRemove, true);
@@ -629,8 +629,8 @@ namespace RetroFun.Pages
 
         private void FakeRespectUserBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RoomUserAction, 7);
-            Connection.SendToServerAsync(Out.RoomUserTalk, "Stanno inviando rispetti a " + UserNickname + "!", 1);
+            SendToServer(Out.RoomUserAction, 7);
+            SendToServer(Out.RoomUserTalk, "Stanno inviando rispetti a " + UserNickname + "!", 1);
         }
     }
 }

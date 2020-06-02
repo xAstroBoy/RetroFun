@@ -370,7 +370,7 @@ namespace RetroFun.Pages
             for (int i = 0; i < 26; i++)
             {
                 await Task.Delay(50);
-               await Connection.SendToServerAsync(Out.RoomUserTalk, " ", Bubbleused);
+               await AwaitSendToServer(Out.RoomUserTalk, " ", Bubbleused);
             }
         }
 
@@ -378,7 +378,7 @@ namespace RetroFun.Pages
         {
             if (UserNickname != GlobalStrings.UserDetails_Username)
             {
-                Connection.SendToServerAsync(Out.RoomUserTalk, ":ban " + username + " " + time + " " + reason);
+                SendToServer(Out.RoomUserTalk, ":ban " + username + " " + time + " " + reason);
                 RecordModeration("BAN", username, reason, time);
             }
         }
@@ -387,7 +387,7 @@ namespace RetroFun.Pages
         {
             if (UserNickname != GlobalStrings.UserDetails_Username)
             {
-                Connection.SendToServerAsync(Out.RoomUserTalk, ":mutam " + username + " " + time);
+                SendToServer(Out.RoomUserTalk, ":mutam " + username + " " + time);
                 RecordModeration("MUTE", username, "" , time);
 
             }
@@ -396,7 +396,7 @@ namespace RetroFun.Pages
         {
             if (UserNickname != GlobalStrings.UserDetails_Username)
             {
-                Connection.SendToServerAsync(Out.RoomUserTalk, ":unmute " + username);
+                SendToServer(Out.RoomUserTalk, ":unmute " + username);
                 RecordModeration("UNMUTE", username, "");
 
             }
@@ -406,7 +406,7 @@ namespace RetroFun.Pages
         {
             if (UserNickname != GlobalStrings.UserDetails_Username)
             {
-                Connection.SendToServerAsync(Out.RoomUserTalk, ":alert " + username + " " + reason);
+                SendToServer(Out.RoomUserTalk, ":alert " + username + " " + reason);
                 RecordModeration("ALERT", username, reason);
 
             }
@@ -417,7 +417,7 @@ namespace RetroFun.Pages
         {
             if (UserNickname != GlobalStrings.UserDetails_Username)
             {
-                Connection.SendToServerAsync(Out.RoomUserTalk, ":cacciam " + username + " " + reason);
+                SendToServer(Out.RoomUserTalk, ":cacciam " + username + " " + reason);
                 RecordModeration("KICK CON ALERT", username, reason);
 
             }
@@ -842,7 +842,7 @@ namespace RetroFun.Pages
 
         private void GetUserInfoBtn_Click(object sender, EventArgs e)
         {
-            Connection.SendToServerAsync(Out.RoomUserTalk, ":userinfo " + GetUserinfoTargetUser, GlobalInts.Selected_bubble_ID);
+            SendToServer(Out.RoomUserTalk, ":userinfo " + GetUserinfoTargetUser, GlobalInts.Selected_bubble_ID);
         }
     }
 }

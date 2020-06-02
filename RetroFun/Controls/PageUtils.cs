@@ -3,10 +3,12 @@ using Sulakore.Communication;
 using Sulakore.Habbo;
 using Sulakore.Habbo.Messages;
 using Sulakore.Habbo.Web;
+using Sulakore.Protocol;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RetroFun.Controls
@@ -28,6 +30,102 @@ namespace RetroFun.Controls
         protected HTriggers Triggers => Module?.Triggers;
         protected IHConnection Connection => Module?.Connection;
         protected HHotel Hotel => Module?.Hotel ?? HHotel.Unknown;
+
+
+        internal void SendToClient(byte[] data)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(data);
+            }
+        }
+
+        internal void SendToClient(HMessage packet)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(packet);
+            }
+        }
+
+
+        internal void SendToClient(ushort id, params object[] values)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToClientAsync(id, values);
+            }
+        }
+
+        internal void SendToServer(byte[] data)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(data);
+            }
+        }
+        internal void SendToServer(HMessage packet)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(packet);
+            }
+        }
+        internal void SendToServer(ushort id, params object[] values)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                Connection.SendToServerAsync(id, values);
+            }
+        }
+
+
+        internal async Task AwaitSendToClient(byte[] data)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToClientAsync(data);
+            }
+        }
+
+        internal async Task AwaitSendToClient(HMessage packet)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToClientAsync(packet);
+            }
+        }
+
+
+        internal async Task AwaitSendToClient(ushort id, params object[] values)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToClientAsync(id, values);
+            }
+        }
+
+        internal async Task AwaitSendToServer(byte[] data)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(data);
+            }
+        }
+        internal async Task AwaitSendToServer(HMessage packet)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(packet);
+            }
+        }
+        internal async Task AwaitSendToServer(ushort id, params object[] values)
+        {
+            if (Connection.Remote.IsConnected)
+            {
+                await Connection.SendToServerAsync(id, values);
+            }
+        }
 
         public PageUtils()
         {
@@ -75,15 +173,16 @@ namespace RetroFun.Controls
                 {
                     return;
                 }
-            } catch(System.ObjectDisposedException)
+            }
+            catch (System.ObjectDisposedException)
             {
 
             }
-            catch(System.ArgumentOutOfRangeException)
+            catch (System.ArgumentOutOfRangeException)
             {
 
             }
-            catch(System.Collections.Generic.KeyNotFoundException)
+            catch (System.Collections.Generic.KeyNotFoundException)
             {
 
             }

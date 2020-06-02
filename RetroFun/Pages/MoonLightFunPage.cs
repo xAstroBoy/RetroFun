@@ -253,17 +253,14 @@ namespace RetroFun.Pages
 
         private async void SendMoodLightPacket(int preset, string color, int Density)
         {
-            if (Connection.Remote.IsConnected)
-            {
                 if (JustWallpapers)
                 {
-                   await Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 2, "#" + color, Density, true);
+                   await AwaitSendToServer(Out.MoodLightSaveSettings, preset, 2, "#" + color, Density, true);
                 }
                 else
                 {
-                    await Connection.SendToServerAsync(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
+                    await AwaitSendToServer(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
                 }
-            }
         }
 
         private void ColorHTMLtxb_TextChanged(object sender, EventArgs e)

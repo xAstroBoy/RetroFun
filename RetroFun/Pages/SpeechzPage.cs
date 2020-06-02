@@ -89,18 +89,16 @@ namespace RetroFun.Pages
             }
             else //If constructed packet is not corrupted, send it...
             {
-                if (Connection.Remote.IsConnected)
-                {
                     if (rdo_client.Checked) //if "Client" is checked
                     {
-                        Connection.SendToClientAsync(packet.ToBytes()); //...to client
+                        SendToClient(packet.ToBytes()); //...to client
                     }
                     else if (rdo_server.Checked) //or if "Server" is checked
                     {
-                        Connection.SendToServerAsync(packet.ToBytes()); //...to server
+                        SendToServer(packet.ToBytes()); //...to server
                     }
                 }
-            }
+            
         }
 
         private int SafeInterval(int Value)

@@ -160,11 +160,8 @@ namespace RetroFun.Pages
                         {
                             if (!isUserManualWalking)
                             {
-                                if (Connection.Remote.IsConnected)
-                                {
-                                    await Connection.SendToServerAsync(Out.RoomUserWalk, i, j);
+                                    await AwaitSendToServer(Out.RoomUserWalk, i, j);
                                     await Task.Delay(CooldownWalking);
-                                }
                             }
                             else
                             {
@@ -196,7 +193,7 @@ namespace RetroFun.Pages
             {
                 if (isSpectatorModeActive)
                 {
-                    Connection.SendToServerAsync(Out.RoomUserTalk, "exit", 18);
+                    SendToServer(Out.RoomUserTalk, "exit", 18);
                     isSpectatorModeActive = false;
                 }
             }
@@ -237,10 +234,8 @@ namespace RetroFun.Pages
             {
                 if (ShouldStalkBotGiochi)
                 {
-                    if (Connection.Remote.IsConnected)
-                    {
-                        Connection.SendToServerAsync(Out.StalkFriend, 1442790);
-                    }
+                        SendToServer(Out.StalkFriend, 1442790);
+                   
                 }
                 if (MuteBotGames)
                 {
@@ -258,10 +253,8 @@ namespace RetroFun.Pages
 
         private void StalkVictimBtn_Click(object sender, EventArgs e)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(Out.StalkFriend, ((Victim)VictimsCmbx.SelectedItem).ID);
-            }
+                SendToServer(Out.StalkFriend, ((Victim)VictimsCmbx.SelectedItem).ID);
+            
         }
 
         private class Victim
@@ -280,10 +273,7 @@ namespace RetroFun.Pages
 
         private void StalkVictimID_Click(object sender, EventArgs e)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(Out.StalkFriend, UserIDCapture);
-            }
+                SendToServer(Out.StalkFriend, UserIDCapture);
         }
     }
 }

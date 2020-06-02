@@ -88,10 +88,7 @@ namespace RetroFun.Pages
 
         private void SendMessagePacket(int userid, string message)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.ReceivePrivateMessage, userid, message, 0);
-            }
+                SendToClient(In.ReceivePrivateMessage, userid, message, 0);
         }
 
         private void SendMessageBtn_Click(object sender, EventArgs e)
@@ -101,18 +98,12 @@ namespace RetroFun.Pages
 
         private void AddFriend(int userid, string username, string look)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.UpdateFriend, 0, 1, 1, userid, username, 1, true, true, look, 0, username, 0, 0, false, false);
-            }
+                SendToClient(In.UpdateFriend, 0, 1, 1, userid, username, 1, true, true, look, 0, username, 0, 0, false, false);
         }
 
         private void RemoveFriend(int userid)
         {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToClientAsync(In.UpdateFriend, 0, 1, -1, userid);
-            }
+                SendToClient(In.UpdateFriend, 0, 1, -1, userid);
         }
 
         private void CSFriendAddBtn_Click(object sender, EventArgs e)
