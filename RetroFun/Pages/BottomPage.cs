@@ -58,7 +58,7 @@ namespace RetroFun.Pages
         {
             if (OwnUsername == null)
             {
-                    await AwaitSendToServer(Out.RequestUserData);
+                    await SendToServer(Out.RequestUserData);
             }
             if (!KnownDomains.isDomainRecognized)
             {

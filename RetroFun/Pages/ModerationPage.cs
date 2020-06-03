@@ -370,7 +370,7 @@ namespace RetroFun.Pages
             for (int i = 0; i < 26; i++)
             {
                 await Task.Delay(50);
-               await AwaitSendToServer(Out.RoomUserTalk, " ", Bubbleused);
+               await SendToServer(Out.RoomUserTalk, " ", Bubbleused);
             }
         }
 

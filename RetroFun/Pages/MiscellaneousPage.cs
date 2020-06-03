@@ -717,13 +717,13 @@ namespace RetroFun.Pages
         private async void SendGesturePacket(HGesture Gesture)
         {
                 await Task.Delay(150);
-                await AwaitSendToServer(Out.RoomUserAction, Gesture);
+                await SendToServer(Out.RoomUserAction, Gesture);
         }
 
         private async void SendDancePacket(HDance Dance)
         {
                 await Task.Delay(150);
-                await AwaitSendToServer(Out.RoomUserDance, Dance);
+                await SendToServer(Out.RoomUserDance, Dance);
         }
 
         private void SignCountThread()
@@ -949,7 +949,7 @@ namespace RetroFun.Pages
             if (SignCountEnabled)
             {
                 await Task.Delay(250);
-                await AwaitSendToServer(Out.RoomUserSign, Sign);
+                await SendToServer(Out.RoomUserSign, Sign);
             }
         }
 
@@ -1087,7 +1087,7 @@ namespace RetroFun.Pages
         private async void SendLookPacket(string look)
         {
                 await Task.Delay(50);
-                await AwaitSendToServer(Out.UserSaveLook, "M", look);
+                await SendToServer(Out.UserSaveLook, "M", look);
         }
 
 

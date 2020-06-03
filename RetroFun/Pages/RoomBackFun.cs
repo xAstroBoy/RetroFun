@@ -208,13 +208,13 @@ namespace RetroFun.Pages
         {
                 if (isLiveEditing)
                 {
-                    await AwaitSendToServer(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
+                    await SendToServer(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
                 }
         }
 
         public async void SendRoomBackgroundPacket(int furnid, int Tonality, int saturation, int luminosity)
         {
-                await AwaitSendToServer(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
+                await SendToServer(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
         }
 
         private void GlobalSpeedCheck()

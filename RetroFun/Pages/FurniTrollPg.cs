@@ -920,19 +920,19 @@ namespace RetroFun.Pages
         {
                 if(flooritems.Contains(FurnID))
                 {
-                    await AwaitSendToServer(Out.ToggleFloorItem, FurnID);
+                    await SendToServer(Out.ToggleFloorItem, FurnID);
                 }
                 if(Wallitems.Contains(FurnID))
                 {
-                    await AwaitSendToServer(Out.ToggleWallItem, FurnID);
+                    await SendToServer(Out.ToggleWallItem, FurnID);
                 }
                 if(wheelitems.Contains(FurnID))
                 {
-                    await AwaitSendToServer(Out.TriggerColorWheel, FurnID);
+                    await SendToServer(Out.TriggerColorWheel, FurnID);
                 }
                 if (Diceitems.Contains(FurnID))
                 {
-                    await AwaitSendToServer(Out.TriggerDice, FurnID);
+                    await SendToServer(Out.TriggerDice, FurnID);
                 }
         }
         public void RegisterFurni(int FurnID)

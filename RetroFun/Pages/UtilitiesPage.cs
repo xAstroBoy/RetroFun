@@ -314,7 +314,7 @@ namespace RetroFun.Pages
         private async void SendExchangePacket(int furniid)
         {
             await Task.Delay(350);
-                await AwaitSendToServer(Out.RedeemItem, furniid);
+                await SendToServer(Out.RedeemItem, furniid);
             await Task.Delay(50);
         }
 
@@ -373,7 +373,7 @@ namespace RetroFun.Pages
             for (int i = 0; i < CreditMultiplierAmount; i++)
             {
                 await Task.Delay(50);
-                    await AwaitSendToServer(Out.RedeemItem, furniid);
+                    await SendToServer(Out.RedeemItem, furniid);
                 
             }
         }
@@ -381,7 +381,7 @@ namespace RetroFun.Pages
         {
             await Task.Delay(350);
 
-                await AwaitSendToServer(Out.OpenRecycleBox, furniid);
+                await SendToServer(Out.OpenRecycleBox, furniid);
             
             await Task.Delay(50);
         }
@@ -401,7 +401,7 @@ namespace RetroFun.Pages
         private async void SendRoomBGPacket(int FurnID, int RoomBG_X, int OffsetX, int OffsetY, int OffsetZ, string URL)
         {
             await Task.Delay(250);
-            await AwaitSendToServer(Out.AdvertisingSave, FurnID, RoomBG_X, "imageUrl", URL, "offsetX", OffsetX.ToString(), "offsetY", OffsetY.ToString(), "offsetZ", OffsetZ.ToString());
+            await SendToServer(Out.AdvertisingSave, FurnID, RoomBG_X, "imageUrl", URL, "offsetX", OffsetX.ToString(), "offsetY", OffsetY.ToString(), "offsetZ", OffsetZ.ToString());
         }
 
 
@@ -491,7 +491,7 @@ namespace RetroFun.Pages
         private async void SetStackerThread(int id, int height)
         {
                 await Task.Delay(150);
-                await AwaitSendToServer(Out.SetStackHelperHeight, id, height);
+                await SendToServer(Out.SetStackHelperHeight, id, height);
         }
 
 

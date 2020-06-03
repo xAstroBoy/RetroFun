@@ -471,7 +471,7 @@ namespace RetroFun.Pages
         {
             await Task.Delay(RaidUserCooldownCooldown);
 
-                await AwaitSendToServer(Out.RoomUserTalk, " " + message, bubbleid);
+                await SendToServer(Out.RoomUserTalk, " " + message, bubbleid);
             return;
         }
 
@@ -479,7 +479,7 @@ namespace RetroFun.Pages
         {
             await Task.Delay(RaidUserCooldownCooldown);
 
-                await AwaitSendToServer(Out.RoomUserTalk, " " + message, bubbleid);
+                await SendToServer(Out.RoomUserTalk, " " + message, bubbleid);
             return;
         }
 

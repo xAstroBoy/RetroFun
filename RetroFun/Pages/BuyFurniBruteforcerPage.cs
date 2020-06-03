@@ -445,7 +445,7 @@ namespace RetroFun.Pages
         private async void SendPacket(int PageID, int FurniID)
         {
                 await Task.Delay(30);
-                await AwaitSendToServer(
+                await SendToServer(
                 Out.CatalogBuyItem,
                 PageID,
                 FurniID,

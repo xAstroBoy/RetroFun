@@ -771,7 +771,7 @@ namespace RetroFun.Pages
                 if (isTalkAvailable && !HasEffectBeenRemoved)
                 {
                     await Task.Delay(500);
-                    await AwaitSendToServer(Out.RoomUserTalk, ":enable 0", GlobalInts.Selected_bubble_ID);
+                    await SendToServer(Out.RoomUserTalk, ":enable 0", GlobalInts.Selected_bubble_ID);
                     isTalkAvailable = false;
                 }
             }
@@ -797,7 +797,7 @@ namespace RetroFun.Pages
         private async void RoomBypass()
         {
             await Task.Delay(200);
-            await AwaitSendToServer(Out.RequestRoomHeightmap);
+            await SendToServer(Out.RequestRoomHeightmap);
             WriteToButton(AutomaticBypassBtn, "Automatic: OFF");
             AutomaticAttempt = false;
         }
@@ -843,10 +843,10 @@ namespace RetroFun.Pages
                     foreach (HEntity user in GlobalLists.UsersInRoom)
                     {
                         Thread.Sleep(50);
-                        await AwaitSendToServer(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
-                        await AwaitSendToServer(Out.RoomUserGiveHandItem, user.Id);
+                        await SendToServer(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
+                        await SendToServer(Out.RoomUserGiveHandItem, user.Id);
                     }
-                    await AwaitSendToServer(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
+                    await SendToServer(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
 
                 }
             }

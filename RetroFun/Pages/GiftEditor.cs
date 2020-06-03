@@ -430,7 +430,7 @@ namespace RetroFun.Pages
                 return;
             }
 
-         await AwaitSendToServer(
+         await SendToServer(
          Out.CatalogBuyItemAsGift,
          PageIDInt,
          FurniIDint,
@@ -448,7 +448,7 @@ namespace RetroFun.Pages
         private async void SendBruteForceGiftPacket(string GiftBoxTest)
         {
 
-            await AwaitSendToServer(
+            await SendToServer(
             Out.CatalogBuyItemAsGift,
             PageIDInt,
             FurniIDint,

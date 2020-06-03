@@ -307,25 +307,25 @@ namespace RetroFun.Pages
             if (KnownDomains.isBobbaHotel)
             {
                 await Task.Delay(500);
-                await AwaitSendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
+                await SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
             }
             else if (KnownDomains.isHartico)
             {
                 await Task.Delay(500);
-                await AwaitSendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
+                await SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
             }
         }
 
         private async void AssignClientEffectToMyself(int Effect)
         {
-            await AwaitSendToClient(In.RoomUserEffect, GlobalInts.OwnUser_index, Effect, 0);
+            await SendToClient(In.RoomUserEffect, GlobalInts.OwnUser_index, Effect, 0);
         }
 
         private async void AssignClientEffectToUser(HEntity Entity, int Effect)
         {
             if (Entity != null)
             {
-                await AwaitSendToClient(In.RoomUserEffect, Entity.Index, Effect, 0);
+                await SendToClient(In.RoomUserEffect, Entity.Index, Effect, 0);
             }
         }
 
@@ -546,9 +546,9 @@ namespace RetroFun.Pages
 
         private async void ReplaceUserPacketInfo(int userid)
         {
-            await AwaitSendToServer(Out.RequestWearingBadges, userid);
+            await SendToServer(Out.RequestWearingBadges, userid);
             await Task.Delay(150);
-            await AwaitSendToServer(Out.RequestProfileFriends, userid);
+            await SendToServer(Out.RequestProfileFriends, userid);
 
         }
 

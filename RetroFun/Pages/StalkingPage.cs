@@ -160,7 +160,7 @@ namespace RetroFun.Pages
                         {
                             if (!isUserManualWalking)
                             {
-                                    await AwaitSendToServer(Out.RoomUserWalk, i, j);
+                                    await SendToServer(Out.RoomUserWalk, i, j);
                                     await Task.Delay(CooldownWalking);
                             }
                             else

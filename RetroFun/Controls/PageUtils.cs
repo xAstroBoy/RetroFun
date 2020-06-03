@@ -32,98 +32,74 @@ namespace RetroFun.Controls
         protected HHotel Hotel => Module?.Hotel ?? HHotel.Unknown;
 
 
-        internal void SendToClient(byte[] data)
+        internal Task<int> SendToClient(byte[] data)
         {
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToClientAsync(data);
+               return Connection.SendToClientAsync(data);
+            }
+            else
+            {
+                return null;
             }
         }
 
-        internal void SendToClient(HMessage packet)
+        internal Task<int> SendToClient(HMessage packet)
         {
             if (Connection.Remote.IsConnected)
             {
-                Connection.SendToClientAsync(packet);
+                return Connection.SendToClientAsync(packet);
             }
-        }
-
-
-        internal void SendToClient(ushort id, params object[] values)
-        {
-            if (Connection.Remote.IsConnected)
+            else
             {
-                Connection.SendToClientAsync(id, values);
-            }
-        }
-
-        internal void SendToServer(byte[] data)
-        {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(data);
-            }
-        }
-        internal void SendToServer(HMessage packet)
-        {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(packet);
-            }
-        }
-        internal void SendToServer(ushort id, params object[] values)
-        {
-            if (Connection.Remote.IsConnected)
-            {
-                Connection.SendToServerAsync(id, values);
+                return null;
             }
         }
 
 
-        internal async Task AwaitSendToClient(byte[] data)
+        internal Task<int> SendToClient(ushort id, params object[] values)
         {
             if (Connection.Remote.IsConnected)
             {
-                await Connection.SendToClientAsync(data);
+                return Connection.SendToClientAsync(id, values);
+            }
+            else
+            {
+                return null;
             }
         }
 
-        internal async Task AwaitSendToClient(HMessage packet)
+        internal Task<int> SendToServer(byte[] data)
         {
             if (Connection.Remote.IsConnected)
             {
-                await Connection.SendToClientAsync(packet);
+                return Connection.SendToServerAsync(data);
+            }
+            else
+            {
+                return null;
             }
         }
-
-
-        internal async Task AwaitSendToClient(ushort id, params object[] values)
+        internal Task<int> SendToServer(HMessage packet)
         {
             if (Connection.Remote.IsConnected)
             {
-                await Connection.SendToClientAsync(id, values);
+                return Connection.SendToServerAsync(packet);
+            }
+            else
+            {
+                return null;
             }
         }
-
-        internal async Task AwaitSendToServer(byte[] data)
+        internal Task<int> SendToServer(ushort id, params object[] values)
         {
             if (Connection.Remote.IsConnected)
             {
-                await Connection.SendToServerAsync(data);
+                return Connection.SendToServerAsync(id, values);
             }
-        }
-        internal async Task AwaitSendToServer(HMessage packet)
-        {
-            if (Connection.Remote.IsConnected)
+            else
             {
-                await Connection.SendToServerAsync(packet);
-            }
-        }
-        internal async Task AwaitSendToServer(ushort id, params object[] values)
-        {
-            if (Connection.Remote.IsConnected)
-            {
-                await Connection.SendToServerAsync(id, values);
+                return null;
             }
         }
 

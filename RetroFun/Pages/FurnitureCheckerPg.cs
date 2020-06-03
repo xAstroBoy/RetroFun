@@ -568,7 +568,7 @@ namespace RetroFun.Pages
         private async void HideFurnisClient(HWallItem item)
         {
                 await Task.Delay(250);
-                await AwaitSendToClient(In.RemoveWallItem, item.Id.ToString(), 0);
+                await SendToClient(In.RemoveWallItem, item.Id.ToString(), 0);
         }
 
 
@@ -577,12 +577,12 @@ namespace RetroFun.Pages
                 await Task.Delay(250);
                 if (In.RemoveFloorItem == 0 && KnownDomains.isBobbaHotel)
                 {
-                    await AwaitSendToClient(2411, item.Id.ToString(), false, 0, 0);
+                    await SendToClient(2411, item.Id.ToString(), false, 0, 0);
                     return;
                 }
                 else
                 {
-                    await AwaitSendToClient(In.RemoveFloorItem, item.Id.ToString(), false, 0, 0);
+                    await SendToClient(In.RemoveFloorItem, item.Id.ToString(), false, 0, 0);
                     return;
                 }
         }
@@ -1657,12 +1657,12 @@ namespace RetroFun.Pages
         private async void SpeakAnyways(string text, int bubble)
         {
                 await Task.Delay(150);
-                await AwaitSendToClient(In.RoomUserTalk, 0, text, 0, bubble, 0, -1);
+                await SendToClient(In.RoomUserTalk, 0, text, 0, bubble, 0, -1);
         }
         private async void SpeakAnyways(string text)
         {
                 await Task.Delay(150);
-                await AwaitSendToClient(In.RoomUserTalk, 0, text, 0, 34, 0, -1);
+                await SendToClient(In.RoomUserTalk, 0, text, 0, 34, 0, -1);
         }
 
         private async void Speak(string text)
@@ -1670,7 +1670,7 @@ namespace RetroFun.Pages
             if (!isQuietMode)
             {
                     await Task.Delay(150);
-                    await AwaitSendToClient(In.RoomUserTalk, 0, text, 0, 34, 0, -1);
+                    await SendToClient(In.RoomUserTalk, 0, text, 0, 34, 0, -1);
             }
         }
 
@@ -1679,7 +1679,7 @@ namespace RetroFun.Pages
             if (!isQuietMode)
             {
                     await Task.Delay(50);
-                    await AwaitSendToClient(In.RoomUserTalk, 0, text, 0, bubble, 0, -1);
+                    await SendToClient(In.RoomUserTalk, 0, text, 0, bubble, 0, -1);
             }
         }
 
