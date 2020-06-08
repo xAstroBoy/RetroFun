@@ -81,39 +81,45 @@ namespace RetroFun.Handlers
 
         public override void In_AddFloorItem(DataInterceptedEventArgs e)
         {
-            if (!KnownDomains.isHartico)
+            if (KnownDomains.isDomainRecognized)
             {
-                try
+                if (!KnownDomains.isHartico)
                 {
-                    var furni = new HFloorItem(e.Packet);
-                    if (RemFloorFurni.Contains(furni))
+                    try
                     {
-                        RemFloorFurni.Remove(furni);
+                        var furni = new HFloorItem(e.Packet);
+                        if (RemFloorFurni.Contains(furni))
+                        {
+                            RemFloorFurni.Remove(furni);
+                        }
+                        if (!RoomFloorFurni.Contains(furni))
+                        {
+                            RoomFloorFurni.Add(furni);
+                        }
+                        if (KnownDomains.isBobbaHotel)
+                        {
+                            FloorFurniCheck.HandleAddedFurni(furni);
+                        }
                     }
-                    if (!RoomFloorFurni.Contains(furni))
-                    {
-                        RoomFloorFurni.Add(furni);
-                    }
-                    if (KnownDomains.isBobbaHotel)
-                    {
-                        FloorFurniCheck.HandleAddedFurni(furni);
-                    }
+                    catch (Exception) { }
                 }
-                catch (Exception) { }
             }
         }
 
         public override void In_RoomWallItems(DataInterceptedEventArgs e)
         {
-            if (!KnownDomains.isHartico)
+            if (KnownDomains.isDomainRecognized)
             {
-                if (KnownDomains.isBobbaHotel)
+                if (!KnownDomains.isHartico)
                 {
-                    RoomWallFurni = WallFurnitures.BobbaParser(e.Packet);
-                }
-                else
-                {
-                    RoomWallFurni = HWallItem.Parse(e.Packet).ToList();
+                    if (KnownDomains.isBobbaHotel)
+                    {
+                        RoomWallFurni = WallFurnitures.BobbaParser(e.Packet);
+                    }
+                    else
+                    {
+                        RoomWallFurni = HWallItem.Parse(e.Packet).ToList();
+                    }
                 }
             }
         }

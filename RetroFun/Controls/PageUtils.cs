@@ -4,10 +4,12 @@ using Sulakore.Habbo;
 using Sulakore.Habbo.Messages;
 using Sulakore.Habbo.Web;
 using Sulakore.Protocol;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -32,75 +34,80 @@ namespace RetroFun.Controls
         protected HHotel Hotel => Module?.Hotel ?? HHotel.Unknown;
 
 
-        internal Task<int> SendToClient(byte[] data)
+        internal async Task SendToClient(byte[] data)
         {
-            if (Connection.Remote.IsConnected)
+            try
             {
-               return Connection.SendToClientAsync(data);
+                if (Connection.Remote.IsConnected)
+                {
+                    await Connection.SendToClientAsync(data);
+                }
             }
-            else
-            {
-                return null;
-            }
+            catch (Exception) { }
+
         }
 
-        internal Task<int> SendToClient(HMessage packet)
+        internal async Task SendToClient(HMessage packet)
         {
-            if (Connection.Remote.IsConnected)
+            try
             {
-                return Connection.SendToClientAsync(packet);
+                if (Connection.Remote.IsConnected)
+                {
+                    await Connection.SendToClientAsync(packet);
+                }
             }
-            else
-            {
-                return null;
-            }
+            catch (Exception) { }
         }
 
 
-        internal Task<int> SendToClient(ushort id, params object[] values)
+        internal async Task SendToClient(ushort id, params object[] values)
         {
-            if (Connection.Remote.IsConnected)
+            try
             {
-                return Connection.SendToClientAsync(id, values);
+                if (Connection.Remote.IsConnected)
+                {
+                    await Connection.SendToClientAsync(id, values);
+                }
             }
-            else
-            {
-                return null;
-            }
+            catch (Exception) { }
         }
 
-        internal Task<int> SendToServer(byte[] data)
+        internal async Task SendToServer(byte[] data)
         {
-            if (Connection.Remote.IsConnected)
+            try
             {
-                return Connection.SendToServerAsync(data);
+                if (Connection.Remote.IsConnected)
+                {
+                    await Connection.SendToServerAsync(data);
+                }
+
             }
-            else
-            {
-                return null;
-            }
+            catch (Exception) { }
+
         }
-        internal Task<int> SendToServer(HMessage packet)
+        internal async Task SendToServer(HMessage packet)
         {
-            if (Connection.Remote.IsConnected)
+            try
             {
-                return Connection.SendToServerAsync(packet);
+                if (Connection.Remote.IsConnected)
+                {
+                    await Connection.SendToServerAsync(packet);
+                }
+
             }
-            else
-            {
-                return null;
-            }
+            catch (Exception) { }
+
         }
-        internal Task<int> SendToServer(ushort id, params object[] values)
+        internal async Task SendToServer(ushort id, params object[] values)
         {
-            if (Connection.Remote.IsConnected)
+            try
             {
-                return Connection.SendToServerAsync(id, values);
+                if (Connection.Remote.IsConnected)
+                {
+                    await Connection.SendToServerAsync(id, values);
+                }
             }
-            else
-            {
-                return null;
-            }
+            catch (Exception) { }
         }
 
         public PageUtils()
@@ -164,7 +171,7 @@ namespace RetroFun.Controls
             }
         }
 
-        internal void RaiseOnPropertyChanged([CallerMemberName]string propertyName = "")
+        internal void RaiseOnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }

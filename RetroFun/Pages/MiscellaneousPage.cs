@@ -22,8 +22,12 @@ namespace RetroFun.Pages
     {
         private Random Randomizer = new Random();
         private bool newroom = true;
-
-
+        private int totroomdeleted = 0;
+        private List<int> RoomIDDeleted = new List<int>();
+        private List<HRoomEntry> foundrooms = new List<HRoomEntry>();
+        private List<HRoomEntry> foundroomsSnap = new List<HRoomEntry>();
+        private bool isRoomToDelete;
+        private int RoomIDToDelete;
         #region Vars
 
         private bool SignCountEnabled;
@@ -33,6 +37,7 @@ namespace RetroFun.Pages
         private bool SitModeEnabled;
         private bool DanceLoopEnabled;
         private bool TrollLookMode;
+        private bool RemoveTargetRoomsEnabled;
 
         private readonly string TrollLook1 = "hr-155-42.ea-1333-33.ha-3786-62.ch-201410-89.sh-3333-3333.ca-3333-33-33.lg-44689-82.wa-3333-333.hd-209-1";
         private readonly string TrollLook2 = "hr-893-42.ea-1333-33.ha-3786-62.sh-6298462-82.wa-3333-333.ca-3333-33-33.lg-5772038-82-62.ch-987462876-89.hd-209-1";
@@ -424,6 +429,21 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+
+        private bool _DeleteRoomOnEnter;
+
+        public bool DeleteRoomOnEnter
+        {
+            get => _DeleteRoomOnEnter;
+            set
+            {
+                _DeleteRoomOnEnter = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+
 
         private bool _NineSelected;
 
@@ -958,7 +978,6 @@ namespace RetroFun.Pages
             newroom = true;
         }
 
-
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
             newroom = true;
@@ -1361,5 +1380,76 @@ namespace RetroFun.Pages
             SendToServer(Out.RequestDeleteRoom, GlobalInts.ROOM_ID);
         }
 
+
+        //private async void DeleteRoomMode()
+        //{
+        //        new Thread(() =>
+        //        {
+        //            Thread.CurrentThread.IsBackground = true;
+        //            do
+        //            {
+        //                try
+        //                {
+        //                    foreach (HRoomEntry roomdetail in foundroomsSnap)
+        //                    {
+        //                        if (roomdetail.Name.ToLower().StartsWith("www."))
+        //                        {
+        //                            if (!RoomIDDeleted.Contains(roomdetail.Id))
+        //                            {
+        //                                SendToServer(Out.RequestRoomLoad, roomdetail.Id);
+        //                                Console.WriteLine("Entering Room : " + roomdetail.Id);
+        //                                Thread.Sleep(150);
+        //                                SendToServer(Out.RequestDeleteRoom, roomdetail.Id);
+        //                                totroomdeleted++;
+        //                                Console.WriteLine("Deleted Room nr : " + roomdetail.Id + " Room Owner is : " + roomdetail.OwnerName + " Tot Room Deleted : " + totroomdeleted);
+        //                                RoomIDDeleted.Add(roomdetail.Id);
+        //                                Thread.Sleep(250);
+        //                            }
+        //                        }
+        //                    }
+        //                    RemoveTargetRoomsEnabled = false;
+        //                    SendToServer(Out.RequestNewNavigatorRooms, "hotel_view", "roomname:www.");
+        //                }
+        //                catch (Exception) { }
+        //            } while (RemoveTargetRoomsEnabled);
+        //        }).Start();
+        //    }
+
+
+
+
+
+
+        //public override void In_NewNavigatorSearchResults(DataInterceptedEventArgs e)
+        //{
+        //    foundrooms.Clear();
+        //    var results = HSearchResult.Parse(e.Packet);
+        //    foreach (HSearchResult rooms in results)
+        //    {
+        //        foreach (HRoomEntry targetrooms in rooms.Rooms)
+        //        {
+        //            if (targetrooms.Name.ToLower().StartsWith("www."))
+        //            {
+        //                if (!RoomIDDeleted.Contains(targetrooms.Id))
+        //                {
+        //                    if (!foundrooms.Contains(targetrooms))
+        //                    {
+        //                        foundrooms.Add(targetrooms);
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    Console.WriteLine("Tot Rooms to delete : " + foundrooms.Count());
+        //    if (foundrooms.Count != 0)
+        //    {
+        //        foundroomsSnap = foundrooms;
+        //        if (!RemoveTargetRoomsEnabled)
+        //        {
+        //            RemoveTargetRoomsEnabled = true;
+        //            DeleteRoomMode();
+        //        }
+        //    }
+        //}
     }
 }

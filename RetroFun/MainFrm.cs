@@ -636,7 +636,7 @@ namespace RetroFun
                 //else if (In.NewNavigatorMetaData == id){sub.In_NewNavigatorMetaData(e);}
                 //else if (In.NewNavigatorRoomEvent == id){sub.In_NewNavigatorRoomEvent(e);}
                 //else if (In.NewNavigatorSavedSearches == id){sub.In_NewNavigatorSavedSearches(e);}
-                //else if (In.NewNavigatorSearchResults == id){sub.In_NewNavigatorSearchResults(e);}
+                else if (In.NewNavigatorSearchResults == id){sub.In_NewNavigatorSearchResults(e);}
                 //else if (In.NewNavigatorSettings == id){sub.In_NewNavigatorSettings(e);}
                 //else if (In.NewUserGift == id){sub.In_NewUserGift(e);}
                 //else if (In.NewUserIdentity == id){sub.In_NewUserIdentity(e);}
