@@ -200,7 +200,7 @@
             // 
             // FloodBtn
             // 
-            this.FloodBtn.Location = new System.Drawing.Point(925, 44);
+            this.FloodBtn.Location = new System.Drawing.Point(1038, 26);
             this.FloodBtn.Name = "FloodBtn";
             this.FloodBtn.Size = new System.Drawing.Size(160, 37);
             this.FloodBtn.TabIndex = 0;
@@ -352,7 +352,7 @@
             this.groupBox5.Controls.Add(this.BanForNicknameNotAllowedBtn);
             this.groupBox5.Controls.Add(this.BanForSecurityLockBtn);
             this.groupBox5.Controls.Add(this.BanUserForSpamBtn);
-            this.groupBox5.Location = new System.Drawing.Point(612, 8);
+            this.groupBox5.Location = new System.Drawing.Point(748, 3);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(284, 266);
             this.groupBox5.TabIndex = 39;
@@ -403,7 +403,7 @@
             this.groupBox6.Controls.Add(this.BantimeCmbx);
             this.groupBox6.Controls.Add(this.BanManualReasonTxb);
             this.groupBox6.Controls.Add(this.ManualBanBtn);
-            this.groupBox6.Location = new System.Drawing.Point(644, 289);
+            this.groupBox6.Location = new System.Drawing.Point(757, 296);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(441, 299);
             this.groupBox6.TabIndex = 40;
@@ -500,7 +500,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Name = "ModerationPage";
-            this.Size = new System.Drawing.Size(1103, 612);
+            this.Size = new System.Drawing.Size(1221, 612);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox4.ResumeLayout(false);

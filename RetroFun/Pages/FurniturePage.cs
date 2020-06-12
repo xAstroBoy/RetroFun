@@ -531,34 +531,34 @@ namespace RetroFun.Pages
         private async void RotationUp_CheckedChanged(object sender, EventArgs e)
         {
             FloorFurniRotation = 6;
-                await SendToServer(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+                await  SendToServer(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
         }
 
         private async void RotationRight_CheckedChanged(object sender, EventArgs e)
         {
             FloorFurniRotation = 0;
 
-                await SendToServer(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+                await  SendToServer(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
 
         }
 
         private async void RotationDown_CheckedChanged(object sender, EventArgs e)
         {
             FloorFurniRotation = 2;
-                await SendToServer(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+                await  SendToServer(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
         }
 
         private async void rotationLeft_CheckedChanged(object sender, EventArgs e)
         {
             FloorFurniRotation = 4;
-                await SendToServer(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+                await  SendToServer(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
             
         }
 
 
         private async void RotateItem(int furnitureId, int two, int three, int Rotation)
         {
-                await SendToClient(In.FloorItemUpdate, furnitureId, 0, two, three, 0, Rotation, 0, 0, 0, 0, 0, 0, 0);
+                await  SendToClient(In.FloorItemUpdate, furnitureId, 0, two, three, 0, Rotation, 0, 0, 0, 0, 0, 0, 0);
         }
 
 
@@ -576,11 +576,11 @@ namespace RetroFun.Pages
         {
             if (RoomFloorFurni != null && !(RoomFloorFurni.Count == 0))
             {
-                    SendToClient(FloorFurnitures.PacketBuilder(RoomFloorFurni, In.RoomFloorItems));
+                    _ = SendToClient(FloorFurnitures.PacketBuilder(RoomFloorFurni, In.RoomFloorItems));
             }
             if (RoomWallFurni != null && !(RoomWallFurni.Count == 0))
             {
-                SendToClient(WallFurnitures.PacketBuilder(RoomWallFurni, In.RoomWallItems));
+                _ = SendToClient(WallFurnitures.PacketBuilder(RoomWallFurni, In.RoomWallItems));
             }
             else
             {
@@ -594,13 +594,13 @@ namespace RetroFun.Pages
         private async void Speak(string text)
         {
                 await Task.Delay(150);
-                await SendToClient(In.RoomUserTalk, 0, text, 0, 34, 0, -1);
+                await  SendToClient(In.RoomUserTalk, 0, text, 0, 34, 0, -1);
         }
 
         private async void Speak(string text, int bubble)
         {
                 await Task.Delay(50);
-                await SendToClient(In.RoomUserTalk, 0, text, 0, bubble, 0, -1);
+                await  SendToClient(In.RoomUserTalk, 0, text, 0, bubble, 0, -1);
         }
 
         private void WalkAsSelectedFurniBtn_Click(object sender, EventArgs e)
@@ -673,7 +673,7 @@ namespace RetroFun.Pages
         public async void TeleportfurniToCoord(int X, int Y)
         {
 
-                await SendToServer(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
+                await  SendToServer(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
         }
 
 
@@ -735,14 +735,14 @@ namespace RetroFun.Pages
         {
             if (ConvertWalkinFurniMovement)
             {
-                    SendToServer(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
+                    _ = SendToServer(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
             }
         }
         private void FloorFurniXNbx_ValueChanged(object sender, EventArgs e)
         {
             if (ConvertWalkinFurniMovement)
             {
-                SendToServer(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+                _ = SendToServer(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
             }
         }
 
@@ -750,7 +750,7 @@ namespace RetroFun.Pages
         {
             if (ConvertWalkinFurniMovement)
             {
-                SendToServer(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
+                _ = SendToServer(Out.RotateMoveItem, FloorFurniID, FloorFurniX, FloorFurniY, FloorFurniRotation);
             }
         }
 
@@ -841,15 +841,15 @@ namespace RetroFun.Pages
 
         private void PickFurniSS(int furniID)
         {
-            SendToServer(Out.RoomPickupItem, 2, furniID);
+            _ = SendToServer(Out.RoomPickupItem, 2, furniID);
         }
         private void PickFurniSS(HFloorItem furni)
         {
-            SendToServer(Out.RoomPickupItem, 2, furni.Id);
+            _ = SendToServer(Out.RoomPickupItem, 2, furni.Id);
         }
         private void PickFurniSS(HWallItem furni)
         {
-            SendToServer(Out.RoomPickupItem, 2, furni.Id);
+            _ = SendToServer(Out.RoomPickupItem, 2, furni.Id);
         }
         private void DoubleClickFurnitureRemovalChbx_CheckedChanged(object sender, EventArgs e)
         {
@@ -1078,20 +1078,20 @@ namespace RetroFun.Pages
         private async void HideFurnisClient(HWallItem item)
         {
                 await Task.Delay(250);
-                await SendToClient(In.RemoveWallItem, item.Id.ToString(), 0);
+                await  SendToClient(In.RemoveWallItem, item.Id.ToString(), 0);
         }
         private async void HideFurnisClient(HFloorItem item)
         {
             if (In.RemoveFloorItem == 0 && KnownDomains.isBobbaHotel)
             {
                 await Task.Delay(250);
-                await SendToClient(2411, item.Id.ToString(), false, 0, 0);
+                await  SendToClient(2411, item.Id.ToString(), false, 0, 0);
                 return;
             }
             else
             {
                 await Task.Delay(250);
-                await SendToClient(In.RemoveFloorItem, item.Id.ToString(), false, 0, 0);
+                await  SendToClient(In.RemoveFloorItem, item.Id.ToString(), false, 0, 0);
                 return;
             }
         }

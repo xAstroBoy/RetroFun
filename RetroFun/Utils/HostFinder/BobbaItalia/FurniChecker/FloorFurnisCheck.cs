@@ -163,8 +163,8 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
 
         public static void HandleRemovedFurni(HFloorItem item)
         {
-            if (IrregularFloorFurni.Contains(item)) if (!RemovedIrregularFloorFurnis.Contains(item)) RemovedIrregularFloorFurnis.Add(item);
-            if (RegularFloorFurni.Contains(item)) if (!RemovedRegularFloorFurnis.Contains(item)) RemovedRegularFloorFurnis.Add(item);
+            if (IrregularFloorFurni.Contains(item)) { IrregularFloorFurni.Remove(item); if (!RemovedIrregularFloorFurnis.Contains(item)) { RemovedIrregularFloorFurnis.Add(item); } }
+            if (RegularFloorFurni.Contains(item)) { RegularFloorFurni.Remove(item); if (!RemovedRegularFloorFurnis.Contains(item)) { RemovedRegularFloorFurnis.Add(item); } }
             if (WhiteListedFloorFurni.Contains(item)) { WhiteListedFloorFurni.Remove(item); }
             if (HIDDEN_IRREGULAR_FLOORFURNIS.Contains(item)) { HIDDEN_IRREGULAR_FLOORFURNIS.Remove(item); }
             if (HIDDEN_REGULAR_FLOORFURNIS.Contains(item)) { HIDDEN_REGULAR_FLOORFURNIS.Remove(item); }

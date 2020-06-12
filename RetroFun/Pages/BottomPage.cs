@@ -50,7 +50,7 @@ namespace RetroFun.Pages
 
         private void Speak(string text)
         {
-                SendToClient(In.RoomUserWhisper, 0, "[RetroFun Init]: " + text, 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[RetroFun Init]: " + text, 0, 34, 0, -1);
         }
 
 
@@ -58,7 +58,7 @@ namespace RetroFun.Pages
         {
             if (OwnUsername == null)
             {
-                    await SendToServer(Out.RequestUserData);
+                   await  SendToServer(Out.RequestUserData);
             }
             if (!KnownDomains.isDomainRecognized)
             {

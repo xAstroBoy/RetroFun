@@ -378,7 +378,7 @@ namespace RetroFun.Pages
         {
             if (UserNickname != GlobalStrings.UserDetails_Username)
             {
-                SendToServer(Out.RoomUserTalk, ":ban " + username + " " + time + " " + reason);
+                _ = SendToServer(Out.RoomUserTalk, ":ban " + username + " " + time + " " + reason);
                 RecordModeration("BAN", username, reason, time);
             }
         }
@@ -387,7 +387,7 @@ namespace RetroFun.Pages
         {
             if (UserNickname != GlobalStrings.UserDetails_Username)
             {
-                SendToServer(Out.RoomUserTalk, ":mutam " + username + " " + time);
+                _ = SendToServer(Out.RoomUserTalk, ":mutam " + username + " " + time);
                 RecordModeration("MUTE", username, "" , time);
 
             }
@@ -396,7 +396,7 @@ namespace RetroFun.Pages
         {
             if (UserNickname != GlobalStrings.UserDetails_Username)
             {
-                SendToServer(Out.RoomUserTalk, ":unmute " + username);
+                _ = SendToServer(Out.RoomUserTalk, ":unmute " + username);
                 RecordModeration("UNMUTE", username, "");
 
             }
@@ -406,7 +406,7 @@ namespace RetroFun.Pages
         {
             if (UserNickname != GlobalStrings.UserDetails_Username)
             {
-                SendToServer(Out.RoomUserTalk, ":alert " + username + " " + reason);
+                _ = SendToServer(Out.RoomUserTalk, ":alert " + username + " " + reason);
                 RecordModeration("ALERT", username, reason);
 
             }
@@ -417,7 +417,7 @@ namespace RetroFun.Pages
         {
             if (UserNickname != GlobalStrings.UserDetails_Username)
             {
-                SendToServer(Out.RoomUserTalk, ":cacciam " + username + " " + reason);
+                _ = SendToServer(Out.RoomUserTalk, ":cacciam " + username + " " + reason);
                 RecordModeration("KICK CON ALERT", username, reason);
 
             }
@@ -842,7 +842,7 @@ namespace RetroFun.Pages
 
         private void GetUserInfoBtn_Click(object sender, EventArgs e)
         {
-            SendToServer(Out.RoomUserTalk, ":userinfo " + GetUserinfoTargetUser, GlobalInts.Selected_bubble_ID);
+            _ = SendToServer(Out.RoomUserTalk, ":userinfo " + GetUserinfoTargetUser, GlobalInts.Selected_bubble_ID);
         }
     }
 }

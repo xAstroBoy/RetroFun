@@ -12,6 +12,8 @@ using RetroFun.Utils.Furnitures.WallFurni;
 using RetroFun.Helpers;
 using Microsoft.Office.Interop.Excel;
 using System.Threading;
+using System.Runtime.CompilerServices;
+using RetroFun.Utils.Chatlogger;
 
 namespace RetroFun.Pages
 {
@@ -302,19 +304,65 @@ namespace RetroFun.Pages
             Bind(StackerEndRangeNbx, "Value", nameof(StackerRangeEndHeight));
             Bind(StackerThreadDelayNbx, "Value", nameof(StackerThreadDelay));
 
-            
-
-
-
-
+          
         }
+
+
+
+        //public override void In_ModToolRoomChatlog(DataInterceptedEventArgs e)
+        //{
+        //    HChatlineData test = new HChatlineData(e.Packet);
+        //    foreach(var val in test.Message)
+        //    {
+        //        Console.WriteLine(val);
+        //    }
+
+
+
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
         private async void SendExchangePacket(int furniid)
         {
             await Task.Delay(350);
-                await SendToServer(Out.RedeemItem, furniid);
+               await  SendToServer(Out.RedeemItem, furniid);
             await Task.Delay(50);
         }
 
@@ -373,7 +421,7 @@ namespace RetroFun.Pages
             for (int i = 0; i < CreditMultiplierAmount; i++)
             {
                 await Task.Delay(50);
-                    await SendToServer(Out.RedeemItem, furniid);
+                   await  SendToServer(Out.RedeemItem, furniid);
                 
             }
         }
@@ -381,7 +429,7 @@ namespace RetroFun.Pages
         {
             await Task.Delay(350);
 
-                await SendToServer(Out.OpenRecycleBox, furniid);
+               await  SendToServer(Out.OpenRecycleBox, furniid);
             
             await Task.Delay(50);
         }
@@ -401,7 +449,7 @@ namespace RetroFun.Pages
         private async void SendRoomBGPacket(int FurnID, int RoomBG_X, int OffsetX, int OffsetY, int OffsetZ, string URL)
         {
             await Task.Delay(250);
-            await SendToServer(Out.AdvertisingSave, FurnID, RoomBG_X, "imageUrl", URL, "offsetX", OffsetX.ToString(), "offsetY", OffsetY.ToString(), "offsetZ", OffsetZ.ToString());
+           await  SendToServer(Out.AdvertisingSave, FurnID, RoomBG_X, "imageUrl", URL, "offsetX", OffsetX.ToString(), "offsetY", OffsetY.ToString(), "offsetZ", OffsetZ.ToString());
         }
 
 
@@ -485,13 +533,13 @@ namespace RetroFun.Pages
 
         private void SetStacker(int id, int height)
         {
-                SendToServer(Out.SetStackHelperHeight, id, height);
+                _ = SendToServer(Out.SetStackHelperHeight, id, height);
         }
 
         private async void SetStackerThread(int id, int height)
         {
                 await Task.Delay(150);
-                await SendToServer(Out.SetStackHelperHeight, id, height);
+               await  SendToServer(Out.SetStackHelperHeight, id, height);
         }
 
 
@@ -518,7 +566,7 @@ namespace RetroFun.Pages
         }
         private void Speak(string text)
         {
-                SendToClient(In.RoomUserWhisper, 0, "[Utilities]: " + text, 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Utilities]: " + text, 0, 34, 0, -1);
         }
 
 

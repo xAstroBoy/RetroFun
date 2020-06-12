@@ -568,7 +568,7 @@ namespace RetroFun.Pages
         private async void HideFurnisClient(HWallItem item)
         {
                 await Task.Delay(250);
-                await SendToClient(In.RemoveWallItem, item.Id.ToString(), 0);
+               await  SendToClient(In.RemoveWallItem, item.Id.ToString(), 0);
         }
 
 
@@ -577,12 +577,12 @@ namespace RetroFun.Pages
                 await Task.Delay(250);
                 if (In.RemoveFloorItem == 0 && KnownDomains.isBobbaHotel)
                 {
-                    await SendToClient(2411, item.Id.ToString(), false, 0, 0);
+                   await  SendToClient(2411, item.Id.ToString(), false, 0, 0);
                     return;
                 }
                 else
                 {
-                    await SendToClient(In.RemoveFloorItem, item.Id.ToString(), false, 0, 0);
+                   await  SendToClient(In.RemoveFloorItem, item.Id.ToString(), false, 0, 0);
                     return;
                 }
         }
@@ -1657,12 +1657,12 @@ namespace RetroFun.Pages
         private async void SpeakAnyways(string text, int bubble)
         {
                 await Task.Delay(150);
-                await SendToClient(In.RoomUserTalk, 0, text, 0, bubble, 0, -1);
+               await  SendToClient(In.RoomUserTalk, 0, text, 0, bubble, 0, -1);
         }
         private async void SpeakAnyways(string text)
         {
                 await Task.Delay(150);
-                await SendToClient(In.RoomUserTalk, 0, text, 0, 34, 0, -1);
+               await  SendToClient(In.RoomUserTalk, 0, text, 0, 34, 0, -1);
         }
 
         private async void Speak(string text)
@@ -1670,7 +1670,7 @@ namespace RetroFun.Pages
             if (!isQuietMode)
             {
                     await Task.Delay(150);
-                    await SendToClient(In.RoomUserTalk, 0, text, 0, 34, 0, -1);
+                   await  SendToClient(In.RoomUserTalk, 0, text, 0, 34, 0, -1);
             }
         }
 
@@ -1679,7 +1679,7 @@ namespace RetroFun.Pages
             if (!isQuietMode)
             {
                     await Task.Delay(50);
-                    await SendToClient(In.RoomUserTalk, 0, text, 0, bubble, 0, -1);
+                   await  SendToClient(In.RoomUserTalk, 0, text, 0, bubble, 0, -1);
             }
         }
 
@@ -1718,7 +1718,7 @@ namespace RetroFun.Pages
             pages.Clear();
             if (KnownDomains.isBobbaHotel)
             {
-                SendToServer(3566, "NORMAL");
+                _ = SendToServer(3566, "NORMAL");
             }
         }
 
@@ -1966,7 +1966,7 @@ namespace RetroFun.Pages
 
         private void PickFurniSS(int furniID)
         {
-            SendToServer(Out.RoomPickupItem, 2, furniID);
+            _ = SendToServer(Out.RoomPickupItem, 2, furniID);
         }
 
         private void DoubleClickFurnitureRemovalChbx_CheckedChanged(object sender, EventArgs e)
@@ -2784,7 +2784,7 @@ namespace RetroFun.Pages
                             foreach (HFloorItem floorfurni in SnapshotRegularFloorItems)
                             {
                                 Task.Delay(250);
-                                SendToServer(Out.RoomPickupItem, 2, floorfurni.Id);
+                                _ = SendToServer(Out.RoomPickupItem, 2, floorfurni.Id);
 
                                 if (RegularFloorFurni.Contains(floorfurni))
                                 {
@@ -2826,7 +2826,7 @@ namespace RetroFun.Pages
                             foreach (HWallItem wallitem in SnapshotRegularWallItems)
                             {
                                 Task.Delay(250);
-                                SendToServer(Out.RoomPickupItem, 2, wallitem.Id);
+                                _ = SendToServer(Out.RoomPickupItem, 2, wallitem.Id);
 
                                 if (RegularWallFurni.Contains(wallitem))
                                 {
@@ -2870,7 +2870,7 @@ namespace RetroFun.Pages
                             foreach (HFloorItem floorfurni in SnapShotIrregularFloorFurni)
                             {
                                 Task.Delay(250);
-                                SendToServer(Out.RoomPickupItem, 2, floorfurni.Id);
+                                _ = SendToServer(Out.RoomPickupItem, 2, floorfurni.Id);
                                 if (IrregularFloorFurni.Contains(floorfurni))
                                 {
                                     IrregularFloorFurni.Remove(floorfurni);
@@ -2917,7 +2917,7 @@ namespace RetroFun.Pages
                             foreach (HWallItem wallitem in SnapShotIrregularWallFurni)
                             {
                                 Task.Delay(250);
-                                SendToServer(Out.RoomPickupItem, 2, wallitem.Id);
+                                _ = SendToServer(Out.RoomPickupItem, 2, wallitem.Id);
 
                                 if (IrregularWallFurni.Contains(wallitem))
                                 {
@@ -3627,7 +3627,7 @@ namespace RetroFun.Pages
             IS_HIDING_IRREGULAR_FLOORFURNIS = false;
             if (HIDDEN_IRREGULAR_FLOORFURNIS.Count != 0)
             {
-                SendToClient(FloorFurnitures.PacketBuilder(RemovedFurniFromList(HIDDEN_IRREGULAR_FLOORFURNIS), In.RoomFloorItems));
+                _ = SendToClient(FloorFurnitures.PacketBuilder(RemovedFurniFromList(HIDDEN_IRREGULAR_FLOORFURNIS), In.RoomFloorItems));
                 HIDDEN_IRREGULAR_FLOORFURNIS.Clear();
                 UpdateHiddenIrregolarFurniLabel();
                 Speak("[HIDER]:All Irregular Floor Furnis are unhidden!", 34);
@@ -3639,7 +3639,7 @@ namespace RetroFun.Pages
             IS_HIDING_IRREGULAR_WALLFURNIS = false;
             if (HIDDEN_IRREGULAR_WALLFURNIS.Count != 0)
             {
-                SendToClient(WallFurnitures.PacketBuilder(RemovedFurniFromList(HIDDEN_IRREGULAR_WALLFURNIS), In.RoomWallItems));
+                _ = SendToClient(WallFurnitures.PacketBuilder(RemovedFurniFromList(HIDDEN_IRREGULAR_WALLFURNIS), In.RoomWallItems));
                 HIDDEN_IRREGULAR_WALLFURNIS.Clear();
                 UpdateHiddenIrregolarFurniLabel();
                 Speak("[HIDER]:All Irregular Wall Furnis are unhidden!", 34);
@@ -3675,7 +3675,7 @@ namespace RetroFun.Pages
             SetRemovedFurnisSnapshot();
             if (SnapshotRemovedFloorItems.Count != 0)
             {
-                SendToClient(FloorFurnitures.PacketBuilder(SnapshotRemovedFloorItems, In.RoomFloorItems));
+                _ = SendToClient(FloorFurnitures.PacketBuilder(SnapshotRemovedFloorItems, In.RoomFloorItems));
                 UpdateRemovedFurnisLabel();
                 Speak("[HIDER]:All removed Floor Furnis are unhidden!", 34);
             }
@@ -3685,7 +3685,7 @@ namespace RetroFun.Pages
             }
             if (SnapshotRemovedWallItems.Count != 0)
             {
-                SendToClient(WallFurnitures.PacketBuilder(SnapshotRemovedWallItems, In.RoomWallItems));
+                _ = SendToClient(WallFurnitures.PacketBuilder(SnapshotRemovedWallItems, In.RoomWallItems));
                 UpdateRemovedFurnisLabel();
                 Speak("[HIDER]:All removed Wall Furnis are unhidden!", 34);
             }
@@ -3834,7 +3834,7 @@ namespace RetroFun.Pages
             IS_HIDING_REGULAR_FLOORFURNIS = false;
             if (HIDDEN_REGULAR_FLOORFURNIS.Count != 0)
             {
-                SendToClient(FloorFurnitures.PacketBuilder(RemovedFurniFromList(HIDDEN_REGULAR_FLOORFURNIS), In.RoomFloorItems));
+                _ = SendToClient(FloorFurnitures.PacketBuilder(RemovedFurniFromList(HIDDEN_REGULAR_FLOORFURNIS), In.RoomFloorItems));
                 HIDDEN_REGULAR_FLOORFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
                 if (isQuietMode)
@@ -3853,7 +3853,7 @@ namespace RetroFun.Pages
             IS_HIDING_REGULAR_WALLFURNIS = false;
             if (HIDDEN_REGULAR_WALLFURNIS.Count != 0)
             {
-                SendToClient(WallFurnitures.PacketBuilder(RemovedFurniFromList(HIDDEN_REGULAR_WALLFURNIS), In.RoomWallItems));
+                _ = SendToClient(WallFurnitures.PacketBuilder(RemovedFurniFromList(HIDDEN_REGULAR_WALLFURNIS), In.RoomWallItems));
                 HIDDEN_REGULAR_WALLFURNIS.Clear();
                 UpdateHiddenRegularFurniLabel();
                 if (isQuietMode)
@@ -4055,7 +4055,7 @@ namespace RetroFun.Pages
             SetCatalogueFurnisSnapshot();
             if (SnapshotCatalogueFloorItems.Count != 0)
             {
-                SendToClient(FloorFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCatalogueFloorItems), In.RoomFloorItems));
+                _ = SendToClient(FloorFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCatalogueFloorItems), In.RoomFloorItems));
                 Speak("[HIDER]:All catalogue Floor Furnis are unhidden!", 34);
             }
             else
@@ -4064,7 +4064,7 @@ namespace RetroFun.Pages
             }
             if (SnapshotCatalogueWallItems.Count != 0)
             {
-                SendToClient(WallFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCatalogueWallItems), In.RoomWallItems));
+                _ = SendToClient(WallFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCatalogueWallItems), In.RoomWallItems));
                 Speak("[HIDER]:All catalogue Wall Furnis are unhidden!", 34);
             }
             else
@@ -4143,7 +4143,7 @@ namespace RetroFun.Pages
             SetCrystalsSnapshots();
             if (SnapshotCrystalsFloorFurnis.Count != 0)
             {
-                SendToClient(FloorFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCrystalsFloorFurnis), In.RoomFloorItems));
+                _ = SendToClient(FloorFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCrystalsFloorFurnis), In.RoomFloorItems));
                 Speak("[HIDER]:All Crystals Floor Furnis are unhidden!", 34);
             }
             else
@@ -4152,7 +4152,7 @@ namespace RetroFun.Pages
             }
             if (SnapshotCrystalsWallFurnis.Count != 0)
             {
-                SendToClient(WallFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCrystalsWallFurnis), In.RoomWallItems));
+                _ = SendToClient(WallFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCrystalsWallFurnis), In.RoomWallItems));
                 Speak("[HIDER]:All Crystals Wall Furnis are unhidden!", 34);
             }
             else
@@ -4198,7 +4198,7 @@ namespace RetroFun.Pages
             SetCreditsSnapshots();
             if (SnapshotCreditsFloorFurnis.Count != 0)
             {
-                SendToClient(FloorFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCreditsFloorFurnis), In.RoomFloorItems));
+                _ = SendToClient(FloorFurnitures.PacketBuilder(RemovedFurniFromList(SnapshotCreditsFloorFurnis), In.RoomFloorItems));
                 Speak("[HIDER]:All Credits Furnis are unhidden!", 34);
             }
             else
@@ -4576,7 +4576,7 @@ namespace RetroFun.Pages
             SetRemovedirregularFurnisSnapshot();
             if (SnapshotRemovedIrregularFloorFurnis.Count != 0)
             {
-                SendToClient(FloorFurnitures.PacketBuilder(SnapshotRemovedIrregularFloorFurnis, In.RoomFloorItems));
+                _ = SendToClient(FloorFurnitures.PacketBuilder(SnapshotRemovedIrregularFloorFurnis, In.RoomFloorItems));
                 UpdateRemovedFurnisLabel();
                 Speak("[HIDER]:All removed Irregular Floor Furnis are unhidden!", 34);
             }
@@ -4586,7 +4586,7 @@ namespace RetroFun.Pages
             }
             if (SnapshotRemovedIrregularWallFurnis.Count != 0)
             {
-                SendToClient(WallFurnitures.PacketBuilder(SnapshotRemovedIrregularWallFurnis, In.RoomWallItems));
+                _ = SendToClient(WallFurnitures.PacketBuilder(SnapshotRemovedIrregularWallFurnis, In.RoomWallItems));
                 UpdateRemovedFurnisLabel();
                 Speak("[HIDER]:All removed Irregular Wall Furnis are unhidden!", 34);
             }
@@ -4713,7 +4713,7 @@ namespace RetroFun.Pages
             SetRemovedRegularFurnisSnapshot();
             if (SnapshotRemovedRegularFloorFurnis.Count != 0)
             {
-                SendToClient(FloorFurnitures.PacketBuilder(SnapshotRemovedRegularFloorFurnis, In.RoomFloorItems));
+                _ = SendToClient(FloorFurnitures.PacketBuilder(SnapshotRemovedRegularFloorFurnis, In.RoomFloorItems));
                 UpdateRemovedFurnisLabel();
                 Speak("[HIDER]:All removed regular Floor Furnis are unhidden!", 34);
             }
@@ -4723,7 +4723,7 @@ namespace RetroFun.Pages
             }
             if (SnapshotRemovedRegularWallFurnis.Count != 0)
             {
-                SendToClient(WallFurnitures.PacketBuilder(SnapshotRemovedRegularWallFurnis, In.RoomWallItems));
+                _ = SendToClient(WallFurnitures.PacketBuilder(SnapshotRemovedRegularWallFurnis, In.RoomWallItems));
                 UpdateRemovedFurnisLabel();
                 Speak("[HIDER]:All removed regular Wall Furnis are unhidden!", 34);
             }

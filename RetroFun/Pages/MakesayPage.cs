@@ -99,7 +99,7 @@ namespace RetroFun.Pages
                 id = In.RoomUserWhisper;
             }
             int bubble = int.Parse(this.BubblesCmbx1.GetItemText(this.BubblesCmbx1.SelectedItem));
-                SendToClient(id, selectedIndex, MakeTextBox.Text, 0, bubble, 0, -1);
+                _ = SendToClient(id, selectedIndex, MakeTextBox.Text, 0, bubble, 0, -1);
         }
     }
 }

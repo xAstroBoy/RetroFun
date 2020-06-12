@@ -426,11 +426,11 @@ namespace RetroFun.Pages
         {
                 if (JustWallpapers)
                 {
-                        await SendToServer(Out.MoodLightSaveSettings, preset, 2, "#" + color, Density, true);
+                       await  SendToServer(Out.MoodLightSaveSettings, preset, 2, "#" + color, Density, true);
                 }
                 else
                 {
-                        await SendToServer(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
+                       await  SendToServer(Out.MoodLightSaveSettings, preset, 1, "#" + color, Density, true);
                 }
             }
         }

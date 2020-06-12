@@ -456,7 +456,7 @@ namespace RetroFun.Pages
                 if (index == GlobalInts.OwnUser_index)
                 {
                     e.IsBlocked = true;
-                    SendToClient(In.RoomUserTalk, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
+                    _ = SendToClient(In.RoomUserTalk, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
             if (isCloneChatUser)
@@ -471,7 +471,7 @@ namespace RetroFun.Pages
         {
             await Task.Delay(RaidUserCooldownCooldown);
 
-                await SendToServer(Out.RoomUserTalk, " " + message, bubbleid);
+               await  SendToServer(Out.RoomUserTalk, " " + message, bubbleid);
             return;
         }
 
@@ -479,7 +479,7 @@ namespace RetroFun.Pages
         {
             await Task.Delay(RaidUserCooldownCooldown);
 
-                await SendToServer(Out.RoomUserTalk, " " + message, bubbleid);
+               await  SendToServer(Out.RoomUserTalk, " " + message, bubbleid);
             return;
         }
 
@@ -496,7 +496,7 @@ namespace RetroFun.Pages
                 if (index == GlobalInts.OwnUser_index)
                 {
                     e.IsBlocked = true;
-                    SendToClient(In.RoomUserShout, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
+                    _ = SendToClient(In.RoomUserShout, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
 
@@ -521,7 +521,7 @@ namespace RetroFun.Pages
                 if (index == GlobalInts.OwnUser_index)
                 {
                     e.IsBlocked = true;
-                    SendToClient(In.RoomUserWhisper, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
+                    _ = SendToClient(In.RoomUserWhisper, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
         }
@@ -645,7 +645,7 @@ namespace RetroFun.Pages
                 replacement.WriteInteger(0);
             }
 
-                SendToServer(replacement);
+                _ = SendToServer(replacement);
         }
 
 
@@ -923,7 +923,7 @@ namespace RetroFun.Pages
                     if (FlooderEnabled)
                     {
                         Thread.Sleep(FlooderCooldown);
-                            SendToServer(FloodMessageBuilder());
+                            _ = SendToServer(FloodMessageBuilder());
                         Thread.Sleep(100);
                     }
 
@@ -947,7 +947,7 @@ namespace RetroFun.Pages
                                 OldPyramidString = FlooderText;
                                 if(PyramidChatBuilder() != null)
                                 {
-                                    SendToServer(PyramidChatBuilder());
+                                    _ = SendToServer(PyramidChatBuilder());
                                 }
                             }
                         Thread.Sleep(100);
@@ -989,7 +989,7 @@ namespace RetroFun.Pages
                 isCloneChatUser = true;
                 if(!isCloneChatAlertDone)
                 {
-                    SendToClient(In.RoomUserWhisper, 0, "CAUTION: This can result in a ban of the account! Use with caution!", 0, 34, 0, -1);
+                    _ = SendToClient(In.RoomUserWhisper, 0, "CAUTION: This can result in a ban of the account! Use with caution!", 0, 34, 0, -1);
                     isCloneChatAlertDone = true;
                 }
 
@@ -1017,7 +1017,7 @@ namespace RetroFun.Pages
 
         private void SendMessageBtn_Click(object sender, EventArgs e)
         {
-                SendToServer(ChatMessageBuilder());
+                _ = SendToServer(ChatMessageBuilder());
         }
 
         private void LiveEditChatBtn_Click(object sender, EventArgs e)

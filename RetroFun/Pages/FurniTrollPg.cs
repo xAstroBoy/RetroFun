@@ -638,7 +638,7 @@ namespace RetroFun.Pages
                     {
                         if (isHanditemGiverActivated)
                         {
-                         SendToServer(Out.RoomUserGiveHandItem, UserID);
+                         _ = SendToServer(Out.RoomUserGiveHandItem, UserID);
                          Thread.Sleep(ThreadCooldownSafe(CooldownHanditemGiver));
                         }
                     }
@@ -920,19 +920,19 @@ namespace RetroFun.Pages
         {
                 if(flooritems.Contains(FurnID))
                 {
-                    await SendToServer(Out.ToggleFloorItem, FurnID);
+                   await  SendToServer(Out.ToggleFloorItem, FurnID);
                 }
                 if(Wallitems.Contains(FurnID))
                 {
-                    await SendToServer(Out.ToggleWallItem, FurnID);
+                   await  SendToServer(Out.ToggleWallItem, FurnID);
                 }
                 if(wheelitems.Contains(FurnID))
                 {
-                    await SendToServer(Out.TriggerColorWheel, FurnID);
+                   await  SendToServer(Out.TriggerColorWheel, FurnID);
                 }
                 if (Diceitems.Contains(FurnID))
                 {
-                    await SendToServer(Out.TriggerDice, FurnID);
+                   await  SendToServer(Out.TriggerDice, FurnID);
                 }
         }
         public void RegisterFurni(int FurnID)
@@ -1241,13 +1241,13 @@ namespace RetroFun.Pages
         private void RegisterFurniAsk(int furni)
         {
 
-                SendToClient(In.RoomUserWhisper, 0, "[Furni Registration]: Please Select the furni nr " + furni.ToString() + ".", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Furni Registration]: Please Select the furni nr " + furni.ToString() + ".", 0, 34, 0, -1);
         }
 
         private void RegisterFurniSpeak(string text)
         {
 
-                SendToClient(In.RoomUserWhisper, 0, "[Furni Registration]: " + text, 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Furni Registration]: " + text, 0, 34, 0, -1);
         }
 
 

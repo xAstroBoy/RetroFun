@@ -160,7 +160,7 @@ namespace RetroFun.Pages
                         {
                             if (!isUserManualWalking)
                             {
-                                    await SendToServer(Out.RoomUserWalk, i, j);
+                                   await  SendToServer(Out.RoomUserWalk, i, j);
                                     await Task.Delay(CooldownWalking);
                             }
                             else
@@ -193,7 +193,7 @@ namespace RetroFun.Pages
             {
                 if (isSpectatorModeActive)
                 {
-                    SendToServer(Out.RoomUserTalk, "exit", 18);
+                    _ = SendToServer(Out.RoomUserTalk, "exit", 18);
                     isSpectatorModeActive = false;
                 }
             }
@@ -234,7 +234,7 @@ namespace RetroFun.Pages
             {
                 if (ShouldStalkBotGiochi)
                 {
-                        SendToServer(Out.StalkFriend, 1442790);
+                        _ = SendToServer(Out.StalkFriend, 1442790);
                    
                 }
                 if (MuteBotGames)
@@ -253,7 +253,7 @@ namespace RetroFun.Pages
 
         private void StalkVictimBtn_Click(object sender, EventArgs e)
         {
-                SendToServer(Out.StalkFriend, ((Victim)VictimsCmbx.SelectedItem).ID);
+                _ = SendToServer(Out.StalkFriend, ((Victim)VictimsCmbx.SelectedItem).ID);
             
         }
 
@@ -273,7 +273,7 @@ namespace RetroFun.Pages
 
         private void StalkVictimID_Click(object sender, EventArgs e)
         {
-                SendToServer(Out.StalkFriend, UserIDCapture);
+                _ = SendToServer(Out.StalkFriend, UserIDCapture);
         }
     }
 }

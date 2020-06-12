@@ -120,7 +120,7 @@ namespace RetroFun.Pages
                 }
                 PetHTMLColor = splitted[2];
                 e.IsBlocked = true;
-                SendToClient(In.RoomUserWhisper, 0, "[Pet Editor]: Values intercepted, see Retrofun.", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Pet Editor]: Values intercepted, see Retrofun.", 0, 34, 0, -1);
                 WriteToButton(InterceptPetPurchaseBtn, "Intercept Pet purchase : OFF");
                 isInterceptEnabled = false;
             }
@@ -129,7 +129,7 @@ namespace RetroFun.Pages
 
         public async void SendPetPurchase()
         {
-           await SendToServer(Out.CatalogBuyItem, PageID, PetID, PetName + '\n' +PetRace.ToString() + '\n' +PetHTMLColor , 1);
+          await  SendToServer(Out.CatalogBuyItem, PageID, PetID, PetName + '\n' +PetRace.ToString() + '\n' +PetHTMLColor , 1);
         }
 
 
@@ -144,7 +144,7 @@ namespace RetroFun.Pages
             else
             {
                 WriteToButton(InterceptPetPurchaseBtn, "Intercept Pet purchase : ON");
-                SendToClient(In.RoomUserWhisper, 0, "[Pet Editor]: Please purchase The Pet to load the values to edit with Retrofun", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Pet Editor]: Please purchase The Pet to load the values to edit with Retrofun", 0, 34, 0, -1);
                 isInterceptEnabled = true;
             }
         }

@@ -423,7 +423,7 @@ namespace RetroFun.Pages
                 PageIDInt1 = e.Packet.ReadInteger();
                 FurniIDint1 = e.Packet.ReadInteger();
                 CaptureModeCatalog = false;
-                SendToClient(In.RoomUserWhisper, 0, "[Catalog Bruteforcer]: Required Data Found, Check RetroFun.", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Catalog Bruteforcer]: Required Data Found, Check RetroFun.", 0, 34, 0, -1);
                 WriteToButton(CaptureModeBtn, "Capture Mode : OFF");
                 e.IsBlocked = true;
             }
@@ -445,7 +445,7 @@ namespace RetroFun.Pages
         private async void SendPacket(int PageID, int FurniID)
         {
                 await Task.Delay(30);
-                await SendToServer(
+               await  SendToServer(
                 Out.CatalogBuyItem,
                 PageID,
                 FurniID,
@@ -497,14 +497,14 @@ namespace RetroFun.Pages
                         if (ShowPurchase)
                         {
 
-                                SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + FurniIDint1, 0, 34, 0, -1);
+                                _ = SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + FurniIDint1, 0, 34, 0, -1);
                             
                             Thread.Sleep(SpeedTimer1 + GlobalSleeper);
                         }
                         if (ShowPurchaseFurniName)
                         {
 
-                                SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bought Furni with name : " + FurniName, 0, 34, 0, -1);
+                                _ = SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bought Furni with name : " + FurniName, 0, 34, 0, -1);
                             
                             Thread.Sleep(SpeedTimer1 + GlobalSleeper);
                         }
@@ -552,13 +552,13 @@ namespace RetroFun.Pages
 
                         if (ShowPurchase)
                         {
-                                SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + (FurniIDint1 - 1), 0, 34, 0, -1);
+                                _ = SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + (FurniIDint1 - 1), 0, 34, 0, -1);
                             Thread.Sleep(SpeedTimer1 + GlobalSleeper);
                         }
                         if (ShowPurchaseFurniName)
                         {
 
-                                SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bought Furni with name : " + FurniName, 0, 34, 0, -1);
+                                _ = SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bought Furni with name : " + FurniName, 0, 34, 0, -1);
                             
                             Thread.Sleep(SpeedTimer1 + GlobalSleeper);
                         }
@@ -714,13 +714,13 @@ namespace RetroFun.Pages
                         StoreToInput(PageIDInt1, (FurniIDint1 - 1));
                         if (ShowPurchase)
                         {
-                                SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + (FurniIDint1 - 1), 0, 34, 0, -1);
+                                _ = SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Found valid PageID : " + PageIDInt1 + " with FurniID : " + (FurniIDint1 - 1), 0, 34, 0, -1);
                             Thread.Sleep(SpeedTimer1 + GlobalSleeper);
                         }
                         if (ShowPurchaseFurniName)
                         {
 
-                                SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bought Furni with name : " + FurniName, 0, 34, 0, -1);
+                                _ = SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bought Furni with name : " + FurniName, 0, 34, 0, -1);
                             Thread.Sleep(SpeedTimer1 + GlobalSleeper);
                         }
                         Thread.Sleep(SpeedTimer1 + GlobalSleeper);
@@ -838,7 +838,7 @@ namespace RetroFun.Pages
             EnableNButton(CatalogueFurniIDBox, true);
             WriteToButton(CatalogueBruteForceBtn, "BruteForcer : Off");
 
-                SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing Completed.", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing Completed.", 0, 34, 0, -1);
             Thread.CurrentThread.Abort();
             return;
         }
@@ -852,7 +852,7 @@ namespace RetroFun.Pages
             EnableNButton(CatalogueFurniIDBox, true);
             WriteToButton(CatalogueFurnIDBruteForcerbtx, "FurniID Bruteforcer : Off");
 
-                SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing FurniID Completed.", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing FurniID Completed.", 0, 34, 0, -1);
             Thread.CurrentThread.Abort();
             return;
         }
@@ -865,7 +865,7 @@ namespace RetroFun.Pages
             EnableNButton(CataloguePageIDBox, true);
             EnableNButton(CatalogueFurniIDBox, true);
             WriteToButton(CataloguePageIdBruteforcerbtx, "PageID Bruteforcer : Off");
-                SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing PageID Completed." + FurniIDint1, 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing PageID Completed." + FurniIDint1, 0, 34, 0, -1);
             Thread.CurrentThread.Abort();
             return;
         }
@@ -891,7 +891,7 @@ namespace RetroFun.Pages
             }
             else
             {
-                SendToClient(In.RoomUserWhisper, 0, "[Catalog Bruteforcer]: Please purchase a furni in catalog to intercept the pageid and furniid", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Catalog Bruteforcer]: Please purchase a furni in catalog to intercept the pageid and furniid", 0, 34, 0, -1);
                 CaptureModeCatalog = true;
                 WriteToButton(CaptureModeBtn, "Capture Mode : ON");
             }

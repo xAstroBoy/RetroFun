@@ -523,7 +523,7 @@ namespace RetroFun.Pages
 
                                     if (ShouldShoutPhrase)
                                     {
-                                            SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
+                                            _ = SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
                                     }
 
                                 // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!
@@ -571,7 +571,7 @@ namespace RetroFun.Pages
 
                                     if (ShouldShoutPhrase)
                                     {
-                                            SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
+                                            _ = SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
                                     }
 
                                 // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!
@@ -866,18 +866,18 @@ namespace RetroFun.Pages
 
         private void RollDice(int diceID)
         {
-                SendToServer(Out.TriggerDice, diceID);
+                _ = SendToServer(Out.TriggerDice, diceID);
         }
 
         private void CloseDice(int diceID)
         {
 
-                SendToServer(Out.CloseDice, diceID);
+                _ = SendToServer(Out.CloseDice, diceID);
         }
 
         private void Broadcast(string text)
         {
-                SendToClient(In.RoomUserWhisper, 0, "[DICE BOT]: " + text, 0, 1, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[DICE BOT]: " + text, 0, 1, 0, -1);
         }
 
         public override void In_RoomUserWhisper(DataInterceptedEventArgs e)
@@ -990,7 +990,7 @@ namespace RetroFun.Pages
 
                                 if (ShouldShoutPhrase)
                                 {
-                                    SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
+                                    _ = SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
                                 }
 
                             // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!
@@ -1037,7 +1037,7 @@ namespace RetroFun.Pages
 
                                 if (ShouldShoutPhrase)
                                 {
-                                    SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
+                                    _ = SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
                                 }
 
                             // KILLS THE BOT TO AVOID CHEAT SUSPICIONS , JUST RESTART IT WITH THE BUTTON!

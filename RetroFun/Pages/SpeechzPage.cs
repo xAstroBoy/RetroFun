@@ -91,11 +91,11 @@ namespace RetroFun.Pages
             {
                     if (rdo_client.Checked) //if "Client" is checked
                     {
-                        SendToClient(packet.ToBytes()); //...to client
+                        _ = SendToClient(packet.ToBytes()); //...to client
                     }
                     else if (rdo_server.Checked) //or if "Server" is checked
                     {
-                        SendToServer(packet.ToBytes()); //...to server
+                        _ = SendToServer(packet.ToBytes()); //...to server
                     }
                 }
             

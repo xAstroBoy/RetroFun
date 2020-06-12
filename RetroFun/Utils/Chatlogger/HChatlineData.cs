@@ -52,7 +52,6 @@ namespace RetroFun.Utils.Chatlogger
                     case 1: return anotherMessage.ReadInteger();
                     case 2: return anotherMessage.ReadString();
                 }
-
                 throw new System.Exception("what the fuck");
             }
 

@@ -22,12 +22,6 @@ namespace RetroFun.Pages
     {
         private Random Randomizer = new Random();
         private bool newroom = true;
-        private int totroomdeleted = 0;
-        private List<int> RoomIDDeleted = new List<int>();
-        private List<HRoomEntry> foundrooms = new List<HRoomEntry>();
-        private List<HRoomEntry> foundroomsSnap = new List<HRoomEntry>();
-        private bool isRoomToDelete;
-        private int RoomIDToDelete;
         #region Vars
 
         private bool SignCountEnabled;
@@ -678,7 +672,7 @@ namespace RetroFun.Pages
                 Thread.CurrentThread.IsBackground = true;
                 do
                 {
-                        SendToServer(Out.RoomUserSit);
+                        _ = SendToServer(Out.RoomUserSit);
                     Thread.Sleep(SitsCooldown);
                 } while (SitModeEnabled);
             }).Start();
@@ -737,13 +731,13 @@ namespace RetroFun.Pages
         private async void SendGesturePacket(HGesture Gesture)
         {
                 await Task.Delay(150);
-                await SendToServer(Out.RoomUserAction, Gesture);
+               await  SendToServer(Out.RoomUserAction, Gesture);
         }
 
         private async void SendDancePacket(HDance Dance)
         {
                 await Task.Delay(150);
-                await SendToServer(Out.RoomUserDance, Dance);
+               await  SendToServer(Out.RoomUserDance, Dance);
         }
 
         private void SignCountThread()
@@ -969,7 +963,7 @@ namespace RetroFun.Pages
             if (SignCountEnabled)
             {
                 await Task.Delay(250);
-                await SendToServer(Out.RoomUserSign, Sign);
+               await  SendToServer(Out.RoomUserSign, Sign);
             }
         }
 
@@ -1021,7 +1015,7 @@ namespace RetroFun.Pages
 
         private void UserSitBtn_Click(object sender, EventArgs e)
         {
-            SendToServer(Out.RoomUserSit);
+            _ = SendToServer(Out.RoomUserSit);
         }
 
         private void SitCheck()
@@ -1106,7 +1100,7 @@ namespace RetroFun.Pages
         private async void SendLookPacket(string look)
         {
                 await Task.Delay(50);
-                await SendToServer(Out.UserSaveLook, "M", look);
+               await  SendToServer(Out.UserSaveLook, "M", look);
         }
 
 
@@ -1157,7 +1151,7 @@ namespace RetroFun.Pages
 
         private void Speak(string text)
         {
-                SendToClient(In.RoomUserWhisper, 0, "[MessageForYou]: " + text, 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[MessageForYou]: " + text, 0, 34, 0, -1);
         }
 
 
@@ -1193,7 +1187,7 @@ namespace RetroFun.Pages
 
         private void StartCSPoll()
         {
-            SendToClient(In.SimplePollStart, "MATCHING_POLL", 2505, 8451, 15000, 8451, 3, 6, "RetroFun : Select your Answer to show SS", 0, 6, 0, 0);
+            _ = SendToClient(In.SimplePollStart, "MATCHING_POLL", 2505, 8451, 15000, 8451, 3, 6, "RetroFun : Select your Answer to show SS", 0, 6, 0, 0);
         }
 
 
@@ -1225,7 +1219,7 @@ namespace RetroFun.Pages
 
         private void SendFriendRequest(string username)
         {
-            SendToServer(Out.FriendRequest, username);
+            _ = SendToServer(Out.FriendRequest, username);
         }
 
         private void AddYourselfAsFriendBtn_Click(object sender, EventArgs e)
@@ -1377,7 +1371,7 @@ namespace RetroFun.Pages
 
         private void DeleteRoomBtn_Click(object sender, EventArgs e)
         {
-            SendToServer(Out.RequestDeleteRoom, GlobalInts.ROOM_ID);
+            _ = SendToServer(Out.RequestDeleteRoom, GlobalInts.ROOM_ID);
         }
 
 
@@ -1396,10 +1390,10 @@ namespace RetroFun.Pages
         //                        {
         //                            if (!RoomIDDeleted.Contains(roomdetail.Id))
         //                            {
-        //                                SendToServer(Out.RequestRoomLoad, roomdetail.Id);
+        //                                _ = SendToServer(Out.RequestRoomLoad, roomdetail.Id);
         //                                Console.WriteLine("Entering Room : " + roomdetail.Id);
         //                                Thread.Sleep(150);
-        //                                SendToServer(Out.RequestDeleteRoom, roomdetail.Id);
+        //                                _ = SendToServer(Out.RequestDeleteRoom, roomdetail.Id);
         //                                totroomdeleted++;
         //                                Console.WriteLine("Deleted Room nr : " + roomdetail.Id + " Room Owner is : " + roomdetail.OwnerName + " Tot Room Deleted : " + totroomdeleted);
         //                                RoomIDDeleted.Add(roomdetail.Id);
@@ -1408,7 +1402,7 @@ namespace RetroFun.Pages
         //                        }
         //                    }
         //                    RemoveTargetRoomsEnabled = false;
-        //                    SendToServer(Out.RequestNewNavigatorRooms, "hotel_view", "roomname:www.");
+        //                    _ = SendToServer(Out.RequestNewNavigatorRooms, "hotel_view", "roomname:www.");
         //                }
         //                catch (Exception) { }
         //            } while (RemoveTargetRoomsEnabled);

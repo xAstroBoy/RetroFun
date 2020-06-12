@@ -617,7 +617,7 @@ namespace RetroFun
                 //else if (In.ModToolIssueResponseAlert == id){sub.In_ModToolIssueResponseAlert(e);}
                 //else if (In.ModToolIssueUpdate == id){sub.In_ModToolIssueUpdate(e);}
                 //else if (In.ModToolReportReceivedAlert == id){sub.In_ModToolReportReceivedAlert(e);}
-                //else if (In.ModToolRoomChatlog == id){sub.In_ModToolRoomChatlog(e);}
+                else if (In.ModToolRoomChatlog == id){sub.In_ModToolRoomChatlog(e);}
                 //else if (In.ModToolRoomInfo == id){sub.In_ModToolRoomInfo(e);}
                 //else if (In.ModToolSanctionData == id){sub.In_ModToolSanctionData(e);}
                 //else if (In.ModToolSanctionInfo == id){sub.In_ModToolSanctionInfo(e);}

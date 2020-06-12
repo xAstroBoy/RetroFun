@@ -329,7 +329,7 @@ namespace RetroFun.Pages
         {
             if (String.IsNullOrEmpty(GiftReceiver))
             {
-                SendToClient(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 34, 0, -1);
                 return;
 
             }
@@ -343,7 +343,7 @@ namespace RetroFun.Pages
         {
             if (String.IsNullOrEmpty(GiftReceiver))
             {
-                SendToClient(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 34, 0, -1);
                 return;
 
             }
@@ -415,7 +415,7 @@ namespace RetroFun.Pages
                 PageIDInt1 = e.Packet.ReadInteger();
                 FurniIDint1 = e.Packet.ReadInteger();
                 GiftCaptureModeCatalog = false;
-                SendToClient(In.RoomUserWhisper, 0, "[Gift Bruteforcer]: Required Data Found, Check RetroFun.", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Gift Bruteforcer]: Required Data Found, Check RetroFun.", 0, 34, 0, -1);
                 WriteToButton(CaptureCatalogGiftDataBtn, "Capture Mode : OFF");
                 e.IsBlocked = true;
 
@@ -430,7 +430,7 @@ namespace RetroFun.Pages
                 return;
             }
 
-         await SendToServer(
+        await  SendToServer(
          Out.CatalogBuyItemAsGift,
          PageIDInt,
          FurniIDint,
@@ -448,7 +448,7 @@ namespace RetroFun.Pages
         private async void SendBruteForceGiftPacket(string GiftBoxTest)
         {
 
-            await SendToServer(
+           await  SendToServer(
             Out.CatalogBuyItemAsGift,
             PageIDInt,
             FurniIDint,
@@ -690,7 +690,7 @@ namespace RetroFun.Pages
             EnableNButton(CataloguePageIDBox, true);
             EnableNButton(CatalogueFurniIDBox, true); 
             WriteToButton(GiftBruteForceBtn, "BruteForcer : Off");
-                SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing Completed.", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing Completed.", 0, 34, 0, -1);
             Thread.CurrentThread.Abort();
             return;
         }
@@ -703,7 +703,7 @@ namespace RetroFun.Pages
             EnableNButton(CataloguePageIDBox, true);
             EnableNButton(CatalogueFurniIDBox, true);
             WriteToButton(GiftFurniIDBruteforcerBtn, "FurniID Bruteforcer : Off");
-                SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing FurniID Completed.", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing FurniID Completed.", 0, 34, 0, -1);
             Thread.CurrentThread.Abort();
             return;
         }
@@ -716,7 +716,7 @@ namespace RetroFun.Pages
             EnableNButton(CataloguePageIDBox, true);
             EnableNButton(CatalogueFurniIDBox, true);
             WriteToButton(GiftPageIDBruteForcerBtn, "PageID Bruteforcer : Off");
-                SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing PageID Completed." + FurniIDint1, 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Bruteforcer]: Bruteforcing PageID Completed." + FurniIDint1, 0, 34, 0, -1);
             Thread.CurrentThread.Abort();
             return;
         }
@@ -725,7 +725,7 @@ namespace RetroFun.Pages
         {
             if (String.IsNullOrEmpty(GiftReceiver))
             {
-                SendToClient(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 34, 0, -1);
                 return;
 
             }
@@ -736,7 +736,7 @@ namespace RetroFun.Pages
         {
             if (String.IsNullOrEmpty(GiftReceiver))
             {
-                SendToClient(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 34, 0, -1);
                 return;
 
             }
@@ -750,7 +750,7 @@ namespace RetroFun.Pages
         {
             if (String.IsNullOrEmpty(GiftReceiver))
             {
-                SendToClient(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Gift BruteForcer]: You need to put a username !", 0, 34, 0, -1);
                 return;
 
             }
@@ -864,7 +864,7 @@ namespace RetroFun.Pages
             }
             else
             {
-                SendToClient(In.RoomUserWhisper, 0, "[Gift Bruteforcer]: Please purchase a furni in catalog to intercept the pageid and furniid", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[Gift Bruteforcer]: Please purchase a furni in catalog to intercept the pageid and furniid", 0, 34, 0, -1);
                 GiftCaptureModeCatalog = true;
                 WriteToButton(CaptureCatalogGiftDataBtn, "Capture Mode : ON");
             }

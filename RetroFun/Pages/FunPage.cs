@@ -189,11 +189,11 @@ namespace RetroFun.Pages
 
         private void Speak(string text)
         {
-                SendToClient(In.RoomUserWhisper, 0, "[FUN]: " + text, 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[FUN]: " + text, 0, 34, 0, -1);
         }
         private void Speak(string text, int bubble)
         {
-                SendToClient(In.RoomUserWhisper, 0, "[FUN]: " + text, 0, bubble, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[FUN]: " + text, 0, bubble, 0, -1);
         }
 
 
@@ -307,31 +307,31 @@ namespace RetroFun.Pages
             if (KnownDomains.isBobbaHotel)
             {
                 await Task.Delay(500);
-                await SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
+               await  SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
             }
             else if (KnownDomains.isHartico)
             {
                 await Task.Delay(500);
-                await SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
+               await  SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
             }
         }
 
         private async void AssignClientEffectToMyself(int Effect)
         {
-            await SendToClient(In.RoomUserEffect, GlobalInts.OwnUser_index, Effect, 0);
+           await  SendToClient(In.RoomUserEffect, GlobalInts.OwnUser_index, Effect, 0);
         }
 
         private async void AssignClientEffectToUser(HEntity Entity, int Effect)
         {
             if (Entity != null)
             {
-                await SendToClient(In.RoomUserEffect, Entity.Index, Effect, 0);
+               await  SendToClient(In.RoomUserEffect, Entity.Index, Effect, 0);
             }
         }
 
         private void RemoveEntityFromRoom(HEntity entity)
         {
-            SendToClient(In.RoomUserRemove, entity.Index);
+            _ = SendToClient(In.RoomUserRemove, entity.Index);
         }
 
 
@@ -546,9 +546,9 @@ namespace RetroFun.Pages
 
         private async void ReplaceUserPacketInfo(int userid)
         {
-            await SendToServer(Out.RequestWearingBadges, userid);
+           await  SendToServer(Out.RequestWearingBadges, userid);
             await Task.Delay(150);
-            await SendToServer(Out.RequestProfileFriends, userid);
+           await  SendToServer(Out.RequestProfileFriends, userid);
 
         }
 
@@ -614,7 +614,7 @@ namespace RetroFun.Pages
                     Thread.Sleep(50);
                     RemoveEntityFromRoom(user);
                 }
-                SendToClient(HentityUtils.PacketBuilder(ConvertedUsersToPets, In.RoomUsers));
+                _ = SendToClient(HentityUtils.PacketBuilder(ConvertedUsersToPets, In.RoomUsers));
                 ConvertedUsersToPets.Clear();
             }
         }
@@ -698,7 +698,7 @@ namespace RetroFun.Pages
         {
             if(RandomHeadTurnMode)
             {
-                SendToServer(Out.RoomUserLookAtPoint, one, two);  
+                _ = SendToServer(Out.RoomUserLookAtPoint, one, two);  
             }
         }
         private void HeadturnBtn_Click(object sender, EventArgs e)

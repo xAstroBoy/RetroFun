@@ -80,13 +80,13 @@ namespace RetroFun.Handlers
             }
         }
 
-        private void UpdateBothFurniById(int furniid , dynamic stuff)
-        {
-            if(FloorFurnitures.FindFloorFurni(furniid) != null)
-            {
+        //private void UpdateBothFurniById(int furniid , dynamic stuff)
+        //{
+        //    if(FloorFurnitures.FindFloorFurni(furniid) != null)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
         // TODO: ASK THE ORIGINAL CREATOR FOR THE EXTRADATA UPDATER
 

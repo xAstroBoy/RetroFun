@@ -171,7 +171,7 @@ namespace RetroFun.Pages
 
         private void Speak(string text)
         {
-                SendToClient(In.RoomUserWhisper, 0, "[RoomBackGroundFun]: " + text + ".", 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[RoomBackGroundFun]: " + text + ".", 0, 34, 0, -1);
         }
 
         private void RestoreSettingsBtn_Click(object sender, EventArgs e)
@@ -208,13 +208,13 @@ namespace RetroFun.Pages
         {
                 if (isLiveEditing)
                 {
-                    await SendToServer(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
+                   await  SendToServer(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
                 }
         }
 
         public async void SendRoomBackgroundPacket(int furnid, int Tonality, int saturation, int luminosity)
         {
-                await SendToServer(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
+               await  SendToServer(Out.RoomBackground, furnid, Tonality, saturation, luminosity);
         }
 
         private void GlobalSpeedCheck()
