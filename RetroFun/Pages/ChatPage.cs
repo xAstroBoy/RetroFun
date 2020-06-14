@@ -14,6 +14,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -505,15 +506,13 @@ namespace RetroFun.Pages
             e.Packet.ReadInteger();
             int bubbleid = e.Packet.ReadInteger();
             
-            // TODO : (OPTIONAL) add a fix for all comics for all users (For BobbaHotel)!
-
-
             if (UseSelectedBubbleClientSide)
             {
                 if (index == GlobalInts.OwnUser_index && isAWhispermessage)
                 {
                     e.IsBlocked = true;
                     _ = SendToClient(In.RoomUserWhisper, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
+                    isAWhispermessage = false;
                 }
             }
 
@@ -524,13 +523,26 @@ namespace RetroFun.Pages
                 {
                     e.IsBlocked = true;
                     _ = SendToClient(In.RoomUserWhisper, GlobalInts.OwnUser_index, msg, 0, Bubbleused, 0, -1);
+                    isAWhispermessage = false;
+                }
+                else
+                {
+                        e.IsBlocked = true;
+                        _ = SendToClient(In.RoomUserWhisper, index, msg, 0, HentityUtils.WhisperFixerInt(HentityUtils.FindEntityByIndex(index)), 0, -1);
                 }
             }
 
         }
 
+        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
+        {
+            isAWhispermessage = false;
+        }
 
-
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
+        {
+            isAWhispermessage = false;
+        }
 
 
         private void EditUserChatPacket(DataInterceptedEventArgs Packet)

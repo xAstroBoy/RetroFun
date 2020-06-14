@@ -8,6 +8,7 @@ using Sulakore.Habbo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace RetroFun.Pages
@@ -17,11 +18,18 @@ namespace RetroFun.Pages
     public partial class BottomPage:  ObservablePage
     {
 
-        private Dictionary<int, HEntity> Dictionaryusers { get => GlobalDictionaries.Dictionary_UsersPresentInRoom; set { GlobalDictionaries.Dictionary_UsersPresentInRoom = value; } }
         private Dictionary<string, HEntity> removedEntities { get => GlobalDictionaries.removedEntities; set { GlobalDictionaries.removedEntities = value; } }
-        
+
+        private Dictionary<int, HEntity> Dictionaryusers { get => GlobalDictionaries.Dictionary_UsersPresentInRoom; set { GlobalDictionaries.Dictionary_UsersPresentInRoom = value; } }
+
+
+
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<HEntity> CurrentRoomUsers { get => GlobalLists.UsersInRoom; set { GlobalLists.UsersInRoom = value; RaiseOnPropertyChanged(); } }
+        public List<GlobalLists.EntityWhisper> EntityWhisperFix { get => GlobalLists.whisperfix; set { GlobalLists.whisperfix = value; RaiseOnPropertyChanged(); } }
+
+
         public string Own_look { get => GlobalStrings.UserDetails_Look; set { GlobalStrings.UserDetails_Look = value; RaiseOnPropertyChanged(); } }
 
         public int Own_index { get => GlobalInts.OwnUser_index; set { GlobalInts.OwnUser_index = value; RaiseOnPropertyChanged(); } }
@@ -58,7 +66,7 @@ namespace RetroFun.Pages
         {
             if (OwnUsername == null)
             {
-                   await  SendToServer(Out.RequestUserData);
+                   await SendToServer(Out.RequestUserData);
             }
             if (!KnownDomains.isDomainRecognized)
             {
@@ -91,35 +99,71 @@ namespace RetroFun.Pages
 
         public override void In_RoomUsers(DataInterceptedEventArgs obj)
         {
-                    HEntity[] array = HEntity.Parse(obj.Packet);
-                    if (array.Length != 0)
+            HEntity[] array = HEntity.Parse(obj.Packet);
+            if (array.Length != 0)
+            {
+                foreach (HEntity hentity in array)
+                {
+                    var whisperfixers = new GlobalLists.EntityWhisper(hentity, 18);
+                    if (!Dictionaryusers.ContainsKey(hentity.Id))
                     {
-                        foreach (HEntity hentity in array)
+                        Dictionaryusers.Add(hentity.Id, hentity);
+                    }
+                    if (!EntityWhisperFix.Contains(whisperfixers))
+                    {
+                        EntityWhisperFix.Add(whisperfixers);
+                    }
+                    if (!CurrentRoomUsers.Contains(hentity))
+                    {
+                        CurrentRoomUsers.Add(hentity);
+                    }
+                    if (OwnUsername != null)
+                    {
+                        if (hentity.Name == OwnUsername)
                         {
-                            if (!Dictionaryusers.ContainsKey(hentity.Id))
-                            {
-                                Dictionaryusers.Add(hentity.Id, hentity);
-                            }
-                            if (!CurrentRoomUsers.Contains(hentity))
-                            {
-                                CurrentRoomUsers.Add(hentity);
-                            }
-                            if (OwnUsername != null)
-                            {
-                                if (hentity.Name == OwnUsername)
-                                {
-                                    Own_index = hentity.Index;
-                                    Own_look = hentity.FigureId;
-                                }
-                            }
+                            Own_index = hentity.Index;
+                            Own_look = hentity.FigureId;
                         }
                     }
+                }
+            }
 
 
             UpdateUsersInRoom();
         }
 
 
+        public override void In_RoomUserShout(DataInterceptedEventArgs e)
+        {
+            int index = e.Packet.ReadInteger();
+            string msg = e.Packet.ReadString();
+            e.Packet.ReadInteger();
+            int bubbleid = e.Packet.ReadInteger();
+            var entity = HentityUtils.FindEntityByIndex(index);
+            if (entity != null)
+            {
+                if (EntityWhisperFix.First(ent => ent.entity == entity).bubbleid != bubbleid)
+                {
+                    EntityWhisperFix.First(ent => ent.entity == entity).bubbleid = bubbleid;
+                }
+            }
+        }
+
+        public override void In_RoomUserTalk(DataInterceptedEventArgs e)
+        {
+            int index = e.Packet.ReadInteger();
+            string msg = e.Packet.ReadString();
+            e.Packet.ReadInteger();
+            int bubbleid = e.Packet.ReadInteger();
+            var entity = HentityUtils.FindEntityByIndex(index);
+            if (entity != null)
+            {
+                if (EntityWhisperFix.First(ent => ent.entity == entity).bubbleid != bubbleid)
+                {
+                    EntityWhisperFix.First(ent => ent.entity == entity).bubbleid = bubbleid;
+                }
+            }
+        }
 
         private void UpdateUsersInRoom()
         {
@@ -155,6 +199,7 @@ namespace RetroFun.Pages
             int index = int.Parse(e.Packet.ReadString());
             var entity1 = HentityUtils.FindEntityByIndex(index);
             var entity2 = HentityUtils.FindEntityByIndexDictionary(index);
+            var entity3 = HentityUtils.WhisperEntityFix(index);
             if (entity1 != null)
             {
                 CurrentRoomUsers.Remove(entity1);
@@ -162,6 +207,10 @@ namespace RetroFun.Pages
             if (entity2 != null)
             {
                 Dictionaryusers.Remove(entity2.Id);
+            }
+            if (entity3 != null)
+            {
+                EntityWhisperFix.Remove(entity3);
             }
             UpdateUsersInRoom();
         }
@@ -173,6 +222,8 @@ namespace RetroFun.Pages
             removedEntities.Clear();
             CurrentRoomUsers.Clear();
             UpdateUsersInRoom();
+            EntityWhisperFix.Clear();
+
         }
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
@@ -181,7 +232,7 @@ namespace RetroFun.Pages
             removedEntities.Clear();
             CurrentRoomUsers.Clear();
             UpdateUsersInRoom();
-
+            EntityWhisperFix.Clear();
 
         }
         public override void Out_RoomUserWalk(DataInterceptedEventArgs e)

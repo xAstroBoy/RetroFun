@@ -1,4 +1,5 @@
-﻿using RetroFun.Globals;
+﻿using Microsoft.Office.Interop.Excel;
+using RetroFun.Globals;
 using RetroFun.Utils.Globals;
 using Sulakore.Communication;
 using Sulakore.Habbo;
@@ -73,6 +74,41 @@ namespace RetroFun
             }
         }
 
+
+        public static int WhisperFixerInt(HEntity ent)
+        {
+            if(GlobalLists.whisperfix.Find(f => f.entity == ent) != null)
+            {
+                return GlobalLists.whisperfix.Find(f => f.entity == ent).bubbleid;
+            }
+            else
+            {
+                return 18;
+            }
+        }
+
+        public static GlobalLists.EntityWhisper WhisperEntityFix(int index)
+        {
+            try
+            {
+                if (GlobalLists.whisperfix != null || GlobalLists.whisperfix.Count != 0)
+                {
+                    var entity = GlobalLists.whisperfix.First(ent => ent.entity.Index == index);
+                    if (entity != null)
+                    {
+                        return entity;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                return null;
+            }
+            catch (InvalidOperationException)
+            { return null; }
+        }
+        
 
         public static HMessage PacketBuilder(IList<HEntity> Users, ushort header)
         {
