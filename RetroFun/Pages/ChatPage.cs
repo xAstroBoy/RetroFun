@@ -32,7 +32,7 @@ namespace RetroFun.Pages
 
         private string OldPyramidString = string.Empty;
 
-        private bool isAWhispermessage;
+        private bool IsWhisperingMessageBySelf;
 
         private bool isCloneChatUser;
         private bool isCloneChatAlertDone;
@@ -431,6 +431,7 @@ namespace RetroFun.Pages
 
         public override void Out_RoomUserWhisper(DataInterceptedEventArgs e)
         {
+            IsWhisperingMessageBySelf = true;
             EditUserChatPacket(e);
         }
 
@@ -505,43 +506,48 @@ namespace RetroFun.Pages
             string msg = e.Packet.ReadString();
             e.Packet.ReadInteger();
             int bubbleid = e.Packet.ReadInteger();
-            
+
             if (UseSelectedBubbleClientSide)
             {
-                if (index == GlobalInts.OwnUser_index && isAWhispermessage)
+                if (index == GlobalInts.OwnUser_index && IsWhisperingMessageBySelf)
                 {
                     e.IsBlocked = true;
                     _ = SendToClient(In.RoomUserWhisper, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
-                    isAWhispermessage = false;
+                    IsWhisperingMessageBySelf = false;
                 }
             }
 
             // fixed bobbaitalia.it whisper comics since these aren't working in SS properly.
             if (!UseSelectedBubbleClientSide && KnownDomains.isBobbaHotel)
             {
-                if (index == GlobalInts.OwnUser_index && isAWhispermessage)
+                if (index == GlobalInts.OwnUser_index && IsWhisperingMessageBySelf)
                 {
                     e.IsBlocked = true;
                     _ = SendToClient(In.RoomUserWhisper, GlobalInts.OwnUser_index, msg, 0, Bubbleused, 0, -1);
-                    isAWhispermessage = false;
-                }
-                else
-                {
-                        e.IsBlocked = true;
-                        _ = SendToClient(In.RoomUserWhisper, index, msg, 0, HentityUtils.WhisperFixerInt(HentityUtils.FindEntityByIndex(index)), 0, -1);
+                    IsWhisperingMessageBySelf = false;
                 }
             }
 
+
+            if (KnownDomains.isBobbaHotel)
+            {
+                if (index != GlobalInts.OwnUser_index)
+                {
+                    e.IsBlocked = true;
+                    _ = SendToClient(In.RoomUserWhisper, index, msg, 0, HentityUtils.WhisperFixerInt(HentityUtils.FindEntityByIndex(index)), 0, -1);
+                }
+
+            }
         }
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
-            isAWhispermessage = false;
+            IsWhisperingMessageBySelf = false;
         }
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
-            isAWhispermessage = false;
+            IsWhisperingMessageBySelf = false;
         }
 
 
@@ -559,7 +565,6 @@ namespace RetroFun.Pages
 
             if (Packet.Packet.Header == Out.RoomUserWhisper)
             {
-                isAWhispermessage = true;
                 whisperTarget = message.Split(' ')[0];
                 message = message.Substring(whisperTarget.Length);
             }
