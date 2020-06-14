@@ -1,4 +1,5 @@
 ﻿using RetroFun.Controls;
+using RetroFun.Helpers;
 using RetroFun.Properties;
 using RetroFun.Subscribers;
 using Sulakore.Communication;
@@ -29,6 +30,8 @@ namespace RetroFun.Pages
         private HMessage PyramidChatBuild;
 
         private string OldPyramidString = string.Empty;
+
+        private bool isAWhispermessage;
 
         private bool isCloneChatUser;
         private bool isCloneChatAlertDone;
@@ -148,20 +151,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
-
-        private bool _EditPacketChat;
-
-        public bool EditPacketChat
-        {
-            get => _EditPacketChat;
-            set
-            {
-                _EditPacketChat = value;
-                RaiseOnPropertyChanged();
-            }
-        }
-
 
         private bool _useSelectedBubble;
 
@@ -317,7 +306,6 @@ namespace RetroFun.Pages
             Bind(ShoutTalkBox, "Checked", nameof(ForceShoutChat));
             Bind(WhisperChatBox, "Checked", nameof(ForceWhisperChat));
             Bind(RainbowChatChbx, "Checked", nameof(RainbowChatEnabled));
-            Bind(EditChatPacketsChbx, "Checked", nameof(EditPacketChat));
 
             Bind(TextFloodPhraseBox, "Text", nameof(FlooderText));
             Bind(CooldownFloodNbx, "Value", nameof(FlooderCooldown));
@@ -350,6 +338,7 @@ namespace RetroFun.Pages
 
             BubblesSSCmbx.SelectedIndex = 17;
             BubblesCSCmbx.SelectedIndex = 17;
+            Bubbleused = 18;
 
         }
 
@@ -515,15 +504,29 @@ namespace RetroFun.Pages
             string msg = e.Packet.ReadString();
             e.Packet.ReadInteger();
             int bubbleid = e.Packet.ReadInteger();
+            
+            // TODO : (OPTIONAL) add a fix for all comics for all users (For BobbaHotel)!
+
 
             if (UseSelectedBubbleClientSide)
             {
-                if (index == GlobalInts.OwnUser_index)
+                if (index == GlobalInts.OwnUser_index && isAWhispermessage)
                 {
                     e.IsBlocked = true;
                     _ = SendToClient(In.RoomUserWhisper, GlobalInts.OwnUser_index, msg, 0, SelectedCSBubbleId, 0, -1);
                 }
             }
+
+            // fixed bobbaitalia.it whisper comics since these aren't working in SS properly.
+            if (!UseSelectedBubbleClientSide && KnownDomains.isBobbaHotel)
+            {
+                if (index == GlobalInts.OwnUser_index && isAWhispermessage)
+                {
+                    e.IsBlocked = true;
+                    _ = SendToClient(In.RoomUserWhisper, GlobalInts.OwnUser_index, msg, 0, Bubbleused, 0, -1);
+                }
+            }
+
         }
 
 
@@ -544,7 +547,7 @@ namespace RetroFun.Pages
 
             if (Packet.Packet.Header == Out.RoomUserWhisper)
             {
-                
+                isAWhispermessage = true;
                 whisperTarget = message.Split(' ')[0];
                 message = message.Substring(whisperTarget.Length);
             }

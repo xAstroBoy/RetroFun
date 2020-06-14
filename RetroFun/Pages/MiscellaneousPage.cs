@@ -20,7 +20,6 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class MiscellaneousPage:  ObservablePage
     {
-        private Random Randomizer = new Random();
         private bool newroom = true;
         #region Vars
 
@@ -31,7 +30,6 @@ namespace RetroFun.Pages
         private bool SitModeEnabled;
         private bool DanceLoopEnabled;
         private bool TrollLookMode;
-        private bool RemoveTargetRoomsEnabled;
 
         private readonly string TrollLook1 = "hr-155-42.ea-1333-33.ha-3786-62.ch-201410-89.sh-3333-3333.ca-3333-33-33.lg-44689-82.wa-3333-333.hd-209-1";
         private readonly string TrollLook2 = "hr-893-42.ea-1333-33.ha-3786-62.sh-6298462-82.wa-3333-333.ca-3333-33-33.lg-5772038-82-62.ch-987462876-89.hd-209-1";

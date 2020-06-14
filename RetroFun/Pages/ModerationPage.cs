@@ -21,8 +21,9 @@ namespace RetroFun.Pages
     public partial class ModerationPage : ObservablePage
     {
         private int _selectedUserId;
-        private int Bubbleused = 0;
         private bool newroom = true;
+        public int Bubbleused { get => GlobalInts.Selected_bubble_ID; set { GlobalInts.Selected_bubble_ID = value; RaiseOnPropertyChanged(); } }
+
         private List<HEntity> UserLeftRoom = new List<HEntity>(); 
         private  RegisteredUsers[] _registeredUsers;
         private readonly BanTime[] _BanTime = new[]
@@ -226,25 +227,6 @@ namespace RetroFun.Pages
             });
         }
 
-
-        public override void Out_RoomUserTalk(DataInterceptedEventArgs e)
-        {
-            e.Packet.ReadString();
-            int Bubble = e.Packet.ReadInteger();
-            if (Bubbleused != Bubble)
-            {
-                Bubbleused = Bubble;
-            }
-        }
-        public override void In_RoomUserShout(DataInterceptedEventArgs e)
-        {
-            e.Packet.ReadString();
-            int Bubble = e.Packet.ReadInteger();
-            if (Bubbleused != Bubble)
-            {
-                Bubbleused = Bubble;
-            }
-        }
         private class RegisteredUsers
         {
             public string Name { get; set; }

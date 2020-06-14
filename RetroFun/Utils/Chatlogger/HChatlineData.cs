@@ -51,8 +51,8 @@ namespace RetroFun.Utils.Chatlogger
                     case 0: return anotherMessage.ReadBoolean();
                     case 1: return anotherMessage.ReadInteger();
                     case 2: return anotherMessage.ReadString();
+                    default: throw new System.Exception("Nothing");
                 }
-                throw new System.Exception("what the fuck");
             }
 
             Type = (HChatRecordType)packet.ReadBytes(1)[0];

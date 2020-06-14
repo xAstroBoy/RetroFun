@@ -311,8 +311,8 @@ namespace RetroFun.Pages
 
         //public override void In_ModToolRoomChatlog(DataInterceptedEventArgs e)
         //{
-        //    HChatlineData test = new HChatlineData(e.Packet);
-        //    foreach(var val in test.Message)
+        //    HChatRecordData test = new HChatRecordData(e.Packet);
+        //    foreach (var val in test.Chatlogs)
         //    {
         //        Console.WriteLine(val);
         //    }

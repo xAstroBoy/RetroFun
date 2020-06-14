@@ -48,7 +48,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.EditChatPacketsChbx = new System.Windows.Forms.CheckBox();
+            this.ChatColorComboBox = new System.Windows.Forms.ComboBox();
+            this.SetTextColorChbx = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.LiveEditChatBtn = new Sulakore.Components.SKoreButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -64,8 +65,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.SendMessageBtn = new Sulakore.Components.SKoreButton();
             this.ChatMsgTxb = new System.Windows.Forms.TextBox();
-            this.SetTextColorChbx = new System.Windows.Forms.CheckBox();
-            this.ChatColorComboBox = new System.Windows.Forms.ComboBox();
             this.GroupChatDefault.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CooldownFloodNbx)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -107,7 +106,7 @@
             // HideSpeakingBubbleChbx
             // 
             this.HideSpeakingBubbleChbx.AutoSize = true;
-            this.HideSpeakingBubbleChbx.Location = new System.Drawing.Point(11, 63);
+            this.HideSpeakingBubbleChbx.Location = new System.Drawing.Point(7, 34);
             this.HideSpeakingBubbleChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HideSpeakingBubbleChbx.Name = "HideSpeakingBubbleChbx";
             this.HideSpeakingBubbleChbx.Size = new System.Drawing.Size(193, 24);
@@ -118,7 +117,7 @@
             // AntiBobbaFilterChbx
             // 
             this.AntiBobbaFilterChbx.AutoSize = true;
-            this.AntiBobbaFilterChbx.Location = new System.Drawing.Point(11, 133);
+            this.AntiBobbaFilterChbx.Location = new System.Drawing.Point(7, 97);
             this.AntiBobbaFilterChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.AntiBobbaFilterChbx.Name = "AntiBobbaFilterChbx";
             this.AntiBobbaFilterChbx.Size = new System.Drawing.Size(154, 24);
@@ -189,7 +188,7 @@
             // RainbowChatChbx
             // 
             this.RainbowChatChbx.AutoSize = true;
-            this.RainbowChatChbx.Location = new System.Drawing.Point(11, 97);
+            this.RainbowChatChbx.Location = new System.Drawing.Point(7, 63);
             this.RainbowChatChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RainbowChatChbx.Name = "RainbowChatChbx";
             this.RainbowChatChbx.Size = new System.Drawing.Size(135, 24);
@@ -309,7 +308,6 @@
             // 
             this.groupBox2.Controls.Add(this.ChatColorComboBox);
             this.groupBox2.Controls.Add(this.SetTextColorChbx);
-            this.groupBox2.Controls.Add(this.EditChatPacketsChbx);
             this.groupBox2.Controls.Add(this.RainbowChatChbx);
             this.groupBox2.Controls.Add(this.AntiBobbaFilterChbx);
             this.groupBox2.Controls.Add(this.HideSpeakingBubbleChbx);
@@ -320,16 +318,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Extras";
             // 
-            // EditChatPacketsChbx
+            // ChatColorComboBox
             // 
-            this.EditChatPacketsChbx.AutoSize = true;
-            this.EditChatPacketsChbx.Location = new System.Drawing.Point(11, 34);
-            this.EditChatPacketsChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.EditChatPacketsChbx.Name = "EditChatPacketsChbx";
-            this.EditChatPacketsChbx.Size = new System.Drawing.Size(161, 24);
-            this.EditChatPacketsChbx.TabIndex = 7;
-            this.EditChatPacketsChbx.Text = "Edit Chat packets";
-            this.EditChatPacketsChbx.UseVisualStyleBackColor = true;
+            this.ChatColorComboBox.FormattingEnabled = true;
+            this.ChatColorComboBox.Location = new System.Drawing.Point(211, 75);
+            this.ChatColorComboBox.Name = "ChatColorComboBox";
+            this.ChatColorComboBox.Size = new System.Drawing.Size(196, 28);
+            this.ChatColorComboBox.TabIndex = 9;
+            this.ChatColorComboBox.SelectedIndexChanged += new System.EventHandler(this.ColorComboBox_SelectedIndexChanged);
+            // 
+            // SetTextColorChbx
+            // 
+            this.SetTextColorChbx.AutoSize = true;
+            this.SetTextColorChbx.Location = new System.Drawing.Point(202, 34);
+            this.SetTextColorChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SetTextColorChbx.Name = "SetTextColorChbx";
+            this.SetTextColorChbx.Size = new System.Drawing.Size(135, 24);
+            this.SetTextColorChbx.TabIndex = 8;
+            this.SetTextColorChbx.Text = "Set Text Color";
+            this.SetTextColorChbx.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -471,7 +478,7 @@
             this.groupBox6.Size = new System.Drawing.Size(424, 162);
             this.groupBox6.TabIndex = 20;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Flooder";
+            this.groupBox6.Text = "Chat";
             // 
             // label5
             // 
@@ -498,26 +505,6 @@
             this.ChatMsgTxb.Name = "ChatMsgTxb";
             this.ChatMsgTxb.Size = new System.Drawing.Size(308, 26);
             this.ChatMsgTxb.TabIndex = 12;
-            // 
-            // SetTextColorChbx
-            // 
-            this.SetTextColorChbx.AutoSize = true;
-            this.SetTextColorChbx.Location = new System.Drawing.Point(202, 34);
-            this.SetTextColorChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.SetTextColorChbx.Name = "SetTextColorChbx";
-            this.SetTextColorChbx.Size = new System.Drawing.Size(135, 24);
-            this.SetTextColorChbx.TabIndex = 8;
-            this.SetTextColorChbx.Text = "Set Text Color";
-            this.SetTextColorChbx.UseVisualStyleBackColor = true;
-            // 
-            // ColorComboBox
-            // 
-            this.ChatColorComboBox.FormattingEnabled = true;
-            this.ChatColorComboBox.Location = new System.Drawing.Point(211, 75);
-            this.ChatColorComboBox.Name = "ColorComboBox";
-            this.ChatColorComboBox.Size = new System.Drawing.Size(196, 28);
-            this.ChatColorComboBox.TabIndex = 9;
-            this.ChatColorComboBox.SelectedIndexChanged += new System.EventHandler(this.ColorComboBox_SelectedIndexChanged);
             // 
             // ChatPage
             // 
@@ -591,7 +578,6 @@
         private Sulakore.Components.SKoreButton SendMessageBtn;
         private System.Windows.Forms.TextBox ChatMsgTxb;
         private Sulakore.Components.SKoreButton LiveEditChatBtn;
-        private System.Windows.Forms.CheckBox EditChatPacketsChbx;
         private System.Windows.Forms.CheckBox SetTextColorChbx;
         private System.Windows.Forms.ComboBox ChatColorComboBox;
     }

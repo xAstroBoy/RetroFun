@@ -120,7 +120,6 @@ namespace RetroFun
             this.ChatPg.ChatMessageText = null;
             this.ChatPg.CloneUsernameFilter = null;
             this.ChatPg.ColorizeText = false;
-            this.ChatPg.EditPacketChat = false;
             this.ChatPg.FlooderCooldown = 50;
             this.ChatPg.FlooderEnabled = false;
             this.ChatPg.FlooderText = null;
