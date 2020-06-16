@@ -240,11 +240,15 @@ namespace RetroFun.Pages
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
+            isLiveEditing = false;
+            WriteToButton(LiveEditBtn, "Live Edit Mode : Off");
             ResetEdit();
         }
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
+            isLiveEditing = false;
+            WriteToButton(LiveEditBtn, "Live Edit Mode : Off");
             ResetEdit();
         }
 
@@ -290,12 +294,11 @@ namespace RetroFun.Pages
 
         private void ResetEdit()
         {
+
             OldTonality = Tonality = 0;
             OldSaturation = Saturation = 0;
             OldLuminosity = Luminosity = 0;
             FurniID = 0;
-            isLiveEditing = false;
-            WriteToButton(LiveEditBtn, "Live Edit Mode : Off");
             TonalityFader = false;
             EnableButton(TonNbx, true);
             WriteToButton(TonFadeBtn, "Tonality Fade : Deactivated");
