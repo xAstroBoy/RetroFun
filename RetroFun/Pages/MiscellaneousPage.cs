@@ -473,14 +473,14 @@ namespace RetroFun.Pages
             }
         }
 
-        private int _ActionsCooldown = 250;
+        private int _GestureCooldown = 2500;
 
         public int GestureCooldown
         {
-            get => _ActionsCooldown;
+            get => _GestureCooldown;
             set
             {
-                _ActionsCooldown = value;
+                _GestureCooldown = value;
                 RaiseOnPropertyChanged();
             }
         }

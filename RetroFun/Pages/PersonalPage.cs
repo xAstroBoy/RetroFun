@@ -25,6 +25,7 @@ namespace RetroFun.Pages
         private bool _HasModToolsUnlocked;
         private bool IsInterceptTradeUserOn;
         private bool TradeSpammerActivated;
+        private bool hasReceivedBanListResponse;
         private int _selectedUserId;
         private readonly Handitems[] _Handitems = new[]
         {
@@ -354,7 +355,7 @@ namespace RetroFun.Pages
             }
         }
 
-       
+
 
         private int _HanditemHunter;
         public int HanditemHunter
@@ -534,7 +535,7 @@ namespace RetroFun.Pages
 
         private void ManageModPermissions()
         {
-            if(HasStaffPermissions)
+            if (HasStaffPermissions)
             {
                 if (HasUserPermissionsMessage)
                 {
@@ -561,7 +562,7 @@ namespace RetroFun.Pages
 
         private void Speak(string text)
         {
-                _ = SendToClient(In.RoomUserWhisper, 0, "[Personal]: " + text, 0, 34, 0, -1);
+            _ = SendToClient(In.RoomUserWhisper, 0, "[Personal]: " + text, 0, 34, 0, -1);
         }
 
 
@@ -576,7 +577,7 @@ namespace RetroFun.Pages
 
         private void ManageModTools()
         {
-            if(HasModToolsUnlocked)
+            if (HasModToolsUnlocked)
             {
                 SendPacketModTools(false);
                 HasModToolsUnlocked = false;
@@ -617,20 +618,20 @@ namespace RetroFun.Pages
         private void SetCurrencyOnClient()
         {
 
-            if(CreditsChecked)
+            if (CreditsChecked)
             {
                 SetCredits(CreditsValue);
             }
-            if(CrystalsChecked)
+            if (CrystalsChecked)
             {
                 SetCrystals(CrystalsValue, DucketsValue);
 
-            if (DucketsChecked)
-            {
+                if (DucketsChecked)
+                {
                     SetDuckets(DucketsValue);
+                }
             }
         }
-    }
 
         private void SetCrystals(int crystals, int duckets)
         {
@@ -702,9 +703,9 @@ namespace RetroFun.Pages
 
         private void CrashUserBtn_Click(object sender, EventArgs e)
         {
-            if(TradeSpammerActivated)
+            if (TradeSpammerActivated)
             {
-                WriteToButton(CrashUserBtn, "Spam Trade : OFF"); 
+                WriteToButton(CrashUserBtn, "Spam Trade : OFF");
                 TradeSpammerActivated = false;
             }
             else
@@ -723,7 +724,7 @@ namespace RetroFun.Pages
 
         private void TradeSpammerspeak(string text)
         {
-                _ = SendToClient(In.RoomUserWhisper, 0, "[Trade Spammer]: " + text, 0, 34, 0, -1);
+            _ = SendToClient(In.RoomUserWhisper, 0, "[Trade Spammer]: " + text, 0, 34, 0, -1);
         }
 
         private void EnterRoomBtn_Click(object sender, EventArgs e)
@@ -757,10 +758,10 @@ namespace RetroFun.Pages
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
             _selectedUserId = e.Packet.ReadInteger();
-            if(giveHanditemToselecteduser)
+            if (giveHanditemToselecteduser)
             {
-                    _ = SendToServer(Out.RoomUserTalk, ":handitem " + HanditemID, GlobalInts.Selected_bubble_ID);
-                    _ = SendToServer(Out.RoomUserGiveHandItem, _selectedUserId);
+                _ = SendToServer(Out.RoomUserTalk, ":handitem " + HanditemID, GlobalInts.Selected_bubble_ID);
+                _ = SendToServer(Out.RoomUserGiveHandItem, _selectedUserId);
             }
         }
 
@@ -771,22 +772,25 @@ namespace RetroFun.Pages
                 if (isTalkAvailable && !HasEffectBeenRemoved)
                 {
                     await Task.Delay(500);
-                   await  SendToServer(Out.RoomUserTalk, ":enable 0", GlobalInts.Selected_bubble_ID);
+                    await SendToServer(Out.RoomUserTalk, ":enable 0", GlobalInts.Selected_bubble_ID);
                     isTalkAvailable = false;
                 }
             }
         }
-        
+
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             isTalkAvailable = true;
             HasEffectBeenRemoved = false;
+            hasReceivedBanListResponse = false;
+
         }
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
             isTalkAvailable = true;
             HasEffectBeenRemoved = false;
+            hasReceivedBanListResponse = false;
         }
 
         public override void In_RoomUserStatus(DataInterceptedEventArgs e)
@@ -797,7 +801,7 @@ namespace RetroFun.Pages
         private async void RoomBypass()
         {
             await Task.Delay(200);
-           await  SendToServer(Out.RequestRoomHeightmap);
+            await SendToServer(Out.RequestRoomHeightmap);
             WriteToButton(AutomaticBypassBtn, "Automatic: OFF");
             AutomaticAttempt = false;
         }
@@ -810,7 +814,7 @@ namespace RetroFun.Pages
 
         private void BlockRestrictionsBtn_Click(object sender, EventArgs e)
         {
-            if(BlockBypassers)
+            if (BlockBypassers)
             {
                 WriteToButton(BlockRestrictionsBtn, "Block Restrictions : OFF");
                 BlockBypassers = false;
@@ -825,7 +829,7 @@ namespace RetroFun.Pages
 
         private void GiveHanditemToMyself_Click(object sender, EventArgs e)
         {
-           _ = SendToServer(Out.RoomUserTalk, ":handitem " + HanditemID, 18);
+            _ = SendToServer(Out.RoomUserTalk, ":handitem " + HanditemID, 18);
         }
 
 
@@ -843,10 +847,10 @@ namespace RetroFun.Pages
                     foreach (HEntity user in GlobalLists.UsersInRoom)
                     {
                         Thread.Sleep(50);
-                       await  SendToServer(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
-                       await  SendToServer(Out.RoomUserGiveHandItem, user.Id);
+                        await SendToServer(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
+                        await SendToServer(Out.RoomUserGiveHandItem, user.Id);
                     }
-                   await  SendToServer(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
+                    await SendToServer(Out.RoomUserTalk, ":handitem " + handitem.ToString(), 18);
 
                 }
             }
@@ -873,7 +877,7 @@ namespace RetroFun.Pages
 
         private void GiveHanditemToClickedUserbtn_Click(object sender, EventArgs e)
         {
-            if(giveHanditemToselecteduser)
+            if (giveHanditemToselecteduser)
             {
                 WriteToButton(GiveHanditemToClickedUserbtn, "Give Handitem to clicked user : OFF");
                 giveHanditemToselecteduser = false;
@@ -907,7 +911,7 @@ namespace RetroFun.Pages
 
         private void GiveBadgeToYourselfBtn_Click(object sender, EventArgs e)
         {
-            _ = SendToServer(Out.RoomUserTalk, ":givebadge " + GlobalStrings.UserDetails_Username +  " " + badgecode, 18);
+            _ = SendToServer(Out.RoomUserTalk, ":givebadge " + GlobalStrings.UserDetails_Username + " " + badgecode, 18);
         }
 
         private void HanditemCmbx_SelectedIndexChanged(object sender, EventArgs e)
@@ -917,7 +921,7 @@ namespace RetroFun.Pages
 
         private void TeleportBtn_Click(object sender, EventArgs e)
         {
-            _ = SendToServer(Out.RoomUserTalk, ":tp" , GlobalInts.Selected_bubble_ID);
+            _ = SendToServer(Out.RoomUserTalk, ":tp", GlobalInts.Selected_bubble_ID);
         }
 
         private void OverrideBtn_Click(object sender, EventArgs e)
@@ -930,14 +934,46 @@ namespace RetroFun.Pages
             _ = SendToServer(Out.RoomRequestBannedUsers, GlobalInts.ROOM_ID);
         }
 
-        public override void Out_RoomRequestBannedUsers(DataInterceptedEventArgs e)
+
+        public override void In_RoomBannedUsers(DataInterceptedEventArgs e)
         {
-           if(KnownDomains.isBobbaHotel)
+            if (KnownDomains.isBobbaHotel)
             {
                 e.IsBlocked = true;
-                Speak("Please use the button, since there's a bug that causes a crash , use the button in Personal Page");
+                BobbaTempFix(e.Packet);
+            }
+        }
+
+
+        private async void BobbaTempFix(HMessage e)
+        {
+            
+            await Task.Delay(2500);
+            if(!hasReceivedBanListResponse)
+            {
+                await SendToClient(e);
+                hasReceivedBanListResponse = true;
+                await Task.Delay(2500);
+                DisableBanListResponse();
+            }
+        }
+
+        private async void DisableBanListResponse()
+        {
+            await Task.Delay(3500);
+            hasReceivedBanListResponse = true;
+        }
+
+
+
+        public override void Out_RoomRequestBannedUsers(DataInterceptedEventArgs e)
+        {
+            if (KnownDomains.isBobbaHotel )
+            {
+                e.IsBlocked = true;
+                _ = SendToServer(e.Packet);
             }
         }
     }
-    }
+}
 

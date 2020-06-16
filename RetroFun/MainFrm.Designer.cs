@@ -175,7 +175,7 @@ namespace RetroFun
             this.FurniPg.BackColor = System.Drawing.Color.White;
             this.FurniPg.BadgeCodeInHolder = null;
             this.FurniPg.ControlledFloorFurni = 0;
-            this.FurniPg.DoubleClickFurnitureRemoval = false;
+            this.FurniPg.RemoveFurnisInClientSideOnly = false;
             this.FurniPg.FloorFurniID = 0;
             this.FurniPg.FloorFurniLiveEditCooldown = 0;
             this.FurniPg.FloorFurniRotation = 0;
@@ -330,7 +330,7 @@ namespace RetroFun
             this.MiscellaneousPg.ExclamationSelected = false;
             this.MiscellaneousPg.FiveSelected = false;
             this.MiscellaneousPg.FourSelected = false;
-            this.MiscellaneousPg.GestureCooldown = 250;
+            this.MiscellaneousPg.GestureCooldown = 2500;
             this.MiscellaneousPg.HeartSelected = false;
             this.MiscellaneousPg.InvisibleSignSelected = false;
             this.MiscellaneousPg.KissSelected = false;

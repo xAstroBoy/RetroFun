@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.RemoverGrbx = new System.Windows.Forms.GroupBox();
-            this.ShowFurnIStuffInChatChbx = new System.Windows.Forms.CheckBox();
-            this.ShowFurniDetailsChbx = new System.Windows.Forms.CheckBox();
             this.StoreFurniIDOnFileChbx = new System.Windows.Forms.CheckBox();
             this.PickWallItemCSBtn = new Sulakore.Components.SKoreButton();
             this.PickFloorFurniSSBtn = new Sulakore.Components.SKoreButton();
             this.FurniPickChbx = new System.Windows.Forms.CheckBox();
-            this.DoubleClickFurnitureRemovalChbx = new System.Windows.Forms.CheckBox();
+            this.RemoveFurnisInClientSideChbx = new System.Windows.Forms.CheckBox();
             this.RestoreFurnisBtn = new Sulakore.Components.SKoreButton();
             this.FurnitureIDTxt = new Sulakore.Components.SKoreLabelBox();
             this.RemoveWallItemBtn = new Sulakore.Components.SKoreButton();
             this.RemoveFloorItemBtn = new Sulakore.Components.SKoreButton();
+            this.ShowFurnIStuffInChatChbx = new System.Windows.Forms.CheckBox();
+            this.ShowFurniDetailsChbx = new System.Windows.Forms.CheckBox();
             this.FloorFurniIDNbx = new System.Windows.Forms.NumericUpDown();
             this.FloorFurniXNbx = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -63,13 +63,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.PickerSpeedNbx = new System.Windows.Forms.NumericUpDown();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.RemoveRoomBGCSBtn = new Sulakore.Components.SKoreButton();
+            this.PickerDefaultPickBtn = new Sulakore.Components.SKoreButton();
+            this.PickerIsAutomaticBtn = new Sulakore.Components.SKoreButton();
             this.PickSelectedTypeCSBtn = new Sulakore.Components.SKoreButton();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.PickBadgeCS = new Sulakore.Components.SKoreButton();
-            this.PickBadgeSS = new Sulakore.Components.SKoreButton();
             this.BadgeCodePickerTxb = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.PickBadgeCS = new Sulakore.Components.SKoreButton();
+            this.PickBadgeSS = new Sulakore.Components.SKoreButton();
+            this.RemoveRoomBGCSBtn = new Sulakore.Components.SKoreButton();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.RemoverGrbx.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FloorFurniIDNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.FloorFurniXNbx)).BeginInit();
@@ -88,7 +90,7 @@
             this.RemoverGrbx.Controls.Add(this.PickWallItemCSBtn);
             this.RemoverGrbx.Controls.Add(this.PickFloorFurniSSBtn);
             this.RemoverGrbx.Controls.Add(this.FurniPickChbx);
-            this.RemoverGrbx.Controls.Add(this.DoubleClickFurnitureRemovalChbx);
+            this.RemoverGrbx.Controls.Add(this.RemoveFurnisInClientSideChbx);
             this.RemoverGrbx.Controls.Add(this.RestoreFurnisBtn);
             this.RemoverGrbx.Controls.Add(this.FurnitureIDTxt);
             this.RemoverGrbx.Controls.Add(this.RemoveWallItemBtn);
@@ -101,28 +103,6 @@
             this.RemoverGrbx.TabIndex = 0;
             this.RemoverGrbx.TabStop = false;
             this.RemoverGrbx.Text = "Remover";
-            // 
-            // ShowFurnIStuffInChatChbx
-            // 
-            this.ShowFurnIStuffInChatChbx.AutoSize = true;
-            this.ShowFurnIStuffInChatChbx.Location = new System.Drawing.Point(837, 345);
-            this.ShowFurnIStuffInChatChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ShowFurnIStuffInChatChbx.Name = "ShowFurnIStuffInChatChbx";
-            this.ShowFurnIStuffInChatChbx.Size = new System.Drawing.Size(224, 24);
-            this.ShowFurnIStuffInChatChbx.TabIndex = 11;
-            this.ShowFurnIStuffInChatChbx.Text = "Show Furni Details In Chat";
-            this.ShowFurnIStuffInChatChbx.UseVisualStyleBackColor = true;
-            // 
-            // ShowFurniDetailsChbx
-            // 
-            this.ShowFurniDetailsChbx.AutoSize = true;
-            this.ShowFurniDetailsChbx.Location = new System.Drawing.Point(837, 311);
-            this.ShowFurniDetailsChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ShowFurniDetailsChbx.Name = "ShowFurniDetailsChbx";
-            this.ShowFurniDetailsChbx.Size = new System.Drawing.Size(205, 24);
-            this.ShowFurniDetailsChbx.TabIndex = 10;
-            this.ShowFurniDetailsChbx.Text = "Print Furni Details in File";
-            this.ShowFurniDetailsChbx.UseVisualStyleBackColor = true;
             // 
             // StoreFurniIDOnFileChbx
             // 
@@ -166,17 +146,17 @@
             this.FurniPickChbx.Text = "Tell FurniID Picked.";
             this.FurniPickChbx.UseVisualStyleBackColor = true;
             // 
-            // DoubleClickFurnitureRemovalChbx
+            // RemoveFurnisInClientSideChbx
             // 
-            this.DoubleClickFurnitureRemovalChbx.AutoSize = true;
-            this.DoubleClickFurnitureRemovalChbx.Location = new System.Drawing.Point(14, 138);
-            this.DoubleClickFurnitureRemovalChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DoubleClickFurnitureRemovalChbx.Name = "DoubleClickFurnitureRemovalChbx";
-            this.DoubleClickFurnitureRemovalChbx.Size = new System.Drawing.Size(351, 24);
-            this.DoubleClickFurnitureRemovalChbx.TabIndex = 4;
-            this.DoubleClickFurnitureRemovalChbx.Text = "Enable Pick up furni CS (blocks Furni Pickup)";
-            this.DoubleClickFurnitureRemovalChbx.UseVisualStyleBackColor = true;
-            this.DoubleClickFurnitureRemovalChbx.CheckedChanged += new System.EventHandler(this.DoubleClickFurnitureRemovalChbx_CheckedChanged);
+            this.RemoveFurnisInClientSideChbx.AutoSize = true;
+            this.RemoveFurnisInClientSideChbx.Location = new System.Drawing.Point(14, 138);
+            this.RemoveFurnisInClientSideChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RemoveFurnisInClientSideChbx.Name = "RemoveFurnisInClientSideChbx";
+            this.RemoveFurnisInClientSideChbx.Size = new System.Drawing.Size(351, 24);
+            this.RemoveFurnisInClientSideChbx.TabIndex = 4;
+            this.RemoveFurnisInClientSideChbx.Text = "Enable Pick up furni CS (blocks Furni Pickup)";
+            this.RemoveFurnisInClientSideChbx.UseVisualStyleBackColor = true;
+            this.RemoveFurnisInClientSideChbx.CheckedChanged += new System.EventHandler(this.DoubleClickFurnitureRemovalChbx_CheckedChanged);
             // 
             // RestoreFurnisBtn
             // 
@@ -221,6 +201,28 @@
             this.RemoveFloorItemBtn.TabIndex = 1;
             this.RemoveFloorItemBtn.Text = "Remove Floor Item CS";
             this.RemoveFloorItemBtn.Click += new System.EventHandler(this.RemoveFloorItemCSBtn_Click);
+            // 
+            // ShowFurnIStuffInChatChbx
+            // 
+            this.ShowFurnIStuffInChatChbx.AutoSize = true;
+            this.ShowFurnIStuffInChatChbx.Location = new System.Drawing.Point(837, 345);
+            this.ShowFurnIStuffInChatChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ShowFurnIStuffInChatChbx.Name = "ShowFurnIStuffInChatChbx";
+            this.ShowFurnIStuffInChatChbx.Size = new System.Drawing.Size(224, 24);
+            this.ShowFurnIStuffInChatChbx.TabIndex = 11;
+            this.ShowFurnIStuffInChatChbx.Text = "Show Furni Details In Chat";
+            this.ShowFurnIStuffInChatChbx.UseVisualStyleBackColor = true;
+            // 
+            // ShowFurniDetailsChbx
+            // 
+            this.ShowFurniDetailsChbx.AutoSize = true;
+            this.ShowFurniDetailsChbx.Location = new System.Drawing.Point(837, 311);
+            this.ShowFurniDetailsChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ShowFurniDetailsChbx.Name = "ShowFurniDetailsChbx";
+            this.ShowFurniDetailsChbx.Size = new System.Drawing.Size(205, 24);
+            this.ShowFurniDetailsChbx.TabIndex = 10;
+            this.ShowFurniDetailsChbx.Text = "Print Furni Details in File";
+            this.ShowFurniDetailsChbx.UseVisualStyleBackColor = true;
             // 
             // FloorFurniIDNbx
             // 
@@ -487,6 +489,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.PickerDefaultPickBtn);
+            this.groupBox3.Controls.Add(this.PickerIsAutomaticBtn);
             this.groupBox3.Controls.Add(this.PickSelectedTypeCSBtn);
             this.groupBox3.Controls.Add(this.BadgeCodePickerTxb);
             this.groupBox3.Controls.Add(this.PickerSpeedNbx);
@@ -505,15 +509,25 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Target Furni Picker";
             // 
-            // RemoveRoomBGCSBtn
+            // PickerDefaultPickBtn
             // 
-            this.RemoveRoomBGCSBtn.Location = new System.Drawing.Point(837, 196);
-            this.RemoveRoomBGCSBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RemoveRoomBGCSBtn.Name = "RemoveRoomBGCSBtn";
-            this.RemoveRoomBGCSBtn.Size = new System.Drawing.Size(279, 60);
-            this.RemoveRoomBGCSBtn.TabIndex = 32;
-            this.RemoveRoomBGCSBtn.Text = "Remove RoomBG Client-side";
-            this.RemoveRoomBGCSBtn.Click += new System.EventHandler(this.RemoveRoomBGCS_click);
+            this.PickerDefaultPickBtn.Location = new System.Drawing.Point(404, 100);
+            this.PickerDefaultPickBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PickerDefaultPickBtn.Name = "PickerDefaultPickBtn";
+            this.PickerDefaultPickBtn.Size = new System.Drawing.Size(168, 25);
+            this.PickerDefaultPickBtn.TabIndex = 38;
+            this.PickerDefaultPickBtn.Text = "Client-side";
+            this.PickerDefaultPickBtn.Click += new System.EventHandler(this.PickerDefaultPickBtn_Click);
+            // 
+            // PickerIsAutomaticBtn
+            // 
+            this.PickerIsAutomaticBtn.Location = new System.Drawing.Point(207, 100);
+            this.PickerIsAutomaticBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PickerIsAutomaticBtn.Name = "PickerIsAutomaticBtn";
+            this.PickerIsAutomaticBtn.Size = new System.Drawing.Size(168, 25);
+            this.PickerIsAutomaticBtn.TabIndex = 37;
+            this.PickerIsAutomaticBtn.Text = "Automatic : OFF";
+            this.PickerIsAutomaticBtn.Click += new System.EventHandler(this.PickerIsAutomaticBtn_Click);
             // 
             // PickSelectedTypeCSBtn
             // 
@@ -524,6 +538,22 @@
             this.PickSelectedTypeCSBtn.TabIndex = 31;
             this.PickSelectedTypeCSBtn.Text = "Pick Selected Furni Client-side";
             this.PickSelectedTypeCSBtn.Click += new System.EventHandler(this.PickFurniCSBtn_Click);
+            // 
+            // BadgeCodePickerTxb
+            // 
+            this.BadgeCodePickerTxb.Location = new System.Drawing.Point(663, 56);
+            this.BadgeCodePickerTxb.Name = "BadgeCodePickerTxb";
+            this.BadgeCodePickerTxb.Size = new System.Drawing.Size(227, 26);
+            this.BadgeCodePickerTxb.TabIndex = 36;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(670, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(106, 20);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "Target Badge";
             // 
             // PickBadgeCS
             // 
@@ -545,21 +575,15 @@
             this.PickBadgeSS.Text = "Pick Target Badge Furni Server-side";
             this.PickBadgeSS.Click += new System.EventHandler(this.PickBadgeSS_Click);
             // 
-            // BadgeCodePickerTxb
+            // RemoveRoomBGCSBtn
             // 
-            this.BadgeCodePickerTxb.Location = new System.Drawing.Point(663, 56);
-            this.BadgeCodePickerTxb.Name = "BadgeCodePickerTxb";
-            this.BadgeCodePickerTxb.Size = new System.Drawing.Size(227, 26);
-            this.BadgeCodePickerTxb.TabIndex = 36;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(670, 19);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(106, 20);
-            this.label6.TabIndex = 35;
-            this.label6.Text = "Target Badge";
+            this.RemoveRoomBGCSBtn.Location = new System.Drawing.Point(837, 196);
+            this.RemoveRoomBGCSBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RemoveRoomBGCSBtn.Name = "RemoveRoomBGCSBtn";
+            this.RemoveRoomBGCSBtn.Size = new System.Drawing.Size(279, 60);
+            this.RemoveRoomBGCSBtn.TabIndex = 32;
+            this.RemoveRoomBGCSBtn.Text = "Remove RoomBG Client-side";
+            this.RemoveRoomBGCSBtn.Click += new System.EventHandler(this.RemoveRoomBGCS_click);
             // 
             // FurniturePage
             // 
@@ -596,7 +620,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox RemoverGrbx;
-        private System.Windows.Forms.CheckBox DoubleClickFurnitureRemovalChbx;
+        private System.Windows.Forms.CheckBox RemoveFurnisInClientSideChbx;
         private Sulakore.Components.SKoreButton RemoveWallItemBtn;
         private Sulakore.Components.SKoreButton RemoveFloorItemBtn;
         private Sulakore.Components.SKoreButton RestoreFurnisBtn;
@@ -637,5 +661,7 @@
         private Sulakore.Components.SKoreButton PickBadgeSS;
         private System.Windows.Forms.TextBox BadgeCodePickerTxb;
         private System.Windows.Forms.Label label6;
+        private Sulakore.Components.SKoreButton PickerDefaultPickBtn;
+        private Sulakore.Components.SKoreButton PickerIsAutomaticBtn;
     }
 }

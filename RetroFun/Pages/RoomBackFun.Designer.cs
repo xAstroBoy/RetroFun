@@ -36,7 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.FurniIDnb = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
-            this.CaptureBtn = new System.Windows.Forms.CheckBox();
+            this.CaptureBtn = new Sulakore.Components.SKoreButton();
             this.TonFadeBtn = new Sulakore.Components.SKoreButton();
             this.SaturationFadeBtn = new Sulakore.Components.SKoreButton();
             this.LuminosityFadeBtn = new Sulakore.Components.SKoreButton();
@@ -159,14 +159,13 @@
             // 
             // CaptureBtn
             // 
-            this.CaptureBtn.AutoSize = true;
-            this.CaptureBtn.Location = new System.Drawing.Point(21, 408);
+            this.CaptureBtn.Location = new System.Drawing.Point(16, 408);
             this.CaptureBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CaptureBtn.Name = "CaptureBtn";
-            this.CaptureBtn.Size = new System.Drawing.Size(282, 24);
+            this.CaptureBtn.Size = new System.Drawing.Size(314, 24);
             this.CaptureBtn.TabIndex = 8;
-            this.CaptureBtn.Text = "Capture Current RoomBackground";
-            this.CaptureBtn.UseVisualStyleBackColor = true;
+            this.CaptureBtn.Text = "Capture Current RoomBackground : OFF";
+            this.CaptureBtn.Click += new System.EventHandler(this.CaptureBtn_Click);
             // 
             // TonFadeBtn
             // 
@@ -406,7 +405,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown FurniIDnb;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox CaptureBtn;
+        private Sulakore.Components.SKoreButton CaptureBtn;
         private Sulakore.Components.SKoreButton TonFadeBtn;
         private Sulakore.Components.SKoreButton SaturationFadeBtn;
         private Sulakore.Components.SKoreButton LuminosityFadeBtn;

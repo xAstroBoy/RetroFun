@@ -28,7 +28,7 @@ namespace RetroFun.Pages
         List<HWallItem> SnapshotWallItems;
         private List<HFloorItem> RoomFloorFurni { get => FloorFurnitures.Furni; }
         private List<HWallItem> RoomWallFurni { get => WallFurnitures.Furni; }
-        private bool _doubleClickFurnitureRemoval;
+        private bool _RemoveFurnisInClientSideOnly;
         private bool ConvertWalkinFurniMovement;
         private bool FloorFurniInterceptionMode;
 
@@ -48,7 +48,10 @@ namespace RetroFun.Pages
 
         private int _FloorFurniID;
 
+        private bool isAutomaticClientMode = true;
+        private bool isAutomaticServerMode = false;
 
+        private bool isAutomaticPicker = false;
 
         private int _FurniIDToCheck;
 
@@ -138,12 +141,12 @@ namespace RetroFun.Pages
             }
         }
 
-        public bool DoubleClickFurnitureRemoval
+        public bool RemoveFurnisInClientSideOnly
         {
-            get => _doubleClickFurnitureRemoval;
+            get => _RemoveFurnisInClientSideOnly;
             set
             {
-                _doubleClickFurnitureRemoval = value;
+                _RemoveFurnisInClientSideOnly = value;
                 RaiseOnPropertyChanged();
             }
         }
@@ -273,7 +276,7 @@ namespace RetroFun.Pages
             InitializeComponent();
 
             Bind(FurnitureIDTxt, "Text", nameof(FurnitureIdText));
-            Bind(DoubleClickFurnitureRemovalChbx, "Checked", nameof(DoubleClickFurnitureRemoval));
+            Bind(RemoveFurnisInClientSideChbx, "Checked", nameof(RemoveFurnisInClientSideOnly));
             Bind(FurniPickChbx, "Checked", nameof(FurniPickedOutput));
             Bind(SelectedFurniTypeNbx, "Value", nameof(TargetFurniType));
             Bind(PickerSpeedNbx, "Value", nameof(TypeIDPickerSpeed));
@@ -766,6 +769,7 @@ namespace RetroFun.Pages
 
         public void ResetPicker()
         {
+            RemoveFurnisInClientSideOnly = false;
             SnapshotFloorItems.Clear();
             SnapshotWallItems.Clear();
             ShouldUnlockTypeIDPicker(true);
@@ -775,8 +779,11 @@ namespace RetroFun.Pages
             IS_PICKING_WALL_FURNITYPE_SS = false;
             IS_PICKING_BADGEHOLDER_CS = false;
             IS_PICKING_BADGEHOLDER_SS = false;
+            isAutomaticPicker = false;
             ShouldUnlockBadgePicker(true);
-
+            isAutomaticServerMode = false;
+            isAutomaticClientMode = true;
+            WriteToButton(PickerDefaultPickBtn, "Client-side");
         }
 
         public override void Out_RoomUserWalk(DataInterceptedEventArgs e)
@@ -853,8 +860,16 @@ namespace RetroFun.Pages
         }
         private void DoubleClickFurnitureRemovalChbx_CheckedChanged(object sender, EventArgs e)
         {
-            Speak("You will be picking furni on Client, instead of Server side!");
+            if (!RemoveFurnisInClientSideOnly)
+            {
+                Speak("You will be picking furni on Client-side (it wont modify the user's room)");
+            }
+            else
+            {
+                Speak("You will be picking furni on Server-side, (it will modify the user-room!)");
+            }
         }
+
 
         public override void Out_RoomPickupItem(DataInterceptedEventArgs e)
         {
@@ -865,7 +880,7 @@ namespace RetroFun.Pages
                 RecordPlacedRare(furnitureId);
             }
 
-            if (DoubleClickFurnitureRemoval)
+            if (RemoveFurnisInClientSideOnly)
             {
                 FindFurniToRemoveCS(furnitureId);
                 if (FurniPickedOutput)
@@ -889,6 +904,17 @@ namespace RetroFun.Pages
         public override void Out_RotateMoveItem(DataInterceptedEventArgs e)
         {
             int furniid = e.Packet.ReadInteger();
+
+            if (RemoveFurnisInClientSideOnly)
+            {
+                FindFurniToRemoveCS(furniid);
+                if (FurniPickedOutput)
+                {
+                    NoticePickup(furniid);
+                }
+                e.IsBlocked = true;
+            }
+
             if (FloorFurniInterceptionMode)
             {
                 var furni = FindFloorFurni(furniid);
@@ -1034,12 +1060,20 @@ namespace RetroFun.Pages
         {
             TargetFurniType = furni.TypeId;
             Speak("[FurniType Picker] I will pick furnis containing this Typeid ( " + TargetFurniType + " )", 34);
+            if (isAutomaticPicker)
+            {
+                AutomaticFloorFurniPicker(furni.TypeId);
+            }
             return;
         }
         private void FindTypeId(HWallItem furni)
         {
             TargetFurniType = furni.TypeId;
             Speak("[FurniType Picker] I will pick furnis containing this Typeid ( " + TargetFurniType + " )", 34);
+            if(isAutomaticPicker)
+            {
+                AutomaticWallFurniPicker(furni.TypeId);
+            }
             return;
         }
 
@@ -1300,6 +1334,19 @@ namespace RetroFun.Pages
         {
             int FurniID = e.Packet.ReadInteger();
 
+
+
+            if (RemoveFurnisInClientSideOnly)
+            {
+                FindFurniToRemoveCS(FurniID);
+                if (FurniPickedOutput)
+                {
+                    NoticePickup(FurniID);
+                }
+                e.IsBlocked = true;
+            }
+
+
             if (FloorFurniInterceptionMode)
             {
                 var furni = FindFloorFurni(FurniID);
@@ -1424,6 +1471,74 @@ namespace RetroFun.Pages
             ShouldUnlockTypeIDPicker(false);
         }
 
+        private void AutomaticFloorFurniPicker(int typeid)
+        {
+            if (isAutomaticClientMode)
+            {
+                SnapshotFloorItems.Clear();
+                SnapshotWallItems.Clear();
+                Speak("Hiding Furnis in Client-side", 34);
+                IS_PICKING_FLOOR_FURNITYPE_CS = true;
+                IS_TARGET_FLOORFURNI = true;
+                IS_TARGET_WALLFURNI = false;
+                TargetFurniType = typeid;
+                SetFurnisSnapshot();
+                RemoveSelectedFloorFurniCS();
+                ShouldUnlockTypeIDPicker(false);
+            }
+            else
+            {
+                if(isAutomaticServerMode)
+                {
+                    SnapshotFloorItems.Clear();
+                    SnapshotWallItems.Clear();
+                    Speak("Removing Furnis in Server-side", 34);
+                    IS_PICKING_FLOOR_FURNITYPE_SS = true;
+                    IS_TARGET_FLOORFURNI = true;
+                    IS_TARGET_WALLFURNI = false;
+                    TargetFurniType = typeid;
+                    SetFurnisSnapshot();
+                    RemoveSelectedFloorFurniTypeSS();
+                    ShouldUnlockTypeIDPicker(false);
+                }
+            }
+        }
+
+
+        private void AutomaticWallFurniPicker(int typeid)
+        {
+            if (isAutomaticClientMode)
+            {
+                SnapshotFloorItems.Clear();
+                SnapshotWallItems.Clear();
+                Speak("Hiding Furnis in Client-side", 34);
+                IS_PICKING_WALL_FURNITYPE_CS = true;
+                IS_TARGET_FLOORFURNI = false;
+                IS_TARGET_WALLFURNI = true;
+                TargetFurniType = typeid;
+                SetFurnisSnapshot();
+                RemoveSelectedWallFurniCS();
+                ShouldUnlockTypeIDPicker(false);
+            }
+            else
+            {
+                if (isAutomaticServerMode)
+                {
+                    SnapshotFloorItems.Clear();
+                    SnapshotWallItems.Clear();
+                    Speak("Removing Furnis in Server-side", 34);
+                    IS_PICKING_WALL_FURNITYPE_SS = true;
+                    IS_TARGET_FLOORFURNI = false;
+                    IS_TARGET_WALLFURNI = true;
+                    TargetFurniType = typeid;
+                    SetFurnisSnapshot();
+                    RemoveSelectedWallFurniSS();
+                    ShouldUnlockTypeIDPicker(false);
+                }
+            }
+        }
+
+
         private void PickBadgeCS_Click(object sender, EventArgs e)
         {
             if (BadgeCodeInHolder != "")
@@ -1459,6 +1574,50 @@ namespace RetroFun.Pages
             {
                 Speak("Please Put a target badge to find!", 34);
             }
+        }
+
+        private void PickerDefaultPickBtn_Click(object sender, EventArgs e)
+        {
+            AutomaticPickerMode();
+        }
+
+        private void PickerIsAutomaticBtn_Click(object sender, EventArgs e)
+        {
+            if(isAutomaticPicker)
+            {
+                WriteToButton(PickerIsAutomaticBtn, "Automatic : OFF");
+                isAutomaticPicker = false;
+            }
+            else
+            {
+                WriteToButton(PickerIsAutomaticBtn, "Automatic : ON");
+                Speak("The picker will grab anything you double-click by now!");
+                isAutomaticPicker = true;
+            }
+        }
+
+        private void AutomaticPickerMode()
+        {
+            if(isAutomaticServerMode)
+            {
+                isAutomaticServerMode = false;
+                isAutomaticClientMode = true;
+                Speak("The automatic picker will grab anything client-side!");
+                WriteToButton(PickerDefaultPickBtn, "Client-side");
+                return;
+            }
+            else
+            {
+                if (isAutomaticClientMode)
+                {
+                    isAutomaticServerMode = true;
+                    isAutomaticClientMode = false;
+                    Speak("DANGER!!!: The automatic picker will grab anything server-side!");
+                    WriteToButton(PickerDefaultPickBtn, "Server-side");
+                    return;
+                }
+            }
+
         }
     }
 }

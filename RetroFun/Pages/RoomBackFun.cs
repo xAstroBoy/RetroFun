@@ -21,7 +21,6 @@ namespace RetroFun.Pages
         private bool SaturationFader;
         private bool LuminosityFader;
         private bool isLiveEditing;
-        //private bool isLockActive;
         private int _GlobalSpeed = 150;
 
         public int GlobalSpeed
@@ -149,7 +148,6 @@ namespace RetroFun.Pages
             Bind(SatSpeednbx, "Value", nameof(SpeedSaturation));
             Bind(TonSpeednbx, "Value", nameof(SpeedTonality));
             Bind(FurniIDnb, "Value", nameof(FurniID));
-            Bind(CaptureBtn, "Checked", nameof(CaptureMode));
             Bind(GlobalSpeedChbx, "Checked", nameof(GlobalSpeedSwitch));
         }
 
@@ -252,44 +250,46 @@ namespace RetroFun.Pages
             ResetEdit();
         }
 
-        public override void In_RoomFloorItems(DataInterceptedEventArgs e)
+        private bool RoomBackgroundFinder()
         {
-            if (KnownDomains.isBobbaHotel)
-            {
-                int i = 0;
-                var furni = FloorFurnitures.FindFloorFurniForTypeID(4514);
-                if (furni != null)
+                if (KnownDomains.isBobbaHotel)
                 {
-                    FurniID = furni.Id;
-                    foreach (object obj in furni.Stuff)
+                    int i = 0;
+                    var furni = FloorFurnitures.FindFloorFurniForTypeID(4514);
+                    if (furni != null)
                     {
-                        if(i == 0 || i == 1)
+                        FurniID = furni.Id;
+                        foreach (object obj in furni.Stuff)
                         {
-                            i++;
+                            if (i == 0 || i == 1)
+                            {
+                                i++;
+                            }
+                            else
+                            {
+                                if (i == 2)
+                                {
+                                    Tonality = int.Parse(obj.ToString());
+                                    i++;
+                                }
+                                else if (i == 3)
+                                {
+                                    Saturation = int.Parse(obj.ToString());
+                                    i++;
+                                }
+                                else if (i == 4)
+                                {
+                                    Luminosity = int.Parse(obj.ToString());
+                                    i++;
+                                }
+                            }
                         }
-                        else
-                        {
-                            if (i == 2)
-                            {
-                                Tonality = int.Parse(obj.ToString());
-                                i++;
-                            }
-                            else if (i == 3)
-                            {
-                                Saturation = int.Parse(obj.ToString());
-                                i++;
-                            }
-                            else if (i == 4)
-                            {
-                                Luminosity = int.Parse(obj.ToString());
-                                i++;
-                            }
-                        }
-                    }
-                    SaveSettings();
+                        SaveSettings();
+                    return true;
                 }
             }
-        }
+            return false;
+            }
 
 
         private void ResetEdit()
@@ -514,6 +514,28 @@ namespace RetroFun.Pages
         private void ApplyCurrentSettingsBtn_Click(object sender, EventArgs e)
         {
             SendRoomBackgroundPacket(FurniID, Tonality, Saturation, Luminosity);
+        }
+
+        private void CaptureBtn_Click(object sender, EventArgs e)
+        {
+            if(KnownDomains.isBobbaHotel && RoomBackgroundFinder())
+            {
+                WriteToButton(CaptureBtn, "Capture Current RoomBackground : OFF");
+                CaptureMode = false;
+            }
+            else
+            {
+                if(CaptureMode)
+                {
+                    WriteToButton(CaptureBtn, "Capture Current RoomBackground : OFF");
+                    CaptureMode = false;
+                }
+                else
+                {
+                    WriteToButton(CaptureBtn, "Capture Current RoomBackground : ON");
+                    CaptureMode = true;
+                }
+            }
         }
     }
 }
