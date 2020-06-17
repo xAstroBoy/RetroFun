@@ -280,6 +280,8 @@ namespace RetroFun.Pages
             {
                 AddUserInCmbx(entity);
             }
+            WriteRegistrationUsers();
+
         }
 
         private void AddUserInCmbx(HEntity entity)
@@ -298,6 +300,7 @@ namespace RetroFun.Pages
                     UsersCmbx.Items.Add(user);
                 }
             });
+            
         }
 
         private void RemoveUserInCmbx(RegisteredUsers user)
@@ -308,7 +311,8 @@ namespace RetroFun.Pages
                 {
                     if (item.ID == user.ID)
                     {
-                        UsersCmbx.Items.Remove(user);
+                        UsersCmbx.Items.Remove(item);
+                        return;
                     }
                 }
             });
@@ -753,45 +757,6 @@ namespace RetroFun.Pages
         {
             RecordedUnmute(UserNickname);
         }
-
-
-        private void isUnblocked(TextBox textbox, bool status)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                textbox.Visible = status;
-                textbox.Enabled = status;
-            });
-        }
-
-        private void isUnblocked(NumericUpDown numericbox, bool status)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                numericbox.Visible = status;
-                numericbox.Enabled = status;
-            });
-        }
-
-        private void isUnblocked(GroupBox box, bool status)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                box.Visible = status;
-                box.Enabled = status;
-            });
-        }
-
-        private void isUnblocked(Label label, bool status)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                label.Visible = status;
-                label.Enabled = status;
-            });
-        }
-
-
 
 
         private void UsersCmbx_SelectedIndexChanged(object sender, EventArgs e)
