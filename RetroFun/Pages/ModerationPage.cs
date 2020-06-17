@@ -23,9 +23,10 @@ namespace RetroFun.Pages
         private int _selectedUserId;
         private bool newroom = true;
         public int Bubbleused { get => GlobalInts.Selected_bubble_ID; set { GlobalInts.Selected_bubble_ID = value; RaiseOnPropertyChanged(); } }
+        public List<HEntity> UserLeftRoom { get => GlobalLists.UserLeftRoom; set { GlobalLists.UserLeftRoom = value; RaiseOnPropertyChanged(); } }
 
-        private List<HEntity> UserLeftRoom = new List<HEntity>(); 
-        private  RegisteredUsers[] _registeredUsers;
+
+        private RegisteredUsers[] registeredUsers;
         private readonly BanTime[] _BanTime = new[]
         {
             new BanTime(3600, "1 ora"),
@@ -166,7 +167,7 @@ namespace RetroFun.Pages
 
             InitializeComponent();
 
-            _registeredUsers = new RegisteredUsers[] { };
+            registeredUsers = new RegisteredUsers[] { };
 
             BantimeCmbx.Items.AddRange(_BanTime);
             BantimeCmbx.SelectedIndex = 0;
@@ -199,16 +200,6 @@ namespace RetroFun.Pages
         }
 
 
-
-        private void EnableTxbx(TextBox txb, bool value)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                txb.Enabled = value;
-            });
-        }
-
-
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             UserLeftRoom.Clear();
@@ -230,7 +221,7 @@ namespace RetroFun.Pages
         private class RegisteredUsers
         {
             public string Name { get; set; }
-            public string  Motto { get; set; }
+            public string Motto { get; set; }
             public string Look { get; set; }
 
             public int ID { get; set; }
@@ -284,50 +275,64 @@ namespace RetroFun.Pages
 
         public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
-            var entity = HentityUtils.FindEntityByIndex(int.Parse(e.Packet.ReadString()));
+            var entity = HentityUtils.FindLeftUserByIndex(int.Parse(e.Packet.ReadString()));
             if (entity != null)
-            {
-                if (!UserLeftRoom.Contains(entity))
-                {
-                    UserLeftRoom.Add(entity);
-                    RegisterRemovedUser(entity);
-                }
-            }
-        }
-
-
-        private  void RegisterRemovedUser(HEntity entity)
-        {
-            if (!_registeredUsers.Where(x => x.ID == entity.Id).Any())
             {
                 AddUserInCmbx(entity);
             }
         }
 
-
         private void AddUserInCmbx(HEntity entity)
         {
-            var user = new RegisteredUsers(entity.Id, entity.Name, entity.Motto, entity.FigureId);
+            var ent = new RegisteredUsers(entity.Id, entity.Name, entity.Motto, entity.FigureId);
+            AddUserInCmbx(ent);
+        }
+
+
+        private void AddUserInCmbx(RegisteredUsers user)
+        {
             Invoke((MethodInvoker)delegate
             {
-                if (!UsersCmbx.Items.Contains(user))
-                {
-                     UsersCmbx.Items.Add(user);
+                if (!UsersCmbx.Items.Cast<RegisteredUsers>().Where(x => x.ID == user.ID).Any())
+                { 
+                    UsersCmbx.Items.Add(user);
                 }
             });
         }
 
-        private void RemoveUserInCmbx(string username)
+        private void RemoveUserInCmbx(RegisteredUsers user)
         {
-            if (_registeredUsers.Where(x => x.Name == username).Any())
+            Invoke((MethodInvoker)delegate
             {
-                UsersCmbx.Items.Remove(username);
-            }
+                foreach (var item in UsersCmbx.Items.Cast<RegisteredUsers>())
+                {
+                    if (item.ID == user.ID)
+                    {
+                        UsersCmbx.Items.Remove(user);
+                    }
+                }
+            });
         }
+
+        private void RemoveUserInCmbx(HEntity entity)
+        {
+            var ent = new RegisteredUsers(entity.Id, entity.Name, entity.Motto, entity.FigureId);
+            RemoveUserInCmbx(ent);
+        }
+
+
 
         public override void In_RoomUsers(DataInterceptedEventArgs obj)
         {
-          WriteRegistrationUsers();
+            HEntity[] array = HEntity.Parse(obj.Packet);
+            if (array.Length != 0)
+            {
+                foreach (HEntity entity in array)
+                {
+                    RemoveUserInCmbx(entity);
+                }
+            }
+            WriteRegistrationUsers();
         }
 
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
@@ -352,11 +357,11 @@ namespace RetroFun.Pages
             for (int i = 0; i < 26; i++)
             {
                 await Task.Delay(50);
-               await SendToServer(Out.RoomUserTalk, " ", Bubbleused);
+                await SendToServer(Out.RoomUserTalk, " ", Bubbleused);
             }
         }
 
-        private void RecordedBan(string username, int time , string reason)
+        private void RecordedBan(string username, int time, string reason)
         {
             if (UserNickname != GlobalStrings.UserDetails_Username)
             {
@@ -370,7 +375,7 @@ namespace RetroFun.Pages
             if (UserNickname != GlobalStrings.UserDetails_Username)
             {
                 _ = SendToServer(Out.RoomUserTalk, ":mutam " + username + " " + time);
-                RecordModeration("MUTE", username, "" , time);
+                RecordModeration("MUTE", username, "", time);
 
             }
         }
@@ -786,23 +791,8 @@ namespace RetroFun.Pages
             });
         }
 
-        private void isUnblocked(SKoreButton button, bool status)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                button.Visible = status;
-                button.Enabled = status;
-            });
-        }
 
-        private void isUnblocked(ComboBox combobox, bool status)
-        {
-            Invoke((MethodInvoker)delegate
-            {
-                combobox.Visible = status;
-                combobox.Enabled = status;
-            });
-        }
+
 
         private void UsersCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {

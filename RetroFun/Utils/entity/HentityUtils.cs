@@ -21,6 +21,13 @@ namespace RetroFun
             return GlobalLists.UsersInRoom.Find(f => f.Index == index);
         }
 
+        public static HEntity FindLeftUserByIndex(int index)
+        {
+            return GlobalLists.UserLeftRoom.Find(f => f.Index == index);
+        }
+
+
+
         public static HEntity FindEntityByUserID(int userid)
         {
             return GlobalLists.UsersInRoom.Find(f => f.Id == userid);

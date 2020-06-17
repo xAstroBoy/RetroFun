@@ -28,6 +28,7 @@ namespace RetroFun.Pages
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<HEntity> CurrentRoomUsers { get => GlobalLists.UsersInRoom; set { GlobalLists.UsersInRoom = value; RaiseOnPropertyChanged(); } }
         public List<GlobalLists.EntityWhisper> EntityWhisperFix { get => GlobalLists.whisperfix; set { GlobalLists.whisperfix = value; RaiseOnPropertyChanged(); } }
+        public List<HEntity> UserLeftRoom { get => GlobalLists.UserLeftRoom; set { GlobalLists.UserLeftRoom = value; RaiseOnPropertyChanged(); } }
 
 
         public string Own_look { get => GlobalStrings.UserDetails_Look; set { GlobalStrings.UserDetails_Look = value; RaiseOnPropertyChanged(); } }
@@ -105,6 +106,10 @@ namespace RetroFun.Pages
                 foreach (HEntity hentity in array)
                 {
                     var whisperfixers = new GlobalLists.EntityWhisper(hentity, 18);
+                    if (UserLeftRoom.Contains(hentity))
+                    {
+                        UserLeftRoom.Remove(hentity);
+                    }
                     if (!Dictionaryusers.ContainsKey(hentity.Id))
                     {
                         Dictionaryusers.Add(hentity.Id, hentity);
@@ -203,6 +208,7 @@ namespace RetroFun.Pages
             if (entity1 != null)
             {
                 CurrentRoomUsers.Remove(entity1);
+                UserLeftRoom.Add(entity1);
             }
             if (entity2 != null)
             {
@@ -212,6 +218,7 @@ namespace RetroFun.Pages
             {
                 EntityWhisperFix.Remove(entity3);
             }
+
             UpdateUsersInRoom();
         }
 
@@ -223,7 +230,7 @@ namespace RetroFun.Pages
             CurrentRoomUsers.Clear();
             UpdateUsersInRoom();
             EntityWhisperFix.Clear();
-
+            UserLeftRoom.Clear();
         }
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
@@ -233,8 +240,10 @@ namespace RetroFun.Pages
             CurrentRoomUsers.Clear();
             UpdateUsersInRoom();
             EntityWhisperFix.Clear();
-
+            UserLeftRoom.Clear();
         }
+
+
         public override void Out_RoomUserWalk(DataInterceptedEventArgs e)
         {
             if(FreezeUser)
