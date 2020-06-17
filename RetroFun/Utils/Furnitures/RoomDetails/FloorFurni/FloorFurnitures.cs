@@ -14,6 +14,7 @@ namespace RetroFun.Utils.Furnitures.Furni
 
         public static List<HFloorItem> Furni = new List<HFloorItem>();
         public static List<HFloorItem> RemFurni = new List<HFloorItem>();
+        public static List<HFloorItem> OriginalFloorFurnis = new List<HFloorItem>();
 
         public static List<HFloorItem> Snapshot_Floor_Furnis_in_room = new List<HFloorItem>();
 
@@ -23,6 +24,7 @@ namespace RetroFun.Utils.Furnitures.Furni
             Furni.Clear();
             RemFurni.Clear();
             Snapshot_Floor_Furnis_in_room.Clear();
+            OriginalFloorFurnis.Clear();
         }
 
         public static void HandleRemovedFurni(HFloorItem item)
@@ -30,6 +32,10 @@ namespace RetroFun.Utils.Furnitures.Furni
             if (Furni.Contains(item))
             {
                 Furni.Remove(item);
+            }
+            if (OriginalFloorFurnis.Contains(item))
+            {
+                OriginalFloorFurnis.Remove(item);
             }
             if (!RemFurni.Contains(item))
             {
@@ -89,7 +95,7 @@ namespace RetroFun.Utils.Furnitures.Furni
                 if (Furni.Find(f => f.Id == id) != null) { Furni.Find(f => f.Id == id).Facing = direction; }
                 if (RemFurni.Find(f => f.Id == id) != null) { RemFurni.Find(f => f.Id == id).Facing = direction; }
                 if (Snapshot_Floor_Furnis_in_room.Find(f => f.Id == id) != null) { Snapshot_Floor_Furnis_in_room.Find(f => f.Id == id).Facing = direction; }
-            
+                if (OriginalFloorFurnis.Find(f => f.Id == id) != null) { OriginalFloorFurnis.Find(f => f.Id == id).Facing = direction; }
             }
             catch (Exception) { }
 
@@ -114,6 +120,8 @@ namespace RetroFun.Utils.Furnitures.Furni
                     if (Furni.Find(f => f.Id == id) != null) { Furni.Find(f => f.Id == id).Tile = new HPoint(x, y, dectodouble); }
                     if (RemFurni.Find(f => f.Id == id) != null) { RemFurni.Find(f => f.Id == id).Tile = new HPoint(x, y, dectodouble); }
                     if (Snapshot_Floor_Furnis_in_room.Find(f => f.Id == id) != null) { Snapshot_Floor_Furnis_in_room.Find(f => f.Id == id).Tile = new HPoint(x, y, dectodouble); }
+                    if (OriginalFloorFurnis.Find(f => f.Id == id) != null) { OriginalFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, dectodouble); }
+
                 }
             }
             catch(Exception) { }

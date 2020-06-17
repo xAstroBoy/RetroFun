@@ -22,7 +22,20 @@ namespace RetroFun.Globals
             }
         }
 
+        public class FurniTypeIDFixer
+        {
+            public HFloorItem FloorFurni;
+            public int originalTypeID = 0;
+
+            public FurniTypeIDFixer(HFloorItem furni, int OriginalTypeID)
+            {
+                FloorFurni = furni;
+                originalTypeID = OriginalTypeID;
+            }
+        }
+
         public static List<EntityWhisper> whisperfix = new List<EntityWhisper>();
+        public static List<FurniTypeIDFixer> furnifix = new List<FurniTypeIDFixer>();
 
         public static List<HEntity> UsersInRoom = new List<HEntity>();
         public static List<HEntity> ConvertedUsersToPets = new List<HEntity>();

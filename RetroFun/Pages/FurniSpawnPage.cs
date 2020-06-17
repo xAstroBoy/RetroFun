@@ -12,6 +12,7 @@ using RetroFun.Utils.Furnitures.Furni;
 using RetroFun.Helpers;
 using System.Threading.Tasks;
 using System.Linq;
+using RetroFun.Globals;
 
 namespace RetroFun.Pages
 {
@@ -20,9 +21,16 @@ namespace RetroFun.Pages
     public partial class FurniSpawnPage : ObservablePage
     {
         private List<HFloorItem> Snapshot_Floor_Furnis_in_room = new List<HFloorItem>();
-        private List<HFloorItem> HiddenFloorFurnis = new List<HFloorItem>();
+        public List<GlobalLists.FurniTypeIDFixer> OriginalFurniTypeID { get => GlobalLists.furnifix; set { GlobalLists.furnifix = value; RaiseOnPropertyChanged(); } }
+
+        private List<HFloorItem> ConvertedFurnis = new List<HFloorItem>();
+        private List<HFloorItem> OriginalFloorFurnisSnap = new List<HFloorItem>();
+        public List<HFloorItem> OriginalFloorFurnis { get => FloorFurnitures.OriginalFloorFurnis; set { FloorFurnitures.OriginalFloorFurnis = value; RaiseOnPropertyChanged(); } }
+
         private bool CaptureTargetTypeIDMode;
         private bool CaptureReplaceTypeIDMode;
+        private bool isRestoringOriginalFurnis;
+        
 
 
 
@@ -35,6 +43,7 @@ namespace RetroFun.Pages
 
         private int LocalFurniID;
         private int _FurniAmountInv = 0;
+
         private bool IsReplacingFurnisWithNewFurnis;
         private int _Wallcoordsl;
 
@@ -415,28 +424,7 @@ namespace RetroFun.Pages
             });
         }
 
-        private void SpawnFurni(int typeid, int CoordX, int CoordY, int CoordZ, HDirection FurniRotation, string Owner)
-        {
-            LocalFurniID++;
-            _ = SendToClient(In.AddFloorItem, new object[]
-            {
-                LocalFurniID,
-                typeid,
-                CoordX,
-                CoordY,
-                FurniRotation,
-                CoordZ,
-                "0.0", //<-?
-                0, //<-?
-                0, //<-?
-                false, //<-?
-                false, //<-?
-                -1, //<-?
-                0, //<-?
-                0, //<-?
-                Owner, //<-?
-            });
-        }
+
 
 
 
@@ -651,7 +639,6 @@ namespace RetroFun.Pages
         }
 
 
-        // FLOORFURNI
 
 
         private void CoordXNbx_ValueChanged(object sender, EventArgs e)
@@ -679,7 +666,6 @@ namespace RetroFun.Pages
         }
 
 
-        // WALL FURNI
 
 
         private void CoordWDecimalPartNbx_ValueChanged(object sender, EventArgs e)
@@ -721,16 +707,15 @@ namespace RetroFun.Pages
                 Snapshot_Floor_Furnis_in_room.Clear();
                 Snapshot_Floor_Furnis_in_room = FloorFurnitures.GetFloorFurnis();
                 IsReplacingFurnisWithNewFurnis = true;
-                FloorFurniReplacer();
+                FloorFurniEditor();
             }
             else { Speak("Please wait, im still replacing the Furniture in client!"); }
         }
 
 
 
-        private void FloorFurniReplacer()
+        private void FloorFurniEditor()
         {
-            var items = new List<HFloorItem>();
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
@@ -746,21 +731,14 @@ namespace RetroFun.Pages
                                 {
                                     if (item.TypeId == TargetTypeId)
                                     {
-                                        if (!items.Contains(item))
-                                        {
-                                            item.TypeId = ReplaceTypeID;
-                                            items.Add(item);
-                                        }
+                                        RegisterOriginalItem(item);
+                                        RegisterEditedItem(item);
                                     }
                                 }
                                 IsReplacingFurnisWithNewFurnis = false;
-                                SpawnReplacedFurnis(items);
+                                SpawnReplacedFurnis();
                             }
-                            IsReplacingFurnisWithNewFurnis = false;
-                            SpawnReplacedFurnis(items);
                         }
-                        IsReplacingFurnisWithNewFurnis = false;
-                        SpawnReplacedFurnis(items);
                     }
                     catch (Exception e)
                     {
@@ -770,33 +748,66 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-        private async void RemoveFurnisCS(List<HFloorItem> furnis)
+
+
+
+        private void RegisterEditedItem(HFloorItem item)
         {
-            foreach(var item in furnis)
+            if (!ConvertedFurnis.Contains(item))
             {
-                await SendToClient(In.RemoveFloorItem, item.Id.ToString(), false, 0, 0);
+                item.TypeId = ReplaceTypeID;
+                ConvertedFurnis.Add(item);
             }
         }
 
 
-        private async void SpawnReplacedFurnis(List<HFloorItem> items)
+        private void RegisterOriginalItem(HFloorItem item)
         {
-            RemoveFurnisCS(items);
-            await Task.Delay(250);
-           await SendToClient(FloorFurnitures.PacketBuilder(items, In.RoomFloorItems));
+            var furni = new GlobalLists.FurniTypeIDFixer(item, TargetTypeId);
+            if (!OriginalFurniTypeID.Contains(furni))
+            {
+                OriginalFurniTypeID.Add(furni);
+            }
+            if (!OriginalFloorFurnis.Contains(item))
+            {
+                OriginalFloorFurnis.Add(item);
+            }
+
         }
+
+
+
+        private async void SpawnReplacedFurnis()
+        {
+            foreach (var item in ConvertedFurnis)
+            {
+                await SendToClient(In.RemoveFloorItem, item.Id.ToString(), false, 0, 0);
+            }
+            await Task.Delay(250);
+           await SendToClient(FloorFurnitures.PacketBuilder(ConvertedFurnis, In.RoomFloorItems));
+            await Task.Delay(250);
+        }
+
+
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             IsReplacingFurnisWithNewFurnis = false;
             Snapshot_Floor_Furnis_in_room.Clear();
-        }
+            OriginalFloorFurnis.Clear();
+            ConvertedFurnis.Clear();
+            OriginalFurniTypeID.Clear();
+    }
 
 
         public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
         {
             IsReplacingFurnisWithNewFurnis = false;
             Snapshot_Floor_Furnis_in_room.Clear();
+            OriginalFloorFurnis.Clear();
+            ConvertedFurnis.Clear();
+            OriginalFurniTypeID.Clear();
+
         }
 
         private void CaptureTargetTypeIDBtn_Click(object sender, EventArgs e)
@@ -834,37 +845,109 @@ namespace RetroFun.Pages
             int FurniID = e.Packet.ReadInteger();
             if (CaptureTargetTypeIDMode)
             {
-                TargetTypeId = FloorFurnitures.FindFloorFurni(FurniID).TypeId;
-                WriteToButton(CaptureTargetTypeIDBtn, "Capture Target TypeID : OFF");
-                CaptureTargetTypeIDMode = false;
-                e.IsBlocked = true;
+                if (FloorFurnitures.FindFloorFurni(FurniID) != null)
+                {
+                    TargetTypeId = FloorFurnitures.FindFloorFurni(FurniID).TypeId;
+                    WriteToButton(CaptureTargetTypeIDBtn, "Capture Target TypeID : OFF");
+                    CaptureTargetTypeIDMode = false;
+                    e.IsBlocked = true;
+                }
             }
             if (CaptureReplaceTypeIDMode)
             {
-                ReplaceTypeID = FloorFurnitures.FindFloorFurni(FurniID).TypeId;
-                WriteToButton(CaptureReplacedTypeIDBtn, "Capture Replacement TypeID : OFF");
-                CaptureReplaceTypeIDMode = false;
-                e.IsBlocked = true;
+                if (FloorFurnitures.FindFloorFurni(FurniID) != null)
+                {
+                    ReplaceTypeID = FloorFurnitures.FindFloorFurni(FurniID).TypeId;
+                    WriteToButton(CaptureReplacedTypeIDBtn, "Capture Replacement TypeID : OFF");
+                    CaptureReplaceTypeIDMode = false;
+                    e.IsBlocked = true;
+                }
             }
-
         }
         public override void Out_ToggleFloorItem(DataInterceptedEventArgs e)
         {
             int FurniID = e.Packet.ReadInteger();
             if (CaptureTargetTypeIDMode)
             {
-                TargetTypeId = FloorFurnitures.FindFloorFurni(FurniID).TypeId;
-                WriteToButton(CaptureTargetTypeIDBtn, "Capture Target TypeID : OFF");
-                CaptureTargetTypeIDMode = false;
-                e.IsBlocked = true;
+                if (FloorFurnitures.FindFloorFurni(FurniID) != null)
+                {
+                    TargetTypeId = FloorFurnitures.FindFloorFurni(FurniID).TypeId;
+                    WriteToButton(CaptureTargetTypeIDBtn, "Capture Target TypeID : OFF");
+                    CaptureTargetTypeIDMode = false;
+                    e.IsBlocked = true;
+                }
             }
             if (CaptureReplaceTypeIDMode)
             {
-                ReplaceTypeID = FloorFurnitures.FindFloorFurni(FurniID).TypeId;
-                WriteToButton(CaptureReplacedTypeIDBtn, "Capture Replacement TypeID : OFF");
-                CaptureReplaceTypeIDMode = false;
-                e.IsBlocked = true;
+                if (FloorFurnitures.FindFloorFurni(FurniID) != null)
+                {
+                    ReplaceTypeID = FloorFurnitures.FindFloorFurni(FurniID).TypeId;
+                    WriteToButton(CaptureReplacedTypeIDBtn, "Capture Replacement TypeID : OFF");
+                    CaptureReplaceTypeIDMode = false;
+                    e.IsBlocked = true;
+                }
             }
+        }
+
+        private void RestoreReplacedFurnisCSBtn_Click(object sender, EventArgs e)
+        {
+            if (!isRestoringOriginalFurnis)
+            {
+                isRestoringOriginalFurnis = true;
+                FloorFurniRestorer();
+            }
+        }
+
+        private List<HFloorItem> RestoreOriginalTypeIDS(List<HFloorItem> item)
+        {
+            var list = new List<HFloorItem>();
+            foreach (HFloorItem furni in item)
+            {
+                if(OriginalFurniTypeID.First(ent => ent.FloorFurni.Id == furni.Id).FloorFurni.Id == furni.Id)
+                {
+                    var ORIGINALTYPEID = OriginalFurniTypeID.First(f => f.FloorFurni.Id == furni.Id).originalTypeID;
+                    if (furni.TypeId != ORIGINALTYPEID)
+                    {
+                        furni.TypeId = ORIGINALTYPEID;
+                    }
+                    if(!list.Contains(furni))
+                    {
+                        list.Add(furni);
+                    }
+                }
+            }
+            return list;
+        }
+
+
+        private void FloorFurniRestorer()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    try
+                    {
+                        if (isRestoringOriginalFurnis)
+                        {
+                            foreach (var item in ConvertedFurnis)
+                            {
+                                _ = SendToClient(In.RemoveFloorItem, item.Id.ToString(), false, 0, 0);
+                            }
+                            _ = SendToClient(FloorFurnitures.PacketBuilder(RestoreOriginalTypeIDS(OriginalFloorFurnis), In.RoomFloorItems));
+                                Thread.Sleep(500);
+                                ConvertedFurnis.Clear();
+                                OriginalFloorFurnis.Clear();
+                                isRestoringOriginalFurnis = false;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                } while (isRestoringOriginalFurnis);
+
+            }).Start();
         }
     }
 }
