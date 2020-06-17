@@ -2,8 +2,7 @@
 using RetroFun.Helpers;
 using RetroFun.Pages;
 using RetroFun.Subscribers;
-using RetroFun.Utils.Furnitures.FloorFurni;
-using RetroFun.Utils.Furnitures.WallFurni;
+using RetroFun.Utils.Furnitures.Furni;
 using RetroFun.Utils.Globals;
 using RetroFun.Utils.HostFinder.BobbaItalia;
 using Sulakore.Communication;

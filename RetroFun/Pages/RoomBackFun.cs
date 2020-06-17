@@ -1,6 +1,6 @@
 ﻿using RetroFun.Helpers;
 using RetroFun.Subscribers;
-using RetroFun.Utils.Furnitures.WallFurni;
+using RetroFun.Utils.Furnitures.Furni;
 using Sulakore.Communication;
 using Sulakore.Components;
 using System;

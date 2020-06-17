@@ -1,6 +1,7 @@
 ﻿using Sulakore.Habbo;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,8 @@ namespace RetroFun.Globals
 
         public static List<HEntity> UsersInRoom = new List<HEntity>();
         public static List<HEntity> ConvertedUsersToPets = new List<HEntity>();
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public static List<HEntity> UserLeftRoom = new List<HEntity>();
 
 

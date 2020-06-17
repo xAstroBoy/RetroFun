@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RetroFun.Utils.Furnitures.WallFurni
+namespace RetroFun.Utils.Furnitures.Furni
 {
     public class FloorFurnitures
     {
@@ -95,7 +95,10 @@ namespace RetroFun.Utils.Furnitures.WallFurni
 
         }
 
-
+        public static  List<HFloorItem> GetFloorFurnis()
+        {
+            return Furni.ToList();
+        }
 
 
 
@@ -116,18 +119,7 @@ namespace RetroFun.Utils.Furnitures.WallFurni
             catch(Exception) { }
         }
 
-        
-
-        public static List<HFloorItem> GetFloorFurnis()
-        {
-            return Furni;
-        }
-
-        public static void SetSnapshotFloor()
-        {
-            Snapshot_Floor_Furnis_in_room = GetFloorFurnis();
-        }
-
+       
         public static HMessage PacketBuilder(IList<HFloorItem> objects, ushort header)
         {
             var ret = new HMessage(header);

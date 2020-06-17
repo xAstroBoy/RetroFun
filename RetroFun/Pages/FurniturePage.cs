@@ -13,9 +13,8 @@ using System.Collections.Generic;
 using Sulakore.Habbo;
 using System.Linq;
 using RetroFun.Helpers;
-using RetroFun.Utils.Furnitures.FloorFurni;
-using RetroFun.Utils.Furnitures.WallFurni;
 using System.Text;
+using RetroFun.Utils.Furnitures.Furni;
 
 namespace RetroFun.Pages
 {

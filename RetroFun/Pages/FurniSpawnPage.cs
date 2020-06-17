@@ -5,20 +5,37 @@ using RetroFun.Subscribers;
 using Sulakore.Communication;
 using Sulakore.Protocol;
 using Sulakore.Components;
+using System.Threading;
+using Sulakore.Habbo;
+using System.Collections.Generic;
+using RetroFun.Utils.Furnitures.Furni;
+using RetroFun.Helpers;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class FurniSpawnPage:  ObservablePage
+    public partial class FurniSpawnPage : ObservablePage
     {
+        private List<HFloorItem> Snapshot_Floor_Furnis_in_room = new List<HFloorItem>();
+        private List<HFloorItem> HiddenFloorFurnis = new List<HFloorItem>();
+        private bool CaptureTargetTypeIDMode;
+        private bool CaptureReplaceTypeIDMode;
+
+
+
+        //private List<HWallItem> RoomWallFurni { get => WallFurnitures.Furni; }
+
+
         private Random rand = new Random();
         private int _InventoryFurniID;
         private int _FloorFurniID;
 
         private int LocalFurniID;
         private int _FurniAmountInv = 0;
-
+        private bool IsReplacingFurnisWithNewFurnis;
         private int _Wallcoordsl;
 
         public int Wallcoordsl
@@ -27,6 +44,30 @@ namespace RetroFun.Pages
             set
             {
                 _Wallcoordsl = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _TargetTypeId;
+
+        public int TargetTypeId
+        {
+            get => _TargetTypeId;
+            set
+            {
+                _TargetTypeId = value;
+                RaiseOnPropertyChanged();
+            }
+        }
+
+        private int _ReplaceTypeID;
+
+        public int ReplaceTypeID
+        {
+            get => _ReplaceTypeID;
+            set
+            {
+                _ReplaceTypeID = value;
                 RaiseOnPropertyChanged();
             }
         }
@@ -293,9 +334,12 @@ namespace RetroFun.Pages
             Bind(WallFurniIDNbx, "Value", nameof(WallFurniID));
             Bind(CoordWnumbx, "Value", nameof(Wallcoordsw));
             Bind(CoordINumbx, "Value", nameof(Wallcoordsl));
-            //Bind(WallPosterIDTbx, "Text", nameof(WallPosterID));
             Bind(CoordWDecimalPartNbx, "Value", nameof(Wallcoords2w));
             Bind(CoordLDecimalPartNbx, "Value", nameof(Wallcoords2l));
+
+
+            Bind(TargetTypeIdNbx, "Value", nameof(TargetTypeId));
+            Bind(ReplaceTypeIDNbx, "Value", nameof(ReplaceTypeID));
 
 
             LocalFurniID = rand.Next(1498128, 9999999);
@@ -345,16 +389,16 @@ namespace RetroFun.Pages
 
         private void SpawnFloorFurniBtn_Click(object sender, EventArgs e)
         {
-            SpawnFurni(FloorFurniID, CoordX, CoordY, CoordZ, FurniRotation, FurniOwnerName); 
+            SpawnFurni(FloorFurniID, CoordX, CoordY, CoordZ, FurniRotation, FurniOwnerName);
         }
 
-        private void SpawnFurni(int FurniID, int CoordX, int CoordY, int CoordZ, int FurniRotation, string Owner) 
+        private void SpawnFurni(int TypeID, int CoordX, int CoordY, int CoordZ, int FurniRotation, string Owner)
         {
             LocalFurniID++;
             _ = SendToClient(In.AddFloorItem, new object[]
             {
                 LocalFurniID,
-                FurniID,
+                TypeID,
                 CoordX,
                 CoordY,
                 FurniRotation,
@@ -371,6 +415,33 @@ namespace RetroFun.Pages
             });
         }
 
+        private void SpawnFurni(int typeid, int CoordX, int CoordY, int CoordZ, HDirection FurniRotation, string Owner)
+        {
+            LocalFurniID++;
+            _ = SendToClient(In.AddFloorItem, new object[]
+            {
+                LocalFurniID,
+                typeid,
+                CoordX,
+                CoordY,
+                FurniRotation,
+                CoordZ,
+                "0.0", //<-?
+                0, //<-?
+                0, //<-?
+                false, //<-?
+                false, //<-?
+                -1, //<-?
+                0, //<-?
+                0, //<-?
+                Owner, //<-?
+            });
+        }
+
+
+
+
+
         private void SetOwnUsernameBtn_Click(object sender, EventArgs e)
         {
             FurniOwnerName = GlobalStrings.UserDetails_Username;
@@ -379,7 +450,7 @@ namespace RetroFun.Pages
 
         private void SpawnFloorFurniOnClickBtn_Click(object sender, EventArgs e)
         {
-            if(SpawnFloorFurniOnClick)
+            if (SpawnFloorFurniOnClick)
             {
                 WriteToButton(SpawnFloorFurniOnClickBtn, "Spawn Floor Furni on click : OFF");
                 SpawnFloorFurniOnClick = false;
@@ -387,7 +458,7 @@ namespace RetroFun.Pages
             else
             {
                 WriteToButton(SpawnFloorFurniOnClickBtn, "Spawn Floor Furni on click : ON");
-                WallFurniSpeak("The User won't be able to move until this option is toggled off!");
+                FloorFurniSpeak("The User won't be able to move until this option is toggled off!");
                 DisableSpawnWallFurniOnClick();
                 SpawnFloorFurniOnClick = true;
             }
@@ -396,13 +467,18 @@ namespace RetroFun.Pages
 
         private void WallFurniSpeak(string text)
         {
-                _ = SendToClient(In.RoomUserWhisper, 0, "[WallFurni Spawner]: " + text, 0, 34, 0, -1);
+            _ = SendToClient(In.RoomUserWhisper, 0, "[WallFurni Spawner]: " + text, 0, 34, 0, -1);
         }
         private void FloorFurniSpeak(string text)
         {
-                _ = SendToClient(In.RoomUserWhisper, 0, "[FloorFurni Spawner]: " + text, 0, 34, 0, -1);
+            _ = SendToClient(In.RoomUserWhisper, 0, "[FloorFurni Spawner]: " + text, 0, 34, 0, -1);
         }
 
+
+        private void Speak(string text)
+        {
+            _ = SendToClient(In.RoomUserWhisper, 0, "FurniSpawnPage: " + text, 0, 34, 0, -1);
+        }
         private void WriteToButton(SKoreButton button, string text)
         {
             Invoke((MethodInvoker)delegate
@@ -425,9 +501,9 @@ namespace RetroFun.Pages
         {
             if (FurniType == "S")
             {
-                SpawnFurniInventoryS("S",  InventoryFurniID);
+                SpawnFurniInventoryS("S", InventoryFurniID);
             }
-            else if(FurniType == "I")
+            else if (FurniType == "I")
             {
                 SpawnFurniInventoryI("I", InventoryFurniID);
 
@@ -497,13 +573,12 @@ namespace RetroFun.Pages
                 0,
                 Owner
             );
-            WallFurniSpeak("[DEBUG]: Furni : " + FurniID + ":w=" + Coordw.ToString() + "," + Wallcoords2w.ToString() + " l=" + coordsl.ToString() + "," + Wallcoords2l.ToString() + " " + FurniRotation + " " + PosterID + -1 + 0 + 0 + Owner);
         }
 
 
         private void DisableSpawnFloorFurniOnClick()
         {
-            if(SpawnFloorFurniOnClick)
+            if (SpawnFloorFurniOnClick)
             {
                 WriteToButton(SpawnFloorFurniOnClickBtn, "Spawn Floor Furni on click : OFF");
                 SpawnFloorFurniOnClick = false;
@@ -528,7 +603,7 @@ namespace RetroFun.Pages
 
         private void SpawnWallFurniBtn_Click(object sender, EventArgs e)
         {
-            SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation,   FurniOwnerName);
+            SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, FurniOwnerName);
         }
 
         private void SpawnWallFurniOnClickBtn_Click(object sender, EventArgs e)
@@ -605,7 +680,7 @@ namespace RetroFun.Pages
 
 
         // WALL FURNI
- 
+
 
         private void CoordWDecimalPartNbx_ValueChanged(object sender, EventArgs e)
         {
@@ -636,6 +711,159 @@ namespace RetroFun.Pages
             if (SpawnWallFurniOnValueChange)
             {
                 SpawnWallFurni(WallFurniID, Wallcoordsw, Wallcoordsl, WallCSRotation, FurniOwnerName);
+            }
+        }
+
+        private void FurniTypeIDReplacer_Click(object sender, EventArgs e)
+        {
+            if (!IsReplacingFurnisWithNewFurnis)
+            {
+                Snapshot_Floor_Furnis_in_room.Clear();
+                Snapshot_Floor_Furnis_in_room = FloorFurnitures.GetFloorFurnis();
+                IsReplacingFurnisWithNewFurnis = true;
+                FloorFurniReplacer();
+            }
+            else { Speak("Please wait, im still replacing the Furniture in client!"); }
+        }
+
+
+
+        private void FloorFurniReplacer()
+        {
+            var items = new List<HFloorItem>();
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    try
+                    {
+                        if (IsReplacingFurnisWithNewFurnis)
+                        {
+                            if (Snapshot_Floor_Furnis_in_room != null && !(Snapshot_Floor_Furnis_in_room.Count == 0))
+                            {
+                                foreach (HFloorItem item in Snapshot_Floor_Furnis_in_room)
+                                {
+                                    if (item.TypeId == TargetTypeId)
+                                    {
+                                        if (!items.Contains(item))
+                                        {
+                                            item.TypeId = ReplaceTypeID;
+                                            items.Add(item);
+                                        }
+                                    }
+                                }
+                                IsReplacingFurnisWithNewFurnis = false;
+                                SpawnReplacedFurnis(items);
+                            }
+                            IsReplacingFurnisWithNewFurnis = false;
+                            SpawnReplacedFurnis(items);
+                        }
+                        IsReplacingFurnisWithNewFurnis = false;
+                        SpawnReplacedFurnis(items);
+                    }
+                    catch (Exception e)
+                    {
+                    }
+                } while (IsReplacingFurnisWithNewFurnis);
+
+            }).Start();
+        }
+
+        private async void RemoveFurnisCS(List<HFloorItem> furnis)
+        {
+            foreach(var item in furnis)
+            {
+                await SendToClient(In.RemoveFloorItem, item.Id.ToString(), false, 0, 0);
+            }
+        }
+
+
+        private async void SpawnReplacedFurnis(List<HFloorItem> items)
+        {
+            RemoveFurnisCS(items);
+            await Task.Delay(250);
+           await SendToClient(FloorFurnitures.PacketBuilder(items, In.RoomFloorItems));
+        }
+
+        public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
+        {
+            IsReplacingFurnisWithNewFurnis = false;
+            Snapshot_Floor_Furnis_in_room.Clear();
+        }
+
+
+        public override void Out_RequestRoomHeightmap(DataInterceptedEventArgs e)
+        {
+            IsReplacingFurnisWithNewFurnis = false;
+            Snapshot_Floor_Furnis_in_room.Clear();
+        }
+
+        private void CaptureTargetTypeIDBtn_Click(object sender, EventArgs e)
+        {
+            if (CaptureTargetTypeIDMode)
+            {
+                WriteToButton(CaptureTargetTypeIDBtn, "Capture Target TypeID : OFF");
+                CaptureTargetTypeIDMode = false;
+            }
+            else
+            {
+                WriteToButton(CaptureTargetTypeIDBtn, "Capture Target TypeID : ON");
+                CaptureTargetTypeIDMode = true;
+                Speak("Please Double click the targeted furni to Grab it's Typeid!");
+            }
+        }
+
+        private void CaptureReplacedTypeIDBtn_Click(object sender, EventArgs e)
+        {
+            if (CaptureReplaceTypeIDMode)
+            {
+                WriteToButton(CaptureReplacedTypeIDBtn, "Capture Replacement TypeID : OFF");
+                CaptureReplaceTypeIDMode = false;
+            }
+            else
+            {
+                WriteToButton(CaptureReplacedTypeIDBtn, "Capture Replacement TypeID : ON");
+                Speak("Please Double click the Replacement furni to Grab it's Typeid!");
+                CaptureReplaceTypeIDMode = true;
+            }
+        }
+
+        public override void Out_RotateMoveItem(DataInterceptedEventArgs e)
+        {
+            int FurniID = e.Packet.ReadInteger();
+            if (CaptureTargetTypeIDMode)
+            {
+                TargetTypeId = FloorFurnitures.FindFloorFurni(FurniID).TypeId;
+                WriteToButton(CaptureTargetTypeIDBtn, "Capture Target TypeID : OFF");
+                CaptureTargetTypeIDMode = false;
+                e.IsBlocked = true;
+            }
+            if (CaptureReplaceTypeIDMode)
+            {
+                ReplaceTypeID = FloorFurnitures.FindFloorFurni(FurniID).TypeId;
+                WriteToButton(CaptureReplacedTypeIDBtn, "Capture Replacement TypeID : OFF");
+                CaptureReplaceTypeIDMode = false;
+                e.IsBlocked = true;
+            }
+
+        }
+        public override void Out_ToggleFloorItem(DataInterceptedEventArgs e)
+        {
+            int FurniID = e.Packet.ReadInteger();
+            if (CaptureTargetTypeIDMode)
+            {
+                TargetTypeId = FloorFurnitures.FindFloorFurni(FurniID).TypeId;
+                WriteToButton(CaptureTargetTypeIDBtn, "Capture Target TypeID : OFF");
+                CaptureTargetTypeIDMode = false;
+                e.IsBlocked = true;
+            }
+            if (CaptureReplaceTypeIDMode)
+            {
+                ReplaceTypeID = FloorFurnitures.FindFloorFurni(FurniID).TypeId;
+                WriteToButton(CaptureReplacedTypeIDBtn, "Capture Replacement TypeID : OFF");
+                CaptureReplaceTypeIDMode = false;
+                e.IsBlocked = true;
             }
         }
     }

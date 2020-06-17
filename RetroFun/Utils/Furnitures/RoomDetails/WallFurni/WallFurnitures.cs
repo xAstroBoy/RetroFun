@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RetroFun.Utils.Furnitures.FloorFurni
+namespace RetroFun.Utils.Furnitures.Furni
 {
     public class WallFurnitures
     {

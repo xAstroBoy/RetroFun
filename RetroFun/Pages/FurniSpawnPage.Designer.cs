@@ -75,6 +75,14 @@
             this.SpawnWallFurniBtn = new Sulakore.Components.SKoreButton();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.TargetTypeIdNbx = new System.Windows.Forms.NumericUpDown();
+            this.ReplaceTypeIDNbx = new System.Windows.Forms.NumericUpDown();
+            this.FurniTypeIDReplacer = new Sulakore.Components.SKoreButton();
+            this.CaptureReplacedTypeIDBtn = new Sulakore.Components.SKoreButton();
+            this.CaptureTargetTypeIDBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.CoordXNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordZNBx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordYNbx)).BeginInit();
@@ -94,11 +102,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.CoordWnumbx)).BeginInit();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WallFurniIDNbx)).BeginInit();
+            this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TargetTypeIdNbx)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReplaceTypeIDNbx)).BeginInit();
             this.SuspendLayout();
             // 
             // CoordXNbx
             // 
-            this.CoordXNbx.Location = new System.Drawing.Point(10, 124);
+            this.CoordXNbx.Location = new System.Drawing.Point(10, 125);
             this.CoordXNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
@@ -147,7 +158,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 101);
+            this.label2.Location = new System.Drawing.Point(6, 102);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(20, 20);
             this.label2.TabIndex = 6;
@@ -178,7 +189,7 @@
             this.groupBox1.Controls.Add(this.rotationLeft);
             this.groupBox1.Controls.Add(this.RotationDown);
             this.groupBox1.Controls.Add(this.RotationUp);
-            this.groupBox1.Location = new System.Drawing.Point(123, 124);
+            this.groupBox1.Location = new System.Drawing.Point(123, 125);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -207,7 +218,7 @@
             this.RotationRight.Location = new System.Drawing.Point(117, 71);
             this.RotationRight.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotationRight.Name = "RotationRight";
-            this.RotationRight.Size = new System.Drawing.Size(14, 13);
+            this.RotationRight.Size = new System.Drawing.Size(21, 20);
             this.RotationRight.TabIndex = 4;
             this.RotationRight.TabStop = true;
             this.RotationRight.UseVisualStyleBackColor = true;
@@ -219,7 +230,7 @@
             this.rotationLeft.Location = new System.Drawing.Point(26, 71);
             this.rotationLeft.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rotationLeft.Name = "rotationLeft";
-            this.rotationLeft.Size = new System.Drawing.Size(14, 13);
+            this.rotationLeft.Size = new System.Drawing.Size(21, 20);
             this.rotationLeft.TabIndex = 3;
             this.rotationLeft.UseVisualStyleBackColor = true;
             this.rotationLeft.CheckedChanged += new System.EventHandler(this.rotationLeft_CheckedChanged);
@@ -230,7 +241,7 @@
             this.RotationDown.Location = new System.Drawing.Point(68, 112);
             this.RotationDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotationDown.Name = "RotationDown";
-            this.RotationDown.Size = new System.Drawing.Size(14, 13);
+            this.RotationDown.Size = new System.Drawing.Size(21, 20);
             this.RotationDown.TabIndex = 2;
             this.RotationDown.UseVisualStyleBackColor = true;
             this.RotationDown.CheckedChanged += new System.EventHandler(this.RotationDown_CheckedChanged);
@@ -241,7 +252,7 @@
             this.RotationUp.Location = new System.Drawing.Point(68, 29);
             this.RotationUp.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotationUp.Name = "RotationUp";
-            this.RotationUp.Size = new System.Drawing.Size(14, 13);
+            this.RotationUp.Size = new System.Drawing.Size(21, 20);
             this.RotationUp.TabIndex = 1;
             this.RotationUp.UseVisualStyleBackColor = true;
             this.RotationUp.CheckedChanged += new System.EventHandler(this.RotationUp_CheckedChanged);
@@ -257,16 +268,16 @@
             // 
             // FurniOwnerTxbx
             // 
-            this.FurniOwnerTxbx.Location = new System.Drawing.Point(16, 33);
+            this.FurniOwnerTxbx.Location = new System.Drawing.Point(16, 32);
             this.FurniOwnerTxbx.Name = "FurniOwnerTxbx";
-            this.FurniOwnerTxbx.Size = new System.Drawing.Size(251, 26);
+            this.FurniOwnerTxbx.Size = new System.Drawing.Size(252, 26);
             this.FurniOwnerTxbx.TabIndex = 11;
             // 
             // SpawnFloorFurniOnClickBtn
             // 
             this.SpawnFloorFurniOnClickBtn.Location = new System.Drawing.Point(6, 400);
             this.SpawnFloorFurniOnClickBtn.Name = "SpawnFloorFurniOnClickBtn";
-            this.SpawnFloorFurniOnClickBtn.Size = new System.Drawing.Size(251, 35);
+            this.SpawnFloorFurniOnClickBtn.Size = new System.Drawing.Size(250, 35);
             this.SpawnFloorFurniOnClickBtn.TabIndex = 12;
             this.SpawnFloorFurniOnClickBtn.Text = "Spawn Floor Furni on click : OFF";
             this.SpawnFloorFurniOnClickBtn.Click += new System.EventHandler(this.SpawnFloorFurniOnClickBtn_Click);
@@ -275,7 +286,7 @@
             // 
             this.groupBox2.Controls.Add(this.IRadioBtn);
             this.groupBox2.Controls.Add(this.SRadioBtn);
-            this.groupBox2.Location = new System.Drawing.Point(6, 101);
+            this.groupBox2.Location = new System.Drawing.Point(6, 102);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(108, 98);
             this.groupBox2.TabIndex = 13;
@@ -285,9 +296,9 @@
             // IRadioBtn
             // 
             this.IRadioBtn.AutoSize = true;
-            this.IRadioBtn.Location = new System.Drawing.Point(17, 68);
+            this.IRadioBtn.Location = new System.Drawing.Point(16, 68);
             this.IRadioBtn.Name = "IRadioBtn";
-            this.IRadioBtn.Size = new System.Drawing.Size(57, 24);
+            this.IRadioBtn.Size = new System.Drawing.Size(64, 24);
             this.IRadioBtn.TabIndex = 0;
             this.IRadioBtn.Text = "Wall";
             this.IRadioBtn.UseVisualStyleBackColor = true;
@@ -297,9 +308,9 @@
             // 
             this.SRadioBtn.AutoSize = true;
             this.SRadioBtn.Checked = true;
-            this.SRadioBtn.Location = new System.Drawing.Point(17, 35);
+            this.SRadioBtn.Location = new System.Drawing.Point(16, 35);
             this.SRadioBtn.Name = "SRadioBtn";
-            this.SRadioBtn.Size = new System.Drawing.Size(63, 24);
+            this.SRadioBtn.Size = new System.Drawing.Size(70, 24);
             this.SRadioBtn.TabIndex = 1;
             this.SRadioBtn.TabStop = true;
             this.SRadioBtn.Text = "Floor";
@@ -322,7 +333,7 @@
             this.groupBox3.Controls.Add(this.CoordXNbx);
             this.groupBox3.Location = new System.Drawing.Point(15, 22);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(331, 452);
+            this.groupBox3.Size = new System.Drawing.Size(332, 452);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Floor Furni Spawner ( CS )";
@@ -341,9 +352,9 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(6, 35);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 20);
+            this.label7.Size = new System.Drawing.Size(60, 20);
             this.label7.TabIndex = 6;
-            this.label7.Text = "FurniID";
+            this.label7.Text = "TypeID";
             // 
             // FloorFurniSpawnerNbx
             // 
@@ -354,12 +365,12 @@
             0,
             0});
             this.FloorFurniSpawnerNbx.Name = "FloorFurniSpawnerNbx";
-            this.FloorFurniSpawnerNbx.Size = new System.Drawing.Size(277, 26);
+            this.FloorFurniSpawnerNbx.Size = new System.Drawing.Size(278, 26);
             this.FloorFurniSpawnerNbx.TabIndex = 13;
             // 
             // SpawnFurniInvBtn
             // 
-            this.SpawnFurniInvBtn.Location = new System.Drawing.Point(5, 232);
+            this.SpawnFurniInvBtn.Location = new System.Drawing.Point(4, 232);
             this.SpawnFurniInvBtn.Name = "SpawnFurniInvBtn";
             this.SpawnFurniInvBtn.Size = new System.Drawing.Size(202, 35);
             this.SpawnFurniInvBtn.TabIndex = 18;
@@ -386,7 +397,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1, 35);
+            this.label1.Location = new System.Drawing.Point(2, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 20);
             this.label1.TabIndex = 21;
@@ -395,7 +406,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(116, 107);
+            this.label6.Location = new System.Drawing.Point(116, 108);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(65, 20);
             this.label6.TabIndex = 22;
@@ -403,20 +414,20 @@
             // 
             // FurniInventoryIDNbx
             // 
-            this.FurniInventoryIDNbx.Location = new System.Drawing.Point(5, 58);
+            this.FurniInventoryIDNbx.Location = new System.Drawing.Point(4, 58);
             this.FurniInventoryIDNbx.Maximum = new decimal(new int[] {
             2147483647,
             0,
             0,
             0});
             this.FurniInventoryIDNbx.Name = "FurniInventoryIDNbx";
-            this.FurniInventoryIDNbx.Size = new System.Drawing.Size(277, 26);
+            this.FurniInventoryIDNbx.Size = new System.Drawing.Size(278, 26);
             this.FurniInventoryIDNbx.TabIndex = 20;
             // 
             // AmountNbx
             // 
             this.AmountNbx.Enabled = false;
-            this.AmountNbx.Location = new System.Drawing.Point(120, 130);
+            this.AmountNbx.Location = new System.Drawing.Point(120, 129);
             this.AmountNbx.Name = "AmountNbx";
             this.AmountNbx.Size = new System.Drawing.Size(170, 26);
             this.AmountNbx.TabIndex = 21;
@@ -432,7 +443,7 @@
             // 
             // PosterIDTxbx
             // 
-            this.PosterIDTxbx.Location = new System.Drawing.Point(120, 196);
+            this.PosterIDTxbx.Location = new System.Drawing.Point(120, 195);
             this.PosterIDTxbx.Name = "PosterIDTxbx";
             this.PosterIDTxbx.Size = new System.Drawing.Size(170, 26);
             this.PosterIDTxbx.TabIndex = 19;
@@ -444,7 +455,7 @@
             this.Username.Controls.Add(this.SetOwnUsernameBtn);
             this.Username.Location = new System.Drawing.Point(750, 334);
             this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(349, 140);
+            this.Username.Size = new System.Drawing.Size(350, 140);
             this.Username.TabIndex = 21;
             this.Username.TabStop = false;
             this.Username.Text = "Furni Owner";
@@ -465,7 +476,7 @@
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Location = new System.Drawing.Point(352, 22);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(331, 452);
+            this.groupBox4.Size = new System.Drawing.Size(332, 452);
             this.groupBox4.TabIndex = 15;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Wall Furni Spawner ( CS )";
@@ -535,7 +546,7 @@
             // 
             this.SpawnWallFurniOnClickBtn.Location = new System.Drawing.Point(6, 400);
             this.SpawnWallFurniOnClickBtn.Name = "SpawnWallFurniOnClickBtn";
-            this.SpawnWallFurniOnClickBtn.Size = new System.Drawing.Size(251, 35);
+            this.SpawnWallFurniOnClickBtn.Size = new System.Drawing.Size(250, 35);
             this.SpawnWallFurniOnClickBtn.TabIndex = 14;
             this.SpawnWallFurniOnClickBtn.Text = "Spawn Wall Furni on click : OFF";
             this.SpawnWallFurniOnClickBtn.Click += new System.EventHandler(this.SpawnWallFurniOnClickBtn_Click);
@@ -548,7 +559,7 @@
             this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox6.Size = new System.Drawing.Size(102, 61);
+            this.groupBox6.Size = new System.Drawing.Size(102, 62);
             this.groupBox6.TabIndex = 14;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Rotation";
@@ -556,10 +567,10 @@
             // RotationRBtn
             // 
             this.RotationRBtn.AutoSize = true;
-            this.RotationRBtn.Location = new System.Drawing.Point(47, 24);
+            this.RotationRBtn.Location = new System.Drawing.Point(46, 25);
             this.RotationRBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotationRBtn.Name = "RotationRBtn";
-            this.RotationRBtn.Size = new System.Drawing.Size(43, 24);
+            this.RotationRBtn.Size = new System.Drawing.Size(50, 24);
             this.RotationRBtn.TabIndex = 4;
             this.RotationRBtn.Text = "→";
             this.RotationRBtn.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -573,7 +584,7 @@
             this.RotationIBtn.Location = new System.Drawing.Point(9, 23);
             this.RotationIBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RotationIBtn.Name = "RotationIBtn";
-            this.RotationIBtn.Size = new System.Drawing.Size(35, 24);
+            this.RotationIBtn.Size = new System.Drawing.Size(42, 24);
             this.RotationIBtn.TabIndex = 1;
             this.RotationIBtn.TabStop = true;
             this.RotationIBtn.Text = "↑";
@@ -585,9 +596,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(6, 35);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(62, 20);
+            this.label8.Size = new System.Drawing.Size(60, 20);
             this.label8.TabIndex = 6;
-            this.label8.Text = "FurniID";
+            this.label8.Text = "TypeID";
             // 
             // WallFurniIDNbx
             // 
@@ -598,12 +609,12 @@
             0,
             0});
             this.WallFurniIDNbx.Name = "WallFurniIDNbx";
-            this.WallFurniIDNbx.Size = new System.Drawing.Size(277, 26);
+            this.WallFurniIDNbx.Size = new System.Drawing.Size(278, 26);
             this.WallFurniIDNbx.TabIndex = 13;
             // 
             // SpawnWallFurniBtn
             // 
-            this.SpawnWallFurniBtn.Location = new System.Drawing.Point(6, 296);
+            this.SpawnWallFurniBtn.Location = new System.Drawing.Point(6, 295);
             this.SpawnWallFurniBtn.Name = "SpawnWallFurniBtn";
             this.SpawnWallFurniBtn.Size = new System.Drawing.Size(195, 35);
             this.SpawnWallFurniBtn.TabIndex = 4;
@@ -613,7 +624,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(15, 153);
+            this.label10.Location = new System.Drawing.Point(15, 152);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(12, 20);
             this.label10.TabIndex = 7;
@@ -628,16 +639,102 @@
             this.label11.TabIndex = 6;
             this.label11.Text = "W";
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.CaptureTargetTypeIDBtn);
+            this.groupBox7.Controls.Add(this.CaptureReplacedTypeIDBtn);
+            this.groupBox7.Controls.Add(this.label9);
+            this.groupBox7.Controls.Add(this.label12);
+            this.groupBox7.Controls.Add(this.TargetTypeIdNbx);
+            this.groupBox7.Controls.Add(this.ReplaceTypeIDNbx);
+            this.groupBox7.Controls.Add(this.FurniTypeIDReplacer);
+            this.groupBox7.Location = new System.Drawing.Point(1150, 22);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(334, 380);
+            this.groupBox7.TabIndex = 23;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Room Furni Convert";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(2, 35);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(110, 20);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "Target TypeID";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 152);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(95, 20);
+            this.label12.TabIndex = 22;
+            this.label12.Text = "New TypeID";
+            // 
+            // TargetTypeIdNbx
+            // 
+            this.TargetTypeIdNbx.Location = new System.Drawing.Point(4, 58);
+            this.TargetTypeIdNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.TargetTypeIdNbx.Name = "TargetTypeIdNbx";
+            this.TargetTypeIdNbx.Size = new System.Drawing.Size(278, 26);
+            this.TargetTypeIdNbx.TabIndex = 20;
+            // 
+            // ReplaceTypeIDNbx
+            // 
+            this.ReplaceTypeIDNbx.Location = new System.Drawing.Point(6, 178);
+            this.ReplaceTypeIDNbx.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.ReplaceTypeIDNbx.Name = "ReplaceTypeIDNbx";
+            this.ReplaceTypeIDNbx.Size = new System.Drawing.Size(276, 26);
+            this.ReplaceTypeIDNbx.TabIndex = 21;
+            // 
+            // FurniTypeIDReplacer
+            // 
+            this.FurniTypeIDReplacer.Location = new System.Drawing.Point(10, 312);
+            this.FurniTypeIDReplacer.Name = "FurniTypeIDReplacer";
+            this.FurniTypeIDReplacer.Size = new System.Drawing.Size(202, 35);
+            this.FurniTypeIDReplacer.TabIndex = 18;
+            this.FurniTypeIDReplacer.Text = "Replace Floor Furnis CS";
+            this.FurniTypeIDReplacer.Click += new System.EventHandler(this.FurniTypeIDReplacer_Click);
+            // 
+            // CaptureReplacedTypeIDBtn
+            // 
+            this.CaptureReplacedTypeIDBtn.Location = new System.Drawing.Point(6, 222);
+            this.CaptureReplacedTypeIDBtn.Name = "CaptureReplacedTypeIDBtn";
+            this.CaptureReplacedTypeIDBtn.Size = new System.Drawing.Size(263, 35);
+            this.CaptureReplacedTypeIDBtn.TabIndex = 23;
+            this.CaptureReplacedTypeIDBtn.Text = "Capture Replacement TypeID : OFF";
+            this.CaptureReplacedTypeIDBtn.Click += new System.EventHandler(this.CaptureReplacedTypeIDBtn_Click);
+            // 
+            // CaptureTargetTypeIDBtn
+            // 
+            this.CaptureTargetTypeIDBtn.Location = new System.Drawing.Point(4, 93);
+            this.CaptureTargetTypeIDBtn.Name = "CaptureTargetTypeIDBtn";
+            this.CaptureTargetTypeIDBtn.Size = new System.Drawing.Size(263, 35);
+            this.CaptureTargetTypeIDBtn.TabIndex = 23;
+            this.CaptureTargetTypeIDBtn.Text = "Capture Target TypeID : OFF";
+            this.CaptureTargetTypeIDBtn.Click += new System.EventHandler(this.CaptureTargetTypeIDBtn_Click);
+            // 
             // FurniSpawnPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.Username);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Name = "FurniSpawnPage";
-            this.Size = new System.Drawing.Size(1160, 491);
+            this.Size = new System.Drawing.Size(1509, 491);
             ((System.ComponentModel.ISupportInitialize)(this.CoordXNbx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordZNBx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordYNbx)).EndInit();
@@ -664,6 +761,10 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WallFurniIDNbx)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.TargetTypeIdNbx)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReplaceTypeIDNbx)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -716,5 +817,13 @@
         private System.Windows.Forms.NumericUpDown CoordWnumbx;
         private System.Windows.Forms.NumericUpDown CoordLDecimalPartNbx;
         private System.Windows.Forms.NumericUpDown CoordWDecimalPartNbx;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.NumericUpDown TargetTypeIdNbx;
+        private System.Windows.Forms.NumericUpDown ReplaceTypeIDNbx;
+        private Sulakore.Components.SKoreButton FurniTypeIDReplacer;
+        private Sulakore.Components.SKoreButton CaptureTargetTypeIDBtn;
+        private Sulakore.Components.SKoreButton CaptureReplacedTypeIDBtn;
     }
 }
