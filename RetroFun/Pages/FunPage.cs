@@ -307,12 +307,17 @@ namespace RetroFun.Pages
             if (KnownDomains.isBobbaHotel)
             {
                 await Task.Delay(500);
-               await  SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
+                await SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
             }
             else if (KnownDomains.isHartico)
             {
                 await Task.Delay(500);
-               await  SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
+                await SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
+            }
+            else if (KnownDomains.UnknownHost)
+            {
+                await Task.Delay(500);
+                await SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
             }
         }
 
@@ -399,18 +404,10 @@ namespace RetroFun.Pages
                         {
                             if (isServerSideEffect)
                             {
-                                if (KnownDomains.isBobbaHotel || KnownDomains.isHartico)
-                                { 
+
                                 SendServerEnableBobba(EffectNumber);
                                 Thread.Sleep(CooldownEffectLoop);
                                 SendServerEnableBobba(0);
-                                }
-                                else
-                                {
-                                    WriteToButton(IsServerSideBtn, "Server Side : OFF");
-                                    isServerSideEffect = false;
-                                    Speak("This host is not known, please contact The developer on discord : " + GlobalStrings.DeveloperDiscord);
-                                }
                             }
                             else
                             {
@@ -508,8 +505,7 @@ namespace RetroFun.Pages
 
         private void IsServerSideBtn_Click(object sender, EventArgs e)
         {
-            if (KnownDomains.isBobbaHotel || KnownDomains.isHartico)
-            {
+
                 if (isServerSideEffect)
                 {
                     WriteToButton(IsServerSideBtn, "Server Side : OFF");
@@ -521,13 +517,7 @@ namespace RetroFun.Pages
                     isServerSideEffect = true;
                 }
             }
-            else
-            {
-                WriteToButton(IsServerSideBtn, "Server Side : OFF");
-                isServerSideEffect = false;
-                Speak("This host is not known, please contact The developer on discord : " + GlobalStrings.DeveloperDiscord);
-            }
-        }
+
 
         private void GiveEffectToAllUsersBtn_Click(object sender, EventArgs e)
         {
