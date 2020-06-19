@@ -9,6 +9,8 @@ using Sulakore.Components;
 using RetroFun.Helpers;
 using System.Threading;
 using RetroFun.Utils.Furnitures.Furni;
+using Sulakore.Habbo;
+using System.Linq;
 
 namespace RetroFun.Pages
 {
@@ -17,6 +19,16 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class UtilitiesPage : ObservablePage
     {
+
+        private List<HFloorItem> RoomFloorFurni
+        {
+            get => FloorFurnitures.Furni;
+            set
+            {
+                FloorFurnitures.Furni = value;
+                RaiseOnPropertyChanged();
+            }
+        }
 
 
         // TEMP
@@ -777,6 +789,26 @@ namespace RetroFun.Pages
             {
                 Speak("This host doesn't have a known BG start URL!");
             }
+        }
+
+        private void RedeemRoomCurrenciesBtn_Click(object sender, EventArgs e)
+        {
+            ConvertAllFurnisCredits(RoomFloorFurni);
+        }
+
+        private void ConvertAllFurnisCredits(List<HFloorItem> items)
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                var furnitures = new List<HFloorItem>();
+                furnitures = items.ToList();
+                foreach (var furni in furnitures)
+                {
+                    SendExchangePacket(furni.Id);
+                    Thread.Sleep(150);
+                }
+            }).Start();
         }
     }
 }

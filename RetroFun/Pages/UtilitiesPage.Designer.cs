@@ -74,6 +74,7 @@
             this.StackerHeightNbx = new System.Windows.Forms.NumericUpDown();
             this.StackerEndRangeNbx = new System.Windows.Forms.NumericUpDown();
             this.StackerStartRangeNbx = new System.Windows.Forms.NumericUpDown();
+            this.RedeemRoomCurrenciesBtn = new Sulakore.Components.SKoreButton();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GiftExchangerIDNBx)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -153,6 +154,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.RedeemRoomCurrenciesBtn);
             this.groupBox2.Controls.Add(this.RedeemCreditsBtn);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.CreditsIDNbx);
@@ -171,7 +173,7 @@
             // 
             // RedeemCreditsBtn
             // 
-            this.RedeemCreditsBtn.Location = new System.Drawing.Point(34, 309);
+            this.RedeemCreditsBtn.Location = new System.Drawing.Point(34, 278);
             this.RedeemCreditsBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RedeemCreditsBtn.Name = "RedeemCreditsBtn";
             this.RedeemCreditsBtn.Size = new System.Drawing.Size(195, 31);
@@ -661,6 +663,16 @@
             this.StackerStartRangeNbx.Size = new System.Drawing.Size(124, 26);
             this.StackerStartRangeNbx.TabIndex = 71;
             // 
+            // sKoreButton1
+            // 
+            this.RedeemRoomCurrenciesBtn.Location = new System.Drawing.Point(34, 319);
+            this.RedeemRoomCurrenciesBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RedeemRoomCurrenciesBtn.Name = "RedeemRoomCurrenciesBtn";
+            this.RedeemRoomCurrenciesBtn.Size = new System.Drawing.Size(195, 31);
+            this.RedeemRoomCurrenciesBtn.TabIndex = 13;
+            this.RedeemRoomCurrenciesBtn.Text = "Redeem All Credits in room";
+            this.RedeemRoomCurrenciesBtn.Click += new System.EventHandler(this.RedeemRoomCurrenciesBtn_Click);
+            // 
             // UtilitiesPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -744,5 +756,6 @@
         private System.Windows.Forms.NumericUpDown StackerThreadDelayNbx;
         private Sulakore.Components.SKoreButton RiseStackerModeBtn;
         private Sulakore.Components.SKoreButton GetStartUrlBtn;
+        private Sulakore.Components.SKoreButton RedeemRoomCurrenciesBtn;
     }
 }
