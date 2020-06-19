@@ -76,6 +76,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.RestoreReplacedFurnisCSBtn = new Sulakore.Components.SKoreButton();
             this.CaptureTargetTypeIDBtn = new Sulakore.Components.SKoreButton();
             this.CaptureReplacedTypeIDBtn = new Sulakore.Components.SKoreButton();
             this.label9 = new System.Windows.Forms.Label();
@@ -83,7 +84,7 @@
             this.TargetTypeIdNbx = new System.Windows.Forms.NumericUpDown();
             this.ReplaceTypeIDNbx = new System.Windows.Forms.NumericUpDown();
             this.FurniTypeIDReplacer = new Sulakore.Components.SKoreButton();
-            this.RestoreReplacedFurnisCSBtn = new Sulakore.Components.SKoreButton();
+            this.IgnoreFurniHeightBtn = new Sulakore.Components.SKoreButton();
             ((System.ComponentModel.ISupportInitialize)(this.CoordXNbx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordZNBx)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoordYNbx)).BeginInit();
@@ -642,6 +643,7 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.IgnoreFurniHeightBtn);
             this.groupBox7.Controls.Add(this.RestoreReplacedFurnisCSBtn);
             this.groupBox7.Controls.Add(this.CaptureTargetTypeIDBtn);
             this.groupBox7.Controls.Add(this.CaptureReplacedTypeIDBtn);
@@ -656,6 +658,15 @@
             this.groupBox7.TabIndex = 23;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Room Furni Convert";
+            // 
+            // RestoreReplacedFurnisCSBtn
+            // 
+            this.RestoreReplacedFurnisCSBtn.Location = new System.Drawing.Point(10, 377);
+            this.RestoreReplacedFurnisCSBtn.Name = "RestoreReplacedFurnisCSBtn";
+            this.RestoreReplacedFurnisCSBtn.Size = new System.Drawing.Size(202, 35);
+            this.RestoreReplacedFurnisCSBtn.TabIndex = 24;
+            this.RestoreReplacedFurnisCSBtn.Text = "Restore Replaced Furnis";
+            this.RestoreReplacedFurnisCSBtn.Click += new System.EventHandler(this.RestoreReplacedFurnisCSBtn_Click);
             // 
             // CaptureTargetTypeIDBtn
             // 
@@ -719,21 +730,21 @@
             // 
             // FurniTypeIDReplacer
             // 
-            this.FurniTypeIDReplacer.Location = new System.Drawing.Point(10, 312);
+            this.FurniTypeIDReplacer.Location = new System.Drawing.Point(10, 326);
             this.FurniTypeIDReplacer.Name = "FurniTypeIDReplacer";
             this.FurniTypeIDReplacer.Size = new System.Drawing.Size(202, 35);
             this.FurniTypeIDReplacer.TabIndex = 18;
             this.FurniTypeIDReplacer.Text = "Replace Floor Furnis CS";
             this.FurniTypeIDReplacer.Click += new System.EventHandler(this.FurniTypeIDReplacer_Click);
             // 
-            // RestoreReplacedFurnisCSBtn
+            // sKoreButton1
             // 
-            this.RestoreReplacedFurnisCSBtn.Location = new System.Drawing.Point(10, 377);
-            this.RestoreReplacedFurnisCSBtn.Name = "RestoreReplacedFurnisCSBtn";
-            this.RestoreReplacedFurnisCSBtn.Size = new System.Drawing.Size(202, 35);
-            this.RestoreReplacedFurnisCSBtn.TabIndex = 24;
-            this.RestoreReplacedFurnisCSBtn.Text = "Restore Replaced Furnis";
-            this.RestoreReplacedFurnisCSBtn.Click += new System.EventHandler(this.RestoreReplacedFurnisCSBtn_Click);
+            this.IgnoreFurniHeightBtn.Location = new System.Drawing.Point(10, 271);
+            this.IgnoreFurniHeightBtn.Name = "IgnoreFurniHeightBtn";
+            this.IgnoreFurniHeightBtn.Size = new System.Drawing.Size(202, 35);
+            this.IgnoreFurniHeightBtn.TabIndex = 25;
+            this.IgnoreFurniHeightBtn.Text = "Ignore Furni height : OFF";
+            this.IgnoreFurniHeightBtn.Click += new System.EventHandler(this.IgnoreFurniHeightBtn_Click);
             // 
             // FurniSpawnPage
             // 
@@ -837,5 +848,6 @@
         private Sulakore.Components.SKoreButton CaptureTargetTypeIDBtn;
         private Sulakore.Components.SKoreButton CaptureReplacedTypeIDBtn;
         private Sulakore.Components.SKoreButton RestoreReplacedFurnisCSBtn;
+        private Sulakore.Components.SKoreButton IgnoreFurniHeightBtn;
     }
 }

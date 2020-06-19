@@ -26,11 +26,13 @@ namespace RetroFun.Globals
         {
             public HFloorItem FloorFurni;
             public int originalTypeID = 0;
+            public double Z { get; set; }
 
-            public FurniTypeIDFixer(HFloorItem furni, int OriginalTypeID)
+            public FurniTypeIDFixer(HFloorItem furni, int OriginalTypeID, double originalZ)
             {
                 FloorFurni = furni;
                 originalTypeID = OriginalTypeID;
+                Z = originalZ;
             }
         }
 

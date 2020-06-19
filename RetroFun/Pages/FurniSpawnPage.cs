@@ -24,13 +24,12 @@ namespace RetroFun.Pages
         public List<GlobalLists.FurniTypeIDFixer> OriginalFurniTypeID { get => GlobalLists.furnifix; set { GlobalLists.furnifix = value; RaiseOnPropertyChanged(); } }
 
         private List<HFloorItem> ConvertedFurnis = new List<HFloorItem>();
-        private List<HFloorItem> OriginalFloorFurnisSnap = new List<HFloorItem>();
         public List<HFloorItem> OriginalFloorFurnis { get => FloorFurnitures.OriginalFloorFurnis; set { FloorFurnitures.OriginalFloorFurnis = value; RaiseOnPropertyChanged(); } }
 
         private bool CaptureTargetTypeIDMode;
         private bool CaptureReplaceTypeIDMode;
         private bool isRestoringOriginalFurnis;
-        
+        private bool ShouldIgnoreFurniHeight;
 
 
 
@@ -756,6 +755,10 @@ namespace RetroFun.Pages
             if (!ConvertedFurnis.Contains(item))
             {
                 item.TypeId = ReplaceTypeID;
+                if (ShouldIgnoreFurniHeight)
+                {
+                    item.Tile.Z = 0;
+                }
                 ConvertedFurnis.Add(item);
             }
         }
@@ -763,7 +766,7 @@ namespace RetroFun.Pages
 
         private void RegisterOriginalItem(HFloorItem item)
         {
-            var furni = new GlobalLists.FurniTypeIDFixer(item, TargetTypeId);
+            var furni = new GlobalLists.FurniTypeIDFixer(item, TargetTypeId, item.Tile.Z);
             if (!OriginalFurniTypeID.Contains(furni))
             {
                 OriginalFurniTypeID.Add(furni);
@@ -910,6 +913,11 @@ namespace RetroFun.Pages
                     {
                         furni.TypeId = ORIGINALTYPEID;
                     }
+                    var OriginalZ = OriginalFurniTypeID.First(f => f.FloorFurni.Id == furni.Id).Z;
+                    if (furni.Tile.Z != OriginalZ)
+                    {
+                        furni.Tile.Z = OriginalZ;
+                    }
                     if(!list.Contains(furni))
                     {
                         list.Add(furni);
@@ -948,6 +956,20 @@ namespace RetroFun.Pages
                 } while (isRestoringOriginalFurnis);
 
             }).Start();
+        }
+
+        private void IgnoreFurniHeightBtn_Click(object sender, EventArgs e)
+        {
+            if(ShouldIgnoreFurniHeight)
+            {
+                ShouldIgnoreFurniHeight = false;
+                WriteToButton(IgnoreFurniHeightBtn, "Ignore Furni height : OFF");
+            }
+            else
+            {
+                ShouldIgnoreFurniHeight = true;
+                WriteToButton(IgnoreFurniHeightBtn, "Ignore Furni height : ON");
+            }
         }
     }
 }

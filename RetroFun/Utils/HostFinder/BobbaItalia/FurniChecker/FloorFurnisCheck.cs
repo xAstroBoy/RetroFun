@@ -1,4 +1,5 @@
-﻿using Sulakore.Habbo;
+﻿using RetroFun.Globals;
+using Sulakore.Habbo;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -32,6 +33,7 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
         public static List<HFloorItem> RemovedRegularFloorFurnis = new List<HFloorItem>();
         public static List<HFloorItem> SnapshotRemovedIrregularFloorFurnis = new List<HFloorItem>();
         public static List<HFloorItem> SnapshotRemovedRegularFloorFurnis = new List<HFloorItem>();
+        public static List<GlobalLists.FurniTypeIDFixer> OriginalFurniTypeID { get => GlobalLists.furnifix; set { GlobalLists.furnifix = value;} }
 
 
 
@@ -63,6 +65,7 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
                     if (RemovedRegularFloorFurnis.Find(f => f.Id == id) != null) { RemovedRegularFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
                     if (SnapshotRemovedIrregularFloorFurnis.Find(f => f.Id == id) != null) { SnapshotRemovedIrregularFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
                     if (SnapshotRemovedRegularFloorFurnis.Find(f => f.Id == id) != null) { SnapshotRemovedRegularFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
+                    if(OriginalFurniTypeID.Find(f => f.FloorFurni.Id == id).FloorFurni != null) { _ = OriginalFurniTypeID.Find(f => f.FloorFurni.Id == id).Z == z; }
                 }
             }
             catch (Exception) { }
