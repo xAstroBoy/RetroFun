@@ -1,15 +1,15 @@
-﻿using Sulakore.Habbo;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Geode.Habbo.Packages;
 
 namespace RetroFun.Utils.HostFinder.BobbaItalia
 {
     public class WallFurniCheck
     {
-
 
         public static List<HWallItem> IrregularWallFurni = new List<HWallItem>();
         public static List<HWallItem> CrystalsWallItems = new List<HWallItem>();
@@ -61,7 +61,6 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
             }
         }
 
-
         public static void UpdateWallFurniPosition(int id, string newpos)
         {
             try
@@ -93,7 +92,7 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
         public static void HandleRemovedFurni(HWallItem item)
         {
             if (IrregularWallFurni.Contains(item)) { IrregularWallFurni.Remove(item); if (!RemovedIrregularWallFurnis.Contains(item)) { RemovedIrregularWallFurnis.Add(item); } }
-            if (RegularWallFurni.Contains(item)) { RegularWallFurni.Remove(item); if (!RemovedRegularWallFurnis.Contains(item)) {RemovedRegularWallFurnis.Add(item); }}
+            if (RegularWallFurni.Contains(item)) { RegularWallFurni.Remove(item); if (!RemovedRegularWallFurnis.Contains(item)) { RemovedRegularWallFurnis.Add(item); } }
             if (WhitelistedWallFurni.Contains(item)) { WhitelistedWallFurni.Remove(item); }
             if (HIDDEN_IRREGULAR_WALLFURNIS.Contains(item)) { HIDDEN_IRREGULAR_WALLFURNIS.Remove(item); }
             if (HIDDEN_REGULAR_WALLFURNIS.Contains(item)) { HIDDEN_REGULAR_WALLFURNIS.Remove(item); }

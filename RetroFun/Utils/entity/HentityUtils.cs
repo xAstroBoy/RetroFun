@@ -1,15 +1,15 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using RetroFun.Globals;
 using RetroFun.Utils.Globals;
-using Sulakore.Communication;
-using Sulakore.Habbo;
-using Sulakore.Protocol;
+using Geode.Network;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Geode.Habbo;
+using Geode.Habbo.Packages;
 
 namespace RetroFun
 {
@@ -26,8 +26,6 @@ namespace RetroFun
             return GlobalLists.UserLeftRoom.Find(f => f.Index == index);
         }
 
-
-
         public static HEntity FindEntityByUserID(int userid)
         {
             return GlobalLists.UsersInRoom.Find(f => f.Id == userid);
@@ -37,7 +35,6 @@ namespace RetroFun
         {
             return GlobalLists.ConvertedUsersToPets.Find(f => f.Id == userid);
         }
-
 
         public static HEntity FindEntityByUsername(string name)
         {
@@ -81,10 +78,9 @@ namespace RetroFun
             }
         }
 
-
         public static int WhisperFixerInt(HEntity ent)
         {
-            if(GlobalLists.whisperfix.Find(f => f.entity == ent) != null)
+            if (GlobalLists.whisperfix.Find(f => f.entity == ent) != null)
             {
                 return GlobalLists.whisperfix.Find(f => f.entity == ent).bubbleid;
             }
@@ -115,7 +111,6 @@ namespace RetroFun
             catch (InvalidOperationException)
             { return null; }
         }
-        
 
         public static HMessage PacketBuilder(IList<HEntity> Users, ushort header)
         {
@@ -140,7 +135,6 @@ namespace RetroFun
             return null;
         }
 
-
         public static HMessage MakeEntity(int Id, int Index, int X, int Y, int Z, string name, string motto, HGender gender, int entitytype, string figureid, string FavouriteGroup, ushort header)
         {
             var ret = new HMessage(header);
@@ -158,10 +152,6 @@ namespace RetroFun
             ret.WriteString(FavouriteGroup);
             return ret;
         }
-
-
-
-
 
         public static HMessage TurnEntityToPet(HEntity entity, int petid, int pettypeid, string petcolor, ushort header)
         {

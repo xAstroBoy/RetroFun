@@ -1,8 +1,8 @@
 ﻿using RetroFun.Controls;
 using RetroFun.Helpers;
 using RetroFun.Subscribers;
-using Sulakore.Communication;
-using Sulakore.Components;
+using Geode.Network;
+
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -18,8 +18,6 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class BuyFurniBruteforcerPage:  ObservablePage
     {
-
-
 
         private bool _EnableLoop;
 
@@ -264,7 +262,6 @@ namespace RetroFun.Pages
             Bind(furnITextBox, "Text", nameof(TextBox));
         }
 
-
         private void SendPurchaseBtn_Click(object sender, EventArgs e)
         {
             SendPacket(PageIDInt1, FurniIDint1);
@@ -415,13 +412,12 @@ namespace RetroFun.Pages
             });
         }
 
-
         public override void Out_CatalogBuyItem(DataInterceptedEventArgs e)
         {
             if(CaptureModeCatalog)
             {
-                PageIDInt1 = e.Packet.ReadInteger();
-                FurniIDint1 = e.Packet.ReadInteger();
+                PageIDInt1 = e.Packet.ReadInt32();
+                FurniIDint1 = e.Packet.ReadInt32();
                 CaptureModeCatalog = false;
                 _ = SendToClient(In.RoomUserWhisper, 0, "[Catalog Bruteforcer]: Required Data Found, Check RetroFun.", 0, 34, 0, -1);
                 WriteToButton(CaptureModeBtn, "Capture Mode : OFF");
@@ -432,7 +428,7 @@ namespace RetroFun.Pages
         public override void In_PurchaseOK(DataInterceptedEventArgs e)
         {
             try {
-                FurniName = e.Packet.ReadString(4);
+                FurniName = e.Packet.ReadUTF8(4);
                 PurchaseSuccess = true;
             }
             catch (System.IndexOutOfRangeException)
@@ -440,7 +436,6 @@ namespace RetroFun.Pages
                 return;
             }
         }
-
 
         private async void SendPacket(int PageID, int FurniID)
         {
@@ -572,8 +567,6 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-
-
         private void FurniIDGlobalBruteForce()
         {
             if (!FurniIDRangeToggle)
@@ -631,8 +624,6 @@ namespace RetroFun.Pages
             FurniIDint1++;
         }
 
-
-
         private void GlobalPageIDBruteforcer()
         {
                 if (!PageIDRangeToggle)
@@ -687,10 +678,6 @@ namespace RetroFun.Pages
                 }
                 PageIDInt1++;
             }
-
-        
-
-
 
         private void GlobalBruteForcer()
         {
@@ -901,7 +888,6 @@ namespace RetroFun.Pages
         {
             FileNameSave = KnownDomains.GetHostName(Connection.Host);
         }
-
 
         private void BuyWithPreviousPageIDBtn_Click(object sender, EventArgs e)
         {

@@ -2,10 +2,8 @@
 using RetroFun.Helpers;
 using RetroFun.Properties;
 using RetroFun.Subscribers;
-using Sulakore.Communication;
-using Sulakore.Components;
-using Sulakore.Habbo;
-using Sulakore.Protocol;
+using Geode.Network;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,8 +45,6 @@ namespace RetroFun.Pages
         private string SelectedColorChat = "@red@";
         private Random rand = new Random();
 
-
-
         private bool isLiveEditChat;
         private bool _FlooderEnabled;
 
@@ -89,7 +85,6 @@ namespace RetroFun.Pages
             }
         }
 
-
         private string _ChatMessageText;
 
         public string ChatMessageText
@@ -114,7 +109,6 @@ namespace RetroFun.Pages
             }
         }
 
-
         private int _TargetUserIndex = 0;
 
         public int TargetUserIndex
@@ -126,8 +120,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
-
 
         private int _RaidUserCooldownCooldown = 50;
 
@@ -177,7 +169,6 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _hideSpeakingBubble;
 
         public bool HideSpeakingBubble
@@ -202,7 +193,6 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _ColorizeText;
 
         public bool ColorizeText
@@ -214,8 +204,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
-
 
         private bool _ForceNormalSpeak = true;
 
@@ -267,9 +255,6 @@ namespace RetroFun.Pages
 
         public string UsernameFilter { get => GlobalStrings.UserDetails_Username; }
 
-
-
-
         private string _CloneUsernameFilter;
 
         public string CloneUsernameFilter
@@ -285,9 +270,6 @@ namespace RetroFun.Pages
         public int SelectedSSBubbleId { get; private set; }
         public int SelectedCSBubbleId { get; private set; }
 
-
-
-        
         public ChatPage()
         {
             InitializeComponent();
@@ -315,7 +297,6 @@ namespace RetroFun.Pages
             Bind(CooldownCloneUserChatNbx, "Value", nameof(RaidUserCooldownCooldown));
             Bind(ChatMsgTxb, "Text", nameof(ChatMessageText));
             Bind(SetTextColorChbx, "Checked", nameof(ColorizeText));
-
 
             var imageType = typeof(Image);
 
@@ -350,9 +331,7 @@ namespace RetroFun.Pages
                 Button.Text = text;
             });
 
-
         }
-
 
         private void RainbowChatChbx_CheckedChanged(object sender, EventArgs e)
         {
@@ -363,7 +342,6 @@ namespace RetroFun.Pages
         {
             return rainbowlist[rand.Next(rainbowlist.Length)];
         }
-
 
         private void ToggleRainbowChatRequirements()
         {
@@ -378,8 +356,6 @@ namespace RetroFun.Pages
                 ToggleCheckbox(UseSelectedBubbleSSChbx, false);
             }
         }
-
-
 
         private void ToggleGroupbox(GroupBox Group, bool Actived)
         {
@@ -396,7 +372,6 @@ namespace RetroFun.Pages
                 checkbox.Enabled = Actived;
             });
         }
-
 
         private void ToggleComboBox(ImageComboBox box, bool Actived)
         {
@@ -418,7 +393,6 @@ namespace RetroFun.Pages
             SelectedCSBubbleId = (int)BubblesCSCmbx.SelectedTag;
         }
 
-
         public override void Out_RoomUserTalk(DataInterceptedEventArgs e)
         {
             EditUserChatPacket(e);
@@ -435,13 +409,12 @@ namespace RetroFun.Pages
             EditUserChatPacket(e);
         }
 
-
         public override void In_RoomUserTalk(DataInterceptedEventArgs e)
         {
-            int index = e.Packet.ReadInteger();
-            string msg = e.Packet.ReadString();
-            e.Packet.ReadInteger();
-            int bubbleid = e.Packet.ReadInteger();
+            int index = e.Packet.ReadInt32();
+            string msg = e.Packet.ReadUTF8();
+            e.Packet.ReadInt32();
+            int bubbleid = e.Packet.ReadInt32();
             if (UseSelectedBubbleClientSide)
             {
                 if (index == GlobalInts.OwnUser_index)
@@ -474,13 +447,12 @@ namespace RetroFun.Pages
             return;
         }
 
-
         public override void  In_RoomUserShout(DataInterceptedEventArgs e)
         {
-            int index = e.Packet.ReadInteger();
-            string msg = e.Packet.ReadString();
-            e.Packet.ReadInteger();
-            int bubbleid = e.Packet.ReadInteger();
+            int index = e.Packet.ReadInt32();
+            string msg = e.Packet.ReadUTF8();
+            e.Packet.ReadInt32();
+            int bubbleid = e.Packet.ReadInt32();
 
             if (UseSelectedBubbleClientSide)
             {
@@ -502,10 +474,10 @@ namespace RetroFun.Pages
 
         public override void In_RoomUserWhisper(DataInterceptedEventArgs e)
         {
-            int index = e.Packet.ReadInteger();
-            string msg = e.Packet.ReadString();
-            e.Packet.ReadInteger();
-            int bubbleid = e.Packet.ReadInteger();
+            int index = e.Packet.ReadInt32();
+            string msg = e.Packet.ReadUTF8();
+            e.Packet.ReadInt32();
+            int bubbleid = e.Packet.ReadInt32();
 
             if (UseSelectedBubbleClientSide)
             {
@@ -528,7 +500,6 @@ namespace RetroFun.Pages
                 }
             }
 
-
             if (KnownDomains.isBobbaHotel)
             {
                 if (index != GlobalInts.OwnUser_index)
@@ -550,11 +521,10 @@ namespace RetroFun.Pages
             IsWhisperingMessageBySelf = false;
         }
 
-
         private void EditUserChatPacket(DataInterceptedEventArgs Packet)
         {
-            string message = Packet.Packet.ReadString();
-            int bubbleId = Packet.Packet.ReadInteger();
+            string message = Packet.Packet.ReadUTF8();
+            int bubbleId = Packet.Packet.ReadInt32();
 
             string whisperTarget = null;
 
@@ -598,7 +568,6 @@ namespace RetroFun.Pages
             }
 
             Packet.IsBlocked = true;
-
 
             if (!ForceChatSpeak)
             {
@@ -659,7 +628,6 @@ namespace RetroFun.Pages
                 }
             }
 
-
             if (Packet.Packet.Readable > 0)
             {
                 replacement.WriteInteger(0);
@@ -667,8 +635,6 @@ namespace RetroFun.Pages
 
                 _ = SendToServer(replacement);
         }
-
-
 
         private string BypassFilter(string message)
         {
@@ -679,7 +645,6 @@ namespace RetroFun.Pages
             }
             return builder.ToString();
         }
-
 
         private HMessage PyramidChatBuilder()
         {
@@ -709,7 +674,6 @@ namespace RetroFun.Pages
                     int Debug = GetRainbowBubbleint();
                     PyramidMessageBubble = Debug;
                 }
-
 
                 if (!ForceChatSpeak)
                 {
@@ -760,7 +724,6 @@ namespace RetroFun.Pages
             }
             return null;
         }
-
 
         private HMessage FloodMessageBuilder()
         {
@@ -842,8 +805,6 @@ namespace RetroFun.Pages
             return null;
         }
 
-
-
         private HMessage ChatMessageBuilder()
         {
             string ChatMessage;
@@ -917,7 +878,6 @@ namespace RetroFun.Pages
             }
             return ChatMessageBuild;
         }
-    
 
         private class ChatColors
         {
@@ -951,7 +911,6 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-
         private void StartPyramidThread()
         {
             new Thread(() =>
@@ -977,7 +936,6 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-
         private void FloodBtn_Click(object sender, EventArgs e)
         {
             if (FlooderEnabled)
@@ -992,8 +950,6 @@ namespace RetroFun.Pages
                 StartFloodThread();
             }
         }
-
-
 
         private void CloneUserSpeakBtn_Click(object sender, EventArgs e)
         {
@@ -1022,9 +978,6 @@ namespace RetroFun.Pages
             e.IsBlocked = HideSpeakingBubble;
         }
 
-
-
-
         private void FindIndexBtn_click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(CloneUsernameFilter))
@@ -1032,8 +985,6 @@ namespace RetroFun.Pages
                 TargetUserIndex = HentityUtils.FindUserIndexByUsername(CloneUsernameFilter);
             }
         }
-
-
 
         private void SendMessageBtn_Click(object sender, EventArgs e)
         {

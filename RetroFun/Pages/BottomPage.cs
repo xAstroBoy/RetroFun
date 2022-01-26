@@ -3,38 +3,34 @@ using RetroFun.Globals;
 using RetroFun.Helpers;
 using RetroFun.Subscribers;
 using RetroFun.Utils.Globals;
-using Sulakore.Communication;
-using Sulakore.Habbo;
+using Geode.Network;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using Geode.Habbo.Packages;
 
 namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class BottomPage:  ObservablePage
+    public partial class BottomPage : ObservablePage
     {
 
         private Dictionary<string, HEntity> removedEntities { get => GlobalDictionaries.removedEntities; set { GlobalDictionaries.removedEntities = value; } }
 
         private Dictionary<int, HEntity> Dictionaryusers { get => GlobalDictionaries.Dictionary_UsersPresentInRoom; set { GlobalDictionaries.Dictionary_UsersPresentInRoom = value; } }
 
-
-
-
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public List<HEntity> CurrentRoomUsers { get => GlobalLists.UsersInRoom; set { GlobalLists.UsersInRoom = value; RaiseOnPropertyChanged(); } }
         public List<GlobalLists.EntityWhisper> EntityWhisperFix { get => GlobalLists.whisperfix; set { GlobalLists.whisperfix = value; RaiseOnPropertyChanged(); } }
         public List<HEntity> UserLeftRoom { get => GlobalLists.UserLeftRoom; set { GlobalLists.UserLeftRoom = value; RaiseOnPropertyChanged(); } }
 
-
         public string Own_look { get => GlobalStrings.UserDetails_Look; set { GlobalStrings.UserDetails_Look = value; RaiseOnPropertyChanged(); } }
 
         public int Own_index { get => GlobalInts.OwnUser_index; set { GlobalInts.OwnUser_index = value; RaiseOnPropertyChanged(); } }
-
 
         public bool FreezeUser
         {
@@ -48,7 +44,6 @@ namespace RetroFun.Pages
 
         public string OwnUsername { get => GlobalStrings.UserDetails_Username; set { GlobalStrings.UserDetails_Username = value; RaiseOnPropertyChanged(); } }
 
-
         public BottomPage()
         {
             InitializeComponent();
@@ -59,15 +54,14 @@ namespace RetroFun.Pages
 
         private void Speak(string text)
         {
-                _ = SendToClient(In.RoomUserWhisper, 0, "[RetroFun Init]: " + text, 0, 34, 0, -1);
+            _ = SendToClient(In.RoomUserWhisper, 0, "[RetroFun Init]: " + text, 0, 34, 0, -1);
         }
-
 
         public override async void Out_LatencyTest(DataInterceptedEventArgs obj)
         {
             if (OwnUsername == null)
             {
-                   await SendToServer(Out.RequestUserData);
+                await SendToServer(Out.RequestUserData);
             }
             if (!KnownDomains.isDomainRecognized)
             {
@@ -82,13 +76,13 @@ namespace RetroFun.Pages
                     Speak("Setting RetroFun for Unknown Host!");
                     Speak("Some features won't work here Server-side, please contact the developer on discord in case there's a problem with this host : " + GlobalStrings.DeveloperDiscord);
                 }
-         }
+            }
             UpdateMainFrmTitle();
         }
 
         public override void Out_Username(DataInterceptedEventArgs obj)
         {
-            string username = obj.Packet.ReadString();
+            string username = obj.Packet.ReadUTF8();
 
             if (OwnUsername == null)
             {
@@ -96,7 +90,6 @@ namespace RetroFun.Pages
                 UpdateMainFrmTitle();
             }
         }
-
 
         public override void In_RoomUsers(DataInterceptedEventArgs obj)
         {
@@ -133,17 +126,15 @@ namespace RetroFun.Pages
                 }
             }
 
-
             UpdateUsersInRoom();
         }
 
-
         public override void In_RoomUserShout(DataInterceptedEventArgs e)
         {
-            int index = e.Packet.ReadInteger();
-            string msg = e.Packet.ReadString();
-            e.Packet.ReadInteger();
-            int bubbleid = e.Packet.ReadInteger();
+            int index = e.Packet.ReadInt32();
+            string msg = e.Packet.ReadUTF8();
+            e.Packet.ReadInt32();
+            int bubbleid = e.Packet.ReadInt32();
             var entity = HentityUtils.FindEntityByIndex(index);
             if (entity != null)
             {
@@ -156,10 +147,10 @@ namespace RetroFun.Pages
 
         public override void In_RoomUserTalk(DataInterceptedEventArgs e)
         {
-            int index = e.Packet.ReadInteger();
-            string msg = e.Packet.ReadString();
-            e.Packet.ReadInteger();
-            int bubbleid = e.Packet.ReadInteger();
+            int index = e.Packet.ReadInt32();
+            string msg = e.Packet.ReadUTF8();
+            e.Packet.ReadInt32();
+            int bubbleid = e.Packet.ReadInt32();
             var entity = HentityUtils.FindEntityByIndex(index);
             if (entity != null)
             {
@@ -177,7 +168,6 @@ namespace RetroFun.Pages
                 UsersInRoomLbl.Text = "Users In Room : " + CurrentRoomUsers.Count;
             });
         }
-
 
         private void UpdateMainFrmTitle()
         {
@@ -198,10 +188,9 @@ namespace RetroFun.Pages
             catch (Exception) { }
         }
 
-
-        public  override void In_RoomUserRemove(DataInterceptedEventArgs e)
+        public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
-            int index = int.Parse(e.Packet.ReadString());
+            int index = int.Parse(e.Packet.ReadUTF8());
             var entity1 = HentityUtils.FindEntityByIndex(index);
             var entity2 = HentityUtils.FindEntityByIndexDictionary(index);
             var entity3 = HentityUtils.WhisperEntityFix(index);
@@ -221,7 +210,6 @@ namespace RetroFun.Pages
 
             UpdateUsersInRoom();
         }
-
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
@@ -243,10 +231,9 @@ namespace RetroFun.Pages
             UserLeftRoom.Clear();
         }
 
-
         public override void Out_RoomUserWalk(DataInterceptedEventArgs e)
         {
-            if(FreezeUser)
+            if (FreezeUser)
             {
                 e.IsBlocked = true;
             }

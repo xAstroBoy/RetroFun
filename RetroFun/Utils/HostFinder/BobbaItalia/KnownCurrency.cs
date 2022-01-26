@@ -1,9 +1,10 @@
-﻿using Sulakore.Habbo;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Geode.Habbo.Packages;
 
 namespace RetroFun.Utils.HostFinder.BobbaItalia
 {
@@ -18,16 +19,14 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
         public static readonly List<int> Bobba_CrystalCambio = new List<int> { 5193, 5197, 5196, 5195, 5194 };
         public static readonly List<int> Bobba_BoBBaCambio = new List<int> { 2522, 2525, 2067, 2066, 2065, 2064, 2063, 2521, 2524 };
 
-
         // WALL ITEMS
 
         public static readonly List<int> Bobba_LimiteEditionMayWall = new List<int> { 25664 };
 
-
-        public static bool isCrystals(HFloorItem item)
+        public static bool isCrystals(HFloorObject item)
         {
 
-            if(Bobba_CrystalCambio.Contains(item.TypeId)) { return true; }
+            if (Bobba_CrystalCambio.Contains(item.TypeId)) { return true; }
             else if (Bobba_Distributori.Contains(item.TypeId)) { return true; }
             else if (Bobba_Letsparty.Contains(item.TypeId)) { return true; }
             else if (Bobba_Dragoni.Contains(item.TypeId)) { return true; }
@@ -44,7 +43,7 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
             else { return false; }
         }
 
-        public static bool isCredits(HFloorItem item)
+        public static bool isCredits(HFloorObject item)
         {
             if (Bobba_BoBBaCambio.Contains(item.TypeId))
             {
@@ -52,7 +51,6 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
             }
             return false;
         }
-
 
     }
 }

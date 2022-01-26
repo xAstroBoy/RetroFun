@@ -1,5 +1,5 @@
 ﻿using RetroFun.Subscribers;
-using Sulakore.Communication;
+using Geode.Network;
 using System;
 using System.ComponentModel;
 using System.Threading;
@@ -17,7 +17,6 @@ namespace RetroFun.Pages
 
         };
 
-
         private bool isUserManualWalking;
 
         private bool _isBotGiochiStalked;
@@ -32,7 +31,6 @@ namespace RetroFun.Pages
             }
         }
 
-
         private int _UserIDCapture;
 
         public int UserIDCapture
@@ -44,7 +42,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
 
         private int _CooldownWalking = 11;
 
@@ -58,7 +55,6 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _ShouldCaptureIDMode;
 
         public bool ShouldCaptureIDMode
@@ -70,7 +66,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
 
         private bool _ShouldStalkBotGiochi = true;
 
@@ -107,7 +102,6 @@ namespace RetroFun.Pages
             }
         }
 
-
         private bool _MuteBotGames;
 
         public bool MuteBotGames
@@ -119,10 +113,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
-
-
-
 
         public StalkingPage()
         {
@@ -140,11 +130,6 @@ namespace RetroFun.Pages
             Bind(IdOfVictimNbx, "Value", nameof(UserIDCapture));
             Bind(CooldownFloodNbx, "Value", nameof(CooldownWalking));
         }
-
-
-
-
-
 
         private async void StartRandomWalk()
         {
@@ -179,9 +164,6 @@ namespace RetroFun.Pages
             }
         }
 
-
-
-
         public override void In_RoomData(DataInterceptedEventArgs e)
         {
             isUserRandomWalking();
@@ -198,9 +180,6 @@ namespace RetroFun.Pages
                 }
             }
         }
-
-
-
 
         private void isUserRandomWalking()
         {
@@ -220,7 +199,7 @@ namespace RetroFun.Pages
         {
             if (ShouldCaptureIDMode)
             {
-                int UserID = e.Packet.ReadInteger();
+                int UserID = e.Packet.ReadInt32();
                 UserIDCapture = UserID;
                 ShouldCaptureIDMode = false;
             }
@@ -229,7 +208,7 @@ namespace RetroFun.Pages
         public override void In_ReceivePrivateMessage(DataInterceptedEventArgs e)
         {
 
-            int UserID = e.Packet.ReadInteger();
+            int UserID = e.Packet.ReadInt32();
             if (UserID == 1442790)
             {
                 if (ShouldStalkBotGiochi)
@@ -248,8 +227,6 @@ namespace RetroFun.Pages
 
             }
         }
-    
-        
 
         private void StalkVictimBtn_Click(object sender, EventArgs e)
         {

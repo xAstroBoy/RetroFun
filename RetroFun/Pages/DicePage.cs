@@ -1,5 +1,5 @@
 ﻿using RetroFun.Subscribers;
-using Sulakore.Communication;
+using Geode.Network;
 using System;
 using System.ComponentModel;
 using System.Threading;
@@ -9,7 +9,7 @@ namespace RetroFun.Pages
 {
     [ToolboxItem(true)]
     [DesignerCategory("UserControl")]
-    public partial class DicePage:  ObservablePage
+    public partial class DicePage : ObservablePage
     {
 
         private bool _IsRegistrationMode;
@@ -24,9 +24,6 @@ namespace RetroFun.Pages
             }
         }
 
-
-
-
         private int _DiceTotResult;
 
         public int DiceTotResult
@@ -38,7 +35,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
 
         private int _DiceResult1;
 
@@ -108,7 +104,7 @@ namespace RetroFun.Pages
             }
         }
 
-                private int _DiceID1;
+        private int _DiceID1;
 
         public int DiceID1
         {
@@ -119,8 +115,8 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-		
-		        private int _DiceID2;
+
+        private int _DiceID2;
 
         public int DiceID2
         {
@@ -131,7 +127,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-		        private int _DiceID3;
+        private int _DiceID3;
 
         public int DiceID3
         {
@@ -142,7 +138,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-		        private int _DiceID4;
+        private int _DiceID4;
 
         public int DiceID4
         {
@@ -153,7 +149,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-		        private int _DiceID5;
+        private int _DiceID5;
 
         public int DiceID5
         {
@@ -164,7 +160,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-		        private int _DiceID6;
+        private int _DiceID6;
 
         public int DiceID6
         {
@@ -248,7 +244,6 @@ namespace RetroFun.Pages
             InitializeComponent();
             Bind(DiceRegisterModeCheck, "Checked", nameof(IsRegistrationMode));
 
-
             Bind(DiceID1Nbx, "Value", nameof(DiceID1));
             Bind(DiceID2Nbx, "Value", nameof(DiceID2));
             Bind(DiceID3Nbx, "Value", nameof(DiceID3));
@@ -272,14 +267,13 @@ namespace RetroFun.Pages
 
             Bind(TotalDiceResultNbx, "Value", nameof(DiceTotResult));
 
-
         }
 
         public override void Out_TriggerDice(DataInterceptedEventArgs e)
         {
             if (_IsRegistrationMode)
             {
-                RegisterDice(e.Packet.ReadInteger());
+                RegisterDice(e.Packet.ReadInt32());
                 e.IsBlocked = true;
             }
         }
@@ -287,7 +281,7 @@ namespace RetroFun.Pages
         {
             if (_IsRegistrationMode)
             {
-                RegisterDice(e.Packet.ReadInteger());
+                RegisterDice(e.Packet.ReadInt32());
                 e.IsBlocked = true;
             }
         }
@@ -372,35 +366,35 @@ namespace RetroFun.Pages
             if (DiceSelected1)
             {
 
-                    RollDice(DiceID1);
-                
+                RollDice(DiceID1);
+
             }
             if (DiceSelected2)
             {
 
-                    RollDice(DiceID2);
-                
+                RollDice(DiceID2);
+
             }
             if (DiceSelected3)
             {
 
-                    RollDice(DiceID3);
+                RollDice(DiceID3);
 
             }
             if (DiceSelected4)
             {
 
-                    RollDice(DiceID4);
+                RollDice(DiceID4);
             }
             if (DiceSelected5)
             {
-                    RollDice(DiceID5);
-                
+                RollDice(DiceID5);
+
             }
             if (DiceSelected6)
             {
 
-                    RollDice(DiceID6);
+                RollDice(DiceID6);
             }
         }
 
@@ -544,22 +538,22 @@ namespace RetroFun.Pages
 
         private void RollDice(int DiceID)
         {
-                _ = SendToServer(Out.TriggerDice, DiceID);
+            _ = SendToServer(Out.TriggerDice, DiceID);
         }
 
         private void CloseDice(int DiceID)
         {
-                _ = SendToServer(Out.CloseDice, DiceID);
+            _ = SendToServer(Out.CloseDice, DiceID);
         }
 
         private void RegisterDiceAsk(int DiceNumber)
         {
-                _ = SendToClient(In.RoomUserWhisper, 0, "[Registration Dice]: Please Select the dice nr " + DiceNumber.ToString() + ".", 0, 34, 0, -1);
+            _ = SendToClient(In.RoomUserWhisper, 0, "[Registration Dice]: Please Select the dice nr " + DiceNumber.ToString() + ".", 0, 34, 0, -1);
         }
 
         private void RegisterDiceSpeak(string text)
         {
-                _ = SendToClient(In.RoomUserWhisper, 0, "[Registration Dice]: " + text, 0, 34, 0, -1);
+            _ = SendToClient(In.RoomUserWhisper, 0, "[Registration Dice]: " + text, 0, 34, 0, -1);
         }
 
         private void CheckBoxToggler(CheckBox box, bool value)
@@ -570,14 +564,13 @@ namespace RetroFun.Pages
             });
         }
 
-
         public override void In_ItemExtraData(DataInterceptedEventArgs e)
         {
             try
             {
-                int id = int.Parse(e.Packet.ReadString());
-                e.Packet.ReadInteger();
-                string data = e.Packet.ReadString();
+                int id = int.Parse(e.Packet.ReadUTF8());
+                e.Packet.ReadInt32();
+                string data = e.Packet.ReadUTF8();
                 e.Packet.Position = 0;
                 e.Continue();
 
@@ -629,10 +622,6 @@ namespace RetroFun.Pages
 
             }
         }
-
-
-        
-
 
         private void CalculateResults()
         {
@@ -761,23 +750,22 @@ namespace RetroFun.Pages
             ClosePokerDice();
         }
 
-
-        public override void In_FloorItemUpdate(DataInterceptedEventArgs e)
+        public override void In_HFloorObjectUpdate(DataInterceptedEventArgs e)
         {
             try
             {
-                int id = e.Packet.ReadInteger();
+                int id = e.Packet.ReadInt32();
 
-                e.Packet.ReadInteger();
-                e.Packet.ReadInteger();
-                e.Packet.ReadInteger();
-                e.Packet.ReadInteger();
-                e.Packet.ReadString();
-                e.Packet.ReadString();
-                e.Packet.ReadInteger();
-                e.Packet.ReadInteger();
+                e.Packet.ReadInt32();
+                e.Packet.ReadInt32();
+                e.Packet.ReadInt32();
+                e.Packet.ReadInt32();
+                e.Packet.ReadUTF8();
+                e.Packet.ReadUTF8();
+                e.Packet.ReadInt32();
+                e.Packet.ReadInt32();
 
-                string data = e.Packet.ReadString();
+                string data = e.Packet.ReadUTF8();
 
                 e.Continue();
 
@@ -824,7 +812,7 @@ namespace RetroFun.Pages
                     CalculateResults();
                 }
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
 
             }

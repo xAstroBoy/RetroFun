@@ -4,9 +4,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using RetroFun.Subscribers;
-using Sulakore.Communication;
-using Sulakore.Habbo;
-using Sulakore.Components;
+using Geode.Network;
+
 using System.Threading;
 using RetroFun.Utils.Globals;
 
@@ -25,7 +24,6 @@ namespace RetroFun.Pages
         private Dictionary<string, HEntity> _removedEntities { get => GlobalDictionaries.removedEntities; }
         private Dictionary<int, HEntity> _users { get => GlobalDictionaries.Dictionary_UsersPresentInRoom; }
         private Dictionary<string, bool> _blacklistedEntities { get => GlobalDictionaries.blacklistedEntities; }
-
 
         private bool _LockNickname;
 
@@ -131,9 +129,6 @@ namespace RetroFun.Pages
             }
         }
 
-
-
-
         public UserEditorPage()
         {
             InitializeComponent();
@@ -191,11 +186,9 @@ namespace RetroFun.Pages
             UpdateRoomUsersLabel();
         }
 
-
-
         public override void In_RoomUserTalk(DataInterceptedEventArgs e)
         {
-            var index = e.Packet.ReadInteger();
+            var index = e.Packet.ReadInt32();
             if (GlobalInts.OwnUser_index != index)
             {
                 if (_isBlacklistActive)
@@ -207,7 +200,7 @@ namespace RetroFun.Pages
 
         public override void  In_RoomUserShout(DataInterceptedEventArgs e)
         {
-            var index = e.Packet.ReadInteger();
+            var index = e.Packet.ReadInt32();
             if (GlobalInts.OwnUser_index != index)
             {
                 if (_isBlacklistActive)
@@ -218,7 +211,7 @@ namespace RetroFun.Pages
         }
         public override void In_RoomUserWhisper(DataInterceptedEventArgs e)
         {
-            var index = e.Packet.ReadInteger();
+            var index = e.Packet.ReadInt32();
             if (GlobalInts.OwnUser_index != index)
             {
                 if (_isBlacklistActive)
@@ -227,7 +220,6 @@ namespace RetroFun.Pages
                 }
             }
         }
-
 
         private bool IsBlockedEntity(int index)
         {
@@ -242,7 +234,6 @@ namespace RetroFun.Pages
             //_isBlacklistActive and username is in blacklist and THAT blacklist entry is active (  VVVVVVVVVVV )
             return (_blacklistedEntities.ContainsKey(username) && _blacklistedEntities[username]);
         }
-
 
         public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
@@ -289,7 +280,7 @@ namespace RetroFun.Pages
 
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
-            _selectedUserId = e.Packet.ReadInteger();
+            _selectedUserId = e.Packet.ReadInt32();
 
             if (_users.TryGetValue(_selectedUserId, out HEntity entity))
             {
@@ -336,7 +327,6 @@ namespace RetroFun.Pages
                     if (!_removedEntities.ContainsKey(entity.Name))
                         _removedEntities.Add(entity.Name, entity);
 
-
                     RemoveRoomUser(entity.Index);
                 }
             }
@@ -355,7 +345,6 @@ namespace RetroFun.Pages
                 {
                     //Remove fake entity
                     RemoveRoomUser(entity.Index);
-
 
                     //Add original entity back
                     AddUser(entity.Id, entity.Index, entity.Name, entity.Motto, entity.FigureId, entity.Tile, entity.Gender, entity.FavoriteGroup);
@@ -414,8 +403,6 @@ namespace RetroFun.Pages
             );
         }
 
-
-
         private void EditUserBtn_Click(object sender, EventArgs e)
         {
             ReplaceUser(_selectedUserId, _userNickname, _userMotto, _userLook, false);
@@ -442,7 +429,6 @@ namespace RetroFun.Pages
             });
         }
 
-   
         private void BlacklistBtn_Click(object sender, EventArgs e)
         {
             _isBlacklistActive = !_isBlacklistActive;
@@ -570,10 +556,6 @@ namespace RetroFun.Pages
             }
         }
 
-
-
-
-
         private void StartAllUserRemover()
         {
             new Thread(() =>
@@ -597,7 +579,6 @@ namespace RetroFun.Pages
                 } while (_IsAddAllUsersInBlacklist);
             }).Start();
         }
-
 
         private void AddAllUsersOnBlacklistBtn_Click(object sender, EventArgs e)
         {

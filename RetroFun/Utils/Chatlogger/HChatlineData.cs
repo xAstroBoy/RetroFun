@@ -1,4 +1,5 @@
-﻿using Sulakore.Protocol;
+﻿
+using Geode.Habbo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,10 +29,10 @@ namespace RetroFun.Utils.Chatlogger
 
         public HChatlineData(HMessage packet)
         {
-            Timestamp = packet.ReadString();
-            Id = packet.ReadInteger();
-            Username = packet.ReadString();
-            Message = packet.ReadString();
+            Timestamp = packet.ReadUTF8();
+            Id = packet.ReadInt32();
+            Username = packet.ReadUTF8();
+            Message = packet.ReadUTF8();
             IsHighlighted = packet.ReadBoolean();
         }
     }
@@ -49,8 +50,8 @@ namespace RetroFun.Utils.Chatlogger
                 switch (anotherMessage.ReadShort())
                 {
                     case 0: return anotherMessage.ReadBoolean();
-                    case 1: return anotherMessage.ReadInteger();
-                    case 2: return anotherMessage.ReadString();
+                    case 1: return anotherMessage.ReadInt32();
+                    case 2: return anotherMessage.ReadUTF8();
                     default: throw new System.Exception("Nothing");
                 }
             }
@@ -61,7 +62,7 @@ namespace RetroFun.Utils.Chatlogger
             Context = new Dictionary<string, object>(entryCount);
             for (int i = 0; i < entryCount; i++)
             {
-                Context.Add(packet.ReadString(), ReadContextValue(packet));
+                Context.Add(packet.ReadUTF8(), ReadContextValue(packet));
             }
 
             Chatlogs = new List<HChatlineData>(packet.ReadShort());

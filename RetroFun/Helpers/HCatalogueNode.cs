@@ -1,9 +1,10 @@
-﻿using Sulakore.Protocol;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Geode.Habbo;
 
 namespace RetroFun.Helpers
 {
@@ -23,18 +24,18 @@ namespace RetroFun.Helpers
         {
             Visible = packet.ReadBoolean();
 
-            Icon = packet.ReadInteger();
-            PageId = packet.ReadInteger();
-            PageName = packet.ReadString();
-            Localization = packet.ReadString();
+            Icon = packet.ReadInt32();
+            PageId = packet.ReadInt32();
+            PageName = packet.ReadUTF8();
+            Localization = packet.ReadUTF8();
 
-            OfferIds = new int[packet.ReadInteger()];
+            OfferIds = new int[packet.ReadInt32()];
             for (int i = 0; i < OfferIds.Length; i++)
             {
-                OfferIds[i] = packet.ReadInteger();
+                OfferIds[i] = packet.ReadInt32();
             }
 
-            Children = new HCatalogNode[packet.ReadInteger()];
+            Children = new HCatalogNode[packet.ReadInt32()];
             for (int i = 0; i < Children.Length; i++)
             {
                 Children[i] = new HCatalogNode(packet);
@@ -45,7 +46,7 @@ namespace RetroFun.Helpers
         {
             var root = new HCatalogNode(packet);
             bool newAdditionsAvailable = packet.ReadBoolean();
-            string catalogType = packet.ReadString();
+            string catalogType = packet.ReadUTF8();
 
             return root;
         }

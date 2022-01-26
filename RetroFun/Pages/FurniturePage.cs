@@ -1,8 +1,7 @@
 ﻿using RetroFun.Controls;
 using RetroFun.Subscribers;
-using Sulakore.Communication;
-using Sulakore.Components;
-using Sulakore.Protocol;
+using Geode.Network;
+
 using System;
 using System.ComponentModel;
 using System.IO;
@@ -10,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using Sulakore.Habbo;
+
 using System.Linq;
 using RetroFun.Helpers;
 using System.Text;
@@ -23,9 +22,9 @@ namespace RetroFun.Pages
     public partial class FurniturePage : ObservablePage
     {
 
-        List<HFloorItem> SnapshotFloorItems;
+        List<HFloorObject> SnapshotHFloorObjects;
         List<HWallItem> SnapshotWallItems;
-        private List<HFloorItem> RoomFloorFurni { get => FloorFurnitures.Furni; }
+        private List<HFloorObject> RoomFloorFurni { get => FloorFurnitures.Furni; }
         private List<HWallItem> RoomWallFurni { get => WallFurnitures.Furni; }
         private bool _RemoveFurnisInClientSideOnly;
         private bool ConvertWalkinFurniMovement;
@@ -63,8 +62,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
-
 
         private bool isTeleportFurni = true;
         private bool IsWalkingFurni;
@@ -127,7 +124,6 @@ namespace RetroFun.Pages
             }
         }
 
-
         private int _FloorFurniRotation;
 
         public int FloorFurniRotation
@@ -149,7 +145,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
 
         private bool _StoreFurniID;
 
@@ -185,7 +180,6 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
-
 
         private bool _FurniPickedOutput;
 
@@ -264,11 +258,7 @@ namespace RetroFun.Pages
             }
         }
 
-
-
         public int FurnitureId { get; private set; }
-
-
 
         public FurniturePage()
         {
@@ -279,7 +269,6 @@ namespace RetroFun.Pages
             Bind(FurniPickChbx, "Checked", nameof(FurniPickedOutput));
             Bind(SelectedFurniTypeNbx, "Value", nameof(TargetFurniType));
             Bind(PickerSpeedNbx, "Value", nameof(TypeIDPickerSpeed));
-
 
             Bind(ShowFurniDetailsChbx, "Checked", nameof(StoreFurniDetailsToFile));
             Bind(ShowFurnIStuffInChatChbx, "Checked", nameof(ShowFurniDetailsInChat));
@@ -292,7 +281,7 @@ namespace RetroFun.Pages
             Bind(WalkingSpeedNbx, "Value", nameof(FurniWalkingSpeed));
 
             Bind(BadgeCodePickerTxb, "Text", nameof(BadgeCodeInHolder));
-            SnapshotFloorItems = new List<HFloorItem>();
+            SnapshotHFloorObjects = new List<HFloorObject>();
             SnapshotWallItems = new List<HWallItem>();
 
         }
@@ -300,10 +289,9 @@ namespace RetroFun.Pages
         private void SetFurnisSnapshot()
         {
 
-            SnapshotFloorItems = RoomFloorFurni.ToList();
+            SnapshotHFloorObjects = RoomFloorFurni.ToList();
             SnapshotWallItems = RoomWallFurni.ToList();
         }
-
 
         private void WriteToButton(SKoreButton Button, string text)
         {
@@ -313,14 +301,13 @@ namespace RetroFun.Pages
             });
         }
 
-
         private void RemoveWallItemCSBtn_Click(object sender, EventArgs e)
         {
             if (FurnitureId == 0) return;
             FindFurniToRemoveCS(FurnitureId);
         }
 
-        private void RemoveFloorItemCSBtn_Click(object sender, EventArgs e)
+        private void RemoveHFloorObjectCSBtn_Click(object sender, EventArgs e)
         {
             if (FurnitureId == 0) return;
             FindFurniToRemoveCS(FurnitureId);
@@ -341,7 +328,6 @@ namespace RetroFun.Pages
                 return;
             }
         }
-
 
         private void RecordPlacedRare(int FurniID)
         {
@@ -375,7 +361,7 @@ namespace RetroFun.Pages
             }
         }
 
-        private void RecordFurniDetails(HFloorItem furni)
+        private void RecordFurniDetails(HFloorObject furni)
         {
             try
             {
@@ -436,7 +422,6 @@ namespace RetroFun.Pages
 
             }
         }
-
 
         private void RecordFurniDetails(HWallItem furni)
         {
@@ -502,7 +487,6 @@ namespace RetroFun.Pages
                 RadioButtonCheck(rotationLeft, false);
                 FloorFurniRotation = 6;
 
-
             }
             if (Rotation == 0)
             {
@@ -557,12 +541,10 @@ namespace RetroFun.Pages
             
         }
 
-
         private async void RotateItem(int furnitureId, int two, int three, int Rotation)
         {
-                await  SendToClient(In.FloorItemUpdate, furnitureId, 0, two, three, 0, Rotation, 0, 0, 0, 0, 0, 0, 0);
+                await  SendToClient(In.HFloorObjectUpdate, furnitureId, 0, two, three, 0, Rotation, 0, 0, 0, 0, 0, 0, 0);
         }
-
 
         private void RadioButtonCheck(RadioButton button, bool value)
         {
@@ -572,13 +554,11 @@ namespace RetroFun.Pages
             });
         }
 
-
-
         private void RestoreFurnisBtn_Click(object sender, EventArgs e)
         {
             if (RoomFloorFurni != null && !(RoomFloorFurni.Count == 0))
             {
-                    _ = SendToClient(FloorFurnitures.PacketBuilder(RoomFloorFurni, In.RoomFloorItems));
+                    _ = SendToClient(FloorFurnitures.PacketBuilder(RoomFloorFurni, In.RoomHFloorObjects));
             }
             if (RoomWallFurni != null && !(RoomWallFurni.Count == 0))
             {
@@ -621,21 +601,6 @@ namespace RetroFun.Pages
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         private void CaptureFloorFurniBtn_Click(object sender, EventArgs e)
         {
             if (FloorFurniInterceptionMode)
@@ -652,7 +617,6 @@ namespace RetroFun.Pages
             }
 
         }
-
 
         private void WalkingStyleBtn_Click(object sender, EventArgs e)
         {
@@ -671,13 +635,11 @@ namespace RetroFun.Pages
             }
         }
 
-
         public async void TeleportfurniToCoord(int X, int Y)
         {
 
                 await  SendToServer(Out.RotateMoveItem, FloorFurniID, X, Y, FloorFurniRotation);
         }
-
 
         private async void WalkFurniToCoordX(int X)
         {
@@ -756,7 +718,6 @@ namespace RetroFun.Pages
             }
         }
 
-
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
             ResetPicker();
@@ -769,7 +730,7 @@ namespace RetroFun.Pages
         public void ResetPicker()
         {
             RemoveFurnisInClientSideOnly = false;
-            SnapshotFloorItems.Clear();
+            SnapshotHFloorObjects.Clear();
             SnapshotWallItems.Clear();
             ShouldUnlockTypeIDPicker(true);
             IS_PICKING_FLOOR_FURNITYPE_SS = false;
@@ -787,8 +748,8 @@ namespace RetroFun.Pages
 
         public override void Out_RoomUserWalk(DataInterceptedEventArgs e)
         {
-            int coordX = e.Packet.ReadInteger();
-            int coordY = e.Packet.ReadInteger();
+            int coordX = e.Packet.ReadInt32();
+            int coordY = e.Packet.ReadInt32();
 
             if (ConvertWalkinFurniMovement)
             {
@@ -807,22 +768,20 @@ namespace RetroFun.Pages
 
         public static List<HWallItem> BobbaParser(HMessage packet)
         {
-            int ownersCount = packet.ReadInteger();
+            int ownersCount = packet.ReadInt32();
             for (int i = 0; i < ownersCount; i++)
             {
-                packet.ReadInteger();
-                packet.ReadString();
+                packet.ReadInt32();
+                packet.ReadUTF8();
             }
 
-            var wallItems = new HWallItem[packet.ReadInteger()];
+            var wallItems = new HWallItem[packet.ReadInt32()];
             for (int i = 0; i < wallItems.Length; i++)
             {
                 wallItems[i] = new HWallItem(packet);
             }
             return wallItems.ToList();
         }
-
-
 
         private async void WalkFurniToCoord(int X, int Y)
         {
@@ -831,7 +790,6 @@ namespace RetroFun.Pages
             WalkFurniToCoordY(Y);
             await Task.Delay(10);
         }
-
 
         private void PickWallItemSSBtn_Click(object sender, EventArgs e)
         {
@@ -849,7 +807,7 @@ namespace RetroFun.Pages
         {
             _ = SendToServer(Out.RoomPickupItem, 2, furniID);
         }
-        private void PickFurniSS(HFloorItem furni)
+        private void PickFurniSS(HFloorObject furni)
         {
             _ = SendToServer(Out.RoomPickupItem, 2, furni.Id);
         }
@@ -869,10 +827,9 @@ namespace RetroFun.Pages
             }
         }
 
-
         public override void Out_RoomPickupItem(DataInterceptedEventArgs e)
         {
-            int furnitureId = e.Packet.ReadInteger(4);
+            int furnitureId = e.Packet.ReadInt32(4);
 
             if (StoreFurniID)
             {
@@ -902,7 +859,7 @@ namespace RetroFun.Pages
 
         public override void Out_RotateMoveItem(DataInterceptedEventArgs e)
         {
-            int furniid = e.Packet.ReadInteger();
+            int furniid = e.Packet.ReadInt32();
 
             if (RemoveFurnisInClientSideOnly)
             {
@@ -938,7 +895,6 @@ namespace RetroFun.Pages
             }
         }
 
-
         private void FindTypeId(int FurniID)
         {
             var floorfurni = RoomFloorFurni.Find(x => x.Id == FurniID);
@@ -961,8 +917,7 @@ namespace RetroFun.Pages
 
         }
 
-
-        private HFloorItem FindFloorFurni(int FurniID)
+        private HFloorObject FindFloorFurni(int FurniID)
         {
             var floorfurni = RoomFloorFurni.Find(x => x.Id == FurniID);
             if (floorfurni != null)
@@ -974,7 +929,6 @@ namespace RetroFun.Pages
                 return null;
             }
         }
-
 
             private void FindFurniDetals(int FurniID)
         {
@@ -1007,12 +961,12 @@ namespace RetroFun.Pages
             }
 
         }
-        private void ShowFurniDetails(HFloorItem furni)
+        private void ShowFurniDetails(HFloorObject furni)
         {
             Speak(CreateOneBigString(furni), 34);
         }
 
-        private string CreateOneBigString(HFloorItem furni)
+        private string CreateOneBigString(HFloorObject furni)
         {
             var FurniString = new StringBuilder();
             int i = 0;
@@ -1034,7 +988,6 @@ namespace RetroFun.Pages
             return FurniString.ToString();
         }
 
-
         private string CreateOneBigString(HWallItem furni)
         {
             var FurniString = new StringBuilder();
@@ -1049,13 +1002,12 @@ namespace RetroFun.Pages
             return FurniString.ToString();
         }
 
-
         private void PrintFurniDetailsInChat(HWallItem furni)
         {
             Speak(CreateOneBigString(furni), 34);
         }
 
-        private void FindTypeId(HFloorItem furni)
+        private void FindTypeId(HFloorObject furni)
         {
             TargetFurniType = furni.TypeId;
             Speak("[FurniType Picker] I will pick furnis containing this Typeid ( " + TargetFurniType + " )", 34);
@@ -1085,9 +1037,9 @@ namespace RetroFun.Pages
                 {
                     try
                     {
-                        if (!(SnapshotFloorItems.Count == 0) && SnapshotFloorItems != null)
+                        if (!(SnapshotHFloorObjects.Count == 0) && SnapshotHFloorObjects != null)
                         {
-                            foreach (HFloorItem furni in SnapshotFloorItems)
+                            foreach (HFloorObject furni in SnapshotHFloorObjects)
                             {
                                 if (furni.TypeId == TargetFurniType)
                                 {
@@ -1113,9 +1065,9 @@ namespace RetroFun.Pages
                 await Task.Delay(250);
                 await  SendToClient(In.RemoveWallItem, item.Id.ToString(), 0);
         }
-        private async void HideFurnisClient(HFloorItem item)
+        private async void HideFurnisClient(HFloorObject item)
         {
-            if (In.RemoveFloorItem == 0 && KnownDomains.isBobbaHotel)
+            if (In.RemoveHFloorObject == 0 && KnownDomains.isBobbaHotel)
             {
                 await Task.Delay(250);
                 await  SendToClient(2411, item.Id.ToString(), false, 0, 0);
@@ -1124,12 +1076,10 @@ namespace RetroFun.Pages
             else
             {
                 await Task.Delay(250);
-                await  SendToClient(In.RemoveFloorItem, item.Id.ToString(), false, 0, 0);
+                await  SendToClient(In.RemoveHFloorObject, item.Id.ToString(), false, 0, 0);
                 return;
             }
         }
-
-
 
         private void RemoveSelectedFloorFurniCS(int TypeID)
         {
@@ -1140,15 +1090,15 @@ namespace RetroFun.Pages
                 {
                     try
                     {
-                        if (!(SnapshotFloorItems.Count == 0) && SnapshotFloorItems != null)
+                        if (!(SnapshotHFloorObjects.Count == 0) && SnapshotHFloorObjects != null)
                         {
-                            foreach (HFloorItem furni in SnapshotFloorItems)
+                            foreach (HFloorObject furni in SnapshotHFloorObjects)
                             {
                                 if (furni.TypeId == TypeID)
                                 {
                                     Thread.Sleep(TypeIDPickerSpeed);
                                     HideFurnisClient(furni);
-                                    SnapshotFloorItems.Remove(furni);
+                                    SnapshotHFloorObjects.Remove(furni);
                                 }
                             }
                             ShouldUnlockTypeIDPicker(true);
@@ -1164,8 +1114,6 @@ namespace RetroFun.Pages
             }).Start();
         }
 
-
-
         private void RemoveSelectedFloorFurniCS()
         {
             new Thread(() =>
@@ -1175,15 +1123,15 @@ namespace RetroFun.Pages
                 {
                     try
                     {
-                        if (!(SnapshotFloorItems.Count == 0) && SnapshotFloorItems != null)
+                        if (!(SnapshotHFloorObjects.Count == 0) && SnapshotHFloorObjects != null)
                         {
-                            foreach (HFloorItem furni in SnapshotFloorItems)
+                            foreach (HFloorObject furni in SnapshotHFloorObjects)
                             {
                                 if (furni.TypeId == TargetFurniType)
                                 {
                                     Thread.Sleep(TypeIDPickerSpeed);
                                     HideFurnisClient(furni);
-                                    SnapshotFloorItems.Remove(furni);
+                                    SnapshotHFloorObjects.Remove(furni);
                                 }
                             }
                             ShouldUnlockTypeIDPicker(true);
@@ -1208,9 +1156,9 @@ namespace RetroFun.Pages
                 {
                     try
                     {
-                        if (!(SnapshotFloorItems.Count == 0) && SnapshotFloorItems != null)
+                        if (!(SnapshotHFloorObjects.Count == 0) && SnapshotHFloorObjects != null)
                         {
-                            foreach (HFloorItem furni in SnapshotFloorItems)
+                            foreach (HFloorObject furni in SnapshotHFloorObjects)
                             {
                                 if (BadgeHoldersTypeIDS.Contains(furni.TypeId))
                                 {
@@ -1218,7 +1166,7 @@ namespace RetroFun.Pages
                                     {
                                         Thread.Sleep(TypeIDPickerSpeed);
                                         HideFurnisClient(furni);
-                                        SnapshotFloorItems.Remove(furni);
+                                        SnapshotHFloorObjects.Remove(furni);
                                     }
                                 }
                             }
@@ -1244,9 +1192,9 @@ namespace RetroFun.Pages
                 {
                     try
                     {
-                        if (!(SnapshotFloorItems.Count == 0) && SnapshotFloorItems != null)
+                        if (!(SnapshotHFloorObjects.Count == 0) && SnapshotHFloorObjects != null)
                         {
-                            foreach (HFloorItem furni in SnapshotFloorItems)
+                            foreach (HFloorObject furni in SnapshotHFloorObjects)
                             {
                                 if (BadgeHoldersTypeIDS.Contains(furni.TypeId))
                                 {
@@ -1254,7 +1202,7 @@ namespace RetroFun.Pages
                                     {
                                         Thread.Sleep(TypeIDPickerSpeed);
                                         PickFurniSS(furni.Id);
-                                        SnapshotFloorItems.Remove(furni);
+                                        SnapshotHFloorObjects.Remove(furni);
                                     }
                                 }
                             }
@@ -1270,7 +1218,6 @@ namespace RetroFun.Pages
                 } while (IS_PICKING_BADGEHOLDER_SS);
             }).Start();
         }
-
 
         private void RemoveSelectedWallFurniCS()
         {
@@ -1364,11 +1311,9 @@ namespace RetroFun.Pages
             IsPickerGrabMode = false;
         }
 
-        public override void Out_ToggleFloorItem(DataInterceptedEventArgs e)
+        public override void Out_ToggleHFloorObject(DataInterceptedEventArgs e)
         {
-            int FurniID = e.Packet.ReadInteger();
-
-
+            int FurniID = e.Packet.ReadInt32();
 
             if (RemoveFurnisInClientSideOnly)
             {
@@ -1379,7 +1324,6 @@ namespace RetroFun.Pages
                 }
                 e.IsBlocked = true;
             }
-
 
             if (FloorFurniInterceptionMode)
             {
@@ -1407,7 +1351,7 @@ namespace RetroFun.Pages
 
         public override void Out_ToggleWallItem(DataInterceptedEventArgs e)
         {
-            int FurniID = e.Packet.ReadInteger();
+            int FurniID = e.Packet.ReadInt32();
             if (IsPickerGrabMode)
             {
                 FindTypeId(FurniID);
@@ -1422,7 +1366,7 @@ namespace RetroFun.Pages
 
         public override void Out_MoveWallItem(DataInterceptedEventArgs e)
         {
-            int FurniID = e.Packet.ReadInteger();
+            int FurniID = e.Packet.ReadInt32();
             if (IsPickerGrabMode)
             {
                 FindTypeId(FurniID);
@@ -1471,7 +1415,7 @@ namespace RetroFun.Pages
 
         private void PickFurniCSBtn_Click(object sender, EventArgs e)
         {
-            SnapshotFloorItems.Clear();
+            SnapshotHFloorObjects.Clear();
             SnapshotWallItems.Clear();
             Speak("Picking Furnis in Client Side!", 34);
             if (IS_TARGET_FLOORFURNI)
@@ -1492,7 +1436,7 @@ namespace RetroFun.Pages
 
         private void RemoveRoomBGCS_click(object sender, EventArgs e)
         {
-            SnapshotFloorItems.Clear();
+            SnapshotHFloorObjects.Clear();
             SnapshotWallItems.Clear();
             Speak("Hiding Room BG In Client Side!", 34);
             IS_PICKING_FLOOR_FURNITYPE_CS = true;
@@ -1541,7 +1485,7 @@ namespace RetroFun.Pages
         {
             if (isAutomaticClientMode)
             {
-                SnapshotFloorItems.Clear();
+                SnapshotHFloorObjects.Clear();
                 SnapshotWallItems.Clear();
                 Speak("Hiding Furnis in Client-side", 34);
                 IS_PICKING_FLOOR_FURNITYPE_CS = true;
@@ -1556,7 +1500,7 @@ namespace RetroFun.Pages
             {
                 if(isAutomaticServerMode)
                 {
-                    SnapshotFloorItems.Clear();
+                    SnapshotHFloorObjects.Clear();
                     SnapshotWallItems.Clear();
                     Speak("Removing Furnis in Server-side", 34);
                     IS_PICKING_FLOOR_FURNITYPE_SS = true;
@@ -1570,12 +1514,11 @@ namespace RetroFun.Pages
             }
         }
 
-
         private void AutomaticWallFurniPicker(int typeid)
         {
             if (isAutomaticClientMode)
             {
-                SnapshotFloorItems.Clear();
+                SnapshotHFloorObjects.Clear();
                 SnapshotWallItems.Clear();
                 Speak("Hiding Furnis in Client-side", 34);
                 IS_PICKING_WALL_FURNITYPE_CS = true;
@@ -1590,7 +1533,7 @@ namespace RetroFun.Pages
             {
                 if (isAutomaticServerMode)
                 {
-                    SnapshotFloorItems.Clear();
+                    SnapshotHFloorObjects.Clear();
                     SnapshotWallItems.Clear();
                     Speak("Removing Furnis in Server-side", 34);
                     IS_PICKING_WALL_FURNITYPE_SS = true;
@@ -1603,7 +1546,6 @@ namespace RetroFun.Pages
                 }
             }
         }
-
 
         private void PickBadgeCS_Click(object sender, EventArgs e)
         {
