@@ -12,7 +12,7 @@ namespace RetroFun
 {
     [DesignerCategory("Form")]
     [Module("RetroFun", "All-in-one scripting tool!")]
-    [Author("marcocorriero")]
+    [Author("xAstroBoycorriero")]
 
 
 

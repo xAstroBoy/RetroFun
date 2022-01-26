@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("RetroFun")]
 [assembly: AssemblyDescription("All-in-one scripting tool!")]
 [assembly: AssemblyConfiguration("ALL IT REQUIRES IS TANJI")]
-[assembly: AssemblyCompany("marcocorriero")]
+[assembly: AssemblyCompany("xAstroBoycorriero")]
 [assembly: AssemblyProduct("RetroFun")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]

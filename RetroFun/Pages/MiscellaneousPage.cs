@@ -1369,14 +1369,14 @@ namespace RetroFun.Pages
 
         private void DeleteRoomBtn_Click(object sender, EventArgs e)
         {
-            _ = SendToServer(Out.RequestDeleteRoom, GlobalInts.ROOM_ID);
+            // _ = SendToServer(Out.RequestDeleteRoom, GlobalInts.ROOM_ID);
         }
 
 
         //private async void DeleteRoomMode()
         //{
         //        new Thread(() =>
-        //        {
+        //        {y
         //            Thread.CurrentThread.IsBackground = true;
         //            do
         //            {

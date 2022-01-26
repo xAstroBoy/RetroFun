@@ -353,8 +353,7 @@ namespace RetroFun.Handlers
 
         public override void In_FloorItemUpdate(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.isBobbaHotel)
-            {
+
                 int FurniID = e.Packet.ReadInteger();
                 int typeId = e.Packet.ReadInteger();
                 int x = e.Packet.ReadInteger();
@@ -372,7 +371,7 @@ namespace RetroFun.Handlers
 
                 e.Packet.Position = 0;
                 e.Continue();
-            }
+            
         }
 
 

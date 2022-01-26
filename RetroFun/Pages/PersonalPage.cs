@@ -968,7 +968,7 @@ namespace RetroFun.Pages
 
         public override void Out_RoomRequestBannedUsers(DataInterceptedEventArgs e)
         {
-            if (KnownDomains.isBobbaHotel )
+            if (KnownDomains.isBobbaHotel)
             {
                 e.IsBlocked = true;
                 _ = SendToServer(e.Packet);

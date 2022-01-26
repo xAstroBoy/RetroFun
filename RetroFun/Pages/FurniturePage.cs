@@ -1128,7 +1128,42 @@ namespace RetroFun.Pages
                 return;
             }
         }
-        
+
+
+
+        private void RemoveSelectedFloorFurniCS(int TypeID)
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                do
+                {
+                    try
+                    {
+                        if (!(SnapshotFloorItems.Count == 0) && SnapshotFloorItems != null)
+                        {
+                            foreach (HFloorItem furni in SnapshotFloorItems)
+                            {
+                                if (furni.TypeId == TypeID)
+                                {
+                                    Thread.Sleep(TypeIDPickerSpeed);
+                                    HideFurnisClient(furni);
+                                    SnapshotFloorItems.Remove(furni);
+                                }
+                            }
+                            ShouldUnlockTypeIDPicker(true);
+                            IS_PICKING_FLOOR_FURNITYPE_CS = false;
+                        }
+                        ShouldUnlockTypeIDPicker(true);
+                        IS_PICKING_FLOOR_FURNITYPE_CS = false;
+                    }
+                    catch (Exception)
+                    {
+                    }
+                } while (IS_PICKING_FLOOR_FURNITYPE_CS);
+            }).Start();
+        }
+
 
 
         private void RemoveSelectedFloorFurniCS()
@@ -1463,11 +1498,43 @@ namespace RetroFun.Pages
             IS_PICKING_FLOOR_FURNITYPE_CS = true;
             IS_TARGET_FLOORFURNI = true;
             IS_TARGET_WALLFURNI = false;
-            TargetFurniType = 3821;
-            SetFurnisSnapshot();
-            RemoveSelectedFloorFurniCS();
-            DisablePicker();
-            ShouldUnlockTypeIDPicker(false);
+            var bglist = GetRoomBGIDs();
+            if(bglist != null)
+            {
+                foreach (var id in bglist)
+                {
+                    TargetFurniType = id;
+                    SetFurnisSnapshot();
+                    DisablePicker();
+                    ShouldUnlockTypeIDPicker(false);
+                    RemoveSelectedFloorFurniCS(id);
+                }
+                ShouldUnlockTypeIDPicker(true);
+            }
+            else
+            {
+                Speak("I Cant Recognize this Retro, You have to manually Find these BGs from :furni !");
+            }
+        }
+
+        private readonly List<int> BSSBG = new List<int> {123896125, 3996};
+
+        private readonly List<int> BobbaBG = new List<int> { 3821 };
+
+        private List<int> GetRoomBGIDs()
+        {
+            if (KnownDomains.isBobbaHotel)
+            {
+                return BobbaBG;
+            }
+            if (KnownDomains.isBSSHotel)
+            {
+                return BSSBG;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private void AutomaticFloorFurniPicker(int typeid)

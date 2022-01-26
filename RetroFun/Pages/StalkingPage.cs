@@ -187,7 +187,7 @@ namespace RetroFun.Pages
             isUserRandomWalking();
         }
 
-        public override void Out_RequestRoomData(DataInterceptedEventArgs e)
+        public override void In_RoomUserStatus(DataInterceptedEventArgs e)
         {
             if (ShouldExitDirectlyOnGames)
             {
@@ -275,5 +275,6 @@ namespace RetroFun.Pages
         {
                 _ = SendToServer(Out.StalkFriend, UserIDCapture);
         }
+
     }
 }

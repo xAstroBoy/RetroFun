@@ -3,6 +3,7 @@ using RetroFun.Subscribers;
 using RetroFun.Utils.Furnitures.Furni;
 using Sulakore.Communication;
 using Sulakore.Components;
+using Sulakore.Habbo;
 using System;
 using System.ComponentModel;
 using System.Threading;
@@ -250,46 +251,57 @@ namespace RetroFun.Pages
             ResetEdit();
         }
 
+        private static HFloorItem GetKnownRoomBGLight()
+        {
+            if (KnownDomains.isBobbaHotel)
+            {
+                return  FloorFurnitures.FindFloorFurniForTypeID(4514);
+            }
+            if (KnownDomains.isBSSHotel)
+            {
+                return  FloorFurnitures.FindFloorFurniForTypeID(4697);
+            }
+
+            return null;
+        }
         private bool RoomBackgroundFinder()
         {
-                if (KnownDomains.isBobbaHotel)
+            int i = 0;
+            var furni = GetKnownRoomBGLight();
+            if (furni != null)
+            {
+                FurniID = furni.Id;
+                foreach (object obj in furni.Stuff)
                 {
-                    int i = 0;
-                    var furni = FloorFurnitures.FindFloorFurniForTypeID(4514);
-                    if (furni != null)
+                    if (i == 0 || i == 1)
                     {
-                        FurniID = furni.Id;
-                        foreach (object obj in furni.Stuff)
+                        i++;
+                    }
+                    else
+                    {
+                        if (i == 2)
                         {
-                            if (i == 0 || i == 1)
-                            {
-                                i++;
-                            }
-                            else
-                            {
-                                if (i == 2)
-                                {
-                                    Tonality = int.Parse(obj.ToString());
-                                    i++;
-                                }
-                                else if (i == 3)
-                                {
-                                    Saturation = int.Parse(obj.ToString());
-                                    i++;
-                                }
-                                else if (i == 4)
-                                {
-                                    Luminosity = int.Parse(obj.ToString());
-                                    i++;
-                                }
-                            }
+                            Tonality = int.Parse(obj.ToString());
+                            i++;
                         }
-                        SaveSettings();
-                    return true;
+                        else if (i == 3)
+                        {
+                            Saturation = int.Parse(obj.ToString());
+                            i++;
+                        }
+                        else if (i == 4)
+                        {
+                            Luminosity = int.Parse(obj.ToString());
+                            i++;
+                        }
+                    }
                 }
+                SaveSettings();
+                return true;
             }
             return false;
-            }
+        }
+            
 
 
         private void ResetEdit()

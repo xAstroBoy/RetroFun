@@ -314,6 +314,11 @@ namespace RetroFun.Pages
                 await Task.Delay(500);
                 await SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
             }
+            else if (KnownDomains.isBSSHotel)
+            {
+                await Task.Delay(500);
+                await SendToServer(Out.RoomUserTalk, ":enable " + effect, GlobalInts.Selected_bubble_ID);
+            }
             else if (KnownDomains.UnknownHost)
             {
                 await Task.Delay(500);

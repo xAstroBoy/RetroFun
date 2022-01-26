@@ -161,14 +161,14 @@
             this.SpectatorChbx.Text = "Should Spectate on Bot-Giochi games?";
             this.SpectatorChbx.UseVisualStyleBackColor = true;
             // 
-            // MuteBotGamesBtn
+            // MuteBotGamesChbx
             // 
             this.MuteBotGamesChbx.AutoSize = true;
             this.MuteBotGamesChbx.Checked = true;
             this.MuteBotGamesChbx.CheckState = System.Windows.Forms.CheckState.Checked;
             this.MuteBotGamesChbx.Location = new System.Drawing.Point(268, 335);
             this.MuteBotGamesChbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MuteBotGamesChbx.Name = "MuteBotGamesBtn";
+            this.MuteBotGamesChbx.Name = "MuteBotGamesChbx";
             this.MuteBotGamesChbx.Size = new System.Drawing.Size(150, 24);
             this.MuteBotGamesChbx.TabIndex = 18;
             this.MuteBotGamesChbx.Text = "Mute Bot-Giochi";
