@@ -9,10 +9,10 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyTitle("RetroFun")]
 [assembly: AssemblyDescription("All-in-one scripting tool!")]
-[assembly: AssemblyConfiguration("ALL IT REQUIRES IS TANJI")]
-[assembly: AssemblyCompany("xAstroBoycorriero")]
+[assembly: AssemblyConfiguration("ALL IT REQUIRES IS G-EARTH")]
+[assembly: AssemblyCompany("xAstroBoy")]
 [assembly: AssemblyProduct("RetroFun")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
