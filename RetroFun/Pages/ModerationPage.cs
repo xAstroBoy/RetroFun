@@ -5,8 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Geode.Network;
-
+using Sulakore.Communication;
+using Sulakore.Habbo;
+using Sulakore.Components;
 using System.IO;
 using RetroFun.Subscribers;
 using RetroFun.Helpers;
@@ -23,6 +24,7 @@ namespace RetroFun.Pages
         private bool newroom = true;
         public int Bubbleused { get => GlobalInts.Selected_bubble_ID; set { GlobalInts.Selected_bubble_ID = value; RaiseOnPropertyChanged(); } }
         public List<HEntity> UserLeftRoom { get => GlobalLists.UserLeftRoom; set { GlobalLists.UserLeftRoom = value; RaiseOnPropertyChanged(); } }
+
 
         private RegisteredUsers[] registeredUsers;
         private readonly BanTime[] _BanTime = new[]
@@ -67,6 +69,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private string _BanMessage;
         public string BanMessage
         {
@@ -88,6 +91,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         private int _selectedIndex;
         public int SelectedIndex
@@ -154,6 +158,10 @@ namespace RetroFun.Pages
             }
         }
 
+
+
+
+
         public ModerationPage()
         {
 
@@ -170,7 +178,10 @@ namespace RetroFun.Pages
             Bind(MottoTxbx, "Text", nameof(UserMotto));
             Bind(LookTxbx, "Text", nameof(UserLook));
 
+
             Bind(UsernameForUserinfoTxb, "Text", nameof(GetUserinfoTargetUser));
+
+
 
             Bind(AlertBoxTxb, "Text", nameof(AlertMessage));
             Bind(BanManualReasonTxb, "Text", nameof(BanMessage));
@@ -187,6 +198,7 @@ namespace RetroFun.Pages
                 TotUserRegistered.Text = GlobalLists.UsersInRoom.Count().ToString();
             });
         }
+
 
         public override void Out_RequestRoomLoad(DataInterceptedEventArgs e)
         {
@@ -224,6 +236,9 @@ namespace RetroFun.Pages
             public override string ToString() => $"{Name} [UserID: {ID}]";
         }
 
+
+
+
         private class BanTime
         {
             public string Name { get; }
@@ -238,6 +253,9 @@ namespace RetroFun.Pages
 
             public override string ToString() => $"{Name} [Time: {ID}]";
         }
+
+
+
 
         private class MuteTime
         {
@@ -254,9 +272,10 @@ namespace RetroFun.Pages
             public override string ToString() => $"{Name} [Time: {ID}]";
         }
 
+
         public override void In_RoomUserRemove(DataInterceptedEventArgs e)
         {
-            var entity = HentityUtils.FindLeftUserByIndex(int.Parse(e.Packet.ReadUTF8()));
+            var entity = HentityUtils.FindLeftUserByIndex(int.Parse(e.Packet.ReadString()));
             if (entity != null)
             {
                 AddUserInCmbx(entity);
@@ -270,6 +289,7 @@ namespace RetroFun.Pages
             var ent = new RegisteredUsers(entity.Id, entity.Name, entity.Motto, entity.FigureId);
             AddUserInCmbx(ent);
         }
+
 
         private void AddUserInCmbx(RegisteredUsers user)
         {
@@ -304,6 +324,8 @@ namespace RetroFun.Pages
             RemoveUserInCmbx(ent);
         }
 
+
+
         public override void In_RoomUsers(DataInterceptedEventArgs obj)
         {
             HEntity[] array = HEntity.Parse(obj.Packet);
@@ -319,7 +341,7 @@ namespace RetroFun.Pages
 
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
-            _selectedUserId = e.Packet.ReadInt32();
+            _selectedUserId = e.Packet.ReadInteger();
             var entity = HentityUtils.FindEntityByUserID(_selectedUserId);
             if (entity != null)
             {
@@ -381,6 +403,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private void RecordedKickUser(string username, string reason)
         {
             if (UserNickname != GlobalStrings.UserDetails_Username)
@@ -390,6 +413,8 @@ namespace RetroFun.Pages
 
             }
         }
+
+
 
         private void RecordModeration(string ACTION, string entityname, string dettagli)
         {
@@ -668,6 +693,8 @@ namespace RetroFun.Pages
             }
         }
 
+
+
         private void BanUserForSpamBtn_Click(object sender, EventArgs e)
         {
             RecordedBan(UserNickname, 360000000, "Spam di altri retroservers!");
@@ -692,6 +719,7 @@ namespace RetroFun.Pages
         {
             RecordedAlert(UserNickname, AlertMessage);
         }
+
 
         private void KickUserWithAlertBtn_Click(object sender, EventArgs e)
         {
@@ -719,6 +747,7 @@ namespace RetroFun.Pages
             ManualBanTime = ((BanTime)BantimeCmbx.SelectedItem).ID;
         }
 
+
         private void MuteTimeCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
             ManualMuteTime = ((MuteTime)MuteTimeCmbx.SelectedItem).ID;
@@ -728,6 +757,7 @@ namespace RetroFun.Pages
         {
             RecordedUnmute(UserNickname);
         }
+
 
         private void UsersCmbx_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -744,6 +774,8 @@ namespace RetroFun.Pages
             }
             catch (Exception) { }
         }
+
+
 
         private void GetUserInfoBtn_Click(object sender, EventArgs e)
         {

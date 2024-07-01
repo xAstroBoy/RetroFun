@@ -3,7 +3,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using RetroFun.Subscribers;
-using Geode.Network;
+using Sulakore.Communication;
+using Sulakore.Components;
 
 namespace RetroFun.Pages
 {
@@ -11,6 +12,7 @@ namespace RetroFun.Pages
     [DesignerCategory("UserControl")]
     public partial class PetPage:  ObservablePage
     {
+
 
         public PetPage()
         {
@@ -22,9 +24,13 @@ namespace RetroFun.Pages
             Bind(PetColorHTMLTbx, "Text", nameof(PetHTMLColor));
             Bind(PetIdNbx, "Value", nameof(PetID));
 
+
         }
 
+
         public bool isInterceptEnabled;
+
+
 
         private int _PageID;
 
@@ -38,6 +44,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private int _PetID;
 
         public int PetID
@@ -49,6 +56,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         private string _PetName;
 
@@ -74,6 +82,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private string _PetHTMLColor;
 
         public string PetHTMLColor
@@ -86,15 +95,16 @@ namespace RetroFun.Pages
             }
         }
 
+
         public override void Out_CatalogBuyItem(DataInterceptedEventArgs e)
         {
             int PetRaceType;
             bool HasParsed;
             if(isInterceptEnabled)
             {
-                PageID = e.Packet.ReadInt32();
-                PetID = e.Packet.ReadInt32();
-                string petData = e.Packet.ReadUTF8();
+                PageID = e.Packet.ReadInteger();
+                PetID = e.Packet.ReadInteger();
+                string petData = e.Packet.ReadString();
                 string[] splitted = petData.Split('\n');
                 if (splitted.Length < 2)
                     throw new Exception("");
@@ -122,6 +132,8 @@ namespace RetroFun.Pages
           await  SendToServer(Out.CatalogBuyItem, PageID, PetID, PetName + '\n' +PetRace.ToString() + '\n' +PetHTMLColor , 1);
         }
 
+
+
         private void InterceptPetPurchaseBtn_Click(object sender, EventArgs e)
         {
             if(isInterceptEnabled)
@@ -142,6 +154,7 @@ namespace RetroFun.Pages
             SendPetPurchase();
         }
 
+
         private void WriteToButton(SKoreButton Button, string text)
         {
             Invoke((MethodInvoker)delegate
@@ -149,8 +162,10 @@ namespace RetroFun.Pages
                 Button.Text = text;
             });
 
+
         }
         public string ToHexString(Color c) => $"{c.R:X2}{c.G:X2}{c.B:X2}";
+
 
         private void ChoosePetColorBtn_Click(object sender, EventArgs e)
         {

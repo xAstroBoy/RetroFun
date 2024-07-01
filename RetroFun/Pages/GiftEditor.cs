@@ -1,6 +1,6 @@
 ﻿using RetroFun.Subscribers;
-using Geode.Network;
-
+using Sulakore.Communication;
+using Sulakore.Components;
 using System;
 using System.ComponentModel;
 using System.Threading;
@@ -147,6 +147,7 @@ namespace RetroFun.Pages
 
         }
 
+
         private bool PageIDBruteForcerEnabled1;
         private bool FurnIIDBruteforcerEnabled1;
         private bool GlobalBruteforcerEnabled1;
@@ -161,6 +162,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         private int _PageIDInt1;
 
@@ -234,6 +236,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private bool _PageIDRangeToggle;
 
         public bool PageIDRangeToggle
@@ -282,6 +285,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private string _GiftReceiver;
 
         public string GiftReceiver
@@ -293,6 +297,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         private string _FileNameSave = "Unnamed.RetroFun";
 
@@ -317,6 +322,8 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+
 
         private void SendGiftBtn_Click_1(object sender, EventArgs e)
         {
@@ -346,6 +353,9 @@ namespace RetroFun.Pages
             }
         }
 
+
+
+
         private void CheckLoopStatus()
         {
             if (EnableLoop)
@@ -360,6 +370,12 @@ namespace RetroFun.Pages
                 StartLoop();
             }
         }
+
+
+
+
+
+
 
         private void WriteToButton(SKoreButton button, string text)
         {
@@ -385,6 +401,8 @@ namespace RetroFun.Pages
             });
         }
 
+
+
         public override void In_PurchaseOK(DataInterceptedEventArgs e)
         {
             Purchased = true;
@@ -394,8 +412,8 @@ namespace RetroFun.Pages
         {
             if (GiftCaptureModeCatalog)
             {
-                PageIDInt1 = e.Packet.ReadInt32();
-                FurniIDint1 = e.Packet.ReadInt32();
+                PageIDInt1 = e.Packet.ReadInteger();
+                FurniIDint1 = e.Packet.ReadInteger();
                 GiftCaptureModeCatalog = false;
                 _ = SendToClient(In.RoomUserWhisper, 0, "[Gift Bruteforcer]: Required Data Found, Check RetroFun.", 0, 34, 0, -1);
                 WriteToButton(CaptureCatalogGiftDataBtn, "Capture Mode : OFF");
@@ -403,6 +421,7 @@ namespace RetroFun.Pages
 
             }
         }
+
 
         private async void SendPacket()
         {
@@ -424,6 +443,7 @@ namespace RetroFun.Pages
          isAnonymous
          );
         }
+        
 
         private async void SendBruteForceGiftPacket(string GiftBoxTest)
         {
@@ -441,6 +461,7 @@ namespace RetroFun.Pages
             isAnonymous
             );
         }
+        
 
         private void StartLoop()
         {
@@ -455,6 +476,8 @@ namespace RetroFun.Pages
                 } while (EnableLoop);
             }).Start();
         }
+
+
 
         private void BruteForcePageID()
         {
@@ -513,6 +536,8 @@ namespace RetroFun.Pages
             }).Start();
         }
 
+
+
         private void FurniIDGlobalBruteForce()
         {
             if (!FurniIDRangeToggle)
@@ -567,6 +592,8 @@ namespace RetroFun.Pages
             }
             FurniIDint1++;
         }
+
+
 
         private void GlobalPageIDBruteforcer()
         {
@@ -623,6 +650,10 @@ namespace RetroFun.Pages
             PageIDInt1++;
         }
 
+
+
+
+
         private void GlobalBruteForcer()
         {
             new Thread(() =>
@@ -643,6 +674,13 @@ namespace RetroFun.Pages
                 } while (GlobalBruteforcerEnabled1);
             }).Start();
         }
+
+
+
+
+
+
+
 
         private void StopGlobalBruteforcer()
         {
@@ -721,6 +759,7 @@ namespace RetroFun.Pages
                 CheckGiftBruteForcer();
             }
         }
+
 
         private void CheckFurniIDBruteforcer()
         {

@@ -1,4 +1,5 @@
-﻿
+﻿using Sulakore.Habbo;
+using Sulakore.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,9 @@ namespace RetroFun.Utils.Furnitures.Furni
 
         public static List<HWallItem> Snapshot_Wall_furnis_In_room = new List<HWallItem>();
 
+
+        
+
         public static void UpdateWallFurniPosition(int id, string newpos)
         {
             try {
@@ -23,6 +27,7 @@ namespace RetroFun.Utils.Furnitures.Furni
             }
             catch (Exception) { }
         }
+
 
         public static void ClearFurnis()
         {
@@ -49,6 +54,8 @@ namespace RetroFun.Utils.Furnitures.Furni
                 UpdateWallFurniPosition(furniid, newpos);
             }
         }
+
+
 
         public static List<HWallItem> GetWallFurnis()
         {
@@ -82,6 +89,7 @@ namespace RetroFun.Utils.Furnitures.Furni
             foreach (var obj in items)
             {
 
+
                 itemsMessage.WriteString(obj.Id.ToString());
                 itemsMessage.WriteInteger(obj.TypeId);
                 itemsMessage.WriteString(obj.Location);
@@ -96,20 +104,23 @@ namespace RetroFun.Utils.Furnitures.Furni
 
         public static List<HWallItem> BobbaParser(HMessage packet)
         {
-            int ownersCount = packet.ReadInt32();
+            int ownersCount = packet.ReadInteger();
             for (int i = 0; i < ownersCount; i++)
             {
-                packet.ReadInt32();
-                packet.ReadUTF8();
+                packet.ReadInteger();
+                packet.ReadString();
             }
 
-            var wallItems = new HWallItem[packet.ReadInt32()];
+            var wallItems = new HWallItem[packet.ReadInteger()];
             for (int i = 0; i < wallItems.Length; i++)
             {
                 wallItems[i] = new HWallItem(packet);
             }
             return wallItems.ToList();
         }
+
+
+
 
     }
 }

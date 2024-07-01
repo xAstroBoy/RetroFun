@@ -1,8 +1,9 @@
 ﻿using RetroFun.Helpers;
 using RetroFun.Subscribers;
 using RetroFun.Utils.Furnitures.Furni;
-using Geode.Network;
-
+using Sulakore.Communication;
+using Sulakore.Components;
+using Sulakore.Habbo;
 using System;
 using System.ComponentModel;
 using System.Threading;
@@ -33,6 +34,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         public int Tonality
         {
             get => GlobalInts.RoomBackground_Tonality;
@@ -54,6 +56,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         public int Saturation
         {
@@ -77,6 +80,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         public int Luminosity
         {
             get => GlobalInts.RoomBackground_Light;
@@ -98,6 +102,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         public int FurniID
         {
@@ -147,14 +152,15 @@ namespace RetroFun.Pages
             Bind(GlobalSpeedChbx, "Checked", nameof(GlobalSpeedSwitch));
         }
 
+
         public override void Out_RoomBackground(DataInterceptedEventArgs e)
         {
             if (CaptureMode)
             {
-                FurniID = e.Packet.ReadInt32();
-                Tonality = e.Packet.ReadInt32();
-                Saturation = e.Packet.ReadInt32();
-                Luminosity = e.Packet.ReadInt32();
+                FurniID = e.Packet.ReadInteger();
+                Tonality = e.Packet.ReadInteger();
+                Saturation = e.Packet.ReadInteger();
+                Luminosity = e.Packet.ReadInteger();
                 SaveSettings();
                 Speak("FurniID Set to : " + FurniID.ToString());
                 e.IsBlocked = true;
@@ -245,7 +251,7 @@ namespace RetroFun.Pages
             ResetEdit();
         }
 
-        private static HFloorObject GetKnownRoomBGLight()
+        private static HFloorItem GetKnownRoomBGLight()
         {
             if (KnownDomains.isBobbaHotel)
             {
@@ -295,6 +301,8 @@ namespace RetroFun.Pages
             }
             return false;
         }
+            
+
 
         private void ResetEdit()
         {
@@ -342,6 +350,7 @@ namespace RetroFun.Pages
                 } while (GlobalSpeedSwitch);
             }).Start();
         }
+
 
         private void CheckLuminosityFadeStatus()
         {

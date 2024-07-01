@@ -1,8 +1,8 @@
 ﻿using RetroFun.Globals;
 using RetroFun.Properties;
 using RetroFun.Subscribers;
-using Geode.Network;
-
+using Sulakore.Communication;
+using Sulakore.Habbo;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -61,7 +61,7 @@ namespace RetroFun.Pages
 
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
-            int userId = e.Packet.ReadInt32();
+            int userId = e.Packet.ReadInteger();
             var entity = HentityUtils.FindEntityByUserID(userId);
             if (entity != null)
             {
@@ -73,6 +73,7 @@ namespace RetroFun.Pages
                 });
             }
         }
+
 
         private void WriteRegistrationUsers()
         {

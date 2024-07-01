@@ -4,7 +4,8 @@ using System.ComponentModel;
 using System.Threading;
 using System.Windows.Forms;
 using RetroFun.Subscribers;
-using Geode.Network;
+using Sulakore.Communication;
+using Sulakore.Components;
 
 namespace RetroFun.Pages
 {
@@ -32,6 +33,7 @@ namespace RetroFun.Pages
         private bool _IsRegistrationMode;
 
         private bool _IsGlobalCooldownEnabled;
+
 
         private bool _StartFurniThread1;
         private bool _StartFurniThread2;
@@ -85,11 +87,13 @@ namespace RetroFun.Pages
 
         private int _CooldownHanditemGiver = 150;
 
+
         private int _GlobalCooldown = 150;
 
         #endregion
 
         #region booleans 
+
 
         public bool IsGlobalCooldownEnabled
         {
@@ -110,6 +114,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         public bool StartFurniThread1
         {
@@ -210,6 +215,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         public bool isFurniBoxChecked1
         {
@@ -414,6 +420,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         public int CooldownThread1
         {
             get => _CooldownThread1;
@@ -534,21 +541,25 @@ namespace RetroFun.Pages
             }
         }
 
+
+
         #endregion
+
 
         #endregion
 
         private List<int> Wallitems;
-        private List<int> HFloorObjects;
+        private List<int> flooritems;
         private List<int> wheelitems;
         private List<int> Diceitems;
+
 
         public FurniTrollPg()
         {
             InitializeComponent();
 
             Wallitems = new List<int>();
-            HFloorObjects = new List<int>();
+            flooritems = new List<int>();
             wheelitems = new List<int>();
             Diceitems = new List<int>();
 
@@ -565,6 +576,7 @@ namespace RetroFun.Pages
             Bind(checkBox10, "Checked", nameof(isFurniBoxChecked10));
 
             Bind(GlobalCooldownChbx, "Checked", nameof(IsGlobalCooldownEnabled));
+
 
             #endregion
 
@@ -594,7 +606,9 @@ namespace RetroFun.Pages
             Bind(CooldownHanditemGiverNbx, "Value", nameof(CooldownHanditemGiver));
             #endregion
 
+
         }
+
 
         private int ThreadCooldownSafe(int Value)
         {
@@ -609,6 +623,7 @@ namespace RetroFun.Pages
             }
 
         }
+
 
         #region threads
 
@@ -636,6 +651,8 @@ namespace RetroFun.Pages
             }).Start();
         }
 
+
+
         private void StartThread1()
         {
             new Thread(() =>
@@ -646,7 +663,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread1)
                         {
-                        SendToggleHFloorObject(FurniIDInt1);
+                        SendToggleFloorItem(FurniIDInt1);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread1));
                         }
                     
@@ -664,7 +681,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread2)
                         {
-                             SendToggleHFloorObject(FurniIDInt2);
+                             SendToggleFloorItem(FurniIDInt2);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread2));
                     }
 
@@ -681,7 +698,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread3)
                         {
-                             SendToggleHFloorObject(FurniIDInt3);
+                             SendToggleFloorItem(FurniIDInt3);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread3));
 
                     }
@@ -699,8 +716,9 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread4)
                         {
-                             SendToggleHFloorObject(FurniIDInt4);
+                             SendToggleFloorItem(FurniIDInt4);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread4));
+
 
                     }
                 } while (StartFurniThread4);
@@ -716,7 +734,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread5)
                         {
-                             SendToggleHFloorObject(FurniIDInt5);
+                             SendToggleFloorItem(FurniIDInt5);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread5));
 
                     }
@@ -734,7 +752,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread6)
                         {
-                             SendToggleHFloorObject(FurniIDInt6);
+                             SendToggleFloorItem(FurniIDInt6);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread6));
 
                     }
@@ -752,7 +770,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread7)
                         {
-                             SendToggleHFloorObject(FurniIDInt7);
+                             SendToggleFloorItem(FurniIDInt7);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread7));
                     }
 
@@ -769,7 +787,7 @@ namespace RetroFun.Pages
 
                         if (StartFurniThread8)
                         {
-                             SendToggleHFloorObject(FurniIDInt8);
+                             SendToggleFloorItem(FurniIDInt8);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread8));
 
                     }
@@ -786,7 +804,7 @@ namespace RetroFun.Pages
                 {
                         if (StartFurniThread9)
                         {
-                             SendToggleHFloorObject(FurniIDInt9);
+                             SendToggleFloorItem(FurniIDInt9);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread9));
                     }
 
@@ -803,7 +821,7 @@ namespace RetroFun.Pages
                 {
                         if (StartFurniThread10)
                         {
-                             SendToggleHFloorObject(FurniIDInt10);
+                             SendToggleFloorItem(FurniIDInt10);
                         Thread.Sleep(ThreadCooldownSafe(CooldownThread10));
                     }
 
@@ -832,20 +850,25 @@ namespace RetroFun.Pages
             }).Start();
         }
 
+
+
+
+
         #endregion
+
 
         #region interception
 
-        public override void Out_ToggleHFloorObject(DataInterceptedEventArgs e)
+        public override void Out_ToggleFloorItem(DataInterceptedEventArgs e)
         {
-            int furniid = e.Packet.ReadInt32();
+            int furniid = e.Packet.ReadInteger();
 
             if(IsRegistrationMode)
             {
                 RegisterFurni(furniid);
-                if (!HFloorObjects.Contains(furniid))
+                if (!flooritems.Contains(furniid))
                 {
-                    HFloorObjects.Add(furniid);
+                    flooritems.Add(furniid);
                 }
                 e.IsBlocked = true;
             }
@@ -853,7 +876,7 @@ namespace RetroFun.Pages
 
         public override void Out_ToggleWallItem(DataInterceptedEventArgs e)
         {
-            int furniid = e.Packet.ReadInt32();
+            int furniid = e.Packet.ReadInteger();
             if (IsRegistrationMode)
             {
                 RegisterFurni(furniid);
@@ -867,7 +890,7 @@ namespace RetroFun.Pages
 
         public override void Out_TriggerColorWheel(DataInterceptedEventArgs e)
         {
-            int furniid = e.Packet.ReadInt32();
+            int furniid = e.Packet.ReadInteger();
             if (IsRegistrationMode)
             {
                 RegisterFurni(furniid);
@@ -883,6 +906,7 @@ namespace RetroFun.Pages
 
         #region methods
 
+
         public void RegistrationDone()
         {
             RegistrationCompleted = true;
@@ -892,11 +916,11 @@ namespace RetroFun.Pages
 
         }
 
-        private async void SendToggleHFloorObject(int FurnID)
+        private async void SendToggleFloorItem(int FurnID)
         {
-                if(HFloorObjects.Contains(FurnID))
+                if(flooritems.Contains(FurnID))
                 {
-                   await  SendToServer(Out.ToggleHFloorObject, FurnID);
+                   await  SendToServer(Out.ToggleFloorItem, FurnID);
                 }
                 if(Wallitems.Contains(FurnID))
                 {
@@ -1085,6 +1109,7 @@ namespace RetroFun.Pages
             }
             return;
         }
+        
 
         public void CheckAll()
         {
@@ -1157,7 +1182,7 @@ namespace RetroFun.Pages
             FurniIDInt9 = 0;
             FurniIDInt10 = 0;
             wheelitems.Clear();
-            HFloorObjects.Clear();
+            flooritems.Clear();
             Wallitems.Clear();
             Diceitems.Clear();
             FurniIDRegistered1 = false;
@@ -1202,6 +1227,7 @@ namespace RetroFun.Pages
             });
         }
 
+
         private void UnblockNbx(NumericUpDown nbx, bool value)
         {
             Invoke((MethodInvoker)delegate
@@ -1209,6 +1235,8 @@ namespace RetroFun.Pages
                 nbx.Enabled = value;
             });
         }
+
+
 
         private void RegisterFurniAsk(int furni)
         {
@@ -1221,6 +1249,7 @@ namespace RetroFun.Pages
 
                 _ = SendToClient(In.RoomUserWhisper, 0, "[Furni Registration]: " + text, 0, 34, 0, -1);
         }
+
 
         private void ToggleThread1() 
         {
@@ -1372,6 +1401,7 @@ namespace RetroFun.Pages
 
         }
 
+
         private void ToggleThread9()
         {
             if (FurniIDRegistered9)
@@ -1390,6 +1420,7 @@ namespace RetroFun.Pages
             }
 
         }
+
 
         private void ToggleThread10()
         {
@@ -1410,9 +1441,13 @@ namespace RetroFun.Pages
 
         }
 
+
+
         #endregion
 
+
         #region buttons 
+
 
         private void GlobalCooldownChbx_CheckedChanged(object sender, EventArgs e)
         {
@@ -1449,6 +1484,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private void UncheckAllBtn_Click(object sender, EventArgs e)
         {
             UncheckAll();
@@ -1464,6 +1500,15 @@ namespace RetroFun.Pages
             StopThreads();
             ResetFurniIDs();
         }
+
+
+
+
+
+
+
+
+
 
         private void FurniIDThreadBtn1_Click(object sender, EventArgs e)
         {
@@ -1504,6 +1549,7 @@ namespace RetroFun.Pages
             ToggleThread8();
         }
 
+
         private void FurniIDThreadBtn9_Click(object sender, EventArgs e)
         {
             ToggleThread9();
@@ -1513,6 +1559,8 @@ namespace RetroFun.Pages
         {
             ToggleThread10();
         }
+
+
 
         private void RegisterFurnIDBtn_Click(object sender, EventArgs e)
         {
@@ -1545,6 +1593,7 @@ namespace RetroFun.Pages
 
         }
 
+
         private void StopAllThreadsBtn_Click(object sender, EventArgs e)
         {
             ToggleThread1();
@@ -1558,6 +1607,7 @@ namespace RetroFun.Pages
             ToggleThread9();
             ToggleThread10();
         }
+
 
         private void AddfiftyBtn_Click(object sender, EventArgs e)
         {
@@ -1655,6 +1705,7 @@ namespace RetroFun.Pages
                 CooldownThread10 = CooldownThread10 - 50;
             }
         }
+
 
         private void MinusTenBtn_Click(object sender, EventArgs e)
         {
@@ -1776,6 +1827,10 @@ namespace RetroFun.Pages
             StopThreads();
         }
 
+    
+
+
+
         private void GiveFurniHanditemBtn_Click(object sender, EventArgs e)
         {
             if (isHanditemGiverActivated)
@@ -1793,10 +1848,13 @@ namespace RetroFun.Pages
         }
         #endregion
 
+
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
-            UserID = e.Packet.ReadInt32();
+            UserID = e.Packet.ReadInteger();
         }
+
+
 
         private void HaltThreadsBtn_Click(object sender, EventArgs e)
         {

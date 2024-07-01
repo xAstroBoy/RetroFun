@@ -1,23 +1,23 @@
-﻿
+﻿using Sulakore.Habbo;
+using Sulakore.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Geode.Habbo;
-using Geode.Habbo.Packages;
 
 namespace RetroFun.Utils.Furnitures.Furni
 {
     public class FloorFurnitures
     {
 
-        public static List<HFloorObject> Furni = new List<HFloorObject>();
-        public static List<HFloorObject> RemFurni = new List<HFloorObject>();
-        public static List<HFloorObject> OriginalFloorFurnis = new List<HFloorObject>();
+        public static List<HFloorItem> Furni = new List<HFloorItem>();
+        public static List<HFloorItem> RemFurni = new List<HFloorItem>();
+        public static List<HFloorItem> OriginalFloorFurnis = new List<HFloorItem>();
 
-        public static List<HFloorObject> Snapshot_Floor_Furnis_in_room = new List<HFloorObject>();
+        public static List<HFloorItem> Snapshot_Floor_Furnis_in_room = new List<HFloorItem>();
+
 
         public static void ClearFurnis()
         {
@@ -27,7 +27,7 @@ namespace RetroFun.Utils.Furnitures.Furni
             OriginalFloorFurnis.Clear();
         }
 
-        public static void HandleRemovedFurni(HFloorObject item)
+        public static void HandleRemovedFurni(HFloorItem item)
         {
             if (Furni.Contains(item))
             {
@@ -43,11 +43,12 @@ namespace RetroFun.Utils.Furnitures.Furni
             }
         }
 
-        public static HFloorObject FindFloorFurni(int id)
+
+        public static HFloorItem FindFloorFurni(int id)
         {
             return Furni.Find(f => f.Id == id);
         }
-        public static HFloorObject FindFloorFurniForTypeID(int typeid)
+        public static HFloorItem FindFloorFurniForTypeID(int typeid)
         {
             return Furni.Find(f => f.TypeId == typeid);
         }
@@ -90,8 +91,7 @@ namespace RetroFun.Utils.Furnitures.Furni
 
         public static void UpdateFurniFacing(int id, HDirection direction)
         {
-            try
-            {
+            try {
                 if (Furni.Find(f => f.Id == id) != null) { Furni.Find(f => f.Id == id).Facing = direction; }
                 if (RemFurni.Find(f => f.Id == id) != null) { RemFurni.Find(f => f.Id == id).Facing = direction; }
                 if (Snapshot_Floor_Furnis_in_room.Find(f => f.Id == id) != null) { Snapshot_Floor_Furnis_in_room.Find(f => f.Id == id).Facing = direction; }
@@ -101,10 +101,14 @@ namespace RetroFun.Utils.Furnitures.Furni
 
         }
 
-        public static List<HFloorObject> GetFloorFurnis()
+        public static  List<HFloorItem> GetFloorFurnis()
         {
             return Furni.ToList();
         }
+
+
+
+
 
         public static void UpdateFloorFurniPosition(int id, int x, int y, string z)
         {
@@ -120,10 +124,11 @@ namespace RetroFun.Utils.Furnitures.Furni
 
                 }
             }
-            catch (Exception) { }
+            catch(Exception) { }
         }
 
-        public static HMessage PacketBuilder(IList<HFloorObject> objects, ushort header)
+       
+        public static HMessage PacketBuilder(IList<HFloorItem> objects, ushort header)
         {
             var ret = new HMessage(header);
 

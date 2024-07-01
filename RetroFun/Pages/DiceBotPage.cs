@@ -1,6 +1,6 @@
 ﻿using RetroFun.Subscribers;
-using Geode.Network;
-
+using Sulakore.Communication;
+using Sulakore.Components;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +23,7 @@ namespace RetroFun.Pages
 
         public bool ShouldRollSixth => DiceSelected3 && DiceHostResult != DiceResult6;
 
+
         public bool ShouldRollTargetFirst => DiceSelected1 && DiceSelectedResult1 != DiceResult1;
         public bool ShouldRollTargetSecond => DiceSelected2 && DiceSelectedResult2 != DiceResult2;
         public bool ShouldRollTargetThird => DiceSelected3 && DiceSelectedResult3 != DiceResult3;
@@ -32,6 +33,9 @@ namespace RetroFun.Pages
         public bool ShouldRollTargetFifth => DiceSelected3 && DiceSelectedResult5 != DiceResult5;
 
         public bool ShouldRollTargetSixth => DiceSelected3 && DiceSelectedResult6 != DiceResult6;
+
+
+
 
         private int _currentDiceTargetIndex = -1;
 
@@ -47,6 +51,8 @@ namespace RetroFun.Pages
         private bool isGlobalTargetOn;
         #region Dice Results
 
+
+
         private string _ShoutPhrase;
         public string ShoutPhrase
         {
@@ -57,6 +63,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         private bool _DiceSelected1;
         public bool DiceSelected1
@@ -124,6 +131,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         private int _DiceResult1;
 
@@ -193,6 +201,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private int _DiceSelectedResult1;
 
         public int DiceSelectedResult1
@@ -261,6 +270,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private int _hostDiceResult;
 
         public int DiceHostResult
@@ -299,6 +309,8 @@ namespace RetroFun.Pages
             }
         }
 
+
+
         private List<SKoreButton> _registrationButtons;
 
         public DiceBotPage()
@@ -336,6 +348,7 @@ namespace RetroFun.Pages
 
             Bind(GlobalTargetNbx, "Value", nameof(GlobalSelectResult));
 
+
             Bind(MatchFirstChk, "Checked", nameof(DiceSelected1));
             Bind(MatchSecondChk, "Checked", nameof(DiceSelected2));
             Bind(MatchThirdChk, "Checked", nameof(DiceSelected3));
@@ -360,7 +373,7 @@ namespace RetroFun.Pages
             if (_currentDiceTargetIndex < 0) return;
 
             e.IsBlocked = true;
-            int id = e.Packet.ReadInt32();
+            int id = e.Packet.ReadInteger();
 
             switch (_currentDiceTargetIndex)
             {
@@ -389,7 +402,7 @@ namespace RetroFun.Pages
             if (_currentDiceTargetIndex < 0) return;
 
             e.IsBlocked = true;
-            int id = e.Packet.ReadInt32();
+            int id = e.Packet.ReadInteger();
 
             switch (_currentDiceTargetIndex)
             {
@@ -413,18 +426,20 @@ namespace RetroFun.Pages
             Broadcast("Dice registered!");
         }
 
+
         public override void In_ItemExtraData(DataInterceptedEventArgs e)
         {
 
                 try
                 {
-                    int id = int.Parse(e.Packet.ReadUTF8());
-                    e.Packet.ReadInt32();
-                    string data = e.Packet.ReadUTF8();
+                    int id = int.Parse(e.Packet.ReadString());
+                    e.Packet.ReadInteger();
+                    string data = e.Packet.ReadString();
                     e.Packet.Position = 0;
                     e.Continue();
 
                     if (!int.TryParse(data, out int diceState) || diceState == -1) return;
+
 
                     if (id == _diceHostId)
                     {
@@ -446,6 +461,7 @@ namespace RetroFun.Pages
                                 }
                             }
                         }
+
 
                         if (IsBotActive)
                         {
@@ -478,6 +494,7 @@ namespace RetroFun.Pages
                             }
                         }
                     }
+
 
                     else if (id == _diceOneId) DiceResult1 = diceState;
                     else if (id == _diceTwoId) DiceResult2 = diceState;
@@ -551,6 +568,7 @@ namespace RetroFun.Pages
                             {
                                 //WON! Do the victory procedure here.
 
+
                                     if (ShouldShoutPhrase)
                                     {
                                             _ = SendToServer(Out.RoomUserShout, ShoutPhrase, 0);
@@ -593,6 +611,8 @@ namespace RetroFun.Pages
                 }
         }
 
+
+
         private void ToggleGroupbox(GroupBox group, bool value)
         {
             Invoke((MethodInvoker)delegate
@@ -600,6 +620,7 @@ namespace RetroFun.Pages
                 group.Enabled = value;
             });
         }
+
 
         private void WriteToButton(SKoreButton button, string text)
         {
@@ -649,6 +670,7 @@ namespace RetroFun.Pages
 
         // TEMP FIX
 
+
         private void StartGlobalTargetSync()
         {
             new Thread(() =>
@@ -666,6 +688,9 @@ namespace RetroFun.Pages
                 } while (isGlobalTargetOn);
             }).Start();
         }
+
+
+
 
         private void AntiCheatBtn_Click(object sender, EventArgs e)
         {
@@ -709,6 +734,8 @@ namespace RetroFun.Pages
                 StartGlobalTargetSync();
             }
         }
+
+
 
         private void DiceStart()
         {
@@ -807,6 +834,7 @@ namespace RetroFun.Pages
                     RollDice(_diceSixthID);
             }
 
+
         }
         private void StartHoloBotBtn_Click(object sender, EventArgs e)
         {
@@ -857,27 +885,28 @@ namespace RetroFun.Pages
             e.Continue();
         }
 
-        public override void In_HFloorObjectUpdate(DataInterceptedEventArgs e)
+        public override void In_FloorItemUpdate(DataInterceptedEventArgs e)
         {
             try
             {
 
-                int id = e.Packet.ReadInt32();
+                int id = e.Packet.ReadInteger();
 
-                e.Packet.ReadInt32();
-                e.Packet.ReadInt32();
-                e.Packet.ReadInt32();
-                e.Packet.ReadInt32();
-                e.Packet.ReadUTF8();
-                e.Packet.ReadUTF8();
-                e.Packet.ReadInt32();
-                e.Packet.ReadInt32();
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
+                e.Packet.ReadString();
+                e.Packet.ReadString();
+                e.Packet.ReadInteger();
+                e.Packet.ReadInteger();
 
-                string data = e.Packet.ReadUTF8();
+                string data = e.Packet.ReadString();
 
                 e.Continue();
 
                 if (!int.TryParse(data, out int diceState) || diceState == -1) return;
+
 
                 if (id == _diceHostId)
                 {
@@ -899,6 +928,7 @@ namespace RetroFun.Pages
                             }
                         }
                     }
+
 
                     if (IsBotActive)
                     {
@@ -931,6 +961,7 @@ namespace RetroFun.Pages
                         }
                     }
                 }
+
 
                 else if (id == _diceOneId) DiceResult1 = diceState;
                 else if (id == _diceTwoId) DiceResult2 = diceState;

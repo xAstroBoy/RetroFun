@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using Geode.Network;
-
+using Sulakore.Protocol;
+using Sulakore.Communication;
+using Sulakore.Components;
 using System.Threading;
 using RetroFun.Subscribers;
-
+using Sulakore.Habbo;
 using RetroFun.Helpers;
 using System.Runtime.CompilerServices;
 using RetroFun.Globals;
@@ -270,6 +270,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private bool _giveHanditemToselecteduser;
         public bool giveHanditemToselecteduser
         {
@@ -279,6 +280,7 @@ namespace RetroFun.Pages
                 _giveHanditemToselecteduser = value;
                 RaiseOnPropertyChanged();
             }
+
 
         }
         public bool HasModToolsUnlocked
@@ -326,6 +328,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private bool _DucketsChecked = true;
 
         public bool DucketsChecked
@@ -337,6 +340,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         private int _CreditsValue = int.MaxValue;
 
@@ -350,6 +354,8 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+
 
         private int _HanditemHunter;
         public int HanditemHunter
@@ -405,6 +411,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private int _DucketsValue = int.MaxValue;
 
         public int DucketsValue
@@ -416,6 +423,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         private bool _BlockBypassers;
 
@@ -451,6 +459,7 @@ namespace RetroFun.Pages
             HanditemCmbx.Items.AddRange(_Handitems);
             HanditemCmbx.SelectedIndex = 0;
 
+
             Bind(CreditsChbx, "Checked", nameof(CreditsChecked));
             Bind(CrystalsChbx, "Checked", nameof(CrystalsChecked));
             Bind(DucketsChbx, "Checked", nameof(DucketsChecked));
@@ -479,6 +488,7 @@ namespace RetroFun.Pages
             e.IsBlocked = BlockBypassers;
         }
 
+
         public override void In_RoomOpen(DataInterceptedEventArgs e)
         {
             if (AutomaticAttempt)
@@ -500,12 +510,13 @@ namespace RetroFun.Pages
         {
             if (IsInterceptTradeUserOn)
             {
-                TradeSpammerUserID = e.Packet.ReadInt32();
+                TradeSpammerUserID = e.Packet.ReadInteger();
                 TradeSpammerspeak("Victim ID Found!");
                 IsInterceptTradeUserOn = false;
                 e.IsBlocked = true;
             }
         }
+
 
         public override void In_TradeStopped(DataInterceptedEventArgs e)
         {
@@ -554,6 +565,7 @@ namespace RetroFun.Pages
             _ = SendToClient(In.RoomUserWhisper, 0, "[Personal]: " + text, 0, 34, 0, -1);
         }
 
+
         private void WriteToButton(SKoreButton button, string text)
         {
             Invoke((MethodInvoker)delegate
@@ -561,6 +573,7 @@ namespace RetroFun.Pages
                 button.Text = text;
             });
         }
+
 
         private void ManageModTools()
         {
@@ -577,6 +590,7 @@ namespace RetroFun.Pages
                 WriteToButton(EnableModToolsBtn, "Hide Mod Tools (CS)");
             }
         }
+
 
         private void SendPacketModTools(bool value)
         {
@@ -659,6 +673,8 @@ namespace RetroFun.Pages
             _ = SendToClient(In.UserCredits, CreditsValue + ".0");
         }
 
+
+
         private void StartTradeSpammer()
         {
             new Thread(() =>
@@ -676,6 +692,9 @@ namespace RetroFun.Pages
                 } while (TradeSpammerActivated);
             }).Start();
         }
+
+
+
 
         private void RequestRoomHeightmap()
         {
@@ -730,7 +749,7 @@ namespace RetroFun.Pages
 
         public override void In_RoomUserEffect(DataInterceptedEventArgs e)
         {
-            int UserIndex = e.Packet.ReadInt32();
+            int UserIndex = e.Packet.ReadInteger();
             if (UserIndex == GlobalInts.OwnUser_index && !HasEffectBeenRemoved)
             {
                 HasEffectBeenRemoved = true;
@@ -738,7 +757,7 @@ namespace RetroFun.Pages
         }
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
-            _selectedUserId = e.Packet.ReadInt32();
+            _selectedUserId = e.Packet.ReadInteger();
             if (giveHanditemToselecteduser)
             {
                 _ = SendToServer(Out.RoomUserTalk, ":handitem " + HanditemID, GlobalInts.Selected_bubble_ID);
@@ -787,6 +806,12 @@ namespace RetroFun.Pages
             AutomaticAttempt = false;
         }
 
+
+
+
+
+
+
         private void BlockRestrictionsBtn_Click(object sender, EventArgs e)
         {
             if (BlockBypassers)
@@ -806,6 +831,7 @@ namespace RetroFun.Pages
         {
             _ = SendToServer(Out.RoomUserTalk, ":handitem " + HanditemID, 18);
         }
+
 
         private void GiveallUserHanditemBtn_Click(object sender, EventArgs e)
         {
@@ -908,6 +934,7 @@ namespace RetroFun.Pages
             _ = SendToServer(Out.RoomRequestBannedUsers, GlobalInts.ROOM_ID);
         }
 
+
         public override void In_RoomBannedUsers(DataInterceptedEventArgs e)
         {
             if (KnownDomains.isBobbaHotel)
@@ -916,6 +943,7 @@ namespace RetroFun.Pages
                 BobbaTempFix(e.Packet);
             }
         }
+
 
         private async void BobbaTempFix(HMessage e)
         {
@@ -935,6 +963,8 @@ namespace RetroFun.Pages
             await Task.Delay(3500);
             hasReceivedBanListResponse = true;
         }
+
+
 
         public override void Out_RoomRequestBannedUsers(DataInterceptedEventArgs e)
         {

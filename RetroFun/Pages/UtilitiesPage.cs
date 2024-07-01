@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Geode.Network;
+using Sulakore.Communication;
 using RetroFun.Subscribers;
-
+using Sulakore.Components;
 using RetroFun.Helpers;
 using System.Threading;
 using RetroFun.Utils.Furnitures.Furni;
-
+using Sulakore.Habbo;
 using System.Linq;
 
 namespace RetroFun.Pages
@@ -20,7 +20,7 @@ namespace RetroFun.Pages
     public partial class UtilitiesPage : ObservablePage
     {
 
-        private List<HFloorObject> RoomFloorFurni
+        private List<HFloorItem> RoomFloorFurni
         {
             get => FloorFurnitures.Furni;
             set
@@ -29,6 +29,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         // TEMP
         private Random random = new Random();
@@ -49,6 +50,8 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+
 
         private int _CreditIDInt = 1;
 
@@ -98,6 +101,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private int _GiftInt = 1;
 
         public int GiftInt
@@ -109,6 +113,8 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+
 
         private int _OffsetX;
 
@@ -146,7 +152,9 @@ namespace RetroFun.Pages
             }
         }
 
+
         private int _RoomBGID;
+
 
         public int RoomBGID
         {
@@ -158,7 +166,9 @@ namespace RetroFun.Pages
             }
         }
 
+
         private int _RoomBGX;
+
 
         public int RoomBGX
         {
@@ -170,7 +180,9 @@ namespace RetroFun.Pages
             }
         }
 
+
         private string _RoomBGURL;
+
 
         public string RoomBGURL
         {
@@ -182,7 +194,9 @@ namespace RetroFun.Pages
             }
         }
 
+
         private int _StackerID;
+
 
         public int StackerID
         {
@@ -194,7 +208,9 @@ namespace RetroFun.Pages
             }
         }
 
+
         private int _StackerSetHeight;
+
 
         public int StackerSetHeight
         {
@@ -208,6 +224,7 @@ namespace RetroFun.Pages
 
         private int _StackerRangeStartHeight;
 
+
         public int StackerRangeStartHeight
         {
             get => _StackerRangeStartHeight;
@@ -219,6 +236,7 @@ namespace RetroFun.Pages
         }
 
         private int _StackerRangeEndHeight = 50;
+
 
         public int StackerRangeEndHeight
         {
@@ -232,6 +250,7 @@ namespace RetroFun.Pages
 
         private bool _StackerLiveEditMode;
 
+
         public bool StackerLiveEditMode
         {
             get => _StackerLiveEditMode;
@@ -243,6 +262,7 @@ namespace RetroFun.Pages
         }
 
         private bool _CaptureStackerMode;
+
 
         public bool CaptureStackerMode
         {
@@ -256,6 +276,8 @@ namespace RetroFun.Pages
 
         private int _StackerThreadDelay = 150;
 
+
+
         public int StackerThreadDelay
         {
             get => _StackerThreadDelay;
@@ -266,6 +288,8 @@ namespace RetroFun.Pages
             }
         }
 
+
+        
         public UtilitiesPage()
         {
             InitializeComponent();
@@ -287,7 +311,10 @@ namespace RetroFun.Pages
             Bind(StackerEndRangeNbx, "Value", nameof(StackerRangeEndHeight));
             Bind(StackerThreadDelayNbx, "Value", nameof(StackerThreadDelay));
 
+          
         }
+
+
 
         //public override void In_ModToolRoomChatlog(DataInterceptedEventArgs e)
         //{
@@ -297,7 +324,47 @@ namespace RetroFun.Pages
         //        Console.WriteLine(val);
         //    }
 
+
+
         //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private async void SendExchangePacket(int furniid)
         {
@@ -310,16 +377,16 @@ namespace RetroFun.Pages
         {
             if (IsBGInterceptor)
             {
-                RoomBGID = e.Packet.ReadInt32();
-                RoomBGX = e.Packet.ReadInt32();
-                e.Packet.ReadUTF8();
-                RoomBGURL = e.Packet.ReadUTF8();
-                e.Packet.ReadUTF8();
-                OffsetX = int.Parse(e.Packet.ReadUTF8());
-                e.Packet.ReadUTF8();
-                OffsetY = int.Parse(e.Packet.ReadUTF8());
-                e.Packet.ReadUTF8();
-                OffsetZ = int.Parse(e.Packet.ReadUTF8());
+                RoomBGID = e.Packet.ReadInteger();
+                RoomBGX = e.Packet.ReadInteger();
+                e.Packet.ReadString();
+                RoomBGURL = e.Packet.ReadString();
+                e.Packet.ReadString();
+                OffsetX = int.Parse(e.Packet.ReadString());
+                e.Packet.ReadString();
+                OffsetY = int.Parse(e.Packet.ReadString());
+                e.Packet.ReadString();
+                OffsetZ = int.Parse(e.Packet.ReadString());
                 WriteToButton(CaptureRoomBGBtn, "Capture RoomBG : OFF");
                 IsBGInterceptor = false;
             }
@@ -328,15 +395,16 @@ namespace RetroFun.Pages
         {
             if (CreditExchangeMode)
             {
-                CreditIDInt = int.Parse(e.Packet.ReadUTF8().Split(' ')[0]);
+                CreditIDInt = int.Parse(e.Packet.ReadString().Split(' ')[0]);
                 HandleCreditsExchanger(CreditIDInt);
             }
             if (GiftExchangeMode)
             {
-                GiftInt = int.Parse(e.Packet.ReadUTF8().Split(' ')[0]);
+                GiftInt = int.Parse(e.Packet.ReadString().Split(' ')[0]);
                 HandleGiftExchanger(GiftInt);
             }
         }
+
 
         private void HandleGiftExchanger(int furniid)
         {
@@ -373,6 +441,7 @@ namespace RetroFun.Pages
             await Task.Delay(50);
         }
 
+
         private void RedeemCreditsBtn_Click(object sender, EventArgs e)
         {
             HandleCreditsExchanger(CreditIDInt);
@@ -390,6 +459,7 @@ namespace RetroFun.Pages
            await  SendToServer(Out.AdvertisingSave, FurnID, RoomBG_X, "imageUrl", URL, "offsetX", OffsetX.ToString(), "offsetY", OffsetY.ToString(), "offsetZ", OffsetZ.ToString());
         }
 
+
         private void WriteToButton(SKoreButton button, string text)
         {
             Invoke((MethodInvoker)delegate
@@ -397,6 +467,8 @@ namespace RetroFun.Pages
                 button.Text = text;
             });
         }
+
+
 
         private void CaptureRoomBGBtn_Click(object sender, EventArgs e)
         {
@@ -477,6 +549,7 @@ namespace RetroFun.Pages
                await  SendToServer(Out.SetStackHelperHeight, id, height);
         }
 
+
         private void StackerHeightNbx_ValueChanged(object sender, EventArgs e)
         {
             if(StackerLiveEditMode)
@@ -503,6 +576,7 @@ namespace RetroFun.Pages
                 _ = SendToClient(In.RoomUserWhisper, 0, "[Utilities]: " + text, 0, 34, 0, -1);
         }
 
+
         private void DeactivateCaptureStacker()
         {
             Speak("Stacker Found, Check RetroFun for settings!");
@@ -510,12 +584,13 @@ namespace RetroFun.Pages
             CaptureStackerMode = false;
         }
 
+
         public override void Out_SetStackHelperHeight(DataInterceptedEventArgs e)
         {
             if (CaptureStackerMode)
             {
-                int Stacker = e.Packet.ReadInt32();
-                int StackerHeight = e.Packet.ReadInt32();
+                int Stacker = e.Packet.ReadInteger();
+                int StackerHeight = e.Packet.ReadInteger();
                 if (FloorFurnitures.FindFloorFurni(Stacker) != null)
                 {
                     StackerID = FloorFurnitures.FindFloorFurni(Stacker).Id;
@@ -534,10 +609,10 @@ namespace RetroFun.Pages
 
         }
 
-        public override void Out_ToggleHFloorObject(DataInterceptedEventArgs e)
+        public override void Out_ToggleFloorItem(DataInterceptedEventArgs e)
         {
 
-            int FurniID = e.Packet.ReadInt32();
+            int FurniID = e.Packet.ReadInteger();
             if (CaptureStackerMode)
             {
                 if (FloorFurnitures.FindFloorFurni(FurniID) != null)
@@ -556,9 +631,10 @@ namespace RetroFun.Pages
             }
         }
 
+
         public override void Out_RotateMoveItem(DataInterceptedEventArgs e)
         {
-                int FurniID = e.Packet.ReadInt32();
+                int FurniID = e.Packet.ReadInteger();
                 if (CaptureStackerMode)
                 {
                     if (FloorFurnitures.FindFloorFurni(FurniID) != null)
@@ -576,6 +652,8 @@ namespace RetroFun.Pages
                     }
                 }
             }
+
+
 
         private void RandomHeightSettings()
         {
@@ -596,6 +674,8 @@ namespace RetroFun.Pages
                 } while (stackerrandomizeheight);
             }).Start();
         }
+
+
 
         private void RiseStackerModality()
         {
@@ -619,6 +699,8 @@ namespace RetroFun.Pages
                 } while (RiseStackerMode);
             }).Start();
         }
+
+
 
         private void CaptureStackerBtn_Click(object sender, EventArgs e)
         {
@@ -675,6 +757,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private void DisableRiseStacker()
         {
             WriteToButton(CaptureStackerBtn, "Rise Stacker : OFF");
@@ -713,12 +796,12 @@ namespace RetroFun.Pages
             ConvertAllFurnisCredits(RoomFloorFurni);
         }
 
-        private void ConvertAllFurnisCredits(List<HFloorObject> items)
+        private void ConvertAllFurnisCredits(List<HFloorItem> items)
         {
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
-                var furnitures = new List<HFloorObject>();
+                var furnitures = new List<HFloorItem>();
                 furnitures = items.ToList();
                 foreach (var furni in furnitures)
                 {

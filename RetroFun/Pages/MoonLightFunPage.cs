@@ -1,6 +1,6 @@
 ﻿using RetroFun.Subscribers;
-using Geode.Network;
-
+using Sulakore.Communication;
+using Sulakore.Components;
 using System;
 using System.ComponentModel;
 using System.Threading;
@@ -85,6 +85,7 @@ namespace RetroFun.Pages
 
             Bind(CustomBtx, "checked", nameof(SelectedCustom));
         }
+
 
         public void DeactivateAll()
         {
@@ -248,6 +249,7 @@ namespace RetroFun.Pages
         {
             CheckLiveEdit();
         }
+
 
         private async void SendMoodLightPacket(int preset, string color, int Density)
         {

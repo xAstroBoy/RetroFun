@@ -1,5 +1,5 @@
-﻿
-
+﻿using Sulakore.Habbo;
+using Sulakore.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

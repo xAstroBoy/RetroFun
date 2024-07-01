@@ -1,6 +1,6 @@
 ﻿using RetroFun.Subscribers;
-using Geode.Network;
-
+using Sulakore.Communication;
+using Sulakore.Habbo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -51,6 +51,8 @@ namespace RetroFun.Pages
             }
         }
 
+
+
         private void BlockThis(DataInterceptedEventArgs e)
         {
             e.IsBlocked = ShouldBlockReminders;
@@ -58,7 +60,7 @@ namespace RetroFun.Pages
 
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
-            SelectedUserID = e.Packet.ReadInt32();
+            SelectedUserID = e.Packet.ReadInteger();
             var entity = HentityUtils.FindEntityByUserID(SelectedUserID);
             if (entity != null)
             {
@@ -71,11 +73,13 @@ namespace RetroFun.Pages
             }
         }
 
+
+
         public override void In_UserProfile(DataInterceptedEventArgs e)
         {
-            e.Packet.ReadInt32();
-            SelectedUsername = e.Packet.ReadUTF8();
-            SelectedLook = e.Packet.ReadUTF8();
+            e.Packet.ReadInteger();
+            SelectedUsername = e.Packet.ReadString();
+            SelectedLook = e.Packet.ReadString();
             SelectUserLabel.Invoke((MethodInvoker)delegate
             {
                 SelectUserLabel.Text = SelectedUsername;
@@ -84,7 +88,7 @@ namespace RetroFun.Pages
 
         private void SendMessagePacket(int userid, string message)
         {
-            _ = SendToClient(In.ReceivePrivateMessage, userid, message, 0);
+                _ = SendToClient(In.ReceivePrivateMessage, userid, message, 0);
         }
 
         private void SendMessageBtn_Click(object sender, EventArgs e)
@@ -94,12 +98,12 @@ namespace RetroFun.Pages
 
         private void AddFriend(int userid, string username, string look)
         {
-            _ = SendToClient(In.UpdateFriend, 0, 1, 1, userid, username, 1, true, true, look, 0, username, 0, 0, false, false);
+                _ = SendToClient(In.UpdateFriend, 0, 1, 1, userid, username, 1, true, true, look, 0, username, 0, 0, false, false);
         }
 
         private void RemoveFriend(int userid)
         {
-            _ = SendToClient(In.UpdateFriend, 0, 1, -1, userid);
+                _ = SendToClient(In.UpdateFriend, 0, 1, -1, userid);
         }
 
         private void CSFriendAddBtn_Click(object sender, EventArgs e)

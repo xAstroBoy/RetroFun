@@ -1,41 +1,41 @@
 ﻿using RetroFun.Globals;
-
+using Sulakore.Habbo;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Geode.Habbo;
-using Geode.Habbo.Packages;
 
 namespace RetroFun.Utils.HostFinder.BobbaItalia
 {
     public class FloorFurniCheck
     {
-        public static List<HFloorObject> IrregularFloorFurni = new List<HFloorObject>();
-        public static List<HFloorObject> CreditsFloorFurnis = new List<HFloorObject>();
-        public static List<HFloorObject> CrystalsFloorFurnis = new List<HFloorObject>();
-        public static List<HFloorObject> CatalogueFloorFurnis = new List<HFloorObject>();
-        public static List<HFloorObject> RaresFloorFurnis = new List<HFloorObject>();
-        public static List<HFloorObject> RegularFloorFurni = new List<HFloorObject>();
-        public static List<HFloorObject> WhiteListedFloorFurni = new List<HFloorObject>();
-        public static List<HFloorObject> HIDDEN_IRREGULAR_FLOORFURNIS = new List<HFloorObject>();
-        public static List<HFloorObject> HIDDEN_REGULAR_FLOORFURNIS = new List<HFloorObject>();
-        public static List<HFloorObject> FloorRaresSnapShotCount = new List<HFloorObject>();
-        public static List<HFloorObject> RoomHFloorObjectsSnapshot = new List<HFloorObject>();
-        public static List<HFloorObject> SnapShotIrregularFloorFurni = new List<HFloorObject>();
-        public static List<HFloorObject> SnapshotRegularHFloorObjects = new List<HFloorObject>();
-        public static List<HFloorObject> SnapshotRemovedHFloorObjects = new List<HFloorObject>();
-        public static List<HFloorObject> SnapshotCatalogueHFloorObjects = new List<HFloorObject>();
-        public static List<HFloorObject> UnknownHFloorObjects = new List<HFloorObject>();
-        public static List<HFloorObject> SnapshotCreditsFloorFurnis = new List<HFloorObject>();
-        public static List<HFloorObject> SnapshotCrystalsFloorFurnis = new List<HFloorObject>();
-        public static List<HFloorObject> RemovedIrregularFloorFurnis = new List<HFloorObject>();
-        public static List<HFloorObject> RemovedRegularFloorFurnis = new List<HFloorObject>();
-        public static List<HFloorObject> SnapshotRemovedIrregularFloorFurnis = new List<HFloorObject>();
-        public static List<HFloorObject> SnapshotRemovedRegularFloorFurnis = new List<HFloorObject>();
+        public static List<HFloorItem> IrregularFloorFurni = new List<HFloorItem>();
+        public static List<HFloorItem> CreditsFloorFurnis = new List<HFloorItem>();
+        public static List<HFloorItem> CrystalsFloorFurnis = new List<HFloorItem>();
+        public static List<HFloorItem> CatalogueFloorFurnis = new List<HFloorItem>();
+        public static List<HFloorItem> RaresFloorFurnis = new List<HFloorItem>();
+        public static List<HFloorItem> RegularFloorFurni = new List<HFloorItem>();
+        public static List<HFloorItem> WhiteListedFloorFurni = new List<HFloorItem>();
+        public static List<HFloorItem> HIDDEN_IRREGULAR_FLOORFURNIS = new List<HFloorItem>();
+        public static List<HFloorItem> HIDDEN_REGULAR_FLOORFURNIS = new List<HFloorItem>();
+        public static List<HFloorItem> FloorRaresSnapShotCount = new List<HFloorItem>();
+        public static List<HFloorItem> RoomFloorItemsSnapshot = new List<HFloorItem>();
+        public static List<HFloorItem> SnapShotIrregularFloorFurni = new List<HFloorItem>();
+        public static List<HFloorItem> SnapshotRegularFloorItems = new List<HFloorItem>();
+        public static List<HFloorItem> SnapshotRemovedFloorItems = new List<HFloorItem>();
+        public static List<HFloorItem> SnapshotCatalogueFloorItems = new List<HFloorItem>();
+        public static List<HFloorItem> UnknownFloorItems = new List<HFloorItem>();
+        public static List<HFloorItem> SnapshotCreditsFloorFurnis = new List<HFloorItem>();
+        public static List<HFloorItem> SnapshotCrystalsFloorFurnis = new List<HFloorItem>();
+        public static List<HFloorItem> RemovedIrregularFloorFurnis = new List<HFloorItem>();
+        public static List<HFloorItem> RemovedRegularFloorFurnis = new List<HFloorItem>();
+        public static List<HFloorItem> SnapshotRemovedIrregularFloorFurnis = new List<HFloorItem>();
+        public static List<HFloorItem> SnapshotRemovedRegularFloorFurnis = new List<HFloorItem>();
         public static List<GlobalLists.FurniTypeIDFixer> OriginalFurniTypeID { get => GlobalLists.furnifix; set { GlobalLists.furnifix = value;} }
+
+
 
         public static void updateFloorFurniPosition(int id, int x, int y, string furniz)
         {
@@ -53,12 +53,12 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
                     if (HIDDEN_IRREGULAR_FLOORFURNIS.Find(f => f.Id == id) != null) { HIDDEN_IRREGULAR_FLOORFURNIS.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
                     if (HIDDEN_REGULAR_FLOORFURNIS.Find(f => f.Id == id) != null) { HIDDEN_REGULAR_FLOORFURNIS.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
                     if (FloorRaresSnapShotCount.Find(f => f.Id == id) != null) { FloorRaresSnapShotCount.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
-                    if (RoomHFloorObjectsSnapshot.Find(f => f.Id == id) != null) { RoomHFloorObjectsSnapshot.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
+                    if (RoomFloorItemsSnapshot.Find(f => f.Id == id) != null) { RoomFloorItemsSnapshot.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
                     if (SnapShotIrregularFloorFurni.Find(f => f.Id == id) != null) { SnapShotIrregularFloorFurni.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
-                    if (SnapshotRegularHFloorObjects.Find(f => f.Id == id) != null) { SnapshotRegularHFloorObjects.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
-                    if (SnapshotRemovedHFloorObjects.Find(f => f.Id == id) != null) { SnapshotRemovedHFloorObjects.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
-                    if (SnapshotCatalogueHFloorObjects.Find(f => f.Id == id) != null) { SnapshotCatalogueHFloorObjects.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
-                    if (UnknownHFloorObjects.Find(f => f.Id == id) != null) { UnknownHFloorObjects.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
+                    if (SnapshotRegularFloorItems.Find(f => f.Id == id) != null) { SnapshotRegularFloorItems.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
+                    if (SnapshotRemovedFloorItems.Find(f => f.Id == id) != null) { SnapshotRemovedFloorItems.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
+                    if (SnapshotCatalogueFloorItems.Find(f => f.Id == id) != null) { SnapshotCatalogueFloorItems.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
+                    if (UnknownFloorItems.Find(f => f.Id == id) != null) { UnknownFloorItems.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
                     if (SnapshotCreditsFloorFurnis.Find(f => f.Id == id) != null) { SnapshotCreditsFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
                     if (SnapshotCrystalsFloorFurnis.Find(f => f.Id == id) != null) { SnapshotCrystalsFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
                     if (RemovedIrregularFloorFurnis.Find(f => f.Id == id) != null) { RemovedIrregularFloorFurnis.Find(f => f.Id == id).Tile = new HPoint(x, y, z); }
@@ -120,12 +120,12 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
                 if (HIDDEN_IRREGULAR_FLOORFURNIS.Find(f => f.Id == id) != null) { HIDDEN_IRREGULAR_FLOORFURNIS.Find(f => f.Id == id).Facing = direction; }
                 if (HIDDEN_REGULAR_FLOORFURNIS.Find(f => f.Id == id) != null) { HIDDEN_REGULAR_FLOORFURNIS.Find(f => f.Id == id).Facing = direction; }
                 if (FloorRaresSnapShotCount.Find(f => f.Id == id) != null) { FloorRaresSnapShotCount.Find(f => f.Id == id).Facing = direction; }
-                if (RoomHFloorObjectsSnapshot.Find(f => f.Id == id) != null) { RoomHFloorObjectsSnapshot.Find(f => f.Id == id).Facing = direction; }
+                if (RoomFloorItemsSnapshot.Find(f => f.Id == id) != null) { RoomFloorItemsSnapshot.Find(f => f.Id == id).Facing = direction; }
                 if (SnapShotIrregularFloorFurni.Find(f => f.Id == id) != null) { SnapShotIrregularFloorFurni.Find(f => f.Id == id).Facing = direction; }
-                if (SnapshotRegularHFloorObjects.Find(f => f.Id == id) != null) { SnapshotRegularHFloorObjects.Find(f => f.Id == id).Facing = direction; }
-                if (SnapshotRemovedHFloorObjects.Find(f => f.Id == id) != null) { SnapshotRemovedHFloorObjects.Find(f => f.Id == id).Facing = direction; }
-                if (SnapshotCatalogueHFloorObjects.Find(f => f.Id == id) != null) { SnapshotCatalogueHFloorObjects.Find(f => f.Id == id).Facing = direction; }
-                if (UnknownHFloorObjects.Find(f => f.Id == id) != null) { UnknownHFloorObjects.Find(f => f.Id == id).Facing = direction; }
+                if (SnapshotRegularFloorItems.Find(f => f.Id == id) != null) { SnapshotRegularFloorItems.Find(f => f.Id == id).Facing = direction; }
+                if (SnapshotRemovedFloorItems.Find(f => f.Id == id) != null) { SnapshotRemovedFloorItems.Find(f => f.Id == id).Facing = direction; }
+                if (SnapshotCatalogueFloorItems.Find(f => f.Id == id) != null) { SnapshotCatalogueFloorItems.Find(f => f.Id == id).Facing = direction; }
+                if (UnknownFloorItems.Find(f => f.Id == id) != null) { UnknownFloorItems.Find(f => f.Id == id).Facing = direction; }
                 if (SnapshotCreditsFloorFurnis.Find(f => f.Id == id) != null) { SnapshotCreditsFloorFurnis.Find(f => f.Id == id).Facing = direction; }
                 if (SnapshotCrystalsFloorFurnis.Find(f => f.Id == id) != null) { SnapshotCrystalsFloorFurnis.Find(f => f.Id == id).Facing = direction; }
                 if (RemovedIrregularFloorFurnis.Find(f => f.Id == id) != null) { RemovedIrregularFloorFurnis.Find(f => f.Id == id).Facing = direction; }
@@ -137,11 +137,14 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
 
         }
 
-        public static void HandleAddedFurni(HFloorObject item)
+
+
+
+        public static void HandleAddedFurni(HFloorItem item)
         {
-            if(SnapshotRemovedHFloorObjects.Contains(item))
+            if(SnapshotRemovedFloorItems.Contains(item))
             {
-                SnapshotRemovedHFloorObjects.Remove(item);
+                SnapshotRemovedFloorItems.Remove(item);
             }
             if (RemovedIrregularFloorFurnis.Contains(item))
             {
@@ -161,7 +164,7 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
             }
         }
 
-        public static void HandleRemovedFurni(HFloorObject item)
+        public static void HandleRemovedFurni(HFloorItem item)
         {
             if (IrregularFloorFurni.Contains(item)) { IrregularFloorFurni.Remove(item); if (!RemovedIrregularFloorFurnis.Contains(item)) { RemovedIrregularFloorFurnis.Add(item); } }
             if (RegularFloorFurni.Contains(item)) { RegularFloorFurni.Remove(item); if (!RemovedRegularFloorFurnis.Contains(item)) { RemovedRegularFloorFurnis.Add(item); } }
@@ -169,17 +172,17 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
             if (HIDDEN_IRREGULAR_FLOORFURNIS.Contains(item)) { HIDDEN_IRREGULAR_FLOORFURNIS.Remove(item); }
             if (HIDDEN_REGULAR_FLOORFURNIS.Contains(item)) { HIDDEN_REGULAR_FLOORFURNIS.Remove(item); }
             if (FloorRaresSnapShotCount.Contains(item)) { FloorRaresSnapShotCount.Remove(item); }
-            if (SnapshotRegularHFloorObjects.Contains(item)) { SnapshotRegularHFloorObjects.Remove(item); }
+            if (SnapshotRegularFloorItems.Contains(item)) { SnapshotRegularFloorItems.Remove(item); }
             if (SnapShotIrregularFloorFurni.Contains(item)) { SnapShotIrregularFloorFurni.Remove(item); }
             if (CreditsFloorFurnis.Contains(item)) { CreditsFloorFurnis.Remove(item); }
             if (CrystalsFloorFurnis.Contains(item)) { CrystalsFloorFurnis.Remove(item); }
             if (CatalogueFloorFurnis.Contains(item)) { CatalogueFloorFurnis.Remove(item); }
             if (RaresFloorFurnis.Contains(item)) { RaresFloorFurnis.Remove(item); }
-            if (RoomHFloorObjectsSnapshot.Contains(item)) { RoomHFloorObjectsSnapshot.Remove(item); }
-            if (SnapshotCatalogueHFloorObjects.Contains(item)) { SnapshotCatalogueHFloorObjects.Remove(item); }
+            if (RoomFloorItemsSnapshot.Contains(item)) { RoomFloorItemsSnapshot.Remove(item); }
+            if (SnapshotCatalogueFloorItems.Contains(item)) { SnapshotCatalogueFloorItems.Remove(item); }
             if (SnapshotCreditsFloorFurnis.Contains(item)) { SnapshotCreditsFloorFurnis.Remove(item); }
             if (SnapshotCrystalsFloorFurnis.Contains(item)) { SnapshotCrystalsFloorFurnis.Remove(item); }
-            if (UnknownHFloorObjects.Contains(item)) { UnknownHFloorObjects.Remove(item); }
+            if (UnknownFloorItems.Contains(item)) { UnknownFloorItems.Remove(item); }
         }
 
         public static void ClearAll()
@@ -194,12 +197,12 @@ namespace RetroFun.Utils.HostFinder.BobbaItalia
             HIDDEN_IRREGULAR_FLOORFURNIS.Clear();
             HIDDEN_REGULAR_FLOORFURNIS.Clear();
             FloorRaresSnapShotCount.Clear();
-            RoomHFloorObjectsSnapshot.Clear();
+            RoomFloorItemsSnapshot.Clear();
             SnapShotIrregularFloorFurni.Clear();
-            SnapshotRegularHFloorObjects.Clear();
-            SnapshotRemovedHFloorObjects.Clear();
-            SnapshotCatalogueHFloorObjects.Clear();
-            UnknownHFloorObjects.Clear();
+            SnapshotRegularFloorItems.Clear();
+            SnapshotRemovedFloorItems.Clear();
+            SnapshotCatalogueFloorItems.Clear();
+            UnknownFloorItems.Clear();
             SnapshotCreditsFloorFurnis.Clear();
             SnapshotCrystalsFloorFurnis.Clear();
             RemovedIrregularFloorFurnis.Clear();

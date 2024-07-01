@@ -37,7 +37,7 @@
             this.RestoreFurnisBtn = new Sulakore.Components.SKoreButton();
             this.FurnitureIDTxt = new Sulakore.Components.SKoreLabelBox();
             this.RemoveWallItemBtn = new Sulakore.Components.SKoreButton();
-            this.RemoveHFloorObjectBtn = new Sulakore.Components.SKoreButton();
+            this.RemoveFloorItemBtn = new Sulakore.Components.SKoreButton();
             this.ShowFurnIStuffInChatChbx = new System.Windows.Forms.CheckBox();
             this.ShowFurniDetailsChbx = new System.Windows.Forms.CheckBox();
             this.FloorFurniIDNbx = new System.Windows.Forms.NumericUpDown();
@@ -94,7 +94,7 @@
             this.RemoverGrbx.Controls.Add(this.RestoreFurnisBtn);
             this.RemoverGrbx.Controls.Add(this.FurnitureIDTxt);
             this.RemoverGrbx.Controls.Add(this.RemoveWallItemBtn);
-            this.RemoverGrbx.Controls.Add(this.RemoveHFloorObjectBtn);
+            this.RemoverGrbx.Controls.Add(this.RemoveFloorItemBtn);
             this.RemoverGrbx.Location = new System.Drawing.Point(4, 5);
             this.RemoverGrbx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.RemoverGrbx.Name = "RemoverGrbx";
@@ -192,15 +192,15 @@
             this.RemoveWallItemBtn.Text = "Remove Wall Item CS";
             this.RemoveWallItemBtn.Click += new System.EventHandler(this.RemoveWallItemCSBtn_Click);
             // 
-            // RemoveHFloorObjectBtn
+            // RemoveFloorItemBtn
             // 
-            this.RemoveHFloorObjectBtn.Location = new System.Drawing.Point(14, 319);
-            this.RemoveHFloorObjectBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RemoveHFloorObjectBtn.Name = "RemoveHFloorObjectBtn";
-            this.RemoveHFloorObjectBtn.Size = new System.Drawing.Size(165, 31);
-            this.RemoveHFloorObjectBtn.TabIndex = 1;
-            this.RemoveHFloorObjectBtn.Text = "Remove Floor Item CS";
-            this.RemoveHFloorObjectBtn.Click += new System.EventHandler(this.RemoveHFloorObjectCSBtn_Click);
+            this.RemoveFloorItemBtn.Location = new System.Drawing.Point(14, 319);
+            this.RemoveFloorItemBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RemoveFloorItemBtn.Name = "RemoveFloorItemBtn";
+            this.RemoveFloorItemBtn.Size = new System.Drawing.Size(165, 31);
+            this.RemoveFloorItemBtn.TabIndex = 1;
+            this.RemoveFloorItemBtn.Text = "Remove Floor Item CS";
+            this.RemoveFloorItemBtn.Click += new System.EventHandler(this.RemoveFloorItemCSBtn_Click);
             // 
             // ShowFurnIStuffInChatChbx
             // 
@@ -622,7 +622,7 @@
         private System.Windows.Forms.GroupBox RemoverGrbx;
         private System.Windows.Forms.CheckBox RemoveFurnisInClientSideChbx;
         private Sulakore.Components.SKoreButton RemoveWallItemBtn;
-        private Sulakore.Components.SKoreButton RemoveHFloorObjectBtn;
+        private Sulakore.Components.SKoreButton RemoveFloorItemBtn;
         private Sulakore.Components.SKoreButton RestoreFurnisBtn;
         private System.Windows.Forms.CheckBox FurniPickChbx;
         private System.Windows.Forms.NumericUpDown FloorFurniIDNbx;

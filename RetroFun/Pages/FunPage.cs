@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using Geode.Network;
-
+using Sulakore.Protocol;
+using Sulakore.Communication;
+using Sulakore.Components;
 using System.Threading;
 using RetroFun.Subscribers;
-
+using Sulakore.Habbo;
 using RetroFun.Helpers;
 using System.Runtime.CompilerServices;
 using RetroFun.Globals;
 using System.Drawing;
 using System.Text;
 using System.IO;
-using Geode.Habbo;
-using Geode.Habbo.Packages;
-using Sulakore.Components;
 
 namespace RetroFun.Pages
 {
@@ -74,6 +71,7 @@ namespace RetroFun.Pages
                 new PetsIds("Dino ", 34),
         };
 
+
         private bool isServerSideEffect = false;
 
         private int _EffectNumber = 0;
@@ -98,6 +96,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private bool _tellWhatEnable;
         public bool tellWhatEnable
         {
@@ -108,6 +107,8 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+
 
         private bool _UseSelectedPet;
         public bool UseSelectedPet
@@ -140,6 +141,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         private int _PetID = 0;
         public int PetID
@@ -178,6 +180,7 @@ namespace RetroFun.Pages
             Bind(PetColorChbx, "Checked", nameof(UseSelectedColor));
             Bind(EnableTellerChbx, "Checked", nameof(tellWhatEnable));
 
+
             Bind(PetColorTxb, "Text", nameof(PetColor));
 
             Bind(EnableNbx, "Value", nameof(EffectNumber));
@@ -186,12 +189,13 @@ namespace RetroFun.Pages
 
         private void Speak(string text)
         {
-            _ = SendToClient(In.RoomUserWhisper, 0, "[FUN]: " + text, 0, 34, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[FUN]: " + text, 0, 34, 0, -1);
         }
         private void Speak(string text, int bubble)
         {
-            _ = SendToClient(In.RoomUserWhisper, 0, "[FUN]: " + text, 0, bubble, 0, -1);
+                _ = SendToClient(In.RoomUserWhisper, 0, "[FUN]: " + text, 0, bubble, 0, -1);
         }
+
 
         public override void In_RoomUsers(DataInterceptedEventArgs e)
         {
@@ -202,14 +206,14 @@ namespace RetroFun.Pages
                 string petcolor = "";
 
                 HEntity[] array = HEntity.Parse(e.Packet);
-                foreach (HEntity entity in array)
+                foreach(HEntity entity in array)
                 {
-                    if (!ConvertedUsersToPets.Contains(entity))
+                    if(!ConvertedUsersToPets.Contains(entity))
                     {
                         ConvertedUsersToPets.Add(entity);
                     }
                 }
-                int num = e.Packet.ReadInt32(0);
+                int num = e.Packet.ReadInteger(0);
                 HMessage hmessage = new HMessage(In.RoomUsers, Array.Empty<object>());
                 hmessage.WriteInteger(num);
                 for (int i = 0; i < num; i++)
@@ -262,6 +266,9 @@ namespace RetroFun.Pages
                 DisableTransformAllUsers();
             }
         }
+    
+
+
 
         private void WriteToButton(SKoreButton button, string text)
         {
@@ -273,9 +280,9 @@ namespace RetroFun.Pages
 
         public override void Out_RequestWearingBadges(DataInterceptedEventArgs e)
         {
-            int Userid = e.Packet.ReadInt32();
+            int Userid = e.Packet.ReadInteger();
             HEntity entity = HentityUtils.FindEntityByUserID(Userid);
-            if (entity != null)
+            if(entity != null)
             {
                 if (GiveEnableEffectToUser)
                 {
@@ -293,6 +300,7 @@ namespace RetroFun.Pages
         {
             ConvertedUsersToPets.Clear();
         }
+
 
         private async void SendServerEnableBobba(int effect)
         {
@@ -320,14 +328,14 @@ namespace RetroFun.Pages
 
         private async void AssignClientEffectToMyself(int Effect)
         {
-            await SendToClient(In.RoomUserEffect, GlobalInts.OwnUser_index, Effect, 0);
+           await  SendToClient(In.RoomUserEffect, GlobalInts.OwnUser_index, Effect, 0);
         }
 
         private async void AssignClientEffectToUser(HEntity Entity, int Effect)
         {
             if (Entity != null)
             {
-                await SendToClient(In.RoomUserEffect, Entity.Index, Effect, 0);
+               await  SendToClient(In.RoomUserEffect, Entity.Index, Effect, 0);
             }
         }
 
@@ -336,12 +344,16 @@ namespace RetroFun.Pages
             _ = SendToClient(In.RoomUserRemove, entity.Index);
         }
 
+
         private void DisableTransformAllUsers()
         {
             TransformAllUsersToPets = false;
-            WriteToButton(TransformAllUserIntoPetsBtn, "Transform All users In Pets : OFF");
+            WriteToButton(TransformAllUserIntoPetsBtn,"Transform All users In Pets : OFF");
         }
+        
 
+        
+    
         private void GiveAllEffectsToUsers(int effect)
         {
             try
@@ -361,12 +373,15 @@ namespace RetroFun.Pages
             }
         }
 
+
         private void SetPetColorBtn_Click(object sender, EventArgs e)
         {
             CD.ShowDialog();
             Color color = CD.Color;
             PetColor = color.R.ToString("X2") + color.G.ToString("X2") + color.B.ToString("X2");
         }
+
+
 
         private void LiveEditBtn_Click(object sender, EventArgs e)
         {
@@ -418,17 +433,17 @@ namespace RetroFun.Pages
 
         private void EnableOnLoopBtn_Click(object sender, EventArgs e)
         {
-            if (isStaticEffectThreadStarted)
-            {
-                WriteToButton(EnableOnLoopBtn, "Enable Effect On loop : OFF");
-                isStaticEffectThreadStarted = false;
-            }
-            else
-            {
-                WriteToButton(EnableOnLoopBtn, "Enable Effect On loop : ON");
-                isStaticEffectThreadStarted = true;
-                StartStaticEffectThread();
-            }
+                if (isStaticEffectThreadStarted)
+                {
+                    WriteToButton(EnableOnLoopBtn, "Enable Effect On loop : OFF");
+                    isStaticEffectThreadStarted = false;
+                }
+                else
+                {
+                    WriteToButton(EnableOnLoopBtn, "Enable Effect On loop : ON");
+                    isStaticEffectThreadStarted = true;
+                    StartStaticEffectThread();
+                }
         }
 
         private void EnableNbx_ValueChanged(object sender, EventArgs e)
@@ -492,20 +507,22 @@ namespace RetroFun.Pages
             }
         }
 
+
         private void IsServerSideBtn_Click(object sender, EventArgs e)
         {
 
-            if (isServerSideEffect)
-            {
-                WriteToButton(IsServerSideBtn, "Server Side : OFF");
-                isServerSideEffect = false;
+                if (isServerSideEffect)
+                {
+                    WriteToButton(IsServerSideBtn, "Server Side : OFF");
+                    isServerSideEffect = false;
+                }
+                else
+                {
+                    WriteToButton(IsServerSideBtn, "Server Side : ON");
+                    isServerSideEffect = true;
+                }
             }
-            else
-            {
-                WriteToButton(IsServerSideBtn, "Server Side : ON");
-                isServerSideEffect = true;
-            }
-        }
+
 
         private void GiveEffectToAllUsersBtn_Click(object sender, EventArgs e)
         {
@@ -514,7 +531,7 @@ namespace RetroFun.Pages
 
         public override void Out_RequestPetInfo(DataInterceptedEventArgs e)
         {
-            int userid = e.Packet.ReadInt32();
+            int userid = e.Packet.ReadInteger();
             if (HentityUtils.FindConvertedUserToPetByID(userid) != null)
             {
                 ReplaceUserPacketInfo(userid);
@@ -524,9 +541,9 @@ namespace RetroFun.Pages
 
         private async void ReplaceUserPacketInfo(int userid)
         {
-            await SendToServer(Out.RequestWearingBadges, userid);
+           await  SendToServer(Out.RequestWearingBadges, userid);
             await Task.Delay(150);
-            await SendToServer(Out.RequestProfileFriends, userid);
+           await  SendToServer(Out.RequestProfileFriends, userid);
 
         }
 
@@ -544,6 +561,8 @@ namespace RetroFun.Pages
             }
         }
 
+
+
         private class PetsIds
         {
             public string Name { get; }
@@ -559,9 +578,11 @@ namespace RetroFun.Pages
             public override string ToString() => $"{Name} [ID: {ID}]";
         }
 
+
+
         private void TransformAllUserIntoPetsBtn_Click(object sender, EventArgs e)
         {
-            if (TransformAllUsersToPets)
+            if(TransformAllUsersToPets)
             {
                 WriteToButton(TransformAllUserIntoPetsBtn, "Transform All users In Pets : OFF");
                 TransformAllUsersToPets = false;
@@ -581,21 +602,21 @@ namespace RetroFun.Pages
 
         private void RestoreUsersBtn_Click(object sender, EventArgs e)
         {
-            if (ConvertedUsersToPets.Count != 0 && ConvertedUsersToPets != null)
+            if(ConvertedUsersToPets.Count != 0 && ConvertedUsersToPets != null)
             {
                 foreach (HEntity user in ConvertedUsersToPets)
                 {
                     Thread.Sleep(50);
                     RemoveEntityFromRoom(user);
                 }
-                _ = SendToClient(HentityUtils.PacketBuilder(ConvertedUsersToPets, In.Users));
+                _ = SendToClient(HentityUtils.PacketBuilder(ConvertedUsersToPets, In.RoomUsers));
                 ConvertedUsersToPets.Clear();
             }
         }
 
         private void GiveAllEffectToUserBtn_Click(object sender, EventArgs e)
         {
-            if (GiveAllUsersEnable)
+            if(GiveAllUsersEnable)
             {
                 GiveAllUsersEnable = false;
                 WriteToButton(GiveAllEffectToUserBtn, "Give Effect To All Users  : OFF");
@@ -608,27 +629,29 @@ namespace RetroFun.Pages
 
         }
 
+
         private void GiveAllUsersEffect()
         {
             if (GlobalLists.UsersInRoom.Count != 0 && GlobalLists.UsersInRoom != null)
             {
                 foreach (HEntity user in GlobalLists.UsersInRoom)
                 {
-                    AssignClientEffectToUser(user, EffectNumber);
+                        AssignClientEffectToUser(user, EffectNumber);
                 }
             }
         }
 
         public override void In_RoomUserEffect(DataInterceptedEventArgs e)
         {
-            int UserIndex = e.Packet.ReadInt32();
-            int enableeffect = e.Packet.ReadInt32();
-            if (tellWhatEnable)
+            int UserIndex = e.Packet.ReadInteger();
+            int enableeffect = e.Packet.ReadInteger();
+            if(tellWhatEnable)
             {
                 Speak(HentityUtils.FindEntityByIndex(UserIndex).Name + " is using this effect : " + enableeffect);
                 EffectNumber = enableeffect;
             }
         }
+
 
         private void RandomHeadTurn()
         {
@@ -665,16 +688,17 @@ namespace RetroFun.Pages
             }).Start();
         }
 
+
         private void SendLookAtPoint(int one, int two)
         {
-            if (RandomHeadTurnMode)
+            if(RandomHeadTurnMode)
             {
-                _ = SendToServer(Out.LookTo, one, two);
+                _ = SendToServer(Out.RoomUserLookAtPoint, one, two);  
             }
         }
         private void HeadturnBtn_Click(object sender, EventArgs e)
         {
-            if (RandomHeadTurnMode)
+            if(RandomHeadTurnMode)
             {
                 WriteToButton(HeadturnBtn, "Random Head Turn : OFF");
                 RandomHeadTurnMode = false;

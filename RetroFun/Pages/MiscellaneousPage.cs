@@ -1,6 +1,9 @@
 ﻿using RetroFun.Helpers;
 using RetroFun.Subscribers;
-using Geode.Network;
+using Sulakore.Communication;
+using Sulakore.Components;
+using Sulakore.Habbo;
+using Sulakore.Habbo.Web;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +34,7 @@ namespace RetroFun.Pages
         private readonly string TrollLook1 = "hr-155-42.ea-1333-33.ha-3786-62.ch-201410-89.sh-3333-3333.ca-3333-33-33.lg-44689-82.wa-3333-333.hd-209-1";
         private readonly string TrollLook2 = "hr-893-42.ea-1333-33.ha-3786-62.sh-6298462-82.wa-3333-333.ca-3333-33-33.lg-5772038-82-62.ch-987462876-89.hd-209-1";
         private readonly string TrollLook3 = "hr-893-42.cc-156282-77.ea-1333-33.ha-3786-62.ch-9784419-82.sh-3035-82.ca-3333-33-33.lg-6050208-78.wa-3333-333.hd-209-1";
+
 
         public string OriginalLook { get => GlobalStrings.UserDetails_Look; }
 
@@ -198,6 +202,7 @@ namespace RetroFun.Pages
 
         #endregion GesturesBools
 
+
         #region SignBools
 
         private bool _YellowcardSelected;
@@ -308,6 +313,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private bool _ZeroSelected;
 
         public bool ZeroSelected
@@ -416,6 +422,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private bool _DeleteRoomOnEnter;
 
         public bool DeleteRoomOnEnter
@@ -427,6 +434,8 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
+
 
         private bool _NineSelected;
 
@@ -492,6 +501,7 @@ namespace RetroFun.Pages
 
         #region miscvars
 
+
         private bool _ConvertMessageForYou = true;
 
         public bool ConvertMessageForYou
@@ -506,6 +516,7 @@ namespace RetroFun.Pages
 
         private bool _BlockMessageForYou;
 
+
         public bool BlockMessageForYou
         {
             get => _BlockMessageForYou;
@@ -518,6 +529,7 @@ namespace RetroFun.Pages
 
         private bool _BlockStaffAlerts;
 
+
         public bool BlockStaffAlerts
         {
             get => _BlockStaffAlerts;
@@ -527,6 +539,7 @@ namespace RetroFun.Pages
                 RaiseOnPropertyChanged();
             }
         }
+
 
         private bool _AntiFriendRemove = true;
 
@@ -602,6 +615,7 @@ namespace RetroFun.Pages
             Bind(GestureCooldownNbx, "Value", nameof(GestureCooldown));
             Bind(SitCoolDownNbx, "Value", nameof(SitsCooldown));
             Bind(TrollLookNbx, "Value", nameof(TrollLookCooldown));
+
 
             Bind(ConvertMessageForYouChbx, "Checked", nameof(ConvertMessageForYou));
             Bind(BlockMessageForYouChbx, "Checked", nameof(BlockMessageForYou));
@@ -710,6 +724,7 @@ namespace RetroFun.Pages
                 } while (GestureLoopEnabled);
             }).Start();
         }
+
 
         private async void SendGesturePacket(HGesture Gesture)
         {
@@ -960,6 +975,7 @@ namespace RetroFun.Pages
             newroom = true;
         }
 
+
         public override void Out_RemoveFriend(DataInterceptedEventArgs e)
         {
             if (AntiFriendRemove)
@@ -1035,6 +1051,7 @@ namespace RetroFun.Pages
             }
         }
 
+
         private void DanceLoop()
         {
             new Thread(() =>
@@ -1084,6 +1101,7 @@ namespace RetroFun.Pages
                await  SendToServer(Out.UserSaveLook, "M", look);
         }
 
+
         private void TrollLookBtn_Click(object sender, EventArgs e)
         {
             CheckLookTroll();
@@ -1104,10 +1122,13 @@ namespace RetroFun.Pages
             }
         }
 
+
+
+
         public override void In_MessagesForYou(DataInterceptedEventArgs e)
         {
-            e.Packet.ReadInt32();
-            string message = e.Packet.ReadUTF8();
+            e.Packet.ReadInteger();
+            string message = e.Packet.ReadString();
             if(BlockMessageForYou)
             {
                 e.IsBlocked = true;
@@ -1125,10 +1146,13 @@ namespace RetroFun.Pages
 
         }
 
+
         private void Speak(string text)
         {
                 _ = SendToClient(In.RoomUserWhisper, 0, "[MessageForYou]: " + text, 0, 34, 0, -1);
         }
+
+
 
         private void TrollLookLoop()
         {
@@ -1164,26 +1188,29 @@ namespace RetroFun.Pages
             _ = SendToClient(In.SimplePollStart, "MATCHING_POLL", 2505, 8451, 15000, 8451, 3, 6, "RetroFun : Select your Answer to show SS", 0, 6, 0, 0);
         }
 
+
+
         public override void In_RoomUserTalk(DataInterceptedEventArgs e)
         {
-            int index = e.Packet.ReadInt32();
-            string text = e.Packet.ReadUTF8();
+            int index = e.Packet.ReadInteger();
+            string text = e.Packet.ReadString();
             var entity = HentityUtils.FindEntityByIndex(index);
             SaveChatlog(text, "TALKING", HentityUtils.FindUsernameByEntity(entity));
         }
 
         public override void  In_RoomUserShout(DataInterceptedEventArgs e)
         {
-            int index = e.Packet.ReadInt32();
-            string text = e.Packet.ReadUTF8();
+            int index = e.Packet.ReadInteger();
+            string text = e.Packet.ReadString();
             var entity = HentityUtils.FindEntityByIndex(index);
             SaveChatlog(text, "SHOUT", HentityUtils.FindUsernameByEntity(entity));
         }
 
+
         public override void In_RoomUserWhisper(DataInterceptedEventArgs e)
         {
-            int index = e.Packet.ReadInt32();
-            string text = e.Packet.ReadUTF8();
+            int index = e.Packet.ReadInteger();
+            string text = e.Packet.ReadString();
             var entity = HentityUtils.FindEntityByIndex(index);
             SaveChatlog(text, "WHISPERING", HentityUtils.FindUsernameByEntity(entity));
         }
@@ -1200,6 +1227,9 @@ namespace RetroFun.Pages
                 SendFriendRequest(GlobalStrings.UserDetails_Username);
             }
         }
+
+
+
 
         private void StoreToInput(string text)
         {
@@ -1239,6 +1269,8 @@ namespace RetroFun.Pages
 
             }
         }
+
+
 
         private void SaveChatlog(string text, string TalkType, string entityname)
         {
@@ -1340,6 +1372,7 @@ namespace RetroFun.Pages
             // _ = SendToServer(Out.RequestDeleteRoom, GlobalInts.ROOM_ID);
         }
 
+
         //private async void DeleteRoomMode()
         //{
         //        new Thread(() =>
@@ -1373,6 +1406,11 @@ namespace RetroFun.Pages
         //            } while (RemoveTargetRoomsEnabled);
         //        }).Start();
         //    }
+
+
+
+
+
 
         //public override void In_NewNavigatorSearchResults(DataInterceptedEventArgs e)
         //{

@@ -1,5 +1,9 @@
 ﻿using RetroFun.Helpers;
-using Geode.Network;
+using Sulakore.Communication;
+using Sulakore.Habbo;
+using Sulakore.Habbo.Messages;
+using Sulakore.Habbo.Web;
+using Sulakore.Protocol;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,9 +12,6 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Geode.Extension;
-using Geode.Habbo;
-using Geode.Habbo.Messages;
 
 namespace RetroFun.Controls
 {
@@ -21,15 +22,17 @@ namespace RetroFun.Controls
         private readonly Dictionary<string, Binding> _bindings;
 
         protected ObservableExtensionForm Module => Program.Master;
-
-        protected GeodeExtension Extension => Program.Extension;
         protected override Size DefaultSize => new Size(465, 263);
 
-        protected Incoming In => Extension?.In;
-        protected Outgoing Out => Extension?.Out;
+        protected Incoming In => Module?.In;
+        protected Outgoing Out => Module?.Out;
 
-        protected HTriggers Triggers => Extension?.Triggers;
-        protected IHConnection Connection => Extension?.IsConnected;
+        protected HGame Game => Module?.Game;
+        protected HGameData GameData => Module?.GameData;
+        protected HTriggers Triggers => Module?.Triggers;
+        protected IHConnection Connection => Module?.Connection;
+        protected HHotel Hotel => Module?.Hotel ?? HHotel.Unknown;
+
 
         internal async Task SendToClient(byte[] data)
         {
@@ -55,6 +58,7 @@ namespace RetroFun.Controls
             }
             catch (Exception) { }
         }
+
 
         internal async Task SendToClient(ushort id, params object[] values)
         {
@@ -171,6 +175,8 @@ namespace RetroFun.Controls
         {
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }
+
+
 
         #endregion INotifyPropertyChanged Implementation
     }
